@@ -9,10 +9,20 @@ import org.bukkit.block.Block;
 import fr.pederobien.uhc.managers.WorldManager;
 
 public class Spawn {
+	public static final Spawn DEFAULT = new Spawn();
 	private Block center;
-	private static HashMap<Coordinate, Block> config;
+	private HashMap<Coordinate, Block> config;
 	private int width, height, depth;
 	private String name;
+	
+	static {
+		DEFAULT.setWidth(15);
+		DEFAULT.setHeight(1);
+		DEFAULT.setDepth(15);
+		DEFAULT.extract();
+		for (Coordinate coord : DEFAULT.config.keySet())
+			DEFAULT.config.get(coord).setType(Material.DIAMOND_BLOCK);
+	}
 	
 	public Spawn() {
 		this(WorldManager.getHighestBlockYAt(0, 0), "Spawn");
