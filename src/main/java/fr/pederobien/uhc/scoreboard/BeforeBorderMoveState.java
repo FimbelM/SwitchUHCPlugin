@@ -4,6 +4,11 @@ public class BeforeBorderMoveState extends AbstractScoreboardState {
 
 	public BeforeBorderMoveState(IScoreboard scoreboard) {
 		super(scoreboard, "Game");
+		
+		addEntries("Déplacement bordure dans");
+		addEntries(prepareTimeOneEscape(task.getDecreasingTime()));
+		addEntries("Temps de jeu");
+		addEntries(prepareTimeNoEscape(task.getTotalTime()));
 	}
 	
 	@Override

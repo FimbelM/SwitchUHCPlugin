@@ -1,5 +1,7 @@
 package fr.pederobien.uhc.scoreboard;
 
+import fr.pederobien.uhc.task.TimeTask;
+
 public interface IScoreboard {
 	
 	IScoreboardState getCurrentState();
@@ -13,5 +15,6 @@ public interface IScoreboard {
 	IScoreboardState getPauseState();
 	
 	IScoreboardState getStopState();
-
+	
+	TimeTask getTask();
 }

@@ -8,14 +8,19 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
+import fr.pederobien.uhc.task.TimeTask;
+
 public class Scoreboard implements IScoreboard, IScoreboardState {
 	private IScoreboardState before;
 	private IScoreboardState after;
 	private IScoreboardState pause;
 	private IScoreboardState stop;
 	private IScoreboardState current;
+	
+	private TimeTask task;
 
-	public Scoreboard() {
+	public Scoreboard(TimeTask task) {
+		this.task = task;
 		before = new BeforeBorderMoveState(this);
 		after = new AfterBorderMoveState(this);
 		pause = new PauseState(this);
@@ -51,6 +56,11 @@ public class Scoreboard implements IScoreboard, IScoreboardState {
 	@Override
 	public IScoreboardState getStopState() {
 		return stop;
+	}
+	
+	@Override
+	public TimeTask getTask() {
+		return task;
 	}
 
 	@Override
