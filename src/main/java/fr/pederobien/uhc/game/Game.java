@@ -1,34 +1,37 @@
 package fr.pederobien.uhc.game;
 
-import java.time.LocalTime;
-
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-public class Game implements IGame, IGameState {
+import fr.pederobien.uhc.conf.Configuration;
+
+public class Game implements IGame {
 	private IGameState initiate;
 	private IGameState start;
 	private IGameState playerRevive;
 	private IGameState playerDontRevive;
 	private IGameState hungerGame;
 	private IGameState pause;
-	private IGameState relaunched;
 	private IGameState stop;
 	private IGameState current;
+	private Configuration configuration;
 
-	public Game() {
+	public Game(Configuration configuration) {
+		this.configuration = configuration;
+		
 		initiate = new InitiateState(this);
 		start = new StartState(this);
 		playerRevive = new PlayerReviveState(this);
 		playerDontRevive = new PlayerDontReviveState(this);
 		hungerGame = new HungerGameState(this);
 		pause = new PauseState(this);
-		relaunched = new RelaunchedState(this);
 		stop = new StopState(this);
 		current = initiate;
+		
+		initiate();
 	}
 	
 	@Override
@@ -37,8 +40,8 @@ public class Game implements IGame, IGameState {
 	}
 
 	@Override
-	public void setCurrentState(IGameState current) {
-		this.current = current;
+	public IGameState setCurrentState(IGameState current) {
+		return this.current = current;
 	}
 
 	@Override
@@ -72,11 +75,6 @@ public class Game implements IGame, IGameState {
 	}
 
 	@Override
-	public IGameState getRelaunched() {
-		return relaunched;
-	}
-
-	@Override
 	public IGameState getStop() {
 		return stop;
 	}
@@ -92,23 +90,18 @@ public class Game implements IGame, IGameState {
 	}
 
 	@Override
-	public void pause() {
-		current.pause();
+	public void pause(IGameState before) {
+		current.pause(before);
 	}
 
 	@Override
 	public void relaunched() {
-		current.pause();
+		current.relaunched();
 	}
 
 	@Override
 	public void stop() {
 		current.stop();
-	}
-
-	@Override
-	public void timeChanged(LocalTime time) {
-		current.timeChanged(time);
 	}
 
 	@Override
@@ -139,5 +132,10 @@ public class Game implements IGame, IGameState {
 	@Override
 	public void run() {
 		current.run();
+	}
+
+	@Override
+	public Configuration getConfiguration() {
+		return configuration;
 	}
 }
