@@ -12,12 +12,14 @@ public class Scoreboard implements IScoreboard, IScoreboardState {
 	private IScoreboardState before;
 	private IScoreboardState after;
 	private IScoreboardState pause;
+	private IScoreboardState stop;
 	private IScoreboardState current;
 
 	public Scoreboard() {
 		before = new BeforeBorderMoveState(this);
 		after = new AfterBorderMoveState(this);
 		pause = new PauseState(this);
+		stop = new StopState(this);
 		current = before;
 	}
 	
@@ -44,6 +46,11 @@ public class Scoreboard implements IScoreboard, IScoreboardState {
 	@Override
 	public IScoreboardState getPauseState() {
 		return pause;
+	}
+	
+	@Override
+	public IScoreboardState getStopState() {
+		return stop;
 	}
 
 	@Override

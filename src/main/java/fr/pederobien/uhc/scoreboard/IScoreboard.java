@@ -11,5 +11,7 @@ public interface IScoreboard {
 	IScoreboardState getAfterBorderMoveState();
 	
 	IScoreboardState getPauseState();
+	
+	IScoreboardState getStopState();
 
 }
