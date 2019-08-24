@@ -12,4 +12,12 @@ public class BukkitManager {
 	public static void dispatchCommand(String command) {
 		dispatchCommand(Bukkit.getConsoleSender(), command);
 	}
+	
+	public static void broadcastMessageAsTitle(String message) {
+		dispatchCommand("title @a title " + "{\"text\":\"" + message + "\"}");
+	}
+	
+	public static void broadcastMessageAsTitle(String message, String color) {
+		dispatchCommand("title @a title " + "{\"text\":\"" + message + "\",\"color\":\"" + color +"\"}");
+	}
 }
