@@ -7,12 +7,12 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class TaskLauncher extends BukkitRunnable {
 	private TimeTask task;
 
-	public TaskLauncher(LocalTime gameTime, LocalTime fractionTime, int increment) {
-		this.task = new TimeTask(gameTime, fractionTime, increment);
+	public TaskLauncher(LocalTime gameTime, LocalTime fractionTime) {
+		this.task = new TimeTask(gameTime, fractionTime);
 	}
 	
-	public TaskLauncher(String gameTime, String fractionTime, int increment) {
-		this.task = new TimeTask(gameTime, fractionTime, increment);
+	public TaskLauncher(String gameTime, String fractionTime) {
+		this.task = new TimeTask(gameTime, fractionTime);
 	}
 
 	@Override
@@ -21,7 +21,17 @@ public class TaskLauncher extends BukkitRunnable {
 	}
 
 	public void pause() {
-		task.ToPause();
+		task.pause();
+	}
+	
+	@Override
+	public synchronized void cancel() throws IllegalStateException {
+		super.cancel();
+		task.cancel();
+	}
+	
+	public void relaunched() {
+		task.relaunched();
 	}
 
 	public TimeTask getTask() {

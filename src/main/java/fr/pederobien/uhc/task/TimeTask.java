@@ -3,43 +3,43 @@ package fr.pederobien.uhc.task;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TimerTask;
 
 import fr.pederobien.uhc.observer.IObsTimeTask;
 
-public class TimeTask extends TimerTask {
-	private LocalTime totalTime, increasingTime, decreasingTime, pauseTime, fractionTime;
+public class TimeTask {
+	private LocalTime totalTime, increasingTime, decreasingTime, pauseTime, fractionTime, limitTime;
 	private List<IObsTimeTask> observers;
 	private boolean pause;
-	private int increment;
 	
-	private void initialize(LocalTime time, LocalTime fractionTime, int increment) {
+	private void initialize(LocalTime time, LocalTime fractionTime) {
 		observers = new ArrayList<IObsTimeTask>();
 		totalTime = increasingTime = pauseTime = LocalTime.of(0, 0, 0);
-		decreasingTime = time;
+		decreasingTime = limitTime = time;
 		pause = false;
 		this.fractionTime = fractionTime;
-		this.increment = increment;
 	}
 	
-	public TimeTask(LocalTime gameTime, LocalTime fractionTime, int increment) {
-		initialize(gameTime, fractionTime, increment);
+	public TimeTask(LocalTime gameTime, LocalTime fractionTime) {
+		initialize(gameTime, fractionTime);
 	}
 	
-	public TimeTask(String gameTime, String fractionTime, int increment) {
-		initialize(LocalTime.parse(gameTime), LocalTime.parse(fractionTime), increment);
+	public TimeTask(String gameTime, String fractionTime) {
+		initialize(LocalTime.parse(gameTime), LocalTime.parse(fractionTime));
 	}
 
-	@Override
 	public void run() {
 		timeChanged();
 		if (!pause) {
-			increasingTime = increasingTime.plusSeconds(increment);
-			decreasingTime = decreasingTime.minusSeconds(increment);
+			increasingTime = increasingTime.plusSeconds(1);
+			decreasingTime = decreasingTime.minusSeconds(1);
 		}
 		else
-			pauseTime = pauseTime.plusSeconds(increment);
-		totalTime = totalTime.plusSeconds(increment);
+			pauseTime = pauseTime.plusSeconds(1);
+		totalTime = totalTime.plusSeconds(1);
+	}
+	
+	public void cancel() {
+		initialize(limitTime, fractionTime);
 	}
 	
 	/**
@@ -47,8 +47,12 @@ public class TimeTask extends TimerTask {
 	 * If the task is running then it stop. If the task is stopped then it run.
 	 * @return True if the task is stopped, false if the task is running.
 	 */
-	public void ToPause() {
-		this.pause = !pause;
+	public void pause() {
+		pause = true;
+	}
+	
+	public void relaunched() {
+		pause = false;
 	}
 	
 	/**
