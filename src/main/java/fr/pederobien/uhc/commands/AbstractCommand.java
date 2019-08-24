@@ -8,8 +8,8 @@ import fr.pederobien.uhc.conf.Configuration;
 import fr.pederobien.uhc.conf.Persistence;
 
 public abstract class AbstractCommand implements CommandExecutor {
-	protected Persistence persistence;
-	protected Configuration configuration;
+	protected static Persistence persistence;
+	protected static Configuration configuration;
 	
 	public AbstractCommand() {
 		persistence = new Persistence();
