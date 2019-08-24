@@ -1,6 +1,5 @@
 package fr.pederobien.uhc.scoreboard;
 
-import java.time.LocalTime;
 import java.util.List;
 
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -28,8 +27,8 @@ public class Scoreboard implements IScoreboard, IScoreboardState {
 	}
 
 	@Override
-	public void setCurrentState(IScoreboardState current) {
-		this.current = current;
+	public IScoreboardState setCurrentState(IScoreboardState current) {
+		return this.current = current;
 	}
 
 	@Override
@@ -48,8 +47,18 @@ public class Scoreboard implements IScoreboard, IScoreboardState {
 	}
 
 	@Override
-	public void initiate() {
-		current.initiate();
+	public void run() {
+		current.run();
+	}
+
+	@Override
+	public List<String> getEntries() {
+		return current.getEntries();
+	}
+
+	@Override
+	public String getTitle() {
+		return current.getTitle();
 	}
 
 	@Override
@@ -58,8 +67,8 @@ public class Scoreboard implements IScoreboard, IScoreboardState {
 	}
 
 	@Override
-	public void pause() {
-		current.pause();
+	public void pause(IScoreboardState before) {
+		current.pause(before);
 	}
 
 	@Override
@@ -68,28 +77,13 @@ public class Scoreboard implements IScoreboard, IScoreboardState {
 	}
 
 	@Override
-	public void stop() {
-		current.stop();
-	}
-
-	@Override
-	public void timeChanged(LocalTime time) {
-		current.timeChanged(time);
-	}
-
-	@Override
-	public void onPlayerDie(PlayerDeathEvent event) {
-		current.onPlayerDie(event);
-	}
-
-	@Override
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		current.onPlayerJoin(event);
 	}
 
 	@Override
-	public void onPlayerMove(PlayerMoveEvent event) {
-		current.onPlayerMove(event);
+	public void onPlayerDie(PlayerDeathEvent event) {
+		current.onPlayerDie(event);
 	}
 
 	@Override
@@ -103,17 +97,7 @@ public class Scoreboard implements IScoreboard, IScoreboardState {
 	}
 
 	@Override
-	public void run() {
-		current.run();
-	}
-
-	@Override
-	public List<String> getEntries() {
-		return current.getEntries();
-	}
-
-	@Override
-	public String getTitle() {
-		return current.getTitle();
+	public void onPlayerMove(PlayerMoveEvent event) {
+		current.onPlayerMove(event);
 	}
 }

@@ -4,7 +4,7 @@ public interface IScoreboard {
 	
 	IScoreboardState getCurrentState();
 	
-	void setCurrentState(IScoreboardState current);
+	IScoreboardState setCurrentState(IScoreboardState current);
 	
 	IScoreboardState getBeforeBorderMoveState();
 	

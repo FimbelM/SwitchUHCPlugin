@@ -1,6 +1,5 @@
 package fr.pederobien.uhc.scoreboard;
 
-import java.time.LocalTime;
 import java.util.List;
 
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -20,37 +19,7 @@ public class AbstractScoreboardState implements IScoreboardState {
 	}
 
 	@Override
-	public void initiate() {
-		
-	}
-
-	@Override
-	public void start() {
-		
-	}
-
-	@Override
-	public void pause() {
-		
-	}
-
-	@Override
-	public void relaunched() {
-		
-	}
-
-	@Override
-	public void stop() {
-		
-	}
-
-	@Override
-	public void timeChanged(LocalTime time) {
-		
-	}
-
-	@Override
-	public void onPlayerDie(PlayerDeathEvent event) {
+	public void run() {
 		
 	}
 
@@ -60,7 +29,7 @@ public class AbstractScoreboardState implements IScoreboardState {
 	}
 
 	@Override
-	public void onPlayerMove(PlayerMoveEvent event) {
+	public void onPlayerDie(PlayerDeathEvent event) {
 		
 	}
 
@@ -75,7 +44,7 @@ public class AbstractScoreboardState implements IScoreboardState {
 	}
 
 	@Override
-	public void run() {
+	public void onPlayerMove(PlayerMoveEvent event) {
 		
 	}
 
@@ -87,6 +56,21 @@ public class AbstractScoreboardState implements IScoreboardState {
 	@Override
 	public String getTitle() {
 		return title;
+	}
+
+	@Override
+	public void start() {
+		
+	}
+
+	@Override
+	public void pause(IScoreboardState before) {
+		
+	}
+
+	@Override
+	public void relaunched() {
+		
 	}
 	
 	protected void addEntries(String score) {
