@@ -1,51 +1,18 @@
 package fr.pederobien.uhc.game;
 
-import java.time.LocalTime;
-
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
+import fr.pederobien.uhc.BukkitManager;
+import fr.pederobien.uhc.PluginDeposit;
 
 public class StartState extends AbstractState {
 
 	public StartState(IGame game) {
 		super(game);
 	}
-
+	
 	@Override
-	public void timeChanged(LocalTime time) {
-
-	}
-
-	@Override
-	public void onPlayerDie(PlayerDeathEvent event) {
-
-	}
-
-	@Override
-	public void onPlayerJoin(PlayerJoinEvent event) {
-
-	}
-
-	@Override
-	public void onPlayerMove(PlayerMoveEvent event) {
-
-	}
-
-	@Override
-	public void onPlayerQuit(PlayerQuitEvent event) {
-
-	}
-
-	@Override
-	public void onPlayerRespawn(PlayerRespawnEvent event) {
-
-	}
-
-	@Override
-	public void run() {
-
+	public void start() {
+		BukkitManager.broadcastMessageAsTitle("Match à mort par équipe");
+		launcher.runTaskTimer(PluginDeposit.plugin, 0, 1);
+		game.setCurrentState(game.getPlayerRevive());
 	}
 }

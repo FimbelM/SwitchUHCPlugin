@@ -1,51 +1,29 @@
 package fr.pederobien.uhc.game;
 
-import java.time.LocalTime;
-
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
+import fr.pederobien.uhc.task.TaskLauncher;
+import fr.pederobien.uhc.task.TimeLine;
 
 public class InitiateState extends AbstractState {
-
+	private boolean initiate;
+	
 	public InitiateState(IGame game) {
 		super(game);
+		initiate = false;
 	}
-
+	
 	@Override
-	public void timeChanged(LocalTime time) {
-
-	}
-
-	@Override
-	public void onPlayerDie(PlayerDeathEvent event) {
-
-	}
-
-	@Override
-	public void onPlayerJoin(PlayerJoinEvent event) {
+	public void initiate() {
+		if (initiate) return;
 		
+		launcher = new TaskLauncher(game.getConfiguration().getGameTime(), game.getConfiguration().getFractionTime());
+		timeLine = new TimeLine(launcher.getTask());
+		timeLine.addObserver(game.getConfiguration().getGameTime(), game);
+		timeLine.addObserver(game.getConfiguration().getFractionTime(), game);
+		initiate = true;
 	}
-
+	
 	@Override
-	public void onPlayerMove(PlayerMoveEvent event) {
-
-	}
-
-	@Override
-	public void onPlayerQuit(PlayerQuitEvent event) {
-
-	}
-
-	@Override
-	public void onPlayerRespawn(PlayerRespawnEvent event) {
-
-	}
-
-	@Override
-	public void run() {
-
+	public void start() {
+		game.setCurrentState(game.getStart()).start();
 	}
 }
