@@ -28,11 +28,11 @@ public class Persistence {
 		return new Spawn();
 	}
 	
-	public boolean persisteGame(Configuration game) {
+	public boolean persisteConfiguration(Configuration game) {
 		return true;
 	}
 	
-	public Configuration loadGame(String name) {
+	public Configuration loadConfiguration(String name) {
 		return new Configuration();
 	}
 }
