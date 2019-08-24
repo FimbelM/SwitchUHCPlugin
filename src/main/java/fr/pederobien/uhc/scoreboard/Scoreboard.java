@@ -1,6 +1,7 @@
-package fr.pederobien.uhc.game;
+package fr.pederobien.uhc.scoreboard;
 
 import java.time.LocalTime;
+import java.util.List;
 
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -8,77 +9,42 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-public class Game implements IGame, IGameState {
-	private IGameState initiate;
-	private IGameState start;
-	private IGameState playerRevive;
-	private IGameState playerDontRevive;
-	private IGameState hungerGame;
-	private IGameState pause;
-	private IGameState relaunched;
-	private IGameState stop;
-	private IGameState current;
+public class Scoreboard implements IScoreboard, IScoreboardState {
+	private IScoreboardState before;
+	private IScoreboardState after;
+	private IScoreboardState pause;
+	private IScoreboardState current;
 
-	public Game() {
-		initiate = new InitiateState(this);
-		start = new StartState(this);
-		playerRevive = new PlayerReviveState(this);
-		playerDontRevive = new PlayerDontReviveState(this);
-		hungerGame = new HungerGameState(this);
+	public Scoreboard() {
+		before = new BeforeBorderMoveState(this);
+		after = new AfterBorderMoveState(this);
 		pause = new PauseState(this);
-		relaunched = new RelaunchedState(this);
-		stop = new StopState(this);
-		current = initiate;
+		current = before;
 	}
 	
 	@Override
-	public IGameState getCurrentState() {
+	public IScoreboardState getCurrentState() {
 		return current;
 	}
 
 	@Override
-	public void setCurrentState(IGameState current) {
+	public void setCurrentState(IScoreboardState current) {
 		this.current = current;
 	}
 
 	@Override
-	public IGameState getInitiate() {
-		return initiate;
+	public IScoreboardState getBeforeBorderMoveState() {
+		return before;
 	}
 
 	@Override
-	public IGameState getStart() {
-		return start;
+	public IScoreboardState getAfterBorderMoveState() {
+		return after;
 	}
 
 	@Override
-	public IGameState getPlayerRevive() {
-		return playerRevive;
-	}
-
-	@Override
-	public IGameState getPlayerDontRevive() {
-		return playerDontRevive;
-	}
-
-	@Override
-	public IGameState getHungerGame() {
-		return hungerGame;
-	}
-
-	@Override
-	public IGameState getPause() {
+	public IScoreboardState getPauseState() {
 		return pause;
-	}
-
-	@Override
-	public IGameState getRelaunched() {
-		return relaunched;
-	}
-
-	@Override
-	public IGameState getStop() {
-		return stop;
 	}
 
 	@Override
@@ -98,7 +64,7 @@ public class Game implements IGame, IGameState {
 
 	@Override
 	public void relaunched() {
-		current.pause();
+		current.relaunched();
 	}
 
 	@Override
@@ -139,5 +105,15 @@ public class Game implements IGame, IGameState {
 	@Override
 	public void run() {
 		current.run();
+	}
+
+	@Override
+	public List<String> getEntries() {
+		return current.getEntries();
+	}
+
+	@Override
+	public String getTitle() {
+		return current.getTitle();
 	}
 }
