@@ -4,36 +4,50 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.scoreboard.Team;
 
+import fr.pederobien.uhc.managers.WorldManager;
+
 public class Configuration {
 	public static final Configuration DEFAULT = new Configuration();
-	private Location spawnLocation;
+	private Spawn spawn;
 	private Block borderCenter;
 	private double borderSize;
-	private String spawnName;
+	private String name;
 	private LocalTime gameTime;
 	private LocalTime fractionTime;
 	private List<Team> teams;
-	
+
+	static {
+		DEFAULT.setBorderCenter(WorldManager.getHighestBlockYAt(0, 0));
+		DEFAULT.setBorderSize(2000);
+		DEFAULT.setFractionTime(LocalTime.of(0, 45, 0));
+		DEFAULT.setGameTime(LocalTime.of(2, 0, 0));
+		DEFAULT.setName("Default configuration");
+		DEFAULT.setSpawn(Spawn.DEFAULT);
+	}
+
 	public Configuration() {
+		this("Default configuration");
+	}
+
+	public Configuration(String name) {
 		setTeams(new ArrayList<Team>());
 	}
-	
-	public Location getSpawnLocation() {
-		return spawnLocation;
+
+	public void setSpawn(Spawn spawn) {
+		this.spawn = spawn;
 	}
-	
-	public void setSpawnLocation(Location spawnLocation) {
-		this.spawnLocation = spawnLocation;
+
+	public Spawn getSpawn() {
+		return spawn;
 	}
-	
+
 	public Block getBorderCenter() {
 		return borderCenter;
 	}
-	
+
 	public void setBorderCenter(Block borderCenter) {
 		this.borderCenter = borderCenter;
 	}
@@ -44,14 +58,6 @@ public class Configuration {
 
 	public void setBorderSize(double borderSize) {
 		this.borderSize = borderSize;
-	}
-
-	public String getSpawnName() {
-		return spawnName;
-	}
-
-	public void setSpawnName(String spawnName) {
-		this.spawnName = spawnName;
 	}
 
 	public LocalTime getGameTime() {
@@ -76,5 +82,13 @@ public class Configuration {
 
 	public void setTeams(List<Team> teams) {
 		this.teams = teams;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }
