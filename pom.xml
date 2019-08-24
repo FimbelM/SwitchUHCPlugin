@@ -40,5 +40,10 @@
 			<version>1.13-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>fr.pederobien</groupId>
+			<artifactId>utils</artifactId>
+			<version>0.0.23</version>
+		</dependency>
 	</dependencies>
 </project>
