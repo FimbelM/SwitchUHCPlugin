@@ -8,6 +8,8 @@ public interface IScoreboard {
 	
 	IScoreboardState setCurrentState(IScoreboardState current);
 	
+	IScoreboardState getInitialState();
+	
 	IScoreboardState getBeforeBorderMoveState();
 	
 	IScoreboardState getAfterBorderMoveState();

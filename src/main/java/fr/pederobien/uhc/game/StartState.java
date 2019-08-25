@@ -14,6 +14,7 @@ public class StartState extends AbstractState {
 	public void start() {
 		BukkitManager.broadcastMessageAsTitle("Match à mort par équipe");
 		launcher.runTaskTimer(PluginDeposit.plugin, 0, 1);
+		scoreboard.start();
 		game.setCurrentState(game.getPlayerRevive());
 		
 		WorldManager.setWorldBorderCenter(game.getConfiguration().getSpawn().getCenter());
