@@ -28,6 +28,7 @@ public abstract class AbstractScoreboardState implements IScoreboardState {
 
 	@Override
 	public List<String> getEntries() {
+		updateEntries();
 		return entries;
 	}
 
