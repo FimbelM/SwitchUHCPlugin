@@ -28,6 +28,8 @@ public class UHCPlugin extends JavaPlugin {
 		new RemoveAllTeamCommand(this, "teamremoveall");
 		
 		getServer().getPluginManager().registerEvents(AbstractCommand.listener, this);
+		
+		PluginDeposit.plugin = this;
 	}
 
 	@Override
