@@ -74,7 +74,11 @@ public class WorldManager {
 		border.setCenter(xCenter, zCenter);
 	}
 	
-	public static void setWorldBorderDiameter(int diameter) {
+	public static void setWorldBorderCenter(Block block) {
+		border.setCenter(block.getLocation());
+	}
+	
+	public static void setWorldBorderDiameter(double diameter) {
 		border.setSize(diameter);
 	}
 	

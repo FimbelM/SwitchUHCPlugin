@@ -48,6 +48,15 @@ public class PlayerManager {
 	public static int getNumberOfPlayersOnMode(GameMode mode) {
 		return getPlayersOnMode(mode).size();
 	}
+	
+	public static void setGameModeOfPlayer(Player player, GameMode mode) {
+		player.setGameMode(mode);
+	}
+	
+	public static void setGameModeOfPlayers(GameMode mode) {
+		for (Player player : getPlayers())
+			player.setGameMode(mode);
+	}
 
 	public static void giveEffect(String selector, String effect, int duration, int power, boolean hide) {
 		BukkitManager.dispatchCommand(

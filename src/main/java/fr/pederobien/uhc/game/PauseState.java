@@ -12,6 +12,7 @@ public class PauseState extends AbstractState {
 	public void pause(IGameState before) {
 		BukkitManager.broadcastMessageAsTitle("Partie suspendue");
 		launcher.pause();
+		scoreboard.pause(scoreboard.getCurrentState());
 		this.before = before;
 	}
 	
@@ -19,6 +20,7 @@ public class PauseState extends AbstractState {
 	public void relaunched() {
 		BukkitManager.broadcastMessageAsTitle("Reprise");
 		launcher.relaunched();
+		scoreboard.relaunched();
 		game.setCurrentState(before);
 	}
 }
