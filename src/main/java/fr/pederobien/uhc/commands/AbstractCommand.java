@@ -6,9 +6,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.pederobien.uhc.conf.Configuration;
+import fr.pederobien.uhc.world.EventListener;
 
 public abstract class AbstractCommand implements CommandExecutor {
 	protected static Configuration configuration = Configuration.DEFAULT;
+	public static EventListener listener = new EventListener();
 	
 	public AbstractCommand(JavaPlugin plugin, String command) {
 		plugin.getCommand(command).setExecutor(this);
