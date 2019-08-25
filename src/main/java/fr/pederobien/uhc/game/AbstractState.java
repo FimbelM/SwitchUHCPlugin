@@ -1,11 +1,14 @@
 package fr.pederobien.uhc.game;
 
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
+import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.scoreboard.Scoreboard;
 import fr.pederobien.uhc.task.TaskLauncher;
 import fr.pederobien.uhc.task.TimeLine;
@@ -46,7 +49,8 @@ public abstract class AbstractState implements IGameState {
 	}
 	
 	public void onPlayerDie(PlayerDeathEvent event) {
-		
+		for (Player player : PlayerManager.getPlayers())
+			player.playSound(player.getLocation(), Sound.ENTITY_WITHER_DEATH, 10, 1);
 	}
 
 	public void onPlayerJoin(PlayerJoinEvent event) {
