@@ -9,10 +9,9 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-import fr.pederobien.uhc.managers.ScoreboardManager;
 import fr.pederobien.uhc.task.TimeTask;
 
-public class AbstractScoreboardState implements IScoreboardState {
+public abstract class AbstractScoreboardState implements IScoreboardState {
 	protected IScoreboard scoreboard;
 	private List<String> entries;
 	private String title;
@@ -51,7 +50,7 @@ public class AbstractScoreboardState implements IScoreboardState {
 
 	@Override
 	public void onPlayerMove(PlayerMoveEvent event) {
-		ScoreboardManager.setPlayersScoreboardWithCurrentLocation(title, entries);
+		
 	}
 	
 	@Override
@@ -71,17 +70,22 @@ public class AbstractScoreboardState implements IScoreboardState {
 
 	@Override
 	public void start() {
-		
+		throw new ScoreboardStateException("This method cannot be called by this state");
 	}
 
 	@Override
 	public void pause(IScoreboardState before) {
-		
+		throw new ScoreboardStateException("This method cannot be called by this state");
 	}
 
 	@Override
 	public void relaunched() {
-		
+		throw new ScoreboardStateException("This method cannot be called by this state");
+	}
+	
+	@Override
+	public void stop() {
+		throw new ScoreboardStateException("This method cannot be called by this state");
 	}
 	
 	protected void addEntries(String score) {

@@ -1,10 +1,13 @@
 package fr.pederobien.uhc.scoreboard;
 
 import org.bukkit.GameMode;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.scoreboard.Team;
 
+import fr.pederobien.uhc.managers.ScoreboardManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
+import fr.pederobien.uhc.task.TimeTask;
 
 public class AfterBorderMoveState extends AbstractScoreboardState {
 
@@ -20,6 +23,21 @@ public class AfterBorderMoveState extends AbstractScoreboardState {
 	@Override
 	public void pause(IScoreboardState before) {
 		scoreboard.setCurrentState(scoreboard.getPauseState()).pause(before);
+	}
+	
+	@Override
+	public void stop() {
+		scoreboard.setCurrentState(scoreboard.getStopState()).stop();
+	}
+	
+	@Override
+	public void timeChanged(TimeTask task) {
+		ScoreboardManager.setPlayersScoreboardWithCurrentLocation(getTitle(), getEntries());
+	}
+	
+	@Override
+	public void onPlayerMove(PlayerMoveEvent event) {
+		ScoreboardManager.setPlayerScoreboardWithCurrentLocation(getTitle(), event.getPlayer(), getEntries());
 	}
 
 	public void registerTeam() {

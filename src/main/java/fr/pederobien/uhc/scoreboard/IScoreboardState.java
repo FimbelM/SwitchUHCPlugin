@@ -17,4 +17,6 @@ public interface IScoreboardState extends Function, IObsListener, IObsTimeTask {
 	void pause(IScoreboardState before);
 	
 	void relaunched();
+	
+	void stop();
 }

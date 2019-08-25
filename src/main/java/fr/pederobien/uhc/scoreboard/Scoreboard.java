@@ -97,6 +97,11 @@ public class Scoreboard implements IScoreboard, IScoreboardState {
 	public void relaunched() {
 		current.relaunched();
 	}
+	
+	@Override
+	public void stop() {
+		current.stop();
+	}
 
 	@Override
 	public void onPlayerJoin(PlayerJoinEvent event) {
