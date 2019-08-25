@@ -6,15 +6,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.pederobien.uhc.conf.Configuration;
-import fr.pederobien.uhc.conf.Persistence;
 
 public abstract class AbstractCommand implements CommandExecutor {
-	protected static Persistence persistence;
-	protected static Configuration configuration;
+	protected static Configuration configuration = Configuration.DEFAULT;
 	
 	public AbstractCommand(JavaPlugin plugin, String command) {
-		persistence = new Persistence();
-		configuration = Configuration.DEFAULT;
 		plugin.getCommand(command).setExecutor(this);
 	}
 
