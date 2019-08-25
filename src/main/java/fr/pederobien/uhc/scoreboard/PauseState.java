@@ -11,7 +11,6 @@ public class PauseState extends AbstractScoreboardState {
 	
 	@Override
 	void updateEntries() {
-		getEntries().clear();
 		addEntries("Temps de pause");
 		addEntries(prepareTimeOneEscape(task.getPauseTime()));
 		addEntries("Temps de jeu");

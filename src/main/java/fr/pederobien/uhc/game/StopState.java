@@ -9,6 +9,7 @@ public class StopState extends AbstractState {
 	@Override
 	public void stop() {
 		taskLauncher.cancel();
+		scoreboardLauncher.cancel();
 		game.setCurrentState(game.getInitiate());
 	}
 }

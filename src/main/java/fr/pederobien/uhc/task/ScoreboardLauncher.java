@@ -14,7 +14,14 @@ public class ScoreboardLauncher extends BukkitRunnable {
 	
 	@Override
 	public void run() {
+		System.out.println("Refresh scoreboard");
 		scoreboard.getEntries();
 		ScoreboardManager.setPlayersScoreboardWithCurrentLocation(scoreboard.getTitle(), scoreboard.getEntries());
+	}
+	
+	@Override
+	public synchronized void cancel() throws IllegalStateException {
+		super.cancel();
+		scoreboard.stop();
 	}
 }

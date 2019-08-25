@@ -72,6 +72,7 @@ public class TimeTask {
 	}
 	
 	private void timeChanged() {
+		System.out.println("time changed");
 		for (IObsTimeTask obs : observers)
 			obs.timeChanged(this);
 	}

@@ -10,7 +10,6 @@ public class BeforeBorderMoveState extends AbstractScoreboardState {
 	
 	@Override
 	void updateEntries() {
-		getEntries().clear();
 		addEntries("Déplacement bordure dans");
 		addEntries(prepareTimeOneEscape(task.getDecreasingTime()));
 		addEntries("Temps de jeu");
