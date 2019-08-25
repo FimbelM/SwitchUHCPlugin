@@ -25,7 +25,7 @@ public class Game implements IGame {
 		this.configuration = configuration;
 		this.listener = listener;
 		
-		initiate = new InitiateState(this);
+		initiate = new InitialState(this);
 		start = new StartState(this);
 		playerRevive = new PlayerReviveState(this);
 		playerDontRevive = new PlayerDontReviveState(this);

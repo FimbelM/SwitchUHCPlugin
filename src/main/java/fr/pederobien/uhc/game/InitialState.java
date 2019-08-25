@@ -9,10 +9,10 @@ import fr.pederobien.uhc.scoreboard.Scoreboard;
 import fr.pederobien.uhc.task.TaskLauncher;
 import fr.pederobien.uhc.task.TimeLine;
 
-public class InitiateState extends AbstractState {
+public class InitialState extends AbstractState {
 	private boolean initiate;
 	
-	public InitiateState(IGame game) {
+	public InitialState(IGame game) {
 		super(game);
 		initiate = false;
 	}
