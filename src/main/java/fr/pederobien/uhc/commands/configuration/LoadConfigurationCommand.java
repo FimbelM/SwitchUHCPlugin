@@ -4,9 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.pederobien.uhc.commands.AbstractCommand;
-
-public class LoadConfigurationCommand extends AbstractCommand {
+public class LoadConfigurationCommand extends AbstractConfCommand {
 
 	public LoadConfigurationCommand(JavaPlugin plugin, String command) {
 		super(plugin, command);
