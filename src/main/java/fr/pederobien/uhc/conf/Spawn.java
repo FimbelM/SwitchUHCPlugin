@@ -29,6 +29,7 @@ public class Spawn {
 	}
 	
 	public Spawn(Block center, String name) {
+		config = new HashMap<Coordinate, Block>();
 		this.center = center;
 		this.name = name;
 	}

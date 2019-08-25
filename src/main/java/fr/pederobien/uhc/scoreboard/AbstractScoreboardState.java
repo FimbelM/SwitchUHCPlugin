@@ -1,6 +1,7 @@
 package fr.pederobien.uhc.scoreboard;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -21,6 +22,7 @@ public abstract class AbstractScoreboardState implements IScoreboardState {
 		this.scoreboard = scoreboard;
 		this.title = title;
 		task = scoreboard.getTask();
+		entries = new ArrayList<String>();
 	}
 
 	@Override
