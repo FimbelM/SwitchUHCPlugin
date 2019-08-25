@@ -8,7 +8,7 @@ public class StopState extends AbstractState {
 	
 	@Override
 	public void stop() {
-		launcher.cancel();
+		taskLauncher.cancel();
 		game.setCurrentState(game.getInitiate());
 	}
 }

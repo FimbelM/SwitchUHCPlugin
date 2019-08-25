@@ -21,9 +21,9 @@ public class InitialState extends AbstractState {
 	public void initiate() {
 		if (initiate) return;
 		
-		launcher = new TaskLauncher(game.getConfiguration().getGameTime(), game.getConfiguration().getFractionTime());
-		timeLine = new TimeLine(launcher.getTask());
-		scoreboard = new Scoreboard(launcher.getTask());
+		taskLauncher = new TaskLauncher(game.getConfiguration().getGameTime(), game.getConfiguration().getFractionTime());
+		timeLine = new TimeLine(taskLauncher.getTask());
+		scoreboard = new Scoreboard(taskLauncher.getTask());
 		
 		timeLine.addObserver(game.getConfiguration().getGameTime(), game);
 		timeLine.addObserver(game.getConfiguration().getFractionTime(), game);

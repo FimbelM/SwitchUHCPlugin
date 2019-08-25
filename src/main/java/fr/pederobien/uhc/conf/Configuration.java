@@ -17,6 +17,7 @@ public class Configuration {
 	private String name;
 	private LocalTime gameTime;
 	private LocalTime fractionTime;
+	private int scoreboardRefresh;
 	private List<Team> teams;
 
 	static {
@@ -26,6 +27,7 @@ public class Configuration {
 		DEFAULT.setGameTime(LocalTime.of(2, 0, 0));
 		DEFAULT.setName("Default configuration");
 		DEFAULT.setSpawn(Spawn.DEFAULT);
+		DEFAULT.setScoreboardRefresh(4);
 	}
 
 	public Configuration() {
@@ -90,5 +92,13 @@ public class Configuration {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public int getScoreboardRefresh() {
+		return scoreboardRefresh;
+	}
+	
+	public void setScoreboardRefresh(int scoreboardRefresh) {
+		this.scoreboardRefresh = scoreboardRefresh;
 	}
 }

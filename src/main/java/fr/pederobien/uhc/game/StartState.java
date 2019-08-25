@@ -13,7 +13,7 @@ public class StartState extends AbstractState {
 	@Override
 	public void start() {
 		BukkitManager.broadcastMessageAsTitle("Match à mort par équipe");
-		launcher.runTaskTimer(PluginDeposit.plugin, 0, 20L);
+		taskLauncher.runTaskTimer(PluginDeposit.plugin, 0, 20L);
 		scoreboard.start();
 		game.setCurrentState(game.getPlayerRevive());
 		

@@ -10,12 +10,14 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.scoreboard.Scoreboard;
+import fr.pederobien.uhc.task.ScoreboardLauncher;
 import fr.pederobien.uhc.task.TaskLauncher;
 import fr.pederobien.uhc.task.TimeLine;
 
 public abstract class AbstractState implements IGameState {
 	protected IGame game;
-	protected static TaskLauncher launcher;
+	protected static TaskLauncher taskLauncher;
+	protected static ScoreboardLauncher scoreboardGame; 
 	protected static TimeLine timeLine;
 	protected static Scoreboard scoreboard;
 	
