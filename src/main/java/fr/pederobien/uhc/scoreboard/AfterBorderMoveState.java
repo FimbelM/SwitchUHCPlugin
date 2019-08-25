@@ -1,6 +1,7 @@
 package fr.pederobien.uhc.scoreboard;
 
 import org.bukkit.GameMode;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.scoreboard.Team;
 
@@ -13,7 +14,12 @@ public class AfterBorderMoveState extends AbstractScoreboardState {
 
 	public AfterBorderMoveState(IScoreboard scoreboard) {
 		super(scoreboard, "Brace Yourself");
-
+		
+		updateEntries();
+	}
+	
+	@Override
+	void updateEntries() {
 		addEntries("Rayon bordure : " + WorldManager.getCurrentDiameter() / 2);
 		registerTeam();
 		addEntries("Temps de jeu");
@@ -32,12 +38,19 @@ public class AfterBorderMoveState extends AbstractScoreboardState {
 	
 	@Override
 	public void timeChanged(TimeTask task) {
+		updateEntries();
 		ScoreboardManager.setPlayersScoreboardWithCurrentLocation(getTitle(), getEntries());
 	}
 	
 	@Override
 	public void onPlayerMove(PlayerMoveEvent event) {
+		updateEntries();
 		ScoreboardManager.setPlayerScoreboardWithCurrentLocation(getTitle(), event.getPlayer(), getEntries());
+	}
+	
+	@Override
+	public void onPlayerDie(PlayerDeathEvent event) {
+		ScoreboardManager.setPlayersScoreboardWithCurrentLocation(getTitle(), getEntries());
 	}
 
 	public void registerTeam() {

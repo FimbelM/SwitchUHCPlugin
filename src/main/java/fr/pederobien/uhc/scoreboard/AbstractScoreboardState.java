@@ -24,6 +24,8 @@ public abstract class AbstractScoreboardState implements IScoreboardState {
 		task = scoreboard.getTask();
 		entries = new ArrayList<String>();
 	}
+	
+	abstract void updateEntries();
 
 	@Override
 	public void run() {

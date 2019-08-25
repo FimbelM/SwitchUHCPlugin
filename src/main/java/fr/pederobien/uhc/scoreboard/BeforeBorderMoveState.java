@@ -10,6 +10,12 @@ public class BeforeBorderMoveState extends AbstractScoreboardState {
 	public BeforeBorderMoveState(IScoreboard scoreboard) {
 		super(scoreboard, "Game");
 		
+		updateEntries();
+	}
+	
+	@Override
+	void updateEntries() {
+		getEntries().clear();
 		addEntries("Déplacement bordure dans");
 		addEntries(prepareTimeOneEscape(task.getDecreasingTime()));
 		addEntries("Temps de jeu");
@@ -33,11 +39,13 @@ public class BeforeBorderMoveState extends AbstractScoreboardState {
 	
 	@Override
 	public void timeChanged(TimeTask task) {
+		updateEntries();
 		ScoreboardManager.setPlayersScoreboardWithCurrentLocation(getTitle(), getEntries());
 	}
 	
 	@Override
 	public void onPlayerMove(PlayerMoveEvent event) {
+		updateEntries();
 		ScoreboardManager.setPlayerScoreboardWithCurrentLocation(getTitle(), event.getPlayer(), getEntries());
 	}
 }
