@@ -22,7 +22,7 @@ public class UHCPlugin extends JavaPlugin {
 		new StartCommand(this, "startgame");
 		new StopCommand(this, "stopgame");
 		new SaveSpawnCommand(this, "savespawn");
-		new AddToRandomTeamCommand(this, "randomteam");
+		new AddToRandomTeamCommand(this, "teamrandom");
 		new CreateTeamCommand(this, "teamcreate");
 		new RemoveAllTeamCommand(this, "teamremoveall");
 	}
