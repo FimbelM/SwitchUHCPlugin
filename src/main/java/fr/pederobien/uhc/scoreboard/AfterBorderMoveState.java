@@ -10,16 +10,14 @@ public class AfterBorderMoveState extends AbstractScoreboardState {
 
 	public AfterBorderMoveState(IScoreboard scoreboard) {
 		super(scoreboard, "Brace Yourself");
-		
-		updateEntries();
 	}
 	
 	@Override
 	void updateEntries() {
-		addEntries("Rayon bordure : " + WorldManager.getCurrentDiameter() / 2);
-		registerTeam();
-		addEntries("Temps de jeu");
 		addEntries(prepareTimeNoEscape(task.getTotalTime()));
+		addEntries("Temps de jeu");
+		registerTeam();
+		addEntries("Rayon bordure : " + WorldManager.getCurrentDiameter() / 2);
 	}
 
 	@Override

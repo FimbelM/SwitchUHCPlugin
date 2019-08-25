@@ -5,16 +5,14 @@ public class PauseState extends AbstractScoreboardState {
 	
 	public PauseState(IScoreboard scoreboard) {
 		super(scoreboard, "Partie Suspendue");
-		
-		updateEntries();
 	}
 	
 	@Override
 	void updateEntries() {
-		addEntries("Temps de pause");
-		addEntries(prepareTimeOneEscape(task.getPauseTime()));
-		addEntries("Temps de jeu");
 		addEntries(prepareTimeNoEscape(task.getTotalTime()));
+		addEntries("Temps de jeu");
+		addEntries(prepareTimeOneEscape(task.getPauseTime()));
+		addEntries("Temps de pause");
 	}
 	
 	@Override

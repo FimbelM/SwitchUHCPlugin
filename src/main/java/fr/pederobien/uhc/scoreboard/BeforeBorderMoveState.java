@@ -3,17 +3,15 @@ package fr.pederobien.uhc.scoreboard;
 public class BeforeBorderMoveState extends AbstractScoreboardState {
 
 	public BeforeBorderMoveState(IScoreboard scoreboard) {
-		super(scoreboard, "Game");
-		
-		updateEntries();
+		super(scoreboard, "Game");		
 	}
 	
 	@Override
 	void updateEntries() {
-		addEntries("Déplacement bordure dans");
-		addEntries(prepareTimeOneEscape(task.getDecreasingTime()));
-		addEntries("Temps de jeu");
 		addEntries(prepareTimeNoEscape(task.getTotalTime()));
+		addEntries("Temps de jeu");
+		addEntries(prepareTimeOneEscape(task.getDecreasingTime()));
+		addEntries("Déplacement bordure dans");
 	}
 	
 	@Override
