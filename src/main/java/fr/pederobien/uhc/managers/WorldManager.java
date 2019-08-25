@@ -17,9 +17,9 @@ public class WorldManager {
 	private static WorldBorder border;
 	
 	static {
+		world = getWorld(worldName);
 		setSpawnOnJoin(getHighestBlockYAt(0, 0).getLocation());
 		rand = new Random();
-		world = getWorld(worldName);
 		border = world.getWorldBorder();
 	}
 	
