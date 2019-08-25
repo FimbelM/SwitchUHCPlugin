@@ -2,6 +2,7 @@ package fr.pederobien.uhc;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import fr.pederobien.uhc.commands.AbstractCommand;
 import fr.pederobien.uhc.commands.configuration.LoadConfigurationCommand;
 import fr.pederobien.uhc.commands.game.PauseCommand;
 import fr.pederobien.uhc.commands.game.StartCommand;
@@ -25,6 +26,8 @@ public class UHCPlugin extends JavaPlugin {
 		new AddToRandomTeamCommand(this, "teamrandom");
 		new CreateTeamCommand(this, "teamcreate");
 		new RemoveAllTeamCommand(this, "teamremoveall");
+		
+		getServer().getPluginManager().registerEvents(AbstractCommand.listener, this);
 	}
 
 	@Override
