@@ -2,11 +2,16 @@ package fr.pederobien.uhc.commands.team;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.pederobien.uhc.commands.AbstractCommand;
 import fr.pederobien.uhc.managers.TeamsManager;
 
 public class CreateTeamCommand extends AbstractCommand {
+
+	public CreateTeamCommand(JavaPlugin plugin, String command) {
+		super(plugin, command);
+	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

@@ -4,9 +4,14 @@ import java.io.IOException;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.xml.sax.SAXException;
 
 public class SaveSpawnCommand extends AbstractSpawnCommand {
+
+	public SaveSpawnCommand(JavaPlugin plugin, String command) {
+		super(plugin, command);
+	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

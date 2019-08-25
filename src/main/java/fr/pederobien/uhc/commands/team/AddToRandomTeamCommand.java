@@ -6,6 +6,7 @@ import java.util.Random;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.commands.AbstractCommand;
@@ -15,6 +16,10 @@ import fr.pederobien.uhc.managers.TeamsManager;
 public class AddToRandomTeamCommand extends AbstractCommand {
 	private List<Team> teams;
 	private List<Player> players;
+	
+	public AddToRandomTeamCommand(JavaPlugin plugin, String command) {
+		super(plugin, command);
+	}
 	
 	@Override
 	public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
