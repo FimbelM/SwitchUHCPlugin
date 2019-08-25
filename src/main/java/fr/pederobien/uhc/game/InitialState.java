@@ -11,17 +11,13 @@ import fr.pederobien.uhc.task.TaskLauncher;
 import fr.pederobien.uhc.task.TimeLine;
 
 public class InitialState extends AbstractState {
-	private boolean initiate;
 	
 	public InitialState(IGame game) {
 		super(game);
-		initiate = false;
 	}
 	
 	@Override
 	public void initiate() {
-		if (initiate) return;
-		
 		taskLauncher = new TaskLauncher(game.getConfiguration().getGameTime(), game.getConfiguration().getFractionTime());
 		timeLine = new TimeLine(taskLauncher.getTask());
 		scoreboard = new Scoreboard(taskLauncher.getTask());
@@ -31,9 +27,7 @@ public class InitialState extends AbstractState {
 		timeLine.addObserver(game.getConfiguration().getFractionTime(), game);
 		timeLine.addObserver(game.getConfiguration().getGameTime(), scoreboard);
 		game.getEventListener().addObservers(game);
-		
-		initiate = true;
-		
+				
 		WorldManager.setPVP(false);
 		WorldManager.setSpawnOnJoin(game.getConfiguration().getSpawn().getCenter().getLocation());
 	}
