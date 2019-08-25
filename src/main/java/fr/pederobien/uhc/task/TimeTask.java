@@ -73,7 +73,7 @@ public class TimeTask {
 	
 	private void timeChanged() {
 		for (IObsTimeTask obs : observers)
-			obs.timeChanged(increasingTime);
+			obs.timeChanged(this);
 	}
 	
 	public LocalTime getTotalTime() {

@@ -1,8 +1,9 @@
 package fr.pederobien.uhc.game;
 
 import fr.pederobien.uhc.conf.Configuration;
+import fr.pederobien.utils.Function;
 
-public interface IGame extends IGameState {
+public interface IGame extends Function {
 
 	IGameState getCurrentState();
 

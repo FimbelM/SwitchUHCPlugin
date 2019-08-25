@@ -1,9 +1,9 @@
 package fr.pederobien.uhc.observer;
 
-import java.time.LocalTime;
+import fr.pederobien.uhc.task.TimeTask;
 
 public interface IObsTimeTask {
 	
-	void timeChanged(LocalTime time);
+	void timeChanged(TimeTask task);
 
 }

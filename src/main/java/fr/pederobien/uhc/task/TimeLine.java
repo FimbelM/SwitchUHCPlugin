@@ -33,8 +33,8 @@ public class TimeLine implements IObsTimeTask {
 	}
 
 	@Override
-	public void timeChanged(LocalTime time) {
-		for (Function function : map.get(time))
+	public void timeChanged(TimeTask task) {
+		for (Function function : map.get(task.getIncreasingTime()))
 			function.run();
 	}
 }

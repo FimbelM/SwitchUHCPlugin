@@ -67,6 +67,11 @@ public class Scoreboard implements IScoreboard, IScoreboardState {
 	public void run() {
 		current.run();
 	}
+	
+	@Override
+	public void timeChanged(TimeTask task) {
+		
+	}
 
 	@Override
 	public List<String> getEntries() {

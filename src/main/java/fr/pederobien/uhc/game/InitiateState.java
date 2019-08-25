@@ -19,6 +19,7 @@ public class InitiateState extends AbstractState {
 		timeLine = new TimeLine(launcher.getTask());
 		timeLine.addObserver(game.getConfiguration().getGameTime(), game);
 		timeLine.addObserver(game.getConfiguration().getFractionTime(), game);
+		timeLine.addObserver(game.getConfiguration().getGameTime(), scoreboard);
 		initiate = true;
 	}
 	

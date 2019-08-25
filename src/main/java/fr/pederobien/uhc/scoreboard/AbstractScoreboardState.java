@@ -53,6 +53,11 @@ public class AbstractScoreboardState implements IScoreboardState {
 	public void onPlayerMove(PlayerMoveEvent event) {
 		ScoreboardManager.setPlayersScoreboardWithCurrentLocation(title, entries);
 	}
+	
+	@Override
+	public void timeChanged(TimeTask task) {
+		
+	}
 
 	@Override
 	public List<String> getEntries() {

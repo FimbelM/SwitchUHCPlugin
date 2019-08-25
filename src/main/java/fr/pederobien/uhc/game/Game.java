@@ -8,7 +8,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.conf.Configuration;
 
-public class Game implements IGame {
+public class Game implements IGame, IGameState {
 	private IGameState initiate;
 	private IGameState start;
 	private IGameState playerRevive;
