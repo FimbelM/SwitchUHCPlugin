@@ -6,7 +6,7 @@ import java.io.IOException;
 import org.xml.sax.SAXException;
 
 public class Persistence {
-	private static final String ROOT = "Ressources/";
+	private static final String ROOT = "Plugins/UHCPlugin/Ressources/";
 	private static final String SPAWNS = ROOT + "Spawns/";
 	private static final String GAME = ROOT + "Games/";
 	
