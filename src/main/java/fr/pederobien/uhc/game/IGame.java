@@ -1,9 +1,9 @@
 package fr.pederobien.uhc.game;
 
 import fr.pederobien.uhc.conf.Configuration;
-import fr.pederobien.utils.Function;
+import fr.pederobien.uhc.world.EventListener;
 
-public interface IGame extends Function {
+public interface IGame extends IGameState {
 
 	IGameState getCurrentState();
 
@@ -24,4 +24,6 @@ public interface IGame extends Function {
 	IGameState getStop();
 
 	Configuration getConfiguration();
+	
+	EventListener getEventListener();
 }

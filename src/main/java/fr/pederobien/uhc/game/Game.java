@@ -7,8 +7,9 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.conf.Configuration;
+import fr.pederobien.uhc.world.EventListener;
 
-public class Game implements IGame, IGameState {
+public class Game implements IGame {
 	private IGameState initiate;
 	private IGameState start;
 	private IGameState playerRevive;
@@ -18,9 +19,11 @@ public class Game implements IGame, IGameState {
 	private IGameState stop;
 	private IGameState current;
 	private Configuration configuration;
+	private EventListener listener;
 
-	public Game(Configuration configuration) {
+	public Game(Configuration configuration, EventListener listener) {
 		this.configuration = configuration;
+		this.listener = listener;
 		
 		initiate = new InitiateState(this);
 		start = new StartState(this);
@@ -137,5 +140,10 @@ public class Game implements IGame, IGameState {
 	@Override
 	public Configuration getConfiguration() {
 		return configuration;
+	}
+	
+	@Override
+	public EventListener getEventListener() {
+		return listener;
 	}
 }

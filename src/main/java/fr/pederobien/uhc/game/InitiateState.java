@@ -24,9 +24,13 @@ public class InitiateState extends AbstractState {
 		launcher = new TaskLauncher(game.getConfiguration().getGameTime(), game.getConfiguration().getFractionTime());
 		timeLine = new TimeLine(launcher.getTask());
 		scoreboard = new Scoreboard(launcher.getTask());
+		
 		timeLine.addObserver(game.getConfiguration().getGameTime(), game);
 		timeLine.addObserver(game.getConfiguration().getFractionTime(), game);
 		timeLine.addObserver(game.getConfiguration().getGameTime(), scoreboard);
+		game.getEventListener().addObservers(game);
+		game.getEventListener().addObservers(scoreboard);
+		
 		initiate = true;
 		
 		WorldManager.setPVP(false);

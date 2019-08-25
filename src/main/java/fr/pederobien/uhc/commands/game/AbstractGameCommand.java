@@ -10,6 +10,6 @@ public abstract class AbstractGameCommand extends AbstractCommand {
 
 	public AbstractGameCommand(JavaPlugin plugin, String command) {
 		super(plugin, command);
-		game = new Game(configuration);
+		game = new Game(configuration, listener);
 	}
 }
