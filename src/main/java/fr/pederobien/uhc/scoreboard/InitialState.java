@@ -13,7 +13,6 @@ public class InitialState extends AbstractScoreboardState {
 	
 	@Override
 	public void start() {
-		task.addObserver(scoreboard);
 		scoreboard.setCurrentState(scoreboard.getBeforeBorderMoveState());
 	}
 }

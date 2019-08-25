@@ -4,12 +4,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
-
 import fr.pederobien.uhc.task.TimeTask;
 
 public abstract class AbstractScoreboardState implements IScoreboardState {
@@ -29,36 +23,6 @@ public abstract class AbstractScoreboardState implements IScoreboardState {
 
 	@Override
 	public void run() {
-		
-	}
-
-	@Override
-	public void onPlayerJoin(PlayerJoinEvent event) {
-		
-	}
-
-	@Override
-	public void onPlayerDie(PlayerDeathEvent event) {
-		
-	}
-
-	@Override
-	public void onPlayerQuit(PlayerQuitEvent event) {
-		
-	}
-
-	@Override
-	public void onPlayerRespawn(PlayerRespawnEvent event) {
-		
-	}
-
-	@Override
-	public void onPlayerMove(PlayerMoveEvent event) {
-		
-	}
-	
-	@Override
-	public void timeChanged(TimeTask task) {
 		
 	}
 

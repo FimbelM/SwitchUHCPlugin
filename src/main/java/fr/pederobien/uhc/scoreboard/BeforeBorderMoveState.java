@@ -1,8 +1,5 @@
 package fr.pederobien.uhc.scoreboard;
 
-import fr.pederobien.uhc.managers.ScoreboardManager;
-import fr.pederobien.uhc.task.TimeTask;
-
 public class BeforeBorderMoveState extends AbstractScoreboardState {
 
 	public BeforeBorderMoveState(IScoreboard scoreboard) {
@@ -33,11 +30,5 @@ public class BeforeBorderMoveState extends AbstractScoreboardState {
 	@Override
 	public void stop() {
 		scoreboard.setCurrentState(scoreboard.getStopState()).stop();
-	}
-	
-	@Override
-	public void timeChanged(TimeTask task) {
-		updateEntries();
-		ScoreboardManager.setPlayersScoreboardWithCurrentLocation(getTitle(), getEntries());
 	}
 }

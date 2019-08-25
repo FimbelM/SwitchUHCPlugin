@@ -2,12 +2,6 @@ package fr.pederobien.uhc.scoreboard;
 
 import java.util.List;
 
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
-
 import fr.pederobien.uhc.task.TimeTask;
 
 public class Scoreboard implements IScoreboard {
@@ -78,11 +72,6 @@ public class Scoreboard implements IScoreboard {
 	}
 	
 	@Override
-	public void timeChanged(TimeTask task) {
-		current.timeChanged(task);
-	}
-
-	@Override
 	public List<String> getEntries() {
 		return current.getEntries();
 	}
@@ -110,30 +99,5 @@ public class Scoreboard implements IScoreboard {
 	@Override
 	public void stop() {
 		current.stop();
-	}
-
-	@Override
-	public void onPlayerJoin(PlayerJoinEvent event) {
-		current.onPlayerJoin(event);
-	}
-
-	@Override
-	public void onPlayerDie(PlayerDeathEvent event) {
-		current.onPlayerDie(event);
-	}
-
-	@Override
-	public void onPlayerQuit(PlayerQuitEvent event) {
-		current.onPlayerQuit(event);
-	}
-
-	@Override
-	public void onPlayerRespawn(PlayerRespawnEvent event) {
-		current.onPlayerRespawn(event);
-	}
-
-	@Override
-	public void onPlayerMove(PlayerMoveEvent event) {
-		current.onPlayerMove(event);
 	}
 }
