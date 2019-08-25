@@ -34,7 +34,9 @@ public class TimeLine implements IObsTimeTask {
 
 	@Override
 	public void timeChanged(TimeTask task) {
-		for (Function function : map.get(task.getIncreasingTime()))
-			function.run();
+		List<Function> list = map.get(task.getIncreasingTime());
+		if (list != null)
+			for (Function function : list)
+				function.run();
 	}
 }
