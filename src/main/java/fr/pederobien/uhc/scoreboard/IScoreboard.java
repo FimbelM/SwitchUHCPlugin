@@ -2,7 +2,7 @@ package fr.pederobien.uhc.scoreboard;
 
 import fr.pederobien.uhc.task.TimeTask;
 
-public interface IScoreboard {
+public interface IScoreboard extends IScoreboardState {
 	
 	IScoreboardState getCurrentState();
 	

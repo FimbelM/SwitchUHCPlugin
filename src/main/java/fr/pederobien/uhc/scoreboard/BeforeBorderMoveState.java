@@ -1,7 +1,5 @@
 package fr.pederobien.uhc.scoreboard;
 
-import org.bukkit.event.player.PlayerMoveEvent;
-
 import fr.pederobien.uhc.managers.ScoreboardManager;
 import fr.pederobien.uhc.task.TimeTask;
 
@@ -41,11 +39,5 @@ public class BeforeBorderMoveState extends AbstractScoreboardState {
 	public void timeChanged(TimeTask task) {
 		updateEntries();
 		ScoreboardManager.setPlayersScoreboardWithCurrentLocation(getTitle(), getEntries());
-	}
-	
-	@Override
-	public void onPlayerMove(PlayerMoveEvent event) {
-		updateEntries();
-		ScoreboardManager.setPlayerScoreboardWithCurrentLocation(getTitle(), event.getPlayer(), getEntries());
 	}
 }

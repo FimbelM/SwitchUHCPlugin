@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.task.TimeTask;
 
-public class Scoreboard implements IScoreboard, IScoreboardState {
+public class Scoreboard implements IScoreboard {
 	private IScoreboardState initial;
 	private IScoreboardState before;
 	private IScoreboardState after;
@@ -22,6 +22,7 @@ public class Scoreboard implements IScoreboard, IScoreboardState {
 
 	public Scoreboard(TimeTask task) {
 		this.task = task;
+		
 		initial = new InitialState(this);
 		before = new BeforeBorderMoveState(this);
 		after = new AfterBorderMoveState(this);
@@ -78,7 +79,7 @@ public class Scoreboard implements IScoreboard, IScoreboardState {
 	
 	@Override
 	public void timeChanged(TimeTask task) {
-		
+		current.timeChanged(task);
 	}
 
 	@Override
