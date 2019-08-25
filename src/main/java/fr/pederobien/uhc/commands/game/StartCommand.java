@@ -7,8 +7,7 @@ public class StartCommand extends AbstractGameCommand {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		// TODO Auto-generated method stub
-		return false;
+		game.start();
+		return true;
 	}
-
 }

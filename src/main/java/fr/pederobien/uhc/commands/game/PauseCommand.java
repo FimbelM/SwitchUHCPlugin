@@ -4,11 +4,19 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 public class PauseCommand extends AbstractGameCommand {
+	private boolean pause;
+	
+	public PauseCommand() {
+		pause = false;
+	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		// TODO Auto-generated method stub
-		return false;
+		if (!pause)
+			game.pause(game.getCurrentState());
+		else
+			game.relaunched();
+		pause = !pause;
+		return true;
 	}
-
 }
