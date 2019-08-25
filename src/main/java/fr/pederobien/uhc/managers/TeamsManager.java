@@ -114,6 +114,6 @@ public class TeamsManager {
 		for (Team team : getTeams())
 			if (getPlayers(team).contains(player))
 				return team.getColor();
-		return null;
+		return ChatColor.GOLD;
 	}
 }
