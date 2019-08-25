@@ -17,7 +17,7 @@ import fr.pederobien.uhc.task.TimeLine;
 public abstract class AbstractState implements IGameState {
 	protected IGame game;
 	protected static TaskLauncher taskLauncher;
-	protected static ScoreboardLauncher scoreboardGame; 
+	protected static ScoreboardLauncher scoreboardLauncher; 
 	protected static TimeLine timeLine;
 	protected static Scoreboard scoreboard;
 	

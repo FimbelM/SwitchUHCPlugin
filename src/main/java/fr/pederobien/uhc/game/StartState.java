@@ -9,14 +9,15 @@ public class StartState extends AbstractState {
 	public StartState(IGame game) {
 		super(game);
 	}
-	
+
 	@Override
 	public void start() {
 		BukkitManager.broadcastMessageAsTitle("Match à mort par équipe");
 		taskLauncher.runTaskTimer(PluginDeposit.plugin, 0, 20L);
+		taskLauncher.runTaskTimer(PluginDeposit.plugin, 0, 20 / game.getConfiguration().getScoreboardRefresh());
 		scoreboard.start();
 		game.setCurrentState(game.getPlayerRevive());
-		
+
 		WorldManager.setWorldBorderCenter(game.getConfiguration().getSpawn().getCenter());
 		WorldManager.setWorldBorderDiameter(game.getConfiguration().getBorderSize());
 	}
