@@ -1,10 +1,9 @@
 package fr.pederobien.uhc.game.hungergame;
 
 import fr.pederobien.uhc.conf.Configuration;
-import fr.pederobien.uhc.game.IGameBase;
 import fr.pederobien.uhc.world.EventListener;
 
-public interface IGame extends IGameBase<IGameState>, IGameState {
+public interface IGame extends IGameState {
 
 	IGameState getCurrentState();
 

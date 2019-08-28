@@ -7,9 +7,10 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.conf.Configuration;
+import fr.pederobien.uhc.game.AbstractGame;
 import fr.pederobien.uhc.world.EventListener;
 
-public class Game implements IGame {
+public class Game extends AbstractGame<IGameState> implements IGame {
 	private IGameState initiate;
 	private IGameState start;
 	private IGameState playerRevive;
