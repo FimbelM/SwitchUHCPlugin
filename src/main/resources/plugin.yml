@@ -20,6 +20,15 @@ commands:
   savespawn:
     description:
     permission: UHCPlugin.savespawn
+  spawnlist:
+    description:
+    permission: UHCPlugin.spawnlist
+  spawnload:
+    description:
+    permission: UHCPlugin.spawnload
+  spawnremove:
+    description:
+    permission: UHCPlugin.spawnremove
   teamrandom:
     description:
     permission: UHCPlugin.teamrandom
