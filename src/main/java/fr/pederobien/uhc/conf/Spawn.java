@@ -11,9 +11,10 @@ import fr.pederobien.uhc.managers.WorldManager;
 public class Spawn {
 	public static final Spawn DEFAULT = new Spawn();
 	private Block center;
-	private HashMap<Coordinate, Block> config;
+	private HashMap<Coordinate, Material> config, before;
 	private int width, height, depth;
 	private String name;
+	private boolean loaded;
 	
 	static {
 		DEFAULT.setWidth(15);
@@ -21,7 +22,7 @@ public class Spawn {
 		DEFAULT.setDepth(15);
 		DEFAULT.extract();
 		for (Coordinate coord : DEFAULT.config.keySet())
-			DEFAULT.config.get(coord).setType(Material.DIAMOND_BLOCK);
+			DEFAULT.config.put(coord, Material.BEDROCK);
 	}
 	
 	public Spawn() {
@@ -29,7 +30,8 @@ public class Spawn {
 	}
 	
 	public Spawn(Block center, String name) {
-		config = new HashMap<Coordinate, Block>();
+		config = new HashMap<Coordinate, Material>();
+		before = new HashMap<Coordinate, Material>();
 		this.center = center;
 		this.name = name;
 	}
@@ -45,7 +47,25 @@ public class Spawn {
 		for (int x = -width/2; x < maxWidth; x++)
 			for (int y = 0; y < height; y++)
 				for (int z = -depth/2; z < maxDepth; z++)
-					config.put(new Coordinate(x, y, z), getBlockFromCenter(x, y, z));
+					config.put(new Coordinate(x, y, z), getBlockFromCenter(x, y, z).getType());
+	}
+	
+	public boolean load() {
+		if (loaded) return false;
+		
+		for (Coordinate coord : config.keySet())
+			before.put(coord, getBlockFromCenter(coord.getX(), coord.getY(), coord.getZ()).getType());
+		for (Coordinate coord : config.keySet())
+			getBlockFromCenter(coord.getX(), coord.getY(), coord.getZ()).setType(config.get(coord));
+		return true;
+	}
+	
+	public boolean remove() {
+		if (!loaded) return false;
+		
+		for (Coordinate coord : before.keySet())
+			getBlockFromCenter(coord.getX(), coord.getY(), coord.getZ()).setType(config.get(coord));
+		return true;
 	}
 	
 	public void addBlocks(List<String> blocks) {
@@ -61,14 +81,30 @@ public class Spawn {
 		int z = Integer.parseInt(info[2]);
 		Material material = Material.valueOf(info[3]);
 		getBlockFromCenter(x, y, z).setType(material);
-		config.put(new Coordinate(x, y, z), getBlockFromCenter(x, y, z));
+		config.put(new Coordinate(x, y, z), getBlockFromCenter(x, y, z).getType());
 	}
 	
 	@Override
 	public String toString() {
-		String toString = "";
-		for (Coordinate coord : config.keySet())
-			toString += coord.getX() + ";" + coord.getY() + ";" + coord.getZ() + ";" + config.get(coord).getType() + "\r\n";
+		return name;
+	}
+	
+	public String toXML() {
+		String toString = "<spawn>\r\n";
+		toString += "\t" + Persistence.toXML("name", name);
+		toString += "\t<center>\r\n";
+		toString += "\t\t" + Persistence.toXML("x", Integer.toString(center.getX()));
+		toString += "\t\t" + Persistence.toXML("y", Integer.toString(center.getY()));
+		toString += "\t\t" + Persistence.toXML("z", Integer.toString(center.getZ()));
+		toString += "\t<blocks>\r\n";
+		for (Coordinate coord : config.keySet()) {
+			toString += "\t\t" + Persistence.toXML("x", Integer.toString(coord.getX()));
+			toString += "\t\t" + Persistence.toXML("y", Integer.toString(coord.getY()));
+			toString += "\t\t" + Persistence.toXML("z", Integer.toString(coord.getZ()));
+			toString += "\t\t" + Persistence.toXML("material", config.get(coord).toString());
+		}
+		toString += "\t</blocks>\r\n";
+		toString += "</spawn>";
 		return toString;
 	}
 	
