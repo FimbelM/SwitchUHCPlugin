@@ -1,27 +1,23 @@
-package fr.pederobien.uhc.conf;
+package fr.pederobien.uhc.conf.configurations;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.bukkit.block.Block;
 import org.bukkit.scoreboard.Team;
 
-import fr.pederobien.uhc.conf.configurations.AbstractConfiguration;
-import fr.pederobien.uhc.game.hungergame.IGameState;
+import fr.pederobien.uhc.conf.Spawn;
+import fr.pederobien.uhc.game.hungergame.HungerGame;
 import fr.pederobien.uhc.managers.WorldManager;
 
-public class Configuration extends AbstractConfiguration<IGameState> {
-	public static final Configuration DEFAULT = new Configuration();
-	private Spawn spawn;
+public class HungerGameConfiguration extends AbstractConfiguration<HungerGame> {
+	public static final HungerGameConfiguration DEFAULT = new HungerGameConfiguration("Default configuration");
 	private Block borderCenter;
 	private double borderSize;
-	private String name;
 	private LocalTime gameTime;
 	private LocalTime fractionTime;
 	private long scoreboardRefresh;
-	private List<Team> teams;
-
+	
 	static {
 		DEFAULT.setBorderCenter(WorldManager.getHighestBlockYAt(0, 0));
 		DEFAULT.setBorderSize(2000);
@@ -31,21 +27,10 @@ public class Configuration extends AbstractConfiguration<IGameState> {
 		DEFAULT.setSpawn(Spawn.DEFAULT);
 		DEFAULT.setScoreboardRefresh(5);
 	}
-
-	public Configuration() {
-		this("Default configuration");
-	}
-
-	public Configuration(String name) {
+	
+	public HungerGameConfiguration(String name) {
+		setName(name);
 		setTeams(new ArrayList<Team>());
-	}
-
-	public void setSpawn(Spawn spawn) {
-		this.spawn = spawn;
-	}
-
-	public Spawn getSpawn() {
-		return spawn;
 	}
 
 	public Block getBorderCenter() {
@@ -79,27 +64,11 @@ public class Configuration extends AbstractConfiguration<IGameState> {
 	public void setFractionTime(LocalTime fractionTime) {
 		this.fractionTime = fractionTime;
 	}
-
-	public List<Team> getTeams() {
-		return teams;
-	}
-
-	public void setTeams(List<Team> teams) {
-		this.teams = teams;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 	
 	public long getScoreboardRefresh() {
 		return scoreboardRefresh;
 	}
-	
+
 	public void setScoreboardRefresh(long scoreboardRefresh) {
 		this.scoreboardRefresh = scoreboardRefresh;
 	}

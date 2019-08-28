@@ -1,6 +1,6 @@
 package fr.pederobien.uhc.game.hungergame;
 
-import fr.pederobien.uhc.conf.Configuration;
+import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
 import fr.pederobien.uhc.world.EventListener;
 
 public interface IHungerGame extends IHungerGameState {
@@ -23,7 +23,7 @@ public interface IHungerGame extends IHungerGameState {
 
 	IHungerGameState getStop();
 
-	Configuration getConfiguration();
+	HungerGameConfiguration getConfiguration();
 	
 	EventListener getEventListener();
 }
