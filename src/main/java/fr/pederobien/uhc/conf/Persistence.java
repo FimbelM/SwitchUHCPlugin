@@ -25,15 +25,15 @@ public class Persistence {
 	}
 	
 	public void persisteSpawn(Spawn spawn) {
-		write(SPAWNS + spawn.getName() + ".txt", spawn.toString());
+		write(SPAWNS + spawn.getName() + ".txt", spawn.toXML());
 	}
 	
 	public Spawn loadSpawn(String name) {
 		return new Spawn();
 	}
 	
-	public boolean persisteConfiguration(Configuration game) {
-		return true;
+	public void persisteConfiguration(Configuration game) {
+		
 	}
 	
 	public Configuration loadConfiguration(String name) {
@@ -68,5 +68,9 @@ public class Persistence {
                 System.err.format("IOException: %s%n", ex);
             }
         }
+	}
+	
+	public static String toXML(String balise, String content) {
+		return "<" + balise + ">" + content + "</" + balise + ">\r\n";
 	}
 }
