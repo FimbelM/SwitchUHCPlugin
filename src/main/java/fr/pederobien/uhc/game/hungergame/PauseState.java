@@ -4,7 +4,7 @@ import fr.pederobien.uhc.BukkitManager;
 
 public class PauseState extends AbstractState {
 	private IHungerGameState before;
-	public PauseState(IGame game) {
+	public PauseState(IHungerGame game) {
 		super(game);
 	}
 	

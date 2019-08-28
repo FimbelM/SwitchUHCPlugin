@@ -9,7 +9,7 @@ import fr.pederobien.uhc.managers.WorldManager;
 
 public class PlayerDontReviveState extends AbstractState {
 
-	public PlayerDontReviveState(IGame game) {
+	public PlayerDontReviveState(IHungerGame game) {
 		super(game);
 	}
 	

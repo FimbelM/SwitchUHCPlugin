@@ -6,7 +6,7 @@ import fr.pederobien.uhc.managers.WorldManager;
 
 public class StartState extends AbstractState {
 
-	public StartState(IGame game) {
+	public StartState(IHungerGame game) {
 		super(game);
 	}
 

@@ -11,7 +11,7 @@ import fr.pederobien.uhc.managers.WorldManager;
 
 public class PlayerReviveState extends AbstractState {
 
-	public PlayerReviveState(IGame game) {
+	public PlayerReviveState(IHungerGame game) {
 		super(game);
 	}
 	

@@ -2,7 +2,7 @@ package fr.pederobien.uhc.game.hungergame;
 
 public class HungerGameState extends AbstractState {
 
-	public HungerGameState(IGame game) {
+	public HungerGameState(IHungerGame game) {
 		super(game);
 	}
 	

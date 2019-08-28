@@ -12,7 +12,7 @@ import fr.pederobien.uhc.task.TimeLine;
 
 public class InitialState extends AbstractState {
 	
-	public InitialState(IGame game) {
+	public InitialState(IHungerGame game) {
 		super(game);
 	}
 	

@@ -15,13 +15,13 @@ import fr.pederobien.uhc.task.TaskLauncher;
 import fr.pederobien.uhc.task.TimeLine;
 
 public abstract class AbstractState implements IHungerGameState {
-	protected IGame game;
+	protected IHungerGame game;
 	protected static TaskLauncher taskLauncher;
 	protected static ScoreboardLauncher scoreboardLauncher; 
 	protected static TimeLine timeLine;
 	protected static Scoreboard scoreboard;
 	
-	public AbstractState(IGame game) {
+	public AbstractState(IHungerGame game) {
 		this.game = game;
 	}
 	
