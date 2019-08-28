@@ -3,25 +3,25 @@ package fr.pederobien.uhc.game.hungergame;
 import fr.pederobien.uhc.conf.Configuration;
 import fr.pederobien.uhc.world.EventListener;
 
-public interface IGame extends IGameState {
+public interface IGame extends IHungerGameState {
 
-	IGameState getCurrentState();
+	IHungerGameState getCurrentState();
 
-	IGameState setCurrentState(IGameState current);
+	IHungerGameState setCurrentState(IHungerGameState current);
 
-	IGameState getInitiate();
+	IHungerGameState getInitiate();
 
-	IGameState getStart();
+	IHungerGameState getStart();
 
-	IGameState getPlayerRevive();
+	IHungerGameState getPlayerRevive();
 
-	IGameState getPlayerDontRevive();
+	IHungerGameState getPlayerDontRevive();
 
-	IGameState getHungerGame();
+	IHungerGameState getHungerGame();
 
-	IGameState getPause();
+	IHungerGameState getPause();
 
-	IGameState getStop();
+	IHungerGameState getStop();
 
 	Configuration getConfiguration();
 	

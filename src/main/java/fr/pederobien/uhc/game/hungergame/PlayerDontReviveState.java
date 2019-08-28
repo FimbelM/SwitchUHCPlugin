@@ -14,7 +14,7 @@ public class PlayerDontReviveState extends AbstractState {
 	}
 	
 	@Override
-	public void pause(IGameState before) {
+	public void pause(IHungerGameState before) {
 		game.setCurrentState(game.getPause()).pause(before);
 	}
 	

@@ -14,7 +14,7 @@ import fr.pederobien.uhc.task.ScoreboardLauncher;
 import fr.pederobien.uhc.task.TaskLauncher;
 import fr.pederobien.uhc.task.TimeLine;
 
-public abstract class AbstractState implements IGameState {
+public abstract class AbstractState implements IHungerGameState {
 	protected IGame game;
 	protected static TaskLauncher taskLauncher;
 	protected static ScoreboardLauncher scoreboardLauncher; 
@@ -36,7 +36,7 @@ public abstract class AbstractState implements IGameState {
 	}
 
 	@Override
-	public void pause(IGameState before) {
+	public void pause(IHungerGameState before) {
 		throw new GameStateException("This method cannot be called by this state");
 	}
 

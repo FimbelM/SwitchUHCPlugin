@@ -10,15 +10,15 @@ import fr.pederobien.uhc.conf.Configuration;
 import fr.pederobien.uhc.game.AbstractGame;
 import fr.pederobien.uhc.world.EventListener;
 
-public class Game extends AbstractGame<IGameState> implements IGame {
-	private IGameState initiate;
-	private IGameState start;
-	private IGameState playerRevive;
-	private IGameState playerDontRevive;
-	private IGameState hungerGame;
-	private IGameState pause;
-	private IGameState stop;
-	private IGameState current;
+public class Game extends AbstractGame<IHungerGameState> implements IGame {
+	private IHungerGameState initiate;
+	private IHungerGameState start;
+	private IHungerGameState playerRevive;
+	private IHungerGameState playerDontRevive;
+	private IHungerGameState hungerGame;
+	private IHungerGameState pause;
+	private IHungerGameState stop;
+	private IHungerGameState current;
 	private Configuration configuration;
 	private EventListener listener;
 
@@ -39,47 +39,47 @@ public class Game extends AbstractGame<IGameState> implements IGame {
 	}
 	
 	@Override
-	public IGameState getCurrentState() {
+	public IHungerGameState getCurrentState() {
 		return current;
 	}
 
 	@Override
-	public IGameState setCurrentState(IGameState current) {
+	public IHungerGameState setCurrentState(IHungerGameState current) {
 		return this.current = current;
 	}
 
 	@Override
-	public IGameState getInitiate() {
+	public IHungerGameState getInitiate() {
 		return initiate;
 	}
 
 	@Override
-	public IGameState getStart() {
+	public IHungerGameState getStart() {
 		return start;
 	}
 
 	@Override
-	public IGameState getPlayerRevive() {
+	public IHungerGameState getPlayerRevive() {
 		return playerRevive;
 	}
 
 	@Override
-	public IGameState getPlayerDontRevive() {
+	public IHungerGameState getPlayerDontRevive() {
 		return playerDontRevive;
 	}
 
 	@Override
-	public IGameState getHungerGame() {
+	public IHungerGameState getHungerGame() {
 		return hungerGame;
 	}
 
 	@Override
-	public IGameState getPause() {
+	public IHungerGameState getPause() {
 		return pause;
 	}
 
 	@Override
-	public IGameState getStop() {
+	public IHungerGameState getStop() {
 		return stop;
 	}
 
@@ -94,7 +94,7 @@ public class Game extends AbstractGame<IGameState> implements IGame {
 	}
 
 	@Override
-	public void pause(IGameState before) {
+	public void pause(IHungerGameState before) {
 		current.pause(before);
 	}
 

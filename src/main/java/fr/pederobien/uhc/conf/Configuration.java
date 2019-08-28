@@ -7,9 +7,11 @@ import java.util.List;
 import org.bukkit.block.Block;
 import org.bukkit.scoreboard.Team;
 
+import fr.pederobien.uhc.conf.configurations.AbstractConfiguration;
+import fr.pederobien.uhc.game.hungergame.IGameState;
 import fr.pederobien.uhc.managers.WorldManager;
 
-public class Configuration {
+public class Configuration extends AbstractConfiguration<IGameState> {
 	public static final Configuration DEFAULT = new Configuration();
 	private Spawn spawn;
 	private Block borderCenter;

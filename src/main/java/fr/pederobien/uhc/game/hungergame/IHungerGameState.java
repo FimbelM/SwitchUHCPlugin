@@ -9,13 +9,13 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import fr.pederobien.uhc.observer.IObsListener;
 import fr.pederobien.utils.Function;
 
-public interface IGameState extends IObsListener, Function {
+public interface IHungerGameState extends IObsListener, Function {
 
 	void initiate();
 
 	void start();
 
-	void pause(IGameState before);
+	void pause(IHungerGameState before);
 
 	void relaunched();
 

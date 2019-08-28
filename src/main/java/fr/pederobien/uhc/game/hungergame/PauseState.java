@@ -3,13 +3,13 @@ package fr.pederobien.uhc.game.hungergame;
 import fr.pederobien.uhc.BukkitManager;
 
 public class PauseState extends AbstractState {
-	private IGameState before;
+	private IHungerGameState before;
 	public PauseState(IGame game) {
 		super(game);
 	}
 	
 	@Override
-	public void pause(IGameState before) {
+	public void pause(IHungerGameState before) {
 		BukkitManager.broadcastMessageAsTitle("Partie suspendue");
 		taskLauncher.pause();
 		scoreboard.pause(scoreboard.getCurrentState());
