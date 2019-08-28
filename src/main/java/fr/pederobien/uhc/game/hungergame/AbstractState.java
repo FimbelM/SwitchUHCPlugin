@@ -50,6 +50,11 @@ public abstract class AbstractState implements IHungerGameState {
 		throw new GameStateException("This method cannot be called by this state");
 	}
 	
+	@Override
+	public IHungerGameState getCurrentState() {
+		return this;
+	}
+	
 	public void onPlayerDie(PlayerDeathEvent event) {
 		for (Player player : PlayerManager.getPlayers())
 			player.playSound(player.getLocation(), Sound.ENTITY_WITHER_DEATH, 10, 1);
