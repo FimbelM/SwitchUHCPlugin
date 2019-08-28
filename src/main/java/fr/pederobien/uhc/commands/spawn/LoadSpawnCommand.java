@@ -15,7 +15,7 @@ public class LoadSpawnCommand extends AbstractSpawnCommand {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (args.length == 0) {
-			spawn = configuration.getSpawn();
+			spawn = confContext.getSpawn();
 			sendMessageToSender(sender, "Spawn " + spawn.getName() + (spawn.load() ? " loaded" : " already loaded"));
 		} else {
 			spawn.remove();

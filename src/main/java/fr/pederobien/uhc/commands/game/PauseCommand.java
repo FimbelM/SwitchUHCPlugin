@@ -6,17 +6,17 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class PauseCommand extends AbstractGameCommand {
 	private boolean pause;
-	
+
 	public PauseCommand(JavaPlugin plugin, String command) {
 		super(plugin, command);
 	}
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (!pause)
-			game.pause(game.getCurrentState());
+			confContext.pause(confContext.getCurrentState());
 		else
-			game.relaunched();
+			confContext.relaunched();
 		pause = !pause;
 		return true;
 	}

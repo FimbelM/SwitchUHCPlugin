@@ -12,9 +12,7 @@ public class LoadConfigurationCommand extends AbstractConfCommand {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		configuration = persistence.loadConfiguration(args[0]);
-		sendMessageToSender(sender,
-				"Configuration " + args[0] + configuration == null ? " does not exist" : " launched");
+		
 		return false;
 	}
 
