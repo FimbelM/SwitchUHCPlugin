@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.game;
+package fr.pederobien.uhc.game.hungergame;
 
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;

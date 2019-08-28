@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.game;
+package fr.pederobien.uhc.game.hungergame;
 
 public class StopState extends AbstractState {
 

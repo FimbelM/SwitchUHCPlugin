@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.game;
+package fr.pederobien.uhc.game.hungergame;
 
 import org.bukkit.GameMode;
 import org.bukkit.event.player.PlayerRespawnEvent;

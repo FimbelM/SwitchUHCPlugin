@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.game;
+package fr.pederobien.uhc.game.hungergame;
 
 import fr.pederobien.uhc.conf.Configuration;
 import fr.pederobien.uhc.world.EventListener;
