@@ -2,17 +2,12 @@ package fr.pederobien.uhc.conf.persistence;
 
 import java.io.File;
 
-public abstract class AbstractConfPersistence<T> extends AbstractPersistence<T> implements IConfPersistence<T> {
+public abstract class AbstractConfPersistence<T> extends AbstractPersistence<T> {
 	protected static final String GAME = ROOT + "Games/";
 	protected T configuration;
 
 	public AbstractConfPersistence(T configuration) {
 		this.configuration = configuration;
-	}
-
-	@Override
-	public T getConfiguration() {
-		return configuration;
 	}
 	
 	@Override
