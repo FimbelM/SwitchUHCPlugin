@@ -1,6 +1,7 @@
 package fr.pederobien.uhc.conf.persistence;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -8,11 +9,6 @@ public abstract class AbstractPersistence<T> implements IPersistence<T> {
 	protected static final String ROOT = "Plugins/UHCPlugin/Ressources/";
 
 	private BufferedWriter writer;
-	
-	@Override
-	public String attribut(String tag, String content) {
-		return tabAttribut(0, tag, content);
-	}
 	
 	@Override
 	public String openingTag(String tag) {
@@ -35,8 +31,16 @@ public abstract class AbstractPersistence<T> implements IPersistence<T> {
 	}
 	
 	@Override
-	public String tabAttribut(int tab, String tag, String content) {
-		return openingTabTag(tab, tag) + content + closingTag(tag);
+	public String tabAttribut(int tab, String tag, Object content) {
+		return openingTabTag(tab, tag) + content.toString() + closingTag(tag);
+	}
+	
+	protected void checkAndWriteDefault(String path, T configuration) {
+		File file = new File(path);
+		if (!file.exists()) {
+			file.mkdirs();
+			save(configuration);
+		}
 	}
 	
 	protected void write(String path, String content) {

@@ -20,14 +20,6 @@ public abstract class AbstractConfPersistence<T> extends AbstractPersistence<T> 
 		save(configuration);
 	}
 	
-	protected void checkAndWriteDefaultConf(String path, T configuration) {
-		File file = new File(path);
-		if (!file.exists()) {
-			file.mkdirs();
-			save(configuration);
-		}
-	}
-	
 	protected boolean exist(String path) {
 		return new File(path).exists();
 	}
