@@ -30,21 +30,23 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 
 	@Override
 	public void save() {
-		String xml = openingTag("spawn");
-		xml += openingTabTag(1, "center");
-		xml += tabAttribut(2, "x", Integer.toString(spawn.getCenter().getX()));
-		xml += tabAttribut(2, "y", Integer.toString(spawn.getCenter().getY()));
-		xml += tabAttribut(2, "z", Integer.toString(spawn.getCenter().getZ()));
-		xml += openingTabTag(1, "blocks");
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append(openingTag("spawn"))
+		.append(openingTabTag(1, "center"))
+		.append(tabAttribut(2, "x", Integer.toString(spawn.getCenter().getX())))
+		.append(tabAttribut(2, "y", Integer.toString(spawn.getCenter().getY())))
+		.append(tabAttribut(2, "z", Integer.toString(spawn.getCenter().getZ())))
+		.append(openingTabTag(1, "blocks"));
 		for (String block : spawn.getBlocks()) {
-			String[] info = block.split(";");
-			xml += tabAttribut(2, "x", info[0]);
-			xml += tabAttribut(2, "y", info[1]);
-			xml += tabAttribut(2, "z", info[2]);
-			xml += tabAttribut(2, "material", info[3]);
+			String[] info = block.split("");
+			builder.append(tabAttribut(2, "x", info[0]))
+			.append(tabAttribut(2, "y", info[1]))
+			.append(tabAttribut(2, "z", info[2]))
+			.append(tabAttribut(2, "material", info[3]));
 		}
-		xml += closingTabTag(1, "blocks");
-		xml += closingTag("spawn");
-		write(SPAWNS + spawn.getName() + ".xml", xml);
+		builder.append(closingTabTag(1, "blocks"))
+		.append(closingTag("spawn"));
+		write(SPAWNS + spawn.getName() + ".xml", builder.toString());
 	}
 }
