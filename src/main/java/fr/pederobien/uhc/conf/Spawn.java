@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.conf;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -82,6 +83,13 @@ public class Spawn {
 		Material material = Material.valueOf(info[3]);
 		getBlockFromCenter(x, y, z).setType(material);
 		config.put(new Coordinate(x, y, z), getBlockFromCenter(x, y, z).getType());
+	}
+	
+	public List<String> getBlocks() {
+		List<String> blocks = new ArrayList<String>();
+		for (Coordinate coord : config.keySet())
+			blocks.add(coord.getX() + ";" + coord.getY() + ";" + coord.getZ() + ";" + config.get(coord));
+		return blocks;
 	}
 	
 	@Override
