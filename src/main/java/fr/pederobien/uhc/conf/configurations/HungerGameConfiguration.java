@@ -8,10 +8,9 @@ import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.conf.Spawn;
 import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
-import fr.pederobien.uhc.game.hungergame.HungerGame;
 import fr.pederobien.uhc.managers.WorldManager;
 
-public class HungerGameConfiguration extends AbstractConfiguration<HungerGame, HungerGamePersistence> {
+public class HungerGameConfiguration extends AbstractConfiguration<HungerGamePersistence> {
 	public static final HungerGameConfiguration DEFAULT = new HungerGameConfiguration("Default configuration");
 	private Block borderCenter;
 	private double initialBorderSize, finalBorderSize;
@@ -38,8 +37,8 @@ public class HungerGameConfiguration extends AbstractConfiguration<HungerGame, H
 	}
 	
 	@Override
-	public HungerGamePersistence getPersistence() {
-		return persistence;
+	public void persiste() {
+		persistence.save();
 	}
 
 	public Block getBorderCenter() {

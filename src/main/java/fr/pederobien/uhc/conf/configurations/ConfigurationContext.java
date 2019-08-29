@@ -5,19 +5,14 @@ import java.util.List;
 import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.conf.Spawn;
-import fr.pederobien.uhc.conf.persistence.IPersistence;
 import fr.pederobien.uhc.game.IGameBase;
 import fr.pederobien.uhc.game.IGameBaseState;
 
-public class ConfigurationContext implements IGameBase<IGameBaseState>, IConfiguration<IGameBase<IGameBaseState>, IPersistence<IGameBase<IGameBaseState>>> {
-	private IConfiguration<IGameBase<IGameBaseState>, IPersistence<IGameBase<IGameBaseState>>> configuration;
+public class ConfigurationContext implements IGameBase<IGameBaseState>, IConfiguration {
+	private IConfiguration configuration;
 	
-	public void setCurrentConfiguration(IConfiguration<IGameBase<IGameBaseState>, IPersistence<IGameBase<IGameBaseState>>> configuration) {
+	public void setCurrentConfiguration(IConfiguration configuration) {
 		this.configuration = configuration;
-	}
-	
-	public IConfiguration<IGameBase<IGameBaseState>, IPersistence<IGameBase<IGameBaseState>>> getCurrentConfiguration() {
-		return configuration;
 	}
 
 	@Override
@@ -86,7 +81,7 @@ public class ConfigurationContext implements IGameBase<IGameBaseState>, IConfigu
 	}
 
 	@Override
-	public IPersistence<IGameBase<IGameBaseState>> getPersistence() {
-		return configuration.getPersistence();
+	public void persiste() {
+		configuration.persiste();
 	}
 }

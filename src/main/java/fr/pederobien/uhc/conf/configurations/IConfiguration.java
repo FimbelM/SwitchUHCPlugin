@@ -5,12 +5,14 @@ import java.util.List;
 import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.conf.Spawn;
+import fr.pederobien.uhc.game.IGameBase;
+import fr.pederobien.uhc.game.IGameBaseState;
 
-public interface IConfiguration<G, C> {
+public interface IConfiguration {
 
-	G getGame();
+	IGameBase<IGameBaseState> getGame();
 	
-	void setGame(G game);
+	void setGame(IGameBase<IGameBaseState> game);
 
 	Spawn getSpawn();
 
@@ -24,6 +26,5 @@ public interface IConfiguration<G, C> {
 
 	void setTeams(List<Team> teams);
 	
-	C getPersistence();
-
+	void persiste();
 }
