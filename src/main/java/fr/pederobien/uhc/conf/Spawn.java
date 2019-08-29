@@ -7,6 +7,7 @@ import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 
+import fr.pederobien.uhc.conf.persistence.SpawnPersistence;
 import fr.pederobien.uhc.managers.WorldManager;
 
 public class Spawn {
@@ -16,6 +17,7 @@ public class Spawn {
 	private int width, height, depth;
 	private String name;
 	private boolean loaded;
+	private SpawnPersistence persistence;
 	
 	static {
 		DEFAULT.setWidth(15);
@@ -28,6 +30,7 @@ public class Spawn {
 	
 	public Spawn() {
 		this(WorldManager.getHighestBlockYAt(0, 0), "Spawn");
+		persistence = new SpawnPersistence(this);
 	}
 	
 	public Spawn(Block center, String name) {
@@ -145,6 +148,10 @@ public class Spawn {
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public SpawnPersistence getSpawnPersistence() {
+		return persistence;
 	}
 	
 	private Block getBlockFromCenter(int x, int y, int z) {
