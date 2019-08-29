@@ -5,8 +5,8 @@ import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
 public class HungerGamePersistence extends AbstractConfPersistence<HungerGameConfiguration> {
 	private static final String HUNGER_GAME = GAME + "Hunger game";
 	
-	public HungerGamePersistence(HungerGameConfiguration game) {
-		super(game);
+	public HungerGamePersistence(HungerGameConfiguration configuration) {
+		super(configuration);
 		checkAndWriteDefault(HUNGER_GAME, HungerGameConfiguration.DEFAULT);
 	}
 
