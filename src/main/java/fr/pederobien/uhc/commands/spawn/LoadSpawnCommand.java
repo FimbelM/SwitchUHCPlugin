@@ -19,7 +19,7 @@ public class LoadSpawnCommand extends AbstractSpawnCommand {
 			sendMessageToSender(sender, "Spawn " + spawn.getName() + (spawn.load() ? " loaded" : " already loaded"));
 		} else {
 			spawn.remove();
-			Spawn sp = persistence.loadSpawn(args[0]);
+			Spawn sp = persistence.load(args[0]);
 			if (sp != null) {
 				spawn = sp;
 				spawn.load();
