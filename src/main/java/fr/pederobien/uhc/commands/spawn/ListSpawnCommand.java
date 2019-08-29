@@ -12,7 +12,7 @@ public class ListSpawnCommand extends AbstractSpawnCommand {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		sendMessageToSender(sender, persistence.getSpawnsName());
+		sendMessageToSender(sender, spawn.getSpawnPersistence().getSpawnsName());
 		return false;
 	}
 

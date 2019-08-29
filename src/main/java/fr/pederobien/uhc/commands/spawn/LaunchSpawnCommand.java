@@ -19,7 +19,7 @@ public class LaunchSpawnCommand extends AbstractSpawnCommand {
 			sendMessageToSender(sender, "Spawn " + spawn.getName() + (spawn.launch() ? " loaded" : " already loaded"));
 		} else {
 			spawn.remove();
-			Spawn sp = persistence.load(args[0]);
+			Spawn sp = spawn.getSpawnPersistence().load(args[0]);
 			if (sp != null) {
 				spawn = sp;
 				spawn.launch();

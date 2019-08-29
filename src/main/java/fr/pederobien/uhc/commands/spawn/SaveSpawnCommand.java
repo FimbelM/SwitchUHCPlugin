@@ -17,7 +17,7 @@ public class SaveSpawnCommand extends AbstractSpawnCommand {
 			spawn.setCenter(args[1], args[2], args[3]);
 			spawn.setDimension(args[4], args[5], args[6]);
 			spawn.extract();
-			persistence.save();
+			spawn.getSpawnPersistence().save();
 			sendMessageToSender(sender, "Spawn " + spawn.getName() + " saved.");
 		} catch (IndexOutOfBoundsException e) {
 			sendMessageToSender(sender, "Il n'y a pas assez d'arguments");
