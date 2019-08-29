@@ -13,14 +13,15 @@ import fr.pederobien.uhc.managers.WorldManager;
 public class HungerGameConfiguration extends AbstractConfiguration<HungerGame> {
 	public static final HungerGameConfiguration DEFAULT = new HungerGameConfiguration("Default configuration");
 	private Block borderCenter;
-	private double borderSize;
+	private double initialBorderSize, finalBorderSize;
 	private LocalTime gameTime;
 	private LocalTime fractionTime;
 	private long scoreboardRefresh;
 	
 	static {
 		DEFAULT.setBorderCenter(WorldManager.getHighestBlockYAt(0, 0));
-		DEFAULT.setBorderSize(2000);
+		DEFAULT.setInitialBorderSize(2000);
+		DEFAULT.setFinalBorderSize(10);
 		DEFAULT.setFractionTime(LocalTime.of(0, 45, 0));
 		DEFAULT.setGameTime(LocalTime.of(2, 0, 0));
 		DEFAULT.setName("Default configuration");
@@ -41,12 +42,20 @@ public class HungerGameConfiguration extends AbstractConfiguration<HungerGame> {
 		this.borderCenter = borderCenter;
 	}
 
-	public double getBorderSize() {
-		return borderSize;
+	public double getInitialBorderSize() {
+		return initialBorderSize;
 	}
 
-	public void setBorderSize(double borderSize) {
-		this.borderSize = borderSize;
+	public void setInitialBorderSize(double initialBorderSize) {
+		this.initialBorderSize = initialBorderSize;
+	}
+	
+	public double getFinalBorderSize() {
+		return finalBorderSize;
+	}
+	
+	public void setFinalBorderSize(double finalBorderSize) {
+		this.finalBorderSize = finalBorderSize;
 	}
 
 	public LocalTime getGameTime() {
