@@ -6,11 +6,11 @@ import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.conf.Spawn;
 
-public interface IConfiguration<T> {
+public interface IConfiguration<G, C> {
 
-	T getGame();
+	G getGame();
 	
-	void setGame(T game);
+	void setGame(G game);
 
 	Spawn getSpawn();
 
@@ -23,5 +23,7 @@ public interface IConfiguration<T> {
 	List<Team> getTeams();
 
 	void setTeams(List<Team> teams);
+	
+	C getPersistence();
 
 }

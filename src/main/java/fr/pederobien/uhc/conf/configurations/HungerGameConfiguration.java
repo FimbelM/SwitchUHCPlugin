@@ -7,16 +7,18 @@ import org.bukkit.block.Block;
 import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.conf.Spawn;
+import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
 import fr.pederobien.uhc.game.hungergame.HungerGame;
 import fr.pederobien.uhc.managers.WorldManager;
 
-public class HungerGameConfiguration extends AbstractConfiguration<HungerGame> {
+public class HungerGameConfiguration extends AbstractConfiguration<HungerGame, HungerGamePersistence> {
 	public static final HungerGameConfiguration DEFAULT = new HungerGameConfiguration("Default configuration");
 	private Block borderCenter;
 	private double initialBorderSize, finalBorderSize;
 	private LocalTime gameTime;
 	private LocalTime fractionTime;
 	private long scoreboardRefresh;
+	private HungerGamePersistence persistence;
 	
 	static {
 		DEFAULT.setBorderCenter(WorldManager.getHighestBlockYAt(0, 0));
@@ -32,6 +34,12 @@ public class HungerGameConfiguration extends AbstractConfiguration<HungerGame> {
 	public HungerGameConfiguration(String name) {
 		setName(name);
 		setTeams(new ArrayList<Team>());
+		persistence = new HungerGamePersistence(this);
+	}
+	
+	@Override
+	public HungerGamePersistence getPersistence() {
+		return persistence;
 	}
 
 	public Block getBorderCenter() {

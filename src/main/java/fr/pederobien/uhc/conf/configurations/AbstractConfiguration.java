@@ -6,19 +6,19 @@ import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.conf.Spawn;
 
-public abstract class AbstractConfiguration<T> implements IConfiguration<T> {
-	private T game;
+public abstract class AbstractConfiguration<G, C> implements IConfiguration<G, C> {
+	private G game;
 	private Spawn spawn;
 	private String name;
 	private List<Team> teams;
 
 	@Override
-	public T getGame() {
+	public G getGame() {
 		return this.game;
 	}
 
 	@Override
-	public void setGame(T game) {
+	public void setGame(G game) {
 		this.game = game;
 	}
 
