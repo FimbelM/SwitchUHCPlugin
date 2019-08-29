@@ -9,6 +9,7 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 	
 	public SpawnPersistence(Spawn spawn) {
 		setSpawn(spawn);
+		checkAndWriteDefault(SPAWNS, Spawn.DEFAULT);
 	}
 
 	public Spawn getSpawn() {
@@ -24,8 +25,9 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 		return null;
 	}
 	
-	public String getSpawnsName() {
-		return null;
+	@Override
+	public void save(Spawn toSave) {
+		
 	}
 
 	@Override
@@ -34,9 +36,9 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 		
 		builder.append(openingTag("spawn"))
 		.append(openingTabTag(1, "center"))
-		.append(tabAttribut(2, "x", Integer.toString(spawn.getCenter().getX())))
-		.append(tabAttribut(2, "y", Integer.toString(spawn.getCenter().getY())))
-		.append(tabAttribut(2, "z", Integer.toString(spawn.getCenter().getZ())))
+		.append(tabAttribut(2, "x", spawn.getCenter().getX()))
+		.append(tabAttribut(2, "y", spawn.getCenter().getY()))
+		.append(tabAttribut(2, "z", spawn.getCenter().getZ()))
 		.append(openingTabTag(1, "blocks"));
 		for (String block : spawn.getBlocks()) {
 			String[] info = block.split("");
@@ -48,5 +50,9 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 		builder.append(closingTabTag(1, "blocks"))
 		.append(closingTag("spawn"));
 		write(SPAWNS + spawn.getName() + ".xml", builder.toString());
+	}
+	
+	public String getSpawnsName() {
+		return null;
 	}
 }
