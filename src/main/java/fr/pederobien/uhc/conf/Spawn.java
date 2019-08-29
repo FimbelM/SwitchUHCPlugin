@@ -85,10 +85,10 @@ public class Spawn {
 		config.put(new Coordinate(x, y, z), getBlockFromCenter(x, y, z).getType());
 	}
 	
-	public List<String> getBlocks() {
-		List<String> blocks = new ArrayList<String>();
+	public List<Block> getBlocks() {
+		List<Block> blocks = new ArrayList<Block>();
 		for (Coordinate coord : config.keySet())
-			blocks.add(coord.getX() + ";" + coord.getY() + ";" + coord.getZ() + ";" + config.get(coord));
+			blocks.add(getBlockFromCenter(coord.getX(), coord.getY(), coord.getZ()));
 		return blocks;
 	}
 	

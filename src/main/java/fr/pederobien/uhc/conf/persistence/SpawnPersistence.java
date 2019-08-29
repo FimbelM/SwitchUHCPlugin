@@ -1,5 +1,7 @@
 package fr.pederobien.uhc.conf.persistence;
 
+import org.bukkit.block.Block;
+
 import fr.pederobien.uhc.conf.Spawn;
 
 public class SpawnPersistence extends AbstractPersistence<Spawn> {
@@ -40,12 +42,11 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 		.append(tabAttribut(2, "y", spawn.getCenter().getY()))
 		.append(tabAttribut(2, "z", spawn.getCenter().getZ()))
 		.append(openingTabTag(1, "blocks"));
-		for (String block : spawn.getBlocks()) {
-			String[] info = block.split("");
-			builder.append(tabAttribut(2, "x", info[0]))
-			.append(tabAttribut(2, "y", info[1]))
-			.append(tabAttribut(2, "z", info[2]))
-			.append(tabAttribut(2, "material", info[3]));
+		for (Block block : spawn.getBlocks()) {
+			builder.append(tabAttribut(2, "x", block.getX()))
+			.append(tabAttribut(2, "y", block.getY()))
+			.append(tabAttribut(2, "z", block.getZ()))
+			.append(tabAttribut(2, "material", block.getType()));
 		}
 		builder.append(closingTabTag(1, "blocks"))
 		.append(closingTag("spawn"));
