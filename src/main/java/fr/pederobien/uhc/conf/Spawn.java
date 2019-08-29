@@ -97,25 +97,6 @@ public class Spawn {
 		return name;
 	}
 	
-	public String toXML() {
-		String toString = "<spawn>\r\n";
-		toString += "\t" + Persistence.toXML("name", name);
-		toString += "\t<center>\r\n";
-		toString += "\t\t" + Persistence.toXML("x", Integer.toString(center.getX()));
-		toString += "\t\t" + Persistence.toXML("y", Integer.toString(center.getY()));
-		toString += "\t\t" + Persistence.toXML("z", Integer.toString(center.getZ()));
-		toString += "\t<blocks>\r\n";
-		for (Coordinate coord : config.keySet()) {
-			toString += "\t\t" + Persistence.toXML("x", Integer.toString(coord.getX()));
-			toString += "\t\t" + Persistence.toXML("y", Integer.toString(coord.getY()));
-			toString += "\t\t" + Persistence.toXML("z", Integer.toString(coord.getZ()));
-			toString += "\t\t" + Persistence.toXML("material", config.get(coord).toString());
-		}
-		toString += "\t</blocks>\r\n";
-		toString += "</spawn>";
-		return toString;
-	}
-	
 	public Block getCenter() {
 		return center;
 	}
