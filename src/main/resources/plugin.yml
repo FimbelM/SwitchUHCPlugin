@@ -23,7 +23,7 @@ commands:
   spawnlist:
     description:
     permission: UHCPlugin.spawnlist
-  spawnload:
+  spawnlaunch:
     description:
     permission: UHCPlugin.spawnload
   spawnremove:

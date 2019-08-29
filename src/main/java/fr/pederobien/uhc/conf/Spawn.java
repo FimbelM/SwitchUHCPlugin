@@ -51,7 +51,7 @@ public class Spawn {
 					config.put(new Coordinate(x, y, z), getBlockFromCenter(x, y, z).getType());
 	}
 	
-	public boolean load() {
+	public boolean launch() {
 		if (loaded) return false;
 		
 		for (Coordinate coord : config.keySet())
