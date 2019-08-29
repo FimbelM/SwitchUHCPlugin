@@ -17,7 +17,7 @@ commands:
   stopgame:
     description:
     permission: UHCPlugin.stopgame
-  savespawn:
+  spawnsave:
     description:
     permission: UHCPlugin.savespawn
   spawnlist:
