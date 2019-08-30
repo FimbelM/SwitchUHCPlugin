@@ -88,8 +88,4 @@ public class EditHungerGameCommand extends AbstractHungerGameCommand {
 		this.message += message;
 		this.message += " for configuration " + hungergamePersistence.get().getName();
 	}
-
-	private HungerGameConfiguration getConfiguration() {
-		return hungergamePersistence.get();
-	}
 }
