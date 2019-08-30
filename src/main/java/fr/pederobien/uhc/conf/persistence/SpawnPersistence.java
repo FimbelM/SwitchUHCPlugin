@@ -12,7 +12,6 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 
 	public SpawnPersistence() {
 		set(Spawn.DEFAULT);
-		System.out.println("Spawn persistence constructor");
 		checkAndWriteDefault(SPAWNS, get());
 	}
 

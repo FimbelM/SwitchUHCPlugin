@@ -40,7 +40,6 @@ public abstract class AbstractPersistence<T> implements IPersistence<T> {
 	}
 	
 	protected void checkAndWriteDefault(String path, T configuration) {
-		System.out.println("Checking file existence");
 		File file = new File(path);
 		if (!file.exists()) {
 			file.mkdirs();
