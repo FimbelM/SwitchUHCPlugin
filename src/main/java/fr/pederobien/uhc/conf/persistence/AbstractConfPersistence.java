@@ -10,11 +10,6 @@ public abstract class AbstractConfPersistence<T> extends AbstractPersistence<T> 
 		this.configuration = configuration;
 	}
 	
-	@Override
-	public void save() {
-		save(configuration);
-	}
-	
 	protected boolean mkdirs(String path) {
 		return new File(path).mkdirs();
 	}

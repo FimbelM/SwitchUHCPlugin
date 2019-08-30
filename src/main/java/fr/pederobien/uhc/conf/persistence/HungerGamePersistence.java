@@ -18,7 +18,7 @@ public class HungerGamePersistence extends AbstractConfPersistence<HungerGameCon
 	}
 
 	@Override
-	public void save(HungerGameConfiguration configuration) {
+	public void save() {
 		StringBuilder builder = new StringBuilder();
 		builder.append(openingTag("configuration")).append(tabAttribut(1, "name", configuration.getName()))
 				.append(tabAttribut(1, "spawn", configuration.getSpawn().getName())).append(openingTabTag(2, "border"))
@@ -34,7 +34,7 @@ public class HungerGamePersistence extends AbstractConfPersistence<HungerGameCon
 				.append(tabAttribut(3, "fraction", configuration.getFractionTime()))
 				.append(tabAttribut(3, "scoreboardrefresh", configuration.getScoreboardRefresh()))
 				.append(closingTabTag(1, "time")).append(closingTag("configuration"));
-
+		System.out.println(builder);
 		write(HUNGER_GAME, builder.toString());
 	}
 	

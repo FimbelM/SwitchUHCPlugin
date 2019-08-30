@@ -12,6 +12,7 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 
 	public SpawnPersistence() {
 		set(Spawn.DEFAULT);
+		System.out.println("Spawn persistence constructor");
 		checkAndWriteDefault(SPAWNS, get());
 	}
 	
@@ -19,11 +20,6 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 	public void load(String name) throws FileNotFoundException {
 		if (!exist(name))
 			throw new FileNotFoundException("Cannot find spawn named " + name);
-	}
-
-	@Override
-	public void save(Spawn toSave) {
-
 	}
 
 	@Override
@@ -38,7 +34,10 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 			builder.append(tabAttribut(2, "x", block.getX())).append(tabAttribut(2, "y", block.getY()))
 					.append(tabAttribut(2, "z", block.getZ())).append(tabAttribut(2, "material", block.getType()));
 		}
+		
 		builder.append(closingTabTag(1, "blocks")).append(closingTag("spawn"));
+		
+		System.out.println(builder);
 		write(SPAWNS + spawn.getName() + ".xml", builder.toString());
 	}
 	
