@@ -7,7 +7,7 @@ import fr.pederobien.uhc.conf.Spawn;
 import fr.pederobien.uhc.conf.persistence.SpawnPersistence;
 
 public abstract class AbstractSpawnCommand extends AbstractCommand {
-	protected static SpawnPersistence spawnPersistence = new SpawnPersistence(Spawn.DEFAULT);
+	protected static SpawnPersistence spawnPersistence = new SpawnPersistence();
 	
 	public AbstractSpawnCommand(JavaPlugin plugin, String command) {
 		super(plugin, command);

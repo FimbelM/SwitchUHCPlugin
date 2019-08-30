@@ -10,9 +10,9 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 	protected static final String SPAWNS = ROOT + "Spawns/";
 	private Spawn spawn;
 
-	public SpawnPersistence(Spawn spawn) {
-		setSpawn(spawn);
-		checkAndWriteDefault(SPAWNS, Spawn.DEFAULT);
+	public SpawnPersistence() {
+		setSpawn(Spawn.DEFAULT);
+		checkAndWriteDefault(SPAWNS, getSpawn());
 	}
 
 	public Spawn getSpawn() {
