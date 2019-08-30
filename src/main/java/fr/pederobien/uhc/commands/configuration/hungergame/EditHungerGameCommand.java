@@ -9,10 +9,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
 
-public class HungerGameEditCommand extends AbstractHungerGameCommand {
+public class EditHungerGameCommand extends AbstractHungerGameCommand {
 	private String message;
 
-	public HungerGameEditCommand(JavaPlugin plugin, String command) {
+	public EditHungerGameCommand(JavaPlugin plugin, String command) {
 		super(plugin, command);
 	}
 
