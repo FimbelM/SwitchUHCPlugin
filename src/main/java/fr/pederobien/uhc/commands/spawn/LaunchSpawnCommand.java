@@ -21,6 +21,7 @@ public class LaunchSpawnCommand extends AbstractSpawnCommand {
 			getSpawn().remove();
 			try {
 				spawnPersistence.load(args[0]);
+				getSpawn().launch();
 				sendMessageToSender(sender, "Spawn " + getSpawn().getName() + " loaded");
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
