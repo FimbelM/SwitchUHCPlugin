@@ -9,4 +9,8 @@ public interface IPersistence<T> {
 	void save();
 	
 	void save(T toSave);
+	
+	T get();
+	
+	void set(T elt);
 }

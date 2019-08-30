@@ -37,4 +37,14 @@ public class HungerGamePersistence extends AbstractConfPersistence<HungerGameCon
 
 		write(HUNGER_GAME, builder.toString());
 	}
+	
+	@Override
+	public HungerGameConfiguration get() {
+		return configuration;
+	}
+	
+	@Override
+	public void set(HungerGameConfiguration configuration) {
+		this.configuration = configuration;
+	}
 }

@@ -8,7 +8,6 @@ import fr.pederobien.uhc.conf.Spawn;
 
 public class SpawnPersistence extends AbstractPersistence<Spawn> {
 	protected static final String SPAWNS = ROOT + "Spawns/";
-
 	private Spawn spawn;
 
 	public SpawnPersistence(Spawn spawn) {
@@ -48,6 +47,16 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 		}
 		builder.append(closingTabTag(1, "blocks")).append(closingTag("spawn"));
 		write(SPAWNS + spawn.getName() + ".xml", builder.toString());
+	}
+	
+	@Override
+	public Spawn get() {
+		return spawn;
+	}
+	
+	@Override
+	public void set(Spawn spawn) {
+		this.spawn = spawn;
 	}
 
 	public String getSpawnsName() {
