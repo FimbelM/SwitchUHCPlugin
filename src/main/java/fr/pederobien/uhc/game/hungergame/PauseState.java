@@ -17,7 +17,7 @@ public class PauseState extends AbstractState {
 	}
 	
 	@Override
-	public void relaunched() {
+	public void relaunch() {
 		BukkitManager.broadcastMessageAsTitle("Reprise");
 		taskLauncher.relaunched();
 		scoreboard.relaunched();

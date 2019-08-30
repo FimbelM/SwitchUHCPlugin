@@ -7,10 +7,9 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
-import fr.pederobien.uhc.game.AbstractGame;
 import fr.pederobien.uhc.world.EventListener;
 
-public class HungerGame extends AbstractGame<IHungerGameState> implements IHungerGame {
+public class HungerGame implements IHungerGame {
 	private IHungerGameState initiate;
 	private IHungerGameState start;
 	private IHungerGameState playerRevive;
@@ -94,13 +93,13 @@ public class HungerGame extends AbstractGame<IHungerGameState> implements IHunge
 	}
 
 	@Override
-	public void pause(IHungerGameState before) {
-		current.pause(before);
+	public void pause() {
+		current.pause(current);
 	}
 
 	@Override
-	public void relaunched() {
-		current.relaunched();
+	public void relaunch() {
+		current.relaunch();
 	}
 
 	@Override

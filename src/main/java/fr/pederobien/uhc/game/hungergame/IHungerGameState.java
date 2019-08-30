@@ -6,14 +6,20 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-import fr.pederobien.uhc.game.IGameBase;
-import fr.pederobien.uhc.game.IGameBaseState;
 import fr.pederobien.uhc.observer.IObsListener;
 import fr.pederobien.utils.Function;
 
-public interface IHungerGameState extends IGameBase<IHungerGameState>, IGameBaseState, IObsListener, Function {
+public interface IHungerGameState extends IObsListener, Function {
 
 	void initiate();
+	
+	void start();
+	
+	void pause(IHungerGameState before);
+	
+	void relaunch();
+	
+	void stop();
 
 	void onPlayerDie(PlayerDeathEvent event);
 

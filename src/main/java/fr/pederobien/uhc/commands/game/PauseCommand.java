@@ -14,9 +14,9 @@ public class PauseCommand extends AbstractGameCommand {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (!pause)
-			confContext.pause(confContext.getCurrentState());
+			confContext.pause();
 		else
-			confContext.relaunched();
+			confContext.relaunch();
 		pause = !pause;
 		return true;
 	}

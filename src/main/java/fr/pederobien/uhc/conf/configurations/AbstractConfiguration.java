@@ -5,20 +5,21 @@ import java.util.List;
 import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.conf.Spawn;
+import fr.pederobien.uhc.game.IGame;
 
-public abstract class AbstractConfiguration<T> implements IConfiguration<T> {
-	private T game;
+public abstract class AbstractConfiguration implements IConfiguration {
+	private IGame game;
 	private Spawn spawn;
 	private String name;
 	private List<Team> teams;
 
 	@Override
-	public T getGame() {
+	public IGame getGame() {
 		return this.game;
 	}
 
 	@Override
-	public void setGame(T game) {
+	public void setGame(IGame game) {
 		this.game = game;
 	}
 

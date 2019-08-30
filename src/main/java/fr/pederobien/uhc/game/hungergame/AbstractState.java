@@ -41,18 +41,13 @@ public abstract class AbstractState implements IHungerGameState {
 	}
 
 	@Override
-	public void relaunched() {
+	public void relaunch() {
 		throw new GameStateException("This method cannot be called by this state");
 	}
 
 	@Override
 	public void stop() {
 		throw new GameStateException("This method cannot be called by this state");
-	}
-	
-	@Override
-	public IHungerGameState getCurrentState() {
-		return this;
 	}
 	
 	public void onPlayerDie(PlayerDeathEvent event) {

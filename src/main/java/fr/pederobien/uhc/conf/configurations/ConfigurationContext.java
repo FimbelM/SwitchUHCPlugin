@@ -5,14 +5,22 @@ import java.util.List;
 import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.conf.Spawn;
-import fr.pederobien.uhc.game.IGameBase;
-import fr.pederobien.uhc.game.IGameBaseState;
+import fr.pederobien.uhc.game.IGame;
 
-public class ConfigurationContext implements IGameBase<IGameBaseState>, IConfiguration<IGameBase<IGameBaseState>> {
-	private IConfiguration<IGameBase<IGameBaseState>> configuration;
+public class ConfigurationContext implements IConfiguration, IGame {
+	private IConfiguration configuration;
 	
-	public void setCurrentConfiguration(IConfiguration<IGameBase<IGameBaseState>> configuration) {
+	public void setCurrentConfiguration(IConfiguration configuration) {
 		this.configuration = configuration;
+	}
+	
+	public IConfiguration getCurrentConfiguration() {
+		return configuration;
+	}
+
+	@Override
+	public void initiate() {
+		getGame().initiate();
 	}
 
 	@Override
@@ -21,32 +29,27 @@ public class ConfigurationContext implements IGameBase<IGameBaseState>, IConfigu
 	}
 
 	@Override
-	public void pause(IGameBaseState before) {
-		getGame().pause(before);
-	}
-
-	@Override
 	public void stop() {
 		getGame().stop();
 	}
 
 	@Override
-	public IGameBaseState getCurrentState() {
-		return getGame().getCurrentState();
+	public void pause() {
+		getGame().pause();
 	}
 
 	@Override
-	public void relaunched() {
-		getGame().relaunched();
+	public void relaunch() {
+		getGame().pause();
 	}
 
 	@Override
-	public IGameBase<IGameBaseState> getGame() {
+	public IGame getGame() {
 		return configuration.getGame();
 	}
 
 	@Override
-	public void setGame(IGameBase<IGameBaseState> game) {
+	public void setGame(IGame game) {
 		configuration.setGame(game);
 	}
 
