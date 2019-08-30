@@ -7,30 +7,24 @@ import java.io.IOException;
 
 public abstract class AbstractPersistence<T> implements IPersistence<T> {
 	protected static final String ROOT = "Plugins/UHCPlugin/Ressources/";
-
 	private BufferedWriter writer;
 	
-	@Override
 	public String openingTag(String tag) {
 		return openingTabTag(0, tag);
 	}
 	
-	@Override
 	public String openingTabTag(int tab, String tag) {
 		return tabTag(tab) + "<" + tag + ">";
 	}
 	
-	@Override
 	public String closingTag(String tag) {
 		return closingTabTag(0, tag);
 	}
 	
-	@Override
 	public String closingTabTag(int tab, String tag) {
 		return tabTag(tab) + "</" + tag + ">\r\n";
 	}
 	
-	@Override
 	public String tabAttribut(int tab, String tag, Object content) {
 		return openingTabTag(tab, tag) + content.toString() + closingTag(tag);
 	}
