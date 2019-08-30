@@ -1,10 +1,10 @@
 package fr.pederobien.uhc.commands.spawn;
 
+import java.io.FileNotFoundException;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import fr.pederobien.uhc.conf.Spawn;
 
 public class LaunchSpawnCommand extends AbstractSpawnCommand {
 
@@ -15,17 +15,17 @@ public class LaunchSpawnCommand extends AbstractSpawnCommand {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (args.length == 0) {
-			spawn = confContext.getSpawn();
-			sendMessageToSender(sender, "Spawn " + spawn.getName() + (spawn.launch() ? " loaded" : " already loaded"));
+			confContext.setSpawn(getSpawn());
+			sendMessageToSender(sender, "Spawn " + getSpawn().getName() + (getSpawn().launch() ? " loaded" : " already loaded"));
 		} else {
-			spawn.remove();
-			Spawn sp = spawn.getSpawnPersistence().load(args[0]);
-			if (sp != null) {
-				spawn = sp;
-				spawn.launch();
-				sendMessageToSender(sender, "Spawn " + spawn.getName() + " loaded");
-			} else
+			getSpawn().remove();
+			try {
+				spawnPersistence.load(args[0]);
+				sendMessageToSender(sender, "Spawn " + getSpawn().getName() + " loaded");
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
 				sendMessageToSender(sender, "Spawn " + args[0] + " does not exist");
+			}
 		}
 		return true;
 	}

@@ -12,7 +12,8 @@ public class RemoveSpawnCommand extends AbstractSpawnCommand {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		sendMessageToSender(sender, "Spawn " + spawn.getName() + (spawn.remove() ? " removed" : " already removed"));
+		sendMessageToSender(sender,
+				"Spawn " + getSpawn().getName() + (getSpawn().remove() ? " removed" : " already removed"));
 		return false;
 	}
 }

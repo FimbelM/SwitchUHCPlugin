@@ -13,12 +13,8 @@ public class SaveSpawnCommand extends AbstractSpawnCommand {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		try {
-			spawn.setName(args[0]);
-			spawn.setCenter(args[1], args[2], args[3]);
-			spawn.setDimension(args[4], args[5], args[6]);
-			spawn.extract();
-			spawn.getSpawnPersistence().save();
-			sendMessageToSender(sender, "Spawn " + spawn.getName() + " saved.");
+			spawnPersistence.save();
+			sendMessageToSender(sender, "Spawn " + getSpawn().getName() + " saved.");
 		} catch (IndexOutOfBoundsException e) {
 			sendMessageToSender(sender, "Il n'y a pas assez d'arguments");
 		} catch (NumberFormatException e) {
