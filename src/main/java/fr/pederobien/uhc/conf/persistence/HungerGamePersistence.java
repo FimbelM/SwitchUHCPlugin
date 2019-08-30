@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
 
 public class HungerGamePersistence extends AbstractConfPersistence<HungerGameConfiguration> {
-	private static final String HUNGER_GAME = GAME + "HungerGame";
+	private static final String HUNGER_GAME = GAME + "HungerGame/";
 
 	public HungerGamePersistence() {
 		super(HungerGameConfiguration.DEFAULT);
