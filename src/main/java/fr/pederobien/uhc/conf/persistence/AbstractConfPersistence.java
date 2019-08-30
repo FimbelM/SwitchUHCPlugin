@@ -15,10 +15,6 @@ public abstract class AbstractConfPersistence<T> extends AbstractPersistence<T> 
 		save(configuration);
 	}
 	
-	protected boolean exist(String path) {
-		return new File(path).exists();
-	}
-	
 	protected boolean mkdirs(String path) {
 		return new File(path).mkdirs();
 	}

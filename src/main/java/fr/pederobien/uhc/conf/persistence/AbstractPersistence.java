@@ -29,6 +29,16 @@ public abstract class AbstractPersistence<T> implements IPersistence<T> {
 		return openingTabTag(tab, tag) + content.toString() + closingTag(tag);
 	}
 	
+	@Override
+	public boolean exist(String name) {
+		return new File(name).exists();
+	}
+	
+	@Override
+	public boolean delete(String name) {
+		return false;
+	}
+	
 	protected void checkAndWriteDefault(String path, T configuration) {
 		File file = new File(path);
 		if (!file.exists()) {

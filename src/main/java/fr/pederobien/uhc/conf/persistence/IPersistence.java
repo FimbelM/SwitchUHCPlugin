@@ -13,4 +13,8 @@ public interface IPersistence<T> {
 	T get();
 	
 	void set(T elt);
+	
+	boolean exist(String name);
+	
+	boolean delete(String name);
 }
