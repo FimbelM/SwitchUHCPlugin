@@ -54,6 +54,7 @@ public class EditSpawnCommand extends AbstractSpawnCommand {
 				}
 				break;
 			case "set":
+				spawnPersistence.save();
 				spawnPersistence.load(args[1]);
 				break;
 			default:

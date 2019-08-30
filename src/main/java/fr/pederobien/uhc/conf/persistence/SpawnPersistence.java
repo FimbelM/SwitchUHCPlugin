@@ -25,7 +25,8 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 	
 	@Override
 	public void load(String name) throws FileNotFoundException {
-		
+		if (!exist(name))
+			throw new FileNotFoundException("Cannot find spawn named " + name);
 	}
 
 	@Override
