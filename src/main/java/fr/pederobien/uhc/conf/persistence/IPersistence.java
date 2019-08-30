@@ -1,8 +1,10 @@
 package fr.pederobien.uhc.conf.persistence;
 
+import java.io.FileNotFoundException;
+
 public interface IPersistence<T> {
 	 
-	T load(String name);
+	void load(String name) throws FileNotFoundException;
 	
 	void save();
 	
