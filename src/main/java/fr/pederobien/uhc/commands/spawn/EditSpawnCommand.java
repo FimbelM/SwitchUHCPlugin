@@ -6,6 +6,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import fr.pederobien.uhc.conf.Spawn;
+
 public class EditSpawnCommand extends AbstractSpawnCommand {
 	private String message;
 
@@ -57,6 +59,15 @@ public class EditSpawnCommand extends AbstractSpawnCommand {
 				spawnPersistence.save();
 				spawnPersistence.load(args[1]);
 				break;
+			case "new":
+				if (spawnPersistence.exist(args[1]))
+					message = "A spawn with name " + args[1] + " already exist";
+				else {
+					spawnPersistence.save();
+					spawnPersistence.set(new Spawn());
+					getSpawn().setName(args[1]);
+					setMessage("new spawn");
+				}
 			default:
 				setMessage("Unknown command");
 				break;
