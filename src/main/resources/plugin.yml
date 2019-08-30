@@ -46,4 +46,4 @@ commands:
     permission: UHCPlugin.edithungergame
   launchhungergame:
     description:
-    permission; UHCPlugin.description
+    permission: UHCPlugin.launchhungergame
