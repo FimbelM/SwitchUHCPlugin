@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
 
 public class HungerGamePersistence extends AbstractConfPersistence<HungerGameConfiguration> {
-	private static final String HUNGER_GAME = GAME + "Hunger game";
+	private static final String HUNGER_GAME = GAME + "HungerGame";
 
 	public HungerGamePersistence() {
 		super(HungerGameConfiguration.DEFAULT);
@@ -34,7 +34,7 @@ public class HungerGamePersistence extends AbstractConfPersistence<HungerGameCon
 				.append(tabAttribut(3, "fraction", configuration.getFractionTime()))
 				.append(tabAttribut(3, "scoreboardrefresh", configuration.getScoreboardRefresh()))
 				.append(closingTabTag(1, "time")).append(closingTag("configuration"));
-		write(HUNGER_GAME, builder.toString());
+		write(HUNGER_GAME + configuration.getName() + ".xml", builder.toString());
 	}
 
 	@Override
