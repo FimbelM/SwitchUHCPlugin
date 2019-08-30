@@ -3,7 +3,6 @@ package fr.pederobien.uhc;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.pederobien.uhc.commands.AbstractCommand;
-import fr.pederobien.uhc.commands.configuration.LoadConfigurationCommand;
 import fr.pederobien.uhc.commands.game.PauseCommand;
 import fr.pederobien.uhc.commands.game.StartCommand;
 import fr.pederobien.uhc.commands.game.StopCommand;
@@ -22,7 +21,6 @@ public class UHCPlugin extends JavaPlugin {
 	public void onEnable() {
 		getLogger().info("UHC plugin enable");
 		
-		new LoadConfigurationCommand(this, "loadconf");
 		new PauseCommand(this, "pausegame");
 		new StartCommand(this, "startgame");
 		new StopCommand(this, "stopgame");
