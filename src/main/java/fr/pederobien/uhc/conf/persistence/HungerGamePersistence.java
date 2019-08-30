@@ -34,15 +34,14 @@ public class HungerGamePersistence extends AbstractConfPersistence<HungerGameCon
 				.append(tabAttribut(3, "fraction", configuration.getFractionTime()))
 				.append(tabAttribut(3, "scoreboardrefresh", configuration.getScoreboardRefresh()))
 				.append(closingTabTag(1, "time")).append(closingTag("configuration"));
-		System.out.println(builder);
 		write(HUNGER_GAME, builder.toString());
 	}
-	
+
 	@Override
 	public HungerGameConfiguration get() {
 		return configuration;
 	}
-	
+
 	@Override
 	public void set(HungerGameConfiguration configuration) {
 		this.configuration = configuration;
