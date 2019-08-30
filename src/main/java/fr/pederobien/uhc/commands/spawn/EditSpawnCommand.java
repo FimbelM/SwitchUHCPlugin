@@ -58,14 +58,14 @@ public class EditSpawnCommand extends AbstractSpawnCommand {
 			case "set":
 				spawnPersistence.save();
 				spawnPersistence.load(args[1]);
+				setMessage("new spawn");
 				break;
 			case "new":
 				if (spawnPersistence.exist(args[1]))
 					message = "A spawn with name " + args[1] + " already exist";
 				else {
 					spawnPersistence.save();
-					spawnPersistence.set(new Spawn());
-					getSpawn().setName(args[1]);
+					spawnPersistence.set(new Spawn(args[1]));
 					setMessage("new spawn");
 				}
 			default:

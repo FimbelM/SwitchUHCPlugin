@@ -10,7 +10,7 @@ import org.bukkit.block.Block;
 import fr.pederobien.uhc.managers.WorldManager;
 
 public class Spawn {
-	public static final Spawn DEFAULT = new Spawn();
+	public static final Spawn DEFAULT = new Spawn("Spawn");
 	private Block center;
 	private HashMap<Coordinate, Material> config, before;
 	private int width, height, depth;
@@ -26,14 +26,10 @@ public class Spawn {
 			DEFAULT.config.put(coord, Material.BEDROCK);
 	}
 
-	public Spawn() {
-		this(WorldManager.getHighestBlockYAt(0, 0), "Spawn");
-	}
-
-	public Spawn(Block center, String name) {
+	public Spawn(String name) {
 		config = new HashMap<Coordinate, Material>();
 		before = new HashMap<Coordinate, Material>();
-		this.center = center;
+		this.center = WorldManager.getHighestBlockYAt(0, 0);
 		this.name = name;
 	}
 

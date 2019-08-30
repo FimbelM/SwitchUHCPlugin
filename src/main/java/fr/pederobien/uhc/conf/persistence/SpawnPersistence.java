@@ -11,16 +11,8 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 	private Spawn spawn;
 
 	public SpawnPersistence() {
-		setSpawn(Spawn.DEFAULT);
-		checkAndWriteDefault(SPAWNS, getSpawn());
-	}
-
-	public Spawn getSpawn() {
-		return spawn;
-	}
-
-	public void setSpawn(Spawn spawn) {
-		this.spawn = spawn;
+		set(Spawn.DEFAULT);
+		checkAndWriteDefault(SPAWNS, get());
 	}
 	
 	@Override

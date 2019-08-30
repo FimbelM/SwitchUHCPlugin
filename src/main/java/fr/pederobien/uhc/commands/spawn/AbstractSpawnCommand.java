@@ -14,6 +14,6 @@ public abstract class AbstractSpawnCommand extends AbstractCommand {
 	}
 	
 	protected Spawn getSpawn() {
-		return spawnPersistence.getSpawn();
+		return spawnPersistence.get();
 	}
 }
