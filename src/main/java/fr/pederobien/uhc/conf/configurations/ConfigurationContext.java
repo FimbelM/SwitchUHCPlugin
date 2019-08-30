@@ -79,9 +79,4 @@ public class ConfigurationContext implements IGameBase<IGameBaseState>, IConfigu
 	public void setTeams(List<Team> teams) {
 		configuration.setTeams(teams);
 	}
-
-	@Override
-	public void persiste() {
-		configuration.persiste();
-	}
 }

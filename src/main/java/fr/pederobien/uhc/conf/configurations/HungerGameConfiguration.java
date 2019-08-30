@@ -17,8 +17,7 @@ public class HungerGameConfiguration extends AbstractConfiguration<HungerGamePer
 	private LocalTime gameTime;
 	private LocalTime fractionTime;
 	private long scoreboardRefresh;
-	private HungerGamePersistence persistence;
-	
+
 	static {
 		DEFAULT.setBorderCenter(WorldManager.getHighestBlockYAt(0, 0));
 		DEFAULT.setInitialBorderSize(2000);
@@ -29,16 +28,10 @@ public class HungerGameConfiguration extends AbstractConfiguration<HungerGamePer
 		DEFAULT.setSpawn(Spawn.DEFAULT);
 		DEFAULT.setScoreboardRefresh(5);
 	}
-	
+
 	public HungerGameConfiguration(String name) {
 		setName(name);
 		setTeams(new ArrayList<Team>());
-		persistence = new HungerGamePersistence(this);
-	}
-	
-	@Override
-	public void persiste() {
-		persistence.save();
 	}
 
 	public Block getBorderCenter() {
@@ -56,11 +49,11 @@ public class HungerGameConfiguration extends AbstractConfiguration<HungerGamePer
 	public void setInitialBorderSize(double initialBorderSize) {
 		this.initialBorderSize = initialBorderSize;
 	}
-	
+
 	public double getFinalBorderSize() {
 		return finalBorderSize;
 	}
-	
+
 	public void setFinalBorderSize(double finalBorderSize) {
 		this.finalBorderSize = finalBorderSize;
 	}
@@ -80,7 +73,7 @@ public class HungerGameConfiguration extends AbstractConfiguration<HungerGamePer
 	public void setFractionTime(LocalTime fractionTime) {
 		this.fractionTime = fractionTime;
 	}
-	
+
 	public long getScoreboardRefresh() {
 		return scoreboardRefresh;
 	}

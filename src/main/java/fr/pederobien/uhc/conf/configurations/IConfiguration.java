@@ -11,7 +11,7 @@ import fr.pederobien.uhc.game.IGameBaseState;
 public interface IConfiguration {
 
 	IGameBase<IGameBaseState> getGame();
-	
+
 	void setGame(IGameBase<IGameBaseState> game);
 
 	Spawn getSpawn();
@@ -25,6 +25,5 @@ public interface IConfiguration {
 	List<Team> getTeams();
 
 	void setTeams(List<Team> teams);
-	
-	void persiste();
+
 }
