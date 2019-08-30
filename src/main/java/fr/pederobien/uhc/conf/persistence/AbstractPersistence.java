@@ -36,7 +36,7 @@ public abstract class AbstractPersistence<T> implements IPersistence<T> {
 	
 	@Override
 	public boolean delete(String name) {
-		return false;
+		return new File(name).delete();
 	}
 	
 	protected void checkAndWriteDefault(String path, T configuration) {
