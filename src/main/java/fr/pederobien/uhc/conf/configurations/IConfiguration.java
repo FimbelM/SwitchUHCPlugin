@@ -5,14 +5,12 @@ import java.util.List;
 import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.conf.Spawn;
-import fr.pederobien.uhc.game.IGameBase;
-import fr.pederobien.uhc.game.IGameBaseState;
 
-public interface IConfiguration {
+public interface IConfiguration<T> {
 
-	IGameBase<IGameBaseState> getGame();
+	T getGame();
 
-	void setGame(IGameBase<IGameBaseState> game);
+	void setGame(T game);
 
 	Spawn getSpawn();
 

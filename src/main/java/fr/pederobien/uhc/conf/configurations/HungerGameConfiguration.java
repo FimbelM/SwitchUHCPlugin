@@ -7,10 +7,10 @@ import org.bukkit.block.Block;
 import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.conf.Spawn;
-import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
+import fr.pederobien.uhc.game.hungergame.HungerGame;
 import fr.pederobien.uhc.managers.WorldManager;
 
-public class HungerGameConfiguration extends AbstractConfiguration<HungerGamePersistence> {
+public class HungerGameConfiguration extends AbstractConfiguration<HungerGame> {
 	public static final HungerGameConfiguration DEFAULT = new HungerGameConfiguration("Default configuration");
 	private Block borderCenter;
 	private double initialBorderSize, finalBorderSize;
@@ -40,6 +40,10 @@ public class HungerGameConfiguration extends AbstractConfiguration<HungerGamePer
 
 	public void setBorderCenter(Block borderCenter) {
 		this.borderCenter = borderCenter;
+	}
+	
+	public void setBorderCenter(String x, String y, String z) {
+		borderCenter = WorldManager.getBlockAt(Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(z));
 	}
 
 	public double getInitialBorderSize() {

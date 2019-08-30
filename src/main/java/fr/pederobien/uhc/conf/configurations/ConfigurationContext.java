@@ -8,10 +8,10 @@ import fr.pederobien.uhc.conf.Spawn;
 import fr.pederobien.uhc.game.IGameBase;
 import fr.pederobien.uhc.game.IGameBaseState;
 
-public class ConfigurationContext implements IGameBase<IGameBaseState>, IConfiguration {
-	private IConfiguration configuration;
+public class ConfigurationContext implements IGameBase<IGameBaseState>, IConfiguration<IGameBase<IGameBaseState>> {
+	private IConfiguration<IGameBase<IGameBaseState>> configuration;
 	
-	public void setCurrentConfiguration(IConfiguration configuration) {
+	public void setCurrentConfiguration(IConfiguration<IGameBase<IGameBaseState>> configuration) {
 		this.configuration = configuration;
 	}
 
