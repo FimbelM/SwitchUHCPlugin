@@ -12,6 +12,7 @@
 	<properties>
 		<mainClass>${project.groupId}.uhc.UHCPlugin</mainClass>
 		<author>Pierre-Emmanuel41</author>
+		<project.build.sourceEncoding>Cp1252</project.build.sourceEncoding>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
 	</properties>
