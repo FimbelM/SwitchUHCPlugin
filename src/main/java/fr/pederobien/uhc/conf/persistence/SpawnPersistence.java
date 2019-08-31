@@ -26,12 +26,12 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 		StringBuilder builder = new StringBuilder();
 
 		builder.append(openingTag("spawn")).append(openingTabTag(1, "center"))
-				.append(tabAttribut(2, "x", spawn.getCenter().getX()))
-				.append(tabAttribut(2, "y", spawn.getCenter().getY()))
-				.append(tabAttribut(2, "z", spawn.getCenter().getZ())).append(openingTabTag(1, "blocks"));
+				.append(attribut(2, "x", spawn.getCenter().getX()))
+				.append(attribut(2, "y", spawn.getCenter().getY()))
+				.append(attribut(2, "z", spawn.getCenter().getZ())).append(openingTabTag(1, "blocks"));
 		for (Block block : spawn.getBlocks()) {
-			builder.append(tabAttribut(2, "x", block.getX())).append(tabAttribut(2, "y", block.getY()))
-					.append(tabAttribut(2, "z", block.getZ())).append(tabAttribut(2, "material", block.getType()));
+			builder.append(attribut(2, "x", block.getX())).append(attribut(2, "y", block.getY()))
+					.append(attribut(2, "z", block.getZ())).append(attribut(2, "material", block.getType()));
 		}
 
 		builder.append(closingTabTag(1, "blocks")).append(closingTag("spawn"));

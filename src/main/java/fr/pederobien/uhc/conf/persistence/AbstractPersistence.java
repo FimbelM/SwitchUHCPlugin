@@ -9,24 +9,24 @@ public abstract class AbstractPersistence<T> implements IPersistence<T> {
 	protected static final String ROOT = "Plugins/UHCPlugin/Ressources/";
 	private BufferedWriter writer;
 	
-	public String openingTag(String tag) {
+	protected String openingTag(String tag) {
 		return openingTabTag(0, tag);
 	}
 	
-	public String openingTabTag(int tab, String tag) {
-		return tabTag(tab) + "<" + tag + ">";
+	protected String openingTabTag(int tab, String tag) {
+		return tabTag(tab) + "<" + tag + ">\r\n";
 	}
 	
-	public String closingTag(String tag) {
+	protected String closingTag(String tag) {
 		return closingTabTag(0, tag);
 	}
 	
-	public String closingTabTag(int tab, String tag) {
+	protected String closingTabTag(int tab, String tag) {
 		return tabTag(tab) + "</" + tag + ">\r\n";
 	}
 	
-	public String tabAttribut(int tab, String tag, Object content) {
-		return openingTabTag(tab, tag) + content.toString() + closingTag(tag);
+	protected String attribut(int tab, String tag, Object content) {
+		return tabTag(tab) + "<" + tag + ">" + content.toString() + closingTag(tag);
 	}
 	
 	@Override
@@ -54,6 +54,7 @@ public abstract class AbstractPersistence<T> implements IPersistence<T> {
 
             fw = new FileWriter(path);
             writer = new BufferedWriter(fw);
+            writer.write("<?xml version = \"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>\r\n");
             writer.write(content);
 
         } catch (IOException e) {
