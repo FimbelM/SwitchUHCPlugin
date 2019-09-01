@@ -50,7 +50,6 @@ public class HungerGamePersistence extends AbstractConfPersistence<HungerGameCon
 	
 	@Override
 	public List<String> list() {
-		// TODO Auto-generated method stub
-		return null;
+		return getList(HUNGER_GAME);
 	}
 }

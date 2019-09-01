@@ -51,6 +51,6 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 	
 	@Override
 	public List<String> list() {
-		return null;
+		return getList(SPAWNS);
 	}
 }

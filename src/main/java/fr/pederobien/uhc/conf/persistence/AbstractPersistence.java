@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class AbstractPersistence<T> implements IPersistence<T> {
 	protected static final String ROOT = "Plugins/UHCPlugin/Ressources/";
@@ -93,5 +95,13 @@ public abstract class AbstractPersistence<T> implements IPersistence<T> {
 		for (int i = 0; i < tab; i++)
 			tabulation += "\t";
 		return tabulation;
+	}
+	
+	protected List<String> getList(String path) {
+		String[] list = new File(path).list();
+		List<String> listOfString = new ArrayList<String>();
+		for (int i = 0; i < list.length; i++)
+			listOfString.add(list[i].substring(0, list[i].indexOf(".txt")));
+		return listOfString;
 	}
 }

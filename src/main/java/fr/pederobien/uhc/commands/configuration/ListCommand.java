@@ -16,10 +16,10 @@ public class ListCommand extends AbstractConfigurationCommand {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		switch (args[0]) {
 		case "hungergame":
-			sendMessageToSender(sender, prepare(hgPersistence.list()));
+			sendMessageToSender(sender, prepare(hgPersistence.list(), "hunger game style(s)"));
 			break;
 		case "spawn":
-			sendMessageToSender(sender, prepare(spPersistence.list()));
+			sendMessageToSender(sender, prepare(spPersistence.list(), "spawn(s)"));
 			break;
 		default:
 			break;
@@ -27,10 +27,15 @@ public class ListCommand extends AbstractConfigurationCommand {
 		return false;
 	}
 	
-	private String prepare(List<String> list) {
+	private String prepare(List<String> list, String elt) {
 		StringBuilder builder = new StringBuilder();
+		if (list.size() > 0)
+			builder.append("List of existing " + elt + " :\n");
+		else
+			builder.append("No existing " + elt);
+		
 		for (String str : list)
-			builder.append(str.concat("\r\n"));
+			builder.append(str.concat("\n"));
 		return builder.toString();
 	}
 }
