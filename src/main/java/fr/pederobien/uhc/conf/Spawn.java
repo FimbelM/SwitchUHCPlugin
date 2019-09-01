@@ -18,10 +18,7 @@ public class Spawn {
 	private boolean loaded;
 
 	static {
-		DEFAULT.setWidth(15);
-		DEFAULT.setHeight(1);
-		DEFAULT.setDepth(15);
-		DEFAULT.extract();
+		DEFAULT.setDimension(15, 1, 15);
 		for (Coordinate coord : DEFAULT.config.keySet())
 			DEFAULT.config.put(coord, Material.BEDROCK);
 	}
@@ -108,33 +105,26 @@ public class Spawn {
 	}
 
 	public void setDimension(String width, String height, String depth) {
-		setWidth(Integer.parseInt(width));
-		setHeight(Integer.parseInt(height));
-		setDepth(Integer.parseInt(depth));
+		setDimension(Integer.parseInt(width), Integer.parseInt(height), Integer.parseInt(depth));
+	}
+	
+	public void setDimension(int width, int height, int depth) {
+		this.width = width;
+		this.height = height;
+		this.depth = depth;
+		extract();
 	}
 
 	public int getWidth() {
 		return width;
 	}
 
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
 	public int getHeight() {
 		return height;
 	}
 
-	public void setHeight(int height) {
-		this.height = height;
-	}
-
 	public int getDepth() {
 		return depth;
-	}
-
-	public void setDepth(int depth) {
-		this.depth = depth;
 	}
 
 	public String getName() {
