@@ -86,6 +86,7 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 			case "remove":
 				getSpawn().remove();
 				setMessage("Spawn " + getSpawn().getName() + "removed from the world");
+				break;
 			default:
 				return false;
 			}
