@@ -8,7 +8,7 @@ import fr.pederobien.uhc.conf.persistence.SpawnPersistence;
 
 public class EditSpawnConfiguration extends AbstractEditConfiguration implements IEditConfig {
 	private SpawnPersistence persistence;
-	
+
 	public EditSpawnConfiguration(ConfigurationContext context) {
 		super(context);
 		persistence = new SpawnPersistence();
@@ -26,22 +26,11 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 				getSpawn().setDimension(args[1], args[2], args[3]);
 				setMessage("New dimension : " + args[1] + " " + args[2] + " " + args[3]);
 				break;
-			case "width":
-				getSpawn().setWidth(Integer.parseInt(args[1]));
-				setMessage("New width : " + args[1]);
-				break;
-			case "height":
-				getSpawn().setHeight(Integer.parseInt(args[1]));
-				setMessage("New height : " + args[1]);
-				break;
-			case "depth":
-				getSpawn().setDepth(Integer.parseInt(args[1]));
-				setMessage("New depth : " + args[1]);
-				break;
 			case "name":
 				if (persistence.exist(args[1])) {
 					if (args.length == 2)
-						setMessage("A spawn with name " + args[1] + " already exist\nIf you want to overrite it add -f");
+						setMessage(
+								"A spawn with name " + args[1] + " already exist\nIf you want to overrite it add -f");
 					else if (args.length == 3 && args[2].equals("-f")) {
 						persistence.delete(args[1]);
 						persistence.delete(getSpawn().getName());
@@ -68,18 +57,22 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 					setMessage("New spawn " + getSpawn().getName() + " created");
 				}
 				break;
+			case "current":
+				setMessage("Current spawn : " + getSpawn().getName());
 			case "ascurrent":
 				if (args.length == 0) {
 					context.setSpawn(persistence.get());
 					getSpawn().launch();
-					setMessage("Spawn " + getSpawn().getName() + " defined as current spawn for the configuration " + context.getName());
+					setMessage("Spawn " + getSpawn().getName() + " defined as current spawn for the configuration "
+							+ context.getName());
 				} else {
 					persistence.save();
 					try {
 						persistence.load(args[0]);
 						context.setSpawn(getSpawn());
 						getSpawn().launch();
-						setMessage("Spawn " + getSpawn().getName() + " defined as current spawn for the configuration " + context.getName());
+						setMessage("Spawn " + getSpawn().getName() + " defined as current spawn for the configuration "
+								+ context.getName());
 					} catch (FileNotFoundException e) {
 						setMessage("Spawn " + args[0] + " does not exist");
 					}
@@ -100,10 +93,16 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 
 	@Override
 	public String getEditCommands() {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder builder = new StringBuilder("Unknown command\r\n");
+		builder.append("center - to set the center of the spawn\r\n")
+				.append("dimension - to set the dimension of the spawn\r\n")
+				.append("name - to set the name of the spawn\r\n").append("set - to change the current spawn\r\n")
+				.append("new - to create a new spawn\r\n").append("current - to show the current spawn\r\n")
+				.append("ascurrent - to set the spawn as the current spawn for the current configuation\r\n")
+				.append("save - to save the current spawn\r\n");
+		return builder.toString();
 	}
-	
+
 	protected Spawn getSpawn() {
 		return persistence.get();
 	}
