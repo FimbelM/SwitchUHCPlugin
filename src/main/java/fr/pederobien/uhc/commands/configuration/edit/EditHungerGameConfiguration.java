@@ -73,6 +73,9 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 					setMessage("New configuration " + getConfiguration().getName() + " created");
 				}
 				break;
+			case "current":
+				setMessage("Current configuration : " + getConfiguration().getName());
+				break;
 			case "ascurrent":
 				if (args.length == 0) {
 					context.setCurrentConfiguration(persistence.get());
@@ -102,15 +105,19 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 
 	@Override
 	public String getEditCommands() {
-		StringBuilder builder = new StringBuilder("bordercenter - to set the center of the world's border\r\n");
-		builder.append("initialbordersize - to set the initial size of the world's border\r\n")
+		StringBuilder builder = new StringBuilder("Unknown command\r\n");
+		builder.append("bordercenter - to set the center of the world's border\r\n")
+				.append("initialbordersize - to set the initial size of the world's border\r\n")
 				.append("finalbordersize - to set the final size of the world border\r\n")
 				.append("gametime - to set the time after which the world's border moves from the initial to the final size\r\n")
 				.append("fractiontime - to set the time after which players will not revive when they die\r\n")
 				.append("scoreboardrefresh - to set the number of servers's tic after which the scoreboard of each player is refreshed\r\n")
 				.append("name - to set the name of the configuration\r\n")
 				.append("set - to change the current hunger game style\r\n")
-				.append("new - to create a new hunger game style");
+				.append("new - to create a new hunger game style\r\n")
+				.append("current - to show the name of the current hunger game style's name\r\n")
+				.append("ascurrent - to set the configuration as the current configuration to start\r\n")
+				.append("save - to save the current hunger game style");
 		return builder.toString();
 	}
 
