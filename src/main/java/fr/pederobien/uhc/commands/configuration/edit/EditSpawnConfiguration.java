@@ -98,9 +98,9 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 		builder.append("center - to set the center of the spawn\r\n")
 				.append("dimension - to set the dimension of the spawn\r\n")
 				.append("name - to set the name of the spawn\r\n").append("set - to change the current spawn\r\n")
-				.append("new - to create a new spawn\r\n").append("current - to show the current spawn\r\n")
+				.append("new - to create a new spawn\r\n").append("current - to show the current spawn's name\r\n")
 				.append("ascurrent - to set the spawn as the current spawn for the current configuation\r\n")
-				.append("save - to save the current spawn\r\n");
+				.append("save - to save the current spawn");
 		return builder.toString();
 	}
 
