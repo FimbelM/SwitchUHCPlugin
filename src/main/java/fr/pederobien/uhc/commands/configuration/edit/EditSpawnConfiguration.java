@@ -59,6 +59,7 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 				break;
 			case "current":
 				setMessage("Current spawn : " + getSpawn().getName());
+				break;
 			case "ascurrent":
 				if (args.length == 0) {
 					context.setSpawn(persistence.get());
