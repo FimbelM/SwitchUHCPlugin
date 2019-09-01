@@ -85,6 +85,10 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 					}
 				}
 				break;
+			case "save":
+				persistence.save();
+				setMessage("Spawn " + getSpawn().getName() + " saved");
+				break;
 			default:
 				return false;
 			}
