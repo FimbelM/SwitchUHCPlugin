@@ -81,7 +81,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 					persistence.save();
 					try {
 						persistence.load(args[0]);
-						context.setCurrentConfiguration(persistence.get());
+						context.setCurrentConfiguration(getConfiguration());
 						setMessage(getConfiguration().getName() + " defined as current configuration");
 					} catch (FileNotFoundException e) {
 						setMessage("Configuration " + args[0] + " does not exist");

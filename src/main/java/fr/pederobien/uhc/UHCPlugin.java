@@ -7,8 +7,6 @@ import fr.pederobien.uhc.commands.configuration.edit.EditConfigurationCommand;
 import fr.pederobien.uhc.commands.game.PauseCommand;
 import fr.pederobien.uhc.commands.game.StartCommand;
 import fr.pederobien.uhc.commands.game.StopCommand;
-import fr.pederobien.uhc.commands.spawn.EditSpawnCommand;
-import fr.pederobien.uhc.commands.spawn.LaunchSpawnCommand;
 import fr.pederobien.uhc.commands.spawn.ListSpawnCommand;
 import fr.pederobien.uhc.commands.spawn.RemoveSpawnCommand;
 import fr.pederobien.uhc.commands.spawn.SaveSpawnCommand;
@@ -27,9 +25,7 @@ public class UHCPlugin extends JavaPlugin {
 		new StopCommand(this, "stopgame");
 		new SaveSpawnCommand(this, "spawnsave");
 		new ListSpawnCommand(this, "spawnlist");
-		new LaunchSpawnCommand(this, "spawnlaunch");
 		new RemoveSpawnCommand(this, "spawnremove");
-		new EditSpawnCommand(this, "spawnedit");
 		new AddToRandomTeamCommand(this, "teamrandom");
 		new CreateTeamCommand(this, "teamcreate");
 		new RemoveAllTeamCommand(this, "teamremoveall");

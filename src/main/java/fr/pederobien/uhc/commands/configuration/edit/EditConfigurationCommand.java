@@ -8,10 +8,12 @@ import fr.pederobien.uhc.commands.AbstractCommand;
 
 public class EditConfigurationCommand extends AbstractCommand {
 	private IEditConfig editHungerGame;
+	private IEditConfig editSpawn;
 
 	public EditConfigurationCommand(JavaPlugin plugin, String command) {
 		super(plugin, command);
 		editHungerGame = new EditHungerGameConfiguration(confContext);
+		editSpawn = new EditSpawnConfiguration(confContext);
 	}
 
 	@Override
@@ -27,7 +29,12 @@ public class EditConfigurationCommand extends AbstractCommand {
 			else
 				sendMessageToSender(sender, editHungerGame.getEditCommands());
 			break;
-
+		case "spawn":
+			if (editSpawn.edit(arguments))
+				sendMessageToSender(sender, editSpawn.getMessage());
+			else
+				sendMessageToSender(sender, editSpawn.getEditCommands());
+			break;
 		default:
 			break;
 		}
