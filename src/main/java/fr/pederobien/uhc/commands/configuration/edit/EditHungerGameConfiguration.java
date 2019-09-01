@@ -88,6 +88,9 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 					}
 				}
 				break;
+			case "save":
+				persistence.save();
+				setMessage("Configuration " + getConfiguration().getName() + " saved");
 			default:
 				return false;
 			}
