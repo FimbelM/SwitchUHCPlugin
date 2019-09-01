@@ -3,8 +3,7 @@ package fr.pederobien.uhc;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.pederobien.uhc.commands.AbstractCommand;
-import fr.pederobien.uhc.commands.configuration.hungergame.EditHungerGameCommand;
-import fr.pederobien.uhc.commands.configuration.hungergame.LaunchHungerGameCommand;
+import fr.pederobien.uhc.commands.configuration.edit.EditConfigurationCommand;
 import fr.pederobien.uhc.commands.game.PauseCommand;
 import fr.pederobien.uhc.commands.game.StartCommand;
 import fr.pederobien.uhc.commands.game.StopCommand;
@@ -34,8 +33,7 @@ public class UHCPlugin extends JavaPlugin {
 		new AddToRandomTeamCommand(this, "teamrandom");
 		new CreateTeamCommand(this, "teamcreate");
 		new RemoveAllTeamCommand(this, "teamremoveall");
-		new EditHungerGameCommand(this, "edithungergame");
-		new LaunchHungerGameCommand(this, "launchhungergame");
+		new EditConfigurationCommand(this, "edit");
 		
 		getServer().getPluginManager().registerEvents(AbstractCommand.listener, this);
 		

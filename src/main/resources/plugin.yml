@@ -41,9 +41,6 @@ commands:
   teamremoveall:
     description:
     permission: UHCPlugin.teamremoveall
-  edithungergame:
+  edit:
     description:
-    permission: UHCPlugin.edithungergame
-  launchhungergame:
-    description:
-    permission: UHCPlugin.launchhungergame
+    permission: UHCPlugin.edit
