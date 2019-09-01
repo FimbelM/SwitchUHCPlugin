@@ -10,7 +10,7 @@ import org.bukkit.block.Block;
 import fr.pederobien.uhc.managers.WorldManager;
 
 public class Spawn {
-	public static final Spawn DEFAULT = new Spawn("Spawn");
+	public static final Spawn DEFAULT = new Spawn("Default spawn");
 	private Block center;
 	private HashMap<Coordinate, Material> config, before;
 	private int width, height, depth;
