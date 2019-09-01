@@ -1,6 +1,7 @@
 package fr.pederobien.uhc.conf.persistence;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
 
@@ -45,5 +46,11 @@ public class HungerGamePersistence extends AbstractConfPersistence<HungerGameCon
 	@Override
 	public void set(HungerGameConfiguration configuration) {
 		this.configuration = configuration;
+	}
+	
+	@Override
+	public List<String> list() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

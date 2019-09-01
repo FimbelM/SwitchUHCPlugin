@@ -1,6 +1,7 @@
 package fr.pederobien.uhc.conf.persistence;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 public interface IPersistence<T> {
 	 
@@ -19,4 +20,6 @@ public interface IPersistence<T> {
 	boolean isLoaded();
 	
 	boolean isSaved();
+	
+	List<String> list();
 }

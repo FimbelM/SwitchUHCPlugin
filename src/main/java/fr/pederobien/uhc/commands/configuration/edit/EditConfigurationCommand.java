@@ -4,15 +4,15 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.pederobien.uhc.commands.AbstractCommand;
+import fr.pederobien.uhc.commands.configuration.AbstractConfigurationCommand;
 
-public class EditConfigurationCommand extends AbstractCommand {
+public class EditConfigurationCommand extends AbstractConfigurationCommand {
 	private IEditConfig editHungerGame;
 	private IEditConfig editSpawn;
 
 	public EditConfigurationCommand(JavaPlugin plugin, String command) {
 		super(plugin, command);
-		editHungerGame = new EditHungerGameConfiguration(confContext);
+		editHungerGame = new EditHungerGameConfiguration(confContext, hgPersistence);
 		editSpawn = new EditSpawnConfiguration(confContext);
 	}
 

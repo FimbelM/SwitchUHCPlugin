@@ -3,11 +3,11 @@ package fr.pederobien.uhc;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.pederobien.uhc.commands.AbstractCommand;
+import fr.pederobien.uhc.commands.configuration.ListCommand;
 import fr.pederobien.uhc.commands.configuration.edit.EditConfigurationCommand;
 import fr.pederobien.uhc.commands.game.PauseCommand;
 import fr.pederobien.uhc.commands.game.StartCommand;
 import fr.pederobien.uhc.commands.game.StopCommand;
-import fr.pederobien.uhc.commands.spawn.ListSpawnCommand;
 import fr.pederobien.uhc.commands.spawn.RemoveSpawnCommand;
 import fr.pederobien.uhc.commands.team.AddToRandomTeamCommand;
 import fr.pederobien.uhc.commands.team.CreateTeamCommand;
@@ -22,12 +22,12 @@ public class UHCPlugin extends JavaPlugin {
 		new PauseCommand(this, "pausegame");
 		new StartCommand(this, "startgame");
 		new StopCommand(this, "stopgame");
-		new ListSpawnCommand(this, "spawnlist");
 		new RemoveSpawnCommand(this, "spawnremove");
 		new AddToRandomTeamCommand(this, "teamrandom");
 		new CreateTeamCommand(this, "teamcreate");
 		new RemoveAllTeamCommand(this, "teamremoveall");
 		new EditConfigurationCommand(this, "edit");
+		new ListCommand(this, "list");
 		
 		getServer().getPluginManager().registerEvents(AbstractCommand.listener, this);
 		

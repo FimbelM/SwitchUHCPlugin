@@ -10,9 +10,9 @@ import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
 public class EditHungerGameConfiguration extends AbstractEditConfiguration implements IEditConfig {
 	private HungerGamePersistence persistence;
 
-	public EditHungerGameConfiguration(ConfigurationContext context) {
+	public EditHungerGameConfiguration(ConfigurationContext context, HungerGamePersistence hgPersistence) {
 		super(context);
-		persistence = new HungerGamePersistence();
+		this.persistence = hgPersistence;
 	}
 
 	@Override

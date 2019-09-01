@@ -1,6 +1,7 @@
 package fr.pederobien.uhc.conf.persistence;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 import org.bukkit.block.Block;
 
@@ -47,8 +48,9 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 	public void set(Spawn spawn) {
 		this.spawn = spawn;
 	}
-
-	public String getSpawnsName() {
+	
+	@Override
+	public List<String> list() {
 		return null;
 	}
 }

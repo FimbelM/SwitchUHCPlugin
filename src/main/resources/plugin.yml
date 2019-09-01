@@ -20,9 +20,6 @@ commands:
   spawnlist:
     description:
     permission: UHCPlugin.spawnlist
-  spawnremove:
-    description:
-    permission: UHCPlugin.spawnremove
   teamrandom:
     description:
     permission: UHCPlugin.teamrandom
@@ -35,3 +32,6 @@ commands:
   edit:
     description:
     permission: UHCPlugin.edit
+  list:
+    description:
+    permission: UHCPlugin.list
