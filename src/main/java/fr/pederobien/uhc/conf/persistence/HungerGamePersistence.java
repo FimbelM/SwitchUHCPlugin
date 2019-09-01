@@ -22,13 +22,11 @@ public class HungerGamePersistence extends AbstractConfPersistence<HungerGameCon
 	public void save() {
 		StringBuilder builder = new StringBuilder();
 		builder.append(openingTag("configuration")).append(attribut(1, "name", configuration.getName()))
-				.append(attribut(1, "spawn", configuration.getSpawn().getName())).append(openingTabTag(2, "border"))
-				.append(openingTabTag(1, "border")).append(openingTabTag(2, "center"))
-				.append(attribut(3, "x", configuration.getBorderCenter().getX()))
+				.append(attribut(1, "spawn", configuration.getSpawn().getName())).append(openingTabTag(1, "border"))
+				.append(openingTabTag(2, "center")).append(attribut(3, "x", configuration.getBorderCenter().getX()))
 				.append(attribut(3, "y", configuration.getBorderCenter().getY()))
 				.append(attribut(3, "z", configuration.getBorderCenter().getZ())).append(closingTabTag(2, "center"))
-				.append(openingTabTag(2, "size"))
-				.append(attribut(3, "initial", configuration.getInitialBorderSize()))
+				.append(openingTabTag(2, "size")).append(attribut(3, "initial", configuration.getInitialBorderSize()))
 				.append(attribut(3, "final", configuration.getFinalBorderSize())).append(closingTabTag(2, "size"))
 				.append(closingTabTag(1, "border")).append(openingTabTag(1, "time"))
 				.append(attribut(3, "total", configuration.getGameTime()))
@@ -47,7 +45,7 @@ public class HungerGamePersistence extends AbstractConfPersistence<HungerGameCon
 	public void set(HungerGameConfiguration configuration) {
 		this.configuration = configuration;
 	}
-	
+
 	@Override
 	public List<String> list() {
 		return getList(HUNGER_GAME);

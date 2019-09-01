@@ -25,7 +25,7 @@ public abstract class AbstractConfiguration implements IConfiguration {
 
 	@Override
 	public Spawn getSpawn() {
-		return spawn;
+		return spawn == null ? Spawn.DEFAULT : spawn;
 	}
 
 	@Override
