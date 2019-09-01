@@ -26,10 +26,10 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 	public void save() {
 		StringBuilder builder = new StringBuilder();
 
-		builder.append(openingTag("spawn")).append(openingTabTag(1, "center"))
-				.append(attribut(2, "x", spawn.getCenter().getX()))
-				.append(attribut(2, "y", spawn.getCenter().getY()))
-				.append(attribut(2, "z", spawn.getCenter().getZ())).append(openingTabTag(1, "blocks"));
+		builder.append(openingTag("spawn")).append(attribut(1, "name", spawn.getName()))
+				.append(openingTabTag(1, "center")).append(attribut(2, "x", spawn.getCenter().getX()))
+				.append(attribut(2, "y", spawn.getCenter().getY())).append(attribut(2, "z", spawn.getCenter().getZ()))
+				.append(openingTabTag(1, "blocks"));
 		for (Block block : spawn.getBlocks()) {
 			builder.append(attribut(2, "x", block.getX())).append(attribut(2, "y", block.getY()))
 					.append(attribut(2, "z", block.getZ())).append(attribut(2, "material", block.getType()));
@@ -48,7 +48,7 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 	public void set(Spawn spawn) {
 		this.spawn = spawn;
 	}
-	
+
 	@Override
 	public List<String> list() {
 		return getList(SPAWNS);
