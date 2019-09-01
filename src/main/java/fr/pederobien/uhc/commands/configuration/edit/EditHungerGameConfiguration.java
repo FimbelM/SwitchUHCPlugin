@@ -9,11 +9,10 @@ import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
 
 public class EditHungerGameConfiguration extends AbstractEditConfiguration implements IEditConfig {
 	private HungerGamePersistence persistence;
-	private ConfigurationContext context;
 
 	public EditHungerGameConfiguration(ConfigurationContext context) {
+		super(context);
 		persistence = new HungerGamePersistence();
-		this.context = context;
 	}
 
 	@Override
@@ -65,25 +64,25 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 				persistence.load(args[1]);
 				setMessage("New configuration " + persistence.get().getName());
 				break;
-			case "New":
+			case "new":
 				if (persistence.exist(args[1]))
 					setMessage("A configuration with name " + args[1] + " already exist");
 				else {
 					persistence.save();
 					persistence.set(new HungerGameConfiguration(args[1]));
-					setMessage("New configuration");
+					setMessage("New configuration " + getConfiguration().getName() + " created");
 				}
 				break;
 			case "ascurrent":
 				if (args.length == 0) {
 					context.setCurrentConfiguration(persistence.get());
-					setMessage("Game " + getConfiguration().getName() + "define as current game");
+					setMessage("Game " + getConfiguration().getName() + " defined as current configuration");
 				} else {
 					persistence.save();
 					try {
 						persistence.load(args[0]);
 						context.setCurrentConfiguration(persistence.get());
-						setMessage(getConfiguration().getName() + "define as current configuration");
+						setMessage(getConfiguration().getName() + " defined as current configuration");
 					} catch (FileNotFoundException e) {
 						setMessage("Configuration " + args[0] + " does not exist");
 					}
