@@ -83,6 +83,9 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 				persistence.save();
 				setMessage("Spawn " + getSpawn().getName() + " saved");
 				break;
+			case "remove":
+				getSpawn().remove();
+				setMessage("Spawn " + getSpawn().getName() + "removed from the world");
 			default:
 				return false;
 			}
@@ -100,7 +103,8 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 				.append("name - to set the name of the spawn\r\n").append("set - to change the current spawn\r\n")
 				.append("new - to create a new spawn\r\n").append("current - to show the current spawn's name\r\n")
 				.append("ascurrent - to set the spawn as the current spawn for the current configuation\r\n")
-				.append("save - to save the current spawn");
+				.append("save - to save the current spawn")
+				.append("remove - to remove the current spawn from the world");
 		return builder.toString();
 	}
 
