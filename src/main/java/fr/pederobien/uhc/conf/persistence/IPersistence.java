@@ -15,4 +15,8 @@ public interface IPersistence<T> {
 	boolean exist(String name);
 	
 	boolean delete(String name);
+	
+	boolean isLoaded();
+	
+	boolean isSaved();
 }

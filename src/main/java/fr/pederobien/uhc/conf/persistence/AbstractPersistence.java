@@ -8,6 +8,31 @@ import java.io.IOException;
 public abstract class AbstractPersistence<T> implements IPersistence<T> {
 	protected static final String ROOT = "Plugins/UHCPlugin/Ressources/";
 	private BufferedWriter writer;
+	protected boolean saved, loaded;
+	
+	@Override
+	public boolean exist(String name) {
+		return new File(name).exists();
+	}
+	
+	@Override
+	public boolean delete(String name) {
+		return new File(name).delete();
+	}
+	
+	@Override
+	public boolean isLoaded() {
+		return loaded;
+	}
+	
+	@Override
+	public boolean isSaved() {
+		return saved;
+	}
+	
+	protected void setSaved(boolean saved) {
+		this.saved = saved;
+	}
 	
 	protected String openingTag(String tag) {
 		return openingTabTag(0, tag);
@@ -27,16 +52,6 @@ public abstract class AbstractPersistence<T> implements IPersistence<T> {
 	
 	protected String attribut(int tab, String tag, Object content) {
 		return tabTag(tab) + "<" + tag + ">" + content.toString() + closingTag(tag);
-	}
-	
-	@Override
-	public boolean exist(String name) {
-		return new File(name).exists();
-	}
-	
-	@Override
-	public boolean delete(String name) {
-		return new File(name).delete();
 	}
 	
 	protected void checkAndWriteDefault(String path, T configuration) {
@@ -70,6 +85,7 @@ public abstract class AbstractPersistence<T> implements IPersistence<T> {
                 System.err.format("IOException: %s%n", ex);
             }
         }
+        saved = true;
 	}
 	
 	private String tabTag(int tab) {
