@@ -90,7 +90,7 @@ public class Spawn {
 	}
 
 	public Block getCenter() {
-		return center;
+		return center == null ? WorldManager.getHighestBlockYAt(0, 0) : center;
 	}
 
 	public void setCenter(Block center) {
