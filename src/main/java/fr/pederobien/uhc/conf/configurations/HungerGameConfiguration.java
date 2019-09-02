@@ -39,7 +39,7 @@ public class HungerGameConfiguration extends AbstractConfiguration {
 		borderCenter = WorldManager.getBlockAt(Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(z));
 	}
 
-	public double getInitialBorderSize() {
+	public Double getInitialBorderSize() {
 		return initialBorderSize == null ? DEFAULT_INITIAL_BORDER_SIZE : initialBorderSize;
 	}
 
@@ -47,7 +47,7 @@ public class HungerGameConfiguration extends AbstractConfiguration {
 		this.initialBorderSize = initialBorderSize;
 	}
 
-	public double getFinalBorderSize() {
+	public Double getFinalBorderSize() {
 		return finalBorderSize == null ? DEFAULT_FINAL_BORDER_SIZE : finalBorderSize;
 	}
 
@@ -71,7 +71,7 @@ public class HungerGameConfiguration extends AbstractConfiguration {
 		this.fractionTime = fractionTime;
 	}
 
-	public long getScoreboardRefresh() {
+	public Long getScoreboardRefresh() {
 		return scoreboardRefresh == null ? DEFAULT_SCOREBOARD_REFRESH : scoreboardRefresh;
 	}
 
