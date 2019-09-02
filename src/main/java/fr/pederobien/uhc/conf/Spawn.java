@@ -133,7 +133,7 @@ public class Spawn {
 	}
 
 	private Block getBlockFromCenter(int x, int y, int z) {
-		return WorldManager.getBlockAt(center.getX() + x, center.getY() + y, center.getZ() + z);
+		return WorldManager.getBlockAt(getCenter().getX() + x, getCenter().getY() + y, getCenter().getZ() + z);
 	}
 
 	public class Coordinate {
