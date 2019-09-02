@@ -12,6 +12,11 @@ public class HungerGamePersistence extends AbstractConfPersistence<HungerGameCon
 		super(HungerGameConfiguration.DEFAULT);
 		checkAndWriteDefault(HUNGER_GAME, get());
 	}
+	
+	@Override
+	public boolean exist(String name) {
+		return super.exist(HUNGER_GAME + name + ".xml");
+	}
 
 	@Override
 	public void load(String name) throws FileNotFoundException {

@@ -14,6 +14,11 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 		set(Spawn.DEFAULT);
 		checkAndWriteDefault(SPAWNS, get());
 	}
+	
+	@Override
+	public boolean exist(String name) {
+		return super.exist(SPAWNS + name + ".xml");
+	}
 
 	@Override
 	public void load(String name) throws FileNotFoundException {
