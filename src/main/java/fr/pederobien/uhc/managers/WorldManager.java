@@ -82,7 +82,7 @@ public class WorldManager {
 		border.setSize(diameter);
 	}
 	
-	public static void moveBorder(int finalDiameter, long seconds) {
+	public static void moveBorder(double finalDiameter, long seconds) {
 		border.setSize(finalDiameter, seconds);
 	}
 	
@@ -123,17 +123,12 @@ public class WorldManager {
 	}
 	
 	public static Block getRandomlyPoint() {
-		int minX = -15000000;
-		int maxX = 15000000;
-		int minZ = -15000000;
-		int maxZ = 15000000;
+		int minX = - (int)getCurrentDiameter()/2;
+		int minZ = minX;
+		int maxX = (int)getCurrentDiameter()/2;
+		int maxZ = maxX;
 		int randomX = 0;
 		int randomZ = 0;
-		
-		if (getCurrentDiameter() > 0) {
-			minX = minZ = - (int)getCurrentDiameter()/2;
-			maxX = maxZ = (int)getCurrentDiameter()/2;
-		}
 		do {
 			randomX = rand.nextInt(maxX - minX + 1) + minX;
 			randomZ = rand.nextInt(maxZ - minZ + 1) + minZ;

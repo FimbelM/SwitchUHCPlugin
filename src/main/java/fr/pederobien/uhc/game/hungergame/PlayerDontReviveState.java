@@ -26,6 +26,7 @@ public class PlayerDontReviveState extends AbstractState {
 	@Override
 	public void run() {
 		BukkitManager.broadcastMessageAsTitle("Brace Yourself");
+		WorldManager.moveBorder(game.getConfiguration().getFinalBorderSize(), game.getConfiguration().getInitialBorderSize().longValue());
 		game.setCurrentState(game.getHungerGame());
 	}
 	

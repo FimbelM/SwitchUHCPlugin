@@ -33,6 +33,7 @@ public class PlayerReviveState extends AbstractState {
 	
 	@Override
 	public void onPlayerDie(PlayerDeathEvent event) {
+		super.onPlayerDie(event);
 		if (event.getEntity().getKiller() instanceof Player)
 			event.setKeepInventory(false);
 		else

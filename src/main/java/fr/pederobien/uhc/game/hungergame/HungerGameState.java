@@ -1,5 +1,12 @@
 package fr.pederobien.uhc.game.hungergame;
 
+import org.bukkit.GameMode;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
+
+import fr.pederobien.uhc.managers.PlayerManager;
+import fr.pederobien.uhc.managers.WorldManager;
+
 public class HungerGameState extends AbstractState {
 
 	public HungerGameState(IHungerGame game) {
@@ -14,5 +21,18 @@ public class HungerGameState extends AbstractState {
 	@Override
 	public void stop() {
 		game.setCurrentState(game.getStop()).stop();
+	}
+	
+	@Override
+	public void onPlayerDie(PlayerDeathEvent event) {
+		super.onPlayerDie(event);
+		if (PlayerManager.getNumberOfPlayersOnMode(GameMode.SURVIVAL) == 1)
+			stop();
+	}
+	
+	@Override
+	public void onPlayerRespawn(PlayerRespawnEvent event) {
+		PlayerManager.setGameModeOfPlayer(event.getPlayer(), GameMode.SPECTATOR);
+		event.setRespawnLocation(WorldManager.getSpawnOnJoin());
 	}
 }
