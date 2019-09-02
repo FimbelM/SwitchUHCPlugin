@@ -3,10 +3,10 @@ package fr.pederobien.uhc.game.hungergame;
 import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
 import fr.pederobien.uhc.game.IGame;
 import fr.pederobien.uhc.observer.IObsListener;
+import fr.pederobien.uhc.observer.IObsTimeLine;
 import fr.pederobien.uhc.world.EventListener;
-import fr.pederobien.utils.Function;
 
-public interface IHungerGame extends IGame, IObsListener, Function {
+public interface IHungerGame extends IGame, IObsListener, IObsTimeLine {
 
 	IHungerGameState getCurrentState();
 

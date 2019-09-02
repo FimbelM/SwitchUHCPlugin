@@ -133,8 +133,8 @@ public class HungerGame implements IHungerGame {
 	}
 
 	@Override
-	public void run() {
-		current.run();
+	public void time() {
+		current.time();
 	}
 
 	@Override

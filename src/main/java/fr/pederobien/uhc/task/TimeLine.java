@@ -5,28 +5,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import fr.pederobien.uhc.observer.IObsTimeLine;
 import fr.pederobien.uhc.observer.IObsTimeTask;
-import fr.pederobien.utils.Function;
 
 public class TimeLine implements IObsTimeTask {
-	private HashMap<LocalTime, List<Function>> map;
+	private HashMap<LocalTime, List<IObsTimeLine>> map;
 
 	public TimeLine(TimeTask task) {
 		map = new HashMap<>();
 		task.addObserver(this);
 	}
 	
-	public void addObserver(LocalTime time, Function function) {
+	public void addObserver(LocalTime time, IObsTimeLine function) {
 		if (map.containsKey(time))
 			map.get(time).add(function);
 		else {
-			List<Function> list = new ArrayList<Function>();
+			List<IObsTimeLine> list = new ArrayList<IObsTimeLine>();
 			list.add(function);
 			map.put(time, list);
 		}
 	}
 	
-	public void removeObserver(LocalTime time, Function function) {
+	public void removeObserver(LocalTime time, IObsTimeLine function) {
 		map.get(time).remove(function);
 		if (map.get(time).size() == 0)
 			map.remove(time);
@@ -34,9 +34,9 @@ public class TimeLine implements IObsTimeTask {
 
 	@Override
 	public void timeChanged(TimeTask task) {
-		List<Function> list = map.get(task.getIncreasingTime());
+		List<IObsTimeLine> list = map.get(task.getIncreasingTime());
 		if (list != null)
-			for (Function function : list)
-				function.run();
+			for (IObsTimeLine function : list)
+				function.time();
 	}
 }

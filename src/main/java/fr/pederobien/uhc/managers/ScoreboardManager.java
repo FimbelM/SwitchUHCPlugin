@@ -1,15 +1,15 @@
 package fr.pederobien.uhc.managers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
+
+import fr.pederobien.uhc.scoreboard.IScoreboard;
 
 public class ScoreboardManager {
 	
@@ -18,27 +18,20 @@ public class ScoreboardManager {
 			player.setScoreboard(scoreboard);
 	}
 	
-	public static void setPlayerScoreboardWithCurrentLocation(String title, Player player, List<String> entries) {
-		Location loc = player.getLocation();
-		ChatColor color = TeamsManager.getColor(player);
-		List<String> clone = new ArrayList<String>();
+	public static void setPlayerScoreboardWithCurrentLocation(IScoreboard scoreboard) {
+		Location loc = scoreboard.getPlayer().getLocation();
 		
-		for (String score : entries) {
-			score = color + score;
-			clone.add(score);
-		}
+		scoreboard.getEntries().add(scoreboard.getChatColor() + (loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ()));
+		scoreboard.getEntries().add(scoreboard.getChatColor() + "Coordonnées X/Y/Z");
 		
-		clone.add(color.toString() + loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ());
-		clone.add(color + "Coordonnées X/Y/Z");
-		
-		Objective obj = registerNewObjectiveOnSideBarDisplaySlot(title);
-		addEntries(obj, clone);
-		player.setScoreboard(obj.getScoreboard());
+		Objective obj = registerNewObjectiveOnSideBarDisplaySlot(scoreboard.getTitle());
+		addEntries(obj, scoreboard.getEntries());
+		scoreboard.getPlayer().setScoreboard(obj.getScoreboard());
 	}
 	
-	public static void setPlayersScoreboardWithCurrentLocation(String title, List<String> entries) {
-		for (Player player : PlayerManager.getPlayers())
-			setPlayerScoreboardWithCurrentLocation(title, player, entries);
+	public static void setPlayersScoreboardWithCurrentLocation(List<IScoreboard> scoreboards) {
+		for (IScoreboard scoreboard : scoreboards)
+			setPlayerScoreboardWithCurrentLocation(scoreboard);
 	}
 	
 	public static Objective registerNewObjective(String title) {

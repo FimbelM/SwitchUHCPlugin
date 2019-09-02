@@ -20,7 +20,7 @@ public class BeforeBorderMoveState extends AbstractScoreboardState {
 	}
 	
 	@Override
-	public void run() {
+	public void time() {
 		scoreboard.setCurrentState(scoreboard.getAfterBorderMoveState());
 	}
 	

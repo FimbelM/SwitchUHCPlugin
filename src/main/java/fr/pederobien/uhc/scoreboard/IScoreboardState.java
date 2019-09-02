@@ -2,9 +2,9 @@ package fr.pederobien.uhc.scoreboard;
 
 import java.util.List;
 
-import fr.pederobien.utils.Function;
+import fr.pederobien.uhc.observer.IObsTimeLine;
 
-public interface IScoreboardState extends Function {
+public interface IScoreboardState extends IObsTimeLine {
 	
 	List<String> getEntries();
 	

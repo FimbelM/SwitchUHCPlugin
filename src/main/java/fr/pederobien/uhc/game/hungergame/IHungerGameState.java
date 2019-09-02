@@ -7,9 +7,9 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.observer.IObsListener;
-import fr.pederobien.utils.Function;
+import fr.pederobien.uhc.observer.IObsTimeLine;
 
-public interface IHungerGameState extends IObsListener, Function {
+public interface IHungerGameState extends IObsListener, IObsTimeLine {
 
 	void initiate();
 	
@@ -31,5 +31,4 @@ public interface IHungerGameState extends IObsListener, Function {
 
 	void onPlayerRespawn(PlayerRespawnEvent event);
 
-	void run();
 }

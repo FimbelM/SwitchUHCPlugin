@@ -22,7 +22,7 @@ public abstract class AbstractScoreboardState implements IScoreboardState {
 	abstract void updateEntries();
 
 	@Override
-	public void run() {
+	public void time() {
 		
 	}
 

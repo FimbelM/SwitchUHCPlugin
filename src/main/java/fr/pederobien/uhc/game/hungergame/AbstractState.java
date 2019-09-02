@@ -9,7 +9,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.managers.PlayerManager;
-import fr.pederobien.uhc.scoreboard.Scoreboard;
 import fr.pederobien.uhc.task.ScoreboardLauncher;
 import fr.pederobien.uhc.task.TaskLauncher;
 import fr.pederobien.uhc.task.TimeLine;
@@ -19,7 +18,6 @@ public abstract class AbstractState implements IHungerGameState {
 	protected static TaskLauncher taskLauncher;
 	protected static ScoreboardLauncher scoreboardLauncher; 
 	protected static TimeLine timeLine;
-	protected static Scoreboard scoreboard;
 	
 	public AbstractState(IHungerGame game) {
 		this.game = game;
@@ -70,8 +68,9 @@ public abstract class AbstractState implements IHungerGameState {
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
 		
 	}
-
-	public void run() {
+	
+	@Override
+	public void time() {
 		
 	}
 }

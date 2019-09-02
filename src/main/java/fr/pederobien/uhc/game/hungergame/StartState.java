@@ -18,7 +18,7 @@ public class StartState extends AbstractState {
 		TeamsManager.teleporteRandomlyAllTeams();
 		BukkitManager.broadcastMessageAsTitle("Match à mort par équipe");
 		taskLauncher.runTaskTimer(PluginDeposit.plugin, 0, 20L);
-		scoreboard.start();
+		scoreboardLauncher.start();
 		scoreboardLauncher.runTaskTimer(PluginDeposit.plugin, 0, game.getConfiguration().getScoreboardRefresh());
 		WorldManager.setWorldBorderCenter(game.getConfiguration().getSpawn().getCenter());
 		WorldManager.setWorldBorderDiameter(game.getConfiguration().getInitialBorderSize());

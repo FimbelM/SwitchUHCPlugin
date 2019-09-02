@@ -2,6 +2,10 @@ package fr.pederobien.uhc.scoreboard;
 
 import java.util.List;
 
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+
+import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.task.TimeTask;
 
 public class Scoreboard implements IScoreboard {
@@ -12,9 +16,13 @@ public class Scoreboard implements IScoreboard {
 	private IScoreboardState stop;
 	private IScoreboardState current;
 	
+	private Player player;
+	private ChatColor chatColor;
 	private TimeTask task;
 
-	public Scoreboard(TimeTask task) {
+	public Scoreboard(Player player, TimeTask task) {
+		this.player = player;
+		this.chatColor = TeamsManager.getColor(player);
 		this.task = task;
 		
 		initial = new InitialState(this);
@@ -65,10 +73,20 @@ public class Scoreboard implements IScoreboard {
 	public TimeTask getTask() {
 		return task;
 	}
+	
+	@Override
+	public ChatColor getChatColor() {
+		return chatColor;
+	}
+	
+	@Override
+	public Player getPlayer() {
+		return player;
+	}
 
 	@Override
-	public void run() {
-		current.run();
+	public void time() {
+		current.time();
 	}
 	
 	@Override

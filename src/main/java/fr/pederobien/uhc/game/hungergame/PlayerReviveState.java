@@ -26,7 +26,7 @@ public class PlayerReviveState extends AbstractState {
 	}
 	
 	@Override
-	public void run() {
+	public void time() {
 		BukkitManager.broadcastMessageAsTitle("Plus de résurrection");
 		game.setCurrentState(game.getPlayerDontRevive());
 	}

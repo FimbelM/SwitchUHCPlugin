@@ -7,7 +7,6 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
-import fr.pederobien.uhc.scoreboard.Scoreboard;
 import fr.pederobien.uhc.task.ScoreboardLauncher;
 import fr.pederobien.uhc.task.TaskLauncher;
 import fr.pederobien.uhc.task.TimeLine;
@@ -22,12 +21,11 @@ public class InitialState extends AbstractState {
 	public void initiate() {
 		taskLauncher = new TaskLauncher(game.getConfiguration().getGameTime(), game.getConfiguration().getFractionTime());
 		timeLine = new TimeLine(taskLauncher.getTask());
-		scoreboard = new Scoreboard(taskLauncher.getTask());
-		scoreboardLauncher = new ScoreboardLauncher(scoreboard);
+		scoreboardLauncher = new ScoreboardLauncher(taskLauncher.getTask());
 		
 		timeLine.addObserver(game.getConfiguration().getGameTime(), game);
 		timeLine.addObserver(game.getConfiguration().getFractionTime(), game);
-		timeLine.addObserver(game.getConfiguration().getGameTime(), scoreboard);
+		timeLine.addObserver(game.getConfiguration().getGameTime(), scoreboardLauncher);
 		game.getEventListener().addObservers(game);
 				
 		WorldManager.setPVP(false);
