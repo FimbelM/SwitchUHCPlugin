@@ -59,7 +59,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 					setMessage("New name : " + args[1]);
 				}
 				break;
-			case "set":
+			case "load":
 				persistence.save();
 				persistence.load(args[1]);
 				setMessage("New configuration " + persistence.get().getName());
@@ -113,7 +113,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 				.append("fractiontime - to set the time after which players will not revive when they die\r\n")
 				.append("scoreboardrefresh - to set the number of servers's tic after which the scoreboard of each player is refreshed\r\n")
 				.append("name - to set the name of the configuration\r\n")
-				.append("set - to change the current hunger game style\r\n")
+				.append("load - to load the current hunger game style\r\n")
 				.append("new - to create a new hunger game style\r\n")
 				.append("current - to show the name of the current hunger game style's name\r\n")
 				.append("ascurrent - to set the configuration as the current configuration to start\r\n")
