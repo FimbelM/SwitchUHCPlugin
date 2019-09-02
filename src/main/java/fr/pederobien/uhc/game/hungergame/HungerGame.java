@@ -7,7 +7,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
-import fr.pederobien.uhc.world.EventListener;
 
 public class HungerGame implements IHungerGame {
 	private IHungerGameState initiate;
@@ -19,11 +18,9 @@ public class HungerGame implements IHungerGame {
 	private IHungerGameState stop;
 	private IHungerGameState current;
 	private HungerGameConfiguration configuration;
-	private EventListener listener;
-
-	public HungerGame(HungerGameConfiguration configuration, EventListener listener) {
+	
+	public HungerGame(HungerGameConfiguration configuration) {
 		this.configuration = configuration;
-		this.listener = listener;
 		
 		initiate = new InitialState(this);
 		start = new StartState(this);
@@ -140,10 +137,5 @@ public class HungerGame implements IHungerGame {
 	@Override
 	public HungerGameConfiguration getConfiguration() {
 		return configuration;
-	}
-	
-	@Override
-	public EventListener getEventListener() {
-		return listener;
 	}
 }

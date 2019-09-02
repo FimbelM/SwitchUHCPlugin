@@ -65,10 +65,10 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 				setMessage("New configuration " + persistence.get().getName());
 				break;
 			case "new":
+				persistence.save();
 				if (persistence.exist(args[1]))
 					setMessage("A configuration with name " + args[1] + " already exist");
 				else {
-					persistence.save();
 					persistence.set(new HungerGameConfiguration(args[1]));
 					setMessage("New configuration " + getConfiguration().getName() + " created");
 				}

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.bukkit.block.Block;
 import org.bukkit.scoreboard.Team;
 
+import fr.pederobien.uhc.game.hungergame.HungerGame;
 import fr.pederobien.uhc.managers.WorldManager;
 
 public class HungerGameConfiguration extends AbstractConfiguration {
@@ -25,6 +26,7 @@ public class HungerGameConfiguration extends AbstractConfiguration {
 	public HungerGameConfiguration(String name) {
 		setName(name);
 		setTeams(new ArrayList<Team>());
+		setGame(new HungerGame(this));
 	}
 
 	public Block getBorderCenter() {

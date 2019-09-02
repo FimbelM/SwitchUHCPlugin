@@ -26,7 +26,6 @@ public class InitialState extends AbstractState {
 		timeLine.addObserver(game.getConfiguration().getGameTime(), game);
 		timeLine.addObserver(game.getConfiguration().getFractionTime(), game);
 		timeLine.addObserver(game.getConfiguration().getGameTime(), scoreboardLauncher);
-		game.getEventListener().addObservers(game);
 				
 		WorldManager.setPVP(false);
 		WorldManager.setSpawnOnJoin(game.getConfiguration().getSpawn().getCenter().getLocation());

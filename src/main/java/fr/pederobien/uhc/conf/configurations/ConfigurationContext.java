@@ -2,6 +2,11 @@ package fr.pederobien.uhc.conf.configurations;
 
 import java.util.List;
 
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.conf.Spawn;
@@ -42,15 +47,35 @@ public class ConfigurationContext implements IConfiguration, IGame {
 	public void relaunch() {
 		getGame().pause();
 	}
+	
+	@Override
+	public void onPlayerJoin(PlayerJoinEvent event) {
+		getGame().onPlayerJoin(event);
+	}
+
+	@Override
+	public void onPlayerDie(PlayerDeathEvent event) {
+		getGame().onPlayerDie(event);
+	}
+
+	@Override
+	public void onPlayerQuit(PlayerQuitEvent event) {
+		getGame().onPlayerQuit(event);
+	}
+
+	@Override
+	public void onPlayerRespawn(PlayerRespawnEvent event) {
+		getGame().onPlayerRespawn(event);
+	}
+
+	@Override
+	public void onPlayerMove(PlayerMoveEvent event) {
+		getGame().onPlayerMove(event);
+	}
 
 	@Override
 	public IGame getGame() {
 		return configuration.getGame();
-	}
-
-	@Override
-	public void setGame(IGame game) {
-		configuration.setGame(game);
 	}
 
 	@Override

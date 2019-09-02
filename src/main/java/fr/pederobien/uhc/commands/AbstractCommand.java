@@ -9,12 +9,12 @@ import fr.pederobien.uhc.conf.configurations.ConfigurationContext;
 import fr.pederobien.uhc.world.EventListener;
 
 public abstract class AbstractCommand implements CommandExecutor {
-	protected static ConfigurationContext confContext;
+	protected static ConfigurationContext confContext = new ConfigurationContext();
+
 	public static EventListener listener = new EventListener();
 	
 	public AbstractCommand(JavaPlugin plugin, String command) {
 		plugin.getCommand(command).setExecutor(this);
-		confContext = new ConfigurationContext();
 	}
 
 	public void sendMessageToSender(CommandSender sender, String message) {

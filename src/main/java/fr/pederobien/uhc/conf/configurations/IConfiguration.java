@@ -11,8 +11,6 @@ public interface IConfiguration {
 
 	IGame getGame();
 
-	void setGame(IGame game);
-
 	Spawn getSpawn();
 
 	void setSpawn(Spawn spawn);

@@ -19,11 +19,6 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	}
 
 	@Override
-	public void setGame(IGame game) {
-		this.game = game;
-	}
-
-	@Override
 	public Spawn getSpawn() {
 		return spawn == null ? Spawn.DEFAULT : spawn;
 	}
@@ -51,5 +46,9 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	@Override
 	public void setTeams(List<Team> teams) {
 		this.teams = teams;
+	}
+	
+	protected void setGame(IGame game) {
+		this.game = game;
 	}
 }

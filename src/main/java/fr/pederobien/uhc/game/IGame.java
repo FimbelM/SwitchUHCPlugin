@@ -1,6 +1,8 @@
 package fr.pederobien.uhc.game;
 
-public interface IGame {
+import fr.pederobien.uhc.observer.IObsListener;
+
+public interface IGame extends IObsListener {
 	
 	void initiate();
 
