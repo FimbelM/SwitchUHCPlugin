@@ -1,8 +1,9 @@
 package fr.pederobien.uhc.conf;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -26,7 +27,6 @@ public class Spawn {
 	public Spawn(String name) {
 		config = new HashMap<Coordinate, Material>();
 		before = new HashMap<Coordinate, Material>();
-		this.center = WorldManager.getHighestBlockYAt(0, 0);
 		this.name = name;
 	}
 
@@ -80,11 +80,8 @@ public class Spawn {
 		config.put(new Coordinate(x, y, z), getBlockFromCenter(x, y, z).getType());
 	}
 
-	public List<Block> getBlocks() {
-		List<Block> blocks = new ArrayList<Block>();
-		for (Coordinate coord : config.keySet())
-			blocks.add(getBlockFromCenter(coord.getX(), coord.getY(), coord.getZ()));
-		return blocks;
+	public Map<Coordinate, Material> getBlocks() {
+		return Collections.unmodifiableMap(config);
 	}
 
 	@Override
@@ -139,7 +136,7 @@ public class Spawn {
 		return WorldManager.getBlockAt(center.getX() + x, center.getY() + y, center.getZ() + z);
 	}
 
-	private class Coordinate {
+	public class Coordinate {
 		private int x, y, z;
 
 		public Coordinate(int x, int y, int z) {

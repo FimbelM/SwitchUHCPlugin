@@ -3,9 +3,8 @@ package fr.pederobien.uhc.conf.persistence;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import org.bukkit.block.Block;
-
 import fr.pederobien.uhc.conf.Spawn;
+import fr.pederobien.uhc.conf.Spawn.Coordinate;
 
 public class SpawnPersistence extends AbstractPersistence<Spawn> {
 	protected static final String SPAWNS = ROOT + "Spawns/";
@@ -30,11 +29,11 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 				.append(openingTabTag(1, "center")).append(attribut(2, "x", spawn.getCenter().getX()))
 				.append(attribut(2, "y", spawn.getCenter().getY())).append(attribut(2, "z", spawn.getCenter().getZ()))
 				.append(openingTabTag(1, "blocks"));
-		for (Block block : spawn.getBlocks()) {
-			builder.append(attribut(2, "x", block.getX())).append(attribut(2, "y", block.getY()))
-					.append(attribut(2, "z", block.getZ())).append(attribut(2, "material", block.getType()));
+		for (Coordinate coord : spawn.getBlocks().keySet()) {
+			builder.append(openingTabTag(2, "block")).append(attribut(3, "x", coord.getX()))
+					.append(attribut(3, "y", coord.getY())).append(attribut(3, "z", coord.getZ()))
+					.append(attribut(3, "material", spawn.getBlocks().get(coord))).append(closingTabTag(2, "block"));
 		}
-
 		builder.append(closingTabTag(1, "blocks")).append(closingTag("spawn"));
 		write(SPAWNS + spawn.getName() + ".xml", builder.toString());
 	}
