@@ -9,10 +9,10 @@ public class PauseState extends AbstractScoreboardState {
 	
 	@Override
 	void updateEntries() {
-		addEntries(scoreboard.getChatColor() + prepareTimeNoEscape(task.getTotalTime()));
-		addEntries(scoreboard.getChatColor() + "Temps de jeu");
-		addEntries(scoreboard.getChatColor() + prepareTimeOneEscape(task.getPauseTime()));
-		addEntries(scoreboard.getChatColor() + "Temps de pause");
+		addEntries(prepareTimeNoEscape(task.getTotalTime()));
+		addEntries("Temps de jeu");
+		addEntries(prepareTimeOneEscape(task.getPauseTime()));
+		addEntries("Temps de pause");
 	}
 	
 	@Override

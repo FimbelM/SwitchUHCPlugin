@@ -8,10 +8,10 @@ public class BeforeBorderMoveState extends AbstractScoreboardState {
 	
 	@Override
 	void updateEntries() {
-		addEntries(scoreboard.getChatColor() + prepareTimeNoEscape(task.getTotalTime()));
-		addEntries(scoreboard.getChatColor() + "Temps de jeu");
-		addEntries(scoreboard.getChatColor() + prepareTimeOneEscape(task.getDecreasingTime()));
-		addEntries(scoreboard.getChatColor() + "Déplacement bordure dans");
+		addEntries(prepareTimeNoEscape(task.getTotalTime()));
+		addEntries("Temps de jeu");
+		addEntries(prepareTimeOneEscape(task.getDecreasingTime()));
+		addEntries("Déplacement bordure dans");
 	}
 	
 	@Override

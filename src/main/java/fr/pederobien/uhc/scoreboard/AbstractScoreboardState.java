@@ -59,7 +59,7 @@ public abstract class AbstractScoreboardState implements IScoreboardState {
 	}
 	
 	protected void addEntries(String score) {
-		entries.add(score);
+		entries.add(scoreboard.getChatColor() + score);
 	}
 	
 	protected String prepareTimeNoEscape(LocalTime time) {
