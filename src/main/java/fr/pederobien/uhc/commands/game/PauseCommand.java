@@ -5,7 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PauseCommand extends AbstractGameCommand {
-	private boolean pause;
+	private boolean pause = false;
 
 	public PauseCommand(JavaPlugin plugin, String command) {
 		super(plugin, command);

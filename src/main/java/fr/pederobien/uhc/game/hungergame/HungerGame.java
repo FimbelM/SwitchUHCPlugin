@@ -29,9 +29,7 @@ public class HungerGame implements IHungerGame {
 		hungerGame = new HungerGameState(this);
 		pause = new PauseState(this);
 		stop = new StopState(this);
-		current = initiate;
-		
-		initiate();
+		current = initiate;		
 	}
 	
 	@Override

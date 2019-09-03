@@ -45,7 +45,7 @@ public class ConfigurationContext implements IConfiguration, IGame {
 
 	@Override
 	public void relaunch() {
-		getGame().pause();
+		getGame().relaunch();
 	}
 	
 	@Override
