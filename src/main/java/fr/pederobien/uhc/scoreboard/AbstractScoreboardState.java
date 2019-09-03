@@ -4,6 +4,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Location;
+
 import fr.pederobien.uhc.task.TimeTask;
 
 public abstract class AbstractScoreboardState implements IScoreboardState {
@@ -60,6 +62,11 @@ public abstract class AbstractScoreboardState implements IScoreboardState {
 	
 	protected void addEntries(String score) {
 		entries.add(scoreboard.getChatColor() + score);
+	}
+	
+	protected String getShowingLocation() {
+		Location loc = scoreboard.getPlayer().getLocation();
+		return loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ();
 	}
 	
 	protected String prepareTimeNoEscape(LocalTime time) {
