@@ -14,10 +14,10 @@ public class AfterBorderMoveState extends AbstractScoreboardState {
 	
 	@Override
 	void updateEntries() {
-		addEntries(prepareTimeNoEscape(task.getTotalTime()));
-		addEntries("Temps de jeu");
+		addEntries(scoreboard.getChatColor() + prepareTimeNoEscape(task.getTotalTime()));
+		addEntries(scoreboard.getChatColor() + "Temps de jeu");
 		registerTeam();
-		addEntries("Rayon bordure : " + WorldManager.getCurrentDiameter() / 2);
+		addEntries(scoreboard.getChatColor() + "Rayon bordure : " + WorldManager.getCurrentDiameter() / 2);
 	}
 
 	@Override
