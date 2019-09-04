@@ -21,6 +21,8 @@ public interface IScoreboard extends IScoreboardState {
 	
 	IScoreboardState getStopState();
 	
+	void update();
+	
 	TimeTask getTask();
 	
 	ChatColor getChatColor();

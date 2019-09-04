@@ -7,7 +7,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.pederobien.uhc.managers.PlayerManager;
-import fr.pederobien.uhc.managers.ScoreboardManager;
 import fr.pederobien.uhc.observer.IObsTimeLine;
 import fr.pederobien.uhc.scoreboard.IScoreboard;
 import fr.pederobien.uhc.scoreboard.Scoreboard;
@@ -23,7 +22,8 @@ public class ScoreboardLauncher extends BukkitRunnable implements IObsTimeLine {
 
 	@Override
 	public void run() {
-		ScoreboardManager.setPlayersScoreboardWithCurrentLocation(scoreboards);
+		for (IScoreboard sc : scoreboards)
+			sc.update();
 	}
 
 	@Override

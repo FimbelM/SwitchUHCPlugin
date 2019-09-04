@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.Objective;
 
+import fr.pederobien.uhc.managers.ScoreboardManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.task.TimeTask;
 
@@ -67,6 +69,13 @@ public class Scoreboard implements IScoreboard {
 	@Override
 	public IScoreboardState getStopState() {
 		return stop;
+	}
+	
+	@Override
+	public void update() {
+		Objective obj = ScoreboardManager.registerNewObjectiveOnSideBarDisplaySlot(getTitle());
+		ScoreboardManager.addEntries(obj , getEntries());
+		player.setScoreboard(obj.getScoreboard());
 	}
 	
 	@Override
