@@ -12,7 +12,7 @@ public class HungerGamePersistence extends AbstractConfPersistence<HungerGameCon
 		super(HungerGameConfiguration.DEFAULT);
 		checkAndWriteDefault(HUNGER_GAME, get());
 	}
-	
+
 	@Override
 	public boolean exist(String name) {
 		return super.exist(HUNGER_GAME + name + ".xml");
@@ -27,8 +27,8 @@ public class HungerGamePersistence extends AbstractConfPersistence<HungerGameCon
 	public void save() {
 		StringBuilder builder = new StringBuilder();
 		builder.append(openingTag("configuration")).append(attribut(1, "name", configuration.getName()))
-				.append(attribut(1, "spawn", configuration.getSpawn().getName())).append(openingTabTag(1, "border"))
-				.append(openingTabTag(2, "center")).append(attribut(3, "x", configuration.getBorderCenter().getX()))
+				.append(openingTabTag(1, "border")).append(openingTabTag(2, "center"))
+				.append(attribut(3, "x", configuration.getBorderCenter().getX()))
 				.append(attribut(3, "y", configuration.getBorderCenter().getY()))
 				.append(attribut(3, "z", configuration.getBorderCenter().getZ())).append(closingTabTag(2, "center"))
 				.append(openingTabTag(2, "size")).append(attribut(3, "initial", configuration.getInitialBorderSize()))

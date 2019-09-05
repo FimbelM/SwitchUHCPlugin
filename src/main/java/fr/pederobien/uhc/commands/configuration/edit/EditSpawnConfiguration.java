@@ -62,7 +62,6 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 				break;
 			case "ascurrent":
 				if (args.length == 1) {
-					context.setSpawn(persistence.get());
 					getSpawn().launch();
 					setMessage("Spawn " + getSpawn().getName() + " defined as current spawn for the configuration "
 							+ context.getName());
@@ -70,7 +69,6 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 					persistence.save();
 					try {
 						persistence.load(args[0]);
-						context.setSpawn(getSpawn());
 						getSpawn().launch();
 						setMessage("Spawn " + getSpawn().getName() + " defined as current spawn for the configuration "
 								+ context.getName());

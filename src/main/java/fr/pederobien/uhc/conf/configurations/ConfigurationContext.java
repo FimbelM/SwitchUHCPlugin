@@ -9,7 +9,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.scoreboard.Team;
 
-import fr.pederobien.uhc.conf.Spawn;
 import fr.pederobien.uhc.game.IGame;
 
 public class ConfigurationContext implements IConfiguration, IGame {
@@ -76,16 +75,6 @@ public class ConfigurationContext implements IConfiguration, IGame {
 	@Override
 	public IGame getGame() {
 		return configuration.getGame();
-	}
-
-	@Override
-	public Spawn getSpawn() {
-		return configuration.getSpawn();
-	}
-
-	@Override
-	public void setSpawn(Spawn spawn) {
-		configuration.setSpawn(spawn);
 	}
 
 	@Override
