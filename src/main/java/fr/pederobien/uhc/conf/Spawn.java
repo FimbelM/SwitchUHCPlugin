@@ -11,22 +11,23 @@ import org.bukkit.block.Block;
 import fr.pederobien.uhc.managers.WorldManager;
 
 public class Spawn {
-	public static final Spawn DEFAULT = new Spawn("Default spawn");
+	public static final Spawn DEFAULT;
+	private static final Block DEFAULT_CENTER;
 	private Block center;
-	private HashMap<Coordinate, Material> config, before;
+	private HashMap<Coordinate, Material> config;
 	private int width, height, depth;
 	private String name;
-	private boolean loaded;
 
 	static {
-		DEFAULT.setDimension(15, 1, 15);
+		DEFAULT = new Spawn("Default spawn");
+		DEFAULT_CENTER = WorldManager.getHighestBlockYAt(0, 0);
+		DEFAULT.setDimension(5, 1, 5);
 		for (Coordinate coord : DEFAULT.config.keySet())
 			DEFAULT.config.put(coord, Material.BEDROCK);
 	}
 
 	public Spawn(String name) {
 		config = new HashMap<Coordinate, Material>();
-		before = new HashMap<Coordinate, Material>();
 		this.name = name;
 	}
 
@@ -44,24 +45,14 @@ public class Spawn {
 					config.put(new Coordinate(x, y, z), getBlockFromCenter(x, y, z).getType());
 	}
 
-	public boolean launch() {
-		if (loaded)
-			return false;
-
-		for (Coordinate coord : config.keySet())
-			before.put(coord, getBlockFromCenter(coord.getX(), coord.getY(), coord.getZ()).getType());
+	public void launch() {
 		for (Coordinate coord : config.keySet())
 			getBlockFromCenter(coord.getX(), coord.getY(), coord.getZ()).setType(config.get(coord));
-		return true;
 	}
 
-	public boolean remove() {
-		if (!loaded)
-			return false;
-
-		for (Coordinate coord : before.keySet())
-			getBlockFromCenter(coord.getX(), coord.getY(), coord.getZ()).setType(config.get(coord));
-		return true;
+	public void remove() {
+		for (Coordinate coord : config.keySet())
+			getBlockFromCenter(coord.getX(), coord.getY(), coord.getZ()).setType(Material.AIR);
 	}
 
 	public void addBlocks(List<String> blocks) {
@@ -90,7 +81,7 @@ public class Spawn {
 	}
 
 	public Block getCenter() {
-		return center == null ? WorldManager.getHighestBlockYAt(0, 0) : center;
+		return center == null ? DEFAULT_CENTER : center;
 	}
 
 	public void setCenter(Block center) {
@@ -104,12 +95,11 @@ public class Spawn {
 	public void setDimension(String width, String height, String depth) {
 		setDimension(Integer.parseInt(width), Integer.parseInt(height), Integer.parseInt(depth));
 	}
-	
+
 	public void setDimension(int width, int height, int depth) {
 		this.width = width;
 		this.height = height;
 		this.depth = depth;
-		extract();
 	}
 
 	public int getWidth() {

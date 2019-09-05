@@ -61,7 +61,7 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 				setMessage("Current spawn : " + getSpawn().getName());
 				break;
 			case "ascurrent":
-				if (args.length == 0) {
+				if (args.length == 1) {
 					context.setSpawn(persistence.get());
 					getSpawn().launch();
 					setMessage("Spawn " + getSpawn().getName() + " defined as current spawn for the configuration "
@@ -85,7 +85,7 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 				break;
 			case "remove":
 				getSpawn().remove();
-				setMessage("Spawn " + getSpawn().getName() + "removed from the world");
+				setMessage("Spawn " + getSpawn().getName() + " removed from the world");
 				break;
 			default:
 				return false;
