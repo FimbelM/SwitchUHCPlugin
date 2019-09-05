@@ -22,8 +22,8 @@ public class Spawn {
 		DEFAULT = new Spawn("Default spawn");
 		DEFAULT_CENTER = WorldManager.getHighestBlockYAt(0, 0);
 		DEFAULT.setDimension(5, 1, 5);
-		for (Coordinate coord : DEFAULT.config.keySet())
-			DEFAULT.config.put(coord, Material.BEDROCK);
+		
+		DEFAULT.uniformSpawn(Material.BEDROCK);
 	}
 
 	public Spawn(String name) {
@@ -124,6 +124,19 @@ public class Spawn {
 
 	private Block getBlockFromCenter(int x, int y, int z) {
 		return WorldManager.getBlockAt(getCenter().getX() + x, getCenter().getY() + y, getCenter().getZ() + z);
+	}
+	
+	private void uniformSpawn(Material material) {
+		int maxWidth = DEFAULT.width / 2, maxDepth = DEFAULT.depth / 2;
+		if (DEFAULT.width % 2 == 1)
+			maxWidth += 1;
+		if (DEFAULT.depth % 2 == 1)
+			maxDepth += 1;
+
+		for (int x = -DEFAULT.width / 2; x < maxWidth; x++)
+			for (int y = 0; y < DEFAULT.height; y++)
+				for (int z = -DEFAULT.depth / 2; z < maxDepth; z++)
+					DEFAULT.config.put(new Coordinate(x, y, z), material);
 	}
 
 	public class Coordinate {

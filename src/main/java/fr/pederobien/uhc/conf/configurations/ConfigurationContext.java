@@ -96,4 +96,14 @@ public class ConfigurationContext implements IConfiguration, IGame {
 	public void setTeams(List<Team> teams) {
 		configuration.setTeams(teams);
 	}
+
+	@Override
+	public Long getScoreboardRefresh() {
+		return configuration.getScoreboardRefresh();
+	}
+
+	@Override
+	public void setScoreboardRefresh(Long refresh) {
+		configuration.setScoreboardRefresh(refresh);
+	}
 }

@@ -23,9 +23,12 @@ commands:
   teamremoveall:
     description:
     permission: UHCPlugin.teamremoveall
-  edit:
+  hg:
     description:
-    permission: UHCPlugin.edit
+    permission: UHCPlugin.hg
+  spawn:
+    description:
+    permission: UHCPlugin.spawn
   list:
     description:
     permission: UHCPlugin.list

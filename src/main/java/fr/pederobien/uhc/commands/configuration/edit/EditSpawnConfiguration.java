@@ -8,6 +8,7 @@ import fr.pederobien.uhc.conf.persistence.SpawnPersistence;
 
 public class EditSpawnConfiguration extends AbstractEditConfiguration implements IEditConfig {
 	private SpawnPersistence persistence;
+	private String notEnoughtArgsMessage;
 
 	public EditSpawnConfiguration(ConfigurationContext context) {
 		super(context);
@@ -19,14 +20,17 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 		try {
 			switch (args[0]) {
 			case "center":
+				notEnoughtArgsMessage = "Impossible to define center's coordinates\nNeed three dimensions coordinates (X Y Z)";
 				getSpawn().setCenter(args[1], args[2], args[3]);
 				setMessage("New center : " + args[1] + " " + args[2] + " " + args[3]);
 				break;
 			case "dimension":
+				notEnoughtArgsMessage = "Impossible to define spawn's coordinates\nNeed three dimensions (X Y Z)";
 				getSpawn().setDimension(args[1], args[2], args[3]);
 				setMessage("New dimension : " + args[1] + " " + args[2] + " " + args[3]);
 				break;
 			case "name":
+				notEnoughtArgsMessage = "Impossible to define the spawn's name\nNeed the name";
 				if (persistence.exist(args[1])) {
 					if (args.length == 2)
 						setMessage(
@@ -49,6 +53,7 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 				setMessage("New spawn " + getSpawn().getName());
 				break;
 			case "new":
+				notEnoughtArgsMessage = "Impossible to define the new spawn's name\nNeed the name";
 				if (persistence.exist(args[1]))
 					setMessage("A spawn with name " + args[1] + " already exist");
 				else {
@@ -60,18 +65,17 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 			case "current":
 				setMessage("Current spawn : " + getSpawn().getName());
 				break;
-			case "ascurrent":
+			case "launch":
 				if (args.length == 1) {
+					System.out.println("launching spawn");
 					getSpawn().launch();
-					setMessage("Spawn " + getSpawn().getName() + " defined as current spawn for the configuration "
-							+ context.getName());
-				} else {
+					setMessage("Spawn " + getSpawn().getName() + " launched");
+				} else if (args.length == 2){
 					persistence.save();
 					try {
 						persistence.load(args[0]);
 						getSpawn().launch();
-						setMessage("Spawn " + getSpawn().getName() + " defined as current spawn for the configuration "
-								+ context.getName());
+						setMessage("Spawn " + getSpawn().getName() + " launched");
 					} catch (FileNotFoundException e) {
 						setMessage("Spawn " + args[0] + " does not exist");
 					}
@@ -90,6 +94,8 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 			}
 		} catch (FileNotFoundException e) {
 			setMessage(e.getMessage());
+		} catch (IndexOutOfBoundsException e) {
+			setMessage(notEnoughtArgsMessage);
 		}
 		return true;
 	}
@@ -101,7 +107,7 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 				.append("dimension - to set the dimension of the spawn\r\n")
 				.append("name - to set the name of the spawn\r\n").append("set - to change the current spawn\r\n")
 				.append("new - to create a new spawn\r\n").append("current - to show the current spawn's name\r\n")
-				.append("ascurrent - to set the spawn as the current spawn for the current configuation\r\n")
+				.append("launch - to launch the spawn in the world\r\n")
 				.append("save - to save the current spawn")
 				.append("remove - to remove the current spawn from the world");
 		return builder.toString();

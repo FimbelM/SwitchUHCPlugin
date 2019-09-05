@@ -28,6 +28,16 @@ public class HungerGameConfiguration extends AbstractConfiguration {
 		setTeams(new ArrayList<Team>());
 		setGame(new HungerGame(this));
 	}
+	
+	@Override
+	public Long getScoreboardRefresh() {
+		return scoreboardRefresh == null ? DEFAULT_SCOREBOARD_REFRESH : scoreboardRefresh;
+	}
+
+	@Override
+	public void setScoreboardRefresh(Long refresh) {
+		this.scoreboardRefresh = refresh;
+	}
 
 	public Block getBorderCenter() {
 		return borderCenter == null ? DEFAULT_CENTER : borderCenter;
@@ -71,13 +81,5 @@ public class HungerGameConfiguration extends AbstractConfiguration {
 
 	public void setFractionTime(LocalTime fractionTime) {
 		this.fractionTime = fractionTime;
-	}
-
-	public Long getScoreboardRefresh() {
-		return scoreboardRefresh == null ? DEFAULT_SCOREBOARD_REFRESH : scoreboardRefresh;
-	}
-
-	public void setScoreboardRefresh(long scoreboardRefresh) {
-		this.scoreboardRefresh = scoreboardRefresh;
 	}
 }

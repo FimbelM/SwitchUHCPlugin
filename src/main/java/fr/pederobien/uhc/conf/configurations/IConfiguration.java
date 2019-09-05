@@ -18,4 +18,7 @@ public interface IConfiguration {
 
 	void setTeams(List<Team> teams);
 
+	Long getScoreboardRefresh();
+	
+	void setScoreboardRefresh(Long refresh);
 }
