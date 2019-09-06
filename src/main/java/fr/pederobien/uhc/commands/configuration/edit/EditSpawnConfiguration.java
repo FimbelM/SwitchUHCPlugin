@@ -20,56 +20,22 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 		try {
 			switch (args[0]) {
 			case "center":
-				notEnoughtArgsMessage = "Impossible to define center's coordinates\nNeed three dimensions coordinates (X Y Z)";
-				getSpawn().setCenter(args[1], args[2], args[3]);
-				setMessage("New center : " + args[1] + " " + args[2] + " " + args[3]);
+				setCenter(args);
 				break;
 			case "dimension":
-				notEnoughtArgsMessage = "Impossible to define spawn's coordinates\nNeed three dimensions (X Y Z)";
-				getSpawn().setDimension(args[1], args[2], args[3]);
-				setMessage("New dimension : " + args[1] + " " + args[2] + " " + args[3]);
+				setDimension(args);
 				break;
 			case "name":
-				notEnoughtArgsMessage = "Impossible to define the spawn's name\nNeed the name";
-				if (persistence.exist(args[1])) {
-					if (args.length == 2)
-						setMessage(
-								"A spawn with name " + args[1] + " already exist\nIf you want to overrite it add -f");
-					else if (args.length == 3 && args[2].equals("-f")) {
-						persistence.delete(args[1]);
-						persistence.delete(getSpawn().getName());
-						getSpawn().setName(args[1]);
-						persistence.save();
-						setMessage("New name : " + args[1]);
-					}
-				} else {
-					getSpawn().setName(args[1]);
-					setMessage("New name : " + args[1]);
-				}
+				setName(args);
 				break;
 			case "new":
-				notEnoughtArgsMessage = "Impossible to define the new spawn's name\nNeed the name";
-				if (persistence.exist(args[1]))
-					setMessage("A spawn with name " + args[1] + " already exist");
-				else {
-					persistence.save();
-					persistence.set(new Spawn(args[1]));
-					setMessage("New spawn " + getSpawn().getName() + " created");
-				}
+				newSpawn(args);
 				break;
 			case "current":
 				setMessage("Current spawn : " + getSpawn().getName());
 				break;
 			case "launch":
-				notEnoughtArgsMessage = "Impossible to define the new spawn's name\nNeed the name";
-				if (args.length == 1) {
-					getSpawn().launch();
-					setMessage("Spawn " + getSpawn().getName() + " launched");
-				} else if (args.length == 2) {
-					persistence.save();
-					persistence.load(args[1]);
-					getSpawn().launch();
-				}
+				launch(args);
 				break;
 			case "save":
 				persistence.save();
@@ -89,8 +55,6 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 			default:
 				return false;
 			}
-		} catch (FileNotFoundException e) {
-			setMessage(e.getMessage());
 		} catch (IndexOutOfBoundsException e) {
 			setMessage(notEnoughtArgsMessage);
 		}
@@ -112,5 +76,69 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 
 	protected Spawn getSpawn() {
 		return persistence.get();
+	}
+
+	private void setCenter(String[] args) {
+		try {
+			getSpawn().setCenter(args[1], args[2], args[3]);
+			setMessage("New center : " + args[1] + " " + args[2] + " " + args[3]);
+		} catch (IndexOutOfBoundsException e) {
+			setMessage("Impossible to define center's coordinates\nNeed three dimensions coordinates (X Y Z)");
+		}
+	}
+
+	private void setDimension(String[] args) {
+		try {
+			getSpawn().setDimension(args[1], args[2], args[3]);
+			setMessage("New dimension : " + args[1] + " " + args[2] + " " + args[3]);
+		} catch (IndexOutOfBoundsException e) {
+			setMessage("Impossible to define spawn's dimension\nNeed three dimensions (X Y Z)");
+		}
+	}
+
+	private void setName(String[] args) {
+		try {
+			if (persistence.exist(args[1]))
+				setMessage("A spawn with name " + args[1] + " already exist");
+			else {
+				getSpawn().setName(args[1]);
+				setMessage("New name : " + args[1]);
+			}
+		} catch (IndexOutOfBoundsException e) {
+			setMessage("Impossible to define the spawn's name\nNeed the name");
+		}
+	}
+
+	private void newSpawn(String[] args) {
+		try {
+			if (persistence.exist(args[1]))
+				setMessage("A spawn with name " + args[1] + " already exist");
+			else {
+				persistence.save();
+				persistence.set(new Spawn(args[1]));
+				setMessage("New spawn " + getSpawn().getName() + " created");
+			}
+		} catch (IndexOutOfBoundsException e) {
+			setMessage("Impossible to define the new spawn's name\nNeed the name");
+		}
+	}
+
+	private void launch(String[] args) {
+		try {
+			if (args.length == 1) {
+				getSpawn().launch();
+				setMessage("Spawn " + getSpawn().getName() + " launched");
+			} else if (args.length == 2) {
+				persistence.save();
+				try {
+					persistence.load(args[1]);
+					getSpawn().launch();
+				} catch (FileNotFoundException e) {
+					setMessage(e.getMessage());
+				}
+			}
+		} catch (IndexOutOfBoundsException e) {
+			setMessage("Impossible to define the new spawn's name\nNeed the name");
+		}
 	}
 }
