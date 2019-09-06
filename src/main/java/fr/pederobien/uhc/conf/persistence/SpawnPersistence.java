@@ -3,6 +3,9 @@ package fr.pederobien.uhc.conf.persistence;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import fr.pederobien.uhc.conf.Spawn;
 import fr.pederobien.uhc.conf.Spawn.Coordinate;
 
@@ -14,7 +17,7 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 		set(Spawn.DEFAULT);
 		checkAndWriteDefault(SPAWNS, get());
 	}
-	
+
 	@Override
 	public boolean exist(String name) {
 		return super.exist(SPAWNS + name + ".xml");
@@ -28,19 +31,33 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 
 	@Override
 	public void save() {
-		StringBuilder builder = new StringBuilder();
-
-		builder.append(openingTag("spawn")).append(attribut(1, "name", spawn.getName()))
-				.append(openingTabTag(1, "center")).append(attribut(2, "x", spawn.getCenter().getX()))
-				.append(attribut(2, "y", spawn.getCenter().getY())).append(attribut(2, "z", spawn.getCenter().getZ()))
-				.append(openingTabTag(1, "blocks"));
+		Document doc = newDocument();
+		doc.setXmlStandalone(true);
+		Element root = doc.createElement("spawn");
+		doc.appendChild(root);
+		
+		Element name = doc.createElement("name");
+		name.setNodeValue(spawn.getName());
+		root.appendChild(name);
+		
+		Element center = doc.createElement("center");
+		center.setAttribute("x", "" + spawn.getCenter().getX());
+		center.setAttribute("y", "" + spawn.getCenter().getY());
+		center.setAttribute("z", "" + spawn.getCenter().getZ());
+		root.appendChild(center);
+		
+		Element blocks = doc.createElement("blocks");
 		for (Coordinate coord : spawn.getBlocks().keySet()) {
-			builder.append(openingTabTag(2, "block")).append(attribut(3, "x", coord.getX()))
-					.append(attribut(3, "y", coord.getY())).append(attribut(3, "z", coord.getZ()))
-					.append(attribut(3, "material", spawn.getBlocks().get(coord))).append(closingTabTag(2, "block"));
+			Element block = doc.createElement("block");
+			block.setAttribute("x", "" + coord.getX());
+			block.setAttribute("y", "" + coord.getY());
+			block.setAttribute("z", "" + coord.getZ());
+			block.setAttribute("material", "" + spawn.getBlocks().get(coord));
+			blocks.appendChild(block);
 		}
-		builder.append(closingTabTag(1, "blocks")).append(closingTag("spawn"));
-		write(SPAWNS + spawn.getName() + ".xml", builder.toString());
+		root.appendChild(blocks);
+		
+		saveDocument(SPAWNS + spawn.getName() + ".xml", doc);
 	}
 
 	@Override
