@@ -29,6 +29,3 @@ commands:
   spawn:
     description:
     permission: UHCPlugin.spawn
-  list:
-    description:
-    permission: UHCPlugin.list
