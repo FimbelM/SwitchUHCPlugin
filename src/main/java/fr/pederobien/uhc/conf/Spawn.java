@@ -55,7 +55,7 @@ public class Spawn {
 			getBlockFromCenter(coord.getX(), coord.getY(), coord.getZ()).setType(Material.AIR);
 	}
 
-	public void addBlocks(List<String> blocks) {
+	public void setBlocks(List<String> blocks) {
 		config.clear();
 		for (String block : blocks)
 			addBlock(block);
