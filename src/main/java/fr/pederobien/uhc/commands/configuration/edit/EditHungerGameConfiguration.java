@@ -22,10 +22,10 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 			setBorderCenter(args);
 			break;
 		case "initialbordersize":
-			setInitialBorderSize(args);
+			setInitialBorderDiameter(args);
 			break;
 		case "finalbordersize":
-			setFinalBorderSize(args);
+			setFinalBorderDiameter(args);
 			break;
 		case "gametime":
 			setGameTime(args);
@@ -96,18 +96,18 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 		}
 	}
 
-	private void setInitialBorderSize(String[] args) {
+	private void setInitialBorderDiameter(String[] args) {
 		try {
-			getConfiguration().setInitialBorderSize(Integer.parseInt(args[1]));
+			getConfiguration().setInitialBorderDiameter(Integer.parseInt(args[1]));
 			setMessage("New initial border diameter " + args[1]);
 		} catch (IndexOutOfBoundsException e) {
 			setMessage("Impossible to define the initial diameter of the border\nNeed the diameter");
 		}
 	}
 
-	private void setFinalBorderSize(String[] args) {
+	private void setFinalBorderDiameter(String[] args) {
 		try {
-			getConfiguration().setFinalBorderSize(Integer.parseInt(args[1]));
+			getConfiguration().setFinalBorderDiameter(Integer.parseInt(args[1]));
 			setMessage("New final border diameter " + args[1]);
 		} catch (IndexOutOfBoundsException e) {
 			setMessage("Impossible to define the final diameter of the border\nNeed the diameter");

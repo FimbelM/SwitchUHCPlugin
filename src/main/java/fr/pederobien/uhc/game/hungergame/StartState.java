@@ -20,7 +20,7 @@ public class StartState extends AbstractState {
 		taskLauncher.runTaskTimer(PluginDeposit.plugin, 0, 20L);
 		scoreboardLauncher.start();
 		scoreboardLauncher.runTaskTimer(PluginDeposit.plugin, 0, game.getConfiguration().getScoreboardRefresh());
-		WorldManager.setWorldBorderDiameter(game.getConfiguration().getInitialBorderSize());
+		WorldManager.setWorldBorderDiameter(game.getConfiguration().getInitialBorderDiameter());
 		WorldManager.setPVP(true);
 		game.setCurrentState(game.getPlayerRevive());
 	}

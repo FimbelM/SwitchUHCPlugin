@@ -18,7 +18,7 @@ public class HungerGameConfiguration extends AbstractConfiguration {
 	private static final LocalTime DEFAULT_FRACTION_TIME = LocalTime.of(0, 45, 0);
 	private static final Long DEFAULT_SCOREBOARD_REFRESH = new Long(5);
 	private Block borderCenter;
-	private Double initialBorderSize, finalBorderSize;
+	private Double initialBorderDiameter, finalBorderDiameter;
 	private LocalTime gameTime;
 	private LocalTime fractionTime;
 	private Long scoreboardRefresh;
@@ -51,20 +51,20 @@ public class HungerGameConfiguration extends AbstractConfiguration {
 		borderCenter = WorldManager.getBlockAt(Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(z));
 	}
 
-	public Double getInitialBorderSize() {
-		return initialBorderSize == null ? DEFAULT_INITIAL_BORDER_SIZE : initialBorderSize;
+	public Double getInitialBorderDiameter() {
+		return initialBorderDiameter == null ? DEFAULT_INITIAL_BORDER_SIZE : initialBorderDiameter;
 	}
 
-	public void setInitialBorderSize(double initialBorderSize) {
-		this.initialBorderSize = initialBorderSize;
+	public void setInitialBorderDiameter(double initialBorderDiameter) {
+		this.initialBorderDiameter = initialBorderDiameter;
 	}
 
-	public Double getFinalBorderSize() {
-		return finalBorderSize == null ? DEFAULT_FINAL_BORDER_SIZE : finalBorderSize;
+	public Double getFinalBorderDiameter() {
+		return finalBorderDiameter == null ? DEFAULT_FINAL_BORDER_SIZE : finalBorderDiameter;
 	}
 
-	public void setFinalBorderSize(double finalBorderSize) {
-		this.finalBorderSize = finalBorderSize;
+	public void setFinalBorderDiameter(double finalBorderDiameter) {
+		this.finalBorderDiameter = finalBorderDiameter;
 	}
 
 	public LocalTime getGameTime() {
