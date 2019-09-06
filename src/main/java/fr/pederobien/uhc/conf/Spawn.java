@@ -19,7 +19,7 @@ public class Spawn {
 	private String name;
 
 	static {
-		DEFAULT = new Spawn("Default spawn");
+		DEFAULT = new Spawn("DefaultSpawn");
 		DEFAULT_CENTER = WorldManager.getHighestBlockYAt(0, 0);
 		DEFAULT.setDimension(5, 1, 5);
 		
