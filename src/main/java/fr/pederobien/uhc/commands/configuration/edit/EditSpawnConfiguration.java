@@ -83,6 +83,9 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 				getSpawn().extract();
 				setMessage("Spawn " + getSpawn().getName() + " extracted");
 				break;
+			case "list":
+				setMessage(prepare(persistence.list(), "hunger game style"));
+				break;
 			default:
 				return false;
 			}
@@ -101,8 +104,9 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 				.append("dimension - to set the dimension of the spawn\r\n")
 				.append("name - to set the name of the spawn\r\n").append("set - to change the current spawn\r\n")
 				.append("new - to create a new spawn\r\n").append("current - to show the current spawn's name\r\n")
-				.append("launch - to launch the spawn in the world\r\n").append("save - to save the current spawn")
-				.append("remove - to remove the current spawn from the world");
+				.append("launch - to launch the spawn in the world\r\n").append("save - to save the current spawn\r\n")
+				.append("remove - to remove the current spawn from the world\r\n")
+				.append("list - to list existing spawns\r\n");
 		return builder.toString();
 	}
 

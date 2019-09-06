@@ -94,6 +94,10 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 			case "save":
 				persistence.save();
 				setMessage("Configuration " + getConfiguration().getName() + " saved");
+				break;
+			case "list":
+				setMessage(prepare(persistence.list(), "spawn"));
+				break;
 			default:
 				return false;
 			}
@@ -117,7 +121,8 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 				.append("new - to create a new hunger game style\r\n")
 				.append("current - to show the name of the current hunger game style's name\r\n")
 				.append("ascurrent - to set the configuration as the current configuration to start\r\n")
-				.append("save - to save the current hunger game style");
+				.append("save - to save the current hunger game style")
+				.append("list - to list existing hunger game styles");
 		return builder.toString();
 	}
 
