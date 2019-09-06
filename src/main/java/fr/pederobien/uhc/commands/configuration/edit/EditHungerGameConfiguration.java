@@ -17,92 +17,49 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 
 	@Override
 	public boolean edit(String[] args) {
-		try {
-			switch (args[0]) {
-			case "bordercenter":
-				getConfiguration().setBorderCenter(args[1], args[2], args[3]);
-				setMessage("New border center : " + args[1] + " " + args[2] + " " + args[3]);
-				break;
-			case "initialbordersize":
-				getConfiguration().setInitialBorderSize(Integer.parseInt(args[1]));
-				setMessage("New initial border size " + args[1]);
-				break;
-			case "finalbordersize":
-				getConfiguration().setFinalBorderSize(Integer.parseInt(args[1]));
-				setMessage("New final border size " + args[1]);
-				break;
-			case "gametime":
-				getConfiguration().setGameTime(LocalTime.parse(args[1]));
-				setMessage("New game time " + getConfiguration().getGameTime());
-				break;
-			case "fractiontime":
-				getConfiguration().setFractionTime(LocalTime.parse(args[1]));
-				setMessage("New fraction time " + getConfiguration().getFractionTime());
-				break;
-			case "scoreboardrefresh":
-				getConfiguration().setScoreboardRefresh(Long.parseLong(args[1]));
-				setMessage("scoreboard refreshed each " + getConfiguration().getScoreboardRefresh() + "tics");
-			case "name":
-				if (persistence.exist(args[1])) {
-					if (args.length == 2)
-						setMessage("A configuration with name " + args[1]
-								+ " already exist\nIf you want to overrite it add -f");
-					else if (args.length == 3 && args[2].equals("-f")) {
-						persistence.delete(args[1]);
-						persistence.delete(getConfiguration().getName());
-						getConfiguration().setName(args[1]);
-						persistence.save();
-						setMessage("New name : " + args[1]);
-					}
-				} else {
-					getConfiguration().setName(args[1]);
-					setMessage("New name : " + args[1]);
-				}
-				break;
-			case "load":
-				persistence.save();
-				persistence.load(args[1]);
-				setMessage("New configuration " + persistence.get().getName());
-				break;
-			case "new":
-				persistence.save();
-				if (persistence.exist(args[1]))
-					setMessage("A configuration with name " + args[1] + " already exist");
-				else {
-					persistence.set(new HungerGameConfiguration(args[1]));
-					setMessage("New configuration " + getConfiguration().getName() + " created");
-				}
-				break;
-			case "current":
-				setMessage("Current configuration : " + getConfiguration().getName());
-				break;
-			case "ascurrent":
-				if (args.length == 0) {
-					context.setCurrentConfiguration(persistence.get());
-					setMessage("Game " + getConfiguration().getName() + " defined as current configuration");
-				} else {
-					persistence.save();
-					try {
-						persistence.load(args[0]);
-						context.setCurrentConfiguration(getConfiguration());
-						setMessage(getConfiguration().getName() + " defined as current configuration");
-					} catch (FileNotFoundException e) {
-						setMessage("Configuration " + args[0] + " does not exist");
-					}
-				}
-				break;
-			case "save":
-				persistence.save();
-				setMessage("Configuration " + getConfiguration().getName() + " saved");
-				break;
-			case "list":
-				setMessage(prepare(persistence.list(), "spawn"));
-				break;
-			default:
-				return false;
-			}
-		} catch (FileNotFoundException e) {
-			setMessage(e.getMessage());
+		switch (args[0]) {
+		case "bordercenter":
+			setBorderCenter(args);
+			break;
+		case "initialbordersize":
+			setInitialBorderSize(args);
+			break;
+		case "finalbordersize":
+			setFinalBorderSize(args);
+			break;
+		case "gametime":
+			setGameTime(args);
+			break;
+		case "fractiontime":
+			setFractionTime(args);
+			break;
+		case "scoreboardrefresh":
+			setScoreboardRefresh(args);
+			break;
+		case "name":
+			setName(args);
+			break;
+		case "load":
+			load(args);
+			break;
+		case "new":
+			newConfig(args);
+			break;
+		case "current":
+			setMessage("Current configuration : " + getConfiguration().getName());
+			break;
+		case "ascurrent":
+			asCurrent(args);
+			break;
+		case "save":
+			persistence.save();
+			setMessage("Configuration " + getConfiguration().getName() + " saved");
+			break;
+		case "list":
+			setMessage(prepare(persistence.list(), "spawn"));
+			break;
+		default:
+			return false;
 		}
 		return true;
 	}
@@ -128,5 +85,118 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 
 	protected HungerGameConfiguration getConfiguration() {
 		return persistence.get();
+	}
+
+	private void setBorderCenter(String[] args) {
+		try {
+			getConfiguration().setBorderCenter(args[1], args[2], args[3]);
+			setMessage("New border center : " + args[1] + " " + args[2] + " " + args[3]);
+		} catch (IndexOutOfBoundsException e) {
+			setMessage("Impossible to define center's coordinates\nNeed three dimensions coordinates (X Y Z)");
+		}
+	}
+
+	private void setInitialBorderSize(String[] args) {
+		try {
+			getConfiguration().setInitialBorderSize(Integer.parseInt(args[1]));
+			setMessage("New initial border diameter " + args[1]);
+		} catch (IndexOutOfBoundsException e) {
+			setMessage("Impossible to define the initial diameter of the border\nNeed the diameter");
+		}
+	}
+
+	private void setFinalBorderSize(String[] args) {
+		try {
+			getConfiguration().setFinalBorderSize(Integer.parseInt(args[1]));
+			setMessage("New final border diameter " + args[1]);
+		} catch (IndexOutOfBoundsException e) {
+			setMessage("Impossible to define the final diameter of the border\nNeed the diameter");
+		}
+	}
+
+	private void setGameTime(String[] args) {
+		try {
+			getConfiguration().setGameTime(LocalTime.parse(args[1]));
+			setMessage("New game time " + getConfiguration().getGameTime());
+		} catch (IndexOutOfBoundsException e) {
+			setMessage("Impossible to define the game time\nThe value should have the pattern hh:mm:ss");
+		}
+	}
+
+	private void setFractionTime(String[] args) {
+		try {
+			getConfiguration().setFractionTime(LocalTime.parse(args[1]));
+			setMessage("New fraction time " + getConfiguration().getFractionTime());
+		} catch (IndexOutOfBoundsException e) {
+			setMessage("Impossible to define the fraction time\nThe value should have the pattern hh:mm:ss");
+		}
+	}
+
+	private void setScoreboardRefresh(String[] args) {
+		try {
+			getConfiguration().setScoreboardRefresh(Long.parseLong(args[1]));
+			setMessage("scoreboard refreshed each " + getConfiguration().getScoreboardRefresh() + "tics");
+		} catch (IndexOutOfBoundsException e) {
+			setMessage("Impossible to define the scoreboard refresh tics");
+		} catch (NumberFormatException e) {
+			setMessage("The value is not a Long number");
+		}
+	}
+
+	private void setName(String[] args) {
+		try {
+			if (persistence.exist(args[1]))
+				setMessage("A style with name " + args[1] + " already exist");
+			else {
+				getConfiguration().setName(args[1]);
+				setMessage("New name : " + args[1]);
+			}
+		} catch (IndexOutOfBoundsException e) {
+			setMessage("Impossible to define the style's name\nNeed the name");
+		}
+	}
+
+	private void load(String[] args) {
+		try {
+			persistence.save();
+			persistence.load(args[1]);
+			setMessage("New configuration " + persistence.get().getName());
+		} catch (IndexOutOfBoundsException e) {
+			setMessage("Impossible to load the style\nNeed the name");
+		} catch (FileNotFoundException e) {
+			setMessage(e.getMessage());
+		}
+	}
+
+	private void newConfig(String[] args) {
+		try {
+			persistence.save();
+			if (persistence.exist(args[1]))
+				setMessage("A configuration with name " + args[1] + " already exist");
+			else {
+				persistence.set(new HungerGameConfiguration(args[1]));
+				setMessage("New configuration " + getConfiguration().getName() + " created");
+			}
+		} catch (IndexOutOfBoundsException e) {
+			setMessage("Impossible to define the new hunger game style's name\nNeed the name");
+		}
+	}
+
+	private void asCurrent(String[] args) {
+		if (args.length == 1) {
+			context.setCurrentConfiguration(persistence.get());
+			setMessage("Game " + getConfiguration().getName() + " defined as current configuration");
+		} else if (args.length == 2) {
+			persistence.save();
+			try {
+				persistence.load(args[1]);
+				context.setCurrentConfiguration(getConfiguration());
+				setMessage(getConfiguration().getName() + " defined as current configuration");
+			} catch (FileNotFoundException e) {
+				setMessage(e.getMessage());
+			} catch (IndexOutOfBoundsException e) {
+				setMessage("Impossible to define a new hunger game style's as current\nNeed the name");
+			}
+		}
 	}
 }
