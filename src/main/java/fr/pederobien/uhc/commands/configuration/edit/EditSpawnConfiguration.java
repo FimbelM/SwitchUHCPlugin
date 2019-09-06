@@ -8,7 +8,6 @@ import fr.pederobien.uhc.conf.persistence.SpawnPersistence;
 
 public class EditSpawnConfiguration extends AbstractEditConfiguration implements IEditConfig {
 	private SpawnPersistence persistence;
-	private String notEnoughtArgsMessage;
 
 	public EditSpawnConfiguration(ConfigurationContext context) {
 		super(context);
@@ -17,46 +16,42 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 
 	@Override
 	public boolean edit(String[] args) {
-		try {
-			switch (args[0]) {
-			case "center":
-				setCenter(args);
-				break;
-			case "dimension":
-				setDimension(args);
-				break;
-			case "name":
-				setName(args);
-				break;
-			case "new":
-				newSpawn(args);
-				break;
-			case "current":
-				setMessage("Current spawn : " + getSpawn().getName());
-				break;
-			case "launch":
-				launch(args);
-				break;
-			case "save":
-				persistence.save();
-				setMessage("Spawn " + getSpawn().getName() + " saved");
-				break;
-			case "remove":
-				getSpawn().remove();
-				setMessage("Spawn " + getSpawn().getName() + " removed from the world");
-				break;
-			case "extract":
-				getSpawn().extract();
-				setMessage("Spawn " + getSpawn().getName() + " extracted");
-				break;
-			case "list":
-				setMessage(prepare(persistence.list(), "hunger game style"));
-				break;
-			default:
-				return false;
-			}
-		} catch (IndexOutOfBoundsException e) {
-			setMessage(notEnoughtArgsMessage);
+		switch (args[0]) {
+		case "center":
+			setCenter(args);
+			break;
+		case "dimension":
+			setDimension(args);
+			break;
+		case "name":
+			setName(args);
+			break;
+		case "new":
+			newSpawn(args);
+			break;
+		case "current":
+			setMessage("Current spawn : " + getSpawn().getName());
+			break;
+		case "launch":
+			launch(args);
+			break;
+		case "save":
+			persistence.save();
+			setMessage("Spawn " + getSpawn().getName() + " saved");
+			break;
+		case "remove":
+			getSpawn().remove();
+			setMessage("Spawn " + getSpawn().getName() + " removed from the world");
+			break;
+		case "extract":
+			getSpawn().extract();
+			setMessage("Spawn " + getSpawn().getName() + " extracted");
+			break;
+		case "list":
+			setMessage(prepare(persistence.list(), "hunger game style"));
+			break;
+		default:
+			return false;
 		}
 		return true;
 	}
@@ -124,21 +119,19 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 	}
 
 	private void launch(String[] args) {
-		try {
-			if (args.length == 1) {
+		if (args.length == 1) {
+			getSpawn().launch();
+			setMessage("Spawn " + getSpawn().getName() + " launched");
+		} else if (args.length == 2) {
+			persistence.save();
+			try {
+				persistence.load(args[1]);
 				getSpawn().launch();
-				setMessage("Spawn " + getSpawn().getName() + " launched");
-			} else if (args.length == 2) {
-				persistence.save();
-				try {
-					persistence.load(args[1]);
-					getSpawn().launch();
-				} catch (FileNotFoundException e) {
-					setMessage(e.getMessage());
-				}
+			} catch (FileNotFoundException e) {
+				setMessage(e.getMessage());
+			} catch (IndexOutOfBoundsException e) {
+				setMessage("Impossible to launch the new spawn\nNeed the name");
 			}
-		} catch (IndexOutOfBoundsException e) {
-			setMessage("Impossible to define the new spawn's name\nNeed the name");
 		}
 	}
 }
