@@ -16,6 +16,7 @@ public class StopState extends AbstractState {
 	public void stop() {
 		taskLauncher.cancel();
 		scoreboardLauncher.cancel();
+		WorldManager.removeBorder();
 		PlayerManager.setGameModeOfPlayers(GameMode.ADVENTURE);
 		TeamsManager.teleporteAllPlayers(WorldManager.getSpawnOnJoin());
 		game.setCurrentState(game.getInitiate()).initiate();
