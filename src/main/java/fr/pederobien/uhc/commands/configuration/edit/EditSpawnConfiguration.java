@@ -2,6 +2,8 @@ package fr.pederobien.uhc.commands.configuration.edit;
 
 import java.io.FileNotFoundException;
 
+import org.bukkit.block.Block;
+
 import fr.pederobien.uhc.conf.Spawn;
 import fr.pederobien.uhc.conf.configurations.ConfigurationContext;
 import fr.pederobien.uhc.conf.persistence.SpawnPersistence;
@@ -120,19 +122,44 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 	}
 
 	private void launch(String[] args) {
-		if (args.length == 1) {
+		if (args.length < 2) {
 			getSpawn().launch();
-			setMessage("Spawn " + getSpawn().getName() + " launched");
-		} else if (args.length == 2) {
+			setMessage("Spawn " + getSpawn().getName() + " launched at " + showBlock(getSpawn().getCenter()));
+		} else if (args.length < 3) {
 			persistence.save();
 			try {
 				persistence.load(args[1]);
 				getSpawn().launch();
+				setMessage("Spawn " + getSpawn().getName() + " launched at " + showBlock(getSpawn().getCenter()));
+			} catch (FileNotFoundException e) {
+				setMessage(e.getMessage());
+			} catch (IndexOutOfBoundsException e) {
+				setMessage("Impossible to launch the new spawn\nNeed the name");
+			}
+		} else if (args.length < 5) {
+			try {
+			getSpawn().setCenter(args[1], args[2], args[3]);
+			getSpawn().launch();
+			setMessage("Spawn " + getSpawn().getName() + " launched at " + showBlock(getSpawn().getCenter()));
+			} catch (IndexOutOfBoundsException e) {
+				setMessage("Impossible to launch " + getSpawn().getName() + " at the specified coordinates");
+			}
+		} else if (args.length < 6) {
+			persistence.save();
+			try {
+				persistence.load(args[2]);
+				getSpawn().setCenter(args[3], args[4], args[5]);
+				getSpawn().launch();
+				setMessage("Spawn " + getSpawn().getName() + " launched at " + showBlock(getSpawn().getCenter()));
 			} catch (FileNotFoundException e) {
 				setMessage(e.getMessage());
 			} catch (IndexOutOfBoundsException e) {
 				setMessage("Impossible to launch the new spawn\nNeed the name");
 			}
 		}
+	}
+	
+	private String showBlock(Block block) {
+		return block.getX() + " " + block.getY() + " " + block.getZ();
 	}
 }
