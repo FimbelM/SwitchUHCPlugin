@@ -66,6 +66,11 @@ public class PlayerManager {
 	public static void giveEffect(String selector, String effect) {
 		giveEffect(selector, effect, 1, 1, false);
 	}
+	
+	public static void giveEffects(String selector, String... effects) {
+		for (String effect : effects)
+			giveEffect(selector, effect, 1, 1, false);
+	}
 
 	public static void giveEffectToPlayerOnMode(GameMode mode, String effect) {
 		for (Player player : getPlayersOnMode(mode))
