@@ -17,49 +17,83 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 	}
 
 	@Override
+	protected void setEditions() {
+		editions.add(new Edition("bordercenter", "to set the center of the world's border",
+				"need two numbers that represent the two dimensions : X and Z"));
+		editions.add(new Edition("initialborderdiameter", "to set the initial diameter of the world's border",
+				"need one number parameter that represent the diameter of the world border"));
+		editions.add(new Edition("finalborderdiameter", "to set the initial diameter of the world's border",
+				"need one number parameter that represent the diameter of the world border"));
+		editions.add(new Edition("gametime",
+				"to set the time before which the world border move from its initial to final diameter",
+				"need a time at the format hh:mm:ss"));
+		editions.add(
+				new Edition("fractiontime", "to set the time before which players will not respawn in survivor mode",
+						"need a time at the format hh:mm:ss"));
+		editions.add(new Edition("scoreboardrefresh",
+				"to set the number of servers's tic after which the scoreboard of each player is refreshed",
+				"need one number argument which should be striclty positive"));
+		editions.add(new Edition("name", "to change the name of current hunger game style",
+				"need one argument which is the name of the new hunger game style"));
+		editions.add(new Edition("load", "to load the current hunger game style",
+				"need one argument which is the name of the hunger game style to load"));
+		editions.add(new Edition("new", "to create a new hunger game style",
+				"need one argument which is the name of the new hunger game style"));
+		editions.add(new Edition("current", "to know the current hunger game style", "need no arguments"));
+		editions.add(new Edition("ascurrent", "to set the current hunger game as the current configuration",
+				"need no arguments"));
+		editions.add(new Edition("save", "to save the current hunger game style",
+				"two possibilities :\nno arguments and save the hunger game style\none argument which is the new name of the hunger game style"));
+		editions.add(new Edition("list", "to display all existing hunger game style", "need no arguments"));
+	}
+
+	@Override
 	public boolean edit(String[] args) {
-		switch (args[0]) {
-		case "bordercenter":
-			setBorderCenter(args);
-			break;
-		case "initialbordersize":
-			setInitialBorderDiameter(args);
-			break;
-		case "finalbordersize":
-			setFinalBorderDiameter(args);
-			break;
-		case "gametime":
-			setGameTime(args);
-			break;
-		case "fractiontime":
-			setFractionTime(args);
-			break;
-		case "scoreboardrefresh":
-			setScoreboardRefresh(args);
-			break;
-		case "name":
-			setName(args);
-			break;
-		case "load":
-			load(args);
-			break;
-		case "new":
-			newConfig(args);
-			break;
-		case "current":
-			setMessage("Current configuration : " + getConfiguration().getName());
-			break;
-		case "ascurrent":
-			asCurrent(args);
-			break;
-		case "save":
-			persistence.save();
-			setMessage("Configuration " + getConfiguration().getName() + " saved");
-			break;
-		case "list":
-			setMessage(prepare(persistence.list(), "spawn"));
-			break;
-		default:
+		try {
+			switch (args[0]) {
+			case "bordercenter":
+				setBorderCenter(args);
+				break;
+			case "initialborderdiameter":
+				setInitialBorderDiameter(args);
+				break;
+			case "finalborderdiameter":
+				setFinalBorderDiameter(args);
+				break;
+			case "gametime":
+				setGameTime(args);
+				break;
+			case "fractiontime":
+				setFractionTime(args);
+				break;
+			case "scoreboardrefresh":
+				setScoreboardRefresh(args);
+				break;
+			case "name":
+				setName(args);
+				break;
+			case "load":
+				load(args);
+				break;
+			case "new":
+				newConfig(args);
+				break;
+			case "current":
+				setMessage("Current configuration : " + getConfiguration().getName());
+				break;
+			case "ascurrent":
+				asCurrent(args);
+				break;
+			case "save":
+				save(args);
+				break;
+			case "list":
+				setMessage(prepare(persistence.list(), "spawn"));
+				break;
+			default:
+				return false;
+			}
+		} catch (ArrayIndexOutOfBoundsException e) {
 			return false;
 		}
 		return true;
@@ -67,21 +101,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 
 	@Override
 	public String getEditCommands() {
-		StringBuilder builder = new StringBuilder("Unknown command\r\n");
-		builder.append("bordercenter - to set the center of the world's border\r\n")
-				.append("initialbordersize - to set the initial size of the world's border\r\n")
-				.append("finalbordersize - to set the final size of the world border\r\n")
-				.append("gametime - to set the time after which the world's border moves from the initial to the final size\r\n")
-				.append("fractiontime - to set the time after which players will not revive when they die\r\n")
-				.append("scoreboardrefresh - to set the number of servers's tic after which the scoreboard of each player is refreshed\r\n")
-				.append("name - to set the name of the configuration\r\n")
-				.append("load - to load the current hunger game style\r\n")
-				.append("new - to create a new hunger game style\r\n")
-				.append("current - to show the name of the current hunger game style's name\r\n")
-				.append("ascurrent - to set the configuration as the current configuration to start\r\n")
-				.append("save - to save the current hunger game style")
-				.append("list - to list existing hunger game styles");
-		return builder.toString();
+		return new StringBuilder("Unknown command\r\n").append(getEditionsHelp()).toString();
 	}
 
 	protected HungerGameConfiguration getConfiguration() {
@@ -92,8 +112,8 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 		try {
 			getConfiguration().setBorderCenter(args[1], args[2]);
 			setMessage("New border center : " + args[1] + " " + args[2] + " defined");
-		} catch (IndexOutOfBoundsException e) {
-			setMessage("Impossible to define center's coordinates\nNeed two coordinates (X Z)");
+		} catch (IndexOutOfBoundsException | NullPointerException e) {
+			setMessage(getEdition("bordercenter").getExpectedArgs());
 		}
 	}
 
@@ -102,7 +122,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 			getConfiguration().setInitialBorderDiameter(Integer.parseInt(args[1]));
 			setMessage("New initial border diameter " + args[1] + " defined");
 		} catch (IndexOutOfBoundsException e) {
-			setMessage("Impossible to define the initial diameter of the border\nNeed the diameter");
+			setMessage(getEdition("initialborderdiameter").getExpectedArgs());
 		}
 	}
 
@@ -111,7 +131,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 			getConfiguration().setFinalBorderDiameter(Integer.parseInt(args[1]));
 			setMessage("New final border diameter " + args[1] + " defined");
 		} catch (IndexOutOfBoundsException e) {
-			setMessage("Impossible to define the final diameter of the border\nNeed the diameter");
+			setMessage(getEdition("finalborderdiameter").getExpectedArgs());
 		}
 	}
 
@@ -120,7 +140,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 			getConfiguration().setGameTime(LocalTime.parse(args[1]));
 			setMessage("New game time " + showTime(getConfiguration().getGameTime()) + " defined");
 		} catch (IndexOutOfBoundsException | DateTimeParseException e) {
-			setMessage("Impossible to define the game time\nThe value should have the pattern hh:mm:ss");
+			setMessage(getEdition("gametime").getExpectedArgs());
 		}
 	}
 
@@ -129,7 +149,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 			getConfiguration().setFractionTime(LocalTime.parse(args[1]));
 			setMessage("New fraction time " + showTime(getConfiguration().getFractionTime()) + " defined");
 		} catch (IndexOutOfBoundsException | DateTimeParseException e) {
-			setMessage("Impossible to define the fraction time\nThe value should have the pattern hh:mm:ss");
+			setMessage(getEdition("fractiontime").getExpectedArgs());
 		}
 	}
 
@@ -137,10 +157,8 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 		try {
 			getConfiguration().setScoreboardRefresh(Long.parseLong(args[1]));
 			setMessage("Scoreboard refreshed each " + getConfiguration().getScoreboardRefresh() + " tics");
-		} catch (IndexOutOfBoundsException e) {
-			setMessage("Impossible to define the scoreboard refresh tics");
-		} catch (NumberFormatException e) {
-			setMessage("The value is not a Long number");
+		} catch (IndexOutOfBoundsException | NumberFormatException e) {
+			setMessage(getEdition("scoreboardrefresh").getExpectedArgs());
 		}
 	}
 
@@ -154,7 +172,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 				setMessage("Configuration " + oldName + " renamed " + args[1]);
 			}
 		} catch (IndexOutOfBoundsException e) {
-			setMessage("Impossible to define the style's name\nNeed the name");
+			setMessage(getEdition("name").getExpectedArgs());
 		}
 	}
 
@@ -163,10 +181,8 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 			persistence.save();
 			persistence.load(args[1]);
 			setMessage("New configuration " + persistence.get().getName() + " loaded");
-		} catch (IndexOutOfBoundsException e) {
-			setMessage("Impossible to load the style\nNeed the name");
-		} catch (FileNotFoundException e) {
-			setMessage(e.getMessage());
+		} catch (IndexOutOfBoundsException | FileNotFoundException e) {
+			setMessage(getEdition("load").getExpectedArgs());
 		}
 	}
 
@@ -180,7 +196,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 				setMessage("New configuration " + getConfiguration().getName() + " created");
 			}
 		} catch (IndexOutOfBoundsException e) {
-			setMessage("Impossible to define the new hunger game style's name\nNeed the name");
+			setMessage(getEdition("new").getExpectedArgs());
 		}
 	}
 
@@ -194,14 +210,27 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 				persistence.load(args[1]);
 				context.setCurrentConfiguration(getConfiguration());
 				setMessage(getConfiguration().getName() + " defined as current configuration");
-			} catch (FileNotFoundException e) {
-				setMessage(e.getMessage());
-			} catch (IndexOutOfBoundsException e) {
-				setMessage("Impossible to define a new hunger game style's as current\nNeed the name");
+			} catch (IndexOutOfBoundsException | FileNotFoundException e) {
+				setMessage(getEdition("ascurrent").getExpectedArgs());
 			}
 		}
 	}
-	
+
+	private void save(String[] args) {
+		try {
+			if (args.length == 1) {
+				persistence.save();
+				setMessage("Configuration " + getConfiguration().getName() + " saved");
+			} else {
+				getConfiguration().setName(args[2]);
+				persistence.save();
+				setMessage("Current hunger game style renamed " + getConfiguration().getName() + " and saved");
+			}
+		} catch (IndexOutOfBoundsException e) {
+			setMessage(getEdition("save").getExpectedArgs());
+		}
+	}
+
 	private String showTime(LocalTime time) {
 		return time.getHour() + "h " + time.getMinute() + "m " + time.getSecond() + "s";
 	}

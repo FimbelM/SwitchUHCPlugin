@@ -1,6 +1,7 @@
 package fr.pederobien.uhc.conf.persistence;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -39,8 +40,8 @@ public class HungerGamePersistence extends AbstractConfPersistence<HungerGameCon
 			default:
 				break;
 			}
-		} catch (NullPointerException e) {
-			e.printStackTrace();
+		} catch (IOException e) {
+			throw new FileNotFoundException("Cannot find hunger game style named " + name);
 		}
 	}
 

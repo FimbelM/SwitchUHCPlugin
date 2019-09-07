@@ -69,12 +69,10 @@ public abstract class AbstractPersistence<T> implements IPersistence<T> {
 		return builder.newDocument();
 	}
 
-	protected Document getDocument(String path) {
+	protected Document getDocument(String path) throws IOException {
 		try {
 			return builder.parse(new File(path));
 		} catch (SAXException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return null;

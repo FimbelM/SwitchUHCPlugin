@@ -15,6 +15,12 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 		super(context);
 		persistence = new SpawnPersistence();
 	}
+	
+	@Override
+	protected void setEditions() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	public boolean edit(String[] args) {

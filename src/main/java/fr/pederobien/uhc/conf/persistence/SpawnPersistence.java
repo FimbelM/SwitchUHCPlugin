@@ -1,6 +1,7 @@
 package fr.pederobien.uhc.conf.persistence;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 				break;
 			}
 
-		} catch (NullPointerException e) {
+		} catch (IOException e) {
 			throw new FileNotFoundException("Cannot find spawn named " + name);
 		}
 	}
