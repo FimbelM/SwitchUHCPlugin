@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.util.Vector;
 
 import fr.pederobien.uhc.managers.WorldManager;
 
@@ -48,6 +49,7 @@ public class Spawn {
 	public void launch() {
 		for (Coordinate coord : config.keySet())
 			getBlockFromCenter(coord.getX(), coord.getY(), coord.getZ()).setType(config.get(coord));
+		WorldManager.setSpawnOnJoin(center.getLocation().clone().add(new Vector(0, 1, 0)));
 	}
 
 	public void remove() {
