@@ -22,7 +22,6 @@ public abstract class AbstractPersistence<T> implements IPersistence<T> {
 	protected static final String ROOT = "Plugins/UHCPlugin/Ressources/";
 	private DocumentBuilder builder;
 	protected boolean saved, loaded;
-	protected double version;
 
 	public AbstractPersistence() {
 		try {
