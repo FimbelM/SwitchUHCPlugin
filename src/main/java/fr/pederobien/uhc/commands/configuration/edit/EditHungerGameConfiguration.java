@@ -89,10 +89,10 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 
 	private void setBorderCenter(String[] args) {
 		try {
-			getConfiguration().setBorderCenter(args[1], args[2], args[3]);
-			setMessage("New border center : " + args[1] + " " + args[2] + " " + args[3]);
+			getConfiguration().setBorderCenter(args[1], args[2]);
+			setMessage("New border center : " + args[1] + " " + args[2]);
 		} catch (IndexOutOfBoundsException e) {
-			setMessage("Impossible to define center's coordinates\nNeed three dimensions coordinates (X Y Z)");
+			setMessage("Impossible to define center's coordinates\nNeed two coordinates (X Z)");
 		}
 	}
 

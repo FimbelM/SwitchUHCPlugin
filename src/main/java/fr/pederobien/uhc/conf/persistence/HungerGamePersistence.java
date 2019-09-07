@@ -1,7 +1,12 @@
 package fr.pederobien.uhc.conf.persistence;
 
 import java.io.FileNotFoundException;
+import java.time.LocalTime;
 import java.util.List;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
 
@@ -20,26 +25,60 @@ public class HungerGamePersistence extends AbstractConfPersistence<HungerGameCon
 
 	@Override
 	public void load(String name) throws FileNotFoundException {
+		try {
+			Document doc = getDocument(HUNGER_GAME + name + ".xml");
+			Element root = doc.getDocumentElement();
 
+			Node confName = root.getElementsByTagName("name").item(0).getChildNodes().item(0);
+			configuration = new HungerGameConfiguration(confName.getNodeValue());
+
+			Element borderCenter = (Element) root.getElementsByTagName("border").item(0).getChildNodes().item(0);
+			configuration.setBorderCenter(borderCenter.getAttribute("x"), borderCenter.getAttribute("z"));
+
+			Element borderDiameter = (Element) root.getElementsByTagName("border").item(0).getChildNodes().item(1);
+			configuration.setInitialBorderDiameter(Double.parseDouble(borderDiameter.getAttribute("initial")));
+			configuration.setFinalBorderDiameter(Double.parseDouble(borderDiameter.getAttribute("final")));
+
+			Element time = (Element) root.getElementsByTagName("time").item(0);
+			configuration.setGameTime(LocalTime.parse(time.getAttribute("game")));
+			configuration.setFractionTime(LocalTime.parse(time.getAttribute("fraction")));
+			configuration.setScoreboardRefresh(Long.parseLong(time.getAttribute("scoreboardrefresh")));
+		} catch (NullPointerException e) {
+			throw new FileNotFoundException("Cannot find spawn named " + name);
+		}
 	}
 
 	@Override
 	public void save() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(openingTag("configuration")).append(attribut(1, "name", configuration.getName()))
-				.append(openingTabTag(1, "border")).append(openingTabTag(2, "center"))
-				.append(attribut(3, "x", configuration.getBorderCenter().getX()))
-				.append(attribut(3, "y", configuration.getBorderCenter().getY()))
-				.append(attribut(3, "z", configuration.getBorderCenter().getZ())).append(closingTabTag(2, "center"))
-				.append(openingTabTag(2, "diameter"))
-				.append(attribut(3, "initial", configuration.getInitialBorderDiameter()))
-				.append(attribut(3, "final", configuration.getFinalBorderDiameter())).append(closingTabTag(2, "size"))
-				.append(closingTabTag(1, "border")).append(openingTabTag(1, "time"))
-				.append(attribut(2, "total", configuration.getGameTime()))
-				.append(attribut(2, "fraction", configuration.getFractionTime()))
-				.append(attribut(2, "scoreboardrefresh", configuration.getScoreboardRefresh()))
-				.append(closingTabTag(1, "time")).append(closingTag("configuration"));
-		write(HUNGER_GAME + configuration.getName() + ".xml", builder.toString());
+		Document doc = newDocument();
+		doc.setXmlStandalone(true);
+		Element root = doc.createElement("configuration");
+		doc.appendChild(root);
+
+		Element name = doc.createElement("name");
+		name.appendChild(doc.createTextNode(configuration.getName()));
+		root.appendChild(name);
+
+		Element border = doc.createElement("border");
+		root.appendChild(border);
+
+		Element center = doc.createElement("center");
+		center.setAttribute("x", "" + configuration.getBorderCenter().getX());
+		center.setAttribute("z", "" + configuration.getBorderCenter().getZ());
+		border.appendChild(center);
+
+		Element diameter = doc.createElement("diameter");
+		diameter.setAttribute("initial", "" + configuration.getInitialBorderDiameter());
+		diameter.setAttribute("final", "" + configuration.getFinalBorderDiameter());
+		border.appendChild(diameter);
+
+		Element time = doc.createElement("time");
+		time.setAttribute("game", configuration.getGameTime().toString());
+		time.setAttribute("fraction", configuration.getFractionTime().toString());
+		time.setAttribute("scoreboardrefresh", "" + configuration.getScoreboardRefresh());
+		root.appendChild(time);
+
+		saveDocument(HUNGER_GAME + configuration.getName() + ".xml", doc);
 	}
 
 	@Override

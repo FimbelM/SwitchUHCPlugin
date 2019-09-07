@@ -10,7 +10,7 @@ import fr.pederobien.uhc.game.hungergame.HungerGame;
 import fr.pederobien.uhc.managers.WorldManager;
 
 public class HungerGameConfiguration extends AbstractConfiguration {
-	public static final HungerGameConfiguration DEFAULT = new HungerGameConfiguration("Default configuration");
+	public static final HungerGameConfiguration DEFAULT = new HungerGameConfiguration("DefaultConfiguration");
 	private static final Block DEFAULT_CENTER = WorldManager.getHighestBlockYAt(0, 0);
 	private static final Double DEFAULT_INITIAL_BORDER_SIZE = new Double(2000);
 	private static final Double DEFAULT_FINAL_BORDER_SIZE = new Double(10);
@@ -47,8 +47,8 @@ public class HungerGameConfiguration extends AbstractConfiguration {
 		this.borderCenter = borderCenter;
 	}
 
-	public void setBorderCenter(String x, String y, String z) {
-		borderCenter = WorldManager.getBlockAt(Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(z));
+	public void setBorderCenter(String x, String z) {
+		borderCenter = WorldManager.getBelowHighestBlockYAt(Integer.parseInt(x), Integer.parseInt(z));
 	}
 
 	public Double getInitialBorderDiameter() {
