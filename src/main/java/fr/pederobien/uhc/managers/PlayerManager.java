@@ -27,14 +27,39 @@ public class PlayerManager {
 			player.getInventory().clear();
 	}
 	
+	public static void setLevelOfPlayer(Player player, int level) {
+		player.setLevel(level);
+	}
+	
 	public static void setLevelOfPlayers(int level) {
 		for (Player player : getPlayers())
-			player.setLevel(level);
+			setLevelOfPlayer(player, level);
+	}
+	
+	public static void setFoodLevelOfPlayer(Player player, int level) {
+		player.setFoodLevel(level);
 	}
 	
 	public static void setFoodLevelOfPlayers(int level) {
 		for (Player player : getPlayers())
-			player.setFoodLevel(level);
+			setFoodLevelOfPlayer(player, level);
+	}
+	
+	public static void maxFoodForPlayers() {
+		setFoodLevelOfPlayers(20);
+	}
+	
+	public static void setHealthOfPlayer(Player player, double level) {
+		player.setHealth(level);
+	}
+	
+	public static void setHealthOfPlayers(double level) {
+		for (Player player : getPlayers())
+			setHealthOfPlayer(player, level);
+	}
+	
+	public static void maxLifeToPlayers() {
+		setHealthOfPlayers(20);
 	}
 	
 	public static List<Player> getPlayersOnMode(GameMode mode) {
