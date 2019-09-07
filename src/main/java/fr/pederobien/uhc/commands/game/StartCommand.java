@@ -4,6 +4,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import fr.pederobien.uhc.PluginDeposit;
+
 public class StartCommand extends AbstractGameCommand {
 
 	public StartCommand(JavaPlugin plugin, String command) {
@@ -13,6 +15,7 @@ public class StartCommand extends AbstractGameCommand {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		try {
+			listener.removeObservers(PluginDeposit.plugin);
 			listener.addObservers(confContext);
 			confContext.initiate();
 			confContext.start();
