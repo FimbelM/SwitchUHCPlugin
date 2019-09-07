@@ -52,8 +52,6 @@ public class UHCPlugin extends JavaPlugin implements IObsListener {
 	@Override
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		movePlayer(event.getPlayer());
-		TeamsManager.teleporte(event.getPlayer().getName(), WorldManager.getSpawnOnJoin());
-		PlayerManager.setGameModeOfPlayer(event.getPlayer(), GameMode.ADVENTURE);
 	}
 
 	@Override
