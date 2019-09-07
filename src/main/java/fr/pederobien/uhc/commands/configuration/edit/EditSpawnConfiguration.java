@@ -76,7 +76,7 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 	private void setCenter(String[] args) {
 		try {
 			getSpawn().setCenter(args[1], args[2], args[3]);
-			setMessage("New center : " + args[1] + " " + args[2] + " " + args[3]);
+			setMessage("New center : " + args[1] + " " + args[2] + " " + args[3] + " defined");
 		} catch (IndexOutOfBoundsException e) {
 			setMessage("Impossible to define center's coordinates\nNeed three dimensions coordinates (X Y Z)");
 		}
@@ -85,7 +85,7 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 	private void setDimension(String[] args) {
 		try {
 			getSpawn().setDimension(args[1], args[2], args[3]);
-			setMessage("New dimension : " + args[1] + " " + args[2] + " " + args[3]);
+			setMessage("New dimensions : " + args[1] + " " + args[2] + " " + args[3] + " defined");
 		} catch (IndexOutOfBoundsException e) {
 			setMessage("Impossible to define spawn's dimension\nNeed three dimensions (X Y Z)");
 		}
@@ -96,8 +96,9 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 			if (persistence.exist(args[1]))
 				setMessage("A spawn with name " + args[1] + " already exist");
 			else {
+				String oldName = getSpawn().getName();
 				getSpawn().setName(args[1]);
-				setMessage("New name : " + args[1]);
+				setMessage("Spawn " + oldName + " renamed " + args[1]);
 			}
 		} catch (IndexOutOfBoundsException e) {
 			setMessage("Impossible to define the spawn's name\nNeed the name");

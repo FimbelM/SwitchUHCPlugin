@@ -2,6 +2,7 @@ package fr.pederobien.uhc.commands.configuration.edit;
 
 import java.io.FileNotFoundException;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 
 import fr.pederobien.uhc.conf.configurations.ConfigurationContext;
 import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
@@ -90,7 +91,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 	private void setBorderCenter(String[] args) {
 		try {
 			getConfiguration().setBorderCenter(args[1], args[2]);
-			setMessage("New border center : " + args[1] + " " + args[2]);
+			setMessage("New border center : " + args[1] + " " + args[2] + " defined");
 		} catch (IndexOutOfBoundsException e) {
 			setMessage("Impossible to define center's coordinates\nNeed two coordinates (X Z)");
 		}
@@ -99,7 +100,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 	private void setInitialBorderDiameter(String[] args) {
 		try {
 			getConfiguration().setInitialBorderDiameter(Integer.parseInt(args[1]));
-			setMessage("New initial border diameter " + args[1]);
+			setMessage("New initial border diameter " + args[1] + " defined");
 		} catch (IndexOutOfBoundsException e) {
 			setMessage("Impossible to define the initial diameter of the border\nNeed the diameter");
 		}
@@ -108,7 +109,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 	private void setFinalBorderDiameter(String[] args) {
 		try {
 			getConfiguration().setFinalBorderDiameter(Integer.parseInt(args[1]));
-			setMessage("New final border diameter " + args[1]);
+			setMessage("New final border diameter " + args[1] + " defined");
 		} catch (IndexOutOfBoundsException e) {
 			setMessage("Impossible to define the final diameter of the border\nNeed the diameter");
 		}
@@ -117,8 +118,8 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 	private void setGameTime(String[] args) {
 		try {
 			getConfiguration().setGameTime(LocalTime.parse(args[1]));
-			setMessage("New game time " + getConfiguration().getGameTime());
-		} catch (IndexOutOfBoundsException e) {
+			setMessage("New game time " + showTime(getConfiguration().getGameTime()) + " defined");
+		} catch (IndexOutOfBoundsException | DateTimeParseException e) {
 			setMessage("Impossible to define the game time\nThe value should have the pattern hh:mm:ss");
 		}
 	}
@@ -126,8 +127,8 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 	private void setFractionTime(String[] args) {
 		try {
 			getConfiguration().setFractionTime(LocalTime.parse(args[1]));
-			setMessage("New fraction time " + getConfiguration().getFractionTime());
-		} catch (IndexOutOfBoundsException e) {
+			setMessage("New fraction time " + showTime(getConfiguration().getFractionTime()) + " defined");
+		} catch (IndexOutOfBoundsException | DateTimeParseException e) {
 			setMessage("Impossible to define the fraction time\nThe value should have the pattern hh:mm:ss");
 		}
 	}
@@ -135,7 +136,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 	private void setScoreboardRefresh(String[] args) {
 		try {
 			getConfiguration().setScoreboardRefresh(Long.parseLong(args[1]));
-			setMessage("scoreboard refreshed each " + getConfiguration().getScoreboardRefresh() + "tics");
+			setMessage("Scoreboard refreshed each " + getConfiguration().getScoreboardRefresh() + " tics");
 		} catch (IndexOutOfBoundsException e) {
 			setMessage("Impossible to define the scoreboard refresh tics");
 		} catch (NumberFormatException e) {
@@ -148,8 +149,9 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 			if (persistence.exist(args[1]))
 				setMessage("A style with name " + args[1] + " already exist");
 			else {
+				String oldName = getConfiguration().getName();
 				getConfiguration().setName(args[1]);
-				setMessage("New name : " + args[1]);
+				setMessage("Configuration " + oldName + " renamed " + args[1]);
 			}
 		} catch (IndexOutOfBoundsException e) {
 			setMessage("Impossible to define the style's name\nNeed the name");
@@ -160,7 +162,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 		try {
 			persistence.save();
 			persistence.load(args[1]);
-			setMessage("New configuration " + persistence.get().getName());
+			setMessage("New configuration " + persistence.get().getName() + " loaded");
 		} catch (IndexOutOfBoundsException e) {
 			setMessage("Impossible to load the style\nNeed the name");
 		} catch (FileNotFoundException e) {
@@ -198,5 +200,9 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 				setMessage("Impossible to define a new hunger game style's as current\nNeed the name");
 			}
 		}
+	}
+	
+	private String showTime(LocalTime time) {
+		return time.getHour() + "h " + time.getMinute() + "m " + time.getSecond() + "s";
 	}
 }
