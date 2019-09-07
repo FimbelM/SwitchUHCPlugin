@@ -31,20 +31,27 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 			Document doc = getDocument(SPAWNS + name + ".xml");
 			Element root = doc.getDocumentElement();
 
-			Node spawnName = root.getElementsByTagName("name").item(0).getChildNodes().item(0);
-			spawn = new Spawn(spawnName.getNodeValue());
+			for (int i = 0; i < root.getChildNodes().getLength(); i++)
+				if (root.getChildNodes().item(i).getNodeType() == Node.ELEMENT_NODE) {
+					Element elt = (Element) root.getChildNodes().item(i);
+					if (elt.getNodeName().equals("name"))
+						spawn = new Spawn(elt.getChildNodes().item(0).getNodeValue());
 
-			Element center = (Element) root.getElementsByTagName("center").item(0);
-			spawn.setCenter(center.getAttribute("x"), center.getAttribute("y"), center.getAttribute("z"));
+					else if (elt.getNodeName().equals("center"))
+						spawn.setCenter(elt.getAttribute("x"), elt.getAttribute("y"), elt.getAttribute("z"));
 
-			Element blocks = (Element) root.getElementsByTagName("blocks").item(0);
-			List<String> blocksStr = new ArrayList<String>();
-			for (int i = 0; i < blocks.getChildNodes().getLength(); i++) {
-				Element block = (Element) blocks.getChildNodes().item(i);
-				blocksStr.add(block.getAttribute("x") + ";" + block.getAttribute("y") + ";" + block.getAttribute("z")
-						+ ";" + block.getAttribute("material"));
-			}
-			spawn.setBlocks(blocksStr);
+					else if (elt.getNodeName().equals("blocks")) {
+						List<String> blocksStr = new ArrayList<String>();
+						for (int j = 0; j < elt.getChildNodes().getLength(); j++) {
+							if (elt.getChildNodes().item(j).getNodeType() == Node.ELEMENT_NODE) {
+								Element block = (Element) elt.getChildNodes().item(j);
+								blocksStr.add(block.getAttribute("x") + ";" + block.getAttribute("y") + ";"
+										+ block.getAttribute("z") + ";" + block.getAttribute("material"));
+							}
+							spawn.setBlocks(blocksStr);
+						}
+					}
+				}
 		} catch (NullPointerException e) {
 			throw new FileNotFoundException("Cannot find spawn named " + name);
 		}

@@ -29,22 +29,31 @@ public class HungerGamePersistence extends AbstractConfPersistence<HungerGameCon
 			Document doc = getDocument(HUNGER_GAME + name + ".xml");
 			Element root = doc.getDocumentElement();
 
-			Node confName = root.getElementsByTagName("name").item(0).getChildNodes().item(0);
-			configuration = new HungerGameConfiguration(confName.getNodeValue());
+			for (int i = 0; i < root.getChildNodes().getLength(); i++)
+				if (root.getChildNodes().item(i).getNodeType() == Node.ELEMENT_NODE) {
+					Element elt = (Element) root.getChildNodes().item(i);
+					if (elt.getNodeName().equals("name"))
+						configuration = new HungerGameConfiguration(elt.getChildNodes().item(0).getNodeValue());
 
-			Element borderCenter = (Element) root.getElementsByTagName("border").item(0).getChildNodes().item(0);
-			configuration.setBorderCenter(borderCenter.getAttribute("x"), borderCenter.getAttribute("z"));
-
-			Element borderDiameter = (Element) root.getElementsByTagName("border").item(0).getChildNodes().item(1);
-			configuration.setInitialBorderDiameter(Double.parseDouble(borderDiameter.getAttribute("initial")));
-			configuration.setFinalBorderDiameter(Double.parseDouble(borderDiameter.getAttribute("final")));
-
-			Element time = (Element) root.getElementsByTagName("time").item(0);
-			configuration.setGameTime(LocalTime.parse(time.getAttribute("game")));
-			configuration.setFractionTime(LocalTime.parse(time.getAttribute("fraction")));
-			configuration.setScoreboardRefresh(Long.parseLong(time.getAttribute("scoreboardrefresh")));
+					else if (elt.getNodeName().equals("border"))
+						for (int j = 0; j < elt.getChildNodes().getLength(); j++) {
+							if (elt.getChildNodes().item(j).getNodeType() == Node.ELEMENT_NODE)
+								if (elt.getNodeName().equals("center"))
+									configuration.setBorderCenter(elt.getAttribute("x"), elt.getAttribute("z"));
+								else if (elt.getNodeName().equals("diameter")) {
+									configuration
+											.setInitialBorderDiameter(Double.parseDouble(elt.getAttribute("initial")));
+									configuration.setFinalBorderDiameter(Double.parseDouble(elt.getAttribute("final")));
+								}
+						}
+					else if (elt.getNodeName().equals("time")) {
+						configuration.setGameTime(LocalTime.parse(elt.getAttribute("game")));
+						configuration.setFractionTime(LocalTime.parse(elt.getAttribute("fraction")));
+						configuration.setScoreboardRefresh(Long.parseLong(elt.getAttribute("scoreboardrefresh")));
+					}
+				}
 		} catch (NullPointerException e) {
-			throw new FileNotFoundException("Cannot find spawn named " + name);
+			e.printStackTrace();
 		}
 	}
 
