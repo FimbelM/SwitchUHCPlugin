@@ -27,6 +27,10 @@ public class WorldManager {
 		return Bukkit.getWorld(name);
 	}
 	
+	public static World getWorld() {
+		return getWorld(worldName);
+	}
+	
 	public static void setPVP(boolean pvp) {
 		world.setPVP(pvp);
 	}
