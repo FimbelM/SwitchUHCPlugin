@@ -13,6 +13,7 @@ import fr.pederobien.uhc.conf.Spawn.Coordinate;
 
 public class SpawnPersistence extends AbstractPersistence<Spawn> {
 	protected static final String SPAWNS = ROOT + "Spawns/";
+	private static final double CURRENT_VERSION = 1.0;
 	private Spawn spawn;
 
 	public SpawnPersistence() {
@@ -31,27 +32,16 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 			Document doc = getDocument(SPAWNS + name + ".xml");
 			Element root = doc.getDocumentElement();
 
-			for (int i = 0; i < root.getChildNodes().getLength(); i++)
-				if (root.getChildNodes().item(i).getNodeType() == Node.ELEMENT_NODE) {
-					Element elt = (Element) root.getChildNodes().item(i);
-					if (elt.getNodeName().equals("name"))
-						spawn = new Spawn(elt.getChildNodes().item(0).getNodeValue());
+			Node version = root.getElementsByTagName("version").item(0);
 
-					else if (elt.getNodeName().equals("center"))
-						spawn.setCenter(elt.getAttribute("x"), elt.getAttribute("y"), elt.getAttribute("z"));
+			switch (version.getChildNodes().item(0).getNodeValue()) {
+			case "1.0":
+				load10(root);
+				break;
+			default:
+				break;
+			}
 
-					else if (elt.getNodeName().equals("blocks")) {
-						List<String> blocksStr = new ArrayList<String>();
-						for (int j = 0; j < elt.getChildNodes().getLength(); j++) {
-							if (elt.getChildNodes().item(j).getNodeType() == Node.ELEMENT_NODE) {
-								Element block = (Element) elt.getChildNodes().item(j);
-								blocksStr.add(block.getAttribute("x") + ";" + block.getAttribute("y") + ";"
-										+ block.getAttribute("z") + ";" + block.getAttribute("material"));
-							}
-							spawn.setBlocks(blocksStr);
-						}
-					}
-				}
 		} catch (NullPointerException e) {
 			throw new FileNotFoundException("Cannot find spawn named " + name);
 		}
@@ -63,6 +53,10 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 		doc.setXmlStandalone(true);
 		Element root = doc.createElement("spawn");
 		doc.appendChild(root);
+
+		Element version = doc.createElement("version");
+		version.appendChild(doc.createTextNode("" + CURRENT_VERSION));
+		root.appendChild(version);
 
 		Element name = doc.createElement("name");
 		name.appendChild(doc.createTextNode(spawn.getName()));
@@ -101,5 +95,43 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 	@Override
 	public List<String> list() {
 		return getList(SPAWNS);
+	}
+
+	private void load10(Node root) {
+		for (int i = 0; i < root.getChildNodes().getLength(); i++) {
+			if (root.getChildNodes().item(i).getNodeType() != Node.ELEMENT_NODE)
+				continue;
+			Element elt = (Element) root.getChildNodes().item(i);
+
+			switch (elt.getNodeName()) {
+			case "name":
+				spawn = new Spawn(elt.getChildNodes().item(0).getNodeValue());
+				break;
+			case "center":
+				spawn.setCenter(elt.getAttribute("x"), elt.getAttribute("y"), elt.getAttribute("z"));
+				break;
+			case "blocks":
+				List<String> blocksStr = new ArrayList<String>();
+				for (int j = 0; j < elt.getChildNodes().getLength(); j++) {
+					if (elt.getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
+						continue;
+					Element block = (Element) elt.getChildNodes().item(j);
+					blocksStr.add(block.getAttribute("x") + ";" + block.getAttribute("y") + ";"
+							+ block.getAttribute("z") + ";" + block.getAttribute("material"));
+					spawn.setBlocks(blocksStr);
+				}
+				break;
+			default:
+				break;
+			}
+		}
+	}
+	
+	protected void show() {
+		System.out.println("Name : " + spawn.getName());
+		System.out.println("Center : " + spawn.getCenter().getX() + " " + spawn.getCenter().getY() + " " + spawn.getCenter().getZ());
+		System.out.println("Blocks");
+		for (Coordinate coord : spawn.getBlocks().keySet())
+			System.out.println("\t" + coord.getX() + " " + coord.getY() + " " + coord.getZ() + " " + spawn.getBlocks().get(coord));
 	}
 }

@@ -12,6 +12,7 @@ import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
 
 public class HungerGamePersistence extends AbstractConfPersistence<HungerGameConfiguration> {
 	private static final String HUNGER_GAME = GAME + "HungerGame/";
+	private static final double CURRENT_VERSION = 1.0;
 
 	public HungerGamePersistence() {
 		super(HungerGameConfiguration.DEFAULT);
@@ -29,29 +30,15 @@ public class HungerGamePersistence extends AbstractConfPersistence<HungerGameCon
 			Document doc = getDocument(HUNGER_GAME + name + ".xml");
 			Element root = doc.getDocumentElement();
 
-			for (int i = 0; i < root.getChildNodes().getLength(); i++)
-				if (root.getChildNodes().item(i).getNodeType() == Node.ELEMENT_NODE) {
-					Element elt = (Element) root.getChildNodes().item(i);
-					if (elt.getNodeName().equals("name"))
-						configuration = new HungerGameConfiguration(elt.getChildNodes().item(0).getNodeValue());
+			Node version = root.getElementsByTagName("version").item(0);
 
-					else if (elt.getNodeName().equals("border"))
-						for (int j = 0; j < elt.getChildNodes().getLength(); j++) {
-							if (elt.getChildNodes().item(j).getNodeType() == Node.ELEMENT_NODE)
-								if (elt.getNodeName().equals("center"))
-									configuration.setBorderCenter(elt.getAttribute("x"), elt.getAttribute("z"));
-								else if (elt.getNodeName().equals("diameter")) {
-									configuration
-											.setInitialBorderDiameter(Double.parseDouble(elt.getAttribute("initial")));
-									configuration.setFinalBorderDiameter(Double.parseDouble(elt.getAttribute("final")));
-								}
-						}
-					else if (elt.getNodeName().equals("time")) {
-						configuration.setGameTime(LocalTime.parse(elt.getAttribute("game")));
-						configuration.setFractionTime(LocalTime.parse(elt.getAttribute("fraction")));
-						configuration.setScoreboardRefresh(Long.parseLong(elt.getAttribute("scoreboardrefresh")));
-					}
-				}
+			switch (version.getChildNodes().item(0).getNodeValue()) {
+			case "1.0":
+				load10(root);
+				break;
+			default:
+				break;
+			}
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
@@ -63,6 +50,10 @@ public class HungerGamePersistence extends AbstractConfPersistence<HungerGameCon
 		doc.setXmlStandalone(true);
 		Element root = doc.createElement("configuration");
 		doc.appendChild(root);
+
+		Element version = doc.createElement("version");
+		version.appendChild(doc.createTextNode("" + CURRENT_VERSION));
+		root.appendChild(version);
 
 		Element name = doc.createElement("name");
 		name.appendChild(doc.createTextNode(configuration.getName()));
@@ -103,5 +94,57 @@ public class HungerGamePersistence extends AbstractConfPersistence<HungerGameCon
 	@Override
 	public List<String> list() {
 		return getList(HUNGER_GAME);
+	}
+
+	private void load10(Node root) {
+		for (int i = 0; i < root.getChildNodes().getLength(); i++) {
+			if (root.getChildNodes().item(i).getNodeType() != Node.ELEMENT_NODE)
+				continue;
+			Element elt = (Element) root.getChildNodes().item(i);
+
+			switch (elt.getNodeName()) {
+			case "name":
+				configuration = new HungerGameConfiguration(elt.getChildNodes().item(0).getNodeValue());
+				break;
+			case "border":
+				for (int j = 0; j < elt.getChildNodes().getLength(); j++) {
+					if (elt.getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
+						continue;
+					Element child = (Element) elt.getChildNodes().item(j);
+					switch (child.getNodeName()) {
+					case "center":
+						configuration.setBorderCenter(child.getAttribute("x"), child.getAttribute("z"));
+						break;
+					case "diameter":
+						configuration.setInitialBorderDiameter(Double.parseDouble(child.getAttribute("initial")));
+						configuration.setFinalBorderDiameter(Double.parseDouble(child.getAttribute("final")));
+						break;
+					default:
+						break;
+					}
+				}
+				break;
+			case "time":
+				configuration.setGameTime(LocalTime.parse(elt.getAttribute("game")));
+				configuration.setFractionTime(LocalTime.parse(elt.getAttribute("fraction")));
+				configuration.setScoreboardRefresh(Long.parseLong(elt.getAttribute("scoreboardrefresh")));
+				break;
+			default:
+				break;
+			}
+		}
+	}
+	
+	protected void show() {
+		System.out.println("Name : " + configuration.getName());
+		System.out.println("Border");
+		System.out.println("\tCenter : " + configuration.getBorderCenter().getX() + " " + configuration.getBorderCenter().getZ());
+		System.out.println("\tDiameter");
+		System.out.println("\t\tInitial : " + configuration.getInitialBorderDiameter());
+		System.out.println("\t\tFinal : " + configuration.getFinalBorderDiameter());
+		System.out.println("Time");
+		System.out.println("\tGame : " + configuration.getGameTime());
+		System.out.println("\tFraction : " + configuration.getFractionTime());
+		System.out.println("\tScoreboard refresh : " + configuration.getScoreboardRefresh());
 	}
 }
