@@ -2,12 +2,12 @@ package fr.pederobien.uhc.commands.configuration.edit;
 
 import java.util.HashMap;
 
+import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.AsCurrent;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.BorderCenterEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.FinalBorderDiameter;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.FractionTime;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.GameTime;
-import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.IHGEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.InitialBorderDiameter;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.ListConf;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.Load;
@@ -20,25 +20,25 @@ import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
 
 public class EditHungerGameConfiguration extends AbstractEditConfiguration implements IEditConfig {
 	private HungerGamePersistence persistence;
-	private final IHGEdition borderCenter;
-	private final IHGEdition initialBorderDiameter;
-	private final IHGEdition finalBorderDiameter;
-	private final IHGEdition gameTime;
-	private final IHGEdition fractionTime;
-	private final IHGEdition scoreboardRefresh;
-	private final IHGEdition rename;
-	private final IHGEdition load;
-	private final IHGEdition newConf;
-	private final IHGEdition asCurrent;
-	private final IHGEdition save;
-	private final IHGEdition list;
-	private HashMap<String, IHGEdition> map;
+	private final IEdition borderCenter;
+	private final IEdition initialBorderDiameter;
+	private final IEdition finalBorderDiameter;
+	private final IEdition gameTime;
+	private final IEdition fractionTime;
+	private final IEdition scoreboardRefresh;
+	private final IEdition rename;
+	private final IEdition load;
+	private final IEdition newConf;
+	private final IEdition asCurrent;
+	private final IEdition save;
+	private final IEdition list;
+	private HashMap<String, IEdition> map;
 
 	public EditHungerGameConfiguration(ConfigurationContext context) {
 		super(context);
 		
 		persistence = new HungerGamePersistence();
-		map = new HashMap<String, IHGEdition>();
+		map = new HashMap<String, IEdition>();
 
 		borderCenter = new BorderCenterEdition(persistence);
 		initialBorderDiameter = new InitialBorderDiameter(persistence);
@@ -77,8 +77,8 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 		return new StringBuilder("Unknown command\r\n").append(getEditionsHelp()).toString();
 	}
 
-	private void addToMap(IHGEdition... editions) {
-		for (IHGEdition edition : editions)
+	private void addToMap(IEdition... editions) {
+		for (IEdition edition : editions)
 			map.put(edition.getLabel(), edition);
 	}
 
