@@ -5,6 +5,7 @@ import java.util.HashMap;
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.AsCurrent;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.BorderCenterEdition;
+import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.Current;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.FinalBorderDiameter;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.FractionTime;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.GameTime;
@@ -20,19 +21,21 @@ import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
 
 public class EditHungerGameConfiguration extends AbstractEditConfiguration implements IEditConfig {
 	private HungerGamePersistence persistence;
-	private final IEdition borderCenter;
-	private final IEdition initialBorderDiameter;
-	private final IEdition finalBorderDiameter;
-	private final IEdition gameTime;
-	private final IEdition fractionTime;
-	private final IEdition scoreboardRefresh;
-	private final IEdition rename;
-	private final IEdition load;
-	private final IEdition newConf;
-	private final IEdition asCurrent;
-	private final IEdition save;
-	private final IEdition list;
 	private HashMap<String, IEdition> map;
+	
+	private IEdition borderCenter;
+	private IEdition initialBorderDiameter;
+	private IEdition finalBorderDiameter;
+	private IEdition gameTime;
+	private IEdition fractionTime;
+	private IEdition scoreboardRefresh;
+	private IEdition rename;
+	private IEdition load;
+	private IEdition newConf;
+	private IEdition current;
+	private IEdition asCurrent;
+	private IEdition save;
+	private IEdition list;
 
 	public EditHungerGameConfiguration(ConfigurationContext context) {
 		super(context);
@@ -49,12 +52,13 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 		rename = new Rename(persistence);
 		load = new Load(persistence);
 		newConf = new NewConf(persistence);
+		current = new Current(persistence);
 		asCurrent = new AsCurrent(persistence, context);
 		save = new Save(persistence);
 		list = new ListConf(persistence);
 
 		addToMap(borderCenter, initialBorderDiameter, finalBorderDiameter, gameTime, fractionTime, scoreboardRefresh,
-				rename, load, newConf, asCurrent, save, list);
+				rename, load, newConf, current, asCurrent, save, list);
 	}
 
 	@Override
