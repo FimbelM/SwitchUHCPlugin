@@ -38,14 +38,14 @@ public class Launch extends AbstractSpawnEdition {
 		} else {
 			getPersistence().save();
 			try {
-				getPersistence().load(args[2]);
-				getSpawn().setCenter(args[3], args[4], args[5]);
+				getPersistence().load(args[1]);
+				getSpawn().setCenter(args[2], args[3], args[4]);
 				getSpawn().launch();
 				return "Spawn " + getSpawn().getName() + " launched at " + showBlock(getSpawn().getCenter());
 			} catch (FileNotFoundException e) {
-				return "Cannot launch the spawn, spawn does not exist";
+				return "Cannot launch the spawn " + args[1] + ", spawn does not exist";
 			} catch (IndexOutOfBoundsException e) {
-				return "Cannot launch the current spawn, need center's coordinates <X> <Y> <Z> and spawn's dimensions <width> <height> <depth>";
+				return "Cannot launch spawn " + args[1] + ", need the spawn's name and center's coordinates <X> <Y> <Z>";
 			}
 		}
 	}

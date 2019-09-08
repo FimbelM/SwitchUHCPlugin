@@ -20,7 +20,7 @@ public class Load extends AbstractHGEdition {
 		} catch (IndexOutOfBoundsException e) {
 			return "Cannot load hunger game style, need the name";
 		} catch (FileNotFoundException e) {
-			return "Cannot load hunger game style, style does not exist";
+			return "Cannot load style " + args[1] + ", style does not exist";
 		}
 	}
 }
