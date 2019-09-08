@@ -13,15 +13,15 @@ public class ListConf extends AbstractHGEdition {
 
 	@Override
 	public String edit(String[] args) {
-		return prepare(getPersistence().list(), "spawn");
+		return prepare(getPersistence().list());
 	}
 	
-	protected String prepare(List<String> list, String elt) {
+	protected String prepare(List<String> list) {
 		StringBuilder builder = new StringBuilder();
 		if (list.size() > 0)
-			builder.append("List of existing " + elt + "(s) :\n");
+			builder.append("List of existing hunger game style (s) :\n");
 		else
-			builder.append("No existing " + elt);
+			builder.append("No existing hunger game style");
 		
 		for (String str : list)
 			builder.append(str.concat("\n"));

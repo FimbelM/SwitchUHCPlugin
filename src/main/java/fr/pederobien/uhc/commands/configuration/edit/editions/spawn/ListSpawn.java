@@ -13,15 +13,15 @@ public class ListSpawn extends AbstractSpawnEdition {
 
 	@Override
 	public String edit(String[] args) {
-		return prepare(getPersistence().list(), "spawn");
+		return prepare(getPersistence().list());
 	}
 
-	protected String prepare(List<String> list, String elt) {
+	protected String prepare(List<String> list) {
 		StringBuilder builder = new StringBuilder();
 		if (list.size() > 0)
-			builder.append("List of existing " + elt + "(s) :\n");
+			builder.append("List of existing spawn(s) :\n");
 		else
-			builder.append("No existing " + elt);
+			builder.append("No existing spawn");
 
 		for (String str : list)
 			builder.append(str.concat("\n"));
