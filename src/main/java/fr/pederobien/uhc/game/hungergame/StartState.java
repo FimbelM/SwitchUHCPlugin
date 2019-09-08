@@ -19,6 +19,7 @@ public class StartState extends AbstractState {
 		PlayerManager.giveEffects("@a", "resistance", "regeneration", "saturation");
 		PlayerManager.maxFoodForPlayers();
 		PlayerManager.maxLifeToPlayers();
+		PlayerManager.removeInventoryOfPlayers();
 		WorldManager.setPVP(true);
 		WorldManager.setWorldBorderDiameter(game.getConfiguration().getInitialBorderDiameter());
 		TeamsManager.teleporteRandomlyAllTeams();

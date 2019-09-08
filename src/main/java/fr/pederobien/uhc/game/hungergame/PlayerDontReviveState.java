@@ -25,7 +25,7 @@ public class PlayerDontReviveState extends AbstractState {
 	
 	@Override
 	public void time() {
-		BukkitManager.broadcastMessageAsTitle("Brace Yourself");
+		BukkitManager.broadcastMessageAsTitle("Déplacement bordure", "red");
 		WorldManager.moveBorder(game.getConfiguration().getFinalBorderDiameter(), game.getConfiguration().getInitialBorderDiameter().longValue());
 		game.setCurrentState(game.getHungerGame());
 	}

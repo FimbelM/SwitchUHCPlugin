@@ -17,7 +17,7 @@ public class AfterBorderMoveState extends AbstractScoreboardState {
 		addEntries(prepareTimeNoEscape(task.getTotalTime()));
 		addEntries("Temps de jeu");
 		registerTeam();
-		addEntries("Rayon bordure : " + WorldManager.getCurrentDiameter() / 2);
+		addEntries("Rayon bordure : " + (int)WorldManager.getCurrentDiameter() / 2);
 		addEntries(getShowingLocation());
 		addEntries("Coordonnées X/Y/Z");
 	}
