@@ -18,7 +18,6 @@ import fr.pederobien.uhc.conf.persistence.SpawnPersistence;
 
 public class EditSpawnConfiguration extends AbstractEditConfiguration implements IEditConfig {
 	private SpawnPersistence persistence;
-	private HashMap<String, IEdition> map;
 	private IEdition center;
 	private IEdition dimensions;
 	private IEdition rename;
@@ -45,43 +44,10 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 		remove = new Remove(persistence);
 		extract = new Extract(persistence);
 		list = new ListSpawn(persistence);
-
-		addToMap(center, dimensions, rename, current, newSpawn, launch, save, remove, extract, list);
 	}
 
 	@Override
 	protected void setEditions() {
-
-	}
-
-	@Override
-	public boolean edit(String[] args) {
-		try {
-			setMessage(map.get(args[0]).edit(args));
-		} catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
-			return false;
-		}
-		return true;
-	}
-
-	@Override
-	public String getEditCommands() {
-		return new StringBuilder("Unknown command\r\n").append(getEditionsHelp()).toString();
-
-	}
-
-	private void addToMap(IEdition... editions) {
-		for (IEdition edition : editions)
-			map.put(edition.getLabel(), edition);
-	}
-	
-	@Override
-	protected String getEditionsHelp() {
-		String help = "List of existing commands\r\n";
-		for (String label : map.keySet()) {
-			help += map.get(label).help();
-			help += "\r\n";
-		}
-		return help;
+		addToMap(center, dimensions, rename, current, newSpawn, launch, save, remove, extract, list);
 	}
 }

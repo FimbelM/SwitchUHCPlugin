@@ -1,7 +1,5 @@
 package fr.pederobien.uhc.commands.configuration.edit;
 
-import java.util.HashMap;
-
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.AsCurrent;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.BorderCenterEdition;
@@ -21,8 +19,7 @@ import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
 
 public class EditHungerGameConfiguration extends AbstractEditConfiguration implements IEditConfig {
 	private HungerGamePersistence persistence;
-	private HashMap<String, IEdition> map;
-	
+
 	private IEdition borderCenter;
 	private IEdition initialBorderDiameter;
 	private IEdition finalBorderDiameter;
@@ -39,9 +36,8 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 
 	public EditHungerGameConfiguration(ConfigurationContext context) {
 		super(context);
-		
+
 		persistence = new HungerGamePersistence();
-		map = new HashMap<String, IEdition>();
 
 		borderCenter = new BorderCenterEdition(persistence);
 		initialBorderDiameter = new InitialBorderDiameter(persistence);
@@ -56,43 +52,11 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 		asCurrent = new AsCurrent(persistence, context);
 		save = new Save(persistence);
 		list = new ListConf(persistence);
-
-		addToMap(borderCenter, initialBorderDiameter, finalBorderDiameter, gameTime, fractionTime, scoreboardRefresh,
-				rename, load, newConf, current, asCurrent, save, list);
 	}
 
 	@Override
 	protected void setEditions() {
-
-	}
-
-	@Override
-	public boolean edit(String[] args) {
-		try {
-			setMessage(map.get(args[0]).edit(args));
-		} catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
-			return false;
-		}
-		return true;
-	}
-
-	@Override
-	public String getEditCommands() {
-		return new StringBuilder("Unknown command\r\n").append(getEditionsHelp()).toString();
-	}
-
-	private void addToMap(IEdition... editions) {
-		for (IEdition edition : editions)
-			map.put(edition.getLabel(), edition);
-	}
-
-	@Override
-	protected String getEditionsHelp() {
-		String help = "List of existing commands\r\n";
-		for (String label : map.keySet()) {
-			help += map.get(label).help();
-			help += "\r\n";
-		}
-		return help;
+		addToMap(borderCenter, initialBorderDiameter, finalBorderDiameter, gameTime, fractionTime, scoreboardRefresh,
+				rename, load, newConf, current, asCurrent, save, list);
 	}
 }

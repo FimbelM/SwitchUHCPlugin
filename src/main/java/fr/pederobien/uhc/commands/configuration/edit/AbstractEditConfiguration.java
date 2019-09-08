@@ -1,21 +1,36 @@
 package fr.pederobien.uhc.commands.configuration.edit;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
+import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.conf.configurations.ConfigurationContext;
 
 public abstract class AbstractEditConfiguration implements IEditConfig {
 	private String message;
 	protected ConfigurationContext context;
-	protected List<Edition> editions;
+	protected HashMap<String, IEdition> map;
 	
 	protected abstract void setEditions();
 	
 	public AbstractEditConfiguration(ConfigurationContext context) {
 		this.context = context;
-		editions = new ArrayList<Edition>();
+		map = new HashMap<String, IEdition>();
 		setEditions();
+	}
+	
+	@Override
+	public boolean edit(String[] args) {
+		try {
+			setMessage(map.get(args[0]).edit(args));
+		} catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public String getEditCommands() {
+		return new StringBuilder("Unknown command\r\n").append(getEditionsHelp()).toString();
 	}
 
 	@Override
@@ -27,32 +42,17 @@ public abstract class AbstractEditConfiguration implements IEditConfig {
 		this.message = message;
 	}
 	
-	protected String prepare(List<String> list, String elt) {
-		StringBuilder builder = new StringBuilder();
-		if (list.size() > 0)
-			builder.append("List of existing " + elt + "(s) :\n");
-		else
-			builder.append("No existing " + elt);
-		
-		for (String str : list)
-			builder.append(str.concat("\n"));
-		return builder.toString();
+	protected void addToMap(IEdition... editions) {
+		for (IEdition edition : editions)
+			map.put(edition.getLabel(), edition);
 	}
-	
-	protected Edition getEdition(String label) {
-		for (Edition edition : editions) {
-			if (edition.getLabel().equals(label))
-				return edition;
-		}
-		return null;
-	}
-	
+
 	protected String getEditionsHelp() {
-		String toString = "List of existing commands\r\n";
-		for (Edition edition : editions) {
-			toString += edition.help();
-			toString += "\r\n";
+		String help = "List of existing commands\r\n";
+		for (String label : map.keySet()) {
+			help += map.get(label).help();
+			help += "\r\n";
 		}
-		return toString;
+		return help;
 	}
 }
