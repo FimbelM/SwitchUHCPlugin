@@ -9,15 +9,14 @@ public abstract class AbstractEditConfiguration implements IEditConfig {
 	private String message;
 	protected ConfigurationContext context;
 	protected HashMap<String, IEdition> map;
-	
+
 	protected abstract void setEditions();
-	
+
 	public AbstractEditConfiguration(ConfigurationContext context) {
 		this.context = context;
 		map = new HashMap<String, IEdition>();
-		setEditions();
 	}
-	
+
 	@Override
 	public boolean edit(String[] args) {
 		try {
@@ -41,7 +40,7 @@ public abstract class AbstractEditConfiguration implements IEditConfig {
 	protected void setMessage(String message) {
 		this.message = message;
 	}
-	
+
 	protected void addToMap(IEdition... editions) {
 		for (IEdition edition : editions)
 			map.put(edition.getLabel(), edition);

@@ -52,6 +52,8 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 		asCurrent = new AsCurrent(persistence, context);
 		save = new Save(persistence);
 		list = new ListConf(persistence);
+
+		setEditions();
 	}
 
 	@Override

@@ -44,6 +44,8 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 		remove = new Remove(persistence);
 		extract = new Extract(persistence);
 		list = new ListSpawn(persistence);
+
+		setEditions();
 	}
 
 	@Override
