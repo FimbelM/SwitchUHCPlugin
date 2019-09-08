@@ -17,6 +17,10 @@ public enum SpawnEditions {
 		this.explanation = explanation;
 	}
 
+	public String getLabel() {
+		return label;
+	}
+
 	public String help() {
 		return ChatColor.RED + label + ChatColor.RESET + " - " + ChatColor.BLUE + explanation;
 	}
