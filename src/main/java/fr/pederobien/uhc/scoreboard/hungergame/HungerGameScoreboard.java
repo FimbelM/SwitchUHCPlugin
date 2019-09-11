@@ -29,7 +29,7 @@ public class HungerGameScoreboard implements IHGScoreboard {
 	
 	@Override
 	public void update() {
-		ScoreboardManager.setPlayerScoreboardWithCurrentLocation(this);
+		ScoreboardManager.setPlayersScoreboardWithCurrentLocation(this);
 	}
 
 	@Override
