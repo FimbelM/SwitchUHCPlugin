@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.scoreboard;
+package fr.pederobien.uhc.scoreboard.hungergame;
 
 public class PauseState extends AbstractScoreboardState {
 	private IScoreboardState before;
@@ -8,7 +8,7 @@ public class PauseState extends AbstractScoreboardState {
 	}
 	
 	@Override
-	void updateEntries() {
+	protected void updateEntries() {
 		addEntries(prepareTimeNoEscape(task.getTotalTime()));
 		addEntries("Temps de jeu");
 		addEntries(prepareTimeOneEscape(task.getPauseTime()));

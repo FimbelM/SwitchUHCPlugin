@@ -15,8 +15,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.observer.IObsListener;
 import fr.pederobien.uhc.observer.IObsTimeLine;
-import fr.pederobien.uhc.scoreboard.IScoreboard;
-import fr.pederobien.uhc.scoreboard.Scoreboard;
+import fr.pederobien.uhc.scoreboard.hungergame.IScoreboard;
+import fr.pederobien.uhc.scoreboard.hungergame.Scoreboard;
 
 public class ScoreboardLauncher extends BukkitRunnable implements IObsTimeLine, IObsListener {
 	private List<IScoreboard> scoreboards;

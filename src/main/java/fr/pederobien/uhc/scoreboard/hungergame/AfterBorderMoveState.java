@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.scoreboard;
+package fr.pederobien.uhc.scoreboard.hungergame;
 
 import org.bukkit.GameMode;
 import org.bukkit.scoreboard.Team;
@@ -13,7 +13,7 @@ public class AfterBorderMoveState extends AbstractScoreboardState {
 	}
 	
 	@Override
-	void updateEntries() {
+	protected void updateEntries() {
 		addEntries(prepareTimeNoEscape(task.getTotalTime()));
 		addEntries("Temps de jeu");
 		registerTeam();

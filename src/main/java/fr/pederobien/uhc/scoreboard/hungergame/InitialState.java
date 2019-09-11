@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.scoreboard;
+package fr.pederobien.uhc.scoreboard.hungergame;
 
 public class InitialState extends AbstractScoreboardState {
 
@@ -7,7 +7,7 @@ public class InitialState extends AbstractScoreboardState {
 	}
 
 	@Override
-	void updateEntries() {
+	protected void updateEntries() {
 		
 	}
 	

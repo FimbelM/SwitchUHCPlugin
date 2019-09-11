@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.scoreboard;
+package fr.pederobien.uhc.scoreboard.hungergame;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

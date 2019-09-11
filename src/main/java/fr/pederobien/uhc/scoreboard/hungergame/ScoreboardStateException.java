@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.scoreboard;
+package fr.pederobien.uhc.scoreboard.hungergame;
 
 public class ScoreboardStateException extends RuntimeException {
 	private static final long serialVersionUID = 1L;

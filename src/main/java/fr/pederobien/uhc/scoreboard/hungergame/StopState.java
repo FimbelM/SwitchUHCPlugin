@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.scoreboard;
+package fr.pederobien.uhc.scoreboard.hungergame;
 
 import fr.pederobien.uhc.managers.ScoreboardManager;
 
@@ -9,7 +9,7 @@ public class StopState extends AbstractScoreboardState {
 	}
 	
 	@Override
-	void updateEntries() {
+	protected void updateEntries() {
 		
 	}
 	

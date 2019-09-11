@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.scoreboard;
+package fr.pederobien.uhc.scoreboard.hungergame;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public abstract class AbstractScoreboardState implements IScoreboardState {
 		entries = new ArrayList<String>();
 	}
 	
-	abstract void updateEntries();
+	protected abstract void updateEntries();
 
 	@Override
 	public void time() {
