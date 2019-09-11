@@ -54,7 +54,7 @@ public abstract class AbstractState implements IHungerGameState {
 	}
 
 	public void onPlayerJoin(PlayerJoinEvent event) {
-		
+		scoreboardLauncher.onPlayerJoin(event);
 	}
 
 	public void onPlayerMove(PlayerMoveEvent event) {
@@ -62,7 +62,7 @@ public abstract class AbstractState implements IHungerGameState {
 	}
 
 	public void onPlayerQuit(PlayerQuitEvent event) {
-		
+		scoreboardLauncher.onPlayerQuit(event);
 	}
 
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
