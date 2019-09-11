@@ -18,6 +18,10 @@ public class PlayerManager {
 		return players;
 	}
 	
+	public static int getNumberOfPlayer() {
+		return getPlayers().size();
+	}
+	
 	public static Player getPlayer(String name) {
 		return Bukkit.getPlayer(name);
 	}

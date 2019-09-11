@@ -29,6 +29,13 @@ public class TeamsManager {
 		return getPlayers(team).size();
 	}
 	
+	public static int getNumberOfPlayerInTeam() {
+		int sum = 0;
+		for (Team team : getTeams())
+			sum += getNumberOfPlayers(team);
+		return sum;
+	}
+	
 	public static List<Player> getTeamPlayersOnMode(Team team, GameMode mode) {
 		List<Player> players = new ArrayList<Player>();
 		for (String str : team.getEntries()) {
@@ -114,6 +121,6 @@ public class TeamsManager {
 		for (Team team : getTeams())
 			if (getPlayers(team).contains(player))
 				return team.getColor();
-		return ChatColor.GOLD;
+		return null;
 	}
 }
