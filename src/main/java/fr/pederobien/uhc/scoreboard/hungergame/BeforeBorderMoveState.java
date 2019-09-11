@@ -2,7 +2,7 @@ package fr.pederobien.uhc.scoreboard.hungergame;
 
 public class BeforeBorderMoveState extends AbstractScoreboardState {
 
-	public BeforeBorderMoveState(IScoreboard scoreboard) {
+	public BeforeBorderMoveState(IHGScoreboard scoreboard) {
 		super(scoreboard, "Game");		
 	}
 	

@@ -6,15 +6,16 @@ import java.util.List;
 
 import org.bukkit.Location;
 
+import fr.pederobien.uhc.scoreboard.hungergame.IHGScoreboard;
 import fr.pederobien.uhc.task.TimeTask;
 
 public abstract class AbstractScoreboardState implements IScoreboardState {
-	protected IScoreboard scoreboard;
+	protected IHGScoreboard scoreboard;
 	private List<String> entries;
 	private String title;
 	protected static TimeTask task;
 	
-	public AbstractScoreboardState(IScoreboard scoreboard, String title) {
+	public AbstractScoreboardState(IHGScoreboard scoreboard, String title) {
 		this.scoreboard = scoreboard;
 		this.title = title;
 		task = scoreboard.getTask();

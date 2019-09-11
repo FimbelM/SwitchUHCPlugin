@@ -3,7 +3,7 @@ package fr.pederobien.uhc.scoreboard.hungergame;
 public class PauseState extends AbstractScoreboardState {
 	private IScoreboardState before;
 	
-	public PauseState(IScoreboard scoreboard) {
+	public PauseState(IHGScoreboard scoreboard) {
 		super(scoreboard, "Partie Suspendue");
 	}
 	

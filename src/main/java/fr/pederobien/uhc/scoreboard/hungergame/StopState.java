@@ -4,7 +4,7 @@ import fr.pederobien.uhc.managers.ScoreboardManager;
 
 public class StopState extends AbstractScoreboardState {
 
-	public StopState(IScoreboard scoreboard) {
+	public StopState(IHGScoreboard scoreboard) {
 		super(scoreboard, "Partie terminée");
 	}
 	

@@ -8,7 +8,7 @@ import fr.pederobien.uhc.managers.WorldManager;
 
 public class AfterBorderMoveState extends AbstractScoreboardState {
 
-	public AfterBorderMoveState(IScoreboard scoreboard) {
+	public AfterBorderMoveState(IHGScoreboard scoreboard) {
 		super(scoreboard, "Brace Yourself");
 	}
 	
