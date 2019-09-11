@@ -12,8 +12,6 @@ public class BeforeBorderMoveState extends AbstractScoreboardState {
 		addEntries("Temps de jeu");
 		addEntries(prepareTimeOneEscape(task.getDecreasingTime()));
 		addEntries("Déplacement bordure dans");
-		addEntries(getShowingLocation());
-		addEntries("Coordonnées X/Y/Z");
 	}
 	
 	@Override

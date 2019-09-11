@@ -13,8 +13,6 @@ public class PauseState extends AbstractScoreboardState {
 		addEntries("Temps de jeu");
 		addEntries(prepareTimeOneEscape(task.getPauseTime()));
 		addEntries("Temps de pause");
-		addEntries(getShowingLocation());
-		addEntries("Coordonnées X/Y/Z");
 	}
 	
 	@Override

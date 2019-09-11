@@ -11,7 +11,7 @@ public interface IScoreboardState extends IObsTimeLine {
 	String getTitle();
 	
 	void start();
-	
+		
 	void pause(IScoreboardState before);
 	
 	void relaunched();

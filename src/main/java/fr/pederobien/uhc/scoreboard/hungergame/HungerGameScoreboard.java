@@ -1,11 +1,8 @@
 package fr.pederobien.uhc.scoreboard.hungergame;
 
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.Objective;
+import java.util.List;
 
 import fr.pederobien.uhc.managers.ScoreboardManager;
-import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.task.TimeTask;
 
 public class HungerGameScoreboard implements IHGScoreboard {
@@ -16,13 +13,9 @@ public class HungerGameScoreboard implements IHGScoreboard {
 	private IScoreboardState stop;
 	private IScoreboardState current;
 	
-	private Player player;
-	private ChatColor chatColor;
 	private TimeTask task;
 	
-	public HungerGameScoreboard(Player player, TimeTask task) {
-		this.player = player;
-		this.chatColor = TeamsManager.getColor(player);
+	public HungerGameScoreboard(TimeTask task) {
 		this.task = task;
 		
 		initial = new InitialState(this);
@@ -36,9 +29,7 @@ public class HungerGameScoreboard implements IHGScoreboard {
 	
 	@Override
 	public void update() {
-		Objective obj = ScoreboardManager.registerNewObjectiveOnSideBarDisplaySlot(getTitle());
-		ScoreboardManager.addEntries(obj , current.getEntries());
-		player.setScoreboard(obj.getScoreboard());
+		ScoreboardManager.setPlayerScoreboardWithCurrentLocation(this);
 	}
 
 	@Override
@@ -49,6 +40,11 @@ public class HungerGameScoreboard implements IHGScoreboard {
 	@Override
 	public String getTitle() {
 		return current.getTitle();
+	}
+	
+	@Override
+	public List<String> getEntries() {
+		return current.getEntries();
 	}
 
 	@Override
@@ -109,15 +105,5 @@ public class HungerGameScoreboard implements IHGScoreboard {
 	@Override
 	public TimeTask getTask() {
 		return task;
-	}
-
-	@Override
-	public ChatColor getChatColor() {
-		return chatColor;
-	}
-
-	@Override
-	public Player getPlayer() {
-		return player;
 	}
 }

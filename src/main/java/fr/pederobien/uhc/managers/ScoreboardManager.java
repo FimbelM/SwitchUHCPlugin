@@ -8,11 +8,17 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
+import fr.pederobien.uhc.scoreboard.IScoreboard;
+
 public class ScoreboardManager {
 	
 	public static void setPlayersScoreboard(Scoreboard scoreboard) {
 		for (Player player : PlayerManager.getPlayers())
 			player.setScoreboard(scoreboard);
+	}
+	
+	public static void setPlayerScoreboardWithCurrentLocation(IScoreboard sc) {
+		
 	}
 	
 	public static Objective registerNewObjective(String title) {
