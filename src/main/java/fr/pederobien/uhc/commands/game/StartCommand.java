@@ -4,10 +4,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import fr.pederobien.uhc.commands.AbstractCommand;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 
-public class StartCommand extends AbstractGameCommand {
+public class StartCommand extends AbstractCommand {
 
 	public StartCommand(JavaPlugin plugin, String command) {
 		super(plugin, command);

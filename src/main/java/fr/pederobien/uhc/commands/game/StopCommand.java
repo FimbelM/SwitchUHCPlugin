@@ -4,7 +4,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class StopCommand extends AbstractGameCommand {
+import fr.pederobien.uhc.commands.AbstractCommand;
+
+public class StopCommand extends AbstractCommand {
 
 	public StopCommand(JavaPlugin plugin, String command) {
 		super(plugin, command);
