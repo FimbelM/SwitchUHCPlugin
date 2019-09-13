@@ -16,7 +16,6 @@ public abstract class AbstractCommand implements CommandExecutor {
 	static {
 		confContext = new ConfigurationContext();
 		listener = new EventListener();
-		confContext.AddObserver(PluginDeposit.plugin);
 		listener.addObservers(PluginDeposit.plugin);
 	}
 	
