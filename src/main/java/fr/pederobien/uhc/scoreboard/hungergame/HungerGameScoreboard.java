@@ -2,10 +2,10 @@ package fr.pederobien.uhc.scoreboard.hungergame;
 
 import java.util.List;
 
-import fr.pederobien.uhc.managers.ScoreboardManager;
+import fr.pederobien.uhc.scoreboard.AbstractScoreboard;
 import fr.pederobien.uhc.task.TimeTask;
 
-public class HungerGameScoreboard implements IHGScoreboard {
+public class HungerGameScoreboard extends AbstractScoreboard implements IHGScoreboard {
 	private IScoreboardState initial;
 	private IScoreboardState before;
 	private IScoreboardState after;
@@ -25,11 +25,6 @@ public class HungerGameScoreboard implements IHGScoreboard {
 		stop = new StopState(this);
 		
 		current = initial;
-	}
-	
-	@Override
-	public void update() {
-		ScoreboardManager.setPlayersScoreboardWithCurrentLocation(this);
 	}
 
 	@Override
