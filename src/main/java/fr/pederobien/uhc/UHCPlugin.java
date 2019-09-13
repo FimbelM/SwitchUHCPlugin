@@ -2,10 +2,7 @@ package fr.pederobien.uhc;
 
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -55,23 +52,8 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 	}
 
 	@Override
-	public void onPlayerDie(PlayerDeathEvent event) {
-		
-	}
-
-	@Override
-	public void onPlayerQuit(PlayerQuitEvent event) {
-		
-	}
-
-	@Override
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
 		movePlayer(event.getPlayer());
-	}
-
-	@Override
-	public void onPlayerMove(PlayerMoveEvent event) {
-		
 	}
 	
 	private void movePlayer(Player player) {
