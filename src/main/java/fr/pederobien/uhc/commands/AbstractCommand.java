@@ -9,10 +9,11 @@ import fr.pederobien.uhc.PluginDeposit;
 import fr.pederobien.uhc.conf.IConfigurationContext;
 import fr.pederobien.uhc.conf.configurations.ConfigurationContext;
 import fr.pederobien.uhc.world.EventListener;
+import fr.pederobien.uhc.world.IListener;
 
 public abstract class AbstractCommand implements CommandExecutor {
 	protected static IConfigurationContext confContext;
-	public static EventListener listener;
+	public static IListener listener;
 	
 	static {
 		confContext = new ConfigurationContext();
