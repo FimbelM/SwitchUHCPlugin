@@ -19,7 +19,6 @@ public class StartCommand extends AbstractGameCommand {
 			if (TeamsManager.getNumberOfPlayerInTeam() != PlayerManager.getNumberOfPlayer())
 				sendMessageToSender(sender, "There are players that are not in a team");
 			else {
-				listener.addObservers(confContext);
 				confContext.initiate();
 				confContext.start();
 			}
