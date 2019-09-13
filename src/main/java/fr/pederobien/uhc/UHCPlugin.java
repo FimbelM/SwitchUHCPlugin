@@ -21,13 +21,16 @@ import fr.pederobien.uhc.commands.team.RemoveAllTeamCommand;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
+import fr.pederobien.uhc.observer.IObsGame;
 import fr.pederobien.uhc.observer.IObsListener;
 
-public class UHCPlugin extends JavaPlugin implements IObsListener {
+public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 
 	@Override
 	public void onEnable() {
 		getLogger().info("UHC plugin enable");
+		
+		PluginDeposit.plugin = this;
 		
 		new PauseCommand(this, "pausegame");
 		new StartCommand(this, "startgame");
@@ -39,9 +42,6 @@ public class UHCPlugin extends JavaPlugin implements IObsListener {
 		new SpawnConfigurationCommand(this, "spawn");
 		
 		getServer().getPluginManager().registerEvents(AbstractCommand.listener, this);
-		AbstractCommand.listener.addObservers(this);
-		
-		PluginDeposit.plugin = this;
 	}
 
 	@Override
@@ -77,5 +77,15 @@ public class UHCPlugin extends JavaPlugin implements IObsListener {
 	private void movePlayer(Player player) {
 		TeamsManager.teleporte(player.getName(), WorldManager.getSpawnOnJoin());
 		PlayerManager.setGameModeOfPlayer(player, GameMode.ADVENTURE);
+	}
+	
+	@Override
+	public void onStart() {
+		AbstractCommand.listener.removeObservers(this);
+	}
+	
+	@Override
+	public void onStop() {
+		AbstractCommand.listener.addObservers(this);
 	}
 }

@@ -10,6 +10,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.game.IGame;
+import fr.pederobien.uhc.observer.IObsGame;
 
 public class ConfigurationContext implements IConfiguration, IGame {
 	private IConfiguration configuration;
@@ -45,6 +46,16 @@ public class ConfigurationContext implements IConfiguration, IGame {
 	@Override
 	public void relaunch() {
 		getGame().relaunch();
+	}
+	
+	@Override
+	public void AddObserver(IObsGame obs) {
+		getGame().AddObserver(obs);
+	}
+	
+	@Override
+	public void removeObserver(IObsGame obs) {
+		getGame().removeObserver(obs);
 	}
 	
 	@Override

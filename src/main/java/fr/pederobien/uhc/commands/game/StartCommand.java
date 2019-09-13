@@ -4,7 +4,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.pederobien.uhc.PluginDeposit;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 
@@ -20,7 +19,6 @@ public class StartCommand extends AbstractGameCommand {
 			if (TeamsManager.getNumberOfPlayerInTeam() != PlayerManager.getNumberOfPlayer())
 				sendMessageToSender(sender, "There are players that are not in a team");
 			else {
-				listener.removeObservers(PluginDeposit.plugin);
 				listener.addObservers(confContext);
 				confContext.initiate();
 				confContext.start();

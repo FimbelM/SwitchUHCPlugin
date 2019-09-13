@@ -5,13 +5,20 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import fr.pederobien.uhc.PluginDeposit;
 import fr.pederobien.uhc.conf.configurations.ConfigurationContext;
 import fr.pederobien.uhc.world.EventListener;
 
 public abstract class AbstractCommand implements CommandExecutor {
-	protected static ConfigurationContext confContext = new ConfigurationContext();
-
-	public static EventListener listener = new EventListener();
+	protected static ConfigurationContext confContext;
+	public static EventListener listener;
+	
+	static {
+		confContext = new ConfigurationContext();
+		listener = new EventListener();
+		confContext.AddObserver(PluginDeposit.plugin);
+		listener.addObservers(PluginDeposit.plugin);
+	}
 	
 	public AbstractCommand(JavaPlugin plugin, String command) {
 		plugin.getCommand(command).setExecutor(this);

@@ -7,8 +7,9 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
+import fr.pederobien.uhc.game.AbstractGame;
 
-public class HungerGame implements IHungerGame {
+public class HungerGame extends AbstractGame implements IHungerGame {
 	private IHungerGameState initiate;
 	private IHungerGameState start;
 	private IHungerGameState playerRevive;
@@ -84,6 +85,7 @@ public class HungerGame implements IHungerGame {
 
 	@Override
 	public void start() {
+		super.start();
 		current.start();
 	}
 
@@ -99,6 +101,7 @@ public class HungerGame implements IHungerGame {
 
 	@Override
 	public void stop() {
+		super.stop();
 		current.stop();
 	}
 
