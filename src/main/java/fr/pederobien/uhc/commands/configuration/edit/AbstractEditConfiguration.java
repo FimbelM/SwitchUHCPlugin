@@ -3,16 +3,16 @@ package fr.pederobien.uhc.commands.configuration.edit;
 import java.util.HashMap;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
-import fr.pederobien.uhc.conf.configurations.ConfigurationContext;
+import fr.pederobien.uhc.conf.IConfigurationContext;
 
 public abstract class AbstractEditConfiguration implements IEditConfig {
 	private String message;
-	protected ConfigurationContext context;
+	protected IConfigurationContext context;
 	protected HashMap<String, IEdition> map;
 
 	protected abstract void setEditions();
 
-	public AbstractEditConfiguration(ConfigurationContext context) {
+	public AbstractEditConfiguration(IConfigurationContext context) {
 		this.context = context;
 		map = new HashMap<String, IEdition>();
 	}

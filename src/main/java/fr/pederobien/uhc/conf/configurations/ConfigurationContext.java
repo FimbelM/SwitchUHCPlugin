@@ -10,12 +10,14 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.PluginDeposit;
+import fr.pederobien.uhc.conf.IConfigurationContext;
 import fr.pederobien.uhc.game.IGame;
 import fr.pederobien.uhc.observer.IObsGame;
 
-public class ConfigurationContext implements IConfiguration, IGame {
+public class ConfigurationContext implements IConfigurationContext {
 	private IConfiguration configuration;
 	
+	@Override
 	public void setCurrentConfiguration(IConfiguration configuration) {
 		if (this.configuration != null)
 			getGame().removeObserver(PluginDeposit.plugin);
@@ -23,6 +25,7 @@ public class ConfigurationContext implements IConfiguration, IGame {
 		getGame().AddObserver(PluginDeposit.plugin);
 	}
 	
+	@Override
 	public IConfiguration getCurrentConfiguration() {
 		return configuration;
 	}

@@ -3,13 +3,13 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.hungergame;
 import java.io.FileNotFoundException;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.HGEditions;
-import fr.pederobien.uhc.conf.configurations.ConfigurationContext;
+import fr.pederobien.uhc.conf.IConfigurationContext;
 import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
 
 public class AsCurrent extends AbstractHGEdition {
-	private ConfigurationContext context;
+	private IConfigurationContext context;
 
-	public AsCurrent(HungerGamePersistence persistence, ConfigurationContext context) {
+	public AsCurrent(HungerGamePersistence persistence, IConfigurationContext context) {
 		super(persistence, HGEditions.AS_CURRENT);
 		this.context = context;
 	}

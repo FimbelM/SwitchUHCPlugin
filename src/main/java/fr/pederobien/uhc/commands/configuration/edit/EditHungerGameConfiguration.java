@@ -14,7 +14,7 @@ import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.NewConf
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.Rename;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.Save;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.ScoreboardRefresh;
-import fr.pederobien.uhc.conf.configurations.ConfigurationContext;
+import fr.pederobien.uhc.conf.IConfigurationContext;
 import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
 
 public class EditHungerGameConfiguration extends AbstractEditConfiguration implements IEditConfig {
@@ -34,7 +34,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 	private IEdition save;
 	private IEdition list;
 
-	public EditHungerGameConfiguration(ConfigurationContext context) {
+	public EditHungerGameConfiguration(IConfigurationContext context) {
 		super(context);
 
 		persistence = new HungerGamePersistence();

@@ -13,7 +13,7 @@ import fr.pederobien.uhc.commands.configuration.edit.editions.spawn.NewSpawn;
 import fr.pederobien.uhc.commands.configuration.edit.editions.spawn.Remove;
 import fr.pederobien.uhc.commands.configuration.edit.editions.spawn.Rename;
 import fr.pederobien.uhc.commands.configuration.edit.editions.spawn.Save;
-import fr.pederobien.uhc.conf.configurations.ConfigurationContext;
+import fr.pederobien.uhc.conf.IConfigurationContext;
 import fr.pederobien.uhc.conf.persistence.SpawnPersistence;
 
 public class EditSpawnConfiguration extends AbstractEditConfiguration implements IEditConfig {
@@ -29,7 +29,7 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 	private IEdition extract;
 	private IEdition list;
 
-	public EditSpawnConfiguration(ConfigurationContext context) {
+	public EditSpawnConfiguration(IConfigurationContext context) {
 		super(context);
 		persistence = new SpawnPersistence();
 		map = new HashMap<String, IEdition>();
