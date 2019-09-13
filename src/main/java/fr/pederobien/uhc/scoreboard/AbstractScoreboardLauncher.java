@@ -6,15 +6,15 @@ import fr.pederobien.uhc.observer.IObsTimeLine;
 import fr.pederobien.uhc.task.TimeTask;
 
 public abstract class AbstractScoreboardLauncher extends BukkitRunnable implements IObsTimeLine {
-	protected IScoreboard scoreboard;
+	private IScoreboard scoreboard;
 	protected TimeTask task;
 
 	public AbstractScoreboardLauncher(TimeTask task) {
 		this.task = task;
-		initialize();
+		scoreboard = getScoreboard();
 	}
 	
-	protected abstract void initialize();
+	protected abstract IScoreboard getScoreboard();
 
 	@Override
 	public void run() {
