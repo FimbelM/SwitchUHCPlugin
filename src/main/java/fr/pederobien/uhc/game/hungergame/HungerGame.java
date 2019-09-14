@@ -100,6 +100,7 @@ public class HungerGame extends AbstractGame implements IHungerGame {
 
 	@Override
 	public void onPlayerDie(PlayerDeathEvent event) {
+		super.onPlayerDie(event);
 		current.onPlayerDie(event);
 	}
 

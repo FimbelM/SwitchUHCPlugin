@@ -42,21 +42,21 @@ public class PlayerReviveState extends AbstractState {
 
 	@Override
 	public void onPlayerDie(PlayerDeathEvent event) {
-		super.onPlayerDie(event);
-		if (event.getEntity().getKiller() instanceof Player)
+		if (event.getEntity().getKiller() instanceof Player) {
 			event.setKeepInventory(false);
-		else
+			PlayerManager.setGameModeOfPlayer(event.getEntity(), GameMode.SPECTATOR);
+		}
+		else {
 			event.setKeepInventory(true);
+			PlayerManager.setGameModeOfPlayer(event.getEntity(), GameMode.SURVIVAL);
+		}
 	}
 
 	@Override
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
-		if (event.getPlayer().getKiller() instanceof Player) {
-			PlayerManager.setGameModeOfPlayer(event.getPlayer(), GameMode.SPECTATOR);
+		if (event.getPlayer().getKiller() instanceof Player)
 			event.setRespawnLocation(WorldManager.getSpawnOnJoin());
-		} else {
-			PlayerManager.setGameModeOfPlayer(event.getPlayer(), GameMode.SURVIVAL);
+		else
 			event.setRespawnLocation(WorldManager.getRandomlyPoint().getLocation());
-		}
 	}
 }
