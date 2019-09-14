@@ -2,6 +2,7 @@ package fr.pederobien.uhc.managers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -122,5 +123,29 @@ public class TeamsManager {
 			if (getPlayers(team).contains(player))
 				return team.getColor();
 		return null;
+	}
+	
+	public static void dispatchPlayerRandomlyInTeam() {
+		Random rand = new Random();
+		List<Player> players = PlayerManager.getPlayers();
+		List<Team> teams = TeamsManager.getTeams();
+				
+		int quotient = players.size() / teams.size();
+		int reste = players.size() % teams.size();
+		
+		for (int i = 0; i < teams.size(); i++) {
+			int maxPlayer = 0;
+			if (reste == 0)
+				maxPlayer = quotient;
+			else if (reste > 0) {
+				maxPlayer = quotient + 1;
+				reste--;
+			}
+			for (int j = 0; j < maxPlayer; j++) {
+				Player randomPlayer = players.get(rand.nextInt(players.size()));
+				TeamsManager.joinTeam(teams.get(i).getName(), randomPlayer.getName());
+				players.remove(randomPlayer);
+			}
+		}
 	}
 }
