@@ -14,8 +14,17 @@ public class PlayerDontReviveState extends AbstractState {
 	}
 	
 	@Override
-	public void pause(IHungerGameState before) {
-		game.setCurrentState(game.getPause()).pause(before);
+	public void pause() {
+		BukkitManager.broadcastMessageAsTitle("Partie suspendue");
+		taskLauncher.pause();
+		scoreboardLauncher.pause();
+	}
+	
+	@Override
+	public void relaunch() {
+		BukkitManager.broadcastMessageAsTitle("Reprise");
+		taskLauncher.relaunched();
+		scoreboardLauncher.relaunched();
 	}
 	
 	@Override
@@ -34,5 +43,7 @@ public class PlayerDontReviveState extends AbstractState {
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
 		PlayerManager.setGameModeOfPlayer(event.getPlayer(), GameMode.SPECTATOR);
 		event.setRespawnLocation(WorldManager.getSpawnOnJoin());
+		if (PlayerManager.getNumberOfPlayersOnMode(GameMode.SURVIVAL) == 1)
+			stop();
 	}
 }

@@ -30,7 +30,7 @@ public abstract class AbstractState implements IHungerGameState {
 	}
 
 	@Override
-	public void pause(IHungerGameState before) {
+	public void pause() {
 		throw new GameStateException("This method cannot be called by this state");
 	}
 

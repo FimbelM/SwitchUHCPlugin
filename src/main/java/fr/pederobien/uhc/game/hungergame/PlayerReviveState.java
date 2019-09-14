@@ -14,23 +14,32 @@ public class PlayerReviveState extends AbstractState {
 	public PlayerReviveState(IHungerGame game) {
 		super(game);
 	}
-	
+
 	@Override
-	public void pause(IHungerGameState before) {
-		game.setCurrentState(game.getPause()).pause(before);
+	public void pause() {
+		BukkitManager.broadcastMessageAsTitle("Partie suspendue");
+		taskLauncher.pause();
+		scoreboardLauncher.pause();
 	}
-	
+
+	@Override
+	public void relaunch() {
+		BukkitManager.broadcastMessageAsTitle("Reprise");
+		taskLauncher.relaunched();
+		scoreboardLauncher.relaunched();
+	}
+
 	@Override
 	public void stop() {
 		game.setCurrentState(game.getStop()).stop();
 	}
-	
+
 	@Override
 	public void time() {
 		BukkitManager.broadcastMessageAsTitle("Plus de résurrection", "red");
 		game.setCurrentState(game.getPlayerDontRevive());
 	}
-	
+
 	@Override
 	public void onPlayerDie(PlayerDeathEvent event) {
 		super.onPlayerDie(event);
@@ -39,10 +48,15 @@ public class PlayerReviveState extends AbstractState {
 		else
 			event.setKeepInventory(true);
 	}
-	
+
 	@Override
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
-		PlayerManager.setGameModeOfPlayer(event.getPlayer(), GameMode.SURVIVAL);
-		event.setRespawnLocation(WorldManager.getRandomlyPoint().getLocation());
+		if (event.getPlayer().getKiller() instanceof Player) {
+			PlayerManager.setGameModeOfPlayer(event.getPlayer(), GameMode.SPECTATOR);
+			event.setRespawnLocation(WorldManager.getSpawnOnJoin());
+		} else {
+			PlayerManager.setGameModeOfPlayer(event.getPlayer(), GameMode.SURVIVAL);
+			event.setRespawnLocation(WorldManager.getRandomlyPoint().getLocation());
+		}
 	}
 }

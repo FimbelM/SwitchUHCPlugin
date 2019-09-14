@@ -20,8 +20,6 @@ public interface IHungerGame extends IGame, IObsTimeLine {
 
 	IHungerGameState getHungerGame();
 
-	IHungerGameState getPause();
-
 	IHungerGameState getStop();
 
 	HungerGameConfiguration getConfiguration();

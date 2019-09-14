@@ -15,7 +15,6 @@ public class HungerGame extends AbstractGame implements IHungerGame {
 	private IHungerGameState playerRevive;
 	private IHungerGameState playerDontRevive;
 	private IHungerGameState hungerGame;
-	private IHungerGameState pause;
 	private IHungerGameState stop;
 	private IHungerGameState current;
 	private HungerGameConfiguration configuration;
@@ -28,7 +27,6 @@ public class HungerGame extends AbstractGame implements IHungerGame {
 		playerRevive = new PlayerReviveState(this);
 		playerDontRevive = new PlayerDontReviveState(this);
 		hungerGame = new HungerGameState(this);
-		pause = new PauseState(this);
 		stop = new StopState(this);
 		current = initiate;		
 	}
@@ -69,11 +67,6 @@ public class HungerGame extends AbstractGame implements IHungerGame {
 	}
 
 	@Override
-	public IHungerGameState getPause() {
-		return pause;
-	}
-
-	@Override
 	public IHungerGameState getStop() {
 		return stop;
 	}
@@ -91,7 +84,7 @@ public class HungerGame extends AbstractGame implements IHungerGame {
 
 	@Override
 	public void pause() {
-		current.pause(current);
+		current.pause();
 	}
 
 	@Override

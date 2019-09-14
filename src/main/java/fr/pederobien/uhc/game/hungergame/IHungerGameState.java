@@ -9,7 +9,7 @@ public interface IHungerGameState extends IObsListener, IObsTimeLine {
 
 	void start();
 
-	void pause(IHungerGameState before);
+	void pause();
 
 	void relaunch();
 
