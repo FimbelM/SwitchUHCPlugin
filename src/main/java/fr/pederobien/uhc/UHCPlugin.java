@@ -15,19 +15,30 @@ import fr.pederobien.uhc.commands.game.StopCommand;
 import fr.pederobien.uhc.commands.team.AddToRandomTeamCommand;
 import fr.pederobien.uhc.commands.team.CreateTeamCommand;
 import fr.pederobien.uhc.commands.team.RemoveAllTeamCommand;
+import fr.pederobien.uhc.conf.IConfigurationContext;
+import fr.pederobien.uhc.conf.configurations.ConfigurationContext;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
 import fr.pederobien.uhc.observer.IObsGame;
 import fr.pederobien.uhc.observer.IObsListener;
+import fr.pederobien.uhc.world.EventListener;
+import fr.pederobien.uhc.world.IListener;
 
 public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
-
+	private IConfigurationContext context;
+	private IListener listener;
+	
 	@Override
 	public void onEnable() {
 		getLogger().info("UHC plugin enable");
 		
 		PluginDeposit.plugin = this;
+		context = new ConfigurationContext();
+		listener = new EventListener();
+		
+		AbstractCommand.setConfigurationContext(context);
+		AbstractCommand.setListener(listener);
 		
 		new PauseCommand(this, "pausegame");
 		new StartCommand(this, "startgame");
@@ -38,7 +49,7 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 		new HungerGameConfigurationCommand(this, "hg");
 		new SpawnConfigurationCommand(this, "spawn");
 		
-		getServer().getPluginManager().registerEvents(AbstractCommand.listener, this);
+		getServer().getPluginManager().registerEvents(listener, this);
 	}
 
 	@Override
@@ -63,11 +74,13 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 	
 	@Override
 	public void onStart() {
-		AbstractCommand.listener.removeObservers(this);
+		listener.removeObservers(this);
+		listener.addObservers(context);
 	}
 	
 	@Override
 	public void onStop() {
-		AbstractCommand.listener.addObservers(this);
+		listener.addObservers(this);
+		listener.removeObservers(context);
 	}
 }
