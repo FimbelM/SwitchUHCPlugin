@@ -3,6 +3,11 @@ package fr.pederobien.uhc.game;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
+import org.bukkit.event.entity.PlayerDeathEvent;
+
+import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.observer.IObsGame;
 
 public abstract class AbstractGame implements IGame {
@@ -10,6 +15,12 @@ public abstract class AbstractGame implements IGame {
 	
 	public AbstractGame() {
 		observers = new ArrayList<IObsGame>();
+	}
+	
+	@Override
+	public void onPlayerDie(PlayerDeathEvent event) {
+		for (Player player : PlayerManager.getPlayers())
+			player.playSound(player.getLocation(), Sound.ENTITY_WITHER_DEATH, 10, 1);
 	}
 	
 	@Override
