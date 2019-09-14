@@ -8,13 +8,13 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 public interface IObsListener {
 	
-	default void onPlayerJoin(PlayerJoinEvent event) {}
+	void onPlayerJoin(PlayerJoinEvent event);
 	
-	default void onPlayerDie(PlayerDeathEvent event) {}
+	void onPlayerDie(PlayerDeathEvent event);
 	
-	default void onPlayerQuit(PlayerQuitEvent event) {}
+	void onPlayerQuit(PlayerQuitEvent event);
 	
-	default void onPlayerRespawn(PlayerRespawnEvent event) {}
+	void onPlayerRespawn(PlayerRespawnEvent event);
 
-	default void onPlayerMove(PlayerMoveEvent event) {}
+	void onPlayerMove(PlayerMoveEvent event);
 }

@@ -1,5 +1,7 @@
 package fr.pederobien.uhc.game.hungergame;
 
+import org.bukkit.GameMode;
+
 import fr.pederobien.uhc.BukkitManager;
 import fr.pederobien.uhc.PluginDeposit;
 import fr.pederobien.uhc.managers.PlayerManager;
@@ -14,12 +16,13 @@ public class StartState extends AbstractState {
 
 	@Override
 	public void start() {
-		WorldManager.setTimeDay();
-		WorldManager.setWeatherSun();
 		PlayerManager.giveEffects("@a", "resistance", "regeneration", "saturation");
 		PlayerManager.maxFoodForPlayers();
 		PlayerManager.maxLifeToPlayers();
 		PlayerManager.removeInventoryOfPlayers();
+		PlayerManager.setGameModeOfPlayers(GameMode.SURVIVAL);
+		WorldManager.setTimeDay();
+		WorldManager.setWeatherSun();
 		WorldManager.setPVP(true);
 		WorldManager.setWorldBorderDiameter(game.getConfiguration().getInitialBorderDiameter());
 		TeamsManager.teleporteRandomlyAllTeams();
