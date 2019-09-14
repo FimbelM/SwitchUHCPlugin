@@ -144,19 +144,20 @@ public class WorldManager {
 		return getHighestBlockYAt(randomX, randomZ);
 	}
 	
-	public void createRespawnArea() {
+	public static void createRespawnArea() {
+		Location respawn = getSpawnOnRespawn();
 		for (int x = -1; x < 2; x++)
-			getBlockAt(getSpawnOnRespawn().add(new Vector(x, 0, 0))).setType(Material.BEDROCK);
-		getBlockAt(getSpawnOnRespawn().add(new Vector(0, 0, 1))).setType(Material.BEDROCK);
-		getBlockAt(getSpawnOnRespawn().add(new Vector(0, 0, -1))).setType(Material.BEDROCK);
+			getBlockAt(respawn.clone().add(new Vector(x, 0, 0))).setType(Material.BEDROCK);
+		getBlockAt(respawn.clone().add(new Vector(0, 0, 1))).setType(Material.BEDROCK);
+		getBlockAt(respawn.clone().add(new Vector(0, 0, -1))).setType(Material.BEDROCK);
 	}
 	
 	private static Location getSurfaceBlockY(Location location) {
-		Location loc = new Location(location.getWorld(), location.getX(), location.getY() - 1, location.getZ());
+		Location loc = location.clone().add(new Vector(0, -2, 0));
 		
 		while (isBlockTypeOf(getBlockAt(loc), Material.AIR, Material.VOID_AIR))
 			loc = loc.add(new Vector(0, -1, 0));
 		
-		return getBlockAt(loc.add(new Vector(0, 1, 0))).getLocation();
+		return loc;
 	}
 }

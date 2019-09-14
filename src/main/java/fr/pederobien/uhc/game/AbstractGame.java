@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 import fr.pederobien.uhc.managers.PlayerManager;
+import fr.pederobien.uhc.managers.WorldManager;
 import fr.pederobien.uhc.observer.IObsGame;
 
 public abstract class AbstractGame implements IGame {
@@ -37,6 +38,7 @@ public abstract class AbstractGame implements IGame {
 	public void start() {
 		for (IObsGame obs : observers)
 			obs.onStart();
+		WorldManager.createRespawnArea();
 	}
 	
 	@Override
