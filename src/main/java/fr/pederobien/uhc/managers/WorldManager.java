@@ -90,6 +90,10 @@ public class WorldManager {
 		border.setSize(finalDiameter, seconds);
 	}
 	
+	public static void stopBorder() {
+		border.setSize(getCurrentDiameter());
+	}
+	
 	public static void removeBorder() {
 		border.reset();
 	}
@@ -122,14 +126,14 @@ public class WorldManager {
 		return getSurfaceBlockY(getSpawnOnJoin());
 	}
 	
-	public static double getCurrentDiameter() {
+	public static Double getCurrentDiameter() {
 		return border.getSize();
 	}
 	
 	public static Block getRandomlyPoint() {
-		int minX = - (int)getCurrentDiameter()/2;
+		int minX = - getCurrentDiameter().intValue()/2 - 1;
 		int minZ = minX;
-		int maxX = (int)getCurrentDiameter()/2;
+		int maxX = getCurrentDiameter().intValue()/2 - 1;
 		int maxZ = maxX;
 		int randomX = 0;
 		int randomZ = 0;
