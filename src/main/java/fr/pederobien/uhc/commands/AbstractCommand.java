@@ -6,11 +6,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.pederobien.uhc.conf.IConfigurationContext;
-import fr.pederobien.uhc.world.IListener;
+import fr.pederobien.uhc.world.EventListener;
 
 public abstract class AbstractCommand implements CommandExecutor {
 	protected static IConfigurationContext confContext;
-	protected static IListener listener;
+	protected static EventListener listener;
 
 	public AbstractCommand(JavaPlugin plugin, String command) {
 		plugin.getCommand(command).setExecutor(this);
@@ -26,7 +26,7 @@ public abstract class AbstractCommand implements CommandExecutor {
 			AbstractCommand.confContext = confContext;
 	}
 
-	public static void setListener(IListener listener) {
+	public static void setListener(EventListener listener) {
 		if (AbstractCommand.listener == null)
 			AbstractCommand.listener = listener;
 	}
