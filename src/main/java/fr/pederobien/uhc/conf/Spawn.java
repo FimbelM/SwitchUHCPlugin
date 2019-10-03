@@ -54,7 +54,7 @@ public class Spawn {
 			getBlockFromCenter(coord).setType(config.get(coord).getMaterial());
 			getBlockFromCenter(coord).setBlockData(config.get(coord));
 		}
-		WorldManager.setSpawnOnJoin(center.getLocation().clone().add(new Vector(0, 1, 0)));
+		WorldManager.setSpawnOnJoin(getCenter().getLocation().clone().add(new Vector(0, 1, 0)));
 	}
 
 	public void remove() {

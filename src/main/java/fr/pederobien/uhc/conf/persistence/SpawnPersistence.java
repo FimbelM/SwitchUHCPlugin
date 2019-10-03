@@ -78,7 +78,7 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 			block.setAttribute("x", "" + coord.getX());
 			block.setAttribute("y", "" + coord.getY());
 			block.setAttribute("z", "" + coord.getZ());
-			block.setAttribute("blockdata", "" + spawn.getBlocks().get(coord));
+			block.setAttribute("blockdata", "" + spawn.getBlocks().get(coord).getAsString());
 			blocks.appendChild(block);
 		}
 		root.appendChild(blocks);
@@ -130,7 +130,6 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 				break;
 			}
 		}
-		System.out.println("spawn loaded");
 	}
 
 	private void load11(Node root) {
