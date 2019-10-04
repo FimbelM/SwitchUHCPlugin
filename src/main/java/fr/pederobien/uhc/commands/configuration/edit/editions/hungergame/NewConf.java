@@ -1,5 +1,8 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.hungergame;
 
+import java.util.Arrays;
+import java.util.List;
+
 import fr.pederobien.uhc.commands.configuration.edit.editions.HGEditions;
 import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
 import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
@@ -22,6 +25,16 @@ public class NewConf extends AbstractHGEdition {
 			}
 		} catch (IndexOutOfBoundsException e) {
 			return "Cannot create a new hunger game style, need the name";
+		}
+	}
+	
+	@Override
+	public List<String> getArguments(String[] subArguments) {
+		switch (subArguments.length) {
+		case 1:
+			return Arrays.asList("<name>");
+		default:
+			return null;
 		}
 	}
 }

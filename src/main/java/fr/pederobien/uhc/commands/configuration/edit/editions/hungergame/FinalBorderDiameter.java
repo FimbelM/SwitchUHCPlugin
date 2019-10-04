@@ -1,5 +1,8 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.hungergame;
 
+import java.util.Arrays;
+import java.util.List;
+
 import fr.pederobien.uhc.commands.configuration.edit.editions.HGEditions;
 import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
 
@@ -16,6 +19,16 @@ public class FinalBorderDiameter extends AbstractHGEdition {
 			return "New final border diameter " + args[1] + " defined";
 		} catch (IndexOutOfBoundsException e) {
 			return "Cannot set the final border diameter, need diameter";
+		}
+	}
+	
+	@Override
+	public List<String> getArguments(String[] subArguments) {
+		switch (subArguments.length) {
+		case 1:
+			return Arrays.asList("<finaldiameter>");
+		default:
+			return null;
 		}
 	}
 }

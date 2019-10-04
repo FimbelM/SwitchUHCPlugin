@@ -1,5 +1,8 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.hungergame;
 
+import java.util.Arrays;
+import java.util.List;
+
 import fr.pederobien.uhc.commands.configuration.edit.editions.HGEditions;
 import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
 
@@ -21,6 +24,16 @@ public class Rename extends AbstractHGEdition {
 			}
 		} catch (IndexOutOfBoundsException e) {
 			return "Cannot rename hunger game style, need the new name";
+		}
+	}
+	
+	@Override
+	public List<String> getArguments(String[] subArguments) {
+		switch (subArguments.length) {
+		case 1:
+			return Arrays.asList("<newname>");
+		default:
+			return null;
 		}
 	}
 }

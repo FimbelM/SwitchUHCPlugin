@@ -1,5 +1,7 @@
 package fr.pederobien.uhc.commands.configuration;
 
+import java.util.List;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -25,4 +27,8 @@ public class SpawnConfigurationCommand extends AbstractCommand {
 		return false;
 	}
 
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+		return spawnConfig.onTabComplete(sender, command, alias, args);
+	}
 }

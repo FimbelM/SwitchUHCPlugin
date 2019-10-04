@@ -1,6 +1,8 @@
 package fr.pederobien.uhc.commands.configuration.edit;
 
-public interface IEditConfig {
+import org.bukkit.command.TabCompleter;
+
+public interface IEditConfig extends TabCompleter {
 
 	boolean edit(String[] args);
 	

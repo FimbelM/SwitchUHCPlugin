@@ -1,5 +1,7 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.spawn;
 
+import java.util.List;
+
 import org.bukkit.block.Block;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
@@ -24,6 +26,11 @@ public abstract class AbstractSpawnEdition implements IEdition {
 	@Override
 	public String help() {
 		return edition.help();
+	}
+	
+	@Override
+	public List<String> getArguments(String[] subArguments) {
+		return null;
 	}
 
 	protected SpawnPersistence getPersistence() {
