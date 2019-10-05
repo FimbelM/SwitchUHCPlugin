@@ -1,6 +1,6 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.spawn;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.SpawnEditions;
+import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.SpawnEditions;
 import fr.pederobien.uhc.conf.persistence.SpawnPersistence;
 
 public class Current extends AbstractSpawnEdition {

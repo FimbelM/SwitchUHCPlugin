@@ -5,7 +5,7 @@ import java.util.List;
 import org.bukkit.block.Block;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
-import fr.pederobien.uhc.commands.configuration.edit.editions.SpawnEditions;
+import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.SpawnEditions;
 import fr.pederobien.uhc.conf.Spawn;
 import fr.pederobien.uhc.conf.persistence.SpawnPersistence;
 

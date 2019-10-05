@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.commands.configuration.edit.editions;
+package fr.pederobien.uhc.commands.configuration.edit.editions.enumerations;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.commands.configuration.edit.editions;
+package fr.pederobien.uhc.commands.configuration.edit.editions.enumerations;
 
 import org.bukkit.ChatColor;
 

@@ -1,6 +1,6 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.hungergame;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.HGEditions;
+import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.HGEditions;
 import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
 
 public class Current extends AbstractHGEdition {

@@ -5,7 +5,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.HGEditions;
+import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.HGEditions;
 import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
 
 public class FractionTime extends AbstractHGEdition {

@@ -2,7 +2,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.hungergame;
 
 import java.io.FileNotFoundException;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.HGEditions;
+import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.HGEditions;
 import fr.pederobien.uhc.conf.IConfigurationContext;
 import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
 

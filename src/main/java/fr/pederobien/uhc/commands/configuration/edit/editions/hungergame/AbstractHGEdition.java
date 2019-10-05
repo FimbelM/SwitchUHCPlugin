@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.HGEditions;
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
+import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.HGEditions;
 import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
 import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
 
