@@ -3,7 +3,9 @@ package fr.pederobien.uhc.conf.persistence;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-public interface IPersistence<T> {
+import fr.pederobien.uhc.conf.IName;
+
+public interface IPersistence<T extends IName> {
 	 
 	void load(String name) throws FileNotFoundException;
 	

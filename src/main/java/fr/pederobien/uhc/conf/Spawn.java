@@ -13,7 +13,7 @@ import org.bukkit.util.Vector;
 import fr.pederobien.uhc.BukkitManager;
 import fr.pederobien.uhc.managers.WorldManager;
 
-public class Spawn {
+public class Spawn implements IName {
 	public static final Spawn DEFAULT;
 	private static final Block DEFAULT_CENTER;
 	private Block center;
@@ -119,10 +119,12 @@ public class Spawn {
 		return depth;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
 
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}

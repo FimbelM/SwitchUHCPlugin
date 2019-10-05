@@ -1,6 +1,8 @@
 package fr.pederobien.uhc.conf.persistence;
 
-public abstract class AbstractConfPersistence<T> extends AbstractPersistence<T> {
+import fr.pederobien.uhc.conf.IName;
+
+public abstract class AbstractConfPersistence<T extends IName> extends AbstractPersistence<T> {
 	protected static final String GAME = ROOT + "Games/";
 	protected T configuration;
 

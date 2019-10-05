@@ -1,6 +1,7 @@
 package fr.pederobien.uhc.conf.persistence;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,9 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-public abstract class AbstractPersistence<T> implements IPersistence<T> {
+import fr.pederobien.uhc.conf.IName;
+
+public abstract class AbstractPersistence<T extends IName> implements IPersistence<T> {
 	protected static final String ROOT = "Plugins/UHCPlugin/Ressources/";
 	private DocumentBuilder builder;
 	protected boolean saved, loaded;
@@ -62,7 +65,12 @@ public abstract class AbstractPersistence<T> implements IPersistence<T> {
 		if (!file.exists()) {
 			file.mkdirs();
 			save();
-		}
+		} else
+			try {
+				load(configuration.getName());
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 	}
 
 	protected Document newDocument() {
