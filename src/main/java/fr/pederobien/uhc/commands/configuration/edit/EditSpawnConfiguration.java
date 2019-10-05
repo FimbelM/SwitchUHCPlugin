@@ -2,6 +2,8 @@ package fr.pederobien.uhc.commands.configuration.edit;
 
 import java.util.HashMap;
 
+import fr.pederobien.uhc.commands.configuration.AbstractEditConfiguration;
+import fr.pederobien.uhc.commands.configuration.IEditConfig;
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.spawn.Center;
 import fr.pederobien.uhc.commands.configuration.edit.editions.spawn.Current;
