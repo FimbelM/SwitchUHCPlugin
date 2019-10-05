@@ -7,6 +7,7 @@ import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.Current
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.FinalBorderDiameter;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.FractionTime;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.GameTime;
+import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.Help;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.InitialBorderDiameter;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.ListConf;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.Load;
@@ -17,7 +18,7 @@ import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.Scorebo
 import fr.pederobien.uhc.conf.IConfigurationContext;
 import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
 
-public class EditHungerGameConfiguration extends AbstractEditConfiguration implements IEditConfig {
+public class EditHungerGameConfiguration extends AbstractEditConfiguration {
 	private HungerGamePersistence persistence;
 
 	private IEdition borderCenter;
@@ -33,6 +34,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 	private IEdition asCurrent;
 	private IEdition save;
 	private IEdition list;
+	private IEdition help;
 
 	public EditHungerGameConfiguration(IConfigurationContext context) {
 		super(context);
@@ -52,6 +54,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 		asCurrent = new AsCurrent(persistence, context);
 		save = new Save(persistence);
 		list = new ListConf(persistence);
+		help = new Help(persistence);
 
 		setEditions();
 	}
@@ -59,6 +62,6 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration imple
 	@Override
 	protected void setEditions() {
 		addToMap(borderCenter, initialBorderDiameter, finalBorderDiameter, gameTime, fractionTime, scoreboardRefresh,
-				rename, load, newConf, current, asCurrent, save, list);
+				rename, load, newConf, current, asCurrent, save, list, help);
 	}
 }

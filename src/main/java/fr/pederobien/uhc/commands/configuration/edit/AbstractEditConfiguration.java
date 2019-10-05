@@ -37,7 +37,7 @@ public abstract class AbstractEditConfiguration implements IEditConfig {
 
 	@Override
 	public String getEditCommands() {
-		return new StringBuilder("Unknown command\r\n").append(getEditionsHelp()).toString();
+		return map.get("help").edit(null);
 	}
 
 	@Override
@@ -60,15 +60,6 @@ public abstract class AbstractEditConfiguration implements IEditConfig {
 	protected void addToMap(IEdition... editions) {
 		for (IEdition edition : editions)
 			map.put(edition.getLabel(), edition);
-	}
-
-	private String getEditionsHelp() {
-		String help = "List of existing commands\r\n";
-		for (String label : map.keySet()) {
-			help += map.get(label).help();
-			help += "\r\n";
-		}
-		return help;
 	}
 	
 	protected List<String> filter(List<String> list, String filter) {
