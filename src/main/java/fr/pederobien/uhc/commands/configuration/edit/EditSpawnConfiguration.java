@@ -9,6 +9,7 @@ import fr.pederobien.uhc.commands.configuration.edit.editions.spawn.Center;
 import fr.pederobien.uhc.commands.configuration.edit.editions.spawn.Current;
 import fr.pederobien.uhc.commands.configuration.edit.editions.spawn.Dimensions;
 import fr.pederobien.uhc.commands.configuration.edit.editions.spawn.Extract;
+import fr.pederobien.uhc.commands.configuration.edit.editions.spawn.Help;
 import fr.pederobien.uhc.commands.configuration.edit.editions.spawn.Launch;
 import fr.pederobien.uhc.commands.configuration.edit.editions.spawn.ListSpawn;
 import fr.pederobien.uhc.commands.configuration.edit.editions.spawn.NewSpawn;
@@ -30,6 +31,7 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 	private IEdition remove;
 	private IEdition extract;
 	private IEdition list;
+	private IEdition help;
 
 	public EditSpawnConfiguration(IConfigurationContext context) {
 		super(context);
@@ -46,12 +48,13 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 		remove = new Remove(persistence);
 		extract = new Extract(persistence);
 		list = new ListSpawn(persistence);
-
+		help = new Help(persistence);
+		
 		setEditions();
 	}
 
 	@Override
 	protected void setEditions() {
-		addToMap(center, dimensions, rename, current, newSpawn, launch, save, remove, extract, list);
+		addToMap(center, dimensions, rename, current, newSpawn, launch, save, remove, extract, list, help);
 	}
 }
