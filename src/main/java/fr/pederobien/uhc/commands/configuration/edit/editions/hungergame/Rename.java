@@ -15,12 +15,13 @@ public class Rename extends AbstractHGEdition {
 	@Override
 	public String edit(String[] args) {
 		try {
-			if (getPersistence().exist(args[1]))
-				return "A style with name " + args[1] + " already exist";
+			String newName = args[0];
+			if (getPersistence().exist(newName))
+				return "Cannot rename hunger game style " + getConf().getName() + " as " + newName + ", style already exist";
 			else {
 				String oldName = getConf().getName();
-				getConf().setName(args[1]);
-				return "Configuration " + oldName + " renamed " + args[1];
+				getConf().setName(newName);
+				return "Configuration " + oldName + " renamed as " + newName;
 			}
 		} catch (IndexOutOfBoundsException e) {
 			return "Cannot rename hunger game style, need the new name";

@@ -13,18 +13,16 @@ public class Help extends AbstractSpawnEdition {
 
 	@Override
 	public String edit(String[] args) {
-		if (args != null && args.length > 0) {
-			SpawnEditions edition = SpawnEditions.find(args[0]);
-			if (edition != null)
-				return edition.help();
+		try {
+			return SpawnEditions.find(args[0]).help();
+		} catch (IndexOutOfBoundsException | NullPointerException e){
+			String help = "List of existing commands\r\n";
+			for (SpawnEditions edition : SpawnEditions.values()) {
+				help += edition.help();
+				help += "\r\n";
+			}
+			return help;
 		}
-		
-		String help = "spawn - List of existing commands\r\n";
-		for (SpawnEditions edition : SpawnEditions.values()) {
-			help += edition.help();
-			help += "\r\n";
-		}
-		return help;
 	}
 	
 	@Override

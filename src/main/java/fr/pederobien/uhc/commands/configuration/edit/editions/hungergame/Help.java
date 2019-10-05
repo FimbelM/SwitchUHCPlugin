@@ -13,17 +13,16 @@ public class Help extends AbstractHGEdition {
 
 	@Override
 	public String edit(String[] args) {
-		if (args != null && args.length > 0) {
-			HGEditions edition = HGEditions.find(args[1]);
-			if (edition != null)
-				return edition.help();
+		try {
+			return HGEditions.find(args[0]).help();
+		} catch (IndexOutOfBoundsException | NullPointerException e){
+			String help = "List of existing commands\r\n";
+			for (HGEditions edition : HGEditions.values()) {
+				help += edition.help();
+				help += "\r\n";
+			}
+			return help;
 		}
-		String help = "List of existing commands\r\n";
-		for (HGEditions edition : HGEditions.values()) {
-			help += edition.help();
-			help += "\r\n";
-		}
-		return help;
 	}
 	
 	@Override

@@ -16,12 +16,12 @@ public class Load extends AbstractHGEdition {
 	public String edit(String[] args) {
 		try {
 			getPersistence().save();
-			getPersistence().load(args[1]);
-			return "New configuration " + getPersistence().get().getName() + " loaded";
+			getPersistence().load(args[0]);
+			return "Hunger game style loaded : " + getPersistence().get().getName();
 		} catch (IndexOutOfBoundsException e) {
 			return "Cannot load hunger game style, need the name";
 		} catch (FileNotFoundException e) {
-			return "Cannot load style " + args[1] + ", style does not exist";
+			return "Cannot load style " + args[0] + ", style does not exist";
 		}
 	}
 	

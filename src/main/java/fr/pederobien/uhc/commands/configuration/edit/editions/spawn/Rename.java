@@ -15,12 +15,13 @@ public class Rename extends AbstractSpawnEdition {
 	@Override
 	public String edit(String[] args) {
 		try {
-			if (getPersistence().exist(args[1]))
-				return "A spawn with name " + args[1] + " already exist";
+			String newName = args[0];
+			if (getPersistence().exist(newName))
+				return "Cannot rename spawn " + getSpawn().getName() + " as " + newName + ", spawn already exist";
 			else {
 				String oldName = getSpawn().getName();
-				getSpawn().setName(args[1]);
-				return "Spawn " + oldName + " renamed " + args[1];
+				getSpawn().setName(newName);
+				return "Spawn " + oldName + " renamed as " + newName;
 			}
 		} catch (IndexOutOfBoundsException e) {
 			return "Cannot rename the spaw, need the name";

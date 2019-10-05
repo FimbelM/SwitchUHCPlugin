@@ -16,11 +16,12 @@ public class NewSpawn extends AbstractSpawnEdition {
 	@Override
 	public String edit(String[] args) {
 		try {
-			if (getPersistence().exist(args[1]))
-				return "A spawn with name " + args[1] + " already exist";
+			String name = args[0];
+			getPersistence().save();
+			if (getPersistence().exist(name))
+				return "The spawn " + name + " already exist";
 			else {
-				getPersistence().save();
-				getPersistence().set(new Spawn(args[1]));
+				getPersistence().set(new Spawn(name));
 				return "New spawn " + getSpawn().getName() + " created";
 			}
 		} catch (IndexOutOfBoundsException e) {

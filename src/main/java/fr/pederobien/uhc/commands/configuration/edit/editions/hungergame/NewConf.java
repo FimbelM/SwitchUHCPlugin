@@ -16,12 +16,13 @@ public class NewConf extends AbstractHGEdition {
 	@Override
 	public String edit(String[] args) {
 		try {
+			String name = args[0];
 			getPersistence().save();
-			if (getPersistence().exist(args[1]))
-				return "A configuration with name " + args[1] + " already exist";
+			if (getPersistence().exist(name))
+				return "The hunger game style " + name + " already exist";
 			else {
-				getPersistence().set(new HungerGameConfiguration(args[1]));
-				return "New configuration " + getConf().getName() + " created";
+				getPersistence().set(new HungerGameConfiguration(name));
+				return "New hunger game style " + getConf().getName() + " created";
 			}
 		} catch (IndexOutOfBoundsException e) {
 			return "Cannot create a new hunger game style, need the name";

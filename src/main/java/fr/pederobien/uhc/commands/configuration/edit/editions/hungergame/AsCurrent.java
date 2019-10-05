@@ -16,15 +16,15 @@ public class AsCurrent extends AbstractHGEdition {
 
 	@Override
 	public String edit(String[] args) {
-		if (args.length == 1) {
+		if (args.length == 0) {
 			context.setCurrentConfiguration(getPersistence().get());
 			return "Game " + getConf().getName() + " defined as current configuration";
 		} else {
 			getPersistence().save();
 			try {
-				getPersistence().load(args[1]);
+				getPersistence().load(args[0]);
 				context.setCurrentConfiguration(getConf());
-				return getConf().getName() + " defined as current configuration";
+				return "Game " + getConf().getName() + " defined as current configuration";
 			} catch (IndexOutOfBoundsException e) {
 				return "Cannot set current hunger game style as current configuration, need the name";
 			} catch (FileNotFoundException e) {

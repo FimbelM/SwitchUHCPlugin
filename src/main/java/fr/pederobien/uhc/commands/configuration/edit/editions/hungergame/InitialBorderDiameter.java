@@ -15,10 +15,12 @@ public class InitialBorderDiameter extends AbstractHGEdition {
 	@Override
 	public String edit(String[] args) {
 		try {
-			getConf().setInitialBorderDiameter(Integer.parseInt(args[1]));
-			return "New initial border diameter " + args[1] + " defined";
+			getConf().setInitialBorderDiameter(Integer.parseInt(args[0]));
+			return "Initial border diameter defined : " + getConf().getInitialBorderDiameter();
 		} catch (IndexOutOfBoundsException e) {
 			return "Cannot set the initial diameter, need diameter";
+		} catch (NumberFormatException e) {
+			return "Cannot parse initial diameter";
 		}
 	}
 	

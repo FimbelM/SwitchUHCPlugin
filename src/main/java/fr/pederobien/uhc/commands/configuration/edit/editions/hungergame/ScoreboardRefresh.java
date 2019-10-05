@@ -15,10 +15,12 @@ public class ScoreboardRefresh extends AbstractHGEdition {
 	@Override
 	public String edit(String[] args) {
 		try {
-			getConf().setScoreboardRefresh(Long.parseLong(args[1]));
+			getConf().setScoreboardRefresh(Long.parseLong(args[0]));
 			return "Scoreboard refreshed each " + getConf().getScoreboardRefresh() + " tics";
-		} catch (IndexOutOfBoundsException | NumberFormatException e) {
+		} catch (IndexOutOfBoundsException e) {
 			return "Cannot set the scoreboard refrresh value, need a number of tics";
+		} catch (NumberFormatException e) {
+			return "Cannot parse number of tics";
 		}
 	}
 	

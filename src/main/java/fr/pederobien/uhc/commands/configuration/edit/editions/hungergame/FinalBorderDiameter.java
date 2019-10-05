@@ -15,10 +15,12 @@ public class FinalBorderDiameter extends AbstractHGEdition {
 	@Override
 	public String edit(String[] args) {
 		try {
-			getConf().setFinalBorderDiameter(Integer.parseInt(args[1]));
-			return "New final border diameter " + args[1] + " defined";
+			getConf().setFinalBorderDiameter(Integer.parseInt(args[0]));
+			return "Final border diameter defined : " + getConf().getFinalBorderDiameter();
 		} catch (IndexOutOfBoundsException e) {
 			return "Cannot set the final border diameter, need diameter";
+		} catch (NumberFormatException e) {
+			return "Cannot parse final diameter";
 		}
 	}
 	

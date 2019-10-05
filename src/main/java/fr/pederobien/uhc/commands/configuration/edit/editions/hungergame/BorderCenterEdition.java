@@ -15,10 +15,12 @@ public class BorderCenterEdition extends AbstractHGEdition {
 	@Override
 	public String edit(String[] args) {
 		try {
-			getConf().setBorderCenter(args[1], args[2]);
-			return "New border center : " + args[1] + " " + args[2] + " defined";
+			getConf().setBorderCenter(args[0], args[1]);
+			return "Border center defined in : " + getConf().getBorderCenter().getX() + " " + getConf().getBorderCenter().getZ();
 		} catch (IndexOutOfBoundsException | NullPointerException e) {
 			return "Cannot set the border center, need coordinates <X> <Z>";
+		} catch (NumberFormatException e) {
+			return "Cannot parse <X> or <Z> argument";
 		}
 	}
 
