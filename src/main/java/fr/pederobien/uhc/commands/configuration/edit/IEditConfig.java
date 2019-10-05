@@ -7,6 +7,4 @@ public interface IEditConfig extends TabCompleter {
 	boolean edit(String[] args);
 	
 	String getMessage();
-	
-	String getEditCommands();
 }

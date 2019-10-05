@@ -22,8 +22,6 @@ public class HungerGameConfigurationCommand extends AbstractCommand {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (hungergameConfig.edit(args))
 			sendMessageToSender(sender, hungergameConfig.getMessage());
-		else
-			sendMessageToSender(sender, hungergameConfig.getEditCommands());
 		return false;
 	}
 

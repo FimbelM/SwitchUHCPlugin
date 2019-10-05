@@ -22,8 +22,6 @@ public class SpawnConfigurationCommand extends AbstractCommand {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (spawnConfig.edit(args))
 			sendMessageToSender(sender, spawnConfig.getMessage());
-		else
-			sendMessageToSender(sender, spawnConfig.getEditCommands());
 		return false;
 	}
 

@@ -36,11 +36,6 @@ public abstract class AbstractEditConfiguration implements IEditConfig {
 	}
 
 	@Override
-	public String getEditCommands() {
-		return map.get("help").edit(null);
-	}
-
-	@Override
 	public String getMessage() {
 		return message;
 	}
