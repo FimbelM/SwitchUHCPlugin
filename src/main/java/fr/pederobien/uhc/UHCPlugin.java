@@ -10,6 +10,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.pederobien.uhc.commands.AbstractCommand;
+import fr.pederobien.uhc.commands.configuration.BlockedexConfigurationCommand;
 import fr.pederobien.uhc.commands.configuration.HungerGameConfigurationCommand;
 import fr.pederobien.uhc.commands.configuration.SpawnConfigurationCommand;
 import fr.pederobien.uhc.commands.game.PauseCommand;
@@ -52,6 +53,7 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 		new RemoveAllTeamCommand(this, "teamremoveall");
 		new HungerGameConfigurationCommand(this, "hg");
 		new SpawnConfigurationCommand(this, "spawn");
+		new BlockedexConfigurationCommand(this, "bd");
 	}
 
 	@Override

@@ -29,3 +29,6 @@ commands:
   spawn:
     description:
     permission: UHCPlugin.spawn
+  bd:
+    description:
+    permission: UHCPlugin.bd
