@@ -14,29 +14,15 @@ public class HungerGameConfiguration extends AbstractConfiguration {
 	private static final Block DEFAULT_CENTER = WorldManager.getHighestBlockYAt(0, 0);
 	private static final Double DEFAULT_INITIAL_BORDER_SIZE = new Double(2000);
 	private static final Double DEFAULT_FINAL_BORDER_SIZE = new Double(10);
-	private static final LocalTime DEFAULT_GAME_TIME = LocalTime.of(2, 0, 0);
 	private static final LocalTime DEFAULT_FRACTION_TIME = LocalTime.of(0, 45, 0);
-	private static final Long DEFAULT_SCOREBOARD_REFRESH = new Long(5);
 	private Block borderCenter;
 	private Double initialBorderDiameter, finalBorderDiameter;
-	private LocalTime gameTime;
 	private LocalTime fractionTime;
-	private Long scoreboardRefresh;
 
 	public HungerGameConfiguration(String name) {
 		setName(name);
 		setTeams(new ArrayList<Team>());
 		setGame(new HungerGame(this));
-	}
-	
-	@Override
-	public Long getScoreboardRefresh() {
-		return scoreboardRefresh == null ? DEFAULT_SCOREBOARD_REFRESH : scoreboardRefresh;
-	}
-
-	@Override
-	public void setScoreboardRefresh(Long refresh) {
-		this.scoreboardRefresh = refresh;
 	}
 
 	public Block getBorderCenter() {
@@ -65,14 +51,6 @@ public class HungerGameConfiguration extends AbstractConfiguration {
 
 	public void setFinalBorderDiameter(double finalBorderDiameter) {
 		this.finalBorderDiameter = finalBorderDiameter;
-	}
-
-	public LocalTime getGameTime() {
-		return gameTime == null ? DEFAULT_GAME_TIME : gameTime;
-	}
-
-	public void setGameTime(LocalTime gameTime) {
-		this.gameTime = gameTime;
 	}
 
 	public LocalTime getFractionTime() {

@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.conf.configurations;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -16,7 +17,7 @@ import fr.pederobien.uhc.observer.IObsGame;
 
 public class ConfigurationContext implements IConfigurationContext {
 	private IConfiguration configuration;
-	
+
 	@Override
 	public void setCurrentConfiguration(IConfiguration configuration) {
 		if (this.configuration != null)
@@ -24,7 +25,7 @@ public class ConfigurationContext implements IConfigurationContext {
 		this.configuration = configuration;
 		getGame().AddObserver(PluginDeposit.plugin);
 	}
-	
+
 	@Override
 	public IConfiguration getCurrentConfiguration() {
 		return configuration;
@@ -54,17 +55,17 @@ public class ConfigurationContext implements IConfigurationContext {
 	public void relaunch() {
 		getGame().relaunch();
 	}
-	
+
 	@Override
 	public void AddObserver(IObsGame obs) {
 		getGame().AddObserver(obs);
 	}
-	
+
 	@Override
 	public void removeObserver(IObsGame obs) {
 		getGame().removeObserver(obs);
 	}
-	
+
 	@Override
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		getGame().onPlayerJoin(event);
@@ -123,5 +124,15 @@ public class ConfigurationContext implements IConfigurationContext {
 	@Override
 	public void setScoreboardRefresh(Long refresh) {
 		configuration.setScoreboardRefresh(refresh);
+	}
+
+	@Override
+	public LocalTime getGameTime() {
+		return configuration.getGameTime();
+	}
+
+	@Override
+	public void setGameTime(LocalTime gameTime) {
+		configuration.setGameTime(gameTime);
 	}
 }

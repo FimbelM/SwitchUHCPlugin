@@ -9,4 +9,14 @@ public abstract class AbstractConfPersistence<T extends IName> extends AbstractP
 	public AbstractConfPersistence(T configuration) {
 		this.configuration = configuration;
 	}
+	
+	@Override
+	public T get() {
+		return configuration;
+	}
+	
+	@Override
+	public void set(T elt) {
+		configuration = elt;
+	}
 }

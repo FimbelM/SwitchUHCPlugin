@@ -83,16 +83,6 @@ public class HungerGamePersistence extends AbstractConfPersistence<HungerGameCon
 	}
 
 	@Override
-	public HungerGameConfiguration get() {
-		return configuration;
-	}
-
-	@Override
-	public void set(HungerGameConfiguration configuration) {
-		this.configuration = configuration;
-	}
-
-	@Override
 	public List<String> list() {
 		return getList(HUNGER_GAME);
 	}
@@ -135,11 +125,12 @@ public class HungerGamePersistence extends AbstractConfPersistence<HungerGameCon
 			}
 		}
 	}
-	
+
 	protected void show() {
 		System.out.println("Name : " + configuration.getName());
 		System.out.println("Border");
-		System.out.println("\tCenter : " + configuration.getBorderCenter().getX() + " " + configuration.getBorderCenter().getZ());
+		System.out.println(
+				"\tCenter : " + configuration.getBorderCenter().getX() + " " + configuration.getBorderCenter().getZ());
 		System.out.println("\tDiameter");
 		System.out.println("\t\tInitial : " + configuration.getInitialBorderDiameter());
 		System.out.println("\t\tFinal : " + configuration.getFinalBorderDiameter());

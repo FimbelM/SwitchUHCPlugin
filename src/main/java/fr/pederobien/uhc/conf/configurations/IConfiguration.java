@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.conf.configurations;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import org.bukkit.scoreboard.Team;
@@ -16,6 +17,10 @@ public interface IConfiguration extends IName {
 	void setTeams(List<Team> teams);
 
 	Long getScoreboardRefresh();
-	
+
 	void setScoreboardRefresh(Long refresh);
+
+	LocalTime getGameTime();
+
+	void setGameTime(LocalTime gameTime);
 }
