@@ -1,6 +1,5 @@
 package fr.pederobien.uhc.commands.configuration.edit;
 
-import fr.pederobien.uhc.commands.configuration.AbstractEditConfiguration;
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.AsCurrent;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.BorderCenterEdition;

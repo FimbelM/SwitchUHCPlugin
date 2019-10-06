@@ -1,5 +1,7 @@
 package fr.pederobien.uhc.commands.configuration;
 
+import java.util.List;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -7,7 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import fr.pederobien.uhc.commands.AbstractCommand;
 
 public class BlockedexConfigurationCommand extends AbstractCommand {
-
+	
 	public BlockedexConfigurationCommand(JavaPlugin plugin, String command) {
 		super(plugin, command);
 	}
@@ -17,4 +19,8 @@ public class BlockedexConfigurationCommand extends AbstractCommand {
 		return false;
 	}
 	
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+		return super.onTabComplete(sender, command, alias, args);
+	}
 }

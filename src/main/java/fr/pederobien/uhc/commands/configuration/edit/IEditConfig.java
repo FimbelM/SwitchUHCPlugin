@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.commands.configuration;
+package fr.pederobien.uhc.commands.configuration.edit;
 
 import org.bukkit.command.TabCompleter;
 

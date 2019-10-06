@@ -8,6 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.pederobien.uhc.commands.AbstractCommand;
 import fr.pederobien.uhc.commands.configuration.edit.EditSpawnConfiguration;
+import fr.pederobien.uhc.commands.configuration.edit.IEditConfig;
 
 public class SpawnConfigurationCommand extends AbstractCommand {
 	private IEditConfig spawnConfig;
