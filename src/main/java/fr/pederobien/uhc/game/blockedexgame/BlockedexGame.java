@@ -83,26 +83,26 @@ public class BlockedexGame extends AbstractGame implements IBlockedexGame {
 
 	@Override
 	public void onPlayerJoin(PlayerJoinEvent event) {
-
+		current.onPlayerJoin(event);
 	}
 
 	@Override
 	public void onPlayerQuit(PlayerQuitEvent event) {
-
+		current.onPlayerQuit(event);
 	}
 
 	@Override
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
-
+		current.onPlayerRespawn(event);
 	}
 
 	@Override
 	public void onPlayerMove(PlayerMoveEvent event) {
-
+		current.onPlayerMove(event);
 	}
 
 	@Override
 	public void time() {
-
+		current.time();
 	}
 }
