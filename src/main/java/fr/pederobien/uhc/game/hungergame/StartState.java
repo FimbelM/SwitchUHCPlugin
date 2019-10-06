@@ -8,7 +8,7 @@ import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
 
-public class StartState extends AbstractState {
+public class StartState extends AbstractHungerGameState {
 
 	public StartState(IHungerGame game) {
 		super(game);

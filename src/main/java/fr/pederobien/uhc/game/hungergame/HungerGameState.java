@@ -8,12 +8,12 @@ import fr.pederobien.uhc.BukkitManager;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.WorldManager;
 
-public class HungerGameState extends AbstractState {
+public class HungerGameState extends AbstractHungerGameState {
 
 	public HungerGameState(IHungerGame game) {
 		super(game);
 	}
-	
+
 	@Override
 	public void pause() {
 		BukkitManager.broadcastMessageAsTitle("Partie suspendue");
@@ -21,7 +21,7 @@ public class HungerGameState extends AbstractState {
 		taskLauncher.pause();
 		scoreboardLauncher.pause();
 	}
-	
+
 	@Override
 	public void relaunch() {
 		BukkitManager.broadcastMessageAsTitle("Reprise");
@@ -29,17 +29,17 @@ public class HungerGameState extends AbstractState {
 		taskLauncher.relaunched();
 		scoreboardLauncher.relaunched();
 	}
-	
+
 	@Override
 	public void stop() {
 		game.setCurrentState(game.getStop()).stop();
 	}
-	
+
 	@Override
 	public void onPlayerDie(PlayerDeathEvent event) {
 		PlayerManager.setGameModeOfPlayer(event.getEntity(), GameMode.SPECTATOR);
 	}
-	
+
 	@Override
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
 		event.setRespawnLocation(WorldManager.getSpawnOnJoin());

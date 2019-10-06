@@ -9,7 +9,7 @@ import fr.pederobien.uhc.BukkitManager;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.WorldManager;
 
-public class PlayerReviveState extends AbstractState {
+public class PlayerReviveState extends AbstractHungerGameState {
 
 	public PlayerReviveState(IHungerGame game) {
 		super(game);
@@ -45,8 +45,7 @@ public class PlayerReviveState extends AbstractState {
 		if (event.getEntity().getKiller() instanceof Player) {
 			event.setKeepInventory(false);
 			PlayerManager.setGameModeOfPlayer(event.getEntity(), GameMode.SPECTATOR);
-		}
-		else {
+		} else {
 			event.setKeepInventory(true);
 			PlayerManager.setGameModeOfPlayer(event.getEntity(), GameMode.SURVIVAL);
 		}

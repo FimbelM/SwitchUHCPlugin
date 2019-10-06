@@ -1,17 +1,8 @@
 package fr.pederobien.uhc.game.hungergame;
 
-import fr.pederobien.uhc.observer.IObsListener;
-import fr.pederobien.uhc.observer.IObsTimeLine;
+import fr.pederobien.uhc.game.IGameState;
 
-public interface IHungerGameState extends IObsListener, IObsTimeLine {
+public interface IHungerGameState extends IGameState {
 
-	void initiate();
-
-	void start();
-
-	void pause();
-
-	void relaunch();
-
-	void stop();
+	
 }

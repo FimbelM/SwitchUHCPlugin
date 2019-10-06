@@ -5,25 +5,25 @@ import fr.pederobien.uhc.scoreboard.hungergame.HGScoreboardLauncher;
 import fr.pederobien.uhc.task.TaskLauncher;
 import fr.pederobien.uhc.task.TimeLine;
 
-public class InitialState extends AbstractState {
-	
+public class InitialState extends AbstractHungerGameState {
+
 	public InitialState(IHungerGame game) {
 		super(game);
 	}
-	
+
 	@Override
 	public void initiate() {
 		taskLauncher = new TaskLauncher(game.getConfiguration().getGameTime(), game.getConfiguration().getFractionTime());
 		timeLine = new TimeLine(taskLauncher.getTask());
 		scoreboardLauncher = new HGScoreboardLauncher(taskLauncher.getTask());
-		
+
 		timeLine.addObserver(game.getConfiguration().getGameTime(), game);
 		timeLine.addObserver(game.getConfiguration().getFractionTime(), game);
 		timeLine.addObserver(game.getConfiguration().getGameTime(), scoreboardLauncher);
-				
+
 		WorldManager.setPVP(false);
 	}
-	
+
 	@Override
 	public void start() {
 		game.setCurrentState(game.getStart()).start();
