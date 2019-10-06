@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.game.hungergame;
+package fr.pederobien.uhc.game;
 
 public class GameStateException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
