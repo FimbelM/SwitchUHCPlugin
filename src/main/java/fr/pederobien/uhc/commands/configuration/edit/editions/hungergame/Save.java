@@ -12,6 +12,6 @@ public class Save extends AbstractHGEdition {
 	@Override
 	public String edit(String[] args) {
 		getPersistence().save();
-		return "Configuration " + getConf().getName() + " saved";
+		return "Style " + getConf().getName() + " saved";
 	}
 }
