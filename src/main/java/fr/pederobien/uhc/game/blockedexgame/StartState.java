@@ -8,6 +8,9 @@ public class StartState extends AbstractBlockedexState {
 
 	@Override
 	public void start() {
-
+		onStart();
+		taskLauncher.run(0, 20L);
+		scoreboardLauncher.run(0, game.getConfiguration().getScoreboardRefresh());
+		game.setCurrentState(game.getStarted());
 	}
 }
