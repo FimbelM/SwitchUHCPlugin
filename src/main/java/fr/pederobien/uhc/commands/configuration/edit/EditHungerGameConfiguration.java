@@ -38,9 +38,11 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration {
 
 	public EditHungerGameConfiguration(IConfigurationContext context) {
 		super(context);
+	}
 
+	@Override
+	protected void setEditions() {
 		persistence = new HungerGamePersistence();
-
 		borderCenter = new BorderCenterEdition(persistence);
 		initialBorderDiameter = new InitialBorderDiameter(persistence);
 		finalBorderDiameter = new FinalBorderDiameter(persistence);
@@ -56,11 +58,6 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration {
 		list = new ListConf(persistence);
 		help = new Help(persistence);
 
-		setEditions();
-	}
-
-	@Override
-	protected void setEditions() {
 		addToMap(borderCenter, initialBorderDiameter, finalBorderDiameter, gameTime, fractionTime, scoreboardRefresh,
 				rename, load, newConf, current, asCurrent, save, list, help);
 	}

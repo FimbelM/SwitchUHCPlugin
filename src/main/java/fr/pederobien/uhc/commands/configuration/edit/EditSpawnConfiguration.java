@@ -1,7 +1,5 @@
 package fr.pederobien.uhc.commands.configuration.edit;
 
-import java.util.HashMap;
-
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.spawn.Center;
 import fr.pederobien.uhc.commands.configuration.edit.editions.spawn.Current;
@@ -33,9 +31,12 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 
 	public EditSpawnConfiguration(IConfigurationContext context) {
 		super(context);
-		persistence = new SpawnPersistence();
-		map = new HashMap<String, IEdition>();
+	}
 
+	@Override
+	protected void setEditions() {
+		persistence = new SpawnPersistence();
+		
 		center = new Center(persistence);
 		dimensions = new Dimensions(persistence);
 		rename = new Rename(persistence);
@@ -47,12 +48,7 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 		extract = new Extract(persistence);
 		list = new ListSpawn(persistence);
 		help = new Help(persistence);
-		
-		setEditions();
-	}
 
-	@Override
-	protected void setEditions() {
 		addToMap(center, dimensions, rename, current, newSpawn, launch, save, remove, extract, list, help);
 	}
 }

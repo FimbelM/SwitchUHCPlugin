@@ -23,6 +23,7 @@ public abstract class AbstractEditConfiguration implements IEditConfig {
 	public AbstractEditConfiguration(IConfigurationContext context) {
 		this.context = context;
 		map = new HashMap<String, IEdition>();
+		setEditions();
 	}
 
 	@Override
@@ -39,7 +40,7 @@ public abstract class AbstractEditConfiguration implements IEditConfig {
 	public String getMessage() {
 		return message;
 	}
-	
+
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		IEdition edition = map.get(args[0]);
@@ -56,7 +57,7 @@ public abstract class AbstractEditConfiguration implements IEditConfig {
 		for (IEdition edition : editions)
 			map.put(edition.getLabel(), edition);
 	}
-	
+
 	protected List<String> filter(List<String> list, String filter) {
 		Predicate<String> match = str -> str.matches(filter + "(.*)");
 		return list.stream().filter(match).collect(Collectors.toList());

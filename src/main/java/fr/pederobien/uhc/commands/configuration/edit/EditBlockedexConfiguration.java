@@ -30,9 +30,12 @@ public class EditBlockedexConfiguration extends AbstractEditConfiguration {
 
 	public EditBlockedexConfiguration(IConfigurationContext context) {
 		super(context);
+	}
 
+	@Override
+	protected void setEditions() {
 		persistence = new BlockedexPersistence();
-
+		
 		gameTime = new GameTime(persistence);
 		scoreboardRefresh = new ScoreboardRefresh(persistence);
 		rename = new Rename(persistence);
@@ -43,10 +46,7 @@ public class EditBlockedexConfiguration extends AbstractEditConfiguration {
 		save = new Save(persistence);
 		list = new ListConf(persistence);
 		help = new Help(persistence);
-	}
 
-	@Override
-	protected void setEditions() {
 		addToMap(gameTime, scoreboardRefresh, rename, load, newConf, current, asCurrent, save, list, help);
 	}
 }
