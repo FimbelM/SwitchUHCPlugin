@@ -13,7 +13,7 @@ public class InitialState extends AbstractHungerGameState {
 
 	@Override
 	public void initiate() {
-		taskLauncher = new TaskLauncher(game.getConfiguration().getGameTime(), game.getConfiguration().getFractionTime());
+		taskLauncher = new TaskLauncher(game.getConfiguration().getGameTime());
 		timeLine = new TimeLine(taskLauncher.getTask());
 		scoreboardLauncher = new HGScoreboardLauncher(taskLauncher.getTask());
 
