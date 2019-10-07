@@ -12,6 +12,8 @@ public interface IBlockedexGame extends IGame, IObsTimeLine {
 	
 	IBlockedexGameState getInitiate();
 	
+	IBlockedexGameState getStarted();
+	
 	IBlockedexGameState getStart();
 	
 	IBlockedexGameState getStop();

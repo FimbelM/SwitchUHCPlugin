@@ -10,6 +10,7 @@ import fr.pederobien.uhc.game.AbstractGame;
 
 public class BlockedexGame extends AbstractGame implements IBlockedexGame {
 	private IBlockedexGameState initiate;
+	private IBlockedexGameState started;
 	private IBlockedexGameState start;
 	private IBlockedexGameState stop;
 	private IBlockedexGameState current;
@@ -19,6 +20,7 @@ public class BlockedexGame extends AbstractGame implements IBlockedexGame {
 		this.configuration = configuration;
 
 		initiate = new InitialState(this);
+		started = new StartedState(this);
 		start = new StartState(this);
 		stop = new StopState(this);
 		current = initiate;
@@ -37,6 +39,11 @@ public class BlockedexGame extends AbstractGame implements IBlockedexGame {
 	@Override
 	public IBlockedexGameState getInitiate() {
 		return initiate;
+	}
+	
+	@Override
+	public IBlockedexGameState getStarted() {
+		return started;
 	}
 
 	@Override
