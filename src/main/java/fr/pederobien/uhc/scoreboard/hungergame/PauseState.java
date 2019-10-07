@@ -9,9 +9,9 @@ public class PauseState extends AbstractHungerGameScoreboardState {
 
 	@Override
 	protected void updateEntries() {
-		addEntries(prepareTimeNoEscape(task.getTotalTime()));
+		addEntries(prepareTimeNoEscape(getTask().getTotalTime()));
 		addEntries("Temps de jeu");
-		addEntries(prepareTimeOneEscape(task.getPauseTime()));
+		addEntries(prepareTimeOneEscape(getTask().getPauseTime()));
 		addEntries("Temps de pause");
 	}
 

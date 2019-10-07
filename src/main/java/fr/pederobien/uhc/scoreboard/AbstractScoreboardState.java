@@ -4,13 +4,17 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.pederobien.uhc.task.TimeTask;
+
 public abstract class AbstractScoreboardState implements IScoreboardState {
 	private List<String> entries;
 	private String title;
+	private TimeTask task;
 
-	public AbstractScoreboardState(String title) {
+	public AbstractScoreboardState(IScoreboard scoreboard, String title) {
 		this.title = title;
 		entries = new ArrayList<String>();
+		task = scoreboard.getTask();
 	}
 
 	protected abstract void updateEntries();
@@ -45,6 +49,10 @@ public abstract class AbstractScoreboardState implements IScoreboardState {
 	@Override
 	public void stop() {
 		throw new ScoreboardStateException("This method cannot be called by this state");
+	}
+
+	protected TimeTask getTask() {
+		return task;
 	}
 
 	protected void addEntries(String score) {

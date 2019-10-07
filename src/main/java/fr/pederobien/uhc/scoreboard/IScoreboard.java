@@ -3,6 +3,7 @@ package fr.pederobien.uhc.scoreboard;
 import java.util.List;
 
 import fr.pederobien.uhc.observer.IObsTimeLine;
+import fr.pederobien.uhc.task.TimeTask;
 
 public interface IScoreboard extends IObsTimeLine {
 	
@@ -19,4 +20,6 @@ public interface IScoreboard extends IObsTimeLine {
 	void relaunched();
 	
 	void stop();
+	
+	TimeTask getTask();
 }

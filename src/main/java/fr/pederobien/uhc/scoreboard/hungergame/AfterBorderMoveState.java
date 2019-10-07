@@ -14,7 +14,7 @@ public class AfterBorderMoveState extends AbstractHungerGameScoreboardState {
 
 	@Override
 	protected void updateEntries() {
-		addEntries(prepareTimeNoEscape(task.getTotalTime()));
+		addEntries(prepareTimeNoEscape(getTask().getTotalTime()));
 		addEntries("Temps de jeu");
 		registerTeam();
 		addEntries("Rayon bordure : " + WorldManager.getCurrentDiameter().intValue() / 2);
