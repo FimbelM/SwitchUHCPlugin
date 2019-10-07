@@ -6,13 +6,13 @@ import java.util.List;
 
 import fr.pederobien.uhc.task.TimeTask;
 
-public abstract class AbstractScoreboardState implements IScoreboardState {
+public abstract class AbstractHungerGameScoreboardState implements IScoreboardState {
 	protected IHGScoreboard scoreboard;
 	private List<String> entries;
 	private String title;
 	protected static TimeTask task;
 	
-	public AbstractScoreboardState(IHGScoreboard scoreboard, String title) {
+	public AbstractHungerGameScoreboardState(IHGScoreboard scoreboard, String title) {
 		this.scoreboard = scoreboard;
 		this.title = title;
 		task = scoreboard.getTask();

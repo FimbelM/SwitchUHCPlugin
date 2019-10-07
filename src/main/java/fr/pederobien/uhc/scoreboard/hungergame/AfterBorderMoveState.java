@@ -6,12 +6,12 @@ import org.bukkit.scoreboard.Team;
 import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
 
-public class AfterBorderMoveState extends AbstractScoreboardState {
+public class AfterBorderMoveState extends AbstractHungerGameScoreboardState {
 
 	public AfterBorderMoveState(IHGScoreboard scoreboard) {
 		super(scoreboard, "Brace Yourself");
 	}
-	
+
 	@Override
 	protected void updateEntries() {
 		addEntries(prepareTimeNoEscape(task.getTotalTime()));
@@ -24,7 +24,7 @@ public class AfterBorderMoveState extends AbstractScoreboardState {
 	public void pause(IScoreboardState before) {
 		scoreboard.setCurrentState(scoreboard.getPauseState()).pause(before);
 	}
-	
+
 	@Override
 	public void stop() {
 		scoreboard.setCurrentState(scoreboard.getStopState()).stop();
