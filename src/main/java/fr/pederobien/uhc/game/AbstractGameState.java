@@ -6,7 +6,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-public abstract class AbstractState implements IGameState {
+public abstract class AbstractGameState implements IGameState {
 
 	@Override
 	public void initiate() {
