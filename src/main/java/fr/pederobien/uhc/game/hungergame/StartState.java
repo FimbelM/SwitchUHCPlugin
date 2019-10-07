@@ -28,8 +28,7 @@ public class StartState extends AbstractHungerGameState {
 		TeamsManager.teleporteRandomlyAllTeams();
 		BukkitManager.broadcastMessageAsTitle("Match à mort par équipe");
 		taskLauncher.runTaskTimer(PluginDeposit.plugin, 0, 20L);
-		scoreboardLauncher.start();
-		scoreboardLauncher.runTaskTimer(PluginDeposit.plugin, 0, game.getConfiguration().getScoreboardRefresh());
+		scoreboardLauncher.run(0, game.getConfiguration().getScoreboardRefresh());
 		game.setCurrentState(game.getPlayerRevive());
 	}
 }

@@ -1,7 +1,7 @@
-package fr.pederobien.uhc.scoreboard.hungergame;
+package fr.pederobien.uhc.scoreboard.launcher;
 
-import fr.pederobien.uhc.scoreboard.AbstractScoreboardLauncher;
 import fr.pederobien.uhc.scoreboard.IScoreboard;
+import fr.pederobien.uhc.scoreboard.hungergame.HungerGameScoreboard;
 import fr.pederobien.uhc.task.TimeTask;
 
 public class HGScoreboardLauncher extends AbstractScoreboardLauncher {

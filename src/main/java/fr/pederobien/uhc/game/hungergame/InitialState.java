@@ -1,7 +1,7 @@
 package fr.pederobien.uhc.game.hungergame;
 
 import fr.pederobien.uhc.managers.WorldManager;
-import fr.pederobien.uhc.scoreboard.hungergame.HGScoreboardLauncher;
+import fr.pederobien.uhc.scoreboard.launcher.HGScoreboardLauncher;
 import fr.pederobien.uhc.task.TaskLauncher;
 import fr.pederobien.uhc.task.TimeLine;
 

@@ -6,7 +6,12 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
+import fr.pederobien.uhc.scoreboard.launcher.IScoreboardLauncher;
+import fr.pederobien.uhc.task.TaskLauncher;
+
 public abstract class AbstractGameState implements IGameState {
+	protected static TaskLauncher taskLauncher;
+	protected static IScoreboardLauncher scoreboardLauncher;
 
 	@Override
 	public void initiate() {
