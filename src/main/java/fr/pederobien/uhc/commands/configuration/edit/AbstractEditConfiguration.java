@@ -31,6 +31,7 @@ public abstract class AbstractEditConfiguration implements IEditConfig {
 		try {
 			setMessage(map.get(args[0]).edit(Arrays.copyOfRange(args, 1, args.length)));
 		} catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+			e.printStackTrace();
 			return false;
 		}
 		return true;
