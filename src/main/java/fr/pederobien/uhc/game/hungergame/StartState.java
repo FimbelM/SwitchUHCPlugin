@@ -3,7 +3,6 @@ package fr.pederobien.uhc.game.hungergame;
 import org.bukkit.GameMode;
 
 import fr.pederobien.uhc.BukkitManager;
-import fr.pederobien.uhc.PluginDeposit;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
@@ -27,7 +26,7 @@ public class StartState extends AbstractHungerGameState {
 		WorldManager.setWorldBorderDiameter(game.getConfiguration().getInitialBorderDiameter());
 		TeamsManager.teleporteRandomlyAllTeams();
 		BukkitManager.broadcastMessageAsTitle("Match à mort par équipe");
-		taskLauncher.runTaskTimer(PluginDeposit.plugin, 0, 20L);
+		taskLauncher.run(0, 20L);
 		scoreboardLauncher.run(0, game.getConfiguration().getScoreboardRefresh());
 		game.setCurrentState(game.getPlayerRevive());
 	}
