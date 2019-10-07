@@ -22,7 +22,6 @@ public class StartState extends AbstractHungerGameState {
 		PlayerManager.setGameModeOfPlayers(GameMode.SURVIVAL);
 		WorldManager.setTimeDay();
 		WorldManager.setWeatherSun();
-		WorldManager.setPVP(true);
 		WorldManager.setWorldBorderDiameter(game.getConfiguration().getInitialBorderDiameter());
 		TeamsManager.teleporteRandomlyAllTeams();
 		BukkitManager.broadcastMessageAsTitle("Match à mort par équipe");

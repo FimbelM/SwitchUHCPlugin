@@ -1,6 +1,5 @@
 package fr.pederobien.uhc.game.hungergame;
 
-import fr.pederobien.uhc.managers.WorldManager;
 import fr.pederobien.uhc.scoreboard.launcher.HGScoreboardLauncher;
 import fr.pederobien.uhc.task.TaskLauncher;
 import fr.pederobien.uhc.task.TimeLine;
@@ -20,8 +19,6 @@ public class InitialState extends AbstractHungerGameState {
 		timeLine.addObserver(game.getConfiguration().getGameTime(), game);
 		timeLine.addObserver(game.getConfiguration().getFractionTime(), game);
 		timeLine.addObserver(game.getConfiguration().getGameTime(), scoreboardLauncher);
-
-		WorldManager.setPVP(false);
 	}
 
 	@Override

@@ -44,6 +44,8 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 
 		AbstractCommand.setConfigurationContext(context);
 		AbstractCommand.setListener(listener);
+		
+		WorldManager.setPVP(false);
 
 		new PauseCommand(this, "pausegame");
 		new StartCommand(this, "startgame");
@@ -54,6 +56,7 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 		new HungerGameConfigurationCommand(this, "hg");
 		new SpawnConfigurationCommand(this, "spawn");
 		new BlockedexConfigurationCommand(this, "bd");
+		
 	}
 
 	@Override
@@ -65,12 +68,14 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 	public void onStart() {
 		listener.removeObservers(this);
 		listener.addObservers(context);
+		WorldManager.setPVP(true);
 	}
 
 	@Override
 	public void onStop() {
 		listener.addObservers(this);
 		listener.removeObservers(context);
+		WorldManager.setPVP(false);
 	}
 
 	@Override
