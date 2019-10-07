@@ -60,6 +60,7 @@ public class Spawn implements IName {
 	public void remove() {
 		for (Coordinate coord : config.keySet())
 			getBlockFromCenter(coord).setType(Material.AIR);
+		WorldManager.setSpawnOnJoin(WorldManager.getHighestBlockYAt(0, 0).getLocation());
 	}
 
 	public void setBlocks(List<String> blocks) {
