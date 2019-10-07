@@ -8,6 +8,7 @@ public abstract class AbstractBlockedexScoreboardState extends AbstractScoreboar
 
 	public AbstractBlockedexScoreboardState(IBDScoreboard scoreboard, String title) {
 		super(scoreboard, title);
+		this.scoreboard = scoreboard;
 	}
 
 	@Override
