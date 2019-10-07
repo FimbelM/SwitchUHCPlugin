@@ -1,9 +1,5 @@
 package fr.pederobien.uhc.game.hungergame;
 
-import org.bukkit.GameMode;
-
-import fr.pederobien.uhc.managers.PlayerManager;
-import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
 
 public class StopState extends AbstractHungerGameState {
@@ -14,11 +10,8 @@ public class StopState extends AbstractHungerGameState {
 
 	@Override
 	public void stop() {
-		taskLauncher.cancel();
-		scoreboardLauncher.cancel();
+		onStop();
 		WorldManager.removeBorder();
-		PlayerManager.setGameModeOfPlayers(GameMode.ADVENTURE);
-		TeamsManager.teleporteAllPlayers(WorldManager.getSpawnOnJoin());
 		game.setCurrentState(game.getInitiate()).initiate();
 	}
 }

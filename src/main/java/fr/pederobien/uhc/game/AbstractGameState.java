@@ -8,6 +8,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.managers.PlayerManager;
+import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
 import fr.pederobien.uhc.scoreboard.launcher.IScoreboardLauncher;
 import fr.pederobien.uhc.task.ITaskLauncher;
@@ -79,5 +80,12 @@ public abstract class AbstractGameState implements IGameState {
 		PlayerManager.setGameModeOfPlayers(GameMode.SURVIVAL);
 		WorldManager.setTimeDay();
 		WorldManager.setWeatherSun();
+	}
+	
+	protected void onStop() {
+		taskLauncher.cancel();
+		scoreboardLauncher.cancel();
+		PlayerManager.setGameModeOfPlayers(GameMode.ADVENTURE);
+		TeamsManager.teleporteAllPlayers(WorldManager.getSpawnOnJoin());
 	}
 }

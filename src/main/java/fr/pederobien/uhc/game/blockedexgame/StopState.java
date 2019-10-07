@@ -8,6 +8,7 @@ public class StopState extends AbstractBlockedexState {
 
 	@Override
 	public void stop() {
-
+		onStop();
+		game.setCurrentState(game.getInitiate()).initiate();
 	}
 }
