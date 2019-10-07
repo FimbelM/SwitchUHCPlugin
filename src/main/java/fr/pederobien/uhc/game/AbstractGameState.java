@@ -1,11 +1,14 @@
 package fr.pederobien.uhc.game;
 
+import org.bukkit.GameMode;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
+import fr.pederobien.uhc.managers.PlayerManager;
+import fr.pederobien.uhc.managers.WorldManager;
 import fr.pederobien.uhc.scoreboard.launcher.IScoreboardLauncher;
 import fr.pederobien.uhc.task.ITaskLauncher;
 
@@ -66,5 +69,15 @@ public abstract class AbstractGameState implements IGameState {
 	@Override
 	public void onPlayerMove(PlayerMoveEvent event) {
 
+	}
+	
+	protected void onStart() {
+		PlayerManager.giveEffects("@a", "resistance", "regeneration", "saturation");
+		PlayerManager.maxFoodForPlayers();
+		PlayerManager.maxLifeToPlayers();
+		PlayerManager.removeInventoryOfPlayers();
+		PlayerManager.setGameModeOfPlayers(GameMode.SURVIVAL);
+		WorldManager.setTimeDay();
+		WorldManager.setWeatherSun();
 	}
 }
