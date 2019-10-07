@@ -57,6 +57,7 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 		new SpawnConfigurationCommand(this, "spawn");
 		new BlockedexConfigurationCommand(this, "bd");
 		
+		listener.addObservers(this);
 	}
 
 	@Override
