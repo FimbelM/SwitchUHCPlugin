@@ -5,19 +5,19 @@ import fr.pederobien.uhc.task.TimeTask;
 
 public interface IHGScoreboard extends IScoreboard {
 	
-	IScoreboardState getCurrentState();
+	IHGScoreboardState getCurrentState();
 	
-	IScoreboardState setCurrentState(IScoreboardState current);
+	IHGScoreboardState setCurrentState(IHGScoreboardState current);
 	
-	IScoreboardState getInitialState();
+	IHGScoreboardState getInitialState();
 	
-	IScoreboardState getBeforeBorderMoveState();
+	IHGScoreboardState getBeforeBorderMoveState();
 	
-	IScoreboardState getAfterBorderMoveState();
+	IHGScoreboardState getAfterBorderMoveState();
 	
-	IScoreboardState getPauseState();
+	IHGScoreboardState getPauseState();
 	
-	IScoreboardState getStopState();
+	IHGScoreboardState getStopState();
 		
 	TimeTask getTask();
 }

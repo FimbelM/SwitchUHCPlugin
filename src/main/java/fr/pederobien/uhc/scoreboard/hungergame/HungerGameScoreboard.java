@@ -6,12 +6,12 @@ import fr.pederobien.uhc.scoreboard.AbstractScoreboard;
 import fr.pederobien.uhc.task.TimeTask;
 
 public class HungerGameScoreboard extends AbstractScoreboard implements IHGScoreboard {
-	private IScoreboardState initial;
-	private IScoreboardState before;
-	private IScoreboardState after;
-	private IScoreboardState pause;
-	private IScoreboardState stop;
-	private IScoreboardState current;
+	private IHGScoreboardState initial;
+	private IHGScoreboardState before;
+	private IHGScoreboardState after;
+	private IHGScoreboardState pause;
+	private IHGScoreboardState stop;
+	private IHGScoreboardState current;
 	
 	private TimeTask task;
 	
@@ -63,37 +63,37 @@ public class HungerGameScoreboard extends AbstractScoreboard implements IHGScore
 	}
 
 	@Override
-	public IScoreboardState getCurrentState() {
+	public IHGScoreboardState getCurrentState() {
 		return current;
 	}
 
 	@Override
-	public IScoreboardState setCurrentState(IScoreboardState current) {
+	public IHGScoreboardState setCurrentState(IHGScoreboardState current) {
 		return this.current = current;
 	}
 
 	@Override
-	public IScoreboardState getInitialState() {
+	public IHGScoreboardState getInitialState() {
 		return initial;
 	}
 
 	@Override
-	public IScoreboardState getBeforeBorderMoveState() {
+	public IHGScoreboardState getBeforeBorderMoveState() {
 		return before;
 	}
 
 	@Override
-	public IScoreboardState getAfterBorderMoveState() {
+	public IHGScoreboardState getAfterBorderMoveState() {
 		return after;
 	}
 
 	@Override
-	public IScoreboardState getPauseState() {
+	public IHGScoreboardState getPauseState() {
 		return pause;
 	}
 
 	@Override
-	public IScoreboardState getStopState() {
+	public IHGScoreboardState getStopState() {
 		return stop;
 	}
 

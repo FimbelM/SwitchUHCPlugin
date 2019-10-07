@@ -1,7 +1,7 @@
 package fr.pederobien.uhc.scoreboard.hungergame;
 
 public class PauseState extends AbstractHungerGameScoreboardState {
-	private IScoreboardState before;
+	private IHGScoreboardState before;
 
 	public PauseState(IHGScoreboard scoreboard) {
 		super(scoreboard, "Partie Suspendue");
@@ -16,7 +16,7 @@ public class PauseState extends AbstractHungerGameScoreboardState {
 	}
 
 	@Override
-	public void pause(IScoreboardState before) {
+	public void pause(IHGScoreboardState before) {
 		this.before = before;
 	}
 

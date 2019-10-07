@@ -4,7 +4,7 @@ import java.util.List;
 
 import fr.pederobien.uhc.observer.IObsTimeLine;
 
-public interface IScoreboardState extends IObsTimeLine {
+public interface IHGScoreboardState extends IObsTimeLine {
 	
 	List<String> getEntries();
 	
@@ -12,7 +12,7 @@ public interface IScoreboardState extends IObsTimeLine {
 	
 	void start();
 		
-	void pause(IScoreboardState before);
+	void pause(IHGScoreboardState before);
 	
 	void relaunched();
 	

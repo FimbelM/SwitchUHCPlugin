@@ -21,7 +21,7 @@ public class AfterBorderMoveState extends AbstractHungerGameScoreboardState {
 	}
 
 	@Override
-	public void pause(IScoreboardState before) {
+	public void pause(IHGScoreboardState before) {
 		scoreboard.setCurrentState(scoreboard.getPauseState()).pause(before);
 	}
 
