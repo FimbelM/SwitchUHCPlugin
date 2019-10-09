@@ -38,7 +38,15 @@ public class TeamsManager {
 	}
 	
 	public static List<Player> getCollegues(Player player) {
-		return getPlayers(getTeam(player));
+		List<Player> collegues = getPlayers(getTeam(player));
+		collegues.remove(player);
+		return collegues;
+	}
+	
+	public static Player getRandomCollegue(Player player) {
+		Random rand = new Random();
+		List<Player> collegues = getCollegues(player);
+		return collegues.get(rand.nextInt(collegues.size()));
 	}
 	
 	public static Team getTeam(Player player) {
