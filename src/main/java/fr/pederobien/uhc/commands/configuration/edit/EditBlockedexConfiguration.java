@@ -11,9 +11,9 @@ import fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame.NewC
 import fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame.Rename;
 import fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame.Save;
 import fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame.ScoreboardRefresh;
+import fr.pederobien.uhc.conf.ConfigurationsFactory;
 import fr.pederobien.uhc.conf.IConfigurationContext;
 import fr.pederobien.uhc.conf.configurations.interfaces.IBlockedexConfiguration;
-import fr.pederobien.uhc.conf.persistence.BlockedexPersistence;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlockedexConfiguration> {
@@ -34,7 +34,7 @@ public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlock
 
 	@Override
 	protected IPersistence<IBlockedexConfiguration> getPersistenceImpl() {
-		return new BlockedexPersistence();
+		return ConfigurationsFactory.getInstance().getBlockedexConfiguration();
 	}
 
 	@Override

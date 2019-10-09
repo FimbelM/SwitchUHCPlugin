@@ -15,9 +15,9 @@ import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.NewConf
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.Rename;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.Save;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.ScoreboardRefresh;
+import fr.pederobien.uhc.conf.ConfigurationsFactory;
 import fr.pederobien.uhc.conf.IConfigurationContext;
 import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
-import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHungerGameConfiguration> {
@@ -42,7 +42,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHung
 
 	@Override
 	protected IPersistence<IHungerGameConfiguration> getPersistenceImpl() {
-		return new HungerGamePersistence();
+		return ConfigurationsFactory.getInstance().getHungerGamePersistence();
 	}
 
 	@Override
