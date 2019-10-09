@@ -129,7 +129,7 @@ public class TeamsManager {
 	}
 	
 	public static void teleporteRandomly(String team) {
-		teleporteTeam(team, WorldManager.getRandomlyPoint().getLocation());
+		teleporteTeam(team, WorldManager.getRandomlyPoint(WorldManager.getCurrentDiameter().intValue()).getLocation());
 	}
 	
 	public static void teleporteRandomlyAllTeams() {

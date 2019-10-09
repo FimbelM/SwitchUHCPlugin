@@ -130,16 +130,16 @@ public class WorldManager {
 		return border.getSize();
 	}
 	
-	public static Block getRandomlyPoint() {
-		int minX = - getCurrentDiameter().intValue()/2 - 1;
+	public static Block getRandomlyPoint(int bound) {
+		int minX = - bound/2 - 1;
 		int minZ = minX;
-		int maxX = getCurrentDiameter().intValue()/2 - 1;
+		int maxX = bound/2 - 1;
 		int maxZ = maxX;
 		int randomX = 0;
 		int randomZ = 0;
 		do {
-			randomX = rand.nextInt(maxX - minX + 1) + minX;
-			randomZ = rand.nextInt(maxZ - minZ + 1) + minZ;
+			randomX = rand.nextInt(maxX - minX) + minX;
+			randomZ = rand.nextInt(maxZ - minZ) + minZ;
 		} while(getBelowHighestBlockYAt(randomX, randomZ).getType().equals(Material.WATER));
 		return getHighestBlockYAt(randomX, randomZ);
 	}

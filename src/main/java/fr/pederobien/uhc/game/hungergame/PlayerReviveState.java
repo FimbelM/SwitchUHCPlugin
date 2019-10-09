@@ -56,6 +56,6 @@ public class PlayerReviveState extends AbstractHungerGameState {
 		if (event.getPlayer().getKiller() instanceof Player)
 			event.setRespawnLocation(WorldManager.getSpawnOnJoin());
 		else
-			event.setRespawnLocation(WorldManager.getRandomlyPoint().getLocation());
+			event.setRespawnLocation(WorldManager.getRandomlyPoint(WorldManager.getCurrentDiameter().intValue()).getLocation());
 	}
 }
