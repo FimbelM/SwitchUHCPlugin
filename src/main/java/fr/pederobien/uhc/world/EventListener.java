@@ -29,7 +29,6 @@ public class EventListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerDie(PlayerDeathEvent event) {
-		System.out.println("Listener : on player die");
 		for (IObsListener obs : observers)
 			obs.onPlayerDie(event);
 	}
