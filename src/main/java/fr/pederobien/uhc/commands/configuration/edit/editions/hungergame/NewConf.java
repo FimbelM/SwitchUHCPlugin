@@ -5,11 +5,12 @@ import java.util.List;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.HGEditions;
 import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
-import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
+import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
+import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class NewConf extends AbstractHGEdition {
 
-	public NewConf(HungerGamePersistence persistence) {
+	public NewConf(IPersistence<IHungerGameConfiguration> persistence) {
 		super(persistence, HGEditions.NEW);
 	}
 
@@ -28,7 +29,7 @@ public class NewConf extends AbstractHGEdition {
 			return "Cannot create a new hunger game style, need the name";
 		}
 	}
-	
+
 	@Override
 	public List<String> getArguments(String[] subArguments) {
 		switch (subArguments.length) {

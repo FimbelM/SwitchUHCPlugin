@@ -4,12 +4,13 @@ import java.io.FileNotFoundException;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.HGEditions;
 import fr.pederobien.uhc.conf.IConfigurationContext;
-import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
+import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
+import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class AsCurrent extends AbstractHGEdition {
 	private IConfigurationContext context;
 
-	public AsCurrent(HungerGamePersistence persistence, IConfigurationContext context) {
+	public AsCurrent(IPersistence<IHungerGameConfiguration> persistence, IConfigurationContext context) {
 		super(persistence, HGEditions.AS_CURRENT);
 		this.context = context;
 	}

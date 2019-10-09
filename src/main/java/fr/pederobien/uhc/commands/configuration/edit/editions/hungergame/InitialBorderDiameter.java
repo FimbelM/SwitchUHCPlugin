@@ -4,11 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.HGEditions;
-import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
+import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
+import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class InitialBorderDiameter extends AbstractHGEdition {
 
-	public InitialBorderDiameter(HungerGamePersistence persistence) {
+	public InitialBorderDiameter(IPersistence<IHungerGameConfiguration> persistence) {
 		super(persistence, HGEditions.INITIAL_BORDER_DIAMETER);
 	}
 
@@ -23,7 +24,7 @@ public class InitialBorderDiameter extends AbstractHGEdition {
 			return "Cannot parse initial diameter";
 		}
 	}
-	
+
 	@Override
 	public List<String> getArguments(String[] subArguments) {
 		switch (subArguments.length) {

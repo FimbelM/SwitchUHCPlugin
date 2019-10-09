@@ -16,10 +16,12 @@ import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.Rename;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.Save;
 import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.ScoreboardRefresh;
 import fr.pederobien.uhc.conf.IConfigurationContext;
+import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
 import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
+import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class EditHungerGameConfiguration extends AbstractEditConfiguration {
-	private HungerGamePersistence persistence;
+	private IPersistence<IHungerGameConfiguration> persistence;
 
 	private IEdition borderCenter;
 	private IEdition initialBorderDiameter;
@@ -43,6 +45,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration {
 	@Override
 	protected void setEditions() {
 		persistence = new HungerGamePersistence();
+
 		borderCenter = new BorderCenterEdition(persistence);
 		initialBorderDiameter = new InitialBorderDiameter(persistence);
 		finalBorderDiameter = new FinalBorderDiameter(persistence);

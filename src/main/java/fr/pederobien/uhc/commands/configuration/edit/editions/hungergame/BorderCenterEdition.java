@@ -4,11 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.HGEditions;
-import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
+import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
+import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class BorderCenterEdition extends AbstractHGEdition {
 
-	public BorderCenterEdition(HungerGamePersistence persistence) {
+	public BorderCenterEdition(IPersistence<IHungerGameConfiguration> persistence) {
 		super(persistence, HGEditions.BORDER_CENTER);
 	}
 

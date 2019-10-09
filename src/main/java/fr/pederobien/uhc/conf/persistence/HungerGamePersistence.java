@@ -10,8 +10,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
+import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
 
-public class HungerGamePersistence extends AbstractConfPersistence<HungerGameConfiguration> {
+public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameConfiguration> {
 	private static final String HUNGER_GAME = GAME + "HungerGame/";
 	private static final double CURRENT_VERSION = 1.0;
 

@@ -1,13 +1,14 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.hungergame;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.HGEditions;
-import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
-
 import java.util.List;
+
+import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.HGEditions;
+import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
+import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class ListConf extends AbstractHGEdition {
 
-	public ListConf(HungerGamePersistence persistence) {
+	public ListConf(IPersistence<IHungerGameConfiguration> persistence) {
 		super(persistence, HGEditions.LIST);
 	}
 
@@ -19,7 +20,7 @@ public class ListConf extends AbstractHGEdition {
 			builder.append("List of existing hunger game style (s) :\n");
 		else
 			builder.append("No existing hunger game style");
-		
+
 		for (String str : list)
 			builder.append(str.concat("\n"));
 		return builder.toString();
