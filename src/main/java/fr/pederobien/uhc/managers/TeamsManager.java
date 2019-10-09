@@ -37,6 +37,13 @@ public class TeamsManager {
 		return sum;
 	}
 	
+	public static Team getTeam(Player player) {
+		for (Team team : getTeams())
+			if (getPlayers(team).contains(player))
+				return team;
+		return null;
+	}
+	
 	public static List<Player> getTeamPlayersOnMode(Team team, GameMode mode) {
 		List<Player> players = new ArrayList<Player>();
 		for (String str : team.getEntries()) {
