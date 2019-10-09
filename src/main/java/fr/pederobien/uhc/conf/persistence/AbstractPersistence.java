@@ -19,9 +19,9 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-import fr.pederobien.uhc.conf.IName;
+import fr.pederobien.uhc.conf.IUnmodifiableName;
 
-public abstract class AbstractPersistence<T extends IName> implements IPersistence<T> {
+public abstract class AbstractPersistence<T extends IUnmodifiableName> implements IPersistence<T> {
 	protected static final String ROOT = "Plugins/UHCPlugin/Ressources/";
 	private DocumentBuilder builder;
 	protected boolean saved, loaded;

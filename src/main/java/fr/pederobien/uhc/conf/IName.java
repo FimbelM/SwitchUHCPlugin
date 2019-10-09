@@ -1,6 +1,6 @@
 package fr.pederobien.uhc.conf;
 
-public interface IName {
+public interface IName extends IUnmodifiableName {
 
-	String getName();
+	void setName(String name);
 }
