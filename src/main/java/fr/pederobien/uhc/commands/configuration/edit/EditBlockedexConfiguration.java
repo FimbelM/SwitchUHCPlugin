@@ -1,20 +1,9 @@
 package fr.pederobien.uhc.commands.configuration.edit;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
-import fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame.AsCurrent;
-import fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame.Current;
-import fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame.GameTime;
-import fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame.Help;
-import fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame.ListConf;
-import fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame.Load;
-import fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame.NewConf;
-import fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame.Rename;
-import fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame.Save;
-import fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame.ScoreboardRefresh;
-import fr.pederobien.uhc.conf.ConfigurationsFactory;
+import fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame.BlockedexEditionsFactory;
 import fr.pederobien.uhc.conf.IConfigurationContext;
 import fr.pederobien.uhc.conf.configurations.interfaces.IBlockedexConfiguration;
-import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlockedexConfiguration> {
 	private IEdition gameTime;
@@ -28,27 +17,25 @@ public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlock
 	private IEdition list;
 	private IEdition help;
 
+	private BlockedexEditionsFactory factory;
+
 	public EditBlockedexConfiguration(IConfigurationContext context) {
 		super(context);
-	}
-
-	@Override
-	protected IPersistence<IBlockedexConfiguration> getPersistenceImpl() {
-		return ConfigurationsFactory.getInstance().getBlockedexConfiguration();
+		factory = BlockedexEditionsFactory.getInstance();
 	}
 
 	@Override
 	protected void setEditions() {
-		gameTime = new GameTime(getPersistence());
-		scoreboardRefresh = new ScoreboardRefresh(getPersistence());
-		rename = new Rename(getPersistence());
-		load = new Load(getPersistence());
-		newConf = new NewConf(getPersistence());
-		current = new Current(getPersistence());
-		asCurrent = new AsCurrent(getPersistence(), context);
-		save = new Save(getPersistence());
-		list = new ListConf(getPersistence());
-		help = new Help(getPersistence());
+		gameTime = factory.createGameTimeEdition();
+		scoreboardRefresh = factory.createScoreboardRefreshEdition();
+		rename = factory.createRenameEdition();
+		load = factory.createLoadEdition();
+		newConf = factory.createNewConfEdition();
+		current = factory.createCurrentEdition();
+		asCurrent = factory.createAsCurrentEdition(context);
+		save = factory.createSaveEdition();
+		list = factory.createListEdition();
+		help = factory.createHelpEdition();
 
 		addToMap(gameTime, scoreboardRefresh, rename, load, newConf, current, asCurrent, save, list, help);
 	}
