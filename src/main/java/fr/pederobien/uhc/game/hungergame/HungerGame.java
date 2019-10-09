@@ -6,7 +6,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
+import fr.pederobien.uhc.conf.configurations.interfaces.IUnmodifiableHungerGameConfiguration;
 import fr.pederobien.uhc.game.AbstractGame;
 
 public class HungerGame extends AbstractGame implements IHungerGame {
@@ -17,20 +17,20 @@ public class HungerGame extends AbstractGame implements IHungerGame {
 	private IHungerGameState hungerGame;
 	private IHungerGameState stop;
 	private IHungerGameState current;
-	private HungerGameConfiguration configuration;
-	
-	public HungerGame(HungerGameConfiguration configuration) {
+	private IUnmodifiableHungerGameConfiguration configuration;
+
+	public HungerGame(IUnmodifiableHungerGameConfiguration configuration) {
 		this.configuration = configuration;
-		
+
 		initiate = new InitialState(this);
 		start = new StartState(this);
 		playerRevive = new PlayerReviveState(this);
 		playerDontRevive = new PlayerDontReviveState(this);
 		hungerGame = new HungerGameState(this);
 		stop = new StopState(this);
-		current = initiate;		
+		current = initiate;
 	}
-	
+
 	@Override
 	public IHungerGameState getCurrentState() {
 		return current;
@@ -130,7 +130,7 @@ public class HungerGame extends AbstractGame implements IHungerGame {
 	}
 
 	@Override
-	public HungerGameConfiguration getConfiguration() {
+	public IUnmodifiableHungerGameConfiguration getConfiguration() {
 		return configuration;
 	}
 }

@@ -1,6 +1,6 @@
 package fr.pederobien.uhc.game.hungergame;
 
-import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
+import fr.pederobien.uhc.conf.configurations.interfaces.IUnmodifiableHungerGameConfiguration;
 import fr.pederobien.uhc.game.IGame;
 import fr.pederobien.uhc.observer.IObsTimeLine;
 
@@ -22,6 +22,6 @@ public interface IHungerGame extends IGame, IObsTimeLine {
 
 	IHungerGameState getStop();
 
-	HungerGameConfiguration getConfiguration();
+	IUnmodifiableHungerGameConfiguration getConfiguration();
 	
 }
