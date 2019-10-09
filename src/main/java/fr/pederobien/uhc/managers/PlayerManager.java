@@ -126,4 +126,24 @@ public class PlayerManager {
 			for (String effect : effects)
 				clearEffect(player.getName(), effect);
 	}
+	
+	public static List<Player> getClosePlayers(Player src, int distance) {
+		return arePlayersClose(src, TeamsManager.getPlayers(TeamsManager.getTeam(src)), distance);
+	}
+	
+	public static List<Player> arePlayersClose(Player src, List<Player> players, int distance) {
+		List<Player> nearPlayer = new ArrayList<Player>();
+		int deltaX;
+		int deltaY;
+		int deltaZ;
+		for (Player player : players)
+			if (!player.equals(src)) {
+				deltaX = Math.abs(src.getLocation().getBlockX() - player.getLocation().getBlockX());
+				deltaY = Math.abs(src.getLocation().getBlockY() - player.getLocation().getBlockY());
+				deltaZ = Math.abs(src.getLocation().getBlockZ() - player.getLocation().getBlockZ());
+				if (deltaX <= distance && deltaY < distance && deltaZ < distance)
+					nearPlayer.add(player);
+			}
+		return nearPlayer;
+	}
 }
