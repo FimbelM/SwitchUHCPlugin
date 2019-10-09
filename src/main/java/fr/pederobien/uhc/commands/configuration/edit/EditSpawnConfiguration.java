@@ -13,10 +13,13 @@ import fr.pederobien.uhc.commands.configuration.edit.editions.spawn.Remove;
 import fr.pederobien.uhc.commands.configuration.edit.editions.spawn.Rename;
 import fr.pederobien.uhc.commands.configuration.edit.editions.spawn.Save;
 import fr.pederobien.uhc.conf.IConfigurationContext;
+import fr.pederobien.uhc.conf.configurations.interfaces.ISpawn;
+import fr.pederobien.uhc.conf.persistence.IPersistence;
 import fr.pederobien.uhc.conf.persistence.SpawnPersistence;
 
 public class EditSpawnConfiguration extends AbstractEditConfiguration implements IEditConfig {
-	private SpawnPersistence persistence;
+	private IPersistence<ISpawn> persistence;
+
 	private IEdition center;
 	private IEdition dimensions;
 	private IEdition rename;
@@ -36,7 +39,7 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 	@Override
 	protected void setEditions() {
 		persistence = new SpawnPersistence();
-		
+
 		center = new Center(persistence);
 		dimensions = new Dimensions(persistence);
 		rename = new Rename(persistence);

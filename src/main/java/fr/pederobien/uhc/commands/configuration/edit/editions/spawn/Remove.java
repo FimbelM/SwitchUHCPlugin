@@ -1,11 +1,12 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.spawn;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.SpawnEditions;
-import fr.pederobien.uhc.conf.persistence.SpawnPersistence;
+import fr.pederobien.uhc.conf.configurations.interfaces.ISpawn;
+import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class Remove extends AbstractSpawnEdition {
 
-	public Remove(SpawnPersistence persistence) {
+	public Remove(IPersistence<ISpawn> persistence) {
 		super(persistence, SpawnEditions.REMOVE);
 	}
 

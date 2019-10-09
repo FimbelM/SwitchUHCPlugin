@@ -8,14 +8,14 @@ import org.bukkit.block.Block;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.SpawnEditions;
-import fr.pederobien.uhc.conf.Spawn;
-import fr.pederobien.uhc.conf.persistence.SpawnPersistence;
+import fr.pederobien.uhc.conf.configurations.interfaces.ISpawn;
+import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public abstract class AbstractSpawnEdition implements IEdition {
 	private SpawnEditions edition;
-	private SpawnPersistence persistence;
+	private IPersistence<ISpawn> persistence;
 
-	public AbstractSpawnEdition(SpawnPersistence persistence, SpawnEditions edition) {
+	public AbstractSpawnEdition(IPersistence<ISpawn> persistence, SpawnEditions edition) {
 		this.persistence = persistence;
 		this.edition = edition;
 	}
@@ -29,24 +29,24 @@ public abstract class AbstractSpawnEdition implements IEdition {
 	public String help() {
 		return edition.help();
 	}
-	
+
 	@Override
 	public List<String> getArguments(String[] subArguments) {
 		return null;
 	}
 
-	protected SpawnPersistence getPersistence() {
+	protected IPersistence<ISpawn> getPersistence() {
 		return persistence;
 	}
 
-	protected Spawn getSpawn() {
+	protected ISpawn getSpawn() {
 		return persistence.get();
 	}
 
 	protected String showBlock(Block block) {
 		return block.getX() + " " + block.getY() + " " + block.getZ();
 	}
-	
+
 	protected List<String> filter(List<String> list, String filter) {
 		Predicate<String> match = str -> str.matches(filter + "(.*)");
 		return list.stream().filter(match).collect(Collectors.toList());

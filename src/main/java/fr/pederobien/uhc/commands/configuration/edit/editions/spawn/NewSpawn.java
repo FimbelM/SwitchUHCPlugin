@@ -5,11 +5,12 @@ import java.util.List;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.SpawnEditions;
 import fr.pederobien.uhc.conf.Spawn;
-import fr.pederobien.uhc.conf.persistence.SpawnPersistence;
+import fr.pederobien.uhc.conf.configurations.interfaces.ISpawn;
+import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class NewSpawn extends AbstractSpawnEdition {
 
-	public NewSpawn(SpawnPersistence persistence) {
+	public NewSpawn(IPersistence<ISpawn> persistence) {
 		super(persistence, SpawnEditions.NEW);
 	}
 
@@ -28,7 +29,7 @@ public class NewSpawn extends AbstractSpawnEdition {
 			return "Cannot create a new spawn, need the name";
 		}
 	}
-	
+
 	@Override
 	public List<String> getArguments(String[] subArguments) {
 		switch (subArguments.length) {

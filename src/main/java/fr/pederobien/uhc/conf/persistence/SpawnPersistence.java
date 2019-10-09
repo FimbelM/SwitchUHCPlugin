@@ -12,11 +12,12 @@ import org.w3c.dom.Node;
 
 import fr.pederobien.uhc.conf.Spawn;
 import fr.pederobien.uhc.conf.Spawn.Coordinate;
+import fr.pederobien.uhc.conf.configurations.interfaces.ISpawn;
 
-public class SpawnPersistence extends AbstractPersistence<Spawn> {
+public class SpawnPersistence extends AbstractPersistence<ISpawn> {
 	protected static final String SPAWNS = ROOT + "Spawns/";
 	private static final double CURRENT_VERSION = 1.1;
-	private Spawn spawn;
+	private ISpawn spawn;
 
 	public SpawnPersistence() {
 		set(Spawn.DEFAULT);
@@ -87,12 +88,12 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 	}
 
 	@Override
-	public Spawn get() {
+	public ISpawn get() {
 		return spawn;
 	}
 
 	@Override
-	public void set(Spawn spawn) {
+	public void set(ISpawn spawn) {
 		this.spawn = spawn;
 	}
 
@@ -106,7 +107,7 @@ public class SpawnPersistence extends AbstractPersistence<Spawn> {
 			if (root.getChildNodes().item(i).getNodeType() != Node.ELEMENT_NODE)
 				continue;
 			Element elt = (Element) root.getChildNodes().item(i);
-			
+
 			switch (elt.getNodeName()) {
 			case "name":
 				spawn = new Spawn(elt.getChildNodes().item(0).getNodeValue());

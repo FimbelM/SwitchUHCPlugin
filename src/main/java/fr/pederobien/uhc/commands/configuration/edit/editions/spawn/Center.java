@@ -4,11 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.SpawnEditions;
-import fr.pederobien.uhc.conf.persistence.SpawnPersistence;
+import fr.pederobien.uhc.conf.configurations.interfaces.ISpawn;
+import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class Center extends AbstractSpawnEdition {
 
-	public Center(SpawnPersistence persistence) {
+	public Center(IPersistence<ISpawn> persistence) {
 		super(persistence, SpawnEditions.CENTER);
 	}
 

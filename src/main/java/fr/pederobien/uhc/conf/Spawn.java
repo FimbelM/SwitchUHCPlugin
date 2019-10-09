@@ -11,9 +11,10 @@ import org.bukkit.block.data.BlockData;
 import org.bukkit.util.Vector;
 
 import fr.pederobien.uhc.BukkitManager;
+import fr.pederobien.uhc.conf.configurations.interfaces.ISpawn;
 import fr.pederobien.uhc.managers.WorldManager;
 
-public class Spawn implements IName {
+public class Spawn implements ISpawn {
 	public static final Spawn DEFAULT;
 	private static final Block DEFAULT_CENTER;
 	private Block center;
@@ -33,6 +34,7 @@ public class Spawn implements IName {
 		this.name = name;
 	}
 
+	@Override
 	public void extract() {
 		config.clear();
 		int maxWidth = width / 2, maxDepth = depth / 2;
@@ -49,6 +51,7 @@ public class Spawn implements IName {
 				}
 	}
 
+	@Override
 	public void launch() {
 		for (Coordinate coord : config.keySet()) {
 			getBlockFromCenter(coord).setType(config.get(coord).getMaterial());
@@ -57,12 +60,14 @@ public class Spawn implements IName {
 		WorldManager.setSpawnOnJoin(getCenter().getLocation().clone().add(new Vector(0, 1, 0)));
 	}
 
+	@Override
 	public void remove() {
 		for (Coordinate coord : config.keySet())
 			getBlockFromCenter(coord).setType(Material.AIR);
 		WorldManager.setSpawnOnJoin(WorldManager.getHighestBlockYAt(0, 0).getLocation());
 	}
 
+	@Override
 	public void setBlocks(List<String> blocks) {
 		config.clear();
 		for (String block : blocks)
@@ -77,6 +82,7 @@ public class Spawn implements IName {
 		config.put(new Coordinate(x, y, z), BukkitManager.createBlockData(info[3]));
 	}
 
+	@Override
 	public Map<Coordinate, BlockData> getBlocks() {
 		return Collections.unmodifiableMap(config);
 	}
@@ -86,36 +92,44 @@ public class Spawn implements IName {
 		return name;
 	}
 
+	@Override
 	public Block getCenter() {
 		return center == null ? DEFAULT_CENTER : center;
 	}
 
+	@Override
 	public void setCenter(Block center) {
 		this.center = center;
 	}
 
+	@Override
 	public void setCenter(String x, String y, String z) {
 		center = WorldManager.getBlockAt(Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(z));
 	}
 
+	@Override
 	public void setDimension(String width, String height, String depth) {
 		setDimension(Integer.parseInt(width), Integer.parseInt(height), Integer.parseInt(depth));
 	}
 
+	@Override
 	public void setDimension(int width, int height, int depth) {
 		this.width = width;
 		this.height = height;
 		this.depth = depth;
 	}
 
+	@Override
 	public int getWidth() {
 		return width;
 	}
 
+	@Override
 	public int getHeight() {
 		return height;
 	}
 
+	@Override
 	public int getDepth() {
 		return depth;
 	}

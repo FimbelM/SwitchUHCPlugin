@@ -3,11 +3,12 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.spawn;
 import java.util.List;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.SpawnEditions;
-import fr.pederobien.uhc.conf.persistence.SpawnPersistence;
+import fr.pederobien.uhc.conf.configurations.interfaces.ISpawn;
+import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class Help extends AbstractSpawnEdition {
 
-	public Help(SpawnPersistence persistence) {
+	public Help(IPersistence<ISpawn> persistence) {
 		super(persistence, SpawnEditions.HELP);
 	}
 
@@ -15,7 +16,7 @@ public class Help extends AbstractSpawnEdition {
 	public String edit(String[] args) {
 		try {
 			return SpawnEditions.find(args[0]).help();
-		} catch (IndexOutOfBoundsException | NullPointerException e){
+		} catch (IndexOutOfBoundsException | NullPointerException e) {
 			String help = "List of existing commands\r\n";
 			for (SpawnEditions edition : SpawnEditions.values()) {
 				help += edition.help();
@@ -24,7 +25,7 @@ public class Help extends AbstractSpawnEdition {
 			return help;
 		}
 	}
-	
+
 	@Override
 	public List<String> getArguments(String[] subArguments) {
 		switch (subArguments.length) {
