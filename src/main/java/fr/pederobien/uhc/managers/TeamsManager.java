@@ -37,6 +37,10 @@ public class TeamsManager {
 		return sum;
 	}
 	
+	public static List<Player> getCollegues(Player player) {
+		return getPlayers(getTeam(player));
+	}
+	
 	public static Team getTeam(Player player) {
 		for (Team team : getTeams())
 			if (getPlayers(team).contains(player))

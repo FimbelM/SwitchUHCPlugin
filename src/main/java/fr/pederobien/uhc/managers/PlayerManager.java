@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.BukkitManager;
@@ -51,6 +52,10 @@ public class PlayerManager {
 	
 	public static void maxFoodForPlayers() {
 		setFoodLevelOfPlayers(20);
+	}
+	
+	public static void setMaxHealthOfPlayer(Player player, double level) {
+		player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(level);
 	}
 	
 	public static void setHealthOfPlayer(Player player, double level) {
@@ -128,7 +133,7 @@ public class PlayerManager {
 	}
 	
 	public static List<Player> getClosePlayers(Player src, int distance) {
-		return arePlayersClose(src, TeamsManager.getPlayers(TeamsManager.getTeam(src)), distance);
+		return arePlayersClose(src, TeamsManager.getCollegues(src), distance);
 	}
 	
 	public static List<Player> arePlayersClose(Player src, List<Player> players, int distance) {
