@@ -4,11 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.BDEditions;
-import fr.pederobien.uhc.conf.persistence.BlockedexPersistence;
+import fr.pederobien.uhc.conf.configurations.interfaces.IBlockedexConfiguration;
+import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class ScoreboardRefresh extends AbstractBDEdition {
 
-	public ScoreboardRefresh(BlockedexPersistence persistence) {
+	public ScoreboardRefresh(IPersistence<IBlockedexConfiguration> persistence) {
 		super(persistence, BDEditions.SCOREBOARD_REFRESH);
 	}
 

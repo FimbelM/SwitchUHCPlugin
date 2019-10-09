@@ -9,8 +9,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import fr.pederobien.uhc.conf.configurations.BlockedexConfiguration;
+import fr.pederobien.uhc.conf.configurations.interfaces.IBlockedexConfiguration;
 
-public class BlockedexPersistence extends AbstractConfPersistence<BlockedexConfiguration> {
+public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConfiguration> {
 	private static final String BLOCKEDEX_GAME = GAME + "/BlockedexGame/";
 	private static final double CURRENT_VERSION = 1.0;
 

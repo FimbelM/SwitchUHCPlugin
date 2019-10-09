@@ -7,14 +7,14 @@ import java.util.stream.Collectors;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.BDEditions;
-import fr.pederobien.uhc.conf.configurations.BlockedexConfiguration;
-import fr.pederobien.uhc.conf.persistence.BlockedexPersistence;
+import fr.pederobien.uhc.conf.configurations.interfaces.IBlockedexConfiguration;
+import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public abstract class AbstractBDEdition implements IEdition {
 	private BDEditions edition;
-	private BlockedexPersistence persistence;
+	private IPersistence<IBlockedexConfiguration> persistence;
 
-	public AbstractBDEdition(BlockedexPersistence persistence, BDEditions edition) {
+	public AbstractBDEdition(IPersistence<IBlockedexConfiguration> persistence, BDEditions edition) {
 		this.persistence = persistence;
 		this.edition = edition;
 	}
@@ -34,11 +34,11 @@ public abstract class AbstractBDEdition implements IEdition {
 		return null;
 	}
 	
-	protected BlockedexPersistence getPersistence() {
+	protected IPersistence<IBlockedexConfiguration> getPersistence() {
 		return persistence;
 	}
 	
-	protected BlockedexConfiguration getConf() {
+	protected IBlockedexConfiguration getConf() {
 		return persistence.get();
 	}
 	

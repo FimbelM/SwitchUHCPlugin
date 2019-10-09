@@ -12,10 +12,12 @@ import fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame.Rena
 import fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame.Save;
 import fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame.ScoreboardRefresh;
 import fr.pederobien.uhc.conf.IConfigurationContext;
+import fr.pederobien.uhc.conf.configurations.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.conf.persistence.BlockedexPersistence;
+import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class EditBlockedexConfiguration extends AbstractEditConfiguration {
-	private BlockedexPersistence persistence;
+	private IPersistence<IBlockedexConfiguration> persistence;
 
 	private IEdition gameTime;
 	private IEdition scoreboardRefresh;

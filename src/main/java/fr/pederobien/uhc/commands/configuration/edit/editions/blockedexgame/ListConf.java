@@ -3,11 +3,12 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame;
 import java.util.List;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.BDEditions;
-import fr.pederobien.uhc.conf.persistence.BlockedexPersistence;
+import fr.pederobien.uhc.conf.configurations.interfaces.IBlockedexConfiguration;
+import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class ListConf extends AbstractBDEdition {
 
-	public ListConf(BlockedexPersistence persistence) {
+	public ListConf(IPersistence<IBlockedexConfiguration> persistence) {
 		super(persistence, BDEditions.LIST);
 	}
 
