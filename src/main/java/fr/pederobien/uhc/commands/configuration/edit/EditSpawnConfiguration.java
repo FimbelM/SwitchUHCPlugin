@@ -17,9 +17,7 @@ import fr.pederobien.uhc.conf.configurations.interfaces.ISpawn;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 import fr.pederobien.uhc.conf.persistence.SpawnPersistence;
 
-public class EditSpawnConfiguration extends AbstractEditConfiguration implements IEditConfig {
-	private IPersistence<ISpawn> persistence;
-
+public class EditSpawnConfiguration extends AbstractEditConfiguration<ISpawn> {
 	private IEdition center;
 	private IEdition dimensions;
 	private IEdition rename;
@@ -37,20 +35,23 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration implements
 	}
 
 	@Override
-	protected void setEditions() {
-		persistence = new SpawnPersistence();
+	protected IPersistence<ISpawn> getPersistenceImpl() {
+		return new SpawnPersistence();
+	}
 
-		center = new Center(persistence);
-		dimensions = new Dimensions(persistence);
-		rename = new Rename(persistence);
-		current = new Current(persistence);
-		newSpawn = new NewSpawn(persistence);
-		launch = new Launch(persistence);
-		save = new Save(persistence);
-		remove = new Remove(persistence);
-		extract = new Extract(persistence);
-		list = new ListSpawn(persistence);
-		help = new Help(persistence);
+	@Override
+	protected void setEditions() {
+		center = new Center(getPersistence());
+		dimensions = new Dimensions(getPersistence());
+		rename = new Rename(getPersistence());
+		current = new Current(getPersistence());
+		newSpawn = new NewSpawn(getPersistence());
+		launch = new Launch(getPersistence());
+		save = new Save(getPersistence());
+		remove = new Remove(getPersistence());
+		extract = new Extract(getPersistence());
+		list = new ListSpawn(getPersistence());
+		help = new Help(getPersistence());
 
 		addToMap(center, dimensions, rename, current, newSpawn, launch, save, remove, extract, list, help);
 	}

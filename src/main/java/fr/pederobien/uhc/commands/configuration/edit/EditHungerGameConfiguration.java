@@ -20,9 +20,7 @@ import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration
 import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 
-public class EditHungerGameConfiguration extends AbstractEditConfiguration {
-	private IPersistence<IHungerGameConfiguration> persistence;
-
+public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHungerGameConfiguration> {
 	private IEdition borderCenter;
 	private IEdition initialBorderDiameter;
 	private IEdition finalBorderDiameter;
@@ -43,23 +41,26 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration {
 	}
 
 	@Override
-	protected void setEditions() {
-		persistence = new HungerGamePersistence();
+	protected IPersistence<IHungerGameConfiguration> getPersistenceImpl() {
+		return new HungerGamePersistence();
+	}
 
-		borderCenter = new BorderCenterEdition(persistence);
-		initialBorderDiameter = new InitialBorderDiameter(persistence);
-		finalBorderDiameter = new FinalBorderDiameter(persistence);
-		gameTime = new GameTime(persistence);
-		fractionTime = new FractionTime(persistence);
-		scoreboardRefresh = new ScoreboardRefresh(persistence);
-		rename = new Rename(persistence);
-		load = new Load(persistence);
-		newConf = new NewConf(persistence);
-		current = new Current(persistence);
-		asCurrent = new AsCurrent(persistence, context);
-		save = new Save(persistence);
-		list = new ListConf(persistence);
-		help = new Help(persistence);
+	@Override
+	protected void setEditions() {
+		borderCenter = new BorderCenterEdition(getPersistence());
+		initialBorderDiameter = new InitialBorderDiameter(getPersistence());
+		finalBorderDiameter = new FinalBorderDiameter(getPersistence());
+		gameTime = new GameTime(getPersistence());
+		fractionTime = new FractionTime(getPersistence());
+		scoreboardRefresh = new ScoreboardRefresh(getPersistence());
+		rename = new Rename(getPersistence());
+		load = new Load(getPersistence());
+		newConf = new NewConf(getPersistence());
+		current = new Current(getPersistence());
+		asCurrent = new AsCurrent(getPersistence(), context);
+		save = new Save(getPersistence());
+		list = new ListConf(getPersistence());
+		help = new Help(getPersistence());
 
 		addToMap(borderCenter, initialBorderDiameter, finalBorderDiameter, gameTime, fractionTime, scoreboardRefresh,
 				rename, load, newConf, current, asCurrent, save, list, help);

@@ -12,19 +12,25 @@ import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.conf.IConfigurationContext;
+import fr.pederobien.uhc.conf.IUnmodifiableName;
+import fr.pederobien.uhc.conf.persistence.IPersistence;
 
-public abstract class AbstractEditConfiguration implements IEditConfig {
-	private String message;
+public abstract class AbstractEditConfiguration<T extends IUnmodifiableName> implements IEditConfig {
 	protected IConfigurationContext context;
 	protected HashMap<String, IEdition> map;
-
-	protected abstract void setEditions();
+	private String message;
+	private IPersistence<T> persistence;
 
 	public AbstractEditConfiguration(IConfigurationContext context) {
 		this.context = context;
 		map = new HashMap<String, IEdition>();
+		persistence = getPersistenceImpl();
 		setEditions();
 	}
+
+	protected abstract void setEditions();
+
+	protected abstract IPersistence<T> getPersistenceImpl();
 
 	@Override
 	public boolean edit(String[] args) {
@@ -52,6 +58,10 @@ public abstract class AbstractEditConfiguration implements IEditConfig {
 
 	protected void setMessage(String message) {
 		this.message = message;
+	}
+
+	protected IPersistence<T> getPersistence() {
+		return persistence;
 	}
 
 	protected void addToMap(IEdition... editions) {

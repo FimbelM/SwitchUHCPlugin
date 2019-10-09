@@ -16,9 +16,7 @@ import fr.pederobien.uhc.conf.configurations.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.conf.persistence.BlockedexPersistence;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 
-public class EditBlockedexConfiguration extends AbstractEditConfiguration {
-	private IPersistence<IBlockedexConfiguration> persistence;
-
+public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlockedexConfiguration> {
 	private IEdition gameTime;
 	private IEdition scoreboardRefresh;
 	private IEdition rename;
@@ -35,19 +33,22 @@ public class EditBlockedexConfiguration extends AbstractEditConfiguration {
 	}
 
 	@Override
+	protected IPersistence<IBlockedexConfiguration> getPersistenceImpl() {
+		return new BlockedexPersistence();
+	}
+
+	@Override
 	protected void setEditions() {
-		persistence = new BlockedexPersistence();
-		
-		gameTime = new GameTime(persistence);
-		scoreboardRefresh = new ScoreboardRefresh(persistence);
-		rename = new Rename(persistence);
-		load = new Load(persistence);
-		newConf = new NewConf(persistence);
-		current = new Current(persistence);
-		asCurrent = new AsCurrent(persistence, context);
-		save = new Save(persistence);
-		list = new ListConf(persistence);
-		help = new Help(persistence);
+		gameTime = new GameTime(getPersistence());
+		scoreboardRefresh = new ScoreboardRefresh(getPersistence());
+		rename = new Rename(getPersistence());
+		load = new Load(getPersistence());
+		newConf = new NewConf(getPersistence());
+		current = new Current(getPersistence());
+		asCurrent = new AsCurrent(getPersistence(), context);
+		save = new Save(getPersistence());
+		list = new ListConf(getPersistence());
+		help = new Help(getPersistence());
 
 		addToMap(gameTime, scoreboardRefresh, rename, load, newConf, current, asCurrent, save, list, help);
 	}
