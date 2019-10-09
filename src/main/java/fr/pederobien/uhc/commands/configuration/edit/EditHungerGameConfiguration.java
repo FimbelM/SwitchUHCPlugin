@@ -1,24 +1,9 @@
 package fr.pederobien.uhc.commands.configuration.edit;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
-import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.AsCurrent;
-import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.BorderCenterEdition;
-import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.Current;
-import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.FinalBorderDiameter;
-import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.FractionTime;
-import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.GameTime;
-import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.Help;
-import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.InitialBorderDiameter;
-import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.ListConf;
-import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.Load;
-import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.NewConf;
-import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.Rename;
-import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.Save;
-import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.ScoreboardRefresh;
-import fr.pederobien.uhc.conf.ConfigurationsFactory;
+import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.HungerGameEditionsFactory;
 import fr.pederobien.uhc.conf.IConfigurationContext;
 import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
-import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHungerGameConfiguration> {
 	private IEdition borderCenter;
@@ -36,31 +21,29 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHung
 	private IEdition list;
 	private IEdition help;
 
+	private HungerGameEditionsFactory factory;
+
 	public EditHungerGameConfiguration(IConfigurationContext context) {
 		super(context);
-	}
-
-	@Override
-	protected IPersistence<IHungerGameConfiguration> getPersistenceImpl() {
-		return ConfigurationsFactory.getInstance().getHungerGamePersistence();
+		factory = HungerGameEditionsFactory.getInstance();
 	}
 
 	@Override
 	protected void setEditions() {
-		borderCenter = new BorderCenterEdition(getPersistence());
-		initialBorderDiameter = new InitialBorderDiameter(getPersistence());
-		finalBorderDiameter = new FinalBorderDiameter(getPersistence());
-		gameTime = new GameTime(getPersistence());
-		fractionTime = new FractionTime(getPersistence());
-		scoreboardRefresh = new ScoreboardRefresh(getPersistence());
-		rename = new Rename(getPersistence());
-		load = new Load(getPersistence());
-		newConf = new NewConf(getPersistence());
-		current = new Current(getPersistence());
-		asCurrent = new AsCurrent(getPersistence(), context);
-		save = new Save(getPersistence());
-		list = new ListConf(getPersistence());
-		help = new Help(getPersistence());
+		borderCenter = factory.createBorderCenterEdition();
+		initialBorderDiameter = factory.createInitialBorderDiameterEdition();
+		finalBorderDiameter = factory.createFinalBorderDiameterEdition();
+		gameTime = factory.createGameTimeEdition();
+		fractionTime = factory.createFractionTimeEdition();
+		scoreboardRefresh = factory.createScoreboardRefreshEdition();
+		rename = factory.createRenameEdition();
+		load = factory.createLoadEdition();
+		newConf = factory.createNewConfEdition();
+		current = factory.createCurrentEdition();
+		asCurrent = factory.createAsCurrentEdition(context);
+		save = factory.createSaveEdition();
+		list = factory.createListEdition();
+		help = factory.createHelpEdition();
 
 		addToMap(borderCenter, initialBorderDiameter, finalBorderDiameter, gameTime, fractionTime, scoreboardRefresh,
 				rename, load, newConf, current, asCurrent, save, list, help);
