@@ -6,7 +6,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-import fr.pederobien.uhc.conf.configurations.BlockedexConfiguration;
+import fr.pederobien.uhc.conf.configurations.interfaces.IUnmodifiableBlockedexConfiguration;
 import fr.pederobien.uhc.game.AbstractGame;
 
 public class BlockedexGame extends AbstractGame implements IBlockedexGame {
@@ -15,9 +15,9 @@ public class BlockedexGame extends AbstractGame implements IBlockedexGame {
 	private IBlockedexGameState start;
 	private IBlockedexGameState stop;
 	private IBlockedexGameState current;
-	private BlockedexConfiguration configuration;
+	private IUnmodifiableBlockedexConfiguration configuration;
 
-	public BlockedexGame(BlockedexConfiguration configuration) {
+	public BlockedexGame(IUnmodifiableBlockedexConfiguration configuration) {
 		this.configuration = configuration;
 
 		initiate = new InitialState(this);
@@ -41,7 +41,7 @@ public class BlockedexGame extends AbstractGame implements IBlockedexGame {
 	public IBlockedexGameState getInitiate() {
 		return initiate;
 	}
-	
+
 	@Override
 	public IBlockedexGameState getStarted() {
 		return started;
@@ -58,7 +58,7 @@ public class BlockedexGame extends AbstractGame implements IBlockedexGame {
 	}
 
 	@Override
-	public BlockedexConfiguration getConfiguration() {
+	public IUnmodifiableBlockedexConfiguration getConfiguration() {
 		return configuration;
 	}
 
@@ -66,7 +66,7 @@ public class BlockedexGame extends AbstractGame implements IBlockedexGame {
 	public void initiate() {
 		current.initiate();
 	}
-	
+
 	@Override
 	public void start() {
 		super.start();
@@ -82,13 +82,13 @@ public class BlockedexGame extends AbstractGame implements IBlockedexGame {
 	public void relaunch() {
 		current.relaunch();
 	}
-	
+
 	@Override
 	public void stop() {
 		super.stop();
 		current.stop();
 	}
-	
+
 	@Override
 	public void onPlayerDie(PlayerDeathEvent event) {
 		super.onPlayerDie(event);
