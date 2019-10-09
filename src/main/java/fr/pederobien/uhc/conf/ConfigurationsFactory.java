@@ -46,7 +46,7 @@ public class ConfigurationsFactory {
 		return hungerGamePersistence;
 	}
 
-	public IPersistence<IBlockedexConfiguration> getBlockedexConfiguration() {
+	public IPersistence<IBlockedexConfiguration> getBlockedexPersistence() {
 		return blockedexPersistence;
 	}
 
