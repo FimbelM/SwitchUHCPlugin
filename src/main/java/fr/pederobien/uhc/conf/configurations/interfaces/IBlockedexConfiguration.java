@@ -7,4 +7,6 @@ public interface IBlockedexConfiguration extends IConfiguration, IUnmodifiableBl
 	void setRadiusAreaOnPlayerDie(int radiusArea);
 	
 	void setStepOnMaxHealth(double stepHealth);
+	
+	void setDiameterAreaOnPlayerRespawn(int diameterArea);
 }

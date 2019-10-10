@@ -7,4 +7,6 @@ public interface IUnmodifiableBlockedexConfiguration extends IUnmodifiableConfig
 	Integer getRadiusAreaOnPlayerDie();
 	
 	Double getStepOnMaxHealth();
+	
+	Integer getDiameterAreaOnPlayerRespawn();
 }
