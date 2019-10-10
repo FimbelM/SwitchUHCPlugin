@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.BukkitManager;
@@ -99,6 +101,29 @@ public class PlayerManager {
 	public static void setGameModeOfPlayers(GameMode mode) {
 		for (Player player : getPlayers())
 			player.setGameMode(mode);
+	}
+	
+	public static void teleporte(Player player, Location location) {
+		player.teleport(location);
+	}
+	
+	public static void teleporteAllPlayers(List<Player> players, Location location) {
+		for (Player player : players)
+			teleporte(player, location);
+	}
+	
+	public static void teleporte(Player player, Entity entity) {
+		player.teleport(entity);
+	}
+	
+	public static void teleporteAllPlayers(List<Player> players, Entity entity) {
+		for (Player player : players)
+			teleporte(player, entity);
+	}
+	
+	public static void teleporteAllPlayers(Location location) {
+		for (Player player : getPlayers())
+			player.teleport(location);
 	}
 
 	public static void giveEffect(String selector, String effect, int duration, int power, boolean hide) {
