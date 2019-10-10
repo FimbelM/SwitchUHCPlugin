@@ -9,11 +9,12 @@ public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlock
 
 	public EditBlockedexConfiguration(IConfigurationContext context) {
 		super(context);
-		factory = BlockedexEditionsFactory.getInstance();
 	}
 
 	@Override
 	protected void setEditions() {
+		factory = BlockedexEditionsFactory.getInstance();
+
 		addToMap(factory.createGameTimeEdition(),
 				factory.createScoreboardRefreshEdition(),
 				factory.createRenameEdition(),

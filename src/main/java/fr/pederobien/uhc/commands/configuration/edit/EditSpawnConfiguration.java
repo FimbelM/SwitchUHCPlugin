@@ -9,11 +9,12 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration<ISpawn> {
 
 	public EditSpawnConfiguration(IConfigurationContext context) {
 		super(context);
-		factory = SpawnEditionsFactory.getInstance();
 	}
 
 	@Override
 	protected void setEditions() {
+		factory = SpawnEditionsFactory.getInstance();
+
 		addToMap(factory.createCenterEdition(),
 				factory.createDimensionsEdition(),
 				factory.createRenameEdition(),

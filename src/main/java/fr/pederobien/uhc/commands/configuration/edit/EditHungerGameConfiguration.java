@@ -9,11 +9,12 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHung
 
 	public EditHungerGameConfiguration(IConfigurationContext context) {
 		super(context);
-		factory = HungerGameEditionsFactory.getInstance();
 	}
 
 	@Override
 	protected void setEditions() {
+		factory = HungerGameEditionsFactory.getInstance();
+
 		addToMap(factory.createBorderCenterEdition(),
 				factory.createInitialBorderDiameterEdition(),
 				factory.createFinalBorderDiameterEdition(),
