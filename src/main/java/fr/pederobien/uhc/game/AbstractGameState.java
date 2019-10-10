@@ -75,6 +75,7 @@ public abstract class AbstractGameState implements IGameState {
 	protected void onStart() {
 		PlayerManager.giveEffects("@a", "resistance", "regeneration", "saturation");
 		PlayerManager.maxFoodForPlayers();
+		PlayerManager.resetMaxHealthOfPlayers();
 		PlayerManager.maxLifeToPlayers();
 		PlayerManager.removeInventoryOfPlayers();
 		PlayerManager.setGameModeOfPlayers(GameMode.SURVIVAL);
