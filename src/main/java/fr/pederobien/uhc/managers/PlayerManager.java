@@ -123,7 +123,7 @@ public class PlayerManager {
 	
 	public static void teleporteAllPlayers(Location location) {
 		for (Player player : getPlayers())
-			player.teleport(location);
+			teleporte(player, location);
 	}
 
 	public static void giveEffect(String selector, String effect, int duration, int power, boolean hide) {
