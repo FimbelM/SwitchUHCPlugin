@@ -25,7 +25,14 @@ public class TeamsManager {
 			players.add(Bukkit.getPlayer(pl));
 		return players;
 	}
-
+	
+	public static Team getTeam(String name) {
+		for (Team team : getTeams())
+			if (team.getName().equals(name))
+				return team;
+		return null;
+	}
+	
 	public static int getNumberOfPlayers(Team team) {
 		return getPlayers(team).size();
 	}
