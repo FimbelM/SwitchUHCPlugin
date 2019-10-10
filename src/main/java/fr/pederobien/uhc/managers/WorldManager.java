@@ -130,7 +130,7 @@ public class WorldManager {
 		return border.getSize();
 	}
 	
-	public static Block getRandomlyPoint(int bound) {
+	public static Location getRandomlyLocation(int bound) {
 		int minX = - bound/2 - 1;
 		int minZ = minX;
 		int maxX = bound/2 - 1;
@@ -141,7 +141,7 @@ public class WorldManager {
 			randomX = rand.nextInt(maxX - minX) + minX;
 			randomZ = rand.nextInt(maxZ - minZ) + minZ;
 		} while(getBelowHighestBlockYAt(randomX, randomZ).getType().equals(Material.WATER));
-		return getHighestBlockYAt(randomX, randomZ);
+		return getHighestBlockYAt(randomX, randomZ).getLocation();
 	}
 	
 	public static void createRespawnArea() {
