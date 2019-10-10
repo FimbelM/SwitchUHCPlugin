@@ -22,7 +22,6 @@ import fr.pederobien.uhc.commands.team.RemoveAllTeamCommand;
 import fr.pederobien.uhc.conf.IConfigurationContext;
 import fr.pederobien.uhc.conf.configurations.ConfigurationContext;
 import fr.pederobien.uhc.managers.PlayerManager;
-import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
 import fr.pederobien.uhc.observer.IObsGame;
 import fr.pederobien.uhc.observer.IObsListener;
@@ -44,7 +43,7 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 
 		AbstractCommand.setConfigurationContext(context);
 		AbstractCommand.setListener(listener);
-		
+
 		WorldManager.setPVP(false);
 
 		new PauseCommand(this, "pausegame");
@@ -56,7 +55,7 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 		new HungerGameConfigurationCommand(this, "hg");
 		new SpawnConfigurationCommand(this, "spawn");
 		new BlockedexConfigurationCommand(this, "bd");
-		
+
 		listener.addObservers(this);
 	}
 
@@ -105,7 +104,7 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 	}
 
 	private void movePlayer(Player player) {
-		TeamsManager.teleporte(player.getName(), WorldManager.getSpawnOnJoin());
+		PlayerManager.teleporte(player, WorldManager.getSpawnOnJoin());
 		PlayerManager.setGameModeOfPlayer(player, GameMode.ADVENTURE);
 	}
 }

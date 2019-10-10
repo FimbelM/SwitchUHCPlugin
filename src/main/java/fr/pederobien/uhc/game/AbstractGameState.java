@@ -8,7 +8,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.managers.PlayerManager;
-import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
 import fr.pederobien.uhc.scoreboard.launcher.IScoreboardLauncher;
 import fr.pederobien.uhc.task.ITaskLauncher;
@@ -71,7 +70,7 @@ public abstract class AbstractGameState implements IGameState {
 	public void onPlayerMove(PlayerMoveEvent event) {
 
 	}
-	
+
 	protected void onStart() {
 		PlayerManager.giveEffects("@a", "resistance", "regeneration", "saturation");
 		PlayerManager.maxFoodForPlayers();
@@ -82,11 +81,11 @@ public abstract class AbstractGameState implements IGameState {
 		WorldManager.setTimeDay();
 		WorldManager.setWeatherSun();
 	}
-	
+
 	protected void onStop() {
 		taskLauncher.cancel();
 		scoreboardLauncher.cancel();
 		PlayerManager.setGameModeOfPlayers(GameMode.ADVENTURE);
-		TeamsManager.teleporteAllPlayers(WorldManager.getSpawnOnJoin());
+		PlayerManager.teleporteAllPlayers(WorldManager.getSpawnOnJoin());
 	}
 }
