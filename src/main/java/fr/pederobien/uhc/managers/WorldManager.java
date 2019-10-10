@@ -140,7 +140,7 @@ public class WorldManager {
 		do {
 			randomX = rand.nextInt(maxX - minX) + minX;
 			randomZ = rand.nextInt(maxZ - minZ) + minZ;
-		} while(getBelowHighestBlockYAt(randomX, randomZ).getType().equals(Material.WATER));
+		} while(isBlockTypeOf(getBelowHighestBlockYAt(randomX, randomZ), Material.WATER, Material.LAVA));
 		return getHighestBlockYAt(randomX, randomZ).getLocation();
 	}
 	
