@@ -57,6 +57,15 @@ public class PlayerManager {
 	public static void setMaxHealthOfPlayer(Player player, double level) {
 		player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(level);
 	}
+	
+	public static void resetMaxHealthOfPlayer(Player player) {
+		setMaxHealthOfPlayer(player, 20.0);
+	}
+	
+	public static void resetMaxHealthOfPlayers() {
+		for (Player player : getPlayers())
+			resetMaxHealthOfPlayer(player);
+	}
 
 	public static void setHealthOfPlayer(Player player, double level) {
 		player.setHealth(level);
