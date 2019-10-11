@@ -191,9 +191,10 @@ public class PlayerManager {
 	}
 	
 	public static void dropPlayerInventoryItemNaturally(Player player) {
-		System.out.println(player.getName());
 		for (ItemStack item : player.getInventory())
-			WorldManager.getWorld().dropItem(player.getLocation(), item);
+			if (item != null)
+				WorldManager.getWorld().dropItem(player.getLocation(), item);
+		player.getInventory().clear();
 	}
 	
 	public static void dropPlayersInventoryItemNaturally(List<Player> players) {
