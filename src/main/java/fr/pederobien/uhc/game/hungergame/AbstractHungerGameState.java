@@ -3,7 +3,7 @@ package fr.pederobien.uhc.game.hungergame;
 import fr.pederobien.uhc.game.AbstractGameState;
 import fr.pederobien.uhc.task.TimeLine;
 
-public class AbstractHungerGameState extends AbstractGameState implements IHungerGameState {
+public abstract class AbstractHungerGameState extends AbstractGameState implements IHungerGameState {
 	protected IHungerGame game;
 	protected static TimeLine timeLine;
 

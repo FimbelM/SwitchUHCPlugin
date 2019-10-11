@@ -4,6 +4,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -89,6 +90,11 @@ public class ConfigurationContext implements IConfigurationContext {
 	@Override
 	public void onPlayerMove(PlayerMoveEvent event) {
 		getGame().onPlayerMove(event);
+	}
+
+	@Override
+	public void onPlayerInteract(PlayerInteractEntityEvent event) {
+		getGame().onPlayerInteract(event);
 	}
 
 	@Override

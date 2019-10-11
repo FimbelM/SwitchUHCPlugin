@@ -2,6 +2,7 @@ package fr.pederobien.uhc.game;
 
 import org.bukkit.GameMode;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -68,6 +69,11 @@ public abstract class AbstractGameState implements IGameState {
 
 	@Override
 	public void onPlayerMove(PlayerMoveEvent event) {
+
+	}
+
+	@Override
+	public void onPlayerInteract(PlayerInteractEntityEvent event) {
 
 	}
 

@@ -1,6 +1,7 @@
 package fr.pederobien.uhc.game.hungergame;
 
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -122,6 +123,11 @@ public class HungerGame extends AbstractGame implements IHungerGame {
 	@Override
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
 		current.onPlayerRespawn(event);
+	}
+
+	@Override
+	public void onPlayerInteract(PlayerInteractEntityEvent event) {
+		current.onPlayerInteract(event);
 	}
 
 	@Override
