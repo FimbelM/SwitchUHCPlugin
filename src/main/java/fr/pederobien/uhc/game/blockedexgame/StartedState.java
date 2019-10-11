@@ -47,7 +47,7 @@ public class StartedState extends AbstractBlockedexState {
 	private void onPlayerDieByEnvironment(Player player) {
 		collegues.add(player);
 		for (Player pl : collegues)
-			bdPlayerManager.decreaseMaxHealth(pl, game.getConfiguration().getStepOnMaxHealth());
+			bdPlayerManager.decreaseMaxHealth(pl, game.getConfiguration().getOneHeart());
 		collegues.remove(player);
 	}
 
@@ -57,9 +57,9 @@ public class StartedState extends AbstractBlockedexState {
 		if (players.size() > 0) {
 			players.add(player);
 			for (Player pl : players)
-				bdPlayerManager.decreaseMaxHealth(pl, game.getConfiguration().getStepOnMaxHealth());
+				bdPlayerManager.decreaseMaxHealth(pl, game.getConfiguration().getOneHalfHeart());
 		} else
-			bdPlayerManager.decreaseMaxHealth(player, game.getConfiguration().getStepOnMaxHealth() * 2);
+			bdPlayerManager.decreaseMaxHealth(player, game.getConfiguration().getOneHeart());
 	}
 
 	private void onPlayerKill(Player player) {
@@ -68,8 +68,8 @@ public class StartedState extends AbstractBlockedexState {
 		if (players.size() > 0) {
 			players.add(player);
 			for (Player pl : players)
-				bdPlayerManager.increaseMaxHealth(pl, game.getConfiguration().getStepOnMaxHealth());
+				bdPlayerManager.increaseMaxHealth(pl, game.getConfiguration().getOneHalfHeart());
 		} else
-			bdPlayerManager.increaseMaxHealth(player, game.getConfiguration().getStepOnMaxHealth() * 2);
+			bdPlayerManager.increaseMaxHealth(player, game.getConfiguration().getOneHeart());
 	}
 }

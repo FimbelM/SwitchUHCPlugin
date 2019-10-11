@@ -36,8 +36,13 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	}
 
 	@Override
-	public Double getStepOnMaxHealth() {
+	public Double getOneHalfHeart() {
 		return stepHealth == null ? DEFAULT_STEP_ON_MAX_HEALTH : stepHealth;
+	}
+	
+	@Override
+	public Double getOneHeart() {
+		return getOneHalfHeart()*2;
 	}
 
 	@Override
