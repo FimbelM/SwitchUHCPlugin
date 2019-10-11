@@ -9,6 +9,7 @@ import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import fr.pederobien.uhc.BukkitManager;
 
@@ -187,5 +188,20 @@ public class PlayerManager {
 				nearPlayer.add(player);
 		}
 		return nearPlayer;
+	}
+	
+	public static void dropPlayerInventoryItemNaturally(Player player) {
+		System.out.println(player.getName());
+		for (ItemStack item : player.getInventory())
+			WorldManager.getWorld().dropItem(player.getLocation(), item);
+	}
+	
+	public static void dropPlayersInventoryItemNaturally(List<Player> players) {
+		for (Player player : players)
+			dropPlayerInventoryItemNaturally(player);
+	}
+	
+	public static void dropPlayersInventoryItemNaturally() {
+		dropPlayersInventoryItemNaturally(getPlayers());
 	}
 }
