@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.managers.PlayerManager;
@@ -39,6 +40,13 @@ public class StartedState extends AbstractBlockedexState {
 			event.setRespawnLocation(TeamsManager.getRandom(collegues).getLocation());
 		else
 			event.setRespawnLocation(WorldManager.getRandomlyLocation(game.getConfiguration().getDiameterAreaOnPlayerRespawn()));
+	}
+	
+	@Override
+	public void onPlayerInteract(PlayerInteractEvent event) {
+		System.out.println(event.getMaterial());
+		System.out.println(event.getClickedBlock());
+		System.out.println(event.getBlockFace());
 	}
 
 	private void onPlayerDie(Player player) {

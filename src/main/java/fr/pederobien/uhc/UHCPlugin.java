@@ -3,7 +3,7 @@ package fr.pederobien.uhc;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -105,7 +105,7 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 	}
 
 	@Override
-	public void onPlayerInteract(PlayerInteractEntityEvent event) {
+	public void onPlayerInteract(PlayerInteractEvent event) {
 
 	}
 

@@ -1,7 +1,7 @@
 package fr.pederobien.uhc.game.blockedexgame;
 
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -117,7 +117,7 @@ public class BlockedexGame extends AbstractGame implements IBlockedexGame {
 	}
 
 	@Override
-	public void onPlayerInteract(PlayerInteractEntityEvent event) {
+	public void onPlayerInteract(PlayerInteractEvent event) {
 		current.onPlayerInteract(event);
 	}
 
