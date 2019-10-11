@@ -97,10 +97,14 @@ public class PlayerManager {
 	public static void setGameModeOfPlayer(Player player, GameMode mode) {
 		player.setGameMode(mode);
 	}
+	
+	public static void setGameModeOfPlayers(List<Player> players, GameMode mode) {
+		for (Player player : players)
+			setGameModeOfPlayer(player, mode);
+	}
 
 	public static void setGameModeOfPlayers(GameMode mode) {
-		for (Player player : getPlayers())
-			player.setGameMode(mode);
+		setGameModeOfPlayers(getPlayers(), mode);
 	}
 	
 	public static void teleporte(Player player, Location location) {
@@ -166,7 +170,7 @@ public class PlayerManager {
 				clearEffect(player.getName(), effect);
 	}
 
-	public static List<Player> getClosePlayers(Player src, int distance) {
+	public static List<Player> getCloseCollegues(Player src, int distance) {
 		return getClosePlayers(src, TeamsManager.getCollegues(src), distance);
 	}
 
