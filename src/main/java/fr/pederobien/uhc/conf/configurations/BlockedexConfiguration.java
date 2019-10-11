@@ -10,10 +10,12 @@ import fr.pederobien.uhc.game.blockedexgame.BlockedexGame;
 public class BlockedexConfiguration extends AbstractConfiguration implements IBlockedexConfiguration {
 	public static final BlockedexConfiguration DEFAULT = new BlockedexConfiguration("DefaultConfiguration");
 	private static final Integer DEFAULT_RADIUS_AREA_ON_PLAYER_DIE = 5;
+	private static final Integer DEFAULT_RADIUS_AREA_ON_PLAYER_KILL = 5;
 	private static final Double DEFAULT_STEP_ON_MAX_HEALTH = 1.0;
 	private static final Integer DEFAULT_DIAMETER_AREA_ON_PLAYER_RESPAWN = 1000;
 
-	private Integer radiusArea;
+	private Integer radiusAreaOnPlayerDie;
+	private Integer radiusAreaOnPlayerKill;
 	private Double stepHealth;
 	private Integer diameterArea;
 
@@ -25,12 +27,12 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 
 	@Override
 	public Integer getRadiusAreaOnPlayerDie() {
-		return radiusArea == null ? DEFAULT_RADIUS_AREA_ON_PLAYER_DIE : radiusArea;
+		return radiusAreaOnPlayerDie == null ? DEFAULT_RADIUS_AREA_ON_PLAYER_DIE : radiusAreaOnPlayerDie;
 	}
 
 	@Override
-	public void setRadiusAreaOnPlayerDie(int radiusArea) {
-		this.radiusArea = radiusArea;
+	public void setRadiusAreaOnPlayerDie(int radiusAreaOnPlayerDie) {
+		this.radiusAreaOnPlayerDie = radiusAreaOnPlayerDie;
 	}
 
 	@Override
@@ -51,5 +53,15 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	@Override
 	public void setDiameterAreaOnPlayerRespawn(int diameterArea) {
 		this.diameterArea = diameterArea;
+	}
+
+	@Override
+	public Integer getRadiusAreaOnPlayerKill() {
+		return radiusAreaOnPlayerKill == null ? DEFAULT_RADIUS_AREA_ON_PLAYER_KILL : radiusAreaOnPlayerKill;
+	}
+
+	@Override
+	public void setRadiusAreaOnPlayerKill(int radiusAreaOnPlayerKill) {
+		this.radiusAreaOnPlayerKill = radiusAreaOnPlayerKill;
 	}
 }
