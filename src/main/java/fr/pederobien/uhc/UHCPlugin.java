@@ -22,10 +22,12 @@ import fr.pederobien.uhc.commands.team.CreateTeamCommand;
 import fr.pederobien.uhc.commands.team.RemoveAllTeamCommand;
 import fr.pederobien.uhc.conf.IConfigurationContext;
 import fr.pederobien.uhc.conf.configurations.ConfigurationContext;
+import fr.pederobien.uhc.game.GameStateException;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.WorldManager;
 import fr.pederobien.uhc.observer.IObsGame;
 import fr.pederobien.uhc.observer.IObsListener;
+import fr.pederobien.uhc.scoreboard.ScoreboardStateException;
 import fr.pederobien.uhc.world.EventListener;
 
 public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
@@ -63,6 +65,11 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 	@Override
 	public void onDisable() {
 		getLogger().info("UHC plugin disable");
+		try {
+			context.stop();
+		} catch (GameStateException | ScoreboardStateException e) {
+			
+		}
 	}
 
 	@Override
