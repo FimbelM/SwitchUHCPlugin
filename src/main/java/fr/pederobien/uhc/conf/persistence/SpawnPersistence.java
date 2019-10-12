@@ -18,11 +18,9 @@ import fr.pederobien.uhc.world.blocks.Spawn;
 
 public class SpawnPersistence extends AbstractPersistence<ISpawn> {
 	private static final double CURRENT_VERSION = 1.1;
-	private ISpawn spawn;
 
 	public SpawnPersistence() {
-		set(Spawn.DEFAULT);
-		checkAndWriteDefault(get());
+		super(Spawn.DEFAULT);
 	}
 
 	@Override
@@ -62,7 +60,7 @@ public class SpawnPersistence extends AbstractPersistence<ISpawn> {
 	public void save() {
 		Document doc = newDocument();
 		doc.setXmlStandalone(true);
-		Element root = doc.createElement("spawn");
+		Element root = doc.createElement("get()");
 		doc.appendChild(root);
 
 		Element version = doc.createElement("version");
@@ -70,37 +68,27 @@ public class SpawnPersistence extends AbstractPersistence<ISpawn> {
 		root.appendChild(version);
 
 		Element name = doc.createElement("name");
-		name.appendChild(doc.createTextNode(spawn.getName()));
+		name.appendChild(doc.createTextNode(get().getName()));
 		root.appendChild(name);
 
 		Element center = doc.createElement("center");
-		center.setAttribute("x", "" + spawn.getCenter().getX());
-		center.setAttribute("y", "" + spawn.getCenter().getY());
-		center.setAttribute("z", "" + spawn.getCenter().getZ());
+		center.setAttribute("x", "" + get().getCenter().getX());
+		center.setAttribute("y", "" + get().getCenter().getY());
+		center.setAttribute("z", "" + get().getCenter().getZ());
 		root.appendChild(center);
 
 		Element blocks = doc.createElement("blocks");
-		for (Coordinate coord : spawn.getBlocks().keySet()) {
+		for (Coordinate coord : get().getBlocks().keySet()) {
 			Element block = doc.createElement("block");
 			block.setAttribute("x", "" + coord.getX());
 			block.setAttribute("y", "" + coord.getY());
 			block.setAttribute("z", "" + coord.getZ());
-			block.setAttribute("blockdata", "" + spawn.getBlocks().get(coord).getAsString());
+			block.setAttribute("blockdata", "" + get().getBlocks().get(coord).getAsString());
 			blocks.appendChild(block);
 		}
 		root.appendChild(blocks);
 
-		saveDocument(getPath() + spawn.getName() + ".xml", doc);
-	}
-
-	@Override
-	public ISpawn get() {
-		return spawn;
-	}
-
-	@Override
-	public void set(ISpawn spawn) {
-		this.spawn = spawn;
+		saveDocument(getPath() + get().getName() + ".xml", doc);
 	}
 
 	private void load10(Node root) {
@@ -111,10 +99,10 @@ public class SpawnPersistence extends AbstractPersistence<ISpawn> {
 
 			switch (elt.getNodeName()) {
 			case "name":
-				spawn = new Spawn(elt.getChildNodes().item(0).getNodeValue());
+				set(new Spawn(elt.getChildNodes().item(0).getNodeValue()));
 				break;
 			case "center":
-				spawn.setCenter(elt.getAttribute("x"), elt.getAttribute("y"), elt.getAttribute("z"));
+				get().setCenter(elt.getAttribute("x"), elt.getAttribute("y"), elt.getAttribute("z"));
 				break;
 			case "blocks":
 				List<ISerializableBlock> blocksStr = new ArrayList<ISerializableBlock>();
@@ -126,7 +114,7 @@ public class SpawnPersistence extends AbstractPersistence<ISpawn> {
 							block.getAttribute("z"),
 							Material.valueOf(block.getAttribute("material")).createBlockData().getAsString()));
 				}
-				spawn.setBlocks(blocksStr);
+				get().setBlocks(blocksStr);
 				break;
 			default:
 				break;
@@ -142,10 +130,10 @@ public class SpawnPersistence extends AbstractPersistence<ISpawn> {
 
 			switch (elt.getNodeName()) {
 			case "name":
-				spawn = new Spawn(elt.getChildNodes().item(0).getNodeValue());
+				set(new Spawn(elt.getChildNodes().item(0).getNodeValue()));
 				break;
 			case "center":
-				spawn.setCenter(elt.getAttribute("x"), elt.getAttribute("y"), elt.getAttribute("z"));
+				get().setCenter(elt.getAttribute("x"), elt.getAttribute("y"), elt.getAttribute("z"));
 				break;
 			case "blocks":
 				List<ISerializableBlock> blocksStr = new ArrayList<ISerializableBlock>();
@@ -156,7 +144,7 @@ public class SpawnPersistence extends AbstractPersistence<ISpawn> {
 					blocksStr.add(new SerialisableBlock(block.getAttribute("x"), block.getAttribute("y"),
 							block.getAttribute("z"), block.getAttribute("blockdata")));
 				}
-				spawn.setBlocks(blocksStr);
+				get().setBlocks(blocksStr);
 				break;
 			default:
 				break;
@@ -165,12 +153,12 @@ public class SpawnPersistence extends AbstractPersistence<ISpawn> {
 	}
 
 	protected void show() {
-		System.out.println("Name : " + spawn.getName());
-		System.out.println("Center : " + spawn.getCenter().getX() + " " + spawn.getCenter().getY() + " "
-				+ spawn.getCenter().getZ());
+		System.out.println("Name : " + get().getName());
+		System.out.println("Center : " + get().getCenter().getX() + " " + get().getCenter().getY() + " "
+				+ get().getCenter().getZ());
 		System.out.println("Blocks");
-		for (Coordinate coord : spawn.getBlocks().keySet())
+		for (Coordinate coord : get().getBlocks().keySet())
 			System.out.println(
-					"\t" + coord.getX() + " " + coord.getY() + " " + coord.getZ() + " " + spawn.getBlocks().get(coord));
+					"\t" + coord.getX() + " " + coord.getY() + " " + coord.getZ() + " " + get().getBlocks().get(coord));
 	}
 }

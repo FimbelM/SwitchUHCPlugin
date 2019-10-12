@@ -24,9 +24,12 @@ import fr.pederobien.uhc.conf.IUnmodifiableName;
 public abstract class AbstractPersistence<T extends IUnmodifiableName> implements IPersistence<T> {
 	protected static final String ROOT = "Plugins/UHCPlugin/Ressources/";
 	private DocumentBuilder builder;
+	private T elt;
 	protected boolean saved, loaded;
 
-	public AbstractPersistence() {
+	public AbstractPersistence(T elt) {
+		this.elt = elt;
+		checkAndWriteDefault(elt);
 		try {
 			DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
 			f.setIgnoringElementContentWhitespace(true);
@@ -65,6 +68,16 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 		for (int i = 0; i < list.length; i++)
 			listOfString.add(list[i].substring(0, list[i].indexOf(".xml")));
 		return listOfString;
+	}
+	
+	@Override
+	public T get() {
+		return elt;
+	}
+	
+	@Override
+	public void set(T elt) {
+		this.elt = elt;
 	}
 
 	protected void setSaved(boolean saved) {

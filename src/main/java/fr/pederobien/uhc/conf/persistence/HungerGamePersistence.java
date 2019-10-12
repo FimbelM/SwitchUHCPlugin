@@ -16,7 +16,6 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 
 	public HungerGamePersistence() {
 		super(HungerGameConfiguration.DEFAULT);
-		checkAndWriteDefault(get());
 	}
 
 	@Override
@@ -53,7 +52,7 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 	public void save() {
 		Document doc = newDocument();
 		doc.setXmlStandalone(true);
-		Element root = doc.createElement("configuration");
+		Element root = doc.createElement("get()");
 		doc.appendChild(root);
 
 		Element version = doc.createElement("version");
@@ -61,29 +60,29 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 		root.appendChild(version);
 
 		Element name = doc.createElement("name");
-		name.appendChild(doc.createTextNode(configuration.getName()));
+		name.appendChild(doc.createTextNode(get().getName()));
 		root.appendChild(name);
 
 		Element border = doc.createElement("border");
 		root.appendChild(border);
 
 		Element center = doc.createElement("center");
-		center.setAttribute("x", "" + configuration.getBorderCenter().getX());
-		center.setAttribute("z", "" + configuration.getBorderCenter().getZ());
+		center.setAttribute("x", "" + get().getBorderCenter().getX());
+		center.setAttribute("z", "" + get().getBorderCenter().getZ());
 		border.appendChild(center);
 
 		Element diameter = doc.createElement("diameter");
-		diameter.setAttribute("initial", "" + configuration.getInitialBorderDiameter());
-		diameter.setAttribute("final", "" + configuration.getFinalBorderDiameter());
+		diameter.setAttribute("initial", "" + get().getInitialBorderDiameter());
+		diameter.setAttribute("final", "" + get().getFinalBorderDiameter());
 		border.appendChild(diameter);
 
 		Element time = doc.createElement("time");
-		time.setAttribute("game", configuration.getGameTime().toString());
-		time.setAttribute("fraction", configuration.getFractionTime().toString());
-		time.setAttribute("scoreboardrefresh", "" + configuration.getScoreboardRefresh());
+		time.setAttribute("game", get().getGameTime().toString());
+		time.setAttribute("fraction", get().getFractionTime().toString());
+		time.setAttribute("scoreboardrefresh", "" + get().getScoreboardRefresh());
 		root.appendChild(time);
 
-		saveDocument(getPath() + configuration.getName() + ".xml", doc);
+		saveDocument(getPath() + get().getName() + ".xml", doc);
 	}
 
 	private void load10(Node root) {
@@ -94,7 +93,7 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 
 			switch (elt.getNodeName()) {
 			case "name":
-				configuration = new HungerGameConfiguration(elt.getChildNodes().item(0).getNodeValue());
+				set(new HungerGameConfiguration(elt.getChildNodes().item(0).getNodeValue()));
 				break;
 			case "border":
 				for (int j = 0; j < elt.getChildNodes().getLength(); j++) {
@@ -103,11 +102,11 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 					Element child = (Element) elt.getChildNodes().item(j);
 					switch (child.getNodeName()) {
 					case "center":
-						configuration.setBorderCenter(child.getAttribute("x"), child.getAttribute("z"));
+						get().setBorderCenter(child.getAttribute("x"), child.getAttribute("z"));
 						break;
 					case "diameter":
-						configuration.setInitialBorderDiameter(Double.parseDouble(child.getAttribute("initial")));
-						configuration.setFinalBorderDiameter(Double.parseDouble(child.getAttribute("final")));
+						get().setInitialBorderDiameter(Double.parseDouble(child.getAttribute("initial")));
+						get().setFinalBorderDiameter(Double.parseDouble(child.getAttribute("final")));
 						break;
 					default:
 						break;
@@ -115,9 +114,9 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 				}
 				break;
 			case "time":
-				configuration.setGameTime(LocalTime.parse(elt.getAttribute("game")));
-				configuration.setFractionTime(LocalTime.parse(elt.getAttribute("fraction")));
-				configuration.setScoreboardRefresh(Long.parseLong(elt.getAttribute("scoreboardrefresh")));
+				get().setGameTime(LocalTime.parse(elt.getAttribute("game")));
+				get().setFractionTime(LocalTime.parse(elt.getAttribute("fraction")));
+				get().setScoreboardRefresh(Long.parseLong(elt.getAttribute("scoreboardrefresh")));
 				break;
 			default:
 				break;
@@ -126,16 +125,15 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 	}
 
 	protected void show() {
-		System.out.println("Name : " + configuration.getName());
+		System.out.println("Name : " + get().getName());
 		System.out.println("Border");
-		System.out.println(
-				"\tCenter : " + configuration.getBorderCenter().getX() + " " + configuration.getBorderCenter().getZ());
+		System.out.println("\tCenter : " + get().getBorderCenter().getX() + " " + get().getBorderCenter().getZ());
 		System.out.println("\tDiameter");
-		System.out.println("\t\tInitial : " + configuration.getInitialBorderDiameter());
-		System.out.println("\t\tFinal : " + configuration.getFinalBorderDiameter());
+		System.out.println("\t\tInitial : " + get().getInitialBorderDiameter());
+		System.out.println("\t\tFinal : " + get().getFinalBorderDiameter());
 		System.out.println("Time");
-		System.out.println("\tGame : " + configuration.getGameTime());
-		System.out.println("\tFraction : " + configuration.getFractionTime());
-		System.out.println("\tScoreboard refresh : " + configuration.getScoreboardRefresh());
+		System.out.println("\tGame : " + get().getGameTime());
+		System.out.println("\tFraction : " + get().getFractionTime());
+		System.out.println("\tScoreboard refresh : " + get().getScoreboardRefresh());
 	}
 }

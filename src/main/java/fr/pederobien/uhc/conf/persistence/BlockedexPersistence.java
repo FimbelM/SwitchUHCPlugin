@@ -15,7 +15,6 @@ public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConf
 
 	public BlockedexPersistence() {
 		super(BlockedexConfiguration.DEFAULT);
-		checkAndWriteDefault(get());
 	}
 
 	@Override
@@ -55,10 +54,10 @@ public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConf
 		root.appendChild(version);
 
 		Element name = doc.createElement("name");
-		name.appendChild(doc.createTextNode(configuration.getName()));
+		name.appendChild(doc.createTextNode(get().getName()));
 		root.appendChild(name);
 
-		saveDocument(getPath() + configuration.getName() + ".xml", doc);
+		saveDocument(getPath() + get().getName() + ".xml", doc);
 	}
 
 	private void load10(Element root) {
@@ -69,7 +68,7 @@ public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConf
 
 			switch (elt.getNodeName()) {
 			case "name":
-				configuration = new BlockedexConfiguration(elt.getChildNodes().item(0).getNodeValue());
+				set(new BlockedexConfiguration(elt.getChildNodes().item(0).getNodeValue()));
 				break;
 			default:
 				break;
