@@ -2,7 +2,6 @@ package fr.pederobien.uhc.conf.persistence;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -60,11 +59,6 @@ public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConf
 		root.appendChild(name);
 
 		saveDocument(getPath() + configuration.getName() + ".xml", doc);
-	}
-
-	@Override
-	public List<String> list() {
-		return getList(getPath());
 	}
 
 	private void load10(Element root) {

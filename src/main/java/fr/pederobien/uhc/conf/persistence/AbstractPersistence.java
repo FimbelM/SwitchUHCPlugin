@@ -57,6 +57,15 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 	public boolean isSaved() {
 		return saved;
 	}
+	
+	@Override
+	public List<String> list() {
+		String[] list = new File(getPath()).list();
+		List<String> listOfString = new ArrayList<String>();
+		for (int i = 0; i < list.length; i++)
+			listOfString.add(list[i].substring(0, list[i].indexOf(".xml")));
+		return listOfString;
+	}
 
 	protected void setSaved(boolean saved) {
 		this.saved = saved;
@@ -101,13 +110,5 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 		} catch (TransformerException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	protected List<String> getList(String path) {
-		String[] list = new File(path).list();
-		List<String> listOfString = new ArrayList<String>();
-		for (int i = 0; i < list.length; i++)
-			listOfString.add(list[i].substring(0, list[i].indexOf(".xml")));
-		return listOfString;
 	}
 }

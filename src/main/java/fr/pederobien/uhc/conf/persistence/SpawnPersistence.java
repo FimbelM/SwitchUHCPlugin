@@ -103,11 +103,6 @@ public class SpawnPersistence extends AbstractPersistence<ISpawn> {
 		this.spawn = spawn;
 	}
 
-	@Override
-	public List<String> list() {
-		return getList(getPath());
-	}
-
 	private void load10(Node root) {
 		for (int i = 0; i < root.getChildNodes().getLength(); i++) {
 			if (root.getChildNodes().item(i).getNodeType() != Node.ELEMENT_NODE)
