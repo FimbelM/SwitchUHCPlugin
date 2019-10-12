@@ -1,21 +1,25 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.hungergame;
 
-import fr.pederobien.uhc.commands.configuration.edit.IEditConfig;
+import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractEditionsFactory;
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.conf.ConfigurationsFactory;
 import fr.pederobien.uhc.conf.IConfigurationContext;
 import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 
-public class HungerGameEditionsFactory {
-	private IPersistence<IHungerGameConfiguration> persistence = ConfigurationsFactory.getInstance().getHungerGamePersistence();
+public class HungerGameEditionsFactory extends AbstractEditionsFactory<IHungerGameConfiguration> {
 
 	public static HungerGameEditionsFactory getInstance() {
 		return SingletonHolder.factory;
 	}
 
+	private HungerGameEditionsFactory(IPersistence<IHungerGameConfiguration> persistence) {
+		super(persistence);
+	}
+
 	private static class SingletonHolder {
-		public static final HungerGameEditionsFactory factory = new HungerGameEditionsFactory();
+		public static final HungerGameEditionsFactory factory = new HungerGameEditionsFactory(
+				ConfigurationsFactory.getInstance().getHungerGamePersistence());
 	}
 
 	public IEdition createBorderCenterEdition() {
@@ -68,9 +72,5 @@ public class HungerGameEditionsFactory {
 
 	public IEdition createListEdition() {
 		return new ListConf(persistence);
-	}
-
-	public IEdition createHelpEdition(IEditConfig conf) {
-		return new Help(conf);
 	}
 }

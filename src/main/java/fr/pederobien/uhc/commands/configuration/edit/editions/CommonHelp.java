@@ -1,14 +1,14 @@
-package fr.pederobien.uhc.commands.configuration.edit.editions.spawn;
+package fr.pederobien.uhc.commands.configuration.edit.editions;
 
 import java.util.List;
 
 import fr.pederobien.uhc.commands.configuration.edit.IEditConfig;
-import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
+import fr.pederobien.uhc.conf.IUnmodifiableName;
 
-public class Help extends AbstractSpawnEdition {
+public class CommonHelp extends AbstractEdition<IUnmodifiableName> {
 	private IEditConfig conf;
 
-	public Help(IEditConfig conf) {
+	public CommonHelp(IEditConfig conf) {
 		super(null, "help", "to display all features");
 		this.conf = conf;
 	}
