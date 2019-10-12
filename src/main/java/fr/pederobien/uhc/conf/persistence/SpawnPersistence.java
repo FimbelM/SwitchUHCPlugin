@@ -55,7 +55,7 @@ public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 	public void save() {
 		Document doc = newDocument();
 		doc.setXmlStandalone(true);
-		Element root = doc.createElement("get()");
+		Element root = doc.createElement("spawn");
 		doc.appendChild(root);
 
 		Element version = doc.createElement("version");
@@ -84,6 +84,43 @@ public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 		root.appendChild(blocks);
 
 		saveDocument(doc);
+	}
+	
+	@Override
+	protected String getDefault() {
+		return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n" +
+				"  <spawn>\r\n" + 
+				"  <version>0.0</version>\r\n" + 
+				"  <name>DefaultSpawn</name>\r\n" + 
+				"  <center x=\"0\" y=\"90\" z=\"0\"/>\r\n" + 
+				"  <blocks>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"-2\" y=\"0\" z=\"-2\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"-2\" y=\"0\" z=\"-1\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"-2\" y=\"0\" z=\"0\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"-2\" y=\"0\" z=\"1\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"-2\" y=\"0\" z=\"2\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"-1\" y=\"0\" z=\"-2\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"-1\" y=\"0\" z=\"-1\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"-1\" y=\"0\" z=\"0\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"-1\" y=\"0\" z=\"1\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"-1\" y=\"0\" z=\"2\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"0\" y=\"0\" z=\"-2\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"0\" y=\"0\" z=\"-1\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"0\" y=\"0\" z=\"0\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"0\" y=\"0\" z=\"1\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"0\" y=\"0\" z=\"2\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"1\" y=\"0\" z=\"-2\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"1\" y=\"0\" z=\"-1\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"1\" y=\"0\" z=\"0\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"1\" y=\"0\" z=\"1\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"1\" y=\"0\" z=\"2\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"2\" y=\"0\" z=\"-2\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"2\" y=\"0\" z=\"-1\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"2\" y=\"0\" z=\"0\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"2\" y=\"0\" z=\"1\"/>\r\n" + 
+				"    <block blockdata=\"minecraft:bedrock\" x=\"2\" y=\"0\" z=\"2\"/>\r\n" + 
+				"  </blocks>\r\n" + 
+				"</spawn>";
 	}
 
 	private void load10(Node root) {

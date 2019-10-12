@@ -86,7 +86,7 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 	}
 
 	protected void checkAndWriteDefault() {
-		File file = new File(getAbsolutePath());
+		File file = new File(getPath());
 		if (!file.exists()) {
 			file.mkdirs();
 			save();
@@ -103,7 +103,7 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 	}
 
 	protected String getAbsolutePath(String name) {
-		return getPath() + get().getName() + END;
+		return getPath() + name + END;
 	}
 
 	protected Document newDocument() {

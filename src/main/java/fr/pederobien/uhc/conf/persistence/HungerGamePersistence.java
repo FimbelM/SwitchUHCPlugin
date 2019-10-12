@@ -52,7 +52,7 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 	public void save() {
 		Document doc = newDocument();
 		doc.setXmlStandalone(true);
-		Element root = doc.createElement("get()");
+		Element root = doc.createElement("configuration");
 		doc.appendChild(root);
 
 		Element version = doc.createElement("version");
