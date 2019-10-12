@@ -1,11 +1,13 @@
 package fr.pederobien.uhc.conf.configurations;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.conf.configurations.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.game.blockedexgame.BlockedexGame;
+import fr.pederobien.uhc.world.blocks.IBase;
 
 public class BlockedexConfiguration extends AbstractConfiguration implements IBlockedexConfiguration {
 	public static final BlockedexConfiguration DEFAULT = new BlockedexConfiguration("DefaultConfiguration");
@@ -18,11 +20,13 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	private Integer radiusAreaOnPlayerKill;
 	private Double stepHealth;
 	private Integer diameterArea;
+	private List<IBase> bases;
 
 	public BlockedexConfiguration(String name) {
 		setName(name);
 		setTeams(new ArrayList<Team>());
 		setGame(new BlockedexGame(this));
+		setBases(new ArrayList<IBase>());
 	}
 
 	@Override
@@ -68,5 +72,15 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	@Override
 	public void setRadiusAreaOnPlayerKill(int radiusAreaOnPlayerKill) {
 		this.radiusAreaOnPlayerKill = radiusAreaOnPlayerKill;
+	}
+
+	@Override
+	public List<IBase> getBases() {
+		return bases;
+	}
+
+	@Override
+	public void setBases(List<IBase> bases) {
+		this.bases = bases;
 	}
 }

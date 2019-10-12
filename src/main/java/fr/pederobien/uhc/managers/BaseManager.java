@@ -14,13 +14,17 @@ public class BaseManager {
 	private List<Block> restrictedChests;
 	private HashMap<Player, List<Block>> playerRestrictedChests;
 
-	public BaseManager() {
+	public BaseManager(List<IBase> bases) {
 		restrictedChests = new ArrayList<Block>();
 		playerRestrictedChests = new HashMap<Player, List<Block>>();
+		
+		for (IBase base : bases)
+			addBase(base);
 	}
 
 	public void addBase(IBase base) {
 		restrictedChests.addAll(base.getChests().keySet());
+		base.launch();
 	}
 
 	public boolean isChestAccessible(Player player, Block block) {
