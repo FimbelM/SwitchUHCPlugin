@@ -22,4 +22,9 @@ public class Spawn extends AbstractBawn implements ISpawn {
 		super.remove();
 		WorldManager.setSpawnOnJoin(WorldManager.getHighestBlockYAt(0, 0).getLocation());
 	}
+	
+	@Override
+	public String getDefault() {
+		return null;
+	}
 }

@@ -18,4 +18,6 @@ public interface IBawn extends IName, IUnmodifiableBawn {
 	void setDimensions(String width, String height, String depth);
 
 	void setDimensions(int width, int height, int depth);
+	
+	String getDefault();
 }
