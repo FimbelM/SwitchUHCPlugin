@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -22,7 +23,7 @@ public abstract class AbstractEdition<T extends IUnmodifiableName> implements IE
 		return persistence.get();
 	}
 
-	protected List<String> filter(List<String> list, String filter) {
+	protected List<String> filter(Collection<String> list, String filter) {
 		Predicate<String> match = str -> str.matches(filter + "(.*)");
 		return list.stream().filter(match).collect(Collectors.toList());
 	}
