@@ -16,7 +16,7 @@ import fr.pederobien.uhc.conf.IUnmodifiableName;
 
 public abstract class AbstractEditConfiguration<T extends IUnmodifiableName> implements IEditConfig {
 	protected IConfigurationContext context;
-	protected HashMap<String, IEdition> map;
+	private HashMap<String, IEdition> map;
 	private String message;
 
 	public AbstractEditConfiguration(IConfigurationContext context) {
