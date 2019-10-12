@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.hungergame;
 
+import fr.pederobien.uhc.commands.configuration.edit.IEditConfig;
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.conf.ConfigurationsFactory;
 import fr.pederobien.uhc.conf.IConfigurationContext;
@@ -69,7 +70,7 @@ public class HungerGameEditionsFactory {
 		return new ListConf(persistence);
 	}
 
-	public IEdition createHelpEdition() {
-		return new Help(persistence);
+	public IEdition createHelpEdition(IEditConfig conf) {
+		return new Help(conf);
 	}
 }

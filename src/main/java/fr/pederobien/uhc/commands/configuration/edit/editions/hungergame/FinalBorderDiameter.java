@@ -3,14 +3,13 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.hungergame;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.HGEditions;
 import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class FinalBorderDiameter extends AbstractHGEdition {
 
 	public FinalBorderDiameter(IPersistence<IHungerGameConfiguration> persistence) {
-		super(persistence, HGEditions.FINAL_BORDER_DIAMETER);
+		super(persistence, "finalborderdiameter", "to set the initial diameter of the world's border");
 	}
 
 	@Override

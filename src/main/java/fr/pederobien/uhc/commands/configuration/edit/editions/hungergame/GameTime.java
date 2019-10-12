@@ -5,14 +5,13 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.HGEditions;
 import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class GameTime extends AbstractHGEdition {
 
 	public GameTime(IPersistence<IHungerGameConfiguration> persistence) {
-		super(persistence, HGEditions.GAME_TIME);
+		super(persistence, "gametime", "to set the time after which the world border move from its initial to final diameter");
 	}
 
 	@Override

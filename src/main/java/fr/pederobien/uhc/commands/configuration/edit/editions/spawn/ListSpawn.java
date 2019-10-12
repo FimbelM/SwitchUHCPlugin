@@ -2,14 +2,13 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.spawn;
 
 import java.util.List;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.SpawnEditions;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 import fr.pederobien.uhc.world.blocks.ISpawn;
 
 public class ListSpawn extends AbstractSpawnEdition {
 
 	public ListSpawn(IPersistence<ISpawn> persistence) {
-		super(persistence, SpawnEditions.LIST);
+		super(persistence, "list", "to display all existing spawn(s)");
 	}
 
 	@Override

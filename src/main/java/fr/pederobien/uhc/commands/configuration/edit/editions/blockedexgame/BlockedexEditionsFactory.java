@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame;
 
+import fr.pederobien.uhc.commands.configuration.edit.IEditConfig;
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.conf.ConfigurationsFactory;
 import fr.pederobien.uhc.conf.IConfigurationContext;
@@ -53,7 +54,7 @@ public class BlockedexEditionsFactory {
 		return new ListConf(persistence);
 	}
 
-	public IEdition createHelpEdition() {
-		return new Help(persistence);
+	public IEdition createHelpEdition(IEditConfig conf) {
+		return new Help(conf);
 	}
 }

@@ -2,35 +2,34 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.hungergame;
 
 import java.util.List;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.HGEditions;
-import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
-import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.commands.configuration.edit.IEditConfig;
+import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 
 public class Help extends AbstractHGEdition {
+	private IEditConfig conf;
 
-	public Help(IPersistence<IHungerGameConfiguration> persistence) {
-		super(persistence, HGEditions.HELP);
+	public Help(IEditConfig conf) {
+		super(null, "help", "to display all features");
+		this.conf = conf;
 	}
 
 	@Override
 	public String edit(String[] args) {
 		try {
-			return HGEditions.find(args[0]).help();
-		} catch (IndexOutOfBoundsException | NullPointerException e) {
-			String help = "List of existing commands\r\n";
-			for (HGEditions edition : HGEditions.values()) {
-				help += edition.help();
-				help += "\r\n";
-			}
-			return help;
+			for (IEdition edition : conf.getEditions().values())
+				if (edition.getLabel().equals(args[0]))
+					return edition.help();
+		} catch (IndexOutOfBoundsException e) {
+
 		}
+		return conf.help();
 	}
 
 	@Override
 	public List<String> getArguments(String[] subArguments) {
 		switch (subArguments.length) {
 		case 1:
-			return filter(HGEditions.labels(), subArguments[0]);
+			return filter(conf.getEditions().keySet(), subArguments[0]);
 		default:
 			return null;
 		}

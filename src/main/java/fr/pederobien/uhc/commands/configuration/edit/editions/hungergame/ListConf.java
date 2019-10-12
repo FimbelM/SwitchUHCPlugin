@@ -2,14 +2,13 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.hungergame;
 
 import java.util.List;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.HGEditions;
 import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class ListConf extends AbstractHGEdition {
 
 	public ListConf(IPersistence<IHungerGameConfiguration> persistence) {
-		super(persistence, HGEditions.LIST);
+		super(persistence, "list", "to display all existing hunger game style (s)");
 	}
 
 	@Override

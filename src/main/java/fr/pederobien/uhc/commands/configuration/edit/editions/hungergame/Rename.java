@@ -3,14 +3,13 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.hungergame;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.HGEditions;
 import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class Rename extends AbstractHGEdition {
 
 	public Rename(IPersistence<IHungerGameConfiguration> persistence) {
-		super(persistence, HGEditions.RENAME);
+		super(persistence, "rename", "to change the name of current hunger game style");
 	}
 
 	@Override
@@ -18,7 +17,8 @@ public class Rename extends AbstractHGEdition {
 		try {
 			String newName = args[0];
 			if (getPersistence().exist(newName))
-				return "Cannot rename hunger game style " + getConf().getName() + " as " + newName + ", style already exist";
+				return "Cannot rename hunger game style " + getConf().getName() + " as " + newName
+						+ ", style already exist";
 			else {
 				String oldName = getConf().getName();
 				getConf().setName(newName);

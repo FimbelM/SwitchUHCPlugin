@@ -4,13 +4,12 @@ import java.util.List;
 
 import fr.pederobien.uhc.commands.configuration.edit.IEditConfig;
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
-import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.SpawnEditions;
 
 public class Help extends AbstractSpawnEdition {
 	private IEditConfig conf;
-	
+
 	public Help(IEditConfig conf) {
-		super(null, SpawnEditions.HELP);
+		super(null, "help", "to display all features");
 		this.conf = conf;
 	}
 
@@ -21,7 +20,7 @@ public class Help extends AbstractSpawnEdition {
 				if (edition.getLabel().equals(args[0]))
 					return edition.help();
 		} catch (IndexOutOfBoundsException e) {
-			
+
 		}
 		return conf.help();
 	}

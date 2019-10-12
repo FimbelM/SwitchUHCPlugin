@@ -3,14 +3,13 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.hungergame;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.HGEditions;
 import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class Load extends AbstractHGEdition {
 
 	public Load(IPersistence<IHungerGameConfiguration> persistence) {
-		super(persistence, HGEditions.LOAD);
+		super(persistence, "load", "to load an hunger game style");
 	}
 
 	@Override

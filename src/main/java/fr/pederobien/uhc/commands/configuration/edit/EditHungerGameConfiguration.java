@@ -28,6 +28,6 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHung
 				factory.createAsCurrentEdition(context),
 				factory.createSaveEdition(),
 				factory.createListEdition(),
-				factory.createHelpEdition());
+				factory.createHelpEdition(this));
 	}
 }

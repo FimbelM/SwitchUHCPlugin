@@ -3,14 +3,13 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.spawn;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.SpawnEditions;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 import fr.pederobien.uhc.world.blocks.ISpawn;
 
 public class Dimensions extends AbstractSpawnEdition {
 
 	public Dimensions(IPersistence<ISpawn> persistence) {
-		super(persistence, SpawnEditions.DIMENSIONS);
+		super(persistence, "dimensions", "to set the dimensions of the spawn (width height depth)");
 	}
 
 	@Override

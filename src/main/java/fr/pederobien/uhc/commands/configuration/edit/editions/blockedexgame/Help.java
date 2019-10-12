@@ -2,35 +2,34 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame;
 
 import java.util.List;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.BDEditions;
-import fr.pederobien.uhc.conf.configurations.interfaces.IBlockedexConfiguration;
-import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.commands.configuration.edit.IEditConfig;
+import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 
 public class Help extends AbstractBDEdition {
+	private IEditConfig conf;
 
-	public Help(IPersistence<IBlockedexConfiguration> persistence) {
-		super(persistence, BDEditions.HELP);
+	public Help(IEditConfig conf) {
+		super(null, "help", "to display all features");
+		this.conf = conf;
 	}
 
 	@Override
 	public String edit(String[] args) {
 		try {
-			return BDEditions.find(args[0]).help();
-		} catch (IndexOutOfBoundsException | NullPointerException e) {
-			String help = "List of existing commands\r\n";
-			for (BDEditions edition : BDEditions.values()) {
-				help += edition.help();
-				help += "\r\n";
-			}
-			return help;
+			for (IEdition edition : conf.getEditions().values())
+				if (edition.getLabel().equals(args[0]))
+					return edition.help();
+		} catch (IndexOutOfBoundsException e) {
+
 		}
+		return conf.help();
 	}
 
 	@Override
 	public List<String> getArguments(String[] subArguments) {
 		switch (subArguments.length) {
 		case 1:
-			return filter(BDEditions.labels(), subArguments[0]);
+			return filter(conf.getEditions().keySet(), subArguments[0]);
 		default:
 			return null;
 		}

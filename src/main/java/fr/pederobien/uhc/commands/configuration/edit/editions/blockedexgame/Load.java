@@ -3,14 +3,13 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.blockedexgame;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.BDEditions;
 import fr.pederobien.uhc.conf.configurations.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class Load extends AbstractBDEdition {
 
 	public Load(IPersistence<IBlockedexConfiguration> persistence) {
-		super(persistence, BDEditions.LOAD);
+		super(persistence, "load", "to load a blockedex game style");
 	}
 
 	@Override

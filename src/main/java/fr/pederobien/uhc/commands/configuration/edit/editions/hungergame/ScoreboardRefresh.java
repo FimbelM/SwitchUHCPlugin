@@ -3,14 +3,14 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.hungergame;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.HGEditions;
 import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class ScoreboardRefresh extends AbstractHGEdition {
 
 	public ScoreboardRefresh(IPersistence<IHungerGameConfiguration> persistence) {
-		super(persistence, HGEditions.SCOREBOARD_REFRESH);
+		super(persistence, "scoreboardrefresh",
+				"to set the number of servers's tic after which the scoreboard of each player is refreshed");
 	}
 
 	@Override

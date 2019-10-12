@@ -4,14 +4,13 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.SpawnEditions;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 import fr.pederobien.uhc.world.blocks.ISpawn;
 
 public class Launch extends AbstractSpawnEdition {
 
 	public Launch(IPersistence<ISpawn> persistence) {
-		super(persistence, SpawnEditions.LAUNCH);
+		super(persistence, "launch", "to launch a spawn in the world");
 	}
 
 	@Override
@@ -48,7 +47,8 @@ public class Launch extends AbstractSpawnEdition {
 			} catch (FileNotFoundException e) {
 				return "Cannot launch spawn " + args[0] + ", spawn does not exist";
 			} catch (IndexOutOfBoundsException e) {
-				return "Cannot launch spawn " + args[0] + ", need the spawn's name and center's coordinates <X> <Y> <Z>";
+				return "Cannot launch spawn " + args[0]
+						+ ", need the spawn's name and center's coordinates <X> <Y> <Z>";
 			} catch (NumberFormatException e) {
 				return "Cannot parse width or height or depth";
 			}

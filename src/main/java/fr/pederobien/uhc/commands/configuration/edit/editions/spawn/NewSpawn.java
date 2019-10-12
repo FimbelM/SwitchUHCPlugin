@@ -3,7 +3,6 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.spawn;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.SpawnEditions;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 import fr.pederobien.uhc.world.blocks.ISpawn;
 import fr.pederobien.uhc.world.blocks.Spawn;
@@ -11,7 +10,7 @@ import fr.pederobien.uhc.world.blocks.Spawn;
 public class NewSpawn extends AbstractSpawnEdition {
 
 	public NewSpawn(IPersistence<ISpawn> persistence) {
-		super(persistence, SpawnEditions.NEW);
+		super(persistence, "new", "to create a new spawn");
 	}
 
 	@Override

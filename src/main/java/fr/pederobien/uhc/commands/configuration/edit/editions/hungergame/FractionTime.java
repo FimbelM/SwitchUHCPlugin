@@ -5,14 +5,13 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.HGEditions;
 import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public class FractionTime extends AbstractHGEdition {
 
 	public FractionTime(IPersistence<IHungerGameConfiguration> persistence) {
-		super(persistence, HGEditions.FRACTION_TIME);
+		super(persistence, "fractiontime", "to set the time after which players will not respawn in survivor mode");
 	}
 
 	@Override
