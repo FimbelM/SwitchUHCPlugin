@@ -2,8 +2,10 @@ package fr.pederobien.uhc.commands.configuration.edit;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -17,11 +19,12 @@ import fr.pederobien.uhc.conf.IUnmodifiableName;
 public abstract class AbstractEditConfiguration<T extends IUnmodifiableName> implements IEditConfig {
 	protected IConfigurationContext context;
 	private HashMap<String, IEdition> map;
-	private String message;
+	private String message, help;
 
 	public AbstractEditConfiguration(IConfigurationContext context) {
 		this.context = context;
 		map = new HashMap<String, IEdition>();
+		help = "";
 		setEditions();
 	}
 
@@ -50,14 +53,26 @@ public abstract class AbstractEditConfiguration<T extends IUnmodifiableName> imp
 			return edition.getArguments(Arrays.copyOfRange(args, 1, args.length));
 		return filter(new ArrayList<String>(map.keySet()), args[0]);
 	}
+	
+	@Override
+	public String help() {
+		return help;
+	}
+	
+	@Override
+	public Map<String, IEdition> getEditions() {
+		return Collections.unmodifiableMap(map);
+	}
 
 	protected void setMessage(String message) {
 		this.message = message;
 	}
 
 	protected void addToMap(IEdition... editions) {
-		for (IEdition edition : editions)
+		for (IEdition edition : editions) {
 			map.put(edition.getLabel(), edition);
+			help += edition.help() + "\r\n";
+		}
 	}
 
 	protected List<String> filter(List<String> list, String filter) {
