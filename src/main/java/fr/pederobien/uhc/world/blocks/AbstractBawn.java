@@ -24,8 +24,6 @@ public abstract class AbstractBawn implements IBawn {
 		config = new HashMap<Coordinate, BlockData>();
 	}
 
-	protected abstract void createDefault();
-
 	@Override
 	public void setName(String name) {
 		this.name = name;
