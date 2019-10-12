@@ -7,8 +7,8 @@ import org.bukkit.block.Block;
 import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.SpawnEditions;
-import fr.pederobien.uhc.conf.configurations.interfaces.ISpawn;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.world.blocks.ISpawn;
 
 public abstract class AbstractSpawnEdition extends AbstractEdition<ISpawn> implements IEdition {
 	private SpawnEditions edition;

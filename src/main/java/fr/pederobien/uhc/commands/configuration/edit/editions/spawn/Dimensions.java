@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.enumerations.SpawnEditions;
-import fr.pederobien.uhc.conf.configurations.interfaces.ISpawn;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.world.blocks.ISpawn;
 
 public class Dimensions extends AbstractSpawnEdition {
 
@@ -16,7 +16,7 @@ public class Dimensions extends AbstractSpawnEdition {
 	@Override
 	public String edit(String[] args) {
 		try {
-			getSpawn().setDimension(args[0], args[1], args[2]);
+			getSpawn().setDimensions(args[0], args[1], args[2]);
 			return "Spawn dimensions defined as : " + getSpawn().getWidth() + " " + getSpawn().getHeight() + " "
 					+ getSpawn().getDepth();
 		} catch (IndexOutOfBoundsException e) {

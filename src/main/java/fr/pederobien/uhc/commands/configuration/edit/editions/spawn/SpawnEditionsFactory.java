@@ -2,8 +2,8 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.spawn;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.conf.ConfigurationsFactory;
-import fr.pederobien.uhc.conf.configurations.interfaces.ISpawn;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.world.blocks.ISpawn;
 
 public class SpawnEditionsFactory {
 	private IPersistence<ISpawn> persistence = ConfigurationsFactory.getInstance().getSpawnPersistence();
