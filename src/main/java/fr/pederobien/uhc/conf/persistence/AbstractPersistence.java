@@ -23,6 +23,7 @@ import fr.pederobien.uhc.conf.IUnmodifiableName;
 
 public abstract class AbstractPersistence<T extends IUnmodifiableName> implements IPersistence<T> {
 	protected static final String ROOT = "Plugins/UHCPlugin/Ressources/";
+	private static final String END = ".xml";
 	private DocumentBuilder builder;
 	private T elt;
 	protected boolean saved, loaded;
@@ -38,17 +39,17 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 		}
 		checkAndWriteDefault();
 	}
-	
+
 	protected abstract String getPath();
 
 	@Override
 	public boolean exist(String name) {
-		return new File(getPath() + name + ".xml").exists();
+		return new File(getAbsolutePath(name)).exists();
 	}
 
 	@Override
 	public boolean delete(String name) {
-		return new File(getPath() + name + ".xml").delete();
+		return new File(getAbsolutePath(name)).delete();
 	}
 
 	@Override
@@ -60,21 +61,21 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 	public boolean isSaved() {
 		return saved;
 	}
-	
+
 	@Override
 	public List<String> list() {
 		String[] list = new File(getPath()).list();
 		List<String> listOfString = new ArrayList<String>();
 		for (int i = 0; i < list.length; i++)
-			listOfString.add(list[i].substring(0, list[i].indexOf(".xml")));
+			listOfString.add(list[i].substring(0, list[i].indexOf(END)));
 		return listOfString;
 	}
-	
+
 	@Override
 	public T get() {
 		return elt;
 	}
-	
+
 	@Override
 	public void set(T elt) {
 		this.elt = elt;
@@ -83,7 +84,7 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 	protected void setSaved(boolean saved) {
 		this.saved = saved;
 	}
-	
+
 	protected void checkAndWriteDefault() {
 		File file = new File(getAbsolutePath());
 		if (!file.exists()) {
@@ -96,9 +97,13 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 				e.printStackTrace();
 			}
 	}
-	
+
 	protected String getAbsolutePath() {
-		return getPath() + get().getName() + ".xml";
+		return getAbsolutePath(get().getName());
+	}
+
+	protected String getAbsolutePath(String name) {
+		return getPath() + get().getName() + END;
 	}
 
 	protected Document newDocument() {
