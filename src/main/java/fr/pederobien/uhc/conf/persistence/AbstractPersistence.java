@@ -71,8 +71,8 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 		this.saved = saved;
 	}
 	
-	protected void checkAndWriteDefault(String path, T configuration) {
-		File file = new File(path);
+	protected void checkAndWriteDefault(T configuration) {
+		File file = new File(getPath());
 		if (!file.exists()) {
 			file.mkdirs();
 			save();

@@ -15,7 +15,7 @@ public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConf
 
 	public BlockedexPersistence() {
 		super(BlockedexConfiguration.DEFAULT);
-		checkAndWriteDefault(getPath(), get());
+		checkAndWriteDefault(get());
 	}
 
 	@Override

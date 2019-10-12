@@ -16,7 +16,7 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 
 	public HungerGamePersistence() {
 		super(HungerGameConfiguration.DEFAULT);
-		checkAndWriteDefault(getPath(), get());
+		checkAndWriteDefault(get());
 	}
 
 	@Override

@@ -22,7 +22,7 @@ public class SpawnPersistence extends AbstractPersistence<ISpawn> {
 
 	public SpawnPersistence() {
 		set(Spawn.DEFAULT);
-		checkAndWriteDefault(getPath(), get());
+		checkAndWriteDefault(get());
 	}
 
 	@Override
