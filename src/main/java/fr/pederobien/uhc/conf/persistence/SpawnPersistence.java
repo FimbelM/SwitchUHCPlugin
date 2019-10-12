@@ -16,7 +16,7 @@ import fr.pederobien.uhc.world.blocks.Coordinate;
 import fr.pederobien.uhc.world.blocks.ISpawn;
 import fr.pederobien.uhc.world.blocks.Spawn;
 
-public class SpawnPersistence extends AbstractPersistence<ISpawn> {
+public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 	private static final double CURRENT_VERSION = 1.1;
 
 	public SpawnPersistence() {
@@ -26,11 +26,6 @@ public class SpawnPersistence extends AbstractPersistence<ISpawn> {
 	@Override
 	protected String getPath() {
 		return ROOT + "Spawns/";
-	}
-
-	@Override
-	public boolean exist(String name) {
-		return super.exist(getPath() + name + ".xml");
 	}
 
 	@Override
