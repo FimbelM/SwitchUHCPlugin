@@ -44,7 +44,7 @@ public class StartedState extends AbstractBlockedexState {
 	
 	@Override
 	public void onPlayerInteract(PlayerInteractEvent event) {
-		if (!bdPlayerManager.isChestAccessible(event.getPlayer(), event.getClickedBlock()))
+		if (!baseManager.isChestAccessible(event.getPlayer(), event.getClickedBlock()))
 			event.setCancelled(true);
 	}
 
