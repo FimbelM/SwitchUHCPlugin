@@ -57,7 +57,7 @@ public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConf
 		name.appendChild(doc.createTextNode(get().getName()));
 		root.appendChild(name);
 
-		saveDocument(getPath() + get().getName() + ".xml", doc);
+		saveDocument(doc);
 	}
 
 	private void load10(Element root) {

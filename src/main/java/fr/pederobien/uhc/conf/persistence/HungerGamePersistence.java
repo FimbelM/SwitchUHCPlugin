@@ -82,7 +82,7 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 		time.setAttribute("scoreboardrefresh", "" + get().getScoreboardRefresh());
 		root.appendChild(time);
 
-		saveDocument(getPath() + get().getName() + ".xml", doc);
+		saveDocument(doc);
 	}
 
 	private void load10(Node root) {

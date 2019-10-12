@@ -29,7 +29,6 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 
 	public AbstractPersistence(T elt) {
 		this.elt = elt;
-		checkAndWriteDefault(elt);
 		try {
 			DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
 			f.setIgnoringElementContentWhitespace(true);
@@ -37,6 +36,7 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		}
+		checkAndWriteDefault();
 	}
 	
 	protected abstract String getPath();
@@ -84,17 +84,21 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 		this.saved = saved;
 	}
 	
-	protected void checkAndWriteDefault(T configuration) {
-		File file = new File(getPath());
+	protected void checkAndWriteDefault() {
+		File file = new File(getAbsolutePath());
 		if (!file.exists()) {
 			file.mkdirs();
 			save();
 		} else
 			try {
-				load(configuration.getName());
+				load(get().getName());
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
+	}
+	
+	protected String getAbsolutePath() {
+		return getPath() + get().getName() + ".xml";
 	}
 
 	protected Document newDocument() {
@@ -110,14 +114,14 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 		return null;
 	}
 
-	protected void saveDocument(String path, Document doc) {
+	protected void saveDocument(Document doc) {
 		try {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 			DOMSource domSource = new DOMSource(doc);
-			StreamResult streamResult = new StreamResult(new File(path));
+			StreamResult streamResult = new StreamResult(new File(getAbsolutePath()));
 
 			transformer.transform(domSource, streamResult);
 		} catch (TransformerException e) {

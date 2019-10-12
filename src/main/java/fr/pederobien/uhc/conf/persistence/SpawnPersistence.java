@@ -83,7 +83,7 @@ public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 		}
 		root.appendChild(blocks);
 
-		saveDocument(getPath() + get().getName() + ".xml", doc);
+		saveDocument(doc);
 	}
 
 	private void load10(Node root) {
