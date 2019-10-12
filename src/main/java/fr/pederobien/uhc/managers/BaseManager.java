@@ -8,21 +8,21 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-import fr.pederobien.uhc.world.blocks.IBase;
+import fr.pederobien.uhc.world.blocks.IUnmodifiableBase;
 
 public class BaseManager {
 	private List<Block> restrictedChests;
 	private HashMap<Player, List<Block>> playerRestrictedChests;
 
-	public BaseManager(List<IBase> bases) {
+	public BaseManager(List<IUnmodifiableBase> bases) {
 		restrictedChests = new ArrayList<Block>();
 		playerRestrictedChests = new HashMap<Player, List<Block>>();
-		
-		for (IBase base : bases)
+
+		for (IUnmodifiableBase base : bases)
 			addBase(base);
 	}
 
-	public void addBase(IBase base) {
+	public void addBase(IUnmodifiableBase base) {
 		restrictedChests.addAll(base.getChests().keySet());
 		base.launch();
 	}

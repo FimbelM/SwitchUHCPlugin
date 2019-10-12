@@ -7,7 +7,7 @@ import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.conf.configurations.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.game.blockedexgame.BlockedexGame;
-import fr.pederobien.uhc.world.blocks.IBase;
+import fr.pederobien.uhc.world.blocks.IUnmodifiableBase;
 
 public class BlockedexConfiguration extends AbstractConfiguration implements IBlockedexConfiguration {
 	public static final BlockedexConfiguration DEFAULT = new BlockedexConfiguration("DefaultConfiguration");
@@ -20,13 +20,13 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	private Integer radiusAreaOnPlayerKill;
 	private Double stepHealth;
 	private Integer diameterArea;
-	private List<IBase> bases;
+	private List<IUnmodifiableBase> bases;
 
 	public BlockedexConfiguration(String name) {
 		setName(name);
 		setTeams(new ArrayList<Team>());
 		setGame(new BlockedexGame(this));
-		setBases(new ArrayList<IBase>());
+		setBases(new ArrayList<IUnmodifiableBase>());
 	}
 
 	@Override
@@ -43,10 +43,10 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	public Double getOneHalfHeart() {
 		return stepHealth == null ? DEFAULT_STEP_ON_MAX_HEALTH : stepHealth;
 	}
-	
+
 	@Override
 	public Double getOneHeart() {
-		return getOneHalfHeart()*2;
+		return getOneHalfHeart() * 2;
 	}
 
 	@Override
@@ -75,12 +75,12 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	}
 
 	@Override
-	public List<IBase> getBases() {
+	public List<IUnmodifiableBase> getBases() {
 		return bases;
 	}
 
 	@Override
-	public void setBases(List<IBase> bases) {
+	public void setBases(List<IUnmodifiableBase> bases) {
 		this.bases = bases;
 	}
 }
