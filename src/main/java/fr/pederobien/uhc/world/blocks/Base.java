@@ -10,7 +10,13 @@ import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
 
 public class Base extends AbstractBawn implements IBase {
+	public static final Base DEFAULT;
 	private HashMap<Block, ChatColor> chests;
+	
+	static {
+		DEFAULT = new Base("DefaultBase");
+		DEFAULT.createDefault();
+	}
 
 	public Base(String name) {
 		super(name);
@@ -71,5 +77,10 @@ public class Base extends AbstractBawn implements IBase {
 		default:
 			throw new IllegalArgumentException("Material under chest is not wool");
 		}
+	}
+	
+	@Override
+	protected void createDefault() {
+		setDimensions(5, 5, 5);
 	}
 }

@@ -12,7 +12,7 @@ import org.bukkit.block.data.BlockData;
 import fr.pederobien.uhc.conf.configurations.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.managers.WorldManager;
 
-public class AbstractBawn implements IBawn {
+public abstract class AbstractBawn implements IBawn {
 	private static final Block DEFAULT_CENTER = WorldManager.getHighestBlockYAt(0, 0);
 	private Block center;
 	private HashMap<Coordinate, BlockData> config;
@@ -23,6 +23,8 @@ public class AbstractBawn implements IBawn {
 		this.name = name;
 		config = new HashMap<Coordinate, BlockData>();
 	}
+
+	protected abstract void createDefault();
 
 	@Override
 	public void setName(String name) {

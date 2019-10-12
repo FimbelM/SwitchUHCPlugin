@@ -11,8 +11,7 @@ public class Spawn extends AbstractBawn implements ISpawn {
 
 	static {
 		DEFAULT = new Spawn("DefaultSpawn");
-		DEFAULT.setDimensions(5, 1, 5);
-		DEFAULT.uniformSpawn(Material.BEDROCK);
+		DEFAULT.createDefault();
 	}
 
 	public Spawn(String name) {
@@ -31,19 +30,19 @@ public class Spawn extends AbstractBawn implements ISpawn {
 		WorldManager.setSpawnOnJoin(WorldManager.getHighestBlockYAt(0, 0).getLocation());
 	}
 
-	private void uniformSpawn(Material material) {
+	@Override
+	protected void createDefault() {
+		setDimensions(5, 1, 5);
 		int maxWidth = getWidth() / 2, maxDepth = getDepth() / 2;
 		if (getWidth() % 2 == 1)
 			maxWidth += 1;
 		if (getDepth() % 2 == 1)
 			maxDepth += 1;
 
-		int x, y, z;
-
-		for (x = -getWidth() / 2; x < maxWidth; x++) {
-			for (y = 0; y < getHeight(); y++)
-				for (z = -getDepth() / 2; z < maxDepth; z++)
-					addBlock(new SerialisableBlock(x, y, z, material.createBlockData()));
+		for (int x = -getWidth() / 2; x < maxWidth; x++) {
+			for (int y = 0; y < getHeight(); y++)
+				for (int z = -getDepth() / 2; z < maxDepth; z++)
+					addBlock(new SerialisableBlock(x, y, z, Material.BEDROCK.createBlockData()));
 		}
 	}
 }
