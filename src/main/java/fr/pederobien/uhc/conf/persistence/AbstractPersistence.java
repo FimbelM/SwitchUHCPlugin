@@ -43,12 +43,12 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 
 	@Override
 	public boolean exist(String name) {
-		return new File(name).exists();
+		return new File(getPath() + name + ".xml").exists();
 	}
 
 	@Override
 	public boolean delete(String name) {
-		return new File(name).delete();
+		return new File(getPath() + name + ".xml").delete();
 	}
 
 	@Override
