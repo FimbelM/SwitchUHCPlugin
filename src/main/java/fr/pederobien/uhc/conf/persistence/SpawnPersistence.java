@@ -10,9 +10,11 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import fr.pederobien.uhc.conf.Spawn;
-import fr.pederobien.uhc.conf.Spawn.Coordinate;
-import fr.pederobien.uhc.conf.configurations.interfaces.ISpawn;
+import fr.pederobien.uhc.conf.configurations.SerialisableBlock;
+import fr.pederobien.uhc.conf.configurations.interfaces.ISerializableBlock;
+import fr.pederobien.uhc.world.blocks.Coordinate;
+import fr.pederobien.uhc.world.blocks.ISpawn;
+import fr.pederobien.uhc.world.blocks.Spawn;
 
 public class SpawnPersistence extends AbstractPersistence<ISpawn> {
 	protected static final String SPAWNS = ROOT + "Spawns/";
@@ -116,14 +118,14 @@ public class SpawnPersistence extends AbstractPersistence<ISpawn> {
 				spawn.setCenter(elt.getAttribute("x"), elt.getAttribute("y"), elt.getAttribute("z"));
 				break;
 			case "blocks":
-				List<String> blocksStr = new ArrayList<String>();
+				List<ISerializableBlock> blocksStr = new ArrayList<ISerializableBlock>();
 				for (int j = 0; j < elt.getChildNodes().getLength(); j++) {
 					if (elt.getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
 						continue;
 					Element block = (Element) elt.getChildNodes().item(j);
-					blocksStr.add(block.getAttribute("x") + ";" + block.getAttribute("y") + ";"
-							+ block.getAttribute("z") + ";"
-							+ Material.valueOf(block.getAttribute("material")).createBlockData().getAsString());
+					blocksStr.add(new SerialisableBlock(block.getAttribute("x"), block.getAttribute("y"),
+							block.getAttribute("z"),
+							Material.valueOf(block.getAttribute("material")).createBlockData().getAsString()));
 				}
 				spawn.setBlocks(blocksStr);
 				break;
@@ -147,13 +149,13 @@ public class SpawnPersistence extends AbstractPersistence<ISpawn> {
 				spawn.setCenter(elt.getAttribute("x"), elt.getAttribute("y"), elt.getAttribute("z"));
 				break;
 			case "blocks":
-				List<String> blocksStr = new ArrayList<String>();
+				List<ISerializableBlock> blocksStr = new ArrayList<ISerializableBlock>();
 				for (int j = 0; j < elt.getChildNodes().getLength(); j++) {
 					if (elt.getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
 						continue;
 					Element block = (Element) elt.getChildNodes().item(j);
-					blocksStr.add(block.getAttribute("x") + ";" + block.getAttribute("y") + ";"
-							+ block.getAttribute("z") + ";" + block.getAttribute("blockdata"));
+					blocksStr.add(new SerialisableBlock(block.getAttribute("x"), block.getAttribute("y"),
+							block.getAttribute("z"), block.getAttribute("blockdata")));
 				}
 				spawn.setBlocks(blocksStr);
 				break;

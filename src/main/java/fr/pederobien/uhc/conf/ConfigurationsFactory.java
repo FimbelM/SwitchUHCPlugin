@@ -5,11 +5,11 @@ import fr.pederobien.uhc.conf.configurations.ConfigurationContext;
 import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
 import fr.pederobien.uhc.conf.configurations.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
-import fr.pederobien.uhc.conf.configurations.interfaces.ISpawn;
 import fr.pederobien.uhc.conf.persistence.BlockedexPersistence;
 import fr.pederobien.uhc.conf.persistence.HungerGamePersistence;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 import fr.pederobien.uhc.conf.persistence.SpawnPersistence;
+import fr.pederobien.uhc.world.blocks.ISpawn;
 
 public class ConfigurationsFactory {
 	private IPersistence<IHungerGameConfiguration> hungerGamePersistence;
