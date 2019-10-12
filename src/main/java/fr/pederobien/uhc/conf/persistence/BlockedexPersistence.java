@@ -12,18 +12,22 @@ import fr.pederobien.uhc.conf.configurations.BlockedexConfiguration;
 import fr.pederobien.uhc.conf.configurations.interfaces.IBlockedexConfiguration;
 
 public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConfiguration> {
-	private static final String BLOCKEDEX_GAME = GAME + "/BlockedexGame/";
 	private static final double CURRENT_VERSION = 1.0;
 
 	public BlockedexPersistence() {
 		super(BlockedexConfiguration.DEFAULT);
-		checkAndWriteDefault(BLOCKEDEX_GAME, get());
+		checkAndWriteDefault(getPath(), get());
+	}
+
+	@Override
+	protected String getPath() {
+		return GAME + "/BlockedexGame/";
 	}
 
 	@Override
 	public void load(String name) throws FileNotFoundException {
 		try {
-			Document doc = getDocument(BLOCKEDEX_GAME + name + ".xml");
+			Document doc = getDocument(getPath() + name + ".xml");
 			Element root = doc.getDocumentElement();
 
 			Node version = root.getElementsByTagName("version").item(0);
@@ -54,15 +58,15 @@ public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConf
 		Element name = doc.createElement("name");
 		name.appendChild(doc.createTextNode(configuration.getName()));
 		root.appendChild(name);
-		
-		saveDocument(BLOCKEDEX_GAME + configuration.getName() + ".xml", doc);
+
+		saveDocument(getPath() + configuration.getName() + ".xml", doc);
 	}
 
 	@Override
 	public List<String> list() {
-		return getList(BLOCKEDEX_GAME);
+		return getList(getPath());
 	}
-	
+
 	private void load10(Element root) {
 		for (int i = 0; i < root.getChildNodes().getLength(); i++) {
 			if (root.getChildNodes().item(i).getNodeType() != Node.ELEMENT_NODE)

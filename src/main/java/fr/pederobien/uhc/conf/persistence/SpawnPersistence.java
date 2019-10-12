@@ -17,24 +17,28 @@ import fr.pederobien.uhc.world.blocks.ISpawn;
 import fr.pederobien.uhc.world.blocks.Spawn;
 
 public class SpawnPersistence extends AbstractPersistence<ISpawn> {
-	protected static final String SPAWNS = ROOT + "Spawns/";
 	private static final double CURRENT_VERSION = 1.1;
 	private ISpawn spawn;
 
 	public SpawnPersistence() {
 		set(Spawn.DEFAULT);
-		checkAndWriteDefault(SPAWNS, get());
+		checkAndWriteDefault(getPath(), get());
+	}
+
+	@Override
+	protected String getPath() {
+		return ROOT + "Spawns/";
 	}
 
 	@Override
 	public boolean exist(String name) {
-		return super.exist(SPAWNS + name + ".xml");
+		return super.exist(getPath() + name + ".xml");
 	}
 
 	@Override
 	public void load(String name) throws FileNotFoundException {
 		try {
-			Document doc = getDocument(SPAWNS + name + ".xml");
+			Document doc = getDocument(getPath() + name + ".xml");
 			Element root = doc.getDocumentElement();
 
 			Node version = root.getElementsByTagName("version").item(0);
@@ -86,7 +90,7 @@ public class SpawnPersistence extends AbstractPersistence<ISpawn> {
 		}
 		root.appendChild(blocks);
 
-		saveDocument(SPAWNS + spawn.getName() + ".xml", doc);
+		saveDocument(getPath() + spawn.getName() + ".xml", doc);
 	}
 
 	@Override
@@ -101,7 +105,7 @@ public class SpawnPersistence extends AbstractPersistence<ISpawn> {
 
 	@Override
 	public List<String> list() {
-		return getList(SPAWNS);
+		return getList(getPath());
 	}
 
 	private void load10(Node root) {

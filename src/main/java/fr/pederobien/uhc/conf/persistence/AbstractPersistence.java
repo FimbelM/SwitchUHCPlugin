@@ -35,6 +35,8 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 			e.printStackTrace();
 		}
 	}
+	
+	protected abstract String getPath();
 
 	@Override
 	public boolean exist(String name) {
