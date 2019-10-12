@@ -32,4 +32,12 @@ public class Coordinate {
 	public void setZ(int z) {
 		this.z = z;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || getClass() != obj.getClass())
+			return false;
+		Coordinate coord = (Coordinate) obj;
+		return x == coord.getX() && y == coord.getY() && z == coord.getZ();
+	}
 }
