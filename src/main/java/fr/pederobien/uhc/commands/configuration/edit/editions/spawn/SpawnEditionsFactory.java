@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.spawn;
 
+import fr.pederobien.uhc.commands.configuration.edit.IEditConfig;
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.conf.ConfigurationsFactory;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
@@ -56,7 +57,7 @@ public class SpawnEditionsFactory {
 		return new ListSpawn(persistence);
 	}
 
-	public IEdition createHelpEdition() {
-		return new Help(persistence);
+	public IEdition createHelpEdition(IEditConfig conf) {
+		return new Help(conf);
 	}
 }

@@ -25,6 +25,6 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration<ISpawn> {
 				factory.createRemoveEdition(),
 				factory.createExtractEdition(),
 				factory.createListEdition(),
-				factory.createHelpEdition());
+				factory.createHelpEdition(this));
 	}
 }
