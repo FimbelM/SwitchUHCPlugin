@@ -73,9 +73,4 @@ public class Base extends AbstractBawn implements IBase {
 			throw new IllegalArgumentException("Material under chest is not wool");
 		}
 	}
-	
-	@Override
-	public String getDefault() {
-		return null;
-	}
 }
