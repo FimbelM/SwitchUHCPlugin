@@ -33,6 +33,13 @@ public class TeamsManager {
 		return null;
 	}
 	
+	public static Team getTeam(ChatColor color) {
+		for (Team team : getTeams())
+			if (team.getColor().equals(color))
+				return team;
+		return null;
+	}
+	
 	public static int getNumberOfPlayers(Team team) {
 		return getPlayers(team).size();
 	}
