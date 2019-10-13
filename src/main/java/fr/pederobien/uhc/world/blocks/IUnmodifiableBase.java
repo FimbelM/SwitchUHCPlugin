@@ -8,4 +8,6 @@ import org.bukkit.block.Block;
 public interface IUnmodifiableBase extends IUnmodifiableBawn {
 
 	Map<Block, ChatColor> getChests();
+	
+	int getChestsNumber();
 }

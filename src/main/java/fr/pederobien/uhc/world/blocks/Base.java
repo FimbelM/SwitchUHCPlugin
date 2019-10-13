@@ -21,6 +21,11 @@ public class Base extends AbstractBawn implements IBase {
 	public Map<Block, ChatColor> getChests() {
 		return Collections.unmodifiableMap(chests);
 	}
+	
+	@Override
+	public int getChestsNumber() {
+		return chests.keySet().size();
+	}
 
 	@Override
 	public void launch() {
