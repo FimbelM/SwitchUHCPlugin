@@ -1,6 +1,6 @@
 package fr.pederobien.uhc.commands.configuration.edit;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.hungergame.HungerGameEditionsFactory;
+import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.hungergame.HungerGameEditionsFactory;
 import fr.pederobien.uhc.conf.IConfigurationContext;
 import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
 
@@ -20,10 +20,9 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHung
 				factory.createFinalBorderDiameterEdition(),
 				factory.createGameTimeEdition(),
 				factory.createScoreboardRefreshEdition(),
-				factory.createScoreboardRefreshEdition(),
 				factory.createRenameEdition(),
 				factory.createLoadEdition(),
-				factory.createNewConfEdition(),
+				factory.createNewEdition(),
 				factory.createCurrentEdition(),
 				factory.createAsCurrentEdition(context),
 				factory.createSaveEdition(),

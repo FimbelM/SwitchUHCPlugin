@@ -1,6 +1,6 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.spawn;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.CommonRename;
+import fr.pederobien.uhc.commands.configuration.edit.editions.CommonRename;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 import fr.pederobien.uhc.world.blocks.ISpawn;
 

@@ -18,4 +18,10 @@ public abstract class AbstractEditionsFactory<T extends IUnmodifiableName> {
 	public abstract IEdition createListEdition();
 	
 	public abstract IEdition createCurrentEdition();
+	
+	public abstract IEdition createNewEdition();
+	
+	public abstract IEdition createRenameEdition();
+	
+	public abstract IEdition createSaveEdition();
 }
