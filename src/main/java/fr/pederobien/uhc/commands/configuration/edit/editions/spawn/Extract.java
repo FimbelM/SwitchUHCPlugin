@@ -11,7 +11,7 @@ public class Extract extends AbstractSpawnEdition {
 
 	@Override
 	public String edit(String[] args) {
-		getSpawn().extract();
-		return "Spawn " + getSpawn().getName() + " extracted";
+		get().extract();
+		return "Spawn " + get().getName() + " extracted";
 	}
 }

@@ -15,9 +15,9 @@ public class BorderCenterEdition extends AbstractHGEdition {
 	@Override
 	public String edit(String[] args) {
 		try {
-			getConf().setBorderCenter(args[0], args[1]);
-			return "Border center defined in : " + getConf().getBorderCenter().getX() + " "
-					+ getConf().getBorderCenter().getZ();
+			get().setBorderCenter(args[0], args[1]);
+			return "Border center defined in : " + get().getBorderCenter().getX() + " "
+					+ get().getBorderCenter().getZ();
 		} catch (IndexOutOfBoundsException | NullPointerException e) {
 			return "Cannot set the border center, need coordinates <X> <Z>";
 		} catch (NumberFormatException e) {

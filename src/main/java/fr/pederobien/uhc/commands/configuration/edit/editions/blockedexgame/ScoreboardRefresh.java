@@ -15,8 +15,8 @@ public class ScoreboardRefresh extends AbstractBDEdition {
 	@Override
 	public String edit(String[] args) {
 		try {
-			getConf().setScoreboardRefresh(Long.parseLong(args[0]));
-			return "Scoreboard refreshed each " + getConf().getScoreboardRefresh() + " tics";
+			get().setScoreboardRefresh(Long.parseLong(args[0]));
+			return "Scoreboard refreshed each " + get().getScoreboardRefresh() + " tics";
 		} catch (IndexOutOfBoundsException e) {
 			return "Cannot set the scoreboard refrresh value, need a number of tics";
 		} catch (NumberFormatException e) {

@@ -12,7 +12,7 @@ public class Save extends AbstractSpawnEdition {
 	@Override
 	public String edit(String[] args) {
 		getPersistence().save();
-		return "Spawn " + getSpawn().getName() + " saved";
+		return "Spawn " + get().getName() + " saved";
 	}
 
 }

@@ -17,8 +17,8 @@ public class FractionTime extends AbstractHGEdition {
 	@Override
 	public String edit(String[] args) {
 		try {
-			getConf().setFractionTime(LocalTime.parse(args[0]));
-			return "Fraction time defined : " + showTime(getConf().getFractionTime());
+			get().setFractionTime(LocalTime.parse(args[0]));
+			return "Fraction time defined : " + showTime(get().getFractionTime());
 		} catch (IndexOutOfBoundsException | DateTimeParseException e) {
 			return "Cannot set the fraction time, need time at format hh:mm:ss";
 		}

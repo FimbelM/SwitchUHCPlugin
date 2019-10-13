@@ -11,7 +11,7 @@ public class Remove extends AbstractSpawnEdition {
 
 	@Override
 	public String edit(String[] args) {
-		getSpawn().remove();
-		return "Spawn " + getSpawn().getName() + " removed from the world";
+		get().remove();
+		return "Spawn " + get().getName() + " removed from the world";
 	}
 }

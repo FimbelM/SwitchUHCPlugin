@@ -16,24 +16,24 @@ public class Launch extends AbstractSpawnEdition {
 	@Override
 	public String edit(String[] args) {
 		if (args.length == 0) {
-			getSpawn().launch();
-			return "Spawn " + getSpawn().getName() + " launched at " + showBlock(getSpawn().getCenter());
+			get().launch();
+			return "Spawn " + get().getName() + " launched at " + showBlock(get().getCenter());
 		} else if (args.length < 2) {
 			getPersistence().save();
 			try {
 				getPersistence().load(args[0]);
-				getSpawn().launch();
-				return "Spawn " + getSpawn().getName() + " launched at " + showBlock(getSpawn().getCenter());
+				get().launch();
+				return "Spawn " + get().getName() + " launched at " + showBlock(get().getCenter());
 			} catch (FileNotFoundException e) {
 				return "Cannot launch spawn " + args[0] + ", spawn does not exist";
 			}
 		} else if (args.length < 4) {
 			try {
-				getSpawn().setCenter(args[0], args[1], args[2]);
-				getSpawn().launch();
-				return "Spawn " + getSpawn().getName() + " launched at " + showBlock(getSpawn().getCenter());
+				get().setCenter(args[0], args[1], args[2]);
+				get().launch();
+				return "Spawn " + get().getName() + " launched at " + showBlock(get().getCenter());
 			} catch (IndexOutOfBoundsException e) {
-				return "Cannot launch spawn " + getSpawn().getName() + ", need center's coordinates <X> <Y> <Z>";
+				return "Cannot launch spawn " + get().getName() + ", need center's coordinates <X> <Y> <Z>";
 			} catch (NumberFormatException e) {
 				return "Cannot parse width or height or depth";
 			}
@@ -41,14 +41,13 @@ public class Launch extends AbstractSpawnEdition {
 			getPersistence().save();
 			try {
 				getPersistence().load(args[0]);
-				getSpawn().setCenter(args[1], args[2], args[3]);
-				getSpawn().launch();
-				return "Spawn " + getSpawn().getName() + " launched at " + showBlock(getSpawn().getCenter());
+				get().setCenter(args[1], args[2], args[3]);
+				get().launch();
+				return "Spawn " + get().getName() + " launched at " + showBlock(get().getCenter());
 			} catch (FileNotFoundException e) {
 				return "Cannot launch spawn " + args[0] + ", spawn does not exist";
 			} catch (IndexOutOfBoundsException e) {
-				return "Cannot launch spawn " + args[0]
-						+ ", need the spawn's name and center's coordinates <X> <Y> <Z>";
+				return "Cannot launch spawn " + args[0] + ", need the spawn's name and center's coordinates <X> <Y> <Z>";
 			} catch (NumberFormatException e) {
 				return "Cannot parse width or height or depth";
 			}

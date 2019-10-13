@@ -17,8 +17,8 @@ public class GameTime extends AbstractBDEdition {
 	@Override
 	public String edit(String[] args) {
 		try {
-			getConf().setGameTime(LocalTime.parse(args[0]));
-			return "Game time defined : " + showTime(getConf().getGameTime());
+			get().setGameTime(LocalTime.parse(args[0]));
+			return "Game time defined : " + showTime(get().getGameTime());
 		} catch (IndexOutOfBoundsException | DateTimeParseException e) {
 			return "Cannot set the game time, need time at format hh:mm:ss";
 		}

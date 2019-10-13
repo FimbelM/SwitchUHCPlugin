@@ -22,7 +22,7 @@ public class NewSpawn extends AbstractSpawnEdition {
 				return "The spawn " + name + " already exist";
 			else {
 				getPersistence().set(new Spawn(name));
-				return "New spawn " + getSpawn().getName() + " created";
+				return "New spawn " + get().getName() + " created";
 			}
 		} catch (IndexOutOfBoundsException e) {
 			return "Cannot create a new spawn, need the name";

@@ -22,7 +22,7 @@ public class NewConf extends AbstractHGEdition {
 				return "The hunger game style " + name + " already exist";
 			else {
 				getPersistence().set(new HungerGameConfiguration(name));
-				return "New hunger game style " + getConf().getName() + " created";
+				return "New hunger game style " + get().getName() + " created";
 			}
 		} catch (IndexOutOfBoundsException e) {
 			return "Cannot create a new hunger game style, need the name";

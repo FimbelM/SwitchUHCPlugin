@@ -11,6 +11,6 @@ public class Current extends AbstractHGEdition {
 
 	@Override
 	public String edit(String[] args) {
-		return "Current hunger game style " + getConf().getName();
+		return "Current hunger game style " + get().getName();
 	}
 }

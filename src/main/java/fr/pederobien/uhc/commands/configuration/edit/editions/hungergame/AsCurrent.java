@@ -18,13 +18,13 @@ public class AsCurrent extends AbstractHGEdition {
 	public String edit(String[] args) {
 		if (args.length == 0) {
 			context.setCurrentConfiguration(getPersistence().get());
-			return "Game " + getConf().getName() + " defined as current configuration";
+			return "Game " + get().getName() + " defined as current configuration";
 		} else {
 			getPersistence().save();
 			try {
 				getPersistence().load(args[0]);
-				context.setCurrentConfiguration(getConf());
-				return "Game " + getConf().getName() + " defined as current configuration";
+				context.setCurrentConfiguration(get());
+				return "Game " + get().getName() + " defined as current configuration";
 			} catch (IndexOutOfBoundsException e) {
 				return "Cannot set current hunger game style as current configuration, need the name";
 			} catch (FileNotFoundException e) {

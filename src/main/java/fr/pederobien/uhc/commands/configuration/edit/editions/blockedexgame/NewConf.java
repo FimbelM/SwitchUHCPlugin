@@ -22,7 +22,7 @@ public class NewConf extends AbstractBDEdition {
 				return "The blockedex game style " + name + " already exist";
 			else {
 				getPersistence().set(new BlockedexConfiguration(name));
-				return "New blockedex game style " + getConf().getName() + " created";
+				return "New blockedex game style " + get().getName() + " created";
 			}
 		} catch (IndexOutOfBoundsException e) {
 			return "Cannot create a new blockedex game style, need the name";

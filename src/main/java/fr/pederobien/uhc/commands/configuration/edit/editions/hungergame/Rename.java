@@ -17,11 +17,11 @@ public class Rename extends AbstractHGEdition {
 		try {
 			String newName = args[0];
 			if (getPersistence().exist(newName))
-				return "Cannot rename hunger game style " + getConf().getName() + " as " + newName
+				return "Cannot rename hunger game style " + get().getName() + " as " + newName
 						+ ", style already exist";
 			else {
-				String oldName = getConf().getName();
-				getConf().setName(newName);
+				String oldName = get().getName();
+				get().setName(newName);
 				return "Configuration " + oldName + " renamed as " + newName;
 			}
 		} catch (IndexOutOfBoundsException e) {

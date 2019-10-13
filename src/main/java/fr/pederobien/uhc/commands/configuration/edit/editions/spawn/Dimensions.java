@@ -15,9 +15,9 @@ public class Dimensions extends AbstractSpawnEdition {
 	@Override
 	public String edit(String[] args) {
 		try {
-			getSpawn().setDimensions(args[0], args[1], args[2]);
-			return "Spawn dimensions defined as : " + getSpawn().getWidth() + " " + getSpawn().getHeight() + " "
-					+ getSpawn().getDepth();
+			get().setDimensions(args[0], args[1], args[2]);
+			return "Spawn dimensions defined as : " + get().getWidth() + " " + get().getHeight() + " "
+					+ get().getDepth();
 		} catch (IndexOutOfBoundsException e) {
 			return "Cannot change spawn's dimensions, need <width> <height> <depth>";
 		} catch (NumberFormatException e) {

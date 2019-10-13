@@ -11,6 +11,6 @@ public class Current extends AbstractBDEdition {
 
 	@Override
 	public String edit(String[] args) {
-		return "Current blockedex game style " + getConf().getName();
+		return "Current blockedex game style " + get().getName();
 	}
 }

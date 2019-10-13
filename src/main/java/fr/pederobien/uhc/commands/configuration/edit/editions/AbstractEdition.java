@@ -34,7 +34,7 @@ public abstract class AbstractEdition<T extends IUnmodifiableName> implements IE
 		return persistence;
 	}
 
-	protected T getConf() {
+	protected T get() {
 		return persistence.get();
 	}
 

@@ -20,10 +20,6 @@ public abstract class AbstractSpawnEdition extends AbstractEdition<ISpawn> imple
 		return null;
 	}
 
-	protected ISpawn getSpawn() {
-		return getConf();
-	}
-
 	protected String showBlock(Block block) {
 		return block.getX() + " " + block.getY() + " " + block.getZ();
 	}

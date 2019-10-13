@@ -12,6 +12,6 @@ public class Save extends AbstractBDEdition {
 	@Override
 	public String edit(String[] args) {
 		getPersistence().save();
-		return "Style " + getConf().getName() + " saved";
+		return "Style " + get().getName() + " saved";
 	}
 }

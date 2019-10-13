@@ -17,10 +17,10 @@ public class Rename extends AbstractSpawnEdition {
 		try {
 			String newName = args[0];
 			if (getPersistence().exist(newName))
-				return "Cannot rename spawn " + getSpawn().getName() + " as " + newName + ", spawn already exist";
+				return "Cannot rename spawn " + get().getName() + " as " + newName + ", spawn already exist";
 			else {
-				String oldName = getSpawn().getName();
-				getSpawn().setName(newName);
+				String oldName = get().getName();
+				get().setName(newName);
 				return "Spawn " + oldName + " renamed as " + newName;
 			}
 		} catch (IndexOutOfBoundsException e) {

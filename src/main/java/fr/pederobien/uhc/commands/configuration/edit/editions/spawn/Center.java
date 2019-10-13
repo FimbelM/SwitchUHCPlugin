@@ -15,9 +15,9 @@ public class Center extends AbstractSpawnEdition {
 	@Override
 	public String edit(String[] args) {
 		try {
-			getSpawn().setCenter(args[0], args[1], args[2]);
-			return "Spawn center defined in : " + getSpawn().getCenter().getX() + " " + getSpawn().getCenter().getY()
-					+ " " + getSpawn().getCenter().getZ();
+			get().setCenter(args[0], args[1], args[2]);
+			return "Spawn center defined in : " + get().getCenter().getX() + " " + get().getCenter().getY()
+					+ " " + get().getCenter().getZ();
 		} catch (IndexOutOfBoundsException e) {
 			return "Cannot set center's coordinates, need <X> <Y> <Z>";
 		} catch (NumberFormatException e) {

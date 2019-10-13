@@ -11,6 +11,6 @@ public class Current extends AbstractSpawnEdition {
 
 	@Override
 	public String edit(String[] args) {
-		return "Current spawn " + getSpawn().getName();
+		return "Current spawn " + get().getName();
 	}
 }
