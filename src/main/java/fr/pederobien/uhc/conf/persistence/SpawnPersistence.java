@@ -19,10 +19,6 @@ import fr.pederobien.uhc.world.blocks.Spawn;
 public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 	private static final double CURRENT_VERSION = 1.1;
 
-	public SpawnPersistence() {
-		super(Spawn.DEFAULT);
-	}
-
 	@Override
 	protected String getPath() {
 		return ROOT + "Spawns/";

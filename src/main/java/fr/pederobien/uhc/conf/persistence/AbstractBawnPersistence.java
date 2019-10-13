@@ -10,8 +10,8 @@ import fr.pederobien.uhc.world.blocks.IBawn;
 
 public abstract class AbstractBawnPersistence<T extends IBawn> extends AbstractPersistence<T> {
 
-	public AbstractBawnPersistence(T elt) {
-		super(elt);
+	public AbstractBawnPersistence() {
+		super(null);
 	}
 	
 	protected abstract String getDefault();

@@ -5,7 +5,6 @@ import org.bukkit.util.Vector;
 import fr.pederobien.uhc.managers.WorldManager;
 
 public class Spawn extends AbstractBawn implements ISpawn {
-	public static final Spawn DEFAULT = new Spawn("DefaultSpawn");
 
 	public Spawn(String name) {
 		super(name);
