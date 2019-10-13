@@ -1,6 +1,6 @@
 package fr.pederobien.uhc.commands.configuration.edit;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.spawn.SpawnEditionsFactory;
+import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.spawn.SpawnEditionsFactory;
 import fr.pederobien.uhc.conf.IConfigurationContext;
 import fr.pederobien.uhc.world.blocks.ISpawn;
 
@@ -19,7 +19,7 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration<ISpawn> {
 				factory.createDimensionsEdition(),
 				factory.createRenameEdition(),
 				factory.createCurrentEdition(),
-				factory.createNewSpawnEdition(),
+				factory.createNewEdition(),
 				factory.createLaunchEdition(),
 				factory.createSaveEdition(),
 				factory.createRemoveEdition(),

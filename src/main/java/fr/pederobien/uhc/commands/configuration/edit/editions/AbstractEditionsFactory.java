@@ -14,4 +14,8 @@ public abstract class AbstractEditionsFactory<T extends IUnmodifiableName> {
 	public IEdition createHelpEdition(IEditConfig conf) {
 		return new CommonHelp(conf);
 	}
+	
+	public abstract IEdition createListEdition();
+	
+	public abstract IEdition createCurrentEdition();
 }
