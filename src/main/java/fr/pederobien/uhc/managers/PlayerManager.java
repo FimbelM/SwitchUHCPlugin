@@ -10,10 +10,12 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-
-import fr.pederobien.uhc.BukkitManager;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class PlayerManager {
+	public static final int MAX_EFFECT_DURATION = 999999;
+	public static final int MAX_EFFECT_AMPLIFIER = 99;
 
 	public static List<Player> getPlayers() {
 		List<Player> players = new ArrayList<>();
@@ -60,11 +62,11 @@ public class PlayerManager {
 	public static void setMaxHealthOfPlayer(Player player, double level) {
 		player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(level);
 	}
-	
+
 	public static void resetMaxHealthOfPlayer(Player player) {
 		setMaxHealthOfPlayer(player, 20.0);
 	}
-	
+
 	public static void resetMaxHealthOfPlayers() {
 		for (Player player : getPlayers())
 			resetMaxHealthOfPlayer(player);
@@ -98,7 +100,7 @@ public class PlayerManager {
 	public static void setGameModeOfPlayer(Player player, GameMode mode) {
 		player.setGameMode(mode);
 	}
-	
+
 	public static void setGameModeOfPlayers(List<Player> players, GameMode mode) {
 		for (Player player : players)
 			setGameModeOfPlayer(player, mode);
@@ -107,68 +109,107 @@ public class PlayerManager {
 	public static void setGameModeOfPlayers(GameMode mode) {
 		setGameModeOfPlayers(getPlayers(), mode);
 	}
-	
+
 	public static void teleporte(Player player, Location location) {
 		player.teleport(location);
 	}
-	
+
 	public static void teleporteAllPlayers(List<Player> players, Location location) {
 		for (Player player : players)
 			teleporte(player, location);
 	}
-	
+
 	public static void teleporte(Player player, Entity entity) {
 		player.teleport(entity);
 	}
-	
+
 	public static void teleporteAllPlayers(List<Player> players, Entity entity) {
 		for (Player player : players)
 			teleporte(player, entity);
 	}
-	
+
 	public static void teleporteAllPlayers(Location location) {
 		for (Player player : getPlayers())
 			teleporte(player, location);
 	}
 
-	public static void giveEffect(String selector, String effect, int duration, int power, boolean hide) {
-		BukkitManager.dispatchCommand(
-				"effect give " + selector + " minecraft:" + effect + " " + duration + " " + power + " " + hide);
+	public static void giveEffect(Player player, PotionEffect effect) {
+		player.addPotionEffect(effect);
 	}
 
-	public static void giveEffect(String selector, String effect) {
-		giveEffect(selector, effect, 1, 1, false);
+	public static void giveEffect(List<Player> players, PotionEffect effect) {
+		for (Player player : players)
+			giveEffect(player, effect);
+	}
+	
+	public static void giveEffectToAllPlayers(List<PotionEffect> effects) {
+		giveEffects(getPlayers(), effects);
+	}
+	
+	public static void giveEffectToAllPlayers(PotionEffectType... types) {
+		giveEffects(getPlayers(), createEffect(types));
 	}
 
-	public static void giveEffects(String selector, String... effects) {
-		for (String effect : effects)
-			giveEffect(selector, effect, 1, 1, false);
+	public static void giveEffects(Player player, List<PotionEffect> effects) {
+		for (PotionEffect effect : effects)
+			giveEffect(player, effect);
 	}
 
-	public static void giveEffectToPlayerOnMode(GameMode mode, String effect) {
-		for (Player player : getPlayersOnMode(mode))
-			giveEffect(player.getName(), effect, 999999, 99, true);
+	public static void giveEffects(List<Player> players, List<PotionEffect> effects) {
+		for (Player player : players)
+			for (PotionEffect effect : effects)
+				giveEffect(player, effect);
 	}
 
-	public static void giveEffectToPlayerOnMode(GameMode mode, String... effects) {
-		for (Player player : getPlayersOnMode(mode))
-			for (String effect : effects)
-				giveEffect(player.getName(), effect, 999999, 99, true);
+	public static PotionEffect createEffect(PotionEffectType type, int duration, int amplifier, boolean ambient, boolean particles) {
+		return new PotionEffect(type, duration, amplifier, ambient, particles);
 	}
 
-	public static void clearEffect(String selector, String effect) {
-		BukkitManager.dispatchCommand("effect clear " + selector + " minecraft:" + effect);
+	public static PotionEffect createEffect(PotionEffectType type, int duration, int amplifier, boolean ambient) {
+		return createEffect(type, duration, amplifier, ambient, true);
 	}
 
-	public static void clearEffectToPlayerOnMode(GameMode mode, String effect) {
-		for (Player player : getPlayersOnMode(mode))
-			clearEffect(player.getName(), effect);
+	public static PotionEffect createEffect(PotionEffectType type, int duration, int amplifier) {
+		return createEffect(type, duration, amplifier, true);
+	}
+	
+	public static PotionEffect createEffect(PotionEffectType type) {
+		return createEffect(type, 1, 1);
+	}
+	
+	public static List<PotionEffect> createEffect(PotionEffectType... types) {
+		List<PotionEffect> effects = new ArrayList<PotionEffect>();
+		for (PotionEffectType type : types)
+			effects.add(createEffect(type));
+		return effects;
 	}
 
-	public static void clearEffectToPlayerOnMode(GameMode mode, String... effects) {
-		for (Player player : getPlayersOnMode(mode))
-			for (String effect : effects)
-				clearEffect(player.getName(), effect);
+	public static void giveEffectToPlayerOnMode(GameMode mode, PotionEffect effect) {
+		giveEffect(getPlayersOnMode(mode), effect);
+	}
+
+	public static void giveEffectsToPlayerOnMode(GameMode mode, List<PotionEffect> effects) {
+		giveEffects(getPlayersOnMode(mode), effects);
+	}
+
+	public static void removeEffect(Player player, PotionEffectType type) {
+		player.removePotionEffect(type);
+	}
+
+	public static void removeEffect(List<Player> players, PotionEffectType type) {
+		for (Player player : players)
+			removeEffect(player, type);
+	}
+
+	public static void removeEffect(Player player, List<PotionEffectType> types) {
+		for (PotionEffectType type : types)
+			removeEffect(player, type);
+	}
+
+	public static void removeEffect(List<Player> players, List<PotionEffectType> types) {
+		for (Player player : players)
+			for (PotionEffectType type : types)
+				removeEffect(player, type);
 	}
 
 	public static List<Player> getCloseCollegues(Player src, int distance) {
@@ -189,19 +230,19 @@ public class PlayerManager {
 		}
 		return nearPlayer;
 	}
-	
+
 	public static void dropPlayerInventoryItemNaturally(Player player) {
 		for (ItemStack item : player.getInventory())
 			if (item != null)
 				WorldManager.getWorld().dropItem(player.getLocation(), item);
 		player.getInventory().clear();
 	}
-	
+
 	public static void dropPlayersInventoryItemNaturally(List<Player> players) {
 		for (Player player : players)
 			dropPlayerInventoryItemNaturally(player);
 	}
-	
+
 	public static void dropPlayersInventoryItemNaturally() {
 		dropPlayersInventoryItemNaturally(getPlayers());
 	}

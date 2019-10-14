@@ -7,6 +7,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.potion.PotionEffectType;
 
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.WorldManager;
@@ -78,7 +79,8 @@ public abstract class AbstractGameState implements IGameState {
 	}
 
 	protected void onStart() {
-		PlayerManager.giveEffects("@a", "resistance", "regeneration", "saturation");
+		PlayerManager.giveEffectToAllPlayers(PotionEffectType.DAMAGE_RESISTANCE,
+				PotionEffectType.REGENERATION, PotionEffectType.SATURATION);
 		PlayerManager.maxFoodForPlayers();
 		PlayerManager.resetMaxHealthOfPlayers();
 		PlayerManager.maxLifeToPlayers();
@@ -91,7 +93,6 @@ public abstract class AbstractGameState implements IGameState {
 	protected void onStop() {
 		taskLauncher.cancel();
 		scoreboardLauncher.cancel();
-		PlayerManager.setGameModeOfPlayers(GameMode.ADVENTURE);
 		PlayerManager.teleporteAllPlayers(WorldManager.getSpawnOnJoin());
 	}
 }
