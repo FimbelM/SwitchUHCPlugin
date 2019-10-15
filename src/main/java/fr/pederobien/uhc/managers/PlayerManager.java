@@ -175,7 +175,7 @@ public class PlayerManager {
 	}
 
 	public static PotionEffect createEffect(PotionEffectType type) {
-		return createEffect(type, 1, 1);
+		return createEffect(type, 20, 1);
 	}
 
 	public static List<PotionEffect> createEffect(PotionEffectType... types) {
