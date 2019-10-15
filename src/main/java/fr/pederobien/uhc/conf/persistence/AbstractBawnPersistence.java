@@ -9,9 +9,9 @@ import java.io.IOException;
 import fr.pederobien.uhc.world.blocks.IBawn;
 
 public abstract class AbstractBawnPersistence<T extends IBawn> extends AbstractPersistence<T> {
-
-	public AbstractBawnPersistence() {
-		super(null);
+	
+	public AbstractBawnPersistence(T elt) {
+		super(elt);
 	}
 	
 	protected abstract String getDefault();

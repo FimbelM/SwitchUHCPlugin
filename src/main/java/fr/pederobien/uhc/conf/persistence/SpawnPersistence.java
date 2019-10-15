@@ -17,6 +17,11 @@ import fr.pederobien.uhc.world.blocks.ISpawn;
 import fr.pederobien.uhc.world.blocks.Spawn;
 
 public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
+	
+	public SpawnPersistence() {
+		super(ISpawn.DEFAULT);
+	}
+
 	private static final double CURRENT_VERSION = 1.1;
 
 	@Override
