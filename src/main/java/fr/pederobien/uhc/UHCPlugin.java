@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -66,7 +67,7 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 		new BlockedexConfigurationCommand(this, "bd");
 
 		listener.addObservers(this);
-		
+
 		initialEffects();
 	}
 
@@ -82,6 +83,7 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 
 	@Override
 	public void onStart() {
+		PlayerManager.removeAllEffectsToAllPlayers();
 		listener.removeObservers(this);
 		listener.addObservers(context);
 		WorldManager.setPVP(true);
@@ -124,12 +126,17 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 
 	}
 
+	@Override
+	public void onCreatureSpawn(CreatureSpawnEvent event) {
+
+	}
+
 	private void movePlayer(Player player) {
 		PlayerManager.teleporte(player, WorldManager.getSpawnOnJoin());
 		PlayerManager.setGameModeOfPlayer(player, GameMode.ADVENTURE);
 		PlayerManager.giveEffects(player, effects);
 	}
-	
+
 	private void initialEffects() {
 		effects = new ArrayList<PotionEffect>();
 		effects.add(PlayerManager.createEffect(PotionEffectType.REGENERATION, PlayerManager.MAX_EFFECT_DURATION,

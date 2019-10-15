@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -56,6 +57,12 @@ public class EventListener implements Listener {
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		for (IObsListener obs : observers)
 			obs.onPlayerInteract(event);
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onCreatureSpawn(CreatureSpawnEvent event) {
+		for (IObsListener obs : observers)
+			obs.onCreatureSpawn(event);
 	}
 
 	public void addObservers(IObsListener obs) {

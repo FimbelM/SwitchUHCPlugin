@@ -1,6 +1,7 @@
 package fr.pederobien.uhc.game;
 
 import org.bukkit.GameMode;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -76,6 +77,12 @@ public abstract class AbstractGameState implements IGameState {
 	@Override
 	public void onPlayerInteract(PlayerInteractEvent event) {
 
+	}
+
+	@Override
+	public void onCreatureSpawn(CreatureSpawnEvent event) {
+		if (WorldManager.isLocationUnderSpawn(event.getLocation()) && WorldManager.MOBS.contains(event.getEntityType()))
+			event.setCancelled(true);
 	}
 
 	protected void onStart() {

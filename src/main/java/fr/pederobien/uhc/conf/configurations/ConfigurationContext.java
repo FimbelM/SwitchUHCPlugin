@@ -3,6 +3,7 @@ package fr.pederobien.uhc.conf.configurations;
 import java.time.LocalTime;
 import java.util.List;
 
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -95,6 +96,11 @@ public class ConfigurationContext implements IConfigurationContext {
 	@Override
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		getGame().onPlayerInteract(event);
+	}
+	
+	@Override
+	public void onCreatureSpawn(CreatureSpawnEvent event) {
+		getGame().onCreatureSpawn(event);
 	}
 
 	@Override

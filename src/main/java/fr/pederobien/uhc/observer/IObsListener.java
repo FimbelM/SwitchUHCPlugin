@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.observer;
 
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -20,4 +21,6 @@ public interface IObsListener {
 	void onPlayerMove(PlayerMoveEvent event);
 	
 	void onPlayerInteract(PlayerInteractEvent event);
+	
+	void onCreatureSpawn(CreatureSpawnEvent event);
 }

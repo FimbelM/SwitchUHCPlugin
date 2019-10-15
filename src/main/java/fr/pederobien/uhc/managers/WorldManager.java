@@ -1,6 +1,8 @@
 package fr.pederobien.uhc.managers;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -8,21 +10,51 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.WorldBorder;
 import org.bukkit.block.Block;
+import org.bukkit.entity.EntityType;
 import org.bukkit.util.Vector;
 
 import fr.pederobien.uhc.world.blocks.ISpawn;
 
 public class WorldManager {
+	public static final Set<EntityType> MOBS;
+
 	private static Random rand;
 	private static World world;
 	private static String worldName = "world";
 	private static WorldBorder border;
 	private static ISpawn spawn;
-
+	
 	static {
-		world = getWorld(worldName);
 		rand = new Random();
+		MOBS = new HashSet<>();
+		world = getWorld(worldName);
 		border = world.getWorldBorder();
+		world.setSpawnLocation(getHighestBlockYAt(0, 0).getLocation());
+		
+		MOBS.add(EntityType.BLAZE);
+		MOBS.add(EntityType.CREEPER);
+		MOBS.add(EntityType.DROWNED);
+		MOBS.add(EntityType.ELDER_GUARDIAN);
+		MOBS.add(EntityType.ENDERMITE);
+		MOBS.add(EntityType.EVOKER);
+		MOBS.add(EntityType.GHAST);
+		MOBS.add(EntityType.GUARDIAN);
+		MOBS.add(EntityType.HUSK);
+		MOBS.add(EntityType.MAGMA_CUBE);
+		MOBS.add(EntityType.PHANTOM);
+		MOBS.add(EntityType.SHULKER);
+		MOBS.add(EntityType.SILVERFISH);
+		MOBS.add(EntityType.SKELETON);
+		MOBS.add(EntityType.SKELETON_HORSE);
+		MOBS.add(EntityType.SLIME);
+		MOBS.add(EntityType.SPIDER);
+		MOBS.add(EntityType.STRAY);
+		MOBS.add(EntityType.VEX);
+		MOBS.add(EntityType.VINDICATOR);
+		MOBS.add(EntityType.WITCH);
+		MOBS.add(EntityType.WITHER_SKELETON);
+		MOBS.add(EntityType.ZOMBIE);
+		MOBS.add(EntityType.ZOMBIE_VILLAGER);
 	}
 
 	public static World getWorld(String name) {
