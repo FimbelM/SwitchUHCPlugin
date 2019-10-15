@@ -72,7 +72,7 @@ public class ScoreboardManager {
 
 	private static void setPlayerScoreboardWithCurrentLocation(Player player, IScoreboard sc) {
 		spaces = 0;
-		Objective obj = registerNewObjectiveOnSideBarDisplaySlot(TeamsManager.getCollegues(player) + sc.getTitle());
+		Objective obj = registerNewObjectiveOnSideBarDisplaySlot(TeamsManager.getColor(player) + sc.getTitle());
 
 		for (String entry : sc.getEntries())
 			addEntries(obj, entry);

@@ -1,7 +1,6 @@
 package fr.pederobien.uhc.managers;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -15,7 +14,6 @@ import org.bukkit.scoreboard.Team;
 import fr.pederobien.uhc.BukkitManager;
 
 public class TeamsManager {
-	private static HashMap<Player, ChatColor> map = new HashMap<Player, ChatColor>();
 
 	public static List<Team> getTeams() {
 		return new ArrayList<Team>(Bukkit.getScoreboardManager().getMainScoreboard().getTeams());
@@ -27,36 +25,25 @@ public class TeamsManager {
 			players.add(Bukkit.getPlayer(pl));
 		return players;
 	}
-	
+
 	public static Team getTeam(String name) {
 		for (Team team : getTeams())
 			if (team.getName().equals(name))
 				return team;
 		return null;
 	}
-	
+
 	public static Team getTeam(ChatColor color) {
 		for (Team team : getTeams())
 			if (team.getColor().equals(color))
 				return team;
 		return null;
 	}
-	
+
 	public static ChatColor getColor(Player player) {
-		if (getTeam(player) == null)
-			return ChatColor.RESET;
-		else
-			if (map.get(player) == null)
-				map.put(player, getTeam(player).getColor());
-		return map.get(player);
+		return getTeam(player) == null ? ChatColor.RESET : getTeam(player).getColor();
 	}
-	
-	public static void initiateMapColor() {
-		map.clear();
-		for (Player player : PlayerManager.getPlayers())
-			map.put(player, getTeam(player).getColor());
-	}
-	
+
 	public static int getNumberOfPlayers(Team team) {
 		return getPlayers(team).size();
 	}
@@ -145,7 +132,7 @@ public class TeamsManager {
 	public static void teleporteRandomlyTeam(Team team, int bound) {
 		PlayerManager.teleporteAllPlayers(getPlayers(team), WorldManager.getRandomlyLocation(bound));
 	}
-	
+
 	public static void teleporteRandomlyAllTeams(int bound) {
 		for (Team team : getTeams())
 			teleporteRandomlyTeam(team, bound);
