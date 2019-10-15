@@ -12,7 +12,6 @@ import org.w3c.dom.Node;
 
 import fr.pederobien.uhc.conf.configurations.SerialisableBlock;
 import fr.pederobien.uhc.conf.configurations.interfaces.ISerializableBlock;
-import fr.pederobien.uhc.managers.WorldManager;
 import fr.pederobien.uhc.world.blocks.Coordinate;
 import fr.pederobien.uhc.world.blocks.ISpawn;
 import fr.pederobien.uhc.world.blocks.Spawn;
@@ -21,7 +20,6 @@ public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 	
 	public SpawnPersistence() {
 		super(ISpawn.DEFAULT);
-		WorldManager.setSpawn(get());
 	}
 
 	private static final double CURRENT_VERSION = 1.2;
