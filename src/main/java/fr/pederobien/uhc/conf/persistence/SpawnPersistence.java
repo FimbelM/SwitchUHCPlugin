@@ -91,7 +91,7 @@ public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 	protected String getDefault() {
 		return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n" +
 				"  <spawn>\r\n" + 
-				"  <version>0.0</version>\r\n" + 
+				"  <version>1.1</version>\r\n" + 
 				"  <name>DefaultSpawn</name>\r\n" + 
 				"  <center x=\"0\" y=\"90\" z=\"0\"/>\r\n" + 
 				"  <blocks>\r\n" + 
