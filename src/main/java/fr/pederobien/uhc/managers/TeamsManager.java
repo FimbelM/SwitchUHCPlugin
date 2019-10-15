@@ -10,7 +10,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.BukkitManager;
@@ -56,11 +55,6 @@ public class TeamsManager {
 		map.clear();
 		for (Player player : PlayerManager.getPlayers())
 			map.put(player, getTeam(player).getColor());
-	}
-	
-	public static void formatPlayerChatMessage(AsyncPlayerChatEvent event) {
-		event.getPlayer().setDisplayName(getColor(event.getPlayer()) + event.getPlayer().getDisplayName() + ChatColor.RESET);
-		event.setMessage(getColor(event.getPlayer()) + event.getMessage());
 	}
 	
 	public static int getNumberOfPlayers(Team team) {
