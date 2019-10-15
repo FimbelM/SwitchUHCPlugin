@@ -40,4 +40,9 @@ public class Coordinate {
 		Coordinate coord = (Coordinate) obj;
 		return x == coord.getX() && y == coord.getY() && z == coord.getZ();
 	}
+	
+	@Override
+	public String toString() {
+		return "{Coordinate{x=" + x + ",y=" + y + ",z=" + z + "}}";
+	}
 }

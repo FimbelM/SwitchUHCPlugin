@@ -32,4 +32,9 @@ public class SerialisableBlock implements ISerializableBlock {
 	public BlockData getBlockData() {
 		return data;
 	}
+	
+	@Override
+	public String toString() {
+		return coordinate + data.getAsString();
+	}
 }
