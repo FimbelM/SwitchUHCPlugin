@@ -14,10 +14,9 @@ public class AfterBorderMoveState extends AbstractHungerGameScoreboardState {
 
 	@Override
 	protected void updateEntries() {
-		addEntries(prepareTimeNoEscape(getTask().getTotalTime()));
-		addEntries("Temps de jeu");
 		registerTeam();
-		addEntries("Rayon bordure : " + WorldManager.getCurrentDiameter().intValue() / 2);
+		addEntries("Bordure", "" + WorldManager.getCurrentDiameter().intValue() / 2);
+		addEntries("Temps", prepareTime(getTask().getTotalTime()));
 	}
 
 	@Override
@@ -32,7 +31,8 @@ public class AfterBorderMoveState extends AbstractHungerGameScoreboardState {
 
 	public void registerTeam() {
 		for (Team team : TeamsManager.getTeams())
-			addEntries(team.getColor() + team.getDisplayName() + " : "
-					+ TeamsManager.getNumberTeamPlayersOnMode(team, GameMode.SURVIVAL));
+			addEntries(team.getColor() + team.getDisplayName(),
+					"" + TeamsManager.getNumberTeamPlayersOnMode(team, GameMode.SURVIVAL));
+		addEmptyLine();
 	}
 }

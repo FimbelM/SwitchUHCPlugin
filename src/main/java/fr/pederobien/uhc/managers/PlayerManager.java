@@ -1,6 +1,7 @@
 package fr.pederobien.uhc.managers;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -38,7 +39,7 @@ public class PlayerManager {
 	}
 
 	public static void setLevelOfPlayer(Player player, int level) {
-		player.setLevel(level);
+		player.giveExpLevels(-player.getTotalExperience());
 	}
 
 	public static void setLevelOfPlayers(int level) {
@@ -141,11 +142,11 @@ public class PlayerManager {
 		for (Player player : players)
 			giveEffect(player, effect);
 	}
-	
+
 	public static void giveEffectToAllPlayers(List<PotionEffect> effects) {
 		giveEffects(getPlayers(), effects);
 	}
-	
+
 	public static void giveEffectToAllPlayers(PotionEffectType... types) {
 		giveEffects(getPlayers(), createEffect(types));
 	}
@@ -172,11 +173,11 @@ public class PlayerManager {
 	public static PotionEffect createEffect(PotionEffectType type, int duration, int amplifier) {
 		return createEffect(type, duration, amplifier, true);
 	}
-	
+
 	public static PotionEffect createEffect(PotionEffectType type) {
 		return createEffect(type, 1, 1);
 	}
-	
+
 	public static List<PotionEffect> createEffect(PotionEffectType... types) {
 		List<PotionEffect> effects = new ArrayList<PotionEffect>();
 		for (PotionEffectType type : types)
@@ -212,6 +213,17 @@ public class PlayerManager {
 				removeEffect(player, type);
 	}
 
+	public static void removeAllEffects(Player player) {
+		Collection<PotionEffect> activeEffects = player.getActivePotionEffects();
+		for (PotionEffect effect : activeEffects)
+			player.removePotionEffect(effect.getType());
+	}
+
+	public static void removeAllEffectsToAllPlayers() {
+		for (Player player : getPlayers())
+			removeAllEffects(player);
+	}
+	
 	public static List<Player> getCloseCollegues(Player src, int distance) {
 		return getClosePlayers(src, TeamsManager.getCollegues(src), distance);
 	}

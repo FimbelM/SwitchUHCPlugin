@@ -9,10 +9,8 @@ public class PauseState extends AbstractBlockedexScoreboardState {
 
 	@Override
 	protected void updateEntries() {
-		addEntries(prepareTimeNoEscape(getTask().getTotalTime()));
-		addEntries("Temps de jeu");
-		addEntries(prepareTimeOneEscape(getTask().getPauseTime()));
-		addEntries("Temps de pause");
+		addEntries("Jeu", prepareTime(getTask().getTotalTime()));
+		addEntries("Pause", prepareTime(getTask().getPauseTime()));
 	}
 
 	@Override

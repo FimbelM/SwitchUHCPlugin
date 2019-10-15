@@ -8,10 +8,8 @@ public class BeforeBorderMoveState extends AbstractHungerGameScoreboardState {
 
 	@Override
 	protected void updateEntries() {
-		addEntries(prepareTimeNoEscape(getTask().getTotalTime()));
-		addEntries("Temps de jeu");
-		addEntries(prepareTimeOneEscape(getTask().getDecreasingTime()));
-		addEntries("Déplacement bordure dans");
+		addEntries("Bordure", prepareTime(getTask().getDecreasingTime()));
+		addEntries("Temps", prepareTime(getTask().getTotalTime()));
 	}
 
 	@Override

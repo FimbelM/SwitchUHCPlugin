@@ -4,12 +4,16 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.ChatColor;
+
+import fr.pederobien.uhc.managers.ScoreboardManager;
 import fr.pederobien.uhc.task.TimeTask;
 
 public abstract class AbstractScoreboardState implements IScoreboardState {
 	private List<String> entries;
 	private String title;
 	private TimeTask task;
+	private int spaces;
 
 	public AbstractScoreboardState(IScoreboard scoreboard, String title) {
 		this.title = title;
@@ -26,6 +30,7 @@ public abstract class AbstractScoreboardState implements IScoreboardState {
 
 	@Override
 	public List<String> getEntries() {
+		spaces = 0;
 		entries.clear();
 		updateEntries();
 		return entries;
@@ -59,27 +64,20 @@ public abstract class AbstractScoreboardState implements IScoreboardState {
 		entries.add(score);
 	}
 
-	protected String prepareTimeNoEscape(LocalTime time) {
-		return prepareTime(time, 0);
+	protected void addEntries(String key, String value) {
+		addEntries(ChatColor.GOLD + key + ": " + ChatColor.DARK_GREEN + value);
 	}
 
-	protected String prepareTimeOneEscape(LocalTime time) {
-		return prepareTime(time, 1);
+	protected void addEmptyLine() {
+		addEntries(ScoreboardManager.emptyLine());
 	}
 
-	protected String prepareTimeTwoEscapes(LocalTime time) {
-		return prepareTime(time, 2);
-	}
-
-	protected String prepareTimeThreeEscapes(LocalTime time) {
-		return prepareTime(time, 3);
-	}
-
-	protected String prepareTime(LocalTime time, int numberOfSpace) {
-		String prepareTime = time.getHour() + "h" + time.getMinute() + "m" + time.getSecond() + "s";
-		for (int i = 0; i < numberOfSpace; i++) {
+	protected String prepareTime(LocalTime time) {
+		String prepareTime = time.getHour() + "h " + time.getMinute() + "m " + time.getSecond() + "s";
+		for (int i = 0; i < spaces; i++) {
 			prepareTime += " ";
 		}
+		spaces++;
 		return prepareTime;
 	}
 }
