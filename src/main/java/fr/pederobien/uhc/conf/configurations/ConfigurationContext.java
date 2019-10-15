@@ -97,7 +97,7 @@ public class ConfigurationContext implements IConfigurationContext {
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		getGame().onPlayerInteract(event);
 	}
-	
+
 	@Override
 	public void onCreatureSpawn(CreatureSpawnEvent event) {
 		getGame().onCreatureSpawn(event);
