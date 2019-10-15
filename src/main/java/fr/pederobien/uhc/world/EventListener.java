@@ -3,17 +3,20 @@ package fr.pederobien.uhc.world;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
+import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.observer.IObsListener;
 
 public class EventListener implements Listener {
@@ -63,6 +66,13 @@ public class EventListener implements Listener {
 	public void onCreatureSpawn(CreatureSpawnEvent event) {
 		for (IObsListener obs : observers)
 			obs.onCreatureSpawn(event);
+	}
+	
+	@EventHandler(priority=EventPriority.HIGHEST)
+	public void onPlayerChat(AsyncPlayerChatEvent event) {
+		ChatColor color = TeamsManager.getColor(event.getPlayer());
+		event.getPlayer().setDisplayName(color + event.getPlayer().getName() + ChatColor.RESET);
+		event.setMessage(color + event.getMessage());
 	}
 
 	public void addObservers(IObsListener obs) {

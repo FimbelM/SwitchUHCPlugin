@@ -1,6 +1,7 @@
 package fr.pederobien.uhc.managers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -9,11 +10,13 @@ import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.BukkitManager;
 
 public class TeamsManager {
+	private static HashMap<Player, ChatColor> map = new HashMap<Player, ChatColor>();
 
 	public static List<Team> getTeams() {
 		return new ArrayList<Team>(Bukkit.getScoreboardManager().getMainScoreboard().getTeams());
@@ -38,6 +41,26 @@ public class TeamsManager {
 			if (team.getColor().equals(color))
 				return team;
 		return null;
+	}
+	
+	public static ChatColor getColor(Player player) {
+		if (getTeam(player) == null)
+			return ChatColor.RESET;
+		else
+			if (map.get(player) == null)
+				map.put(player, getTeam(player).getColor());
+		return map.get(player);
+	}
+	
+	public static void initiateMapColor() {
+		map.clear();
+		for (Player player : PlayerManager.getPlayers())
+			map.put(player, getTeam(player).getColor());
+	}
+	
+	public static void formatPlayerChatMessage(AsyncPlayerChatEvent event) {
+		event.getPlayer().setDisplayName(getColor(event.getPlayer()) + event.getPlayer().getDisplayName() + ChatColor.RESET);
+		event.setMessage(getColor(event.getPlayer()) + event.getMessage());
 	}
 	
 	public static int getNumberOfPlayers(Team team) {
@@ -132,13 +155,6 @@ public class TeamsManager {
 	public static void teleporteRandomlyAllTeams(int bound) {
 		for (Team team : getTeams())
 			teleporteRandomlyTeam(team, bound);
-	}
-
-	public static ChatColor getColor(Player player) {
-		for (Team team : getTeams())
-			if (getPlayers(team).contains(player))
-				return team.getColor();
-		return null;
 	}
 
 	public static void dispatchPlayerRandomlyInTeam() {

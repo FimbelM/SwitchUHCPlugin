@@ -1,6 +1,5 @@
 package fr.pederobien.uhc.managers;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -14,7 +13,6 @@ import org.bukkit.scoreboard.Scoreboard;
 import fr.pederobien.uhc.scoreboard.IScoreboard;
 
 public class ScoreboardManager {
-	private static HashMap<Player, ChatColor> map = new HashMap<Player, ChatColor>();
 	private static int spaces;
 
 	public static void setPlayersScoreboard(Scoreboard scoreboard) {
@@ -74,11 +72,7 @@ public class ScoreboardManager {
 
 	private static void setPlayerScoreboardWithCurrentLocation(Player player, IScoreboard sc) {
 		spaces = 0;
-		if (map.get(player) == null)
-			map.put(player, TeamsManager.getColor(player));
-		ChatColor color = map.get(player);
-
-		Objective obj = registerNewObjectiveOnSideBarDisplaySlot(color + sc.getTitle());
+		Objective obj = registerNewObjectiveOnSideBarDisplaySlot(TeamsManager.getCollegues(player) + sc.getTitle());
 
 		for (String entry : sc.getEntries())
 			addEntries(obj, entry);
