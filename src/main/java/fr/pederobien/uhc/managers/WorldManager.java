@@ -21,7 +21,6 @@ public class WorldManager {
 
 	static {
 		world = getWorld(worldName);
-		setSpawn(ISpawn.DEFAULT);
 		rand = new Random();
 		border = world.getWorldBorder();
 	}
@@ -164,7 +163,7 @@ public class WorldManager {
 	}
 
 	private static boolean isInInterval(int value, int lowerBound, int upperBound) {
-		return lowerBound < value && value < upperBound;
+		return lowerBound <= value && value <= upperBound;
 	}
 
 	private static Location getSurfaceBlockY(Location location) {
