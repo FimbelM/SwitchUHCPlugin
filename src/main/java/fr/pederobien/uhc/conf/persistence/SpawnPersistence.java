@@ -12,6 +12,7 @@ import org.w3c.dom.Node;
 
 import fr.pederobien.uhc.conf.configurations.SerialisableBlock;
 import fr.pederobien.uhc.conf.configurations.interfaces.ISerializableBlock;
+import fr.pederobien.uhc.managers.WorldManager;
 import fr.pederobien.uhc.world.blocks.Coordinate;
 import fr.pederobien.uhc.world.blocks.ISpawn;
 import fr.pederobien.uhc.world.blocks.Spawn;
@@ -20,9 +21,10 @@ public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 	
 	public SpawnPersistence() {
 		super(ISpawn.DEFAULT);
+		WorldManager.setSpawn(get());
 	}
 
-	private static final double CURRENT_VERSION = 1.1;
+	private static final double CURRENT_VERSION = 1.2;
 
 	@Override
 	protected String getPath() {
@@ -44,6 +46,8 @@ public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 			case "1.1":
 				load11(root);
 				break;
+			case "1.2":
+				load12(root);
 			default:
 				break;
 			}
@@ -66,6 +70,12 @@ public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 		Element name = doc.createElement("name");
 		name.appendChild(doc.createTextNode(get().getName()));
 		root.appendChild(name);
+		
+		Element dimensions = doc.createElement("dimensions");
+		dimensions.setAttribute("width", "" + get().getWidth());
+		dimensions.setAttribute("height", "" + get().getHeight());
+		dimensions.setAttribute("depth", "" + get().getDepth());
+		root.appendChild(dimensions);
 
 		Element center = doc.createElement("center");
 		center.setAttribute("x", "" + get().getCenter().getX());
@@ -91,8 +101,9 @@ public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 	protected String getDefault() {
 		return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n" +
 				"  <spawn>\r\n" + 
-				"  <version>1.1</version>\r\n" + 
+				"  <version>1.2</version>\r\n" + 
 				"  <name>DefaultSpawn</name>\r\n" + 
+				"  <dimensions width=\"5\" height=\"1\" depth=\"5\"/>\r\n" +
 				"  <center x=\"0\" y=\"90\" z=\"0\"/>\r\n" + 
 				"  <blocks>\r\n" + 
 				"    <block blockdata=\"minecraft:bedrock\" x=\"-2\" y=\"0\" z=\"-2\"/>\r\n" + 
@@ -164,6 +175,39 @@ public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 			switch (elt.getNodeName()) {
 			case "name":
 				set(new Spawn(elt.getChildNodes().item(0).getNodeValue()));
+				break;
+			case "center":
+				get().setCenter(elt.getAttribute("x"), elt.getAttribute("y"), elt.getAttribute("z"));
+				break;
+			case "blocks":
+				List<ISerializableBlock> blocksStr = new ArrayList<ISerializableBlock>();
+				for (int j = 0; j < elt.getChildNodes().getLength(); j++) {
+					if (elt.getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
+						continue;
+					Element block = (Element) elt.getChildNodes().item(j);
+					blocksStr.add(new SerialisableBlock(block.getAttribute("x"), block.getAttribute("y"),
+							block.getAttribute("z"), block.getAttribute("blockdata")));
+				}
+				get().setBlocks(blocksStr);
+				break;
+			default:
+				break;
+			}
+		}
+	}
+	
+	private void load12(Node root) {
+		for (int i = 0; i < root.getChildNodes().getLength(); i++) {
+			if (root.getChildNodes().item(i).getNodeType() != Node.ELEMENT_NODE)
+				continue;
+			Element elt = (Element) root.getChildNodes().item(i);
+
+			switch (elt.getNodeName()) {
+			case "name":
+				set(new Spawn(elt.getChildNodes().item(0).getNodeValue()));
+				break;
+			case "dimensions":
+				get().setDimensions(elt.getAttribute("width"), elt.getAttribute("height"), elt.getAttribute("depth"));
 				break;
 			case "center":
 				get().setCenter(elt.getAttribute("x"), elt.getAttribute("y"), elt.getAttribute("z"));
