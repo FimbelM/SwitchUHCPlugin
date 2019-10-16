@@ -19,6 +19,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHung
 				factory.createInitialBorderDiameterEdition(),
 				factory.createFinalBorderDiameterEdition(),
 				factory.createGameTimeEdition(),
+				factory.createFractionTimeEdition(),
 				factory.createScoreboardRefreshEdition(),
 				factory.createRenameEdition(),
 				factory.createLoadEdition(),

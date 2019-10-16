@@ -73,4 +73,8 @@ public class HungerGameEditionsFactory extends AbstractConfigurationEditionsFact
 	public IEdition createFinalBorderDiameterEdition() {
 		return new FinalBorderDiameterHungerGame(persistence);
 	}
+	
+	public IEdition createFractionTimeEdition() {
+		return new FractionTimeHungerGame(persistence);
+	}
 }
