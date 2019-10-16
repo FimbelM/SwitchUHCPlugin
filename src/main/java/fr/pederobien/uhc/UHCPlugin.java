@@ -10,6 +10,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -98,6 +99,7 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 
 	@Override
 	public void onPlayerJoin(PlayerJoinEvent event) {
+		PlayerManager.teleporte(event.getPlayer(), WorldManager.getSpawnOnJoin());
 		movePlayer(event.getPlayer());
 	}
 
@@ -113,6 +115,7 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 
 	@Override
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
+		event.setRespawnLocation(WorldManager.getSpawnOnJoin());
 		movePlayer(event.getPlayer());
 	}
 
@@ -131,8 +134,12 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 
 	}
 
+	@Override
+	public void onPlayerPortalEvent(PlayerPortalEvent event) {
+
+	}
+
 	private void movePlayer(Player player) {
-		PlayerManager.teleporte(player, WorldManager.getSpawnOnJoin());
 		PlayerManager.setGameModeOfPlayer(player, GameMode.ADVENTURE);
 		PlayerManager.giveEffects(player, effects);
 	}

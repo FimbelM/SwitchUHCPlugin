@@ -43,12 +43,11 @@ public class PlayerDontReviveState extends AbstractHungerGameState {
 	@Override
 	public void onPlayerDie(PlayerDeathEvent event) {
 		PlayerManager.setGameModeOfPlayer(event.getEntity(), GameMode.SPECTATOR);
+		shouldStopGame();
 	}
 
 	@Override
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
 		event.setRespawnLocation(WorldManager.getSpawnOnJoin());
-		if (PlayerManager.getNumberOfPlayersOnMode(GameMode.SURVIVAL) == 1)
-			stop();
 	}
 }

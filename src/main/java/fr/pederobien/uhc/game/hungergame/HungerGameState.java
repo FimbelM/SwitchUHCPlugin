@@ -1,7 +1,9 @@
 package fr.pederobien.uhc.game.hungergame;
 
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.BukkitManager;
@@ -38,12 +40,17 @@ public class HungerGameState extends AbstractHungerGameState {
 	@Override
 	public void onPlayerDie(PlayerDeathEvent event) {
 		PlayerManager.setGameModeOfPlayer(event.getEntity(), GameMode.SPECTATOR);
+		shouldStopGame();
 	}
 
 	@Override
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
 		event.setRespawnLocation(WorldManager.getSpawnOnJoin());
-		if (PlayerManager.getNumberOfPlayersOnMode(GameMode.SURVIVAL) == 1)
-			stop();
+	}
+	
+	@Override
+	public void onPlayerPortalEvent(PlayerPortalEvent event) {
+		event.setCancelled(true);
+		event.getPlayer().sendMessage(ChatColor.RED + "You cannot go into the " + event.getTo().getWorld().getName());
 	}
 }

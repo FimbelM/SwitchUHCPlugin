@@ -8,6 +8,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.scoreboard.Team;
@@ -101,6 +102,11 @@ public class ConfigurationContext implements IConfigurationContext {
 	@Override
 	public void onCreatureSpawn(CreatureSpawnEvent event) {
 		getGame().onCreatureSpawn(event);
+	}
+	
+	@Override
+	public void onPlayerPortalEvent(PlayerPortalEvent event) {
+		getGame().onPlayerPortalEvent(event);
 	}
 
 	@Override

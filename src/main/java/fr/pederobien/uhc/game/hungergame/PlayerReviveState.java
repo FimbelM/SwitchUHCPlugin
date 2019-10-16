@@ -49,6 +49,7 @@ public class PlayerReviveState extends AbstractHungerGameState {
 			event.setKeepInventory(true);
 			PlayerManager.setGameModeOfPlayer(event.getEntity(), GameMode.SURVIVAL);
 		}
+		shouldStopGame();
 	}
 
 	@Override

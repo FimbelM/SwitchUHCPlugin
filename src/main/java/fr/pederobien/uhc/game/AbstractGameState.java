@@ -6,6 +6,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.potion.PotionEffectType;
@@ -85,9 +86,14 @@ public abstract class AbstractGameState implements IGameState {
 			event.setCancelled(true);
 	}
 
+	@Override
+	public void onPlayerPortalEvent(PlayerPortalEvent event) {
+
+	}
+
 	protected void onStart() {
-		PlayerManager.giveEffectToAllPlayers(PotionEffectType.DAMAGE_RESISTANCE,
-				PotionEffectType.REGENERATION, PotionEffectType.SATURATION);
+		PlayerManager.giveEffectToAllPlayers(PotionEffectType.DAMAGE_RESISTANCE, PotionEffectType.REGENERATION,
+				PotionEffectType.SATURATION);
 		PlayerManager.maxFoodForPlayers();
 		PlayerManager.resetMaxHealthOfPlayers();
 		PlayerManager.maxLifeToPlayers();

@@ -16,6 +16,10 @@ public class StopState extends AbstractHungerGameState {
 		onStop();
 		PlayerManager.setGameModeOfPlayers(GameMode.CREATIVE);
 		WorldManager.removeBorder();
+	}
+	
+	@Override
+	public void initiate() {
 		game.setCurrentState(game.getInitiate()).initiate();
 	}
 }

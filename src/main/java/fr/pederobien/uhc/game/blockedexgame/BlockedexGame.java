@@ -5,6 +5,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
@@ -125,6 +126,11 @@ public class BlockedexGame extends AbstractGame implements IBlockedexGame {
 	@Override
 	public void onCreatureSpawn(CreatureSpawnEvent event) {
 		current.onCreatureSpawn(event);
+	}
+	
+	@Override
+	public void onPlayerPortalEvent(PlayerPortalEvent event) {
+		current.onPlayerPortalEvent(event);
 	}
 
 	@Override
