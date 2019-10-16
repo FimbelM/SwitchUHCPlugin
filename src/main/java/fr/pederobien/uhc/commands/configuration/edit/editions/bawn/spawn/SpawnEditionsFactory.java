@@ -27,11 +27,6 @@ public class SpawnEditionsFactory extends AbstractBawnEditionsFactory<ISpawn> {
 	}
 
 	@Override
-	public IEdition createRemoveEdition() {
-		return new RemoveSpawn(persistence);
-	}
-
-	@Override
 	public IEdition createRenameEdition() {
 		return new RenameSpawn(persistence);
 	}
@@ -49,6 +44,10 @@ public class SpawnEditionsFactory extends AbstractBawnEditionsFactory<ISpawn> {
 	@Override
 	public IEdition createCurrentEdition() {
 		return new CurrentSpawn(persistence);
+	}
+	
+	public IEdition createRemoveEdition() {
+		return new RemoveSpawn(persistence);
 	}
 	
 	public IEdition createLaunchEdition() {

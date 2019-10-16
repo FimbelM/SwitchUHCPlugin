@@ -23,7 +23,5 @@ public abstract class AbstractBawnEditionsFactory<T extends IBawn> extends Abstr
 		return new CommonExtract<T>(persistence);
 	}
 
-	public abstract IEdition createRemoveEdition();
-
 	public abstract IEdition createRenameEdition();
 }
