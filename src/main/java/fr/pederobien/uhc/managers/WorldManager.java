@@ -1,6 +1,8 @@
 package fr.pederobien.uhc.managers;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -11,12 +13,16 @@ import org.bukkit.World;
 import org.bukkit.WorldBorder;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import fr.pederobien.uhc.world.blocks.ISpawn;
 
 public class WorldManager {
 	public static final Set<EntityType> MOBS;
+	public static final World SURFACE_WORLD = getWorld("world");
+	public static final World NETHER_WORLD = getWorld("world_nether");
+	public static final World END_WORLD = getWorld("world_the_end");
 
 	private static Random rand;
 	private static World world;
@@ -59,10 +65,6 @@ public class WorldManager {
 
 	public static World getWorld(String name) {
 		return Bukkit.getWorld(name);
-	}
-
-	public static World getWorld() {
-		return getWorld(worldName);
 	}
 
 	public static void setPVP(boolean pvp) {
@@ -192,6 +194,17 @@ public class WorldManager {
 				spawn.getWidth() / 2)
 				&& isInInterval(location.getBlockZ() - spawn.getCenter().getLocation().getBlockZ(),
 						-spawn.getDepth() / 2, spawn.getDepth() / 2);
+	}
+	
+	public static List<Player> getPlayersInWorld(World... worlds) {
+		List<Player> players = new ArrayList<Player>();
+		for (Player player : PlayerManager.getPlayers())
+			for (World world : worlds)
+				if (player.getLocation().getWorld().equals(world)) {
+					players.add(player);
+					break;
+				}
+		return players;
 	}
 
 	private static boolean isInInterval(int value, int lowerBound, int upperBound) {
