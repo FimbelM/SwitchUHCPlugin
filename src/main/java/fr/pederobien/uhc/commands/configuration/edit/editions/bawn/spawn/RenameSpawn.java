@@ -22,6 +22,6 @@ public class RenameSpawn extends CommonRename<ISpawn> {
 
 	@Override
 	protected String onNameIsMissing() {
-		return "Cannot rename the spaw, need the name";
+		return "Cannot rename the spawn, need the name";
 	}
 }
