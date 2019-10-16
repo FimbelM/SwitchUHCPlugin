@@ -76,6 +76,11 @@ public class PlayerManager {
 	public static void setHealthOfPlayer(Player player, double level) {
 		player.setHealth(level);
 	}
+	
+	public static void setHealthOfPlayers(List<Player> players, double level) {
+		for (Player player : players)
+			setHealthOfPlayer(player, level);
+	}
 
 	public static void setHealthOfPlayers(double level) {
 		for (Player player : getPlayers())
@@ -246,7 +251,7 @@ public class PlayerManager {
 	public static void dropPlayerInventoryItemNaturally(Player player) {
 		for (ItemStack item : player.getInventory())
 			if (item != null)
-				WorldManager.getWorld().dropItem(player.getLocation(), item);
+				player.getLocation().getWorld().dropItem(player.getLocation(), item);
 		player.getInventory().clear();
 	}
 
@@ -257,5 +262,18 @@ public class PlayerManager {
 
 	public static void dropPlayersInventoryItemNaturally() {
 		dropPlayersInventoryItemNaturally(getPlayers());
+	}
+	
+	public static void sendMessageToPlayers(List<Player> players, String message) {
+		for (Player player : players)
+			player.sendMessage(message);
+	}
+	
+	public static void killPlayer(Player player) {
+		setHealthOfPlayer(player, 0);
+	}
+	
+	public static void killPlayers(List<Player> players) {
+		setHealthOfPlayers(players, 0);
 	}
 }
