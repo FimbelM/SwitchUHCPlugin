@@ -38,8 +38,10 @@ public class PlayerReviveState extends AbstractHungerGameState {
 
 	@Override
 	public void time(LocalTime time) {
-		BukkitManager.broadcastMessageAsTitle("Plus de résurrection", "red");
-		game.setCurrentState(game.getPlayerDontRevive());
+		if (time.equals(game.getConfiguration().getFractionTime())) {
+			BukkitManager.broadcastMessageAsTitle("Plus de résurrection", "red");
+			game.setCurrentState(game.getPlayerDontRevive());
+		}
 	}
 
 	@Override
