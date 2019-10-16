@@ -77,7 +77,7 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 		getLogger().info("UHC plugin disable");
 		try {
 			context.stop();
-		} catch (GameStateException | ScoreboardStateException e) {
+		} catch (GameStateException | ScoreboardStateException | NullPointerException e) {
 
 		}
 	}
