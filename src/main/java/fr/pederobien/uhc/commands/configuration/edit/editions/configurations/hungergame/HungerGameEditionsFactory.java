@@ -2,10 +2,10 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.hu
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfigurationEditionsFactory;
-import fr.pederobien.uhc.conf.ConfigurationsFactory;
 import fr.pederobien.uhc.conf.IConfigurationContext;
 import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.conf.persistence.PersistenceFactory;
 
 public class HungerGameEditionsFactory extends AbstractConfigurationEditionsFactory<IHungerGameConfiguration> {
 
@@ -19,7 +19,7 @@ public class HungerGameEditionsFactory extends AbstractConfigurationEditionsFact
 
 	private static class SingletonHolder {
 		public static final HungerGameEditionsFactory factory = new HungerGameEditionsFactory(
-				ConfigurationsFactory.getInstance().getHungerGamePersistence());
+				PersistenceFactory.getInstance().getHungerGamePersistence());
 	}
 
 	@Override

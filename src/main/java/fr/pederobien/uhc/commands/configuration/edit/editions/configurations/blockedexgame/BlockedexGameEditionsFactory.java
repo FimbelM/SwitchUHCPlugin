@@ -2,10 +2,10 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.bl
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfigurationEditionsFactory;
-import fr.pederobien.uhc.conf.ConfigurationsFactory;
 import fr.pederobien.uhc.conf.IConfigurationContext;
 import fr.pederobien.uhc.conf.configurations.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.conf.persistence.PersistenceFactory;
 
 public class BlockedexGameEditionsFactory extends AbstractConfigurationEditionsFactory<IBlockedexConfiguration> {
 
@@ -19,7 +19,7 @@ public class BlockedexGameEditionsFactory extends AbstractConfigurationEditionsF
 
 	private static class SingletonHolder {
 		public static final BlockedexGameEditionsFactory factory = new BlockedexGameEditionsFactory(
-				ConfigurationsFactory.getInstance().getBlockedexPersistence());
+				PersistenceFactory.getInstance().getBlockedexPersistence());
 	}
 
 	@Override

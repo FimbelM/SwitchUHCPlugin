@@ -2,8 +2,8 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.spawn;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.AbstractBawnEditionsFactory;
-import fr.pederobien.uhc.conf.ConfigurationsFactory;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.conf.persistence.PersistenceFactory;
 import fr.pederobien.uhc.world.blocks.ISpawn;
 
 public class SpawnEditionsFactory extends AbstractBawnEditionsFactory<ISpawn> {
@@ -18,7 +18,7 @@ public class SpawnEditionsFactory extends AbstractBawnEditionsFactory<ISpawn> {
 
 	private static class SingletonHolder {
 		public static final SpawnEditionsFactory factory = new SpawnEditionsFactory(
-				ConfigurationsFactory.getInstance().getSpawnPersistence());
+				PersistenceFactory.getInstance().getSpawnPersistence());
 	}
 
 	@Override
