@@ -1,7 +1,6 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.blockedexgame;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonNew;
-import fr.pederobien.uhc.conf.configurations.BlockedexConfiguration;
 import fr.pederobien.uhc.conf.configurations.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 
@@ -23,7 +22,7 @@ public class NewBlockedexGame extends CommonNew<IBlockedexConfiguration> {
 
 	@Override
 	protected IBlockedexConfiguration getNew(String name) {
-		return new BlockedexConfiguration(name);
+		return factory.createBlockedexGameConfiguration(name);
 	}
 
 	@Override
