@@ -1,5 +1,7 @@
 package fr.pederobien.uhc.game.hungergame;
 
+import java.time.LocalTime;
+
 import org.bukkit.GameMode;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
@@ -34,7 +36,7 @@ public class PlayerDontReviveState extends AbstractHungerGameState {
 	}
 
 	@Override
-	public void time() {
+	public void time(LocalTime time) {
 		BukkitManager.broadcastMessageAsTitle("Déplacement bordure", "red");
 		WorldManager.moveBorder(game.getConfiguration().getFinalBorderDiameter(), game.getConfiguration().getInitialBorderDiameter().longValue());
 		game.setCurrentState(game.getHungerGame());

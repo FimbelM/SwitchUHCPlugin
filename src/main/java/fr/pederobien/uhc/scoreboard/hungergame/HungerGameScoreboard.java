@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.scoreboard.hungergame;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import fr.pederobien.uhc.scoreboard.AbstractScoreboard;
@@ -58,8 +59,8 @@ public class HungerGameScoreboard extends AbstractScoreboard implements IHGScore
 	}
 	
 	@Override
-	public void time() {
-		current.time();
+	public void time(LocalTime time) {
+		current.time(time);
 	}
 
 	@Override

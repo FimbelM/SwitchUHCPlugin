@@ -1,5 +1,7 @@
 package fr.pederobien.uhc.game.hungergame;
 
+import java.time.LocalTime;
+
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -35,7 +37,7 @@ public class PlayerReviveState extends AbstractHungerGameState {
 	}
 
 	@Override
-	public void time() {
+	public void time(LocalTime time) {
 		BukkitManager.broadcastMessageAsTitle("Plus de résurrection", "red");
 		game.setCurrentState(game.getPlayerDontRevive());
 	}

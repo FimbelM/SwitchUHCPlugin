@@ -37,6 +37,6 @@ public class TimeLine implements IObsTimeTask {
 		List<IObsTimeLine> list = map.get(task.getIncreasingTime());
 		if (list != null)
 			for (IObsTimeLine function : list)
-				function.time();
+				function.time(task.getIncreasingTime());
 	}
 }

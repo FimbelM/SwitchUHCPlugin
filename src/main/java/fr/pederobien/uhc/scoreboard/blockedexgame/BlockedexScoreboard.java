@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.scoreboard.blockedexgame;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import fr.pederobien.uhc.scoreboard.AbstractScoreboard;
@@ -86,8 +87,8 @@ public class BlockedexScoreboard extends AbstractScoreboard implements IBDScoreb
 	}
 
 	@Override
-	public void time() {
-		current.time();
+	public void time(LocalTime time) {
+		current.time(time);
 	}
 
 	@Override

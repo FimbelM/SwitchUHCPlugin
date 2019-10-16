@@ -1,5 +1,7 @@
 package fr.pederobien.uhc.game.blockedexgame;
 
+import java.time.LocalTime;
+
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -134,7 +136,7 @@ public class BlockedexGame extends AbstractGame implements IBlockedexGame {
 	}
 
 	@Override
-	public void time() {
-		current.time();
+	public void time(LocalTime time) {
+		current.time(time);
 	}
 }

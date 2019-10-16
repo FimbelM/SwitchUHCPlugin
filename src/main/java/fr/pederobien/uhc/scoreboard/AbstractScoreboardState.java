@@ -24,7 +24,7 @@ public abstract class AbstractScoreboardState implements IScoreboardState {
 	protected abstract void updateEntries();
 
 	@Override
-	public void time() {
+	public void time(LocalTime time) {
 
 	}
 

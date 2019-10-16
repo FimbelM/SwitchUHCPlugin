@@ -1,5 +1,7 @@
 package fr.pederobien.uhc.game;
 
+import java.time.LocalTime;
+
 import org.bukkit.GameMode;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -46,7 +48,7 @@ public abstract class AbstractGameState implements IGameState {
 	}
 
 	@Override
-	public void time() {
+	public void time(LocalTime time) {
 
 	}
 

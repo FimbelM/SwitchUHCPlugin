@@ -1,5 +1,7 @@
 package fr.pederobien.uhc.scoreboard.hungergame;
 
+import java.time.LocalTime;
+
 public class BeforeBorderMoveState extends AbstractHungerGameScoreboardState {
 
 	public BeforeBorderMoveState(IHGScoreboard scoreboard) {
@@ -18,7 +20,7 @@ public class BeforeBorderMoveState extends AbstractHungerGameScoreboardState {
 	}
 
 	@Override
-	public void time() {
+	public void time(LocalTime time) {
 		scoreboard.setCurrentState(scoreboard.getAfterBorderMoveState());
 	}
 

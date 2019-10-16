@@ -1,5 +1,7 @@
 package fr.pederobien.uhc.scoreboard.launcher;
 
+import java.time.LocalTime;
+
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.pederobien.uhc.PluginDeposit;
@@ -60,7 +62,7 @@ public abstract class AbstractScoreboardLauncher extends BukkitRunnable implemen
 	}
 	
 	@Override
-	public void time() {
-		scoreboard.time();
+	public void time(LocalTime time) {
+		scoreboard.time(time);
 	}
 }

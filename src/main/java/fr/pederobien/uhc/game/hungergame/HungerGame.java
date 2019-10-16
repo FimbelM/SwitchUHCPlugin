@@ -1,5 +1,7 @@
 package fr.pederobien.uhc.game.hungergame;
 
+import java.time.LocalTime;
+
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -143,8 +145,8 @@ public class HungerGame extends AbstractGame implements IHungerGame {
 	}
 
 	@Override
-	public void time() {
-		current.time();
+	public void time(LocalTime time) {
+		current.time(time);
 	}
 
 	@Override
