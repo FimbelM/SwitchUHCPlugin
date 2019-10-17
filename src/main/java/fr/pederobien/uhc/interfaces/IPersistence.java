@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface IPersistence<T extends IUnmodifiableName> {
 
-	void load(String name) throws FileNotFoundException;
+	IPersistence<T> load(String name) throws FileNotFoundException;
 
 	void save();
 

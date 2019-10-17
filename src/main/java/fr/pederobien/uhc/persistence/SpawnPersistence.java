@@ -10,6 +10,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.interfaces.ISpawn;
 import fr.pederobien.uhc.world.blocks.SerialisableBlock;
@@ -29,7 +30,7 @@ public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 	}
 
 	@Override
-	public void load(String name) throws FileNotFoundException {
+	public IPersistence<ISpawn> load(String name) throws FileNotFoundException {
 		try {
 			Document doc = getDocument(getPath() + name + ".xml");
 			Element root = doc.getDocumentElement();
@@ -51,6 +52,7 @@ public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 		} catch (IOException e) {
 			throw new FileNotFoundException("Cannot find spawn named " + name);
 		}
+		return this;
 	}
 
 	@Override

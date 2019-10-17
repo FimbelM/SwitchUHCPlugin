@@ -7,6 +7,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
+import fr.pederobien.uhc.managers.BaseManager;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
@@ -44,7 +45,7 @@ public class StartedState extends AbstractBlockedexState {
 	
 	@Override
 	public void onPlayerInteract(PlayerInteractEvent event) {
-		if (!baseManager.isChestAccessible(event.getPlayer(), event.getClickedBlock()))
+		if (!BaseManager.isChestAccessible(event.getPlayer(), event.getClickedBlock()))
 			event.setCancelled(true);
 	}
 

@@ -10,6 +10,7 @@ import org.w3c.dom.Node;
 
 import fr.pederobien.uhc.configurations.HungerGameConfiguration;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
+import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameConfiguration> {
 	private static final double CURRENT_VERSION = 1.0;
@@ -29,7 +30,7 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 	}
 
 	@Override
-	public void load(String name) throws FileNotFoundException {
+	public IPersistence<IHungerGameConfiguration> load(String name) throws FileNotFoundException {
 		try {
 			Document doc = getDocument(getPath() + name + ".xml");
 			Element root = doc.getDocumentElement();
@@ -46,6 +47,7 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 		} catch (IOException e) {
 			throw new FileNotFoundException("Cannot find hunger game style named " + name);
 		}
+		return this;
 	}
 
 	@Override

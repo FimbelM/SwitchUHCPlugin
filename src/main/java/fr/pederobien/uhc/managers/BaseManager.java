@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.managers;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,28 +9,30 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.interfaces.IUnmodifiableBase;
+import fr.pederobien.uhc.persistence.PersistenceFactory;
 
 public class BaseManager {
-	private List<IUnmodifiableBase> bases;
+	private static List<IUnmodifiableBase> allBases;
+	private static List<IUnmodifiableBase> gameBases;
 
-	public BaseManager(List<IUnmodifiableBase> bases) {
-		bases = new ArrayList<IUnmodifiableBase>();
+	static {
+		allBases = new ArrayList<IUnmodifiableBase>();
+		gameBases = new ArrayList<IUnmodifiableBase>();
 
-		for (IUnmodifiableBase base : bases)
-			addBase(base);
+		PersistenceFactory factory = PersistenceFactory.getInstance();
+		try {
+			for (String name : factory.getBasePersistence().list())
+				allBases.add((IUnmodifiableBase) factory.getBasePersistence().load(name).get());
+		} catch (FileNotFoundException e) {
+		}
 	}
 
-	public void addBase(IUnmodifiableBase base) {
-		bases.add(base);
-		base.launch();
-	}
-
-	public boolean isChestAccessible(Player player, Block block) {
+	public static boolean isChestAccessible(Player player, Block block) {
 		if (!block.getType().equals(Material.CHEST))
 			return true;
-		
+
 		boolean accessible = true;
-		for (IUnmodifiableBase base : bases)
+		for (IUnmodifiableBase base : gameBases)
 			accessible &= !base.isChestRestricted(block, player);
 		return accessible;
 	}

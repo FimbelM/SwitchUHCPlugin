@@ -9,6 +9,7 @@ import org.w3c.dom.Node;
 
 import fr.pederobien.uhc.configurations.BlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
+import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConfiguration> {
 	private static final double CURRENT_VERSION = 1.0;
@@ -23,7 +24,7 @@ public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConf
 	}
 
 	@Override
-	public void load(String name) throws FileNotFoundException {
+	public IPersistence<IBlockedexConfiguration> load(String name) throws FileNotFoundException {
 		try {
 			Document doc = getDocument(getPath() + name + ".xml");
 			Element root = doc.getDocumentElement();
@@ -40,6 +41,7 @@ public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConf
 		} catch (IOException e) {
 			throw new FileNotFoundException("Cannot find blockedex game style named " + name);
 		}
+		return this;
 	}
 
 	@Override

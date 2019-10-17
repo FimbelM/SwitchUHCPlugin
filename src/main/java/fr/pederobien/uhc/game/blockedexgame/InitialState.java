@@ -1,6 +1,5 @@
 package fr.pederobien.uhc.game.blockedexgame;
 
-import fr.pederobien.uhc.managers.BaseManager;
 import fr.pederobien.uhc.managers.BlockedexPlayerManager;
 import fr.pederobien.uhc.scoreboard.launcher.BDScoreboardLauncher;
 import fr.pederobien.uhc.task.TaskLauncher;
@@ -18,7 +17,6 @@ public class InitialState extends AbstractBlockedexState {
 		timeLine = new TimeLine(taskLauncher.getTask());
 		scoreboardLauncher = new BDScoreboardLauncher(taskLauncher.getTask());
 		bdPlayerManager = new BlockedexPlayerManager();
-		baseManager = new BaseManager(game.getConfiguration().getBases());
 	}
 
 	@Override
