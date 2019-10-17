@@ -1,11 +1,11 @@
-package fr.pederobien.uhc.conf.configurations;
+package fr.pederobien.uhc.configurations;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.scoreboard.Team;
 
-import fr.pederobien.uhc.conf.configurations.interfaces.IBlockedexConfiguration;
+import fr.pederobien.uhc.configurations.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.game.blockedexgame.BlockedexGame;
 import fr.pederobien.uhc.world.blocks.IUnmodifiableBase;
 

@@ -3,8 +3,8 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.pederobien.uhc.conf.configurations.IConfiguration;
-import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.configurations.IConfiguration;
+import fr.pederobien.uhc.persistence.IPersistence;
 
 public class CommonScoreboardRefresh<T extends IConfiguration> extends AbstractConfEdition<T> {
 

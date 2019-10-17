@@ -5,8 +5,8 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.pederobien.uhc.conf.configurations.IConfiguration;
-import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.configurations.IConfiguration;
+import fr.pederobien.uhc.persistence.IPersistence;
 
 public abstract class CommonGameTime<T extends IConfiguration> extends AbstractConfEdition<T> {
 

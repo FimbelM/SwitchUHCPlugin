@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.conf.configurations;
+package fr.pederobien.uhc.configurations;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import org.bukkit.block.Block;
 import org.bukkit.scoreboard.Team;
 
-import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
+import fr.pederobien.uhc.configurations.interfaces.IHungerGameConfiguration;
 import fr.pederobien.uhc.game.hungergame.HungerGame;
 import fr.pederobien.uhc.managers.WorldManager;
 

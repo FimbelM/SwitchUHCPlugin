@@ -6,8 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfEdition;
-import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
-import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.configurations.interfaces.IHungerGameConfiguration;
+import fr.pederobien.uhc.persistence.IPersistence;
 
 public class FractionTimeHungerGame extends AbstractConfEdition<IHungerGameConfiguration> {
 

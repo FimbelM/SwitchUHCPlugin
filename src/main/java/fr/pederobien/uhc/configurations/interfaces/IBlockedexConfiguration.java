@@ -1,8 +1,8 @@
-package fr.pederobien.uhc.conf.configurations.interfaces;
+package fr.pederobien.uhc.configurations.interfaces;
 
 import java.util.List;
 
-import fr.pederobien.uhc.conf.configurations.IConfiguration;
+import fr.pederobien.uhc.configurations.IConfiguration;
 import fr.pederobien.uhc.world.blocks.IUnmodifiableBase;
 
 public interface IBlockedexConfiguration extends IConfiguration, IUnmodifiableBlockedexConfiguration {

@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.conf.persistence;
+package fr.pederobien.uhc.persistence;
 
 import fr.pederobien.uhc.conf.IName;
 

@@ -1,7 +1,7 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.base;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonSave;
-import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.persistence.IPersistence;
 import fr.pederobien.uhc.world.blocks.IBase;
 
 public class SaveBase extends CommonSave<IBase> {

@@ -2,9 +2,9 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations;
 
 import java.io.FileNotFoundException;
 
-import fr.pederobien.uhc.conf.IConfigurationContext;
-import fr.pederobien.uhc.conf.configurations.IConfiguration;
-import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.configurations.IConfiguration;
+import fr.pederobien.uhc.configurations.IConfigurationContext;
+import fr.pederobien.uhc.persistence.IPersistence;
 
 public abstract class CommonAsCurrent<T extends IConfiguration> extends AbstractConfEdition<T> {
 	private IConfigurationContext context;

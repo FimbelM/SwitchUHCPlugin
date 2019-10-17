@@ -1,6 +1,6 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn;
 
-import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.persistence.IPersistence;
 import fr.pederobien.uhc.world.blocks.IBawn;
 
 public abstract class CommonExtract<T extends IBawn> extends AbstractBawnEdition<T> {

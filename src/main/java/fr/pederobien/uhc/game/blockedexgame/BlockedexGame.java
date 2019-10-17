@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-import fr.pederobien.uhc.conf.configurations.interfaces.IUnmodifiableBlockedexConfiguration;
+import fr.pederobien.uhc.configurations.interfaces.IUnmodifiableBlockedexConfiguration;
 import fr.pederobien.uhc.game.AbstractGame;
 
 public class BlockedexGame extends AbstractGame implements IBlockedexGame {

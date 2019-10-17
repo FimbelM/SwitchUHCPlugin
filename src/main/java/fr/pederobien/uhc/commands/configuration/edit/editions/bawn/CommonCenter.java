@@ -3,7 +3,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.bawn;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.persistence.IPersistence;
 import fr.pederobien.uhc.world.blocks.IBawn;
 
 public class CommonCenter<T extends IBawn> extends AbstractBawnEdition<T> {

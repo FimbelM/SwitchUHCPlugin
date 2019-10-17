@@ -2,10 +2,10 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.hu
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfigurationEditionsFactory;
-import fr.pederobien.uhc.conf.IConfigurationContext;
-import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
-import fr.pederobien.uhc.conf.persistence.IPersistence;
-import fr.pederobien.uhc.conf.persistence.PersistenceFactory;
+import fr.pederobien.uhc.configurations.IConfigurationContext;
+import fr.pederobien.uhc.configurations.interfaces.IHungerGameConfiguration;
+import fr.pederobien.uhc.persistence.IPersistence;
+import fr.pederobien.uhc.persistence.PersistenceFactory;
 
 public class HungerGameEditionsFactory extends AbstractConfigurationEditionsFactory<IHungerGameConfiguration> {
 

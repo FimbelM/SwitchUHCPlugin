@@ -1,7 +1,7 @@
-package fr.pederobien.uhc.conf.persistence;
+package fr.pederobien.uhc.persistence;
 
-import fr.pederobien.uhc.conf.configurations.interfaces.IBlockedexConfiguration;
-import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
+import fr.pederobien.uhc.configurations.interfaces.IBlockedexConfiguration;
+import fr.pederobien.uhc.configurations.interfaces.IHungerGameConfiguration;
 import fr.pederobien.uhc.world.blocks.IBase;
 import fr.pederobien.uhc.world.blocks.ISpawn;
 

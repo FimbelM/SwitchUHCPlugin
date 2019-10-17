@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.AbstractBawnEdition;
-import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.persistence.IPersistence;
 import fr.pederobien.uhc.world.blocks.IBase;
 
 public class LoadBaseTemp extends AbstractBawnEdition<IBase> {

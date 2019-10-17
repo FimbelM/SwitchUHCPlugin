@@ -1,10 +1,10 @@
-package fr.pederobien.uhc.conf.configurations.interfaces;
+package fr.pederobien.uhc.configurations.interfaces;
 
 import java.time.LocalTime;
 
 import org.bukkit.block.Block;
 
-import fr.pederobien.uhc.conf.configurations.IUnmodifiableConfiguration;
+import fr.pederobien.uhc.configurations.IUnmodifiableConfiguration;
 
 public interface IUnmodifiableHungerGameConfiguration extends IUnmodifiableConfiguration {
 

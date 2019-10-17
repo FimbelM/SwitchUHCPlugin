@@ -1,7 +1,7 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.spawn;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonRename;
-import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.persistence.IPersistence;
 import fr.pederobien.uhc.world.blocks.ISpawn;
 
 public class RenameSpawn extends CommonRename<ISpawn> {

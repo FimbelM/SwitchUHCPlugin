@@ -1,6 +1,5 @@
-package fr.pederobien.uhc.conf;
+package fr.pederobien.uhc.configurations;
 
-import fr.pederobien.uhc.conf.configurations.IConfiguration;
 import fr.pederobien.uhc.game.IGame;
 
 public interface IConfigurationContext extends IConfiguration, IGame {

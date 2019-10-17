@@ -4,8 +4,8 @@ import java.time.LocalTime;
 import java.util.List;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractEdition;
-import fr.pederobien.uhc.conf.configurations.IConfiguration;
-import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.configurations.IConfiguration;
+import fr.pederobien.uhc.persistence.IPersistence;
 
 public abstract class AbstractConfEdition<T extends IConfiguration> extends AbstractEdition<T> {
 

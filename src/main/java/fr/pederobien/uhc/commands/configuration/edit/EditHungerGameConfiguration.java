@@ -1,8 +1,8 @@
 package fr.pederobien.uhc.commands.configuration.edit;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.hungergame.HungerGameEditionsFactory;
-import fr.pederobien.uhc.conf.IConfigurationContext;
-import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
+import fr.pederobien.uhc.configurations.IConfigurationContext;
+import fr.pederobien.uhc.configurations.interfaces.IHungerGameConfiguration;
 
 public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHungerGameConfiguration> {
 	private HungerGameEditionsFactory factory;

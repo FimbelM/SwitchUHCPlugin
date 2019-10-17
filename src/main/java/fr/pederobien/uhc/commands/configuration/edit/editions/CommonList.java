@@ -3,7 +3,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions;
 import java.util.List;
 
 import fr.pederobien.uhc.conf.IUnmodifiableName;
-import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.persistence.IPersistence;
 
 public abstract class CommonList<T extends IUnmodifiableName> extends AbstractEdition<T> {
 

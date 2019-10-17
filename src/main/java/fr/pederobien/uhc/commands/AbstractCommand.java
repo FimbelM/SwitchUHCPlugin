@@ -9,7 +9,7 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.pederobien.uhc.conf.IConfigurationContext;
+import fr.pederobien.uhc.configurations.IConfigurationContext;
 import fr.pederobien.uhc.world.EventListener;
 
 public abstract class AbstractCommand implements CommandExecutor, TabCompleter {

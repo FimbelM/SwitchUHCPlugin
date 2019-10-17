@@ -1,8 +1,8 @@
 package fr.pederobien.uhc.commands.configuration.edit;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.blockedexgame.BlockedexGameEditionsFactory;
-import fr.pederobien.uhc.conf.IConfigurationContext;
-import fr.pederobien.uhc.conf.configurations.interfaces.IBlockedexConfiguration;
+import fr.pederobien.uhc.configurations.IConfigurationContext;
+import fr.pederobien.uhc.configurations.interfaces.IBlockedexConfiguration;
 
 public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlockedexConfiguration> {
 	private BlockedexGameEditionsFactory factory;

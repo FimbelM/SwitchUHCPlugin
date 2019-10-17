@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.conf.persistence;
+package fr.pederobien.uhc.persistence;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -7,8 +7,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import fr.pederobien.uhc.conf.configurations.BlockedexConfiguration;
-import fr.pederobien.uhc.conf.configurations.interfaces.IBlockedexConfiguration;
+import fr.pederobien.uhc.configurations.BlockedexConfiguration;
+import fr.pederobien.uhc.configurations.interfaces.IBlockedexConfiguration;
 
 public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConfiguration> {
 	private static final double CURRENT_VERSION = 1.0;

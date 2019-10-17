@@ -2,9 +2,9 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractEditionsFactory;
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
-import fr.pederobien.uhc.conf.IConfigurationContext;
-import fr.pederobien.uhc.conf.configurations.IConfiguration;
-import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.configurations.IConfiguration;
+import fr.pederobien.uhc.configurations.IConfigurationContext;
+import fr.pederobien.uhc.persistence.IPersistence;
 
 public abstract class AbstractConfigurationEditionsFactory<T extends IConfiguration> extends AbstractEditionsFactory<T> {
 

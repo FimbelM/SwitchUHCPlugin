@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.conf.persistence;
+package fr.pederobien.uhc.persistence;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,8 +8,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import fr.pederobien.uhc.conf.configurations.HungerGameConfiguration;
-import fr.pederobien.uhc.conf.configurations.interfaces.IHungerGameConfiguration;
+import fr.pederobien.uhc.configurations.HungerGameConfiguration;
+import fr.pederobien.uhc.configurations.interfaces.IHungerGameConfiguration;
 
 public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameConfiguration> {
 	private static final double CURRENT_VERSION = 1.0;

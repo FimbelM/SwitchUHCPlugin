@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.conf.persistence;
+package fr.pederobien.uhc.persistence;
 
 import java.io.FileNotFoundException;
 import java.util.List;

@@ -1,6 +1,6 @@
 package fr.pederobien.uhc.game.hungergame;
 
-import fr.pederobien.uhc.conf.configurations.interfaces.IUnmodifiableHungerGameConfiguration;
+import fr.pederobien.uhc.configurations.interfaces.IUnmodifiableHungerGameConfiguration;
 import fr.pederobien.uhc.game.IGame;
 import fr.pederobien.uhc.observer.IObsTimeLine;
 

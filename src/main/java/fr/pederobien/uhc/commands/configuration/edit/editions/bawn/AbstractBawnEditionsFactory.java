@@ -2,7 +2,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.bawn;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractEditionsFactory;
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
-import fr.pederobien.uhc.conf.persistence.IPersistence;
+import fr.pederobien.uhc.persistence.IPersistence;
 import fr.pederobien.uhc.world.blocks.IBawn;
 
 public abstract class AbstractBawnEditionsFactory<T extends IBawn> extends AbstractEditionsFactory<T> {

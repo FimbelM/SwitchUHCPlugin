@@ -5,8 +5,8 @@ import java.util.Collection;
 import org.bukkit.ChatColor;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.CommonExtract;
-import fr.pederobien.uhc.conf.persistence.IPersistence;
 import fr.pederobien.uhc.managers.TeamsManager;
+import fr.pederobien.uhc.persistence.IPersistence;
 import fr.pederobien.uhc.world.blocks.IBase;
 
 public class ExtractBase extends CommonExtract<IBase> {
