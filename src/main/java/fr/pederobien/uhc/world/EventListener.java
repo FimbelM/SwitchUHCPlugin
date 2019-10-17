@@ -13,6 +13,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
@@ -61,18 +62,24 @@ public class EventListener implements Listener {
 		for (IObsListener obs : observers)
 			obs.onPlayerInteract(event);
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onCreatureSpawn(CreatureSpawnEvent event) {
 		for (IObsListener obs : observers)
 			obs.onCreatureSpawn(event);
 	}
-	
-	@EventHandler(priority=EventPriority.HIGHEST)
+
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerChat(AsyncPlayerChatEvent event) {
 		ChatColor color = TeamsManager.getColor(event.getPlayer());
 		event.getPlayer().setDisplayName(color + event.getPlayer().getName() + ChatColor.RESET);
 		event.setMessage(color + event.getMessage());
+	}
+
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPlayerPortalEvent(PlayerPortalEvent event) {
+		for (IObsListener obs : observers)
+			obs.onPlayerPortalEvent(event);
 	}
 
 	public void addObservers(IObsListener obs) {
