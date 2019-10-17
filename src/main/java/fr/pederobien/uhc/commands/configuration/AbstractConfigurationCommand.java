@@ -27,7 +27,5 @@ public abstract class AbstractConfigurationCommand extends AbstractCommand {
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		return conf.onTabComplete(sender, command, alias, args);
-
 	}
-
 }
