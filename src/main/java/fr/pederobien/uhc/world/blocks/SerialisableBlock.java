@@ -48,4 +48,15 @@ public class SerialisableBlock implements ISerializableBlock {
 	public Material getMaterial() {
 		return data.getMaterial();
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || getClass() != obj.getClass())
+			return false;
+		else {
+			SerialisableBlock block = (SerialisableBlock) obj;
+			return getX() == block.getX() && getY() == block.getY() && getZ() == block.getZ()
+					&& getMaterial() == block.getMaterial();
+		}
+	}
 }

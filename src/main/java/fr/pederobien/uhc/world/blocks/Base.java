@@ -7,7 +7,6 @@ import java.util.Map;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.data.BlockData;
 
 public class Base extends AbstractBawn implements IBase {
 	public static final Base DEFAULT = new Base("DefaultBase");
@@ -29,17 +28,16 @@ public class Base extends AbstractBawn implements IBase {
 
 	@Override
 	public void launch() {
-		for (Coordinate coord : getBlocks().keySet()) {
-			getBlockFromCenter(coord).setType(getBlocks().get(coord).getMaterial());
-			getBlockFromCenter(coord).setBlockData(getBlocks().get(coord));
-			if (getBlocks().get(coord).getMaterial().equals(Material.CHEST))
-				chests.put(getBlockFromCenter(coord), getChatColor(coord));
+		for (ISerializableBlock block : getBlocks()) {
+			getBlockFromCenter(block).setType(block.getMaterial());
+			getBlockFromCenter(block).setBlockData(block.getBlockData());
+			if (block.getMaterial().equals(Material.CHEST))
+				chests.put(getBlockFromCenter(block), getChatColor(block));
 		}
 	}
 
-	private ChatColor getChatColor(Coordinate chest) {
-		BlockData data = getBlocks().get(new Coordinate(chest.getX(), chest.getY() - 1, chest.getZ()));
-		switch (data.getMaterial()) {
+	private ChatColor getChatColor(ISerializableBlock chest) {
+		switch (getBlockUnderChest(chest).getMaterial()) {
 		case LIGHT_BLUE_WOOL:
 		case CYAN_WOOL:
 		case BLUE_WOOL:
@@ -77,5 +75,12 @@ public class Base extends AbstractBawn implements IBase {
 		default:
 			throw new IllegalArgumentException("Material under chest is not wool");
 		}
+	}
+	
+	private ISerializableBlock getBlockUnderChest(ISerializableBlock chest) {
+		for (ISerializableBlock block : getBlocks())
+			if (block.getX() == chest.getX() && block.getY() == chest.getY() - 1 && block.getZ() == chest.getZ())
+				return block;
+		return null;
 	}
 }

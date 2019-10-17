@@ -161,4 +161,38 @@ public class TeamsManager {
 			}
 		}
 	}
+	
+	public static String getColorName(ChatColor color) {
+		String colorName = color + "";
+		switch (color) {
+		case AQUA:
+		case DARK_AQUA:
+		case BLUE:
+		case DARK_BLUE:
+			return colorName + "blue";
+		case BLACK:
+			return colorName + "black";
+		case GRAY:
+		case DARK_GRAY:
+			return colorName + "gray";
+		case GREEN:
+		case DARK_GREEN:
+			return colorName + "green";
+		case RED:
+		case DARK_RED:
+			return colorName + "red";
+		case GOLD:
+			return colorName + "orange";
+		case YELLOW:
+			return colorName + "yellow";
+		case LIGHT_PURPLE:
+			return colorName + "pink";
+		case DARK_PURPLE:
+			return colorName + "purple";
+		case WHITE :
+			return colorName + "white";
+		default:
+			return colorName + "is not a color";
+		}
+	}
 }

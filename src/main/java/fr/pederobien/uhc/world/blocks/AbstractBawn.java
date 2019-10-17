@@ -1,27 +1,24 @@
 package fr.pederobien.uhc.world.blocks;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.data.BlockData;
 
-import fr.pederobien.uhc.conf.configurations.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.managers.WorldManager;
 
 public abstract class AbstractBawn implements IBawn {
 	private static final Block DEFAULT_CENTER = WorldManager.getHighestBlockYAt(0, 0);
 	private Block center;
-	private HashMap<Coordinate, BlockData> config;
+	private List<ISerializableBlock> config;
 	private int width, height, depth;
 	private String name;
 
 	public AbstractBawn(String name) {
 		this.name = name;
-		config = new HashMap<Coordinate, BlockData>();
+		config = new ArrayList<ISerializableBlock>();
 	}
 
 	@Override
@@ -46,28 +43,27 @@ public abstract class AbstractBawn implements IBawn {
 		for (int x = -width / 2; x < maxWidth; x++)
 			for (int y = 0; y < height; y++)
 				for (int z = -depth / 2; z < maxDepth; z++) {
-					Coordinate coord = new Coordinate(x, y, z);
-					config.put(coord, getBlockFromCenter(coord).getBlockData());
+					config.add(new SerialisableBlock(x, y, z, getBlockFromCenter(x, y, z).getBlockData()));
 				}
 	}
 
 	@Override
 	public void launch() {
-		for (Coordinate coord : config.keySet()) {
-			getBlockFromCenter(coord).setType(config.get(coord).getMaterial());
-			getBlockFromCenter(coord).setBlockData(config.get(coord));
+		for (ISerializableBlock block : config) {
+			getBlockFromCenter(block).setType(block.getMaterial());
+			getBlockFromCenter(block).setBlockData(block.getBlockData());
 		}
 	}
 
 	@Override
 	public void remove() {
-		for (Coordinate coord : config.keySet())
-			getBlockFromCenter(coord).setType(Material.AIR);
+		for (ISerializableBlock block : config)
+			getBlockFromCenter(block).setType(Material.AIR);
 	}
 
 	@Override
-	public Map<Coordinate, BlockData> getBlocks() {
-		return Collections.unmodifiableMap(config);
+	public List<ISerializableBlock> getBlocks() {
+		return Collections.unmodifiableList(config);
 	}
 
 	@Override
@@ -100,7 +96,7 @@ public abstract class AbstractBawn implements IBawn {
 	public void setBlocks(List<ISerializableBlock> blocks) {
 		config.clear();
 		for (ISerializableBlock block : blocks)
-			addBlock(block);
+			config.add(block);
 	}
 
 	@Override
@@ -125,12 +121,15 @@ public abstract class AbstractBawn implements IBawn {
 		this.depth = depth;
 	}
 
-	protected Block getBlockFromCenter(Coordinate coord) {
-		return getCenter().getRelative(coord.getX(), coord.getY(), coord.getZ());
+	protected Block getBlockFromCenter(int x, int y, int z) {
+		return getCenter().getRelative(x, y, z);
 	}
-
-	protected void addBlock(ISerializableBlock block) {
-		config.put(new Coordinate(block.getCoordinate().getX(), block.getCoordinate().getY(),
-				block.getCoordinate().getZ()), block.getBlockData());
+	
+	protected Block getBlockFromCenter(ISerializableBlock block) {
+		return getCenter().getRelative(block.getX(), block.getY(), block.getZ());
+	}
+	
+	protected void clearBlocks() {
+		config.clear();
 	}
 }

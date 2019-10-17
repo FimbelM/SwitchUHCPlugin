@@ -5,16 +5,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Material;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import fr.pederobien.uhc.conf.configurations.SerialisableBlock;
-import fr.pederobien.uhc.conf.configurations.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.world.blocks.Base;
-import fr.pederobien.uhc.world.blocks.Coordinate;
 import fr.pederobien.uhc.world.blocks.IBase;
+import fr.pederobien.uhc.world.blocks.ISerializableBlock;
+import fr.pederobien.uhc.world.blocks.SerialisableBlock;
 
 public class BasePersistence extends AbstractBawnPersistence<IBase> {
 	private static final double CURRENT_VERSION = 1.0;
@@ -70,12 +68,12 @@ public class BasePersistence extends AbstractBawnPersistence<IBase> {
 		root.appendChild(team);
 
 		Element blocks = doc.createElement("blocks");
-		for (Coordinate coord : get().getBlocks().keySet()) {
+		for (ISerializableBlock b : get().getBlocks()) {
 			Element block = doc.createElement("block");
-			block.setAttribute("x", "" + coord.getX());
-			block.setAttribute("y", "" + coord.getY());
-			block.setAttribute("z", "" + coord.getZ());
-			block.setAttribute("blockdata", "" + get().getBlocks().get(coord).getAsString());
+			block.setAttribute("x", "" + b.getX());
+			block.setAttribute("y", "" + b.getY());
+			block.setAttribute("z", "" + b.getZ());
+			block.setAttribute("blockdata", "" + b.getBlockData().getAsString());
 			blocks.appendChild(block);
 		}
 		root.appendChild(blocks);
@@ -85,7 +83,11 @@ public class BasePersistence extends AbstractBawnPersistence<IBase> {
 
 	@Override
 	protected String getDefault() {
-		return null;
+		return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n" +
+				"  <base>\r\n" + 
+				"  <version>1.0</version>\r\n" + 
+				"  <name>DefaultBase</name>\r\n" + 
+				"</base>";
 	}
 
 	@Override
@@ -113,8 +115,7 @@ public class BasePersistence extends AbstractBawnPersistence<IBase> {
 						continue;
 					Element block = (Element) elt.getChildNodes().item(j);
 					blocksStr.add(new SerialisableBlock(block.getAttribute("x"), block.getAttribute("y"),
-							block.getAttribute("z"),
-							Material.valueOf(block.getAttribute("material")).createBlockData().getAsString()));
+							block.getAttribute("z"), block.getAttribute("blockdata")));
 				}
 				get().setBlocks(blocksStr);
 				break;

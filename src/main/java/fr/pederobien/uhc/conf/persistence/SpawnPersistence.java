@@ -10,10 +10,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import fr.pederobien.uhc.conf.configurations.SerialisableBlock;
-import fr.pederobien.uhc.conf.configurations.interfaces.ISerializableBlock;
-import fr.pederobien.uhc.world.blocks.Coordinate;
+import fr.pederobien.uhc.world.blocks.ISerializableBlock;
 import fr.pederobien.uhc.world.blocks.ISpawn;
+import fr.pederobien.uhc.world.blocks.SerialisableBlock;
 import fr.pederobien.uhc.world.blocks.Spawn;
 
 public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
@@ -82,12 +81,12 @@ public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 		root.appendChild(center);
 
 		Element blocks = doc.createElement("blocks");
-		for (Coordinate coord : get().getBlocks().keySet()) {
+		for (ISerializableBlock b : get().getBlocks()) {
 			Element block = doc.createElement("block");
-			block.setAttribute("x", "" + coord.getX());
-			block.setAttribute("y", "" + coord.getY());
-			block.setAttribute("z", "" + coord.getZ());
-			block.setAttribute("blockdata", "" + get().getBlocks().get(coord).getAsString());
+			block.setAttribute("x", "" + b.getX());
+			block.setAttribute("y", "" + b.getY());
+			block.setAttribute("z", "" + b.getZ());
+			block.setAttribute("blockdata", "" + b.getBlockData().getAsString());
 			blocks.appendChild(block);
 		}
 		root.appendChild(blocks);
@@ -232,8 +231,8 @@ public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 		System.out.println("Center : " + get().getCenter().getX() + " " + get().getCenter().getY() + " "
 				+ get().getCenter().getZ());
 		System.out.println("Blocks");
-		for (Coordinate coord : get().getBlocks().keySet())
+		for (ISerializableBlock b : get().getBlocks())
 			System.out.println(
-					"\t" + coord.getX() + " " + coord.getY() + " " + coord.getZ() + " " + get().getBlocks().get(coord));
+					"\t" + b.getX() + " " + b.getY() + " " + b.getZ() + " " + b.getBlockData());
 	}
 }
