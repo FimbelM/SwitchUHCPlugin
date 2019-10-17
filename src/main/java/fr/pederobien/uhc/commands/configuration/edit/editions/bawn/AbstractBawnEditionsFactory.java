@@ -19,9 +19,7 @@ public abstract class AbstractBawnEditionsFactory<T extends IBawn> extends Abstr
 		return new CommonDimensions<T>(persistence);
 	}
 
-	public IEdition createExtractEdition() {
-		return new CommonExtract<T>(persistence);
-	}
+	public abstract IEdition createExtractEdition();
 
 	public abstract IEdition createRenameEdition();
 }

@@ -3,15 +3,17 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.bawn;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 import fr.pederobien.uhc.world.blocks.IBawn;
 
-public class CommonExtract<T extends IBawn> extends AbstractBawnEdition<T> {
+public abstract class CommonExtract<T extends IBawn> extends AbstractBawnEdition<T> {
 
-	public CommonExtract(IPersistence<T> persistence) {
-		super(persistence, "extract", "to extract world's block");
+	public CommonExtract(IPersistence<T> persistence, String explanation) {
+		super(persistence, "extract", explanation);
 	}
+	
+	protected abstract String onExtracted();
 
 	@Override
 	public String edit(String[] args) {
 		get().extract();
-		return get().getName() + " extracted";
+		return onExtracted();
 	}
 }

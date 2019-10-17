@@ -25,6 +25,11 @@ public class SpawnEditionsFactory extends AbstractBawnEditionsFactory<ISpawn> {
 	public IEdition createNewEdition() {
 		return new NewSpawn(persistence);
 	}
+	
+	@Override
+	public IEdition createExtractEdition() {
+		return new ExtractSpawn(persistence);
+	}
 
 	@Override
 	public IEdition createRenameEdition() {
