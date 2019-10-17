@@ -76,7 +76,11 @@ public class WorldManager {
 	public static void setPVP(boolean pvp) {
 		world.setPVP(pvp);
 	}
-
+	
+	public static Location createDefaultLocation(int x, int y, int z) {
+		return new Location(SURFACE_WORLD, x, y, z);
+	}
+	
 	public static Block getBlockAt(String world, int x, int y, int z) {
 		return Bukkit.getWorld(world).getBlockAt(x, y, z);
 	}
