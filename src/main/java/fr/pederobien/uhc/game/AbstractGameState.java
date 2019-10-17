@@ -23,7 +23,7 @@ public abstract class AbstractGameState implements IGameState {
 	protected static IScoreboardLauncher scoreboardLauncher;
 
 	@Override
-	public void initiate() {
+	public boolean initiate() {
 		throw new GameStateException("This method cannot be called by this state");
 	}
 
@@ -45,6 +45,11 @@ public abstract class AbstractGameState implements IGameState {
 	@Override
 	public void stop() {
 		throw new GameStateException("This method cannot be called by this state");
+	}
+	
+	@Override
+	public String getMessage() {
+		return null;
 	}
 
 	@Override

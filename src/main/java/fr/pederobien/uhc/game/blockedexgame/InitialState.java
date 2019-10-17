@@ -12,11 +12,12 @@ public class InitialState extends AbstractBlockedexState {
 	}
 
 	@Override
-	public void initiate() {
+	public boolean initiate() {
 		taskLauncher = new TaskLauncher(game.getConfiguration().getGameTime());
 		timeLine = new TimeLine(taskLauncher.getTask());
 		scoreboardLauncher = new BDScoreboardLauncher(taskLauncher.getTask());
 		bdPlayerManager = new BlockedexPlayerManager();
+		return true;
 	}
 
 	@Override

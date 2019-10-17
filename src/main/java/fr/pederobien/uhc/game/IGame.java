@@ -5,7 +5,7 @@ import fr.pederobien.uhc.observer.IObsListener;
 
 public interface IGame extends IObsListener {
 	
-	void initiate();
+	boolean initiate();
 
 	void start();
 	
@@ -18,4 +18,6 @@ public interface IGame extends IObsListener {
 	void AddObserver(IObsGame obs);
 	
 	void removeObserver(IObsGame obs);
+	
+	String getMessage();
 }

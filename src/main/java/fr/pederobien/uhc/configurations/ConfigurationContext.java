@@ -36,8 +36,8 @@ public class ConfigurationContext implements IConfigurationContext {
 	}
 
 	@Override
-	public void initiate() {
-		getGame().initiate();
+	public boolean initiate() {
+		return getGame().initiate();
 	}
 
 	@Override
@@ -58,6 +58,11 @@ public class ConfigurationContext implements IConfigurationContext {
 	@Override
 	public void relaunch() {
 		getGame().relaunch();
+	}
+	
+	@Override
+	public String getMessage() {
+		return getGame().getMessage();
 	}
 
 	@Override

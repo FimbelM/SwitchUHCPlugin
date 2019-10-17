@@ -11,7 +11,7 @@ public class InitialState extends AbstractHungerGameState {
 	}
 
 	@Override
-	public void initiate() {
+	public boolean initiate() {
 		taskLauncher = new TaskLauncher(game.getConfiguration().getGameTime());
 		timeLine = new TimeLine(taskLauncher.getTask());
 		scoreboardLauncher = new HGScoreboardLauncher(taskLauncher.getTask());
@@ -22,6 +22,7 @@ public class InitialState extends AbstractHungerGameState {
 		timeLine.addObserver(game.getConfiguration().getGameTime(), game);
 		timeLine.addObserver(warningTime, game);
 		timeLine.addObserver(game.getConfiguration().getGameTime(), scoreboardLauncher);
+		return true;
 	}
 
 	@Override

@@ -68,8 +68,8 @@ public class BlockedexGame extends AbstractGame implements IBlockedexGame {
 	}
 
 	@Override
-	public void initiate() {
-		current.initiate();
+	public boolean initiate() {
+		return current.initiate();
 	}
 
 	@Override
@@ -92,6 +92,11 @@ public class BlockedexGame extends AbstractGame implements IBlockedexGame {
 	public void stop() {
 		super.stop();
 		current.stop();
+	}
+	
+	@Override
+	public String getMessage() {
+		return current.getMessage();
 	}
 
 	@Override

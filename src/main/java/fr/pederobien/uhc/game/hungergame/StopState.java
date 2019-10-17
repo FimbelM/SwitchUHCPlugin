@@ -19,7 +19,7 @@ public class StopState extends AbstractHungerGameState {
 	}
 	
 	@Override
-	public void initiate() {
-		game.setCurrentState(game.getInitiate()).initiate();
+	public boolean initiate() {
+		return game.setCurrentState(game.getInitiate()).initiate();
 	}
 }

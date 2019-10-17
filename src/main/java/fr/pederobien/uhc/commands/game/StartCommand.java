@@ -20,8 +20,10 @@ public class StartCommand extends AbstractCommand {
 			if (TeamsManager.getNumberOfPlayerInTeam() != PlayerManager.getNumberOfPlayer())
 				sendMessageToSender(sender, "There are players that are not in a team");
 			else {
-				confContext.initiate();
-				confContext.start();
+				if (confContext.initiate())
+					confContext.start();
+				else
+					sendMessageToSender(sender, confContext.getMessage());
 			}
 		} catch(NullPointerException e) {
 			sendMessageToSender(sender, "No game setted to be launch, use command edit to edit a new game");

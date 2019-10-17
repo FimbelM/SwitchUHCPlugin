@@ -77,8 +77,8 @@ public class HungerGame extends AbstractGame implements IHungerGame {
 	}
 
 	@Override
-	public void initiate() {
-		current.initiate();
+	public boolean initiate() {
+		return current.initiate();
 	}
 
 	@Override
@@ -101,6 +101,11 @@ public class HungerGame extends AbstractGame implements IHungerGame {
 	public void stop() {
 		super.stop();
 		current.stop();
+	}
+	
+	@Override
+	public String getMessage() {
+		return current.getMessage();
 	}
 
 	@Override

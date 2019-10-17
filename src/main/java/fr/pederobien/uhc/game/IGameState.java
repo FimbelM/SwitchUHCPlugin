@@ -5,7 +5,7 @@ import fr.pederobien.uhc.observer.IObsTimeLine;
 
 public interface IGameState extends IObsListener, IObsTimeLine {
 
-	void initiate();
+	boolean initiate();
 
 	void start();
 
@@ -14,4 +14,6 @@ public interface IGameState extends IObsListener, IObsTimeLine {
 	void relaunch();
 
 	void stop();
+	
+	String getMessage();
 }
