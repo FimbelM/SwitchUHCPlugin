@@ -38,16 +38,21 @@ public class WorldManager {
 		world.setSpawnLocation(getHighestBlockYAt(0, 0).getLocation());
 		
 		MOBS.add(EntityType.BLAZE);
+		MOBS.add(EntityType.CAVE_SPIDER);
 		MOBS.add(EntityType.CREEPER);
 		MOBS.add(EntityType.DROWNED);
 		MOBS.add(EntityType.ELDER_GUARDIAN);
+		MOBS.add(EntityType.ENDER_DRAGON);
 		MOBS.add(EntityType.ENDERMITE);
 		MOBS.add(EntityType.EVOKER);
 		MOBS.add(EntityType.GHAST);
+		MOBS.add(EntityType.GIANT);
 		MOBS.add(EntityType.GUARDIAN);
 		MOBS.add(EntityType.HUSK);
+		MOBS.add(EntityType.ILLUSIONER);
 		MOBS.add(EntityType.MAGMA_CUBE);
 		MOBS.add(EntityType.PHANTOM);
+		MOBS.add(EntityType.PIG_ZOMBIE);
 		MOBS.add(EntityType.SHULKER);
 		MOBS.add(EntityType.SILVERFISH);
 		MOBS.add(EntityType.SKELETON);
@@ -58,6 +63,7 @@ public class WorldManager {
 		MOBS.add(EntityType.VEX);
 		MOBS.add(EntityType.VINDICATOR);
 		MOBS.add(EntityType.WITCH);
+		MOBS.add(EntityType.WITHER);
 		MOBS.add(EntityType.WITHER_SKELETON);
 		MOBS.add(EntityType.ZOMBIE);
 		MOBS.add(EntityType.ZOMBIE_VILLAGER);
