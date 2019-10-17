@@ -17,16 +17,18 @@ public abstract class AbstractHungerGameState extends AbstractGameState implemen
 	public AbstractHungerGameState(IHungerGame game) {
 		this.game = game;
 	}
-	
+
 	protected void shouldStopGame() {
-		if (PlayerManager.getNumberOfPlayersOnMode(GameMode.SURVIVAL) == 0)
+		if (PlayerManager.getNumberOfPlayersOnMode(GameMode.SURVIVAL) == 1)
 			game.stop();
 	}
-	
+
 	protected boolean warnPlayer(LocalTime time) {
 		boolean b = time.equals(warningTime);
 		if (b)
-			PlayerManager.sendMessageToPlayers(WorldManager.getPlayersInWorld(WorldManager.NETHER_WORLD, WorldManager.END_WORLD), "Go back to the surface or you will die in 1 minute");
+			PlayerManager.sendMessageToPlayers(
+					WorldManager.getPlayersInWorld(WorldManager.NETHER_WORLD, WorldManager.END_WORLD),
+					"Go back to the surface or you will die in 1 minute");
 		return b;
 	}
 }
