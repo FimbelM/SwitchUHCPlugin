@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.game.IGame;
+import fr.pederobien.uhc.interfaces.IConfiguration;
 
 public abstract class AbstractConfiguration implements IConfiguration {
 	private static final Long DEFAULT_SCOREBOARD_REFRESH = new Long(5);

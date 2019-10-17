@@ -15,6 +15,8 @@ import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.PluginDeposit;
 import fr.pederobien.uhc.game.IGame;
+import fr.pederobien.uhc.interfaces.IConfiguration;
+import fr.pederobien.uhc.interfaces.IConfigurationContext;
 import fr.pederobien.uhc.observer.IObsGame;
 
 public class ConfigurationContext implements IConfigurationContext {

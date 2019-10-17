@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.configurations;
+package fr.pederobien.uhc.interfaces;
 
 import java.time.LocalTime;
 import java.util.List;

@@ -3,7 +3,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import fr.pederobien.uhc.configurations.IConfiguration;
+import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.persistence.IPersistence;
 
 public abstract class CommonLoad<T extends IConfiguration> extends AbstractConfEdition<T> {
