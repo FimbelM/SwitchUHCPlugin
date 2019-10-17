@@ -13,8 +13,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
-import fr.pederobien.uhc.conf.IUnmodifiableName;
 import fr.pederobien.uhc.configurations.IConfigurationContext;
+import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 
 public abstract class AbstractEditConfiguration<T extends IUnmodifiableName> implements IEditConfig {
 	protected IConfigurationContext context;

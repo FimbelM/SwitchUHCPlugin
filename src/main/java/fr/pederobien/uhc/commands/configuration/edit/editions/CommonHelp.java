@@ -3,7 +3,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions;
 import java.util.List;
 
 import fr.pederobien.uhc.commands.configuration.edit.IEditConfig;
-import fr.pederobien.uhc.conf.IUnmodifiableName;
+import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 
 public class CommonHelp extends AbstractEdition<IUnmodifiableName> {
 	private IEditConfig conf;

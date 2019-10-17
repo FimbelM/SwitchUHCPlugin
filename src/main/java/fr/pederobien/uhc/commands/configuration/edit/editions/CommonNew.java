@@ -3,8 +3,8 @@ package fr.pederobien.uhc.commands.configuration.edit.editions;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.pederobien.uhc.conf.IUnmodifiableName;
 import fr.pederobien.uhc.configurations.ConfigurationsFactory;
+import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 import fr.pederobien.uhc.persistence.IPersistence;
 
 public abstract class CommonNew<T extends IUnmodifiableName> extends AbstractEdition<T> {

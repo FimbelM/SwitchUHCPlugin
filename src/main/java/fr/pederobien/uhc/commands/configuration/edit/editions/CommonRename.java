@@ -3,7 +3,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.pederobien.uhc.conf.IName;
+import fr.pederobien.uhc.interfaces.IName;
 import fr.pederobien.uhc.persistence.IPersistence;
 
 public abstract class CommonRename<T extends IName> extends AbstractEdition<T> {

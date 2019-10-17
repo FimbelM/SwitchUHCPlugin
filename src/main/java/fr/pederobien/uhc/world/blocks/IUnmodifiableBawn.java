@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.bukkit.block.Block;
 
-import fr.pederobien.uhc.conf.IUnmodifiableName;
+import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 
 public interface IUnmodifiableBawn extends IUnmodifiableName {
 

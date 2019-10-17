@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.bukkit.block.Block;
 
-import fr.pederobien.uhc.conf.IName;
+import fr.pederobien.uhc.interfaces.IName;
 
 public interface IBawn extends IName, IUnmodifiableBawn {
 

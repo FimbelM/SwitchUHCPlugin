@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.conf;
+package fr.pederobien.uhc.interfaces;
 
 public interface IUnmodifiableName {
 
