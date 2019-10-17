@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.bukkit.scoreboard.Team;
 
-import fr.pederobien.uhc.configurations.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.game.blockedexgame.BlockedexGame;
+import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.world.blocks.IUnmodifiableBase;
 
 public class BlockedexConfiguration extends AbstractConfiguration implements IBlockedexConfiguration {

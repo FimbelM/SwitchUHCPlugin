@@ -11,8 +11,8 @@ import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-import fr.pederobien.uhc.configurations.interfaces.IUnmodifiableHungerGameConfiguration;
 import fr.pederobien.uhc.game.AbstractGame;
+import fr.pederobien.uhc.interfaces.IUnmodifiableHungerGameConfiguration;
 
 public class HungerGame extends AbstractGame implements IHungerGame {
 	private IHungerGameState initiate;

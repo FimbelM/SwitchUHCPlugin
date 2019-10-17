@@ -1,7 +1,7 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.blockedexgame;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonNew;
-import fr.pederobien.uhc.configurations.interfaces.IBlockedexConfiguration;
+import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.persistence.IPersistence;
 
 public class NewBlockedexGame extends CommonNew<IBlockedexConfiguration> {

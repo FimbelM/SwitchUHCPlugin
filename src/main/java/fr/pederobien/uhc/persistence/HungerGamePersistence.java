@@ -9,7 +9,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import fr.pederobien.uhc.configurations.HungerGameConfiguration;
-import fr.pederobien.uhc.configurations.interfaces.IHungerGameConfiguration;
+import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
 
 public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameConfiguration> {
 	private static final double CURRENT_VERSION = 1.0;

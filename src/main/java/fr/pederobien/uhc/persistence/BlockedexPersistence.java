@@ -8,7 +8,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import fr.pederobien.uhc.configurations.BlockedexConfiguration;
-import fr.pederobien.uhc.configurations.interfaces.IBlockedexConfiguration;
+import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 
 public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConfiguration> {
 	private static final double CURRENT_VERSION = 1.0;

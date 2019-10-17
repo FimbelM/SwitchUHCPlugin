@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import org.bukkit.block.Block;
 import org.bukkit.scoreboard.Team;
 
-import fr.pederobien.uhc.configurations.interfaces.IHungerGameConfiguration;
 import fr.pederobien.uhc.game.hungergame.HungerGame;
+import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
 import fr.pederobien.uhc.managers.WorldManager;
 
 public class HungerGameConfiguration extends AbstractConfiguration implements IHungerGameConfiguration {

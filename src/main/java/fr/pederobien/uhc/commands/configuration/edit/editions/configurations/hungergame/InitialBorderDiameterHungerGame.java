@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfEdition;
-import fr.pederobien.uhc.configurations.interfaces.IHungerGameConfiguration;
+import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
 import fr.pederobien.uhc.persistence.IPersistence;
 
 public class InitialBorderDiameterHungerGame extends AbstractConfEdition<IHungerGameConfiguration> {

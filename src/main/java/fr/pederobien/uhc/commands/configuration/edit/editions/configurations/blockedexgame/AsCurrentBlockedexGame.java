@@ -2,7 +2,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.bl
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.CommonAsCurrent;
 import fr.pederobien.uhc.configurations.IConfigurationContext;
-import fr.pederobien.uhc.configurations.interfaces.IBlockedexConfiguration;
+import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.persistence.IPersistence;
 
 public class AsCurrentBlockedexGame extends CommonAsCurrent<IBlockedexConfiguration> {

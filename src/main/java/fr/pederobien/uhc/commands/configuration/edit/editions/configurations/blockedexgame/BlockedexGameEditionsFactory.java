@@ -3,7 +3,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.bl
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfigurationEditionsFactory;
 import fr.pederobien.uhc.configurations.IConfigurationContext;
-import fr.pederobien.uhc.configurations.interfaces.IBlockedexConfiguration;
+import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.persistence.IPersistence;
 import fr.pederobien.uhc.persistence.PersistenceFactory;
 
