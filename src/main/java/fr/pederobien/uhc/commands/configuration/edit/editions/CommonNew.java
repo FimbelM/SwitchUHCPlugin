@@ -8,7 +8,7 @@ import fr.pederobien.uhc.conf.configurations.ConfigurationsFactory;
 import fr.pederobien.uhc.conf.persistence.IPersistence;
 
 public abstract class CommonNew<T extends IUnmodifiableName> extends AbstractEdition<T> {
-	protected ConfigurationsFactory factory;
+	protected ConfigurationsFactory factory = ConfigurationsFactory.getInstance();
 
 	public CommonNew(IPersistence<T> persistence, String explanation) {
 		super(persistence, "new", explanation);
