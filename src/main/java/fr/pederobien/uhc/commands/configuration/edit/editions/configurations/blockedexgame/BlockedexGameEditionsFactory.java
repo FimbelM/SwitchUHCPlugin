@@ -4,7 +4,7 @@ import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfigurationEditionsFactory;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
-import fr.pederobien.uhc.persistence.IPersistence;
+import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.persistence.PersistenceFactory;
 
 public class BlockedexGameEditionsFactory extends AbstractConfigurationEditionsFactory<IBlockedexConfiguration> {

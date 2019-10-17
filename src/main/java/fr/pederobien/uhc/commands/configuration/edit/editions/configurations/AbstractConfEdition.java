@@ -5,7 +5,7 @@ import java.util.List;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractEdition;
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.persistence.IPersistence;
+import fr.pederobien.uhc.interfaces.IPersistence;
 
 public abstract class AbstractConfEdition<T extends IConfiguration> extends AbstractEdition<T> {
 

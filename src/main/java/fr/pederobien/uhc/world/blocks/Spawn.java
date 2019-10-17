@@ -1,5 +1,7 @@
 package fr.pederobien.uhc.world.blocks;
 
+import fr.pederobien.uhc.interfaces.ISerializableBlock;
+import fr.pederobien.uhc.interfaces.ISpawn;
 import fr.pederobien.uhc.managers.WorldManager;
 
 public class Spawn extends AbstractBawn implements ISpawn {

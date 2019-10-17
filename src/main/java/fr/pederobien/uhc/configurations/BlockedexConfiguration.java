@@ -7,7 +7,7 @@ import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.game.blockedexgame.BlockedexGame;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
-import fr.pederobien.uhc.world.blocks.IUnmodifiableBase;
+import fr.pederobien.uhc.interfaces.IUnmodifiableBase;
 
 public class BlockedexConfiguration extends AbstractConfiguration implements IBlockedexConfiguration {
 	public static final BlockedexConfiguration DEFAULT = new BlockedexConfiguration("DefaultConfiguration");

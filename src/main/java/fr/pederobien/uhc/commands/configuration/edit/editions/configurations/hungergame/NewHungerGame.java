@@ -2,7 +2,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.hu
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonNew;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
-import fr.pederobien.uhc.persistence.IPersistence;
+import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class NewHungerGame extends CommonNew<IHungerGameConfiguration> {
 

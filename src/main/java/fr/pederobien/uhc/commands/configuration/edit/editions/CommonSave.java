@@ -2,8 +2,8 @@ package fr.pederobien.uhc.commands.configuration.edit.editions;
 
 import java.util.List;
 
+import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
-import fr.pederobien.uhc.persistence.IPersistence;
 
 public abstract class CommonSave<T extends IUnmodifiableName> extends AbstractEdition<T> {
 

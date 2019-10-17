@@ -3,7 +3,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.bl
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.CommonAsCurrent;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
-import fr.pederobien.uhc.persistence.IPersistence;
+import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class AsCurrentBlockedexGame extends CommonAsCurrent<IBlockedexConfiguration> {
 

@@ -2,7 +2,7 @@ package fr.pederobien.uhc.commands.configuration.edit;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.spawn.SpawnEditionsFactory;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
-import fr.pederobien.uhc.world.blocks.ISpawn;
+import fr.pederobien.uhc.interfaces.ISpawn;
 
 public class EditSpawnConfiguration extends AbstractEditConfiguration<ISpawn> {
 	private SpawnEditionsFactory factory;

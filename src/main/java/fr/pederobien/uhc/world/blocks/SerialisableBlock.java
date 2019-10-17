@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.block.data.BlockData;
 
 import fr.pederobien.uhc.BukkitManager;
+import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.managers.WorldManager;
 
 public class SerialisableBlock implements ISerializableBlock {

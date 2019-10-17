@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 
 import org.bukkit.ChatColor;
 
+import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
-import fr.pederobien.uhc.persistence.IPersistence;
 
 public abstract class AbstractEdition<T extends IUnmodifiableName> implements IEdition {
 	private IPersistence<T> persistence;

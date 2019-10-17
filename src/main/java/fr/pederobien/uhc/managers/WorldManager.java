@@ -16,7 +16,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
-import fr.pederobien.uhc.world.blocks.ISpawn;
+import fr.pederobien.uhc.interfaces.ISpawn;
 
 public class WorldManager {
 	public static final Set<EntityType> MOBS;

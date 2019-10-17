@@ -5,8 +5,8 @@ import java.util.List;
 import org.bukkit.block.Block;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractEdition;
-import fr.pederobien.uhc.persistence.IPersistence;
-import fr.pederobien.uhc.world.blocks.IBawn;
+import fr.pederobien.uhc.interfaces.IBawn;
+import fr.pederobien.uhc.interfaces.IPersistence;
 
 public abstract class AbstractBawnEdition<T extends IBawn> extends AbstractEdition<T> {
 

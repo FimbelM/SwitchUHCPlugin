@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.persistence.IPersistence;
+import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class CommonScoreboardRefresh<T extends IConfiguration> extends AbstractConfEdition<T> {
 

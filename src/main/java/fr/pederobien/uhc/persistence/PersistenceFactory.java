@@ -1,9 +1,10 @@
 package fr.pederobien.uhc.persistence;
 
+import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
-import fr.pederobien.uhc.world.blocks.IBase;
-import fr.pederobien.uhc.world.blocks.ISpawn;
+import fr.pederobien.uhc.interfaces.IPersistence;
+import fr.pederobien.uhc.interfaces.ISpawn;
 
 public class PersistenceFactory {
 	private IPersistence<IHungerGameConfiguration> hungerGamePersistence;

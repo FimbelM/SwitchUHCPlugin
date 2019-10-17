@@ -1,8 +1,8 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions;
 
 import fr.pederobien.uhc.commands.configuration.edit.IEditConfig;
+import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
-import fr.pederobien.uhc.persistence.IPersistence;
 
 public abstract class AbstractEditionsFactory<T extends IUnmodifiableName> {
 	protected IPersistence<T> persistence;

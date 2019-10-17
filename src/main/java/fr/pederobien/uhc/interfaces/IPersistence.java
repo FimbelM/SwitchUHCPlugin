@@ -1,9 +1,7 @@
-package fr.pederobien.uhc.persistence;
+package fr.pederobien.uhc.interfaces;
 
 import java.io.FileNotFoundException;
 import java.util.List;
-
-import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 
 public interface IPersistence<T extends IUnmodifiableName> {
 

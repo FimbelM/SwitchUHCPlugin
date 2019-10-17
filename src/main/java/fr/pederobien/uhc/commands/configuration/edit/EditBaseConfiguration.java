@@ -1,8 +1,8 @@
 package fr.pederobien.uhc.commands.configuration.edit;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.base.BaseEditionsFactory;
+import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
-import fr.pederobien.uhc.world.blocks.IBase;
 
 public class EditBaseConfiguration extends AbstractEditConfiguration<IBase> {
 	private BaseEditionsFactory factory;

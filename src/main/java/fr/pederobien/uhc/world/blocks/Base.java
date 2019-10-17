@@ -9,6 +9,8 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
+import fr.pederobien.uhc.interfaces.IBase;
+import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.managers.TeamsManager;
 
 public class Base extends AbstractBawn implements IBase {

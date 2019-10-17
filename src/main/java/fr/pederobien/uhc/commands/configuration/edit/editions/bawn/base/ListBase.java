@@ -1,8 +1,8 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.base;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonList;
-import fr.pederobien.uhc.persistence.IPersistence;
-import fr.pederobien.uhc.world.blocks.IBase;
+import fr.pederobien.uhc.interfaces.IBase;
+import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class ListBase extends CommonList<IBase> {
 

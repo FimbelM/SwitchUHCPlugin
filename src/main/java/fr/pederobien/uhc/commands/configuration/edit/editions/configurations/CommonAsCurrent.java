@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
-import fr.pederobien.uhc.persistence.IPersistence;
+import fr.pederobien.uhc.interfaces.IPersistence;
 
 public abstract class CommonAsCurrent<T extends IConfiguration> extends AbstractConfEdition<T> {
 	private IConfigurationContext context;

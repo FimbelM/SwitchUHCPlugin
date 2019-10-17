@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.world.blocks;
+package fr.pederobien.uhc.interfaces;
 
 import org.bukkit.Material;
 import org.bukkit.block.data.BlockData;

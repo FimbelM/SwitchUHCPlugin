@@ -2,8 +2,6 @@ package fr.pederobien.uhc.interfaces;
 
 import java.util.List;
 
-import fr.pederobien.uhc.world.blocks.IUnmodifiableBase;
-
 public interface IBlockedexConfiguration extends IConfiguration, IUnmodifiableBlockedexConfiguration {
 
 	void setRadiusAreaOnPlayerDie(int radiusAreaOnPlayerDie);

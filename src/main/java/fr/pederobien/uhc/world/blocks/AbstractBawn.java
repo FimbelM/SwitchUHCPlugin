@@ -7,6 +7,8 @@ import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 
+import fr.pederobien.uhc.interfaces.IBawn;
+import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.managers.WorldManager;
 
 public abstract class AbstractBawn implements IBawn {

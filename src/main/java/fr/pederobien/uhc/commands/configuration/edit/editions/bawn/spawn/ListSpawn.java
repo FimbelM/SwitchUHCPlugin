@@ -1,8 +1,8 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.spawn;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonList;
-import fr.pederobien.uhc.persistence.IPersistence;
-import fr.pederobien.uhc.world.blocks.ISpawn;
+import fr.pederobien.uhc.interfaces.IPersistence;
+import fr.pederobien.uhc.interfaces.ISpawn;
 
 public class ListSpawn extends CommonList<ISpawn> {
 

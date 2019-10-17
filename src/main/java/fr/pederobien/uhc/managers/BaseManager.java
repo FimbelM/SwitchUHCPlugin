@@ -7,7 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-import fr.pederobien.uhc.world.blocks.IUnmodifiableBase;
+import fr.pederobien.uhc.interfaces.IUnmodifiableBase;
 
 public class BaseManager {
 	private List<IUnmodifiableBase> bases;

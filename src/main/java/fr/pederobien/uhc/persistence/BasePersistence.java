@@ -11,9 +11,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import fr.pederobien.uhc.interfaces.IBase;
+import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.world.blocks.Base;
-import fr.pederobien.uhc.world.blocks.IBase;
-import fr.pederobien.uhc.world.blocks.ISerializableBlock;
 import fr.pederobien.uhc.world.blocks.SerialisableBlock;
 
 public class BasePersistence extends AbstractBawnPersistence<IBase> {

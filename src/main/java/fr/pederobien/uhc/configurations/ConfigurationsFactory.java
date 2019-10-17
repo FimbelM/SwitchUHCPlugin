@@ -1,11 +1,11 @@
 package fr.pederobien.uhc.configurations;
 
+import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
+import fr.pederobien.uhc.interfaces.ISpawn;
 import fr.pederobien.uhc.world.blocks.Base;
-import fr.pederobien.uhc.world.blocks.IBase;
-import fr.pederobien.uhc.world.blocks.ISpawn;
 import fr.pederobien.uhc.world.blocks.Spawn;
 
 public class ConfigurationsFactory {

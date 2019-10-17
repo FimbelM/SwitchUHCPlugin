@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import fr.pederobien.uhc.world.blocks.IBawn;
+import fr.pederobien.uhc.interfaces.IBawn;
 
 public abstract class AbstractBawnPersistence<T extends IBawn> extends AbstractPersistence<T> {
 	

@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import fr.pederobien.uhc.configurations.ConfigurationsFactory;
+import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
-import fr.pederobien.uhc.persistence.IPersistence;
 
 public abstract class CommonNew<T extends IUnmodifiableName> extends AbstractEdition<T> {
 	protected ConfigurationsFactory factory = ConfigurationsFactory.getInstance();

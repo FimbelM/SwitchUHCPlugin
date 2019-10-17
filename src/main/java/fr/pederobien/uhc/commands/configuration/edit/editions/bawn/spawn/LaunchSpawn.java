@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.AbstractBawnEdition;
-import fr.pederobien.uhc.persistence.IPersistence;
-import fr.pederobien.uhc.world.blocks.ISpawn;
+import fr.pederobien.uhc.interfaces.IPersistence;
+import fr.pederobien.uhc.interfaces.ISpawn;
 
 public class LaunchSpawn extends AbstractBawnEdition<ISpawn> {
 

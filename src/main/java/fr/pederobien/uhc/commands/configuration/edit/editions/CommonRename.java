@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import fr.pederobien.uhc.interfaces.IName;
-import fr.pederobien.uhc.persistence.IPersistence;
+import fr.pederobien.uhc.interfaces.IPersistence;
 
 public abstract class CommonRename<T extends IName> extends AbstractEdition<T> {
 

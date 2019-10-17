@@ -3,8 +3,8 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.bawn;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.pederobien.uhc.persistence.IPersistence;
-import fr.pederobien.uhc.world.blocks.IBawn;
+import fr.pederobien.uhc.interfaces.IBawn;
+import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class CommonDimensions<T extends IBawn> extends AbstractBawnEdition<T> {
 

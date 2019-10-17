@@ -4,7 +4,7 @@ import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractEditionsFa
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
-import fr.pederobien.uhc.persistence.IPersistence;
+import fr.pederobien.uhc.interfaces.IPersistence;
 
 public abstract class AbstractConfigurationEditionsFactory<T extends IConfiguration> extends AbstractEditionsFactory<T> {
 

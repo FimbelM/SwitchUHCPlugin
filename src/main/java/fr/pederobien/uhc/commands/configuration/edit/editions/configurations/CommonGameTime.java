@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.persistence.IPersistence;
+import fr.pederobien.uhc.interfaces.IPersistence;
 
 public abstract class CommonGameTime<T extends IConfiguration> extends AbstractConfEdition<T> {
 
