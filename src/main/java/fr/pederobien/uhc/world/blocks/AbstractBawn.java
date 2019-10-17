@@ -20,6 +20,8 @@ public abstract class AbstractBawn implements IBawn {
 		this.name = name;
 		config = new ArrayList<ISerializableBlock>();
 	}
+	
+	protected abstract void onExtraction(ISerializableBlock extractedBlock);
 
 	@Override
 	public void setName(String name) {
@@ -34,16 +36,12 @@ public abstract class AbstractBawn implements IBawn {
 	@Override
 	public void extract() {
 		config.clear();
-		int maxWidth = width / 2, maxDepth = depth / 2;
-		if (width % 2 == 1)
-			maxWidth += 1;
-		if (depth % 2 == 1)
-			maxDepth += 1;
-
-		for (int x = -width / 2; x < maxWidth; x++)
-			for (int y = 0; y < height; y++)
-				for (int z = -depth / 2; z < maxDepth; z++) {
-					config.add(new SerialisableBlock(x, y, z, getBlockFromCenter(x, y, z).getBlockData()));
+		for (int y = 0; y < height; y++)
+			for (int x = -width / 2; x < getMax(width); x++)
+				for (int z = -depth / 2; z < getMax(depth); z++) {
+					ISerializableBlock block = new SerialisableBlock(x, y, z, getBlockFromCenter(x, y, z).getBlockData());
+					config.add(block);
+					onExtraction(block);
 				}
 	}
 
@@ -124,12 +122,17 @@ public abstract class AbstractBawn implements IBawn {
 	protected Block getBlockFromCenter(int x, int y, int z) {
 		return getCenter().getRelative(x, y, z);
 	}
-	
+
 	protected Block getBlockFromCenter(ISerializableBlock block) {
 		return getCenter().getRelative(block.getX(), block.getY(), block.getZ());
 	}
-	
+
 	protected void clearBlocks() {
 		config.clear();
+	}
+
+	protected int getMax(int value) {
+		int max = value / 2;
+		return max % 2 == 1 ? max + 1 : max;
 	}
 }

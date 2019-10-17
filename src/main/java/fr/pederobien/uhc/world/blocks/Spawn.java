@@ -9,6 +9,11 @@ public class Spawn extends AbstractBawn implements ISpawn {
 	}
 
 	@Override
+	protected void onExtraction(ISerializableBlock extractedBlock) {
+
+	}
+
+	@Override
 	public void launch() {
 		super.launch();
 		WorldManager.setSpawn(this);

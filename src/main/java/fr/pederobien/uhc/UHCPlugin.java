@@ -18,6 +18,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import fr.pederobien.uhc.commands.AbstractCommand;
+import fr.pederobien.uhc.commands.configuration.BaseConfigurationCommand;
 import fr.pederobien.uhc.commands.configuration.BlockedexConfigurationCommand;
 import fr.pederobien.uhc.commands.configuration.HungerGameConfigurationCommand;
 import fr.pederobien.uhc.commands.configuration.SpawnConfigurationCommand;
@@ -66,6 +67,7 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 		new HungerGameConfigurationCommand(this, "hg");
 		new SpawnConfigurationCommand(this, "spawn");
 		new BlockedexConfigurationCommand(this, "bd");
+		new BaseConfigurationCommand(this, "base");
 
 		listener.addObservers(this);
 

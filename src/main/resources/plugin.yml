@@ -32,3 +32,6 @@ commands:
   bd:
     description:
     permission: UHCPlugin.bd
+  base:
+    description:
+    permission: UHCPlugin.base

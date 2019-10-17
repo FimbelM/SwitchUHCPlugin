@@ -23,6 +23,8 @@ public class EditBaseConfiguration extends AbstractEditConfiguration<IBase> {
 				factory.createListEdition(),
 				factory.createNewEdition(),
 				factory.createRenameEdition(),
-				factory.createSaveEdition());
+				factory.createSaveEdition(),
+				factory.createLoadTempEdition(),
+				factory.createLaunchTempEdition());
 	}
 }
