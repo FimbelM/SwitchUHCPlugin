@@ -1,17 +1,18 @@
-package fr.pederobien.uhc.conf.configurations;
+package fr.pederobien.uhc.world.blocks;
 
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.data.BlockData;
 
 import fr.pederobien.uhc.BukkitManager;
-import fr.pederobien.uhc.conf.configurations.interfaces.ISerializableBlock;
-import fr.pederobien.uhc.world.blocks.Coordinate;
+import fr.pederobien.uhc.managers.WorldManager;
 
 public class SerialisableBlock implements ISerializableBlock {
-	private Coordinate coordinate;
+	private Location loc;
 	private BlockData data;
 
 	public SerialisableBlock(int x, int y, int z, BlockData blockData) {
-		coordinate = new Coordinate(x, y, z);
+		loc = WorldManager.createDefaultLocation(x, y, z);
 		this.data = blockData;
 	}
 
@@ -24,17 +25,27 @@ public class SerialisableBlock implements ISerializableBlock {
 	}
 
 	@Override
-	public Coordinate getCoordinate() {
-		return coordinate;
-	}
-
-	@Override
 	public BlockData getBlockData() {
 		return data;
 	}
-	
+
 	@Override
-	public String toString() {
-		return coordinate + data.getAsString();
+	public int getX() {
+		return loc.getBlockX();
+	}
+
+	@Override
+	public int getY() {
+		return loc.getBlockY();
+	}
+
+	@Override
+	public int getZ() {
+		return loc.getBlockZ();
+	}
+
+	@Override
+	public Material getMaterial() {
+		return data.getMaterial();
 	}
 }
