@@ -12,13 +12,13 @@ public interface IUnmodifiableBlockedexConfiguration extends IUnmodifiableConfig
 	
 	Integer getRadiusAreaOnPlayerKill();
 	
-	String getNorthBase();
+	IUnmodifiableBase getNorthBase();
 	
-	String getSouthBase();
+	IUnmodifiableBase getSouthBase();
 	
-	String getWestBase();
+	IUnmodifiableBase getWestBase();
 	
-	String getEastBase();
+	IUnmodifiableBase getEastBase();
 	
 	Integer getBaseFromSpawnDistance();
 }

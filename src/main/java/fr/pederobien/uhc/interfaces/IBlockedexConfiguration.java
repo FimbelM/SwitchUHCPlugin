@@ -10,13 +10,13 @@ public interface IBlockedexConfiguration extends IConfiguration, IUnmodifiableBl
 
 	void setRadiusAreaOnPlayerKill(int radiusAreaOnPlayerKill);
 
-	void setNorthBase(String northBase);
+	void setNorthBase(IUnmodifiableBase northBase);
 
-	void setSouthBase(String southBase);
+	void setSouthBase(IUnmodifiableBase southBase);
 
-	void setWestBase(String westBase);
+	void setWestBase(IUnmodifiableBase westBase);
 
-	void setEastBase(String eastBase);
+	void setEastBase(IUnmodifiableBase eastBase);
 	
 	void setBaseFromSpawnDistance(int baseFromSpawnDistance);
 }

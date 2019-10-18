@@ -1,7 +1,11 @@
 package fr.pederobien.uhc.configurations;
 
+import org.bukkit.ChatColor;
+
 import fr.pederobien.uhc.game.blockedexgame.BlockedexGame;
+import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
+import fr.pederobien.uhc.interfaces.IUnmodifiableBase;
 
 public class BlockedexConfiguration extends AbstractConfiguration implements IBlockedexConfiguration {
 	public static final BlockedexConfiguration DEFAULT = new BlockedexConfiguration("DefaultConfiguration");
@@ -10,21 +14,25 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	private static final Double DEFAULT_STEP_ON_MAX_HEALTH = 1.0;
 	private static final Integer DEFAULT_DIAMETER_AREA_ON_PLAYER_RESPAWN = 1000;
 	private static final Integer DEFAULT_BASE_FROM_SPAWN_DISTANCE = 1000;
-	private static final String DEFAULT_NORTH_BASE = "DefaultBase";
-	private static final String DEFAULT_SOUTH_BASE = "DefaultBase";
-	private static final String DEFAULT_WEST_BASE = "DefaultBase";
-	private static final String DEFAULT_EAST_BASE = "DefaultBase";
+	private static final IUnmodifiableBase DEFAULT_NORTH_BASE = IBase.DEFAULT;
+	private static final IUnmodifiableBase DEFAULT_SOUTH_BASE = IBase.DEFAULT;
+	private static final IUnmodifiableBase DEFAULT_WEST_BASE = IBase.DEFAULT;
+	private static final IUnmodifiableBase DEFAULT_EAST_BASE = IBase.DEFAULT;
 
 	private Integer radiusAreaOnPlayerDie;
 	private Integer radiusAreaOnPlayerKill;
 	private Double stepHealth;
 	private Integer diameterArea;
-	private String northBase, southBase, westBase, eastBase;
+	private IUnmodifiableBase northBase, southBase, westBase, eastBase;
 	private Integer baseFromSpawnDistance;
 
 	public BlockedexConfiguration(String name) {
 		super(name);
 		setGame(new BlockedexGame(this));
+		teams.put("Red", ChatColor.DARK_RED);
+		teams.put("Blue", ChatColor.DARK_BLUE);
+		teams.put("Gold", ChatColor.GOLD);
+		teams.put("Purple", ChatColor.DARK_PURPLE);
 	}
 
 	@Override
@@ -73,42 +81,42 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	}
 
 	@Override
-	public String getNorthBase() {
+	public IUnmodifiableBase getNorthBase() {
 		return northBase == null ? DEFAULT_NORTH_BASE : northBase;
 	}
 
 	@Override
-	public String getSouthBase() {
+	public IUnmodifiableBase getSouthBase() {
 		return southBase == null ? DEFAULT_SOUTH_BASE : southBase;
 	}
 
 	@Override
-	public String getWestBase() {
+	public IUnmodifiableBase getWestBase() {
 		return westBase == null ? DEFAULT_WEST_BASE : westBase;
 	}
 
 	@Override
-	public String getEastBase() {
+	public IUnmodifiableBase getEastBase() {
 		return eastBase == null ? DEFAULT_EAST_BASE : eastBase;
 	}
 
 	@Override
-	public void setNorthBase(String northBase) {
+	public void setNorthBase(IUnmodifiableBase northBase) {
 		this.northBase = northBase;
 	}
 
 	@Override
-	public void setSouthBase(String southBase) {
+	public void setSouthBase(IUnmodifiableBase southBase) {
 		this.southBase = southBase;
 	}
 
 	@Override
-	public void setWestBase(String westBase) {
+	public void setWestBase(IUnmodifiableBase westBase) {
 		this.westBase = westBase;
 	}
 
 	@Override
-	public void setEastBase(String eastBase) {
+	public void setEastBase(IUnmodifiableBase eastBase) {
 		this.eastBase = eastBase;
 	}
 	

@@ -2,6 +2,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.bl
 
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IPersistence;
+import fr.pederobien.uhc.interfaces.IUnmodifiableBase;
 
 public class EastBaseBlockedexGame extends CommonBaseBlockedexGame {
 
@@ -10,12 +11,12 @@ public class EastBaseBlockedexGame extends CommonBaseBlockedexGame {
 	}
 
 	@Override
-	protected void setBase(String name) {
+	protected void setBase(IUnmodifiableBase name) {
 		get().setEastBase(name);
 	}
 
 	@Override
 	protected String onBaseSetted() {
-		return "Base " + get().getEastBase() + " defined as the east base";
+		return "Base " + get().getEastBase().getName() + " defined as the east base";
 	}
 }

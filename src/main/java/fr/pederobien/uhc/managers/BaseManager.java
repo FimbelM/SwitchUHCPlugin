@@ -69,4 +69,11 @@ public class BaseManager {
 				return checkBaseAvailable(base, TeamsManager.getTeams());
 		return false;
 	}
+	
+	public static IUnmodifiableBase getBaseByName(String name) {
+		for (IBase base : allBases)
+			if (base.getName().equals(name))
+				return base;
+		return null;
+	}
 }

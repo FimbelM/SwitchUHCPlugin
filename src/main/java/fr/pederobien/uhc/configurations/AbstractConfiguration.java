@@ -15,9 +15,11 @@ public abstract class AbstractConfiguration implements IConfiguration {
 
 	private IGame game;
 	private String name;
-	private HashMap<String, ChatColor> teams;
 	private Long scoreboardRefresh;
 	private LocalTime gameTime;
+	
+	protected HashMap<String, ChatColor> teams;
+
 	
 	protected AbstractConfiguration(String name) {
 		this.name = name;
