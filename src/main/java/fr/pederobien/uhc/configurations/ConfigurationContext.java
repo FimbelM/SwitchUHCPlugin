@@ -1,10 +1,8 @@
 package fr.pederobien.uhc.configurations;
 
 import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
-import org.bukkit.ChatColor;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -18,6 +16,7 @@ import fr.pederobien.uhc.PluginDeposit;
 import fr.pederobien.uhc.game.IGame;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
+import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.observer.IObsGame;
 
 public class ConfigurationContext implements IConfigurationContext {
@@ -60,7 +59,7 @@ public class ConfigurationContext implements IConfigurationContext {
 	public void relaunch() {
 		getGame().relaunch();
 	}
-	
+
 	@Override
 	public String getMessage() {
 		return getGame().getMessage();
@@ -110,7 +109,7 @@ public class ConfigurationContext implements IConfigurationContext {
 	public void onCreatureSpawn(CreatureSpawnEvent event) {
 		getGame().onCreatureSpawn(event);
 	}
-	
+
 	@Override
 	public void onPlayerPortalEvent(PlayerPortalEvent event) {
 		getGame().onPlayerPortalEvent(event);
@@ -132,12 +131,12 @@ public class ConfigurationContext implements IConfigurationContext {
 	}
 
 	@Override
-	public Map<String, ChatColor> getTeams() {
+	public List<ETeam> getTeams() {
 		return configuration.getTeams();
 	}
 
 	@Override
-	public void setTeams(HashMap<String, ChatColor> teams) {
+	public void setTeams(List<ETeam> teams) {
 		configuration.setTeams(teams);
 	}
 
@@ -159,5 +158,10 @@ public class ConfigurationContext implements IConfigurationContext {
 	@Override
 	public void setGameTime(LocalTime gameTime) {
 		configuration.setGameTime(gameTime);
+	}
+
+	@Override
+	public void createAssociatedTeams() {
+		configuration.createAssociatedTeams();
 	}
 }

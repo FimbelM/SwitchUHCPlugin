@@ -15,7 +15,7 @@ public class CreateTeamCommand extends AbstractCommand {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		for (String arg : args) {
+		/*for (String arg : args) {
 			String[] info = arg.split(";");
 			if (info.length == 2)
 				TeamsManager.createTeam(info[0], info[1]);
@@ -24,7 +24,7 @@ public class CreateTeamCommand extends AbstractCommand {
 			else
 				sendMessageToSender(sender, "Cannot create team");
 
-		}
+		}*/
 		return false;
 	}
 }

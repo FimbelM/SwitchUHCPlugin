@@ -1,5 +1,7 @@
 package fr.pederobien.uhc.configurations;
 
+import java.util.List;
+
 import org.bukkit.ChatColor;
 
 import fr.pederobien.uhc.game.blockedexgame.BlockedexGame;
@@ -7,6 +9,7 @@ import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IUnmodifiableBase;
 import fr.pederobien.uhc.managers.BaseManager;
+import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.TeamsManager;
 
 public class BlockedexConfiguration extends AbstractConfiguration implements IBlockedexConfiguration {
@@ -28,15 +31,16 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	public BlockedexConfiguration(String name) {
 		super(name);
 		setGame(new BlockedexGame(this));
-		
-		for (ChatColor color : getNorthBase().getChests().values())
-			teams.put(TeamsManager.getColorName(color), color);
-		for (ChatColor color : getSouthBase().getChests().values())
-			teams.put(TeamsManager.getColorName(color), color);
-		for (ChatColor color : getWestBase().getChests().values())
-			teams.put(TeamsManager.getColorName(color), color);
-		for (ChatColor color : getEastBase().getChests().values())
-			teams.put(TeamsManager.getColorName(color), color);
+
+		registerBase(getNorthBase());
+		registerBase(getSouthBase());
+		registerBase(getWestBase());
+		registerBase(getEastBase());
+	}
+
+	@Override
+	public void setTeams(List<ETeam> teams) {
+		throw new IllegalArgumentException("Teams are defined by bases, you cannot set teams for this configuration");
 	}
 
 	@Override
@@ -107,30 +111,42 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	@Override
 	public void setNorthBase(IUnmodifiableBase northBase) {
 		this.northBase = northBase;
+		registerBase(northBase);
 	}
 
 	@Override
 	public void setSouthBase(IUnmodifiableBase southBase) {
 		this.southBase = southBase;
+		registerBase(southBase);
 	}
 
 	@Override
 	public void setWestBase(IUnmodifiableBase westBase) {
 		this.westBase = westBase;
+		registerBase(westBase);
 	}
 
 	@Override
 	public void setEastBase(IUnmodifiableBase eastBase) {
 		this.eastBase = eastBase;
+		registerBase(eastBase);
 	}
-	
+
 	@Override
 	public Integer getBaseFromSpawnDistance() {
 		return baseFromSpawnDistance == null ? DEFAULT_BASE_FROM_SPAWN_DISTANCE : baseFromSpawnDistance;
 	}
-	
+
 	@Override
 	public void setBaseFromSpawnDistance(int baseFromSpawnDistance) {
 		this.baseFromSpawnDistance = baseFromSpawnDistance;
+	}
+
+	private void registerBase(IUnmodifiableBase base) {
+		for (ChatColor color : base.getChests().values()) {
+			ETeam team = TeamsManager.getETeam(color);
+			if (!teams.contains(team))
+				teams.add(team);
+		}
 	}
 }

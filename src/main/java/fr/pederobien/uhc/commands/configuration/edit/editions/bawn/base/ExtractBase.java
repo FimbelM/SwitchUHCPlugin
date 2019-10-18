@@ -36,7 +36,7 @@ public class ExtractBase extends CommonExtract<IBase> {
 	private String colorName(Collection<ChatColor> colors) {
 		String colorName = "";
 		for (ChatColor color : colors)
-			colorName += TeamsManager.getColorName(color) + " ";
+			colorName += TeamsManager.getETeam(color).getDisplayNameWithColor() + " ";
 		return colorName;
 	}
 }

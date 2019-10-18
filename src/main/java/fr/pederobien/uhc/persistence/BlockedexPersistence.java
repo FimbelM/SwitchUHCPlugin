@@ -2,9 +2,7 @@ package fr.pederobien.uhc.persistence;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.HashMap;
 
-import org.bukkit.ChatColor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -13,6 +11,7 @@ import fr.pederobien.uhc.configurations.BlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.managers.BaseManager;
+import fr.pederobien.uhc.managers.ETeam;
 
 public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConfiguration> {
 	private static final double CURRENT_VERSION = 1.0;
@@ -77,20 +76,10 @@ public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConf
 		bases.setAttribute("distance", get().getBaseFromSpawnDistance().toString());
 		root.appendChild(bases);
 
-		Element teams = doc.createElement("teams");
-		for (String t : get().getTeams().keySet()) {
-			Element team = doc.createElement("team");
-			team.setAttribute("name", t);
-			team.setAttribute("color", "" + get().getTeams().get(t).getChar());
-			teams.appendChild(team);
-		}
-		root.appendChild(teams);
-
 		saveDocument(doc);
 	}
 
 	private void load10(Element root) {
-		System.out.println("load10");
 		for (int i = 0; i < root.getChildNodes().getLength(); i++) {
 			if (root.getChildNodes().item(i).getNodeType() != Node.ELEMENT_NODE)
 				continue;
@@ -113,20 +102,11 @@ public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConf
 				get().setEastBase(BaseManager.getBaseByName(elt.getAttribute("east")));
 				get().setBaseFromSpawnDistance(Integer.parseInt(elt.getAttribute("distance")));
 				break;
-			case "teams":
-				HashMap<String, ChatColor> teams = new HashMap<String, ChatColor>();
-				for (int j = 0; j < elt.getChildNodes().getLength(); j++) {
-					if (elt.getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
-						continue;
-					Element team = (Element) elt.getChildNodes().item(j);
-					teams.put(team.getAttribute("name"), ChatColor.getByChar(team.getAttribute("color")));
-				}
-				get().setTeams(teams);
-				break;
 			default:
 				break;
 			}
 		}
+		get().createAssociatedTeams();
 	}
 
 	protected void show() {
@@ -142,7 +122,7 @@ public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConf
 		System.out.println("\tEast base : " + get().getEastBase().getName());
 		System.out.println("\tDistance from spawn : " + get().getBaseFromSpawnDistance());
 		System.out.println("Team");
-		for (String team : get().getTeams().keySet())
-			System.out.println("\tName : " + team + ", color : " + get().getTeams().get(team));
+		for (ETeam team : get().getTeams())
+			System.out.println("\tName : " + team.getDisplayNameWithoutColor() + ", color : " + team.getColor());
 	}
 }

@@ -91,17 +91,13 @@ public class TeamsManager {
 		return getTeamPlayersOnMode(team, mode).size();
 	}
 
-	public static void createTeam(String team) {
-		BukkitManager.dispatchCommand("team add " + team);
+	public static void createTeam(ETeam team) {
+		BukkitManager.dispatchCommand("team add " + team.getColorName() + " " + "\"" + team.getDisplayNameWithoutColor() + "\"");
+		setTeamOption(team.getColorName(), "color", team.getColorName());
 	}
 
-	public static void setTeamOption(String team, String option, String value) {
-		BukkitManager.dispatchCommand("team modify " + team + " " + option + " " + value);
-	}
-
-	public static void createTeam(String team, String color) {
-		createTeam(team);
-		setTeamOption(team, "color", color);
+	public static void setTeamOption(String name, String option, String value) {
+		BukkitManager.dispatchCommand("team modify " + name + " " + option + " " + value);
 	}
 
 	public static void joinTeam(String team, String player) {
@@ -162,37 +158,7 @@ public class TeamsManager {
 		}
 	}
 	
-	public static String getColorName(ChatColor color) {
-		String colorName = color + "";
-		switch (color) {
-		case AQUA:
-		case DARK_AQUA:
-		case BLUE:
-		case DARK_BLUE:
-			return colorName + "blue";
-		case BLACK:
-			return colorName + "black";
-		case GRAY:
-		case DARK_GRAY:
-			return colorName + "gray";
-		case GREEN:
-		case DARK_GREEN:
-			return colorName + "green";
-		case RED:
-		case DARK_RED:
-			return colorName + "red";
-		case GOLD:
-			return colorName + "orange";
-		case YELLOW:
-			return colorName + "yellow";
-		case LIGHT_PURPLE:
-			return colorName + "pink";
-		case DARK_PURPLE:
-			return colorName + "purple";
-		case WHITE :
-			return colorName + "white";
-		default:
-			return colorName + "is not a color";
-		}
+	public static ETeam getETeam(ChatColor color) {
+		return ETeam.getByColor(color);
 	}
 }

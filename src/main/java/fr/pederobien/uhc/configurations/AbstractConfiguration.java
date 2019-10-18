@@ -1,13 +1,13 @@
 package fr.pederobien.uhc.configurations;
 
 import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.bukkit.ChatColor;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.pederobien.uhc.game.IGame;
 import fr.pederobien.uhc.interfaces.IConfiguration;
+import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.TeamsManager;
 
 public abstract class AbstractConfiguration implements IConfiguration {
 	private static final Long DEFAULT_SCOREBOARD_REFRESH = new Long(5);
@@ -18,12 +18,11 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	private Long scoreboardRefresh;
 	private LocalTime gameTime;
 	
-	protected HashMap<String, ChatColor> teams;
-
+	protected List<ETeam> teams;
 	
 	protected AbstractConfiguration(String name) {
 		this.name = name;
-		teams = new HashMap<String, ChatColor>();
+		teams = new ArrayList<ETeam>();
 	}
 
 	@Override
@@ -42,12 +41,12 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	}
 
 	@Override
-	public Map<String, ChatColor> getTeams() {
+	public List<ETeam> getTeams() {
 		return teams;
 	}
 
 	@Override
-	public void setTeams(HashMap<String, ChatColor> teams) {
+	public void setTeams(List<ETeam> teams) {
 		this.teams = teams;
 	}
 
@@ -61,14 +60,22 @@ public abstract class AbstractConfiguration implements IConfiguration {
 		this.scoreboardRefresh = refresh;
 	}
 
+	@Override
 	public LocalTime getGameTime() {
 		return gameTime == null ? DEFAULT_GAME_TIME : gameTime;
 	}
 
+	@Override
 	public void setGameTime(LocalTime gameTime) {
 		this.gameTime = gameTime;
 	}
 
+	@Override
+	public void createAssociatedTeams() {
+		for (ETeam team : teams)
+			TeamsManager.createTeam(team);
+	}
+	
 	protected void setGame(IGame game) {
 		this.game = game;
 	}
