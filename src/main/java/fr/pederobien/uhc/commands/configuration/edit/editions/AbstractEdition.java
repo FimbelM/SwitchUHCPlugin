@@ -35,10 +35,12 @@ public abstract class AbstractEdition<T extends IUnmodifiableName> implements IE
 		return ChatColor.RED + label + ChatColor.RESET + " - " + ChatColor.BLUE + explanation;
 	}
 
-	public void addObservers(IObsEdition obs) {
+	@Override
+	public void addObserver(IObsEdition obs) {
 		observers.add(obs);
 	}
 
+	@Override
 	public void removeObserver(IObsEdition obs) {
 		observers.remove(obs);
 	}

@@ -91,6 +91,7 @@ public abstract class AbstractEditConfiguration<T extends IUnmodifiableName> imp
 		for (IEdition edition : editions) {
 			map.put(edition.getLabel(), edition);
 			help += edition.help() + "\r\n";
+			edition.addObserver(this);
 		}
 	}
 
