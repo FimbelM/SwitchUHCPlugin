@@ -1,9 +1,10 @@
 package fr.pederobien.uhc.configurations;
 
 import java.time.LocalTime;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.bukkit.scoreboard.Team;
+import org.bukkit.ChatColor;
 
 import fr.pederobien.uhc.game.IGame;
 import fr.pederobien.uhc.interfaces.IConfiguration;
@@ -14,9 +15,14 @@ public abstract class AbstractConfiguration implements IConfiguration {
 
 	private IGame game;
 	private String name;
-	private List<Team> teams;
+	private HashMap<String, ChatColor> teams;
 	private Long scoreboardRefresh;
 	private LocalTime gameTime;
+	
+	protected AbstractConfiguration(String name) {
+		this.name = name;
+		teams = new HashMap<String, ChatColor>();
+	}
 
 	@Override
 	public IGame getGame() {
@@ -34,12 +40,12 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	}
 
 	@Override
-	public List<Team> getTeams() {
+	public Map<String, ChatColor> getTeams() {
 		return teams;
 	}
 
 	@Override
-	public void setTeams(List<Team> teams) {
+	public void setTeams(HashMap<String, ChatColor> teams) {
 		this.teams = teams;
 	}
 

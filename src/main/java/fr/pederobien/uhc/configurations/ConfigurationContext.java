@@ -1,8 +1,10 @@
 package fr.pederobien.uhc.configurations;
 
 import java.time.LocalTime;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.bukkit.ChatColor;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -11,7 +13,6 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
-import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.PluginDeposit;
 import fr.pederobien.uhc.game.IGame;
@@ -131,12 +132,12 @@ public class ConfigurationContext implements IConfigurationContext {
 	}
 
 	@Override
-	public List<Team> getTeams() {
+	public Map<String, ChatColor> getTeams() {
 		return configuration.getTeams();
 	}
 
 	@Override
-	public void setTeams(List<Team> teams) {
+	public void setTeams(HashMap<String, ChatColor> teams) {
 		configuration.setTeams(teams);
 	}
 

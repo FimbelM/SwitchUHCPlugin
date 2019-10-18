@@ -1,15 +1,15 @@
 package fr.pederobien.uhc.interfaces;
 
 import java.time.LocalTime;
-import java.util.List;
+import java.util.HashMap;
 
-import org.bukkit.scoreboard.Team;
+import org.bukkit.ChatColor;
 
 public interface IConfiguration extends IUnmodifiableConfiguration {
 	
 	void setName(String name);
 
-	void setTeams(List<Team> teams);
+	void setTeams(HashMap<String, ChatColor> teams);
 
 	void setScoreboardRefresh(Long refresh);
 

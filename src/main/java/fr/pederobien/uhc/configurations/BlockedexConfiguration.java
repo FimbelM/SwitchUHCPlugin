@@ -1,9 +1,5 @@
 package fr.pederobien.uhc.configurations;
 
-import java.util.ArrayList;
-
-import org.bukkit.scoreboard.Team;
-
 import fr.pederobien.uhc.game.blockedexgame.BlockedexGame;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 
@@ -14,6 +10,10 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	private static final Double DEFAULT_STEP_ON_MAX_HEALTH = 1.0;
 	private static final Integer DEFAULT_DIAMETER_AREA_ON_PLAYER_RESPAWN = 1000;
 	private static final Integer DEFAULT_BASE_FROM_SPAWN_DISTANCE = 1000;
+	private static final String DEFAULT_NORTH_BASE = "DefaultBase";
+	private static final String DEFAULT_SOUTH_BASE = "DefaultBase";
+	private static final String DEFAULT_WEST_BASE = "DefaultBase";
+	private static final String DEFAULT_EAST_BASE = "DefaultBase";
 
 	private Integer radiusAreaOnPlayerDie;
 	private Integer radiusAreaOnPlayerKill;
@@ -23,8 +23,7 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	private Integer baseFromSpawnDistance;
 
 	public BlockedexConfiguration(String name) {
-		setName(name);
-		setTeams(new ArrayList<Team>());
+		super(name);
 		setGame(new BlockedexGame(this));
 	}
 
@@ -75,22 +74,22 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 
 	@Override
 	public String getNorthBase() {
-		return northBase;
+		return northBase == null ? DEFAULT_NORTH_BASE : northBase;
 	}
 
 	@Override
 	public String getSouthBase() {
-		return southBase;
+		return southBase == null ? DEFAULT_SOUTH_BASE : southBase;
 	}
 
 	@Override
 	public String getWestBase() {
-		return westBase;
+		return westBase == null ? DEFAULT_WEST_BASE : westBase;
 	}
 
 	@Override
 	public String getEastBase() {
-		return eastBase;
+		return eastBase == null ? DEFAULT_EAST_BASE : eastBase;
 	}
 
 	@Override

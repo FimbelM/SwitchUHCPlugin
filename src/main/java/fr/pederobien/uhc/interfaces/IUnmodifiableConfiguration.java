@@ -1,9 +1,9 @@
 package fr.pederobien.uhc.interfaces;
 
 import java.time.LocalTime;
-import java.util.List;
+import java.util.Map;
 
-import org.bukkit.scoreboard.Team;
+import org.bukkit.ChatColor;
 
 import fr.pederobien.uhc.game.IGame;
 
@@ -11,7 +11,7 @@ public interface IUnmodifiableConfiguration extends IName {
 	
 	IGame getGame();
 	
-	List<Team> getTeams();
+	Map<String, ChatColor> getTeams();
 	
 	Long getScoreboardRefresh();
 	

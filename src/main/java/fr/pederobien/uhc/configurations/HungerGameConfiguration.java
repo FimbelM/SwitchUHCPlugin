@@ -1,10 +1,8 @@
 package fr.pederobien.uhc.configurations;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 import org.bukkit.block.Block;
-import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.game.hungergame.HungerGame;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
@@ -21,8 +19,7 @@ public class HungerGameConfiguration extends AbstractConfiguration implements IH
 	private LocalTime fractionTime;
 
 	public HungerGameConfiguration(String name) {
-		setName(name);
-		setTeams(new ArrayList<Team>());
+		super(name);
 		setGame(new HungerGame(this));
 	}
 
