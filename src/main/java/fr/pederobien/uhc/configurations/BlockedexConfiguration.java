@@ -6,18 +6,17 @@ import fr.pederobien.uhc.game.blockedexgame.BlockedexGame;
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IUnmodifiableBase;
+import fr.pederobien.uhc.managers.BaseManager;
+import fr.pederobien.uhc.managers.TeamsManager;
 
 public class BlockedexConfiguration extends AbstractConfiguration implements IBlockedexConfiguration {
-	public static final BlockedexConfiguration DEFAULT = new BlockedexConfiguration("DefaultConfiguration");
 	private static final Integer DEFAULT_RADIUS_AREA_ON_PLAYER_DIE = 5;
 	private static final Integer DEFAULT_RADIUS_AREA_ON_PLAYER_KILL = 5;
 	private static final Double DEFAULT_STEP_ON_MAX_HEALTH = 1.0;
 	private static final Integer DEFAULT_DIAMETER_AREA_ON_PLAYER_RESPAWN = 1000;
 	private static final Integer DEFAULT_BASE_FROM_SPAWN_DISTANCE = 1000;
-	private static final IUnmodifiableBase DEFAULT_NORTH_BASE = IBase.DEFAULT;
-	private static final IUnmodifiableBase DEFAULT_SOUTH_BASE = IBase.DEFAULT;
-	private static final IUnmodifiableBase DEFAULT_WEST_BASE = IBase.DEFAULT;
-	private static final IUnmodifiableBase DEFAULT_EAST_BASE = IBase.DEFAULT;
+	private static final IUnmodifiableBase DEFAULT_BASE = BaseManager.getBaseByName(IBase.DEFAULT.getName());
+	public static final BlockedexConfiguration DEFAULT = new BlockedexConfiguration("DefaultConfiguration");
 
 	private Integer radiusAreaOnPlayerDie;
 	private Integer radiusAreaOnPlayerKill;
@@ -29,10 +28,15 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	public BlockedexConfiguration(String name) {
 		super(name);
 		setGame(new BlockedexGame(this));
-		teams.put("Red", ChatColor.DARK_RED);
-		teams.put("Blue", ChatColor.DARK_BLUE);
-		teams.put("Gold", ChatColor.GOLD);
-		teams.put("Purple", ChatColor.DARK_PURPLE);
+		
+		for (ChatColor color : getNorthBase().getChests().values())
+			teams.put(TeamsManager.getColorName(color), color);
+		for (ChatColor color : getSouthBase().getChests().values())
+			teams.put(TeamsManager.getColorName(color), color);
+		for (ChatColor color : getWestBase().getChests().values())
+			teams.put(TeamsManager.getColorName(color), color);
+		for (ChatColor color : getEastBase().getChests().values())
+			teams.put(TeamsManager.getColorName(color), color);
 	}
 
 	@Override
@@ -82,22 +86,22 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 
 	@Override
 	public IUnmodifiableBase getNorthBase() {
-		return northBase == null ? DEFAULT_NORTH_BASE : northBase;
+		return northBase == null ? DEFAULT_BASE : northBase;
 	}
 
 	@Override
 	public IUnmodifiableBase getSouthBase() {
-		return southBase == null ? DEFAULT_SOUTH_BASE : southBase;
+		return southBase == null ? DEFAULT_BASE : southBase;
 	}
 
 	@Override
 	public IUnmodifiableBase getWestBase() {
-		return westBase == null ? DEFAULT_WEST_BASE : westBase;
+		return westBase == null ? DEFAULT_BASE : westBase;
 	}
 
 	@Override
 	public IUnmodifiableBase getEastBase() {
-		return eastBase == null ? DEFAULT_EAST_BASE : eastBase;
+		return eastBase == null ? DEFAULT_BASE : eastBase;
 	}
 
 	@Override

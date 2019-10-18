@@ -48,7 +48,7 @@ public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConf
 	public void save() {
 		Document doc = newDocument();
 		doc.setXmlStandalone(true);
-		Element root = doc.createElement("configuration");
+		Element root = doc.createElement("blockedex");
 		doc.appendChild(root);
 
 		Element version = doc.createElement("version");
@@ -58,6 +58,29 @@ public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConf
 		Element name = doc.createElement("name");
 		name.appendChild(doc.createTextNode(get().getName()));
 		root.appendChild(name);
+
+		Element player = doc.createElement("player");
+		player.setAttribute("areaOnPlayerDie", get().getRadiusAreaOnPlayerDie().toString());
+		player.setAttribute("areaOnPlayerKill", get().getRadiusAreaOnPlayerKill().toString());
+		player.setAttribute("diameterOnPlayerRespawn", get().getDiameterAreaOnPlayerRespawn().toString());
+		player.setAttribute("stepOnMaxHealth", get().getStepOnMaxHealth().toString());
+		root.appendChild(player);
+
+		Element bases = doc.createElement("bases");
+		bases.setAttribute("north", get().getNorthBase().getName());
+		bases.setAttribute("south", get().getSouthBase().getName());
+		bases.setAttribute("west", get().getWestBase().getName());
+		bases.setAttribute("east", get().getEastBase().getName());
+		root.appendChild(bases);
+		
+		Element teams = doc.createElement("teams");
+		for (String t : get().getTeams().keySet()) {
+			Element team = doc.createElement("team");
+			team.setAttribute("name", t);
+			team.setAttribute("color", "" + get().getTeams().get(t).getChar());
+			teams.appendChild(team);
+		}
+		root.appendChild(teams);
 
 		saveDocument(doc);
 	}
