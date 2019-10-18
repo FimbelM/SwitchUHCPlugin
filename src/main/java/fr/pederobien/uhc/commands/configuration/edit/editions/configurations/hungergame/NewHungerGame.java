@@ -29,5 +29,4 @@ public class NewHungerGame extends CommonNew<IHungerGameConfiguration> {
 	protected String onNameIsMissing() {
 		return "Cannot create a new hunger game style, need the name";
 	}
-
 }

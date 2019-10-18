@@ -21,6 +21,6 @@ public abstract class CommonSave<T extends IUnmodifiableName> extends AbstractEd
 
 	@Override
 	public List<String> getArguments(String[] subArguments) {
-		return null;
+		return emptyList();
 	}
 }

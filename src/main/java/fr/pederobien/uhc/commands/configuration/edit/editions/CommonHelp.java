@@ -31,7 +31,7 @@ public class CommonHelp extends AbstractEdition<IUnmodifiableName> {
 		case 1:
 			return filter(conf.getEditions().keySet(), subArguments[0]);
 		default:
-			return null;
+			return emptyList();
 		}
 	}
 }

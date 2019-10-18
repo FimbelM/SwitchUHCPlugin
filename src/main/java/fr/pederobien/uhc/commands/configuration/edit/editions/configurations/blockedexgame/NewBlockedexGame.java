@@ -29,5 +29,4 @@ public class NewBlockedexGame extends CommonNew<IBlockedexConfiguration> {
 	protected String onNameIsMissing() {
 		return "Cannot create a new blockedex game style, need the name";
 	}
-
 }

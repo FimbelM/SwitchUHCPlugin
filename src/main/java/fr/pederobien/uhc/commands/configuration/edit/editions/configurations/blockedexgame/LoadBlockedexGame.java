@@ -19,5 +19,4 @@ public class LoadBlockedexGame extends CommonLoad<IBlockedexConfiguration> {
 	protected String onNameIsMissing() {
 		return "Cannot load blockedex game style, need the name";
 	}
-
 }

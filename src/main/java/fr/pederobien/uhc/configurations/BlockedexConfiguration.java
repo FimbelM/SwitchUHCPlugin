@@ -1,13 +1,11 @@
 package fr.pederobien.uhc.configurations;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.game.blockedexgame.BlockedexGame;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
-import fr.pederobien.uhc.interfaces.IUnmodifiableBase;
 
 public class BlockedexConfiguration extends AbstractConfiguration implements IBlockedexConfiguration {
 	public static final BlockedexConfiguration DEFAULT = new BlockedexConfiguration("DefaultConfiguration");
@@ -20,13 +18,12 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	private Integer radiusAreaOnPlayerKill;
 	private Double stepHealth;
 	private Integer diameterArea;
-	private List<IUnmodifiableBase> bases;
+	private String northBase, southBase, westBase, eastBase;
 
 	public BlockedexConfiguration(String name) {
 		setName(name);
 		setTeams(new ArrayList<Team>());
 		setGame(new BlockedexGame(this));
-		setBases(new ArrayList<IUnmodifiableBase>());
 	}
 
 	@Override
@@ -75,12 +72,42 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	}
 
 	@Override
-	public List<IUnmodifiableBase> getBases() {
-		return bases;
+	public String getNorthBase() {
+		return northBase;
 	}
 
 	@Override
-	public void setBases(List<IUnmodifiableBase> bases) {
-		this.bases = bases;
+	public String getSouthBase() {
+		return southBase;
+	}
+
+	@Override
+	public String getWestBase() {
+		return westBase;
+	}
+
+	@Override
+	public String getEastBase() {
+		return eastBase;
+	}
+
+	@Override
+	public void setNorthBase(String northBase) {
+		this.northBase = northBase;
+	}
+
+	@Override
+	public void setSouthBase(String southBase) {
+		this.southBase = southBase;
+	}
+
+	@Override
+	public void setWestBase(String westBase) {
+		this.westBase = westBase;
+	}
+
+	@Override
+	public void setEastBase(String eastBase) {
+		this.eastBase = eastBase;
 	}
 }

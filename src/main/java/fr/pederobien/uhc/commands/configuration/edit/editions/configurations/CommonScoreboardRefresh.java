@@ -31,7 +31,7 @@ public class CommonScoreboardRefresh<T extends IConfiguration> extends AbstractC
 		case 1:
 			return Arrays.asList("<number of tics>");
 		default:
-			return null;
+			return emptyList();
 		}
 	}
 }

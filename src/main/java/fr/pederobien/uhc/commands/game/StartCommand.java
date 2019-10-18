@@ -25,7 +25,7 @@ public class StartCommand extends AbstractCommand {
 				else
 					sendMessageToSender(sender, confContext.getMessage());
 			}
-		} catch(NullPointerException e) {
+		} catch (NullPointerException e) {
 			sendMessageToSender(sender, "No game setted to be launch, use command edit to edit a new game");
 		}
 		return true;

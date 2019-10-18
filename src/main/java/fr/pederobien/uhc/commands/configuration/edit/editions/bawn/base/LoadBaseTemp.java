@@ -34,7 +34,7 @@ public class LoadBaseTemp extends AbstractBawnEdition<IBase> {
 		case 1:
 			return filter(getPersistence().list(), subArguments[0]);
 		default:
-			return null;
+			return emptyList();
 		}
 	}
 }

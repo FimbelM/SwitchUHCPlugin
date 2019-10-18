@@ -15,10 +15,10 @@ public abstract class AbstractConfigurationEditionsFactory<T extends IConfigurat
 	public IEdition createScoreboardRefreshEdition() {
 		return new CommonScoreboardRefresh<T>(persistence);
 	}
-	
+
 	public abstract IEdition createAsCurrentEdition(IConfigurationContext context);
-	
+
 	public abstract IEdition createGameTimeEdition();
-	
+
 	public abstract IEdition createLoadEdition();
 }

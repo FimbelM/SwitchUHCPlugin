@@ -31,7 +31,7 @@ public class InitialBorderDiameterHungerGame extends AbstractConfEdition<IHunger
 		case 1:
 			return Arrays.asList("<initialdiameter>");
 		default:
-			return null;
+			return emptyList();
 		}
 	}
 }

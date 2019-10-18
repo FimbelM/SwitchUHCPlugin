@@ -44,7 +44,7 @@ public abstract class CommonNew<T extends IUnmodifiableName> extends AbstractEdi
 		case 1:
 			return Arrays.asList("<name>");
 		default:
-			return null;
+			return emptyList();
 		}
 	}
 }

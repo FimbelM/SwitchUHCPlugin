@@ -28,9 +28,9 @@ public abstract class CommonList<T extends IUnmodifiableName> extends AbstractEd
 			builder.append(str.concat("\n"));
 		return builder.toString();
 	}
-	
+
 	@Override
 	public List<String> getArguments(String[] subArguments) {
-		return null;
+		return emptyList();
 	}
 }

@@ -14,5 +14,4 @@ public class ExtractSpawn extends CommonExtract<ISpawn> {
 	protected String onExtracted() {
 		return "Spawn " + get().getName() + " extracted";
 	}
-
 }

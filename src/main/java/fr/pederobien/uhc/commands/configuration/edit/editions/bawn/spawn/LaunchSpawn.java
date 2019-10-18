@@ -48,7 +48,8 @@ public class LaunchSpawn extends AbstractBawnEdition<ISpawn> {
 			} catch (FileNotFoundException e) {
 				return "Cannot launch spawn " + args[0] + ", spawn does not exist";
 			} catch (IndexOutOfBoundsException e) {
-				return "Cannot launch spawn " + args[0] + ", need the spawn's name and center's coordinates <X> <Y> <Z>";
+				return "Cannot launch spawn " + args[0]
+						+ ", need the spawn's name and center's coordinates <X> <Y> <Z>";
 			} catch (NumberFormatException e) {
 				return "Cannot parse width or height or depth";
 			}

@@ -56,7 +56,7 @@ public class HungerGameEditionsFactory extends AbstractConfigurationEditionsFact
 	public IEdition createRenameEdition() {
 		return new RenameHungerGame(persistence);
 	}
-	
+
 	@Override
 	public IEdition createSaveEdition() {
 		return new SaveHungerGame(persistence);
@@ -65,15 +65,15 @@ public class HungerGameEditionsFactory extends AbstractConfigurationEditionsFact
 	public IEdition createBorderCenterEdition() {
 		return new BorderCenterHungerGame(persistence);
 	}
-	
+
 	public IEdition createInitialBorderDiameterEdition() {
 		return new InitialBorderDiameterHungerGame(persistence);
 	}
-	
+
 	public IEdition createFinalBorderDiameterEdition() {
 		return new FinalBorderDiameterHungerGame(persistence);
 	}
-	
+
 	public IEdition createFractionTimeEdition() {
 		return new FractionTimeHungerGame(persistence);
 	}

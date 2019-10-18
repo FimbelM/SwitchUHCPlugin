@@ -13,7 +13,7 @@ public abstract class CommonGameTime<T extends IConfiguration> extends AbstractC
 	public CommonGameTime(IPersistence<T> persistence, String explanation) {
 		super(persistence, "gametime", explanation);
 	}
-		
+
 	@Override
 	public String edit(String[] args) {
 		try {
@@ -30,7 +30,7 @@ public abstract class CommonGameTime<T extends IConfiguration> extends AbstractC
 		case 1:
 			return Arrays.asList("<hh:mm:ss>");
 		default:
-			return null;
+			return emptyList();
 		}
 	}
 }

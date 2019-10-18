@@ -7,8 +7,8 @@ public interface IEdition {
 	String getLabel();
 
 	String edit(String[] args);
-	
+
 	String help();
-	
+
 	List<String> getArguments(String[] subArguments);
 }

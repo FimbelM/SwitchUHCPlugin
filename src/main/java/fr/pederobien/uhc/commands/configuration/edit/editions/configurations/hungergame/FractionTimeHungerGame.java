@@ -24,15 +24,14 @@ public class FractionTimeHungerGame extends AbstractConfEdition<IHungerGameConfi
 			return "Cannot set the fraction time, need time at format hh:mm:ss";
 		}
 	}
-	
+
 	@Override
 	public List<String> getArguments(String[] subArguments) {
 		switch (subArguments.length) {
 		case 1:
 			return Arrays.asList("<hh:mm:ss>");
 		default:
-			return null;
+			return emptyList();
 		}
 	}
-
 }

@@ -16,8 +16,8 @@ public class CommonCenter<T extends IBawn> extends AbstractBawnEdition<T> {
 	public String edit(String[] args) {
 		try {
 			get().setCenter(args[0], args[1], args[2]);
-			return "Center defined in : " + get().getCenter().getX() + " " + get().getCenter().getY()
-					+ " " + get().getCenter().getZ();
+			return "Center defined in : " + get().getCenter().getX() + " " + get().getCenter().getY() + " "
+					+ get().getCenter().getZ();
 		} catch (IndexOutOfBoundsException e) {
 			return "Cannot set center's coordinates, need <X> <Y> <Z>";
 		} catch (NumberFormatException e) {
@@ -35,7 +35,7 @@ public class CommonCenter<T extends IBawn> extends AbstractBawnEdition<T> {
 		case 3:
 			return Arrays.asList("<Z>");
 		default:
-			return null;
+			return emptyList();
 		}
 	}
 }

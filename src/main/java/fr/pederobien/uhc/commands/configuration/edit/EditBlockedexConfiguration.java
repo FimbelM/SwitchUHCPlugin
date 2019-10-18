@@ -24,6 +24,7 @@ public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlock
 				factory.createAsCurrentEdition(context),
 				factory.createSaveEdition(),
 				factory.createListEdition(),
-				factory.createHelpEdition(this));
+				factory.createHelpEdition(this),
+				factory.createNorthBaseEdition(this));
 	}
 }

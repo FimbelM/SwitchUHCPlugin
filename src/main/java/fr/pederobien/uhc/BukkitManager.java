@@ -25,4 +25,8 @@ public class BukkitManager {
 	public static void broadcastMessageAsTitle(String message, String color) {
 		dispatchCommand("title @a title " + "{\"text\":\"" + message + "\",\"color\":\"" + color +"\"}");
 	}
+	
+	public static CommandSender getDefaultCommandSender() {
+		return Bukkit.getConsoleSender();
+	}
 }

@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.blockedexgame;
 
+import fr.pederobien.uhc.commands.configuration.edit.IEditConfig;
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfigurationEditionsFactory;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
@@ -60,5 +61,9 @@ public class BlockedexGameEditionsFactory extends AbstractConfigurationEditionsF
 	@Override
 	public IEdition createSaveEdition() {
 		return new SaveBlockedexGame(persistence);
+	}
+
+	public IEdition createNorthBaseEdition(IEditConfig conf) {
+		return new NorthBaseBlockedexGame(persistence, conf);
 	}
 }

@@ -8,7 +8,7 @@ public abstract class CommonRemove<T extends IBawn> extends AbstractBawnEdition<
 	public CommonRemove(IPersistence<T> persistence, String explanation) {
 		super(persistence, "remove", explanation);
 	}
-	
+
 	protected abstract String onRemove();
 
 	@Override

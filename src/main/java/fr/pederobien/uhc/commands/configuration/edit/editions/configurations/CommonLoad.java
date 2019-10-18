@@ -11,9 +11,9 @@ public abstract class CommonLoad<T extends IConfiguration> extends AbstractConfE
 	public CommonLoad(IPersistence<T> persistence, String explanation) {
 		super(persistence, "load", explanation);
 	}
-	
+
 	protected abstract String onStyleLoaded();
-	
+
 	protected abstract String onNameIsMissing();
 
 	@Override
@@ -37,7 +37,7 @@ public abstract class CommonLoad<T extends IConfiguration> extends AbstractConfE
 		case 1:
 			return filter(getPersistence().list(), subArguments[0]);
 		default:
-			return null;
+			return emptyList();
 		}
 	}
 }

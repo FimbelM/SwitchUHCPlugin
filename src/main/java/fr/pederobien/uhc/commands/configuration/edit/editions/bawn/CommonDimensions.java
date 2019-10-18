@@ -34,7 +34,7 @@ public class CommonDimensions<T extends IBawn> extends AbstractBawnEdition<T> {
 		case 3:
 			return Arrays.asList("<depth>");
 		default:
-			return null;
+			return emptyList();
 		}
 	}
 

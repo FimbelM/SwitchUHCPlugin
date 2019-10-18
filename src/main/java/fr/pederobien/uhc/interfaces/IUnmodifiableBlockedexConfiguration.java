@@ -1,7 +1,5 @@
 package fr.pederobien.uhc.interfaces;
 
-import java.util.List;
-
 public interface IUnmodifiableBlockedexConfiguration extends IUnmodifiableConfiguration {
 
 	Integer getRadiusAreaOnPlayerDie();
@@ -14,5 +12,11 @@ public interface IUnmodifiableBlockedexConfiguration extends IUnmodifiableConfig
 	
 	Integer getRadiusAreaOnPlayerKill();
 	
-	List<IUnmodifiableBase> getBases();
+	String getNorthBase();
+	
+	String getSouthBase();
+	
+	String getWestBase();
+	
+	String getEastBase();
 }

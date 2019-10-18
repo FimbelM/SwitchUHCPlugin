@@ -19,5 +19,4 @@ public class ListBase extends CommonList<IBase> {
 	protected String onSizeEquals0() {
 		return "No existing base";
 	}
-
 }

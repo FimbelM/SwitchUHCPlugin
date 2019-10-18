@@ -8,7 +8,7 @@ public abstract class CommonExtract<T extends IBawn> extends AbstractBawnEdition
 	public CommonExtract(IPersistence<T> persistence, String explanation) {
 		super(persistence, "extract", explanation);
 	}
-	
+
 	protected abstract String onExtracted();
 
 	@Override

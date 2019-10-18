@@ -30,7 +30,7 @@ public class LaunchBaseTemp extends AbstractBawnEdition<IBase> {
 		case 3:
 			return Arrays.asList("<Z>");
 		default:
-			return null;
+			return emptyList();
 		}
 	}
 }

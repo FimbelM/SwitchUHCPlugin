@@ -31,7 +31,7 @@ public class FinalBorderDiameterHungerGame extends AbstractConfEdition<IHungerGa
 		case 1:
 			return Arrays.asList("<finaldiameter>");
 		default:
-			return null;
+			return emptyList();
 		}
 	}
 }

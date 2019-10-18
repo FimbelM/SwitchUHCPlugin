@@ -13,12 +13,12 @@ public abstract class AbstractBawnEdition<T extends IBawn> extends AbstractEditi
 	public AbstractBawnEdition(IPersistence<T> persistence, String label, String explanation) {
 		super(persistence, label, explanation);
 	}
-	
+
 	@Override
 	public List<String> getArguments(String[] subArguments) {
 		return null;
 	}
-	
+
 	protected String showBlock(Block block) {
 		return block.getX() + " " + block.getY() + " " + block.getZ();
 	}

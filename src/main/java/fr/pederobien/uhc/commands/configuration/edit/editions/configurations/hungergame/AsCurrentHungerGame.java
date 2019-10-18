@@ -20,5 +20,4 @@ public class AsCurrentHungerGame extends CommonAsCurrent<IHungerGameConfiguratio
 	protected String onStyleNotDefined() {
 		return "Cannot load hunger game style, style does not exist";
 	}
-
 }

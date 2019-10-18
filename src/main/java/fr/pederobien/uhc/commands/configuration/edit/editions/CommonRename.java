@@ -40,7 +40,7 @@ public abstract class CommonRename<T extends IName> extends AbstractEdition<T> {
 		case 1:
 			return Arrays.asList("<newname>");
 		default:
-			return null;
+			return emptyList();
 		}
 	}
 }

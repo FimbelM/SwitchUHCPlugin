@@ -23,7 +23,7 @@ public class CreateTeamCommand extends AbstractCommand {
 				TeamsManager.createTeam(info[0]);
 			else
 				sendMessageToSender(sender, "Cannot create team");
-			
+
 		}
 		return false;
 	}

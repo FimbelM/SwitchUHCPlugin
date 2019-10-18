@@ -8,14 +8,14 @@ import fr.pederobien.uhc.interfaces.IPersistence;
 
 public abstract class CommonAsCurrent<T extends IConfiguration> extends AbstractConfEdition<T> {
 	private IConfigurationContext context;
-	
+
 	public CommonAsCurrent(IPersistence<T> persistence, IConfigurationContext context, String explanation) {
 		super(persistence, "ascurrent", explanation);
 		this.context = context;
 	}
-		
+
 	protected abstract String onNameIsMissing();
-	
+
 	protected abstract String onStyleNotDefined();
 
 	@Override

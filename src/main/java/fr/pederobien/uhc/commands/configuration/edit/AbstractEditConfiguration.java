@@ -15,15 +15,18 @@ import org.bukkit.command.CommandSender;
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
+import fr.pederobien.uhc.observer.IObsEdition;
 
 public abstract class AbstractEditConfiguration<T extends IUnmodifiableName> implements IEditConfig {
 	protected IConfigurationContext context;
 	private HashMap<String, IEdition> map;
 	private String message, help;
+	private List<IObsEdition> observers;
 
 	public AbstractEditConfiguration(IConfigurationContext context) {
 		this.context = context;
 		map = new HashMap<String, IEdition>();
+		observers = new ArrayList<IObsEdition>();
 		help = "";
 		setEditions();
 	}
@@ -53,15 +56,31 @@ public abstract class AbstractEditConfiguration<T extends IUnmodifiableName> imp
 			return edition.getArguments(Arrays.copyOfRange(args, 1, args.length));
 		return filter(new ArrayList<String>(map.keySet()), args[0]);
 	}
-	
+
 	@Override
 	public String help() {
 		return help;
 	}
-	
+
 	@Override
 	public Map<String, IEdition> getEditions() {
 		return Collections.unmodifiableMap(map);
+	}
+
+	@Override
+	public void sendMessage(String message) {
+		for (IObsEdition obs : observers)
+			obs.sendMessage(message);
+	}
+
+	@Override
+	public void addObserver(IObsEdition obs) {
+		observers.add(obs);
+	}
+
+	@Override
+	public void removeObserver(IObsEdition obs) {
+		observers.remove(obs);
 	}
 
 	protected void setMessage(String message) {

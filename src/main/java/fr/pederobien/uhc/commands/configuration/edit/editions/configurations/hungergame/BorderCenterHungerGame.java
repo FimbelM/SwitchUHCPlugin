@@ -34,7 +34,7 @@ public class BorderCenterHungerGame extends AbstractConfEdition<IHungerGameConfi
 		case 2:
 			return Arrays.asList("<Z>");
 		default:
-			return null;
+			return emptyList();
 		}
 	}
 }

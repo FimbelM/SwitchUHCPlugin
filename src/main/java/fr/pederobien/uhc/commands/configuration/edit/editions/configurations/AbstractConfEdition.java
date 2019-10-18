@@ -15,7 +15,7 @@ public abstract class AbstractConfEdition<T extends IConfiguration> extends Abst
 
 	@Override
 	public List<String> getArguments(String[] subArguments) {
-		return null;
+		return emptyList();
 	}
 
 	protected String showTime(LocalTime time) {
