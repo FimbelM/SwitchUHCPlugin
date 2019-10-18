@@ -17,4 +17,6 @@ public interface IBlockedexConfiguration extends IConfiguration, IUnmodifiableBl
 	void setWestBase(String westBase);
 
 	void setEastBase(String eastBase);
+	
+	void setBaseFromSpawnDistance(int baseFromSpawnDistance);
 }

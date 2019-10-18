@@ -13,12 +13,14 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	private static final Integer DEFAULT_RADIUS_AREA_ON_PLAYER_KILL = 5;
 	private static final Double DEFAULT_STEP_ON_MAX_HEALTH = 1.0;
 	private static final Integer DEFAULT_DIAMETER_AREA_ON_PLAYER_RESPAWN = 1000;
+	private static final Integer DEFAULT_BASE_FROM_SPAWN_DISTANCE = 1000;
 
 	private Integer radiusAreaOnPlayerDie;
 	private Integer radiusAreaOnPlayerKill;
 	private Double stepHealth;
 	private Integer diameterArea;
 	private String northBase, southBase, westBase, eastBase;
+	private Integer baseFromSpawnDistance;
 
 	public BlockedexConfiguration(String name) {
 		setName(name);
@@ -109,5 +111,15 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	@Override
 	public void setEastBase(String eastBase) {
 		this.eastBase = eastBase;
+	}
+	
+	@Override
+	public Integer getBaseFromSpawnDistance() {
+		return baseFromSpawnDistance == null ? DEFAULT_BASE_FROM_SPAWN_DISTANCE : baseFromSpawnDistance;
+	}
+	
+	@Override
+	public void setBaseFromSpawnDistance(int baseFromSpawnDistance) {
+		this.baseFromSpawnDistance = baseFromSpawnDistance;
 	}
 }

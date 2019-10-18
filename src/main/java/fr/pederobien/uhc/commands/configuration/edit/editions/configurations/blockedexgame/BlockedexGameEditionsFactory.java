@@ -77,4 +77,8 @@ public class BlockedexGameEditionsFactory extends AbstractConfigurationEditionsF
 	public IEdition createEastBaseEdition() {
 		return new EastBaseBlockedexGame(persistence);
 	}
+	
+	public IEdition createBaseDistanceEdition() {
+		return new BaseDistanceBlockedexGame(persistence);
+	}
 }

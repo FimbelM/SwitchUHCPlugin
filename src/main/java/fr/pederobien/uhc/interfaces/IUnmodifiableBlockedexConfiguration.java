@@ -19,4 +19,6 @@ public interface IUnmodifiableBlockedexConfiguration extends IUnmodifiableConfig
 	String getWestBase();
 	
 	String getEastBase();
+	
+	Integer getBaseFromSpawnDistance();
 }

@@ -28,6 +28,7 @@ public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlock
 				factory.createNorthBaseEdition(),
 				factory.createSouthBaseEdition(),
 				factory.createWestBaseEdition(),
-				factory.createEastBaseEdition());
+				factory.createEastBaseEdition(),
+				factory.createBaseDistanceEdition());
 	}
 }
