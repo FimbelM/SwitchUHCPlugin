@@ -3,6 +3,9 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.IPersistence;
 
@@ -32,12 +35,9 @@ public abstract class CommonLoad<T extends IConfiguration> extends AbstractConfE
 	}
 
 	@Override
-	public List<String> getArguments(String[] subArguments) {
-		switch (subArguments.length) {
-		case 1:
-			return filter(getPersistence().list(), subArguments[0]);
-		default:
-			return emptyList();
-		}
+	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+		if (args.length == 1)
+			return filter(getPersistence().list(), args[0]);
+		return super.onTabComplete(sender, command, alias, args);
 	}
 }

@@ -1,7 +1,6 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations;
 
 import java.time.LocalTime;
-import java.util.List;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractEdition;
 import fr.pederobien.uhc.interfaces.IConfiguration;
@@ -11,11 +10,6 @@ public abstract class AbstractConfEdition<T extends IConfiguration> extends Abst
 
 	public AbstractConfEdition(IPersistence<T> persistence, String label, String explanation) {
 		super(persistence, label, explanation);
-	}
-
-	@Override
-	public List<String> getArguments(String[] subArguments) {
-		return emptyList();
 	}
 
 	protected String showTime(LocalTime time) {

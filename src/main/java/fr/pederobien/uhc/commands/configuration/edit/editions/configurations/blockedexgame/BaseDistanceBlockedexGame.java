@@ -3,6 +3,9 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.bl
 import java.util.Arrays;
 import java.util.List;
 
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfEdition;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IPersistence;
@@ -26,14 +29,11 @@ public class BaseDistanceBlockedexGame extends AbstractConfEdition<IBlockedexCon
 			return "Cannot set the distance, need the distance";
 		}
 	}
-	
+
 	@Override
-	public List<String> getArguments(String[] subArguments) {
-		switch (subArguments.length) {
-		case 1:
+	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+		if (args.length == 1)
 			return Arrays.asList("<distance>");
-		default:
-			return emptyList();
-		}
+		return super.onTabComplete(sender, command, alias, args);
 	}
 }

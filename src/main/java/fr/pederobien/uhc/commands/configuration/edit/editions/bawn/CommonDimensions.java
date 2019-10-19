@@ -3,6 +3,9 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.bawn;
 import java.util.Arrays;
 import java.util.List;
 
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+
 import fr.pederobien.uhc.interfaces.IBawn;
 import fr.pederobien.uhc.interfaces.IPersistence;
 
@@ -25,17 +28,15 @@ public class CommonDimensions<T extends IBawn> extends AbstractBawnEdition<T> {
 	}
 
 	@Override
-	public List<String> getArguments(String[] subArguments) {
-		switch (subArguments.length) {
+	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+		switch (args.length) {
 		case 1:
 			return Arrays.asList("<width> <height> <depth>");
 		case 2:
 			return Arrays.asList("<height> <depth>");
 		case 3:
 			return Arrays.asList("<depth>");
-		default:
-			return emptyList();
 		}
+		return super.onTabComplete(sender, command, alias, args);
 	}
-
 }

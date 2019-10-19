@@ -3,6 +3,9 @@ package fr.pederobien.uhc.commands.configuration.edit.editions;
 import java.util.Arrays;
 import java.util.List;
 
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+
 import fr.pederobien.uhc.configurations.ConfigurationsFactory;
 import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
@@ -39,12 +42,9 @@ public abstract class CommonNew<T extends IUnmodifiableName> extends AbstractEdi
 	}
 
 	@Override
-	public List<String> getArguments(String[] subArguments) {
-		switch (subArguments.length) {
-		case 1:
+	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+		if (args.length == 1)
 			return Arrays.asList("<name>");
-		default:
-			return emptyList();
-		}
+		return super.onTabComplete(sender, command, alias, args);
 	}
 }

@@ -3,6 +3,9 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.base;
 import java.util.Arrays;
 import java.util.List;
 
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.AbstractBawnEdition;
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.IPersistence;
@@ -19,18 +22,17 @@ public class LaunchBaseTemp extends AbstractBawnEdition<IBase> {
 		get().launch();
 		return "Base " + get().getName() + " launched";
 	}
-	
+
 	@Override
-	public List<String> getArguments(String[] subArguments) {
-		switch (subArguments.length) {
+	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+		switch (args.length) {
 		case 1:
 			return Arrays.asList("<X> <Y> <Z>");
 		case 2:
 			return Arrays.asList("<Y> <Z>");
 		case 3:
 			return Arrays.asList("<Z>");
-		default:
-			return emptyList();
 		}
+		return super.onTabComplete(sender, command, alias, args);
 	}
 }
