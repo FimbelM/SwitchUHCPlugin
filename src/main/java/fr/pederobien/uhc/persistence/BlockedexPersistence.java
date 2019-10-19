@@ -123,6 +123,6 @@ public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConf
 		System.out.println("\tDistance from spawn : " + get().getBaseFromSpawnDistance());
 		System.out.println("Team");
 		for (ETeam team : get().getTeams())
-			System.out.println("\tName : " + team.getDisplayNameWithoutColor() + ", color : " + team.getColor());
+			System.out.println("\tName : " + team.getNameWithoutColor() + ", color : " + team.getColor());
 	}
 }

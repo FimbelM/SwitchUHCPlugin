@@ -39,6 +39,21 @@ public class TeamsManager {
 				return team;
 		return null;
 	}
+	
+	public static List<Player> getPlayersInTeam() {
+		List<Player> players = new ArrayList<Player>();
+		for (Team team : getTeams())
+			players.addAll(getPlayers(team));
+		return players;
+	}
+	
+	public static List<Player> getPlayersNotInTeam() {
+		List<Player> players = PlayerManager.getPlayers();
+		for (Team team : getTeams())
+			for (Player player : getPlayers(team))
+				players.remove(player);
+		return players;
+	}
 
 	public static ChatColor getColor(Player player) {
 		return getTeam(player) == null ? ChatColor.RESET : getTeam(player).getColor();
@@ -90,10 +105,14 @@ public class TeamsManager {
 	public static int getNumberTeamPlayersOnMode(Team team, GameMode mode) {
 		return getTeamPlayersOnMode(team, mode).size();
 	}
+	
+	public static void createTeam(String name) {
+		BukkitManager.dispatchCommand("team add " + name);
+	}
 
 	public static void createTeam(ETeam team) {
-		BukkitManager.dispatchCommand("team add " + team.getColorName() + " " + "\"" + team.getDisplayNameWithoutColor() + "\"");
-		setTeamOption(team.getColorName(), "color", team.getColorName());
+		createTeam(team.getNameWithoutColor());
+		setTeamOption(team.getNameWithoutColor(), "color", team.getColorName());
 	}
 
 	public static void setTeamOption(String name, String option, String value) {

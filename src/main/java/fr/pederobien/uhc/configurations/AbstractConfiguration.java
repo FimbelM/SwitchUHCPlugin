@@ -46,8 +46,8 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	}
 
 	@Override
-	public void setTeams(List<ETeam> teams) {
-		this.teams = teams;
+	public boolean addTeam(ETeam team) {
+		return teams.add(team);
 	}
 
 	@Override

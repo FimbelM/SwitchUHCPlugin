@@ -136,8 +136,8 @@ public class ConfigurationContext implements IConfigurationContext {
 	}
 
 	@Override
-	public void setTeams(List<ETeam> teams) {
-		configuration.setTeams(teams);
+	public boolean addTeam(ETeam team) {
+		return configuration.addTeam(team);
 	}
 
 	@Override

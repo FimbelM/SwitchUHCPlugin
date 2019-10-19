@@ -1,6 +1,8 @@
 package fr.pederobien.uhc.managers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.bukkit.ChatColor;
 
@@ -16,41 +18,54 @@ public enum ETeam {
 
 	private ChatColor color;
 	private String colorName;
-	private String displayName;
-	private static HashMap<ChatColor, ETeam> map = new HashMap<ChatColor, ETeam>();
+	private String name;
+	private static HashMap<ChatColor, ETeam> mapColor = new HashMap<ChatColor, ETeam>();
+	private static HashMap<String, ETeam> mapColorName = new HashMap<String, ETeam>();
+	private static List<String> colorsName = new ArrayList<String>();
 
 	static {
-		for (ETeam team : values())
-			map.put(team.getColor(), team);
+		for (ETeam team : values()) {
+			mapColor.put(team.getColor(), team);
+			mapColorName.put(team.getColorName(), team);
+			colorsName.add(team.getColorName());
+		}
 	}
 
 	public static ETeam getByColor(ChatColor color) {
-		return map.get(color);
+		return mapColor.get(color);
 	}
 
-	private ETeam(ChatColor color, String colorName, String displayName) {
+	public static ETeam getByColorName(String colorName) {
+		return mapColorName.get(colorName);
+	}
+
+	public static List<String> getColorsName() {
+		return colorsName;
+	}
+
+	private ETeam(ChatColor color, String colorName, String name) {
 		this.color = color;
 		this.colorName = colorName;
-		this.displayName = displayName;
+		this.name = name;
 	}
 
 	public ChatColor getColor() {
 		return color;
 	}
 
-	public String getDisplayNameWithColor() {
-		return color + displayName;
+	public String getNameWithColor() {
+		return color + name + ChatColor.RESET;
 	}
-	
-	public String getDisplayNameWithoutColor() {
-		return displayName;
+
+	public String getNameWithoutColor() {
+		return name;
 	}
 
 	public String getColorName() {
 		return colorName;
 	}
 
-	public void setDisplayName(String displayName) {
-		this.displayName = displayName;
+	public void setName(String name) {
+		this.name = name;
 	}
 }

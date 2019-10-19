@@ -1,7 +1,5 @@
 package fr.pederobien.uhc.configurations;
 
-import java.util.List;
-
 import org.bukkit.ChatColor;
 
 import fr.pederobien.uhc.game.blockedexgame.BlockedexGame;
@@ -37,10 +35,12 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 		registerBase(getWestBase());
 		registerBase(getEastBase());
 	}
-
+	
 	@Override
-	public void setTeams(List<ETeam> teams) {
-		throw new IllegalArgumentException("Teams are defined by bases, you cannot set teams for this configuration");
+	public boolean addTeam(ETeam team) {
+		if (teams.contains(team))
+			return false;
+		return teams.add(team);
 	}
 
 	@Override
