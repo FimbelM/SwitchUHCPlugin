@@ -21,19 +21,6 @@ public abstract class AbstractEditConfiguration<T extends IUnmodifiableName> ext
 	}
 
 	@Override
-	public String edit(String[] args) {
-		String label = "";
-		try {
-			label = args[0];
-			return getEditions().get(label).edit(Arrays.copyOfRange(args, 1, args.length));
-		} catch (ArrayIndexOutOfBoundsException e) {
-			return "Cannot run command " + getLabel() + ", arguments are missing";
-		} catch (NullPointerException e) {
-			return "Argument " + label + " is not a valid argument";
-		}
-	}
-
-	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		IMapEdition edition = getEditions().get(args[0]);
 		if (edition != null)
