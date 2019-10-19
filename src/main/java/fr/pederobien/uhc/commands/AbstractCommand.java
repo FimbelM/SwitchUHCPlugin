@@ -10,12 +10,10 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.pederobien.uhc.BukkitManager;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
-import fr.pederobien.uhc.observer.IObsEdition;
 import fr.pederobien.uhc.world.EventListener;
 
-public abstract class AbstractCommand implements CommandExecutor, TabCompleter, IObsEdition {
+public abstract class AbstractCommand implements CommandExecutor, TabCompleter {
 	protected static IConfigurationContext confContext;
 	protected static EventListener listener;
 	private int number;
@@ -46,11 +44,6 @@ public abstract class AbstractCommand implements CommandExecutor, TabCompleter, 
 			return completion == null ? emptyString() : completion;
 		}
 		return emptyString();
-	}
-
-	@Override
-	public void sendMessage(String message) {
-		sendMessageToSender(BukkitManager.getDefaultCommandSender(), message);
 	}
 
 	protected List<String> abstractOnTabComplete(CommandSender sender, Command command, String alias, String[] args) {

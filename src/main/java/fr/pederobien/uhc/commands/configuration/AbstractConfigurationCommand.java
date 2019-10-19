@@ -21,7 +21,7 @@ public abstract class AbstractConfigurationCommand extends AbstractCommand {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		this.sender = sender;
-			sendMessageToSender(sender, conf.edit(args));
+		sendMessageToSender(sender, conf.edit(args));
 		return true;
 	}
 
@@ -29,10 +29,5 @@ public abstract class AbstractConfigurationCommand extends AbstractCommand {
 	public List<String> abstractOnTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		this.sender = sender;
 		return conf.onTabComplete(sender, command, alias, args);
-	}
-
-	@Override
-	public void sendMessage(String message) {
-		sendMessageToSender(sender, message);
 	}
 }
