@@ -5,27 +5,25 @@ import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
 
 public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlockedexConfiguration> {
-	private BlockedexGameEditionsFactory factory;
+	private BlockedexGameEditionsFactory factory = BlockedexGameEditionsFactory.getInstance();
 
 	public EditBlockedexConfiguration(IConfigurationContext context) {
 		super(context, "bd", "to configure a blockedex game style");
 
-		factory = BlockedexGameEditionsFactory.getInstance();
-
-		factory.createGameTimeEdition();
-		factory.createScoreboardRefreshEdition();
-		factory.createRenameEdition();
-		factory.createLoadEdition();
-		factory.createNewEdition();
-		factory.createCurrentEdition();
-		factory.createAsCurrentEdition(context);
-		factory.createSaveEdition();
-		factory.createListEdition();
-		factory.createHelpEdition(this);
-		factory.createNorthBaseEdition();
-		factory.createSouthBaseEdition();
-		factory.createWestBaseEdition();
-		factory.createEastBaseEdition();
-		factory.createBaseDistanceEdition();
+		addEditions(factory.createGameTimeEdition(),
+				factory.createScoreboardRefreshEdition(),
+				factory.createRenameEdition(),
+				factory.createLoadEdition(),
+				factory.createNewEdition(),
+				factory.createCurrentEdition(),
+				factory.createAsCurrentEdition(context),
+				factory.createSaveEdition(),
+				factory.createListEdition(),
+				factory.createHelpEdition(this),
+				factory.createNorthBaseEdition(),
+				factory.createSouthBaseEdition(),
+				factory.createWestBaseEdition(),
+				factory.createEastBaseEdition(),
+				factory.createBaseDistanceEdition());
 	}
 }
