@@ -29,6 +29,11 @@ public abstract class AbstractEdition<T extends IUnmodifiableName> implements IE
 	public String getLabel() {
 		return label;
 	}
+	
+	@Override
+	public String getExplanation() {
+		return explanation;
+	}
 
 	@Override
 	public String help() {

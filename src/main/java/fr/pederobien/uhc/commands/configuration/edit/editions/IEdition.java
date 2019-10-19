@@ -7,6 +7,8 @@ import fr.pederobien.uhc.observer.IObsEdition;
 public interface IEdition {
 
 	String getLabel();
+	
+	String getExplanation();
 
 	String edit(String[] args);
 
