@@ -1,14 +1,13 @@
 package fr.pederobien.uhc.commands.configuration.edit;
 
+import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractMapEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.spawn.SpawnEditionsFactory;
-import fr.pederobien.uhc.interfaces.IConfigurationContext;
-import fr.pederobien.uhc.interfaces.ISpawn;
 
-public class EditSpawnConfiguration extends AbstractEditConfiguration<ISpawn> {
+public class EditSpawnConfiguration extends AbstractMapEdition {
 	private SpawnEditionsFactory factory = SpawnEditionsFactory.getInstance();
 
-	public EditSpawnConfiguration(IConfigurationContext context) {
-		super(context, "spawn", "to configure a spawn");
+	public EditSpawnConfiguration() {
+		super("spawn", "to configure a spawn");
 
 		addEditions(factory.createCenterEdition(),
 				factory.createDimensionsEdition(),

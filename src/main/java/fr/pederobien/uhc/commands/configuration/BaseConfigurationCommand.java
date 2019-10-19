@@ -7,6 +7,6 @@ import fr.pederobien.uhc.commands.configuration.edit.EditBaseConfiguration;
 public class BaseConfigurationCommand extends AbstractConfigurationCommand {
 
 	public BaseConfigurationCommand(JavaPlugin plugin, String command) {
-		super(plugin, command, new EditBaseConfiguration(confContext));
+		super(plugin, command, new EditBaseConfiguration());
 	}
 }

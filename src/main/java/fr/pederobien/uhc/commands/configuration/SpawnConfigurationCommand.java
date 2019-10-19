@@ -7,6 +7,6 @@ import fr.pederobien.uhc.commands.configuration.edit.EditSpawnConfiguration;
 public class SpawnConfigurationCommand extends AbstractConfigurationCommand {
 
 	public SpawnConfigurationCommand(JavaPlugin plugin, String command) {
-		super(plugin, command, new EditSpawnConfiguration(confContext));
+		super(plugin, command, new EditSpawnConfiguration());
 	}
 }

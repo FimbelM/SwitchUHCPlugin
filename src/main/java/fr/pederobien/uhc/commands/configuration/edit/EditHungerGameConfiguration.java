@@ -1,14 +1,14 @@
 package fr.pederobien.uhc.commands.configuration.edit;
 
+import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractMapEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.hungergame.HungerGameEditionsFactory;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
-import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
 
-public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHungerGameConfiguration> {
+public class EditHungerGameConfiguration extends AbstractMapEdition {
 	private HungerGameEditionsFactory factory = HungerGameEditionsFactory.getInstance();
 
 	public EditHungerGameConfiguration(IConfigurationContext context) {
-		super(context, "hg", "to configure a hunger game style");
+		super("hg", "to configure a hunger game style");
 
 		addEditions(factory.createBorderCenterEdition(),
 				factory.createInitialBorderDiameterEdition(),
