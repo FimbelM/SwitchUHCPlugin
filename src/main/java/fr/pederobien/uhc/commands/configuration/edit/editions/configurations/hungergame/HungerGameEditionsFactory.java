@@ -24,17 +24,17 @@ public class HungerGameEditionsFactory extends AbstractConfigurationEditionsFact
 	}
 
 	@Override
-	public IEdition createAsCurrentEdition(IConfigurationContext context) {
+	public IMapEdition createAsCurrentEdition(IConfigurationContext context) {
 		return new AsCurrentHungerGame(persistence, context);
 	}
 
 	@Override
-	public IEdition createGameTimeEdition() {
+	public IMapEdition createGameTimeEdition() {
 		return new GameTimeHungerGame(persistence);
 	}
 
 	@Override
-	public IEdition createLoadEdition() {
+	public IMapEdition createLoadEdition() {
 		return new LoadHungerGame(persistence);
 	}
 

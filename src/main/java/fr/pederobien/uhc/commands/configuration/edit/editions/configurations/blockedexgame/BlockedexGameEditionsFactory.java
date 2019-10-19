@@ -24,17 +24,17 @@ public class BlockedexGameEditionsFactory extends AbstractConfigurationEditionsF
 	}
 
 	@Override
-	public IEdition createAsCurrentEdition(IConfigurationContext context) {
+	public IMapEdition createAsCurrentEdition(IConfigurationContext context) {
 		return new AsCurrentBlockedexGame(persistence, context);
 	}
 
 	@Override
-	public IEdition createGameTimeEdition() {
+	public IMapEdition createGameTimeEdition() {
 		return new GameTimeBlockedexGame(persistence);
 	}
 
 	@Override
-	public IEdition createLoadEdition() {
+	public IMapEdition createLoadEdition() {
 		return new LoadBlockedexGame(persistence);
 	}
 
