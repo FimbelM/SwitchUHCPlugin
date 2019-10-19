@@ -42,10 +42,15 @@ public abstract class AbstractMapEdition implements IMapEdition {
 	
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-		IMapEdition edition = getEditions().get(args[0]);
-		if (edition != null)
-			return edition.onTabComplete(sender, command, alias, Arrays.copyOfRange(args, 1, args.length));
-		return filter(new ArrayList<String>(getEditions().keySet()), args[0]);
+		try {
+			System.out.println("On bas completer");
+			IMapEdition edition = getEditions().get(args[0]);
+			if (edition != null)
+				return edition.onTabComplete(sender, command, alias, Arrays.copyOfRange(args, 1, args.length));
+			return filter(new ArrayList<String>(getEditions().keySet()), args[0]);
+		} catch (IndexOutOfBoundsException e) {
+			return emptyList();
+		}
 	}
 
 	@Override
