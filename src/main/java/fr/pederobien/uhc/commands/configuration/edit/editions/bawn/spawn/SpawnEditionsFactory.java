@@ -28,7 +28,7 @@ public class SpawnEditionsFactory extends AbstractBawnEditionsFactory<ISpawn> {
 	}
 
 	@Override
-	public IEdition createExtractEdition() {
+	public IMapEdition createExtractEdition() {
 		return new ExtractSpawn(persistence);
 	}
 

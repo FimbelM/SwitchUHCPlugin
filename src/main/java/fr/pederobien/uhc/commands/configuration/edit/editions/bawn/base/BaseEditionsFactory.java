@@ -23,7 +23,7 @@ public class BaseEditionsFactory extends AbstractBawnEditionsFactory<IBase> {
 	}
 
 	@Override
-	public IEdition createExtractEdition() {
+	public IMapEdition createExtractEdition() {
 		return new ExtractBase(persistence);
 	}
 

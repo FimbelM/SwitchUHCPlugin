@@ -1,7 +1,6 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractEditionsFactory;
-import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.IMapEdition;
 import fr.pederobien.uhc.interfaces.IBawn;
 import fr.pederobien.uhc.interfaces.IPersistence;
@@ -12,15 +11,15 @@ public abstract class AbstractBawnEditionsFactory<T extends IBawn> extends Abstr
 		super(persistence);
 	}
 
-	public IEdition createCenterEdition() {
+	public IMapEdition createCenterEdition() {
 		return new CommonCenter<T>(persistence);
 	}
 
-	public IEdition createDimensionsEdition() {
+	public IMapEdition createDimensionsEdition() {
 		return new CommonDimensions<T>(persistence);
 	}
 
-	public abstract IEdition createExtractEdition();
+	public abstract IMapEdition createExtractEdition();
 
 	public abstract IMapEdition createRenameEdition();
 }
