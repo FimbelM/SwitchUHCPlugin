@@ -14,13 +14,13 @@ public abstract class AbstractEditionsFactory<T extends IUnmodifiableName> {
 		return new CommonHelp(conf);
 	}
 
-	public abstract IEdition createListEdition();
+	public abstract IMapEdition createListEdition();
 
-	public abstract IEdition createCurrentEdition();
+	public abstract IMapEdition createCurrentEdition();
 
-	public abstract IEdition createNewEdition();
+	public abstract IMapEdition createNewEdition();
 
-	public abstract IEdition createRenameEdition();
+	public abstract IMapEdition createRenameEdition();
 
-	public abstract IEdition createSaveEdition();
+	public abstract IMapEdition createSaveEdition();
 }

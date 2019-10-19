@@ -1,6 +1,7 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.hungergame;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
+import fr.pederobien.uhc.commands.configuration.edit.editions.IMapEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfigurationEditionsFactory;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
@@ -38,27 +39,27 @@ public class HungerGameEditionsFactory extends AbstractConfigurationEditionsFact
 	}
 
 	@Override
-	public IEdition createListEdition() {
+	public IMapEdition createListEdition() {
 		return new ListHungerGame(persistence);
 	}
 
 	@Override
-	public IEdition createCurrentEdition() {
+	public IMapEdition createCurrentEdition() {
 		return new CurrentHungerGame(persistence);
 	}
 
 	@Override
-	public IEdition createNewEdition() {
+	public IMapEdition createNewEdition() {
 		return new NewHungerGame(persistence);
 	}
 
 	@Override
-	public IEdition createRenameEdition() {
+	public IMapEdition createRenameEdition() {
 		return new RenameHungerGame(persistence);
 	}
 
 	@Override
-	public IEdition createSaveEdition() {
+	public IMapEdition createSaveEdition() {
 		return new SaveHungerGame(persistence);
 	}
 

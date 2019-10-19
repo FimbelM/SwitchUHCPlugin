@@ -1,6 +1,7 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.spawn;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
+import fr.pederobien.uhc.commands.configuration.edit.editions.IMapEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.AbstractBawnEditionsFactory;
 import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.ISpawn;
@@ -22,7 +23,7 @@ public class SpawnEditionsFactory extends AbstractBawnEditionsFactory<ISpawn> {
 	}
 
 	@Override
-	public IEdition createNewEdition() {
+	public IMapEdition createNewEdition() {
 		return new NewSpawn(persistence);
 	}
 
@@ -32,22 +33,22 @@ public class SpawnEditionsFactory extends AbstractBawnEditionsFactory<ISpawn> {
 	}
 
 	@Override
-	public IEdition createRenameEdition() {
+	public IMapEdition createRenameEdition() {
 		return new RenameSpawn(persistence);
 	}
 
 	@Override
-	public IEdition createSaveEdition() {
+	public IMapEdition createSaveEdition() {
 		return new SaveSpawn(persistence);
 	}
 
 	@Override
-	public IEdition createListEdition() {
+	public IMapEdition createListEdition() {
 		return new ListSpawn(persistence);
 	}
 
 	@Override
-	public IEdition createCurrentEdition() {
+	public IMapEdition createCurrentEdition() {
 		return new CurrentSpawn(persistence);
 	}
 
