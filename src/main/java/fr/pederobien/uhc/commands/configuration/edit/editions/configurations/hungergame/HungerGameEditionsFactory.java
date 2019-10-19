@@ -1,6 +1,5 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.hungergame;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.IMapEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfigurationEditionsFactory;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
@@ -63,19 +62,19 @@ public class HungerGameEditionsFactory extends AbstractConfigurationEditionsFact
 		return new SaveHungerGame(persistence);
 	}
 
-	public IEdition createBorderCenterEdition() {
+	public IMapEdition createBorderCenterEdition() {
 		return new BorderCenterHungerGame(persistence);
 	}
 
-	public IEdition createInitialBorderDiameterEdition() {
+	public IMapEdition createInitialBorderDiameterEdition() {
 		return new InitialBorderDiameterHungerGame(persistence);
 	}
 
-	public IEdition createFinalBorderDiameterEdition() {
+	public IMapEdition createFinalBorderDiameterEdition() {
 		return new FinalBorderDiameterHungerGame(persistence);
 	}
 
-	public IEdition createFractionTimeEdition() {
+	public IMapEdition createFractionTimeEdition() {
 		return new FractionTimeHungerGame(persistence);
 	}
 }
