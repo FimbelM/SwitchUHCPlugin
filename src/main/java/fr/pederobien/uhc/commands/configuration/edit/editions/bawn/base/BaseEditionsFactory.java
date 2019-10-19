@@ -1,6 +1,5 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.base;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.IMapEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.AbstractBawnEditionsFactory;
 import fr.pederobien.uhc.interfaces.IBase;
@@ -52,11 +51,11 @@ public class BaseEditionsFactory extends AbstractBawnEditionsFactory<IBase> {
 		return new SaveBase(persistence);
 	}
 
-	public IEdition createLoadTempEdition() {
+	public IMapEdition createLoadTempEdition() {
 		return new LoadBaseTemp(persistence);
 	}
 
-	public IEdition createLaunchTempEdition() {
+	public IMapEdition createLaunchTempEdition() {
 		return new LaunchBaseTemp(persistence);
 	}
 }
