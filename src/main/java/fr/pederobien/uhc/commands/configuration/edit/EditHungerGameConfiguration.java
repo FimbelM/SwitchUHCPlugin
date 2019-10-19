@@ -8,26 +8,23 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHung
 	private HungerGameEditionsFactory factory;
 
 	public EditHungerGameConfiguration(IConfigurationContext context) {
-		super(context);
-	}
+		super(context, "hg", "to configure a hunger game style");
 
-	@Override
-	protected void setEditions() {
 		factory = HungerGameEditionsFactory.getInstance();
 
-		addToMap(factory.createBorderCenterEdition(),
-				factory.createInitialBorderDiameterEdition(),
-				factory.createFinalBorderDiameterEdition(),
-				factory.createGameTimeEdition(),
-				factory.createFractionTimeEdition(),
-				factory.createScoreboardRefreshEdition(),
-				factory.createRenameEdition(),
-				factory.createLoadEdition(),
-				factory.createNewEdition(),
-				factory.createCurrentEdition(),
-				factory.createAsCurrentEdition(context),
-				factory.createSaveEdition(),
-				factory.createListEdition(),
-				factory.createHelpEdition(this));
+		factory.createBorderCenterEdition();
+		factory.createInitialBorderDiameterEdition();
+		factory.createFinalBorderDiameterEdition();
+		factory.createGameTimeEdition();
+		factory.createFractionTimeEdition();
+		factory.createScoreboardRefreshEdition();
+		factory.createRenameEdition();
+		factory.createLoadEdition();
+		factory.createNewEdition();
+		factory.createCurrentEdition();
+		factory.createAsCurrentEdition(context);
+		factory.createSaveEdition();
+		factory.createListEdition();
+		factory.createHelpEdition(this);
 	}
 }

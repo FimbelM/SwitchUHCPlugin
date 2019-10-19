@@ -2,101 +2,42 @@ package fr.pederobien.uhc.commands.configuration.edit;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.IEdition;
+import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractMapEdition;
+import fr.pederobien.uhc.commands.configuration.edit.editions.IMapEdition;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
-import fr.pederobien.uhc.observer.IObsEdition;
 
-public abstract class AbstractEditConfiguration<T extends IUnmodifiableName> implements IEditConfig {
+public abstract class AbstractEditConfiguration<T extends IUnmodifiableName> extends AbstractMapEdition {
 	protected IConfigurationContext context;
-	private HashMap<String, IEdition> map;
-	private String message, help;
-	private List<IObsEdition> observers;
 
-	public AbstractEditConfiguration(IConfigurationContext context) {
+	public AbstractEditConfiguration(IConfigurationContext context, String label, String explanation) {
+		super(label, explanation);
 		this.context = context;
-		map = new HashMap<String, IEdition>();
-		observers = new ArrayList<IObsEdition>();
-		help = "";
-		setEditions();
 	}
 
-	protected abstract void setEditions();
-
 	@Override
-	public boolean edit(String[] args) {
+	public String edit(String[] args) {
+		String label = "";
 		try {
-			setMessage(map.get(args[0]).edit(Arrays.copyOfRange(args, 1, args.length)));
-		} catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
-			e.printStackTrace();
-			return false;
+			label = args[0];
+			return getEditions().get(label).edit(Arrays.copyOfRange(args, 1, args.length));
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return "Cannot run command " + getLabel() + ", arguments are missing";
+		} catch (NullPointerException e) {
+			return "Argument " + label + " is not a valid argument";
 		}
-		return true;
-	}
-
-	@Override
-	public String getMessage() {
-		return message;
 	}
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-		IEdition edition = map.get(args[0]);
+		IMapEdition edition = getEditions().get(args[0]);
 		if (edition != null)
-			return edition.getArguments(Arrays.copyOfRange(args, 1, args.length));
-		return filter(new ArrayList<String>(map.keySet()), args[0]);
-	}
-
-	@Override
-	public String help() {
-		return help;
-	}
-
-	@Override
-	public Map<String, IEdition> getEditions() {
-		return Collections.unmodifiableMap(map);
-	}
-
-	@Override
-	public void sendMessage(String message) {
-		for (IObsEdition obs : observers)
-			obs.sendMessage(message);
-	}
-
-	@Override
-	public void addObserver(IObsEdition obs) {
-		observers.add(obs);
-	}
-
-	@Override
-	public void removeObserver(IObsEdition obs) {
-		observers.remove(obs);
-	}
-
-	protected void setMessage(String message) {
-		this.message = message;
-	}
-
-	protected void addToMap(IEdition... editions) {
-		for (IEdition edition : editions) {
-			map.put(edition.getLabel(), edition);
-			help += edition.help() + "\r\n";
-			edition.addObserver(this);
-		}
-	}
-
-	protected List<String> filter(List<String> list, String filter) {
-		Predicate<String> match = str -> str.matches(filter + "(.*)");
-		return list.stream().filter(match).collect(Collectors.toList());
+			return edition.onTabComplete(sender, command, alias, Arrays.copyOfRange(args, 1, args.length));
+		return filter(new ArrayList<String>(getEditions().keySet()), args[0]);
 	}
 }

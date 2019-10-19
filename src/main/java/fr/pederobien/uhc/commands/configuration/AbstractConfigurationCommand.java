@@ -7,24 +7,22 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.pederobien.uhc.commands.AbstractCommand;
-import fr.pederobien.uhc.commands.configuration.edit.IEditConfig;
+import fr.pederobien.uhc.commands.configuration.edit.editions.IMapEdition;
 
 public abstract class AbstractConfigurationCommand extends AbstractCommand {
-	private IEditConfig conf;
+	private IMapEdition conf;
 	protected CommandSender sender;
 
-	public AbstractConfigurationCommand(JavaPlugin plugin, String command, IEditConfig conf) {
+	public AbstractConfigurationCommand(JavaPlugin plugin, String command, IMapEdition conf) {
 		super(plugin, command);
 		this.conf = conf;
-		conf.addObserver(this);
 	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		this.sender = sender;
-		if (conf.edit(args))
-			sendMessageToSender(sender, conf.getMessage());
-		return false;
+			sendMessageToSender(sender, conf.edit(args));
+		return true;
 	}
 
 	@Override

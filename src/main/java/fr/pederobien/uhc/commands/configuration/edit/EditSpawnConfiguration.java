@@ -8,23 +8,20 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration<ISpawn> {
 	private SpawnEditionsFactory factory;
 
 	public EditSpawnConfiguration(IConfigurationContext context) {
-		super(context);
-	}
+		super(context, "spawn", "to configure a spawn");
 
-	@Override
-	protected void setEditions() {
 		factory = SpawnEditionsFactory.getInstance();
 
-		addToMap(factory.createCenterEdition(),
-				factory.createDimensionsEdition(),
-				factory.createRenameEdition(),
-				factory.createCurrentEdition(),
-				factory.createNewEdition(),
-				factory.createLaunchEdition(),
-				factory.createSaveEdition(),
-				factory.createRemoveEdition(),
-				factory.createExtractEdition(),
-				factory.createListEdition(),
-				factory.createHelpEdition(this));
+		factory.createCenterEdition();
+		factory.createDimensionsEdition();
+		factory.createRenameEdition();
+		factory.createCurrentEdition();
+		factory.createNewEdition();
+		factory.createLaunchEdition();
+		factory.createSaveEdition();
+		factory.createRemoveEdition();
+		factory.createExtractEdition();
+		factory.createListEdition();
+		factory.createHelpEdition(this);
 	}
 }

@@ -8,27 +8,24 @@ public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlock
 	private BlockedexGameEditionsFactory factory;
 
 	public EditBlockedexConfiguration(IConfigurationContext context) {
-		super(context);
-	}
+		super(context, "bd", "to configure a blockedex game style");
 
-	@Override
-	protected void setEditions() {
 		factory = BlockedexGameEditionsFactory.getInstance();
 
-		addToMap(factory.createGameTimeEdition(),
-				factory.createScoreboardRefreshEdition(),
-				factory.createRenameEdition(),
-				factory.createLoadEdition(),
-				factory.createNewEdition(),
-				factory.createCurrentEdition(),
-				factory.createAsCurrentEdition(context),
-				factory.createSaveEdition(),
-				factory.createListEdition(),
-				factory.createHelpEdition(this),
-				factory.createNorthBaseEdition(),
-				factory.createSouthBaseEdition(),
-				factory.createWestBaseEdition(),
-				factory.createEastBaseEdition(),
-				factory.createBaseDistanceEdition());
+		factory.createGameTimeEdition();
+		factory.createScoreboardRefreshEdition();
+		factory.createRenameEdition();
+		factory.createLoadEdition();
+		factory.createNewEdition();
+		factory.createCurrentEdition();
+		factory.createAsCurrentEdition(context);
+		factory.createSaveEdition();
+		factory.createListEdition();
+		factory.createHelpEdition(this);
+		factory.createNorthBaseEdition();
+		factory.createSouthBaseEdition();
+		factory.createWestBaseEdition();
+		factory.createEastBaseEdition();
+		factory.createBaseDistanceEdition();
 	}
 }
