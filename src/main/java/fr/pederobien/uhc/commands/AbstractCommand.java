@@ -16,7 +16,6 @@ import fr.pederobien.uhc.world.EventListener;
 public abstract class AbstractCommand implements CommandExecutor, TabCompleter {
 	protected static IConfigurationContext confContext;
 	protected static EventListener listener;
-	private int number;
 
 	protected AbstractCommand(JavaPlugin plugin, String command) {
 		plugin.getCommand(command).setExecutor(this);
@@ -39,28 +38,19 @@ public abstract class AbstractCommand implements CommandExecutor, TabCompleter {
 
 	@Override
 	final public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-		if (!firstCall()) {
+		try {
 			List<String> completion = abstractOnTabComplete(sender, command, alias, args);
-			return completion == null ? emptyString() : completion;
+			return completion == null ? emptyList() : completion;
+		} catch (IndexOutOfBoundsException e) {
+			return emptyList();
 		}
-		return emptyString();
 	}
 
 	protected List<String> abstractOnTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-		return emptyString();
+		return emptyList();
 	}
 
-	protected List<String> emptyString() {
+	protected List<String> emptyList() {
 		return new ArrayList<String>();
-	}
-
-	private boolean firstCall() {
-		if (number % 2 == 0) {
-			number++;
-			return true;
-		} else {
-			number = 0;
-			return false;
-		}
 	}
 }
