@@ -6,38 +6,27 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 import fr.pederobien.uhc.observer.IObsEdition;
 
-public abstract class AbstractEdition<T extends IUnmodifiableName> implements IEdition {
+public abstract class AbstractEdition<T extends IUnmodifiableName> extends AbstractMapEdition implements IEdition {
 	private IPersistence<T> persistence;
-	private String label, explanation;
 	private List<IObsEdition> observers;
 
 	public AbstractEdition(IPersistence<T> persistence, String label, String explanation) {
+		super(label, explanation);
 		this.persistence = persistence;
-		this.label = label;
-		this.explanation = explanation;
 
 		observers = new ArrayList<IObsEdition>();
 	}
-
-	@Override
-	public String getLabel() {
-		return label;
-	}
 	
 	@Override
-	public String getExplanation() {
-		return explanation;
-	}
-
-	@Override
-	public String help() {
-		return ChatColor.RED + label + ChatColor.RESET + " - " + ChatColor.BLUE + explanation;
+	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+		return null;
 	}
 
 	@Override
