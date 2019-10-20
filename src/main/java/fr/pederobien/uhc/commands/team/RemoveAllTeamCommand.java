@@ -19,5 +19,4 @@ public class RemoveAllTeamCommand extends AbstractCommand {
 		sendMessageToSender(sender, "All team has been removed");
 		return false;
 	}
-
 }
