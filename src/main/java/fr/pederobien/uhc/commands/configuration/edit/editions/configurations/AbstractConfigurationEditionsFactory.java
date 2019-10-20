@@ -15,6 +15,10 @@ public abstract class AbstractConfigurationEditionsFactory<T extends IConfigurat
 	public IMapEdition createScoreboardRefreshEdition() {
 		return new CommonScoreboardRefresh<T>(persistence);
 	}
+	
+	public IMapEdition createTeamEdition() {
+		return new CommonTeam<T>(persistence);
+	}
 
 	public abstract IMapEdition createAsCurrentEdition(IConfigurationContext context);
 

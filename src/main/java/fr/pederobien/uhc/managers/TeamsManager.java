@@ -18,11 +18,72 @@ public class TeamsManager {
 	public static List<Team> getTeams() {
 		return new ArrayList<Team>(Bukkit.getScoreboardManager().getMainScoreboard().getTeams());
 	}
+	
+	public static List<String> getTeamsName() {
+		List<String> teams = new ArrayList<String>();
+		for (Team team : getTeams())
+			teams.add(team.getName());
+		return teams;
+	}
+	
+	public static List<Team> getOtherTeam(Player player) {
+		List<Team> others = new ArrayList<Team>();
+		Team team = getTeam(player);
+		for (Team t : getTeams())
+			if (!t.equals(team))
+				others.add(t);
+		return others;
+			
+	}
+	
+	public static List<String> getOtherTeamNames(String playerName) {
+		List<String> others = new ArrayList<String>();
+		String teamName = getTeamName(playerName);
+		for (String t : getTeamsName())
+			if (!t.equals(teamName))
+				others.add(t);
+		return others;
+	}
+	
+	public static Team getTeam(Player player) {
+		for (Team team : getTeams())
+			if (getPlayers(team).contains(player))
+				return team;
+		return null;
+	}
+	
+	public static String getTeamName(Player player) {
+		for (Team team : getTeams())
+			if (getPlayers(team).contains(player))
+				return team.getName();
+		return null;
+	}
+	
+	public static String getTeamName(String playerName) {
+		for (Team team : getTeams())
+			if (getPlayersName(team).contains(playerName))
+				return team.getName();
+		return null;
+	}
 
 	public static List<Player> getPlayers(Team team) {
 		List<Player> players = new ArrayList<Player>();
 		for (String pl : team.getEntries())
 			players.add(Bukkit.getPlayer(pl));
+		return players;
+	}
+	
+	public static List<String> getPlayersName(Team team) {
+		List<String> players = new ArrayList<String>();
+		for (String pl : team.getEntries())
+			players.add(Bukkit.getPlayer(pl).getName());
+		return players;
+	}
+	
+	public static List<String> getPlayersName(String teamName) {
+		List<String> players = new ArrayList<String>();
+		for (String pl : getPlayersName(getTeam(teamName)))
+			players.add(Bukkit.getPlayer(pl).getName());
 		return players;
 	}
 
@@ -47,11 +108,26 @@ public class TeamsManager {
 		return players;
 	}
 	
+	public static List<String> getPlayersNameInTeam() {
+		List<String> players = new ArrayList<String>();
+		for (Team team : getTeams())
+			players.addAll(getPlayersName(team));
+		return players;
+	}
+	
 	public static List<Player> getPlayersNotInTeam() {
 		List<Player> players = PlayerManager.getPlayers();
 		for (Team team : getTeams())
 			for (Player player : getPlayers(team))
 				players.remove(player);
+		return players;
+	}
+	
+	public static List<String> getPlayersNameNotInTeam() {
+		List<String> players = PlayerManager.getPlayersName();
+		for (Team team : getTeams())
+			for (String name : getPlayersName(team))
+				players.remove(name);
 		return players;
 	}
 
@@ -83,13 +159,6 @@ public class TeamsManager {
 	public static Player getRandom(List<Player> players) {
 		Random rand = new Random();
 		return players.get(rand.nextInt(players.size()));
-	}
-
-	public static Team getTeam(Player player) {
-		for (Team team : getTeams())
-			if (getPlayers(team).contains(player))
-				return team;
-		return null;
 	}
 
 	public static List<Player> getTeamPlayersOnMode(Team team, GameMode mode) {

@@ -49,6 +49,11 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	public boolean addTeam(ETeam team) {
 		return teams.add(team);
 	}
+	
+	@Override
+	public void removeTeam(ETeam team) {
+		teams.remove(team);
+	}
 
 	@Override
 	public Long getScoreboardRefresh() {

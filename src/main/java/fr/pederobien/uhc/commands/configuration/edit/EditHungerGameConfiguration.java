@@ -23,6 +23,7 @@ public class EditHungerGameConfiguration extends AbstractMapEdition {
 				factory.createAsCurrentEdition(context),
 				factory.createSaveEdition(),
 				factory.createListEdition(),
-				factory.createHelpEdition(this));
+				factory.createHelpEdition(this),
+				factory.createTeamEdition());
 	}
 }

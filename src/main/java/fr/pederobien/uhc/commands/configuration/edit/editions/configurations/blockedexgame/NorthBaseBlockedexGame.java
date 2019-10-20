@@ -7,7 +7,7 @@ import fr.pederobien.uhc.interfaces.IUnmodifiableBase;
 public class NorthBaseBlockedexGame extends CommonBaseBlockedexGame {
 
 	protected NorthBaseBlockedexGame(IPersistence<IBlockedexConfiguration> persistence) {
-		super(persistence, "northbase", "To set the base at the north of the spawn");
+		super(persistence, "northbase", "to set the base at the north of the spawn");
 	}
 
 	@Override

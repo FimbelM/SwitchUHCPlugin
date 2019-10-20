@@ -24,6 +24,13 @@ public class PlayerManager {
 			players.add(player);
 		return players;
 	}
+	
+	public static List<String> getPlayersName() {
+		List<String> players = new ArrayList<String>();
+		for (Player player : Bukkit.getOnlinePlayers())
+			players.add(player.getName());
+		return players;
+	}
 
 	public static int getNumberOfPlayer() {
 		return getPlayers().size();

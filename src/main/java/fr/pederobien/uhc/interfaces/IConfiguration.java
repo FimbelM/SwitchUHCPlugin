@@ -9,6 +9,8 @@ public interface IConfiguration extends IUnmodifiableConfiguration {
 	void setName(String name);
 
 	boolean addTeam(ETeam team);
+	
+	void removeTeam(ETeam team);
 
 	void setScoreboardRefresh(Long refresh);
 

@@ -23,7 +23,7 @@ public abstract class AbstractMapEdition implements IMapEdition {
 		this.label = label;
 		this.explanation = explanation;
 		map = new HashMap<String, IMapEdition>();
-		help = ChatColor.RED + "label" + " - " + ChatColor.BLUE + explanation;
+		help = ChatColor.RED + getLabel() + " - " + ChatColor.BLUE + explanation;
 		editionsHelp = "";
 	}
 
@@ -39,14 +39,14 @@ public abstract class AbstractMapEdition implements IMapEdition {
 			return "Argument " + label + " is not a valid argument";
 		}
 	}
-	
+
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		try {
-			System.out.println("On bas completer");
 			IMapEdition edition = getEditions().get(args[0]);
-			if (edition != null)
+			if (edition != null) {
 				return edition.onTabComplete(sender, command, alias, Arrays.copyOfRange(args, 1, args.length));
+			}
 			return filter(new ArrayList<String>(getEditions().keySet()), args[0]);
 		} catch (IndexOutOfBoundsException e) {
 			return emptyList();

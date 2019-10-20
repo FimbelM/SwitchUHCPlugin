@@ -139,6 +139,11 @@ public class ConfigurationContext implements IConfigurationContext {
 	public boolean addTeam(ETeam team) {
 		return configuration.addTeam(team);
 	}
+	
+	@Override
+	public void removeTeam(ETeam team) {
+		configuration.removeTeam(team);
+	}
 
 	@Override
 	public Long getScoreboardRefresh() {

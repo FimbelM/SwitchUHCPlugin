@@ -24,6 +24,7 @@ public class EditBlockedexConfiguration extends AbstractMapEdition {
 				factory.createSouthBaseEdition(),
 				factory.createWestBaseEdition(),
 				factory.createEastBaseEdition(),
-				factory.createBaseDistanceEdition());
+				factory.createBaseDistanceEdition(),
+				factory.createTeamEdition());
 	}
 }
