@@ -14,9 +14,6 @@ commands:
   stopgame:
     description:
     permission: UHCPlugin.stopgame
-  teamrandom:
-    description:
-    permission: UHCPlugin.teamrandom
   teamcreate:
     description:
     permission: UHCPlugin.teamcreate

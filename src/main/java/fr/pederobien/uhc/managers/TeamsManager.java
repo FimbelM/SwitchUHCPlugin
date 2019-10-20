@@ -18,14 +18,14 @@ public class TeamsManager {
 	public static List<Team> getTeams() {
 		return new ArrayList<Team>(Bukkit.getScoreboardManager().getMainScoreboard().getTeams());
 	}
-	
+
 	public static List<String> getTeamsName() {
 		List<String> teams = new ArrayList<String>();
 		for (Team team : getTeams())
 			teams.add(team.getName());
 		return teams;
 	}
-	
+
 	public static List<Team> getOtherTeam(Player player) {
 		List<Team> others = new ArrayList<Team>();
 		Team team = getTeam(player);
@@ -33,9 +33,9 @@ public class TeamsManager {
 			if (!t.equals(team))
 				others.add(t);
 		return others;
-			
+
 	}
-	
+
 	public static List<String> getOtherTeamNames(String playerName) {
 		List<String> others = new ArrayList<String>();
 		String teamName = getTeamName(playerName);
@@ -44,21 +44,21 @@ public class TeamsManager {
 				others.add(t);
 		return others;
 	}
-	
+
 	public static Team getTeam(Player player) {
 		for (Team team : getTeams())
 			if (getPlayers(team).contains(player))
 				return team;
 		return null;
 	}
-	
+
 	public static String getTeamName(Player player) {
 		for (Team team : getTeams())
 			if (getPlayers(team).contains(player))
 				return team.getName();
 		return null;
 	}
-	
+
 	public static String getTeamName(String playerName) {
 		for (Team team : getTeams())
 			if (getPlayersName(team).contains(playerName))
@@ -72,14 +72,14 @@ public class TeamsManager {
 			players.add(Bukkit.getPlayer(pl));
 		return players;
 	}
-	
+
 	public static List<String> getPlayersName(Team team) {
 		List<String> players = new ArrayList<String>();
 		for (String pl : team.getEntries())
 			players.add(Bukkit.getPlayer(pl).getName());
 		return players;
 	}
-	
+
 	public static List<String> getPlayersName(String teamName) {
 		List<String> players = new ArrayList<String>();
 		for (String pl : getPlayersName(getTeam(teamName)))
@@ -100,21 +100,21 @@ public class TeamsManager {
 				return team;
 		return null;
 	}
-	
+
 	public static List<Player> getPlayersInTeam() {
 		List<Player> players = new ArrayList<Player>();
 		for (Team team : getTeams())
 			players.addAll(getPlayers(team));
 		return players;
 	}
-	
+
 	public static List<String> getPlayersNameInTeam() {
 		List<String> players = new ArrayList<String>();
 		for (Team team : getTeams())
 			players.addAll(getPlayersName(team));
 		return players;
 	}
-	
+
 	public static List<Player> getPlayersNotInTeam() {
 		List<Player> players = PlayerManager.getPlayers();
 		for (Team team : getTeams())
@@ -122,7 +122,7 @@ public class TeamsManager {
 				players.remove(player);
 		return players;
 	}
-	
+
 	public static List<String> getPlayersNameNotInTeam() {
 		List<String> players = PlayerManager.getPlayersName();
 		for (Team team : getTeams())
@@ -174,7 +174,7 @@ public class TeamsManager {
 	public static int getNumberTeamPlayersOnMode(Team team, GameMode mode) {
 		return getTeamPlayersOnMode(team, mode).size();
 	}
-	
+
 	public static void createTeam(String name) {
 		BukkitManager.dispatchCommand("team add " + name);
 	}
@@ -222,10 +222,9 @@ public class TeamsManager {
 			teleporteRandomlyTeam(team, bound);
 	}
 
-	public static void dispatchPlayerRandomlyInTeam() {
+	public static void dispatchPlayerRandomlyInTeam(List<ETeam> teams) {
 		Random rand = new Random();
 		List<Player> players = PlayerManager.getPlayers();
-		List<Team> teams = TeamsManager.getTeams();
 
 		int quotient = players.size() / teams.size();
 		int reste = players.size() % teams.size();
@@ -240,12 +239,13 @@ public class TeamsManager {
 			}
 			for (int j = 0; j < maxPlayer; j++) {
 				Player randomPlayer = players.get(rand.nextInt(players.size()));
-				TeamsManager.joinTeam(teams.get(i).getName(), randomPlayer.getName());
+				TeamsManager.joinTeam(teams.get(i).getNameWithoutColor(), randomPlayer.getName());
+				teams.get(i).addPlayer(randomPlayer.getName());
 				players.remove(randomPlayer);
 			}
 		}
 	}
-	
+
 	public static ETeam getETeam(ChatColor color) {
 		return ETeam.getByColor(color);
 	}

@@ -18,7 +18,7 @@ public class ListTeam<T extends IConfiguration> extends AbstractTeamEditions<T> 
 		for (String t : teamNames)
 			teams += t + "\r\n";
 		if (teamNames.isEmpty())
-			return "No existing game for " + get().getName() + " style";
+			return "No existing team for " + get().getName() + " style";
 		else if (teamNames.size() == 1)
 			return "Existing team : " + teams;
 		return "Existing teams : " + teams;
