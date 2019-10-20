@@ -61,6 +61,54 @@ public class LaunchSpawn extends AbstractBawnEdition<ISpawn> {
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-		return Arrays.asList("<nothing>", "<name>", "<X> <Y> <Z>", "<name> <X> <Y> <Z>");
+		List<String> list = getPersistence().list();
+		switch (args.length) {
+		case 1:
+			list.add("[<X> <Y> <Z>]");
+			if (filter(list, args[0]).isEmpty() && isInteger(args[0]))
+				return Arrays.asList("[<X> <Y> <Z>]");
+			return filter(list, args[0]);
+		}
+
+		if (list.contains(args[0]))
+			return onNameIsWritten(args);
+
+		return onNameIsNotWritten(args);
+	}
+
+	private boolean isInteger(String arg) {
+		if (arg.isEmpty())
+			return true;
+		try {
+			Integer.parseInt(arg);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+
+	private List<String> onNameIsWritten(String[] args) {
+		switch (args.length) {
+		case 2:
+			return isInteger(args[1]) ? Arrays.asList("[<X> <Y> <Z>]") : emptyList();
+		
+		case 3:
+			return isInteger(args[1]) && isInteger(args[2]) ? Arrays.asList("<Y> <Z>") : emptyList();
+
+		case 4:
+			return isInteger(args[1]) && isInteger(args[2]) && isInteger(args[3]) ? Arrays.asList("<Z>") : emptyList();
+		}
+		return emptyList();
+	}
+
+	private List<String> onNameIsNotWritten(String[] args) {
+		switch (args.length) {
+		case 2:
+			return isInteger(args[0]) && isInteger(args[1]) ? Arrays.asList("<Y> <Z>") : emptyList();
+
+		case 3:
+			return isInteger(args[0]) && isInteger(args[1]) && isInteger(args[2]) ? Arrays.asList("<Z>") : emptyList();
+		}
+		return emptyList();
 	}
 }
