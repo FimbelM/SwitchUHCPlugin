@@ -1,6 +1,10 @@
 package fr.pederobien.uhc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.command.CommandSender;
 
@@ -28,5 +32,9 @@ public class BukkitManager {
 	
 	public static CommandSender getDefaultCommandSender() {
 		return Bukkit.getConsoleSender();
+	}
+	
+	public static List<OfflinePlayer> getOperators() {
+		return new ArrayList<OfflinePlayer>(Bukkit.getServer().getOperators());
 	}
 }

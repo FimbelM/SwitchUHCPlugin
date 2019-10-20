@@ -142,8 +142,12 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 	}
 
 	private void movePlayer(Player player) {
-		PlayerManager.setGameModeOfPlayer(player, GameMode.ADVENTURE);
-		PlayerManager.giveEffects(player, effects);
+		if (BukkitManager.getOperators().contains(player))
+			PlayerManager.setGameModeOfPlayer(player, GameMode.CREATIVE);
+		else {
+			PlayerManager.setGameModeOfPlayer(player, GameMode.ADVENTURE);
+			PlayerManager.giveEffects(player, effects);
+		}
 	}
 
 	private void initialEffects() {
