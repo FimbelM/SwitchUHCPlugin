@@ -9,15 +9,13 @@ import org.w3c.dom.Node;
 
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.interfaces.ISpawn;
-import fr.pederobien.uhc.persistence.loader.AbstractPersistenceLoader;
 import fr.pederobien.uhc.persistence.loader.IPersistenceLoader;
 import fr.pederobien.uhc.world.blocks.SerialisableBlock;
-import fr.pederobien.uhc.world.blocks.Spawn;
 
-public class SpawnLoaderV10 extends AbstractPersistenceLoader<ISpawn> {
+public class SpawnLoaderV10 extends AbstractSpawnLoader {
 
 	public SpawnLoaderV10() {
-		super("1.0", new Spawn("DefaultSpawn"));
+		super("1.0");
 	}
 
 	@Override
