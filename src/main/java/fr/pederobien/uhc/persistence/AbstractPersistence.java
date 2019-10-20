@@ -1,9 +1,13 @@
 package fr.pederobien.uhc.persistence;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -16,20 +20,25 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
+import fr.pederobien.uhc.persistence.loader.IPersistenceLoader;
 
 public abstract class AbstractPersistence<T extends IUnmodifiableName> implements IPersistence<T> {
 	protected static final String ROOT = "Plugins/UHCPlugin/Ressources/";
 	private static final String END = ".xml";
 	private DocumentBuilder builder;
 	private T elt;
+	private HashMap<String, IPersistenceLoader<T>> map;
 	protected boolean saved, loaded;
 
 	public AbstractPersistence(T elt) {
 		this.elt = elt;
+		map = new HashMap<String, IPersistenceLoader<T>>();
 		try {
 			DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
 			f.setIgnoringElementContentWhitespace(true);
@@ -41,6 +50,34 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 	}
 
 	protected abstract String getPath();
+
+	protected abstract String onLoadNotFound(String name);
+
+	@Override
+	public IPersistence<T> load(String name) throws FileNotFoundException {
+		try {
+			Document doc = getDocument(getPath() + name + ".xml");
+			Element root = doc.getDocumentElement();
+
+			Node version = root.getElementsByTagName("version").item(0);
+
+			set(getLoaders().get(version.getChildNodes().item(0).getNodeValue()).load(root).get());
+		} catch (IOException e) {
+			throw new FileNotFoundException(onLoadNotFound(name));
+		}
+		return this;
+	}
+
+	@Override
+	public IPersistence<T> registerLoader(IPersistenceLoader<T> loader) {
+		map.put(loader.getVersion(), loader);
+		return this;
+	}
+
+	@Override
+	public Map<String, IPersistenceLoader<T>> getLoaders() {
+		return Collections.unmodifiableMap(map);
+	}
 
 	@Override
 	public boolean exist(String name) {

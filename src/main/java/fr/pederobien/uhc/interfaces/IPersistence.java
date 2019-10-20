@@ -2,10 +2,17 @@ package fr.pederobien.uhc.interfaces;
 
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Map;
+
+import fr.pederobien.uhc.persistence.loader.IPersistenceLoader;
 
 public interface IPersistence<T extends IUnmodifiableName> {
 
 	IPersistence<T> load(String name) throws FileNotFoundException;
+	
+	IPersistence<T> registerLoader(IPersistenceLoader<T> loader);
+	
+	Map<String, IPersistenceLoader<T>> getLoaders();
 
 	void save();
 
