@@ -6,6 +6,7 @@ import org.bukkit.block.Block;
 
 import fr.pederobien.uhc.game.hungergame.HungerGame;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
+import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.WorldManager;
 
 public class HungerGameConfiguration extends AbstractConfiguration implements IHungerGameConfiguration {
@@ -21,6 +22,9 @@ public class HungerGameConfiguration extends AbstractConfiguration implements IH
 	public HungerGameConfiguration(String name) {
 		super(name);
 		setGame(new HungerGame(this));
+		
+		addTeam(ETeam.DARK_AQUA.setName("chevalier"));
+		addTeam(ETeam.DARK_RED.setName("barbare"));
 	}
 
 	@Override

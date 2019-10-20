@@ -11,9 +11,10 @@ import org.w3c.dom.Node;
 import fr.pederobien.uhc.configurations.HungerGameConfiguration;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
 import fr.pederobien.uhc.interfaces.IPersistence;
+import fr.pederobien.uhc.managers.ETeam;
 
 public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameConfiguration> {
-	private static final double CURRENT_VERSION = 1.0;
+	private static final double CURRENT_VERSION = 1.1;
 
 	public HungerGamePersistence() {
 		super(HungerGameConfiguration.DEFAULT);
@@ -41,6 +42,8 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 			case "1.0":
 				load10(root);
 				break;
+			case "1.1":
+				load11(root);
 			default:
 				break;
 			}
@@ -54,7 +57,7 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 	public void save() {
 		Document doc = newDocument();
 		doc.setXmlStandalone(true);
-		Element root = doc.createElement("configuration");
+		Element root = doc.createElement("hungergame");
 		doc.appendChild(root);
 
 		Element version = doc.createElement("version");
@@ -83,6 +86,15 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 		time.setAttribute("fraction", get().getFractionTime().toString());
 		time.setAttribute("scoreboardrefresh", "" + get().getScoreboardRefresh());
 		root.appendChild(time);
+		
+		Element teams = doc.createElement("teams");
+		for (ETeam t : get().getTeams()) {
+			Element team = doc.createElement("team");
+			team.setAttribute("name", t.getNameWithoutColor());
+			team.setAttribute("color", t.getColorName());
+			teams.appendChild(team);
+		}
+		root.appendChild(teams);
 
 		saveDocument(doc);
 	}
@@ -124,6 +136,56 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 				break;
 			}
 		}
+	}
+	
+	private void load11(Node root) {
+		for (int i = 0; i < root.getChildNodes().getLength(); i++) {
+			if (root.getChildNodes().item(i).getNodeType() != Node.ELEMENT_NODE)
+				continue;
+			Element elt = (Element) root.getChildNodes().item(i);
+
+			switch (elt.getNodeName()) {
+			case "name":
+				set(new HungerGameConfiguration(elt.getChildNodes().item(0).getNodeValue()));
+				break;
+			case "border":
+				for (int j = 0; j < elt.getChildNodes().getLength(); j++) {
+					if (elt.getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
+						continue;
+					Element child = (Element) elt.getChildNodes().item(j);
+					switch (child.getNodeName()) {
+					case "center":
+						get().setBorderCenter(child.getAttribute("x"), child.getAttribute("z"));
+						break;
+					case "diameter":
+						get().setInitialBorderDiameter(Double.parseDouble(child.getAttribute("initial")));
+						get().setFinalBorderDiameter(Double.parseDouble(child.getAttribute("final")));
+						break;
+					default:
+						break;
+					}
+				}
+				break;
+			case "time":
+				get().setGameTime(LocalTime.parse(elt.getAttribute("game")));
+				get().setFractionTime(LocalTime.parse(elt.getAttribute("fraction")));
+				get().setScoreboardRefresh(Long.parseLong(elt.getAttribute("scoreboardrefresh")));
+				break;
+			case "teams":
+				for (int j = 0; j < elt.getChildNodes().getLength(); j++) {
+					if (elt.getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
+						continue;
+					Element t = (Element) elt.getChildNodes().item(j);
+					ETeam team = ETeam.getByColorName(t.getAttribute("color"));
+					team.setName(t.getAttribute("name"));
+					get().addTeam(team);
+				}
+				break;
+			default:
+				break;
+			}
+		}
+		get().createAssociatedTeams();
 	}
 
 	protected void show() {

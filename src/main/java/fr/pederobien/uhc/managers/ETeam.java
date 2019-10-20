@@ -74,18 +74,21 @@ public enum ETeam {
 		return colorName;
 	}
 
-	public void setName(String name) {
+	public ETeam setName(String name) {
 		this.name = name;
+		return this;
 	}
 
-	public void addPlayer(String... players) {
+	public ETeam addPlayer(String... players) {
 		for (String player : players)
 			this.players.add(player);
+		return this;
 	}
 
-	public void removePlayer(String... players) {
+	public ETeam removePlayer(String... players) {
 		for (String player : players)
 			this.players.remove(player);
+		return this;
 	}
 
 	public List<String> getPlayers() {
