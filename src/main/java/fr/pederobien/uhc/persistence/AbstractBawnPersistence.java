@@ -2,18 +2,17 @@ package fr.pederobien.uhc.persistence;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
 import fr.pederobien.uhc.interfaces.IBawn;
 
 public abstract class AbstractBawnPersistence<T extends IBawn> extends AbstractPersistence<T> {
-	
+
 	public AbstractBawnPersistence(T elt) {
 		super(elt);
 	}
-	
+
 	protected abstract String getDefault();
 
 	@Override
@@ -34,11 +33,6 @@ public abstract class AbstractBawnPersistence<T extends IBawn> extends AbstractP
 
 				}
 			}
-		}
-		try {
-			load(get().getName());
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		}
 	}
 }
