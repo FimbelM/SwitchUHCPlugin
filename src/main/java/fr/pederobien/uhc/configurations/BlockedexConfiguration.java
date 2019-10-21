@@ -3,12 +3,12 @@ package fr.pederobien.uhc.configurations;
 import org.bukkit.ChatColor;
 
 import fr.pederobien.uhc.game.blockedexgame.BlockedexGame;
-import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IUnmodifiableBase;
 import fr.pederobien.uhc.managers.BaseManager;
 import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.TeamsManager;
+import fr.pederobien.uhc.world.blocks.Base;
 
 public class BlockedexConfiguration extends AbstractConfiguration implements IBlockedexConfiguration {
 	private static final Integer DEFAULT_RADIUS_AREA_ON_PLAYER_DIE = 5;
@@ -16,7 +16,7 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	private static final Double DEFAULT_STEP_ON_MAX_HEALTH = 1.0;
 	private static final Integer DEFAULT_DIAMETER_AREA_ON_PLAYER_RESPAWN = 1000;
 	private static final Integer DEFAULT_BASE_FROM_SPAWN_DISTANCE = 1000;
-	private static final IUnmodifiableBase DEFAULT_BASE = BaseManager.getBaseByName(IBase.DEFAULT.getName());
+	private static final IUnmodifiableBase DEFAULT_BASE = BaseManager.getBaseByName(Base.DEFAULT.getName());
 	public static final BlockedexConfiguration DEFAULT = new BlockedexConfiguration("DefaultConfiguration");
 
 	private Integer radiusAreaOnPlayerDie;

@@ -15,6 +15,7 @@ import fr.pederobien.uhc.managers.TeamsManager;
 
 public class Base extends AbstractBawn implements IBase {
 	public static final Base DEFAULT = new Base("DefaultBase");
+
 	private HashMap<ISerializableBlock, ChatColor> chests;
 
 	public Base(String name) {
@@ -39,7 +40,7 @@ public class Base extends AbstractBawn implements IBase {
 	public int getChestsNumber() {
 		return chests.size();
 	}
-	
+
 	@Override
 	public void extract() {
 		chests.clear();
