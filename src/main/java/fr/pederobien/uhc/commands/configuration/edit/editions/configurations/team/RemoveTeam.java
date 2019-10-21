@@ -12,6 +12,7 @@ import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.TeamsManager;
 
 public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
+	private static final String ALL = "all";
 
 	public RemoveTeam(IPersistence<T> persistence) {
 		super(persistence, "removeteam", "to remove a team from a style");
@@ -19,6 +20,12 @@ public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 
 	@Override
 	public String edit(String[] args) {
+		if (args[0].equals(ALL)) {
+			List<ETeam> teams = get().getTeams();
+			for (ETeam team : teams)
+				get().removeTeam(team);
+			return "All teams have been removed";
+		}
 		List<ETeam> teams = new ArrayList<ETeam>();
 		String teamNames = "";
 		for (int i = 0; i < args.length; i++) {
@@ -43,6 +50,15 @@ public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-		return filter(getTeams(args), args[0]);
+		List<String> teams = getTeams(args);
+		switch (args.length) {
+		case 1:
+			teams.add(ALL);
+		case 2:
+			teams = args[0].equals(ALL) ? emptyList() : teams;
+		default:
+			break;
+		}
+		return filter(teams, args[args.length - 1]);
 	}
 }
