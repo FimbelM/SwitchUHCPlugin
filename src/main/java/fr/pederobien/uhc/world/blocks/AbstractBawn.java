@@ -51,6 +51,7 @@ public abstract class AbstractBawn implements IBawn {
 
 	@Override
 	public void launch() {
+		before.clear();
 		for (ISerializableBlock block : config) {
 			before.add(new SerialisableBlock(block, getBlockFromCenter(block).getBlockData()));
 			updateBlock(block);
