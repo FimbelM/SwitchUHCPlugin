@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.persistence.loader.base;
+package fr.pederobien.uhc.persistence.loaders.bawn.base;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +10,7 @@ import org.w3c.dom.Node;
 
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
-import fr.pederobien.uhc.persistence.loader.IPersistenceLoader;
+import fr.pederobien.uhc.persistence.loaders.IPersistenceLoader;
 import fr.pederobien.uhc.world.blocks.SerialisableBlock;
 
 public class BaseLoaderV10 extends AbstractBaseLoader {

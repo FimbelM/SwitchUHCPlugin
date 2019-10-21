@@ -1,8 +1,8 @@
-package fr.pederobien.uhc.persistence.loader.spawn;
+package fr.pederobien.uhc.persistence.loaders.bawn.spawn;
 
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.interfaces.ISpawn;
-import fr.pederobien.uhc.persistence.loader.AbstractPersistenceLoader;
+import fr.pederobien.uhc.persistence.loaders.AbstractPersistenceLoader;
 import fr.pederobien.uhc.world.blocks.Spawn;
 
 public abstract class AbstractSpawnLoader extends AbstractPersistenceLoader<ISpawn> {

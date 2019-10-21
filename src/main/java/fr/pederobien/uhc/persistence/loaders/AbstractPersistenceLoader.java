@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.persistence.loader;
+package fr.pederobien.uhc.persistence.loaders;
 
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 

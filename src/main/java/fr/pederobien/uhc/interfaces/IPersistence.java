@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
 
-import fr.pederobien.uhc.persistence.loader.IPersistenceLoader;
+import fr.pederobien.uhc.persistence.loaders.IPersistenceLoader;
 
 public interface IPersistence<T extends IUnmodifiableName> {
 

@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.persistence.loader.hungergame;
+package fr.pederobien.uhc.persistence.loaders.configurations.hungergame;
 
 import java.time.LocalTime;
 
@@ -6,12 +6,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
-import fr.pederobien.uhc.persistence.loader.IPersistenceLoader;
+import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.persistence.loaders.IPersistenceLoader;
 
-public class HungerGameLoaderV10 extends AbstractHungerGameLoader {
+public class HungerGameLoaderV11 extends AbstractHungerGameLoader {
 
-	public HungerGameLoaderV10() {
-		super("1.0");
+	public HungerGameLoaderV11() {
+		super("1.1");
 	}
 
 	@Override
@@ -48,10 +49,21 @@ public class HungerGameLoaderV10 extends AbstractHungerGameLoader {
 				get().setFractionTime(LocalTime.parse(elt.getAttribute("fraction")));
 				get().setScoreboardRefresh(Long.parseLong(elt.getAttribute("scoreboardrefresh")));
 				break;
+			case "teams":
+				for (int j = 0; j < elt.getChildNodes().getLength(); j++) {
+					if (elt.getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
+						continue;
+					Element t = (Element) elt.getChildNodes().item(j);
+					ETeam team = ETeam.getByColorName(t.getAttribute("color"));
+					team.setName(t.getAttribute("name"));
+					get().addTeam(team);
+				}
+				break;
 			default:
 				break;
 			}
 		}
+		get().createAssociatedTeams();
 		return this;
 	}
 }

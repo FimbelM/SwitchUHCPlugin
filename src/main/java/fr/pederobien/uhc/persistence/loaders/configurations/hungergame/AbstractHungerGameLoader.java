@@ -1,8 +1,8 @@
-package fr.pederobien.uhc.persistence.loader.hungergame;
+package fr.pederobien.uhc.persistence.loaders.configurations.hungergame;
 
 import fr.pederobien.uhc.configurations.HungerGameConfiguration;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
-import fr.pederobien.uhc.persistence.loader.AbstractPersistenceLoader;
+import fr.pederobien.uhc.persistence.loaders.AbstractPersistenceLoader;
 
 public abstract class AbstractHungerGameLoader extends AbstractPersistenceLoader<IHungerGameConfiguration> {
 

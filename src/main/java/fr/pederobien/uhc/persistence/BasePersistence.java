@@ -5,7 +5,7 @@ import org.w3c.dom.Element;
 
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
-import fr.pederobien.uhc.persistence.loader.bawn.base.BaseLoaderV10;
+import fr.pederobien.uhc.persistence.loaders.bawn.base.BaseLoaderV10;
 
 public class BasePersistence extends AbstractBawnPersistence<IBase> {
 	private static final double CURRENT_VERSION = 1.0;

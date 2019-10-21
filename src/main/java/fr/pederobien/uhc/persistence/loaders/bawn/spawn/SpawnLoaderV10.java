@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.persistence.loader.spawn;
+package fr.pederobien.uhc.persistence.loaders.bawn.spawn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.w3c.dom.Node;
 
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.interfaces.ISpawn;
-import fr.pederobien.uhc.persistence.loader.IPersistenceLoader;
+import fr.pederobien.uhc.persistence.loaders.IPersistenceLoader;
 import fr.pederobien.uhc.world.blocks.SerialisableBlock;
 
 public class SpawnLoaderV10 extends AbstractSpawnLoader {

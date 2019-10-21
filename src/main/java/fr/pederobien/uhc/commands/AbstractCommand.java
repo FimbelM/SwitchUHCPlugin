@@ -35,7 +35,7 @@ public abstract class AbstractCommand implements CommandExecutor {
 	}
 
 	public void sendMessageToSender(CommandSender sender, String message) {
-		if (sender instanceof Player)
+		if (sender instanceof Player && message != null)
 			((Player) sender).sendMessage(message);
 	}
 

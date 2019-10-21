@@ -6,8 +6,8 @@ import org.w3c.dom.Element;
 import fr.pederobien.uhc.configurations.HungerGameConfiguration;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
 import fr.pederobien.uhc.managers.ETeam;
-import fr.pederobien.uhc.persistence.loader.hungergame.HungerGameLoaderV10;
-import fr.pederobien.uhc.persistence.loader.hungergame.HungerGameLoaderV11;
+import fr.pederobien.uhc.persistence.loaders.configurations.hungergame.HungerGameLoaderV10;
+import fr.pederobien.uhc.persistence.loaders.configurations.hungergame.HungerGameLoaderV11;
 
 public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameConfiguration> {
 	private static final double CURRENT_VERSION = 1.1;

@@ -26,10 +26,10 @@ import org.xml.sax.SAXException;
 
 import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
-import fr.pederobien.uhc.persistence.loader.IPersistenceLoader;
+import fr.pederobien.uhc.persistence.loaders.IPersistenceLoader;
 
 public abstract class AbstractPersistence<T extends IUnmodifiableName> implements IPersistence<T> {
-	protected static final String ROOT = "Plugins/UHCPlugin/Ressources/";
+	protected static final String ROOT = "plugins/UHCPlugin/Ressources/";
 	private static final String END = ".xml";
 	private DocumentBuilder builder;
 	private T elt;
@@ -46,7 +46,6 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		}
-		checkAndWriteDefault();
 	}
 
 	protected abstract String getPath();
@@ -121,13 +120,22 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 	protected void setSaved(boolean saved) {
 		this.saved = saved;
 	}
-
-	protected void checkAndWriteDefault() {
+	
+	protected void checkParentFolderExistence() {
 		File file = new File(getPath());
-		if (!file.exists()) {
+		if (!file.exists())
 			file.mkdirs();
-			save();
-		}
+	}
+	
+	protected boolean checkSaveExistence() {
+		File file = new File(getAbsolutePath());
+		if (!file.exists())
+			try {
+				return file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		return false;
 	}
 
 	protected String getAbsolutePath() {

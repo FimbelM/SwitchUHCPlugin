@@ -1,9 +1,9 @@
-package fr.pederobien.uhc.persistence.loader.blockedexgame;
+package fr.pederobien.uhc.persistence.loaders.configurations.blockedexgame;
 
 import fr.pederobien.uhc.configurations.BlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.managers.ETeam;
-import fr.pederobien.uhc.persistence.loader.AbstractPersistenceLoader;
+import fr.pederobien.uhc.persistence.loaders.AbstractPersistenceLoader;
 
 public abstract class AbstractBlockedexgameLoader extends AbstractPersistenceLoader<IBlockedexConfiguration> {
 

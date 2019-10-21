@@ -5,7 +5,7 @@ import org.w3c.dom.Element;
 
 import fr.pederobien.uhc.configurations.BlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
-import fr.pederobien.uhc.persistence.loader.blockedexgame.BlockedexGameLoaderV10;
+import fr.pederobien.uhc.persistence.loaders.configurations.blockedexgame.BlockedexGameLoaderV10;
 
 public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConfiguration> {
 	private static final double CURRENT_VERSION = 1.0;

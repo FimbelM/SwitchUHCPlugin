@@ -5,9 +5,9 @@ import org.w3c.dom.Element;
 
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.interfaces.ISpawn;
-import fr.pederobien.uhc.persistence.loader.spawn.SpawnLoaderV10;
-import fr.pederobien.uhc.persistence.loader.spawn.SpawnLoaderV11;
-import fr.pederobien.uhc.persistence.loader.spawn.SpawnLoaderV12;
+import fr.pederobien.uhc.persistence.loaders.bawn.spawn.SpawnLoaderV10;
+import fr.pederobien.uhc.persistence.loaders.bawn.spawn.SpawnLoaderV11;
+import fr.pederobien.uhc.persistence.loaders.bawn.spawn.SpawnLoaderV12;
 
 public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 
