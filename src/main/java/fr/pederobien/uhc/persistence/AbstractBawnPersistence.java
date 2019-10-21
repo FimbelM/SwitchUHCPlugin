@@ -9,10 +9,11 @@ import fr.pederobien.uhc.interfaces.IBawn;
 import fr.pederobien.uhc.persistence.loaders.bawn.IDefaultContent;
 
 public abstract class AbstractBawnPersistence<T extends IBawn> extends AbstractPersistence<T> {
+	private String defaultName;
 	private IDefaultContent defaultContent;
 
-	public AbstractBawnPersistence(T elt, IDefaultContent defaultContent) {
-		super(elt);
+	protected AbstractBawnPersistence(String defaultName, IDefaultContent defaultContent) {
+		this.defaultName = defaultName;
 		this.defaultContent = defaultContent;
 		checkAndWriteDefault();
 	}
@@ -23,10 +24,10 @@ public abstract class AbstractBawnPersistence<T extends IBawn> extends AbstractP
 			BufferedWriter writer = null;
 			try {
 				file.mkdir();
-				file = new File(getAbsolutePath());
+				file = new File(getAbsolutePath(defaultName));
 				if (!file.exists())
 					file.createNewFile();
-				writer = new BufferedWriter(new FileWriter(new File(getAbsolutePath())));
+				writer = new BufferedWriter(new FileWriter(file));
 				writer.write(defaultContent.getDefaultXmlContent());
 			} catch (IOException e) {
 				e.printStackTrace();

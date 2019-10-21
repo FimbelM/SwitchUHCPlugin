@@ -7,13 +7,12 @@ import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.persistence.loaders.bawn.base.BaseDefaultContent;
 import fr.pederobien.uhc.persistence.loaders.bawn.base.BaseLoaderV10;
-import fr.pederobien.uhc.world.blocks.Base;
 
 public class BasePersistence extends AbstractBawnPersistence<IBase> {
 	private static final double CURRENT_VERSION = 1.0;
 
 	public BasePersistence() {
-		super(Base.DEFAULT, new BaseDefaultContent());
+		super("DefaultBase", new BaseDefaultContent());
 
 		registerLoader(new BaseLoaderV10());
 	}

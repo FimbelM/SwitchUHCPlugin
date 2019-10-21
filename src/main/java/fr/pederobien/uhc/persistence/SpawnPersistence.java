@@ -9,12 +9,11 @@ import fr.pederobien.uhc.persistence.loaders.bawn.spawn.SpawnDefaultContent;
 import fr.pederobien.uhc.persistence.loaders.bawn.spawn.SpawnLoaderV10;
 import fr.pederobien.uhc.persistence.loaders.bawn.spawn.SpawnLoaderV11;
 import fr.pederobien.uhc.persistence.loaders.bawn.spawn.SpawnLoaderV12;
-import fr.pederobien.uhc.world.blocks.Spawn;
 
 public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 
 	public SpawnPersistence() {
-		super(Spawn.DEFAULT, new SpawnDefaultContent());
+		super("DefaultSpawn", new SpawnDefaultContent());
 
 		registerLoader(new SpawnLoaderV10()).registerLoader(new SpawnLoaderV11()).registerLoader(new SpawnLoaderV12());
 	}
@@ -33,6 +32,8 @@ public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 
 	@Override
 	public void save() {
+		if (get() == null)
+			return;
 		Document doc = newDocument();
 		doc.setXmlStandalone(true);
 		Element root = doc.createElement("spawn");
