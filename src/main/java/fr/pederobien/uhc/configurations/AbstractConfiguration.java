@@ -81,6 +81,14 @@ public abstract class AbstractConfiguration implements IConfiguration {
 			TeamsManager.createTeam(team);
 	}
 	
+	@Override
+	public List<String> getPlayersRegistered() {
+		List<String> players = new ArrayList<String>();
+		for (ETeam team : getTeams())
+			players.addAll(team.getPlayers());
+		return players;
+	}
+	
 	protected void setGame(IGame game) {
 		this.game = game;
 	}

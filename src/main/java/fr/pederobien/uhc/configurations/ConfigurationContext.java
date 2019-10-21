@@ -164,6 +164,11 @@ public class ConfigurationContext implements IConfigurationContext {
 	public void setGameTime(LocalTime gameTime) {
 		configuration.setGameTime(gameTime);
 	}
+	
+	@Override
+	public List<String> getPlayersRegistered() {
+		return configuration.getPlayersRegistered();
+	}
 
 	@Override
 	public void createAssociatedTeams() {

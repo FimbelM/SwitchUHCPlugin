@@ -15,4 +15,6 @@ public interface IUnmodifiableConfiguration extends IName {
 	Long getScoreboardRefresh();
 	
 	LocalTime getGameTime();
+	
+	List<String> getPlayersRegistered();
 }
