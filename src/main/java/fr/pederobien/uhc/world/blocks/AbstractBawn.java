@@ -7,7 +7,9 @@ import java.util.List;
 import org.bukkit.block.Block;
 
 import fr.pederobien.uhc.interfaces.IBawn;
+import fr.pederobien.uhc.interfaces.IDimension;
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
+import fr.pederobien.uhc.interfaces.IUnmodifiableDimension;
 import fr.pederobien.uhc.managers.WorldManager;
 
 public abstract class AbstractBawn implements IBawn {
@@ -16,11 +18,13 @@ public abstract class AbstractBawn implements IBawn {
 	private List<ISerializableBlock> config, before;
 	private int width, height, depth;
 	private String name;
+	private IDimension dimension;
 
 	public AbstractBawn(String name) {
 		this.name = name;
 		config = new ArrayList<ISerializableBlock>();
 		before = new ArrayList<ISerializableBlock>();
+		dimension = new Dimension();
 	}
 
 	protected abstract void onExtraction(ISerializableBlock extractedBlock);
@@ -79,20 +83,25 @@ public abstract class AbstractBawn implements IBawn {
 	public Block getCenter() {
 		return center == null ? DEFAULT_CENTER : center;
 	}
+	
+	@Override
+	public IUnmodifiableDimension getDimension() {
+		return dimension;
+	}
 
 	@Override
 	public int getWidth() {
-		return width;
+		return dimension.getWidth();
 	}
 
 	@Override
 	public int getHeight() {
-		return height;
+		return dimension.getHeight();
 	}
 
 	@Override
 	public int getDepth() {
-		return depth;
+		return dimension.getDepth();
 	}
 
 	@Override
@@ -106,22 +115,15 @@ public abstract class AbstractBawn implements IBawn {
 	public void setCenter(Block center) {
 		this.center = center;
 	}
+	
+	@Override
+	public void setDimension(IDimension dimension) {
+		this.dimension = dimension;
+	}
 
 	@Override
 	public void setCenter(String x, String y, String z) {
 		center = WorldManager.getBlockAt(Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(z));
-	}
-
-	@Override
-	public void setDimensions(String width, String height, String depth) {
-		setDimensions(Integer.parseInt(width), Integer.parseInt(height), Integer.parseInt(depth));
-	}
-
-	@Override
-	public void setDimensions(int width, int height, int depth) {
-		this.width = width;
-		this.height = height;
-		this.depth = depth;
 	}
 
 	protected Block getBlockFromCenter(int x, int y, int z) {

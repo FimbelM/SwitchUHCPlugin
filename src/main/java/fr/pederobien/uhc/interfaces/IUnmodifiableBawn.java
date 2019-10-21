@@ -16,6 +16,8 @@ public interface IUnmodifiableBawn extends IUnmodifiableName {
 
 	Block getCenter();
 
+	IUnmodifiableDimension getDimension();
+
 	int getWidth();
 
 	int getHeight();

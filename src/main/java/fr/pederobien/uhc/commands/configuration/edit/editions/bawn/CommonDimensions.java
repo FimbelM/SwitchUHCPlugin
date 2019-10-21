@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.interfaces.IBawn;
 import fr.pederobien.uhc.interfaces.IPersistence;
+import fr.pederobien.uhc.world.blocks.Dimension;
 
 public class CommonDimensions<T extends IBawn> extends AbstractBawnEdition<T> {
 
@@ -18,7 +19,7 @@ public class CommonDimensions<T extends IBawn> extends AbstractBawnEdition<T> {
 	@Override
 	public String edit(String[] args) {
 		try {
-			get().setDimensions(args[0], args[1], args[2]);
+			get().setDimension(new Dimension(args[0], args[1], args[2]));
 			return "Dimensions defined as : " + get().getWidth() + " " + get().getHeight() + " " + get().getDepth();
 		} catch (IndexOutOfBoundsException e) {
 			return "Cannot change dimensions, need <width> <height> <depth>";

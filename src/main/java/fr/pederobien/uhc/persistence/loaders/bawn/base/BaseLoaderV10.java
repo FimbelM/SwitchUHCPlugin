@@ -11,6 +11,7 @@ import org.w3c.dom.Node;
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.persistence.loaders.IPersistenceLoader;
+import fr.pederobien.uhc.world.blocks.Dimension;
 import fr.pederobien.uhc.world.blocks.SerialisableBlock;
 
 public class BaseLoaderV10 extends AbstractBaseLoader {
@@ -31,7 +32,8 @@ public class BaseLoaderV10 extends AbstractBaseLoader {
 				get().setName(elt.getChildNodes().item(0).getNodeValue());
 				break;
 			case "dimensions":
-				get().setDimensions(elt.getAttribute("width"), elt.getAttribute("height"), elt.getAttribute("depth"));
+				get().setDimension(new Dimension(elt.getAttribute("width"), elt.getAttribute("height"),
+						elt.getAttribute("depth")));
 				break;
 			case "center":
 				get().setCenter(elt.getAttribute("x"), elt.getAttribute("y"), elt.getAttribute("z"));
