@@ -166,7 +166,10 @@ public class WorldManager {
 
 	public static void setSpawn(ISpawn spawn) {
 		WorldManager.spawn = spawn;
-		world.setSpawnLocation(spawn.getCenter().getLocation().clone().add(new Vector(0, 1, 0)));
+		if (spawn != null)
+			world.setSpawnLocation(spawn.getCenter().getLocation().clone().add(new Vector(0, 1, 0)));
+		else
+			world.setSpawnLocation(getHighestBlockYAt(0, 0).getLocation());
 	}
 
 	public static Location getSpawnOnRespawn() {
@@ -200,10 +203,13 @@ public class WorldManager {
 	}
 
 	public static boolean isLocationUnderSpawn(Location location) {
+		if (spawn != null)
 		return isInInterval(location.getBlockX() - spawn.getCenter().getLocation().getBlockX(), -spawn.getWidth() / 2,
 				spawn.getWidth() / 2)
 				&& isInInterval(location.getBlockZ() - spawn.getCenter().getLocation().getBlockZ(),
 						-spawn.getDepth() / 2, spawn.getDepth() / 2);
+		else
+			return false;
 	}
 	
 	public static List<Player> getPlayersInWorld(World... worlds) {

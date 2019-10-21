@@ -25,6 +25,6 @@ public class Spawn extends AbstractBawn implements ISpawn {
 	@Override
 	public void remove() {
 		super.remove();
-		WorldManager.setSpawn(DEFAULT);
+		WorldManager.setSpawn(null);
 	}
 }
