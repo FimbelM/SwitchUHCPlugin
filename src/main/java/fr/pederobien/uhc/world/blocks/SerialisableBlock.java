@@ -20,6 +20,11 @@ public class SerialisableBlock implements ISerializableBlock {
 	public SerialisableBlock(int x, int y, int z, String blockData) {
 		this(x, y, z, BukkitManager.createBlockData(blockData));
 	}
+	
+	public SerialisableBlock(ISerializableBlock block, BlockData data) {
+		loc = WorldManager.createDefaultLocation(block.getX(), block.getY(), block.getZ());
+		this.data = data;
+	}
 
 	public SerialisableBlock(String x, String y, String z, String blockData) {
 		this(Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(z), BukkitManager.createBlockData(blockData));
@@ -59,5 +64,10 @@ public class SerialisableBlock implements ISerializableBlock {
 			return getX() == block.getX() && getY() == block.getY() && getZ() == block.getZ()
 					&& getMaterial() == block.getMaterial();
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return getClass().getSimpleName() + "{x=" + getX() + ",y=" + getY() + ",z=" + getZ() + ",blockData=" + data + "}";
 	}
 }
