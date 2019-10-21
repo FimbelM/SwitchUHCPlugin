@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 
 import fr.pederobien.uhc.interfaces.IBawn;
@@ -14,15 +13,16 @@ import fr.pederobien.uhc.managers.WorldManager;
 public abstract class AbstractBawn implements IBawn {
 	private static final Block DEFAULT_CENTER = WorldManager.getHighestBlockYAt(0, 0);
 	private Block center;
-	private List<ISerializableBlock> config;
+	private List<ISerializableBlock> config, before;
 	private int width, height, depth;
 	private String name;
 
 	public AbstractBawn(String name) {
 		this.name = name;
 		config = new ArrayList<ISerializableBlock>();
+		before = new ArrayList<ISerializableBlock>();
 	}
-	
+
 	protected abstract void onExtraction(ISerializableBlock extractedBlock);
 
 	@Override
@@ -41,7 +41,8 @@ public abstract class AbstractBawn implements IBawn {
 		for (int y = 0; y < height; y++)
 			for (int x = -width / 2; x < getMax(width); x++)
 				for (int z = -depth / 2; z < getMax(depth); z++) {
-					ISerializableBlock block = new SerialisableBlock(x, y, z, getBlockFromCenter(x, y, z).getBlockData());
+					ISerializableBlock block = new SerialisableBlock(x, y, z,
+							getBlockFromCenter(x, y, z).getBlockData());
 					config.add(block);
 					onExtraction(block);
 				}
@@ -50,15 +51,15 @@ public abstract class AbstractBawn implements IBawn {
 	@Override
 	public void launch() {
 		for (ISerializableBlock block : config) {
-			getBlockFromCenter(block).setType(block.getMaterial());
-			getBlockFromCenter(block).setBlockData(block.getBlockData());
+			before.add(new SerialisableBlock(block, getBlockFromCenter(block).getBlockData()));
+			updateBlock(block);
 		}
 	}
 
 	@Override
 	public void remove() {
-		for (ISerializableBlock block : config)
-			getBlockFromCenter(block).setType(Material.AIR);
+		for (ISerializableBlock block : before)
+			updateBlock(block);
 	}
 
 	@Override
@@ -136,5 +137,10 @@ public abstract class AbstractBawn implements IBawn {
 	protected int getMax(int value) {
 		int max = value / 2;
 		return max % 2 == 1 ? max + 1 : max;
+	}
+
+	private void updateBlock(ISerializableBlock block) {
+		getBlockFromCenter(block).setType(block.getMaterial());
+		getBlockFromCenter(block).setBlockData(block.getBlockData());
 	}
 }
