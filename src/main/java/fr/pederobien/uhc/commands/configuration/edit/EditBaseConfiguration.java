@@ -18,7 +18,7 @@ public class EditBaseConfiguration extends AbstractMapEdition {
 				factory.createNewEdition(),
 				factory.createRenameEdition(),
 				factory.createSaveEdition(),
-				factory.createLoadTempEdition(),
-				factory.createLaunchTempEdition());
+				factory.createLaunchEdition(),
+				factory.createRemoveEdition());
 	}
 }

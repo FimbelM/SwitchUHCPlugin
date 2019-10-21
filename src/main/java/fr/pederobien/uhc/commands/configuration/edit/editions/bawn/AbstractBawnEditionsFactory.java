@@ -22,4 +22,8 @@ public abstract class AbstractBawnEditionsFactory<T extends IBawn> extends Abstr
 	public abstract IMapEdition createExtractEdition();
 
 	public abstract IMapEdition createRenameEdition();
+	
+	public abstract IMapEdition createLaunchEdition();
+	
+	public abstract IMapEdition createRemoveEdition();
 }

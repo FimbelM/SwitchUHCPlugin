@@ -51,11 +51,13 @@ public class SpawnEditionsFactory extends AbstractBawnEditionsFactory<ISpawn> {
 		return new CurrentSpawn(persistence);
 	}
 
-	public IMapEdition createRemoveEdition() {
-		return new RemoveSpawn(persistence);
-	}
-
+	@Override
 	public IMapEdition createLaunchEdition() {
 		return new LaunchSpawn(persistence);
+	}
+
+	@Override
+	public IMapEdition createRemoveEdition() {
+		return new RemoveSpawn(persistence);
 	}
 }

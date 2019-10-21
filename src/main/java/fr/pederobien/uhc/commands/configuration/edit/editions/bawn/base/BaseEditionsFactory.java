@@ -30,6 +30,11 @@ public class BaseEditionsFactory extends AbstractBawnEditionsFactory<IBase> {
 	public IMapEdition createRenameEdition() {
 		return new RenameBase(persistence);
 	}
+	
+	@Override
+	public IMapEdition createLaunchEdition() {
+		return new LaunchBase(persistence);
+	}
 
 	@Override
 	public IMapEdition createListEdition() {
@@ -50,12 +55,9 @@ public class BaseEditionsFactory extends AbstractBawnEditionsFactory<IBase> {
 	public IMapEdition createSaveEdition() {
 		return new SaveBase(persistence);
 	}
-
-	public IMapEdition createLoadTempEdition() {
-		return new LoadBaseTemp(persistence);
-	}
-
-	public IMapEdition createLaunchTempEdition() {
-		return new LaunchBaseTemp(persistence);
+	
+	@Override
+	public IMapEdition createRemoveEdition() {
+		return new RemoveBase(persistence);
 	}
 }
