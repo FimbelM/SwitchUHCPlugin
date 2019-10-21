@@ -21,9 +21,12 @@ public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 	@Override
 	public String edit(String[] args) {
 		if (args[0].equals(ALL)) {
-			List<ETeam> teams = get().getTeams();
-			for (ETeam team : teams)
+			List<ETeam> teams = emptyList();
+			teams.addAll(get().getTeams());
+			for (ETeam team : teams) {
+				TeamsManager.removeTeam(team.getNameWithoutColor());
 				get().removeTeam(team);
+			}
 			return "All teams have been removed";
 		}
 		List<ETeam> teams = new ArrayList<ETeam>();
