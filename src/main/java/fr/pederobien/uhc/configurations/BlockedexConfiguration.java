@@ -7,7 +7,6 @@ import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IUnmodifiableBase;
 import fr.pederobien.uhc.managers.BaseManager;
 import fr.pederobien.uhc.managers.ETeam;
-import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.world.blocks.Base;
 
 public class BlockedexConfiguration extends AbstractConfiguration implements IBlockedexConfiguration {
@@ -144,7 +143,7 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 
 	private void registerBase(IUnmodifiableBase base) {
 		for (ChatColor color : base.getChests().values()) {
-			ETeam team = TeamsManager.getETeam(color);
+			ETeam team = ETeam.getByColor(color);
 			if (!teams.contains(team))
 				teams.add(team);
 		}

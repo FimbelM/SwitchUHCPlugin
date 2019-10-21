@@ -245,8 +245,4 @@ public class TeamsManager {
 			}
 		}
 	}
-
-	public static ETeam getETeam(ChatColor color) {
-		return ETeam.getByColor(color);
-	}
 }

@@ -7,7 +7,7 @@ import org.bukkit.ChatColor;
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.CommonExtract;
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.IPersistence;
-import fr.pederobien.uhc.managers.TeamsManager;
+import fr.pederobien.uhc.managers.ETeam;
 
 public class ExtractBase extends CommonExtract<IBase> {
 
@@ -36,7 +36,7 @@ public class ExtractBase extends CommonExtract<IBase> {
 	private String colorName(Collection<ChatColor> colors) {
 		String colorName = "";
 		for (ChatColor color : colors)
-			colorName += TeamsManager.getETeam(color).getNameWithColor() + " ";
+			colorName += ETeam.getByColor(color).getNameWithColor() + " ";
 		return colorName;
 	}
 }
