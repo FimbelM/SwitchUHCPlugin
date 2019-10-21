@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.bukkit.ChatColor;
@@ -18,10 +17,12 @@ import org.bukkit.entity.Player;
 public abstract class AbstractMapEdition implements IMapEdition {
 	private HashMap<String, IMapEdition> map;
 	private String help, editionsHelp, label, explanation;
+	private boolean available;
 
 	public AbstractMapEdition(String label, String explanation) {
 		this.label = label;
 		this.explanation = explanation;
+		available = true;
 		map = new HashMap<String, IMapEdition>();
 		help = ChatColor.RED + getLabel() + " - " + ChatColor.BLUE + explanation;
 		editionsHelp = "";
@@ -32,10 +33,14 @@ public abstract class AbstractMapEdition implements IMapEdition {
 		String label = "";
 		try {
 			label = args[0];
-			return map.get(label).edit(Arrays.copyOfRange(args, 1, args.length));
+			if (map.get(label).isAvailable())
+				return map.get(label).edit(Arrays.copyOfRange(args, 1, args.length));
+			else
+				return "Command " + label + " is not available";
 		} catch (ArrayIndexOutOfBoundsException e) {
 			return "Cannot run command " + this.label + ", arguments are missing";
 		} catch (NullPointerException e) {
+			e.printStackTrace();
 			return "Argument " + label + " is not a valid argument";
 		}
 	}
@@ -44,10 +49,12 @@ public abstract class AbstractMapEdition implements IMapEdition {
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		try {
 			IMapEdition edition = getEditions().get(args[0]);
-			if (edition != null) {
+			if (edition != null && edition.isAvailable()) {
 				return edition.onTabComplete(sender, command, alias, Arrays.copyOfRange(args, 1, args.length));
 			}
-			return filter(new ArrayList<String>(getEditions().keySet()), args[0]);
+			return filter(new ArrayList<String>(
+					getEditions().keySet().stream().filter(l -> map.get(l).isAvailable()).collect(Collectors.toList())),
+					args[0]);
 		} catch (IndexOutOfBoundsException e) {
 			return emptyList();
 		}
@@ -88,13 +95,30 @@ public abstract class AbstractMapEdition implements IMapEdition {
 		return explanation;
 	}
 
-	protected List<String> emptyList() {
-		return new ArrayList<String>();
+	@Override
+	public boolean isAvailable() {
+		return available;
+	}
+
+	@Override
+	public IMapEdition setAvailable(boolean available) {
+		this.available = available;
+		for (String label : map.keySet())
+			map.get(label).setAvailable(available);
+		return this;
+	}
+
+	@Override
+	public void onLoaded() {
+
+	}
+
+	protected <T> List<T> emptyList() {
+		return new ArrayList<T>();
 	}
 
 	protected List<String> filter(Collection<String> list, String filter) {
-		Predicate<String> match = str -> str.matches(filter + "(.*)");
-		return list.stream().filter(match).collect(Collectors.toList());
+		return list.stream().filter(str -> str.matches(filter + "(.*)")).collect(Collectors.toList());
 	}
 
 	protected void sendMessageToSender(CommandSender sender, String message) {
