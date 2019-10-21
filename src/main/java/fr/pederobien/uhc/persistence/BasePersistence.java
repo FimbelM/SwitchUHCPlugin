@@ -12,7 +12,7 @@ public class BasePersistence extends AbstractBawnPersistence<IBase> {
 	private static final double CURRENT_VERSION = 1.0;
 
 	public BasePersistence() {
-		super("DefaultBase", new BaseDefaultContent());
+		super(new BaseDefaultContent());
 
 		registerLoader(new BaseLoaderV10());
 	}

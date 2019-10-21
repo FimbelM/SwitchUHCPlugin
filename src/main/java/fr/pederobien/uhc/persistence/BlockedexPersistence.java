@@ -3,16 +3,16 @@ package fr.pederobien.uhc.persistence;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import fr.pederobien.uhc.configurations.BlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
+import fr.pederobien.uhc.persistence.loaders.configurations.blockedexgame.BlockedexGameDefaultContent;
 import fr.pederobien.uhc.persistence.loaders.configurations.blockedexgame.BlockedexGameLoaderV10;
 
 public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConfiguration> {
 	private static final double CURRENT_VERSION = 1.0;
 
 	public BlockedexPersistence() {
-		super(BlockedexConfiguration.DEFAULT);
-		
+		super(new BlockedexGameDefaultContent());
+
 		registerLoader(new BlockedexGameLoaderV10());
 	}
 
@@ -20,7 +20,7 @@ public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConf
 	protected String getPath() {
 		return GAME + "/BlockedexGame/";
 	}
-	
+
 	@Override
 	protected String onLoadNotFound(String name) {
 		return "Cannot find blockedex game style named " + name;

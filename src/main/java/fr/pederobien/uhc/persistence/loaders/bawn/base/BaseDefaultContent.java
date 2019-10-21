@@ -1,13 +1,18 @@
 package fr.pederobien.uhc.persistence.loaders.bawn.base;
 
-import fr.pederobien.uhc.persistence.loaders.bawn.IDefaultContent;
+import fr.pederobien.uhc.persistence.IDefaultContent;
 
 public class BaseDefaultContent implements IDefaultContent {
+	
+	@Override
+	public String getName() {
+		return "DefaultBase";
+	}
 
 	@Override
 	public String getDefaultXmlContent() {
 		return "<?xml version=\"1.0\" encoding=\"UTF-8\"?><base>\r\n" + "  <version>1.0</version>\r\n"
-				+ "  <name>DefaultBase</name>\r\n" + "  <dimensions depth=\"7\" height=\"5\" width=\"7\"/>\r\n"
+				+ "  <name>" + getName() + "</name>\r\n" + "  <dimensions depth=\"7\" height=\"5\" width=\"7\"/>\r\n"
 				+ "  <center x=\"0\" y=\"80\" z=\"0\"/>\r\n" + "  <chests>\r\n"
 				+ "    <chest blockdata=\"minecraft:chest[facing=north,type=single,waterlogged=false]\" color=\"4\" x=\"0\" y=\"1\" z=\"-1\"/>\r\n"
 				+ "    <chest blockdata=\"minecraft:chest[facing=east,type=single,waterlogged=false]\" color=\"2\" x=\"1\" y=\"1\" z=\"0\"/>\r\n"

@@ -1,6 +1,8 @@
-package fr.pederobien.uhc.persistence.loaders.bawn;
+package fr.pederobien.uhc.persistence;
 
 public interface IDefaultContent {
+	
+	String getName();
 
 	String getDefaultXmlContent();
 }

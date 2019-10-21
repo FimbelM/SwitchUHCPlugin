@@ -13,7 +13,7 @@ import fr.pederobien.uhc.persistence.loaders.bawn.spawn.SpawnLoaderV12;
 public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 
 	public SpawnPersistence() {
-		super("DefaultSpawn", new SpawnDefaultContent());
+		super(new SpawnDefaultContent());
 
 		registerLoader(new SpawnLoaderV10()).registerLoader(new SpawnLoaderV11()).registerLoader(new SpawnLoaderV12());
 	}

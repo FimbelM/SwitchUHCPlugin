@@ -1,7 +1,9 @@
 package fr.pederobien.uhc.persistence;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,9 +36,11 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 	private DocumentBuilder builder;
 	private T elt;
 	private HashMap<String, IPersistenceLoader<T>> map;
+	private IDefaultContent defaultContent;
 	protected boolean saved, loaded;
-	
-	public AbstractPersistence() {
+
+	public AbstractPersistence(IDefaultContent defaultContent) {
+		this.defaultContent = defaultContent;
 		map = new HashMap<String, IPersistenceLoader<T>>();
 		try {
 			DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
@@ -45,11 +49,7 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public AbstractPersistence(T elt) {
-		this();
-		this.elt = elt;
+		checkAndWriteDefault();
 	}
 
 	protected abstract String getPath();
@@ -124,13 +124,13 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 	protected void setSaved(boolean saved) {
 		this.saved = saved;
 	}
-	
+
 	protected void checkParentFolderExistence() {
 		File file = new File(getPath());
 		if (!file.exists())
 			file.mkdirs();
 	}
-	
+
 	protected boolean checkSaveExistence() {
 		File file = new File(getAbsolutePath());
 		if (!file.exists())
@@ -175,6 +175,29 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 			transformer.transform(domSource, streamResult);
 		} catch (TransformerException e) {
 			e.printStackTrace();
+		}
+	}
+
+	private void checkAndWriteDefault() {
+		File file = new File(getPath());
+		if (!file.exists()) {
+			BufferedWriter writer = null;
+			try {
+				file.mkdir();
+				file = new File(getAbsolutePath(defaultContent.getName()));
+				if (!file.exists())
+					file.createNewFile();
+				writer = new BufferedWriter(new FileWriter(file));
+				writer.write(defaultContent.getDefaultXmlContent());
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					writer.close();
+				} catch (IOException e) {
+
+				}
+			}
 		}
 	}
 }

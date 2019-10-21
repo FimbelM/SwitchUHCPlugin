@@ -1,18 +1,11 @@
 package fr.pederobien.uhc.persistence;
 
-import fr.pederobien.uhc.interfaces.IName;
+import fr.pederobien.uhc.interfaces.IConfiguration;
 
-public abstract class AbstractConfPersistence<T extends IName> extends AbstractPersistence<T> {
+public abstract class AbstractConfPersistence<T extends IConfiguration> extends AbstractPersistence<T> {
 	protected static final String GAME = ROOT + "Games/";
 
-	public AbstractConfPersistence(T elt) {
-		super(elt);
-		checkAndWriteDefault();
-	}
-	
-	private void checkAndWriteDefault() {
-		checkParentFolderExistence();
-		if (checkSaveExistence())
-			save();
+	public AbstractConfPersistence(IDefaultContent defaultContent) {
+		super(defaultContent);
 	}
 }

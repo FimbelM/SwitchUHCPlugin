@@ -3,9 +3,9 @@ package fr.pederobien.uhc.persistence;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import fr.pederobien.uhc.configurations.HungerGameConfiguration;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
 import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.persistence.loaders.configurations.hungergame.HungerGameDefaultContent;
 import fr.pederobien.uhc.persistence.loaders.configurations.hungergame.HungerGameLoaderV10;
 import fr.pederobien.uhc.persistence.loaders.configurations.hungergame.HungerGameLoaderV11;
 
@@ -13,8 +13,8 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 	private static final double CURRENT_VERSION = 1.1;
 
 	public HungerGamePersistence() {
-		super(HungerGameConfiguration.DEFAULT);
-		
+		super(new HungerGameDefaultContent());
+
 		registerLoader(new HungerGameLoaderV10()).registerLoader(new HungerGameLoaderV11());
 	}
 
