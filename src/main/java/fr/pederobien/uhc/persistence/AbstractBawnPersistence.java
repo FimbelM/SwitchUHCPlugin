@@ -6,15 +6,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import fr.pederobien.uhc.interfaces.IBawn;
+import fr.pederobien.uhc.persistence.loaders.bawn.IDefaultContent;
 
 public abstract class AbstractBawnPersistence<T extends IBawn> extends AbstractPersistence<T> {
+	private IDefaultContent defaultContent;
 
-	public AbstractBawnPersistence(T elt) {
+	public AbstractBawnPersistence(T elt, IDefaultContent defaultContent) {
 		super(elt);
+		this.defaultContent = defaultContent;
 		checkAndWriteDefault();
 	}
-
-	protected abstract String getDefault();
 
 	protected void checkAndWriteDefault() {
 		File file = new File(getPath());
@@ -26,7 +27,7 @@ public abstract class AbstractBawnPersistence<T extends IBawn> extends AbstractP
 				if (!file.exists())
 					file.createNewFile();
 				writer = new BufferedWriter(new FileWriter(new File(getAbsolutePath())));
-				writer.write(getDefault());
+				writer.write(defaultContent.getDefaultXmlContent());
 			} catch (IOException e) {
 				e.printStackTrace();
 			} finally {

@@ -5,6 +5,7 @@ import org.w3c.dom.Element;
 
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.interfaces.ISpawn;
+import fr.pederobien.uhc.persistence.loaders.bawn.spawn.SpawnDefaultContent;
 import fr.pederobien.uhc.persistence.loaders.bawn.spawn.SpawnLoaderV10;
 import fr.pederobien.uhc.persistence.loaders.bawn.spawn.SpawnLoaderV11;
 import fr.pederobien.uhc.persistence.loaders.bawn.spawn.SpawnLoaderV12;
@@ -12,7 +13,7 @@ import fr.pederobien.uhc.persistence.loaders.bawn.spawn.SpawnLoaderV12;
 public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 
 	public SpawnPersistence() {
-		super(ISpawn.DEFAULT);
+		super(ISpawn.DEFAULT, new SpawnDefaultContent());
 
 		registerLoader(new SpawnLoaderV10()).registerLoader(new SpawnLoaderV11()).registerLoader(new SpawnLoaderV12());
 	}
@@ -68,38 +69,5 @@ public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 		root.appendChild(blocks);
 
 		saveDocument(doc);
-	}
-
-	@Override
-	protected String getDefault() {
-		return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n" + "  <spawn>\r\n" + "  <version>1.2</version>\r\n"
-				+ "  <name>DefaultSpawn</name>\r\n" + "  <dimensions width=\"5\" height=\"1\" depth=\"5\"/>\r\n"
-				+ "  <center x=\"0\" y=\"90\" z=\"0\"/>\r\n" + "  <blocks>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"-2\" y=\"0\" z=\"-2\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"-2\" y=\"0\" z=\"-1\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"-2\" y=\"0\" z=\"0\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"-2\" y=\"0\" z=\"1\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"-2\" y=\"0\" z=\"2\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"-1\" y=\"0\" z=\"-2\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"-1\" y=\"0\" z=\"-1\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"-1\" y=\"0\" z=\"0\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"-1\" y=\"0\" z=\"1\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"-1\" y=\"0\" z=\"2\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"0\" y=\"0\" z=\"-2\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"0\" y=\"0\" z=\"-1\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"0\" y=\"0\" z=\"0\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"0\" y=\"0\" z=\"1\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"0\" y=\"0\" z=\"2\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"1\" y=\"0\" z=\"-2\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"1\" y=\"0\" z=\"-1\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"1\" y=\"0\" z=\"0\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"1\" y=\"0\" z=\"1\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"1\" y=\"0\" z=\"2\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"2\" y=\"0\" z=\"-2\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"2\" y=\"0\" z=\"-1\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"2\" y=\"0\" z=\"0\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"2\" y=\"0\" z=\"1\"/>\r\n"
-				+ "    <block blockdata=\"minecraft:bedrock\" x=\"2\" y=\"0\" z=\"2\"/>\r\n" + "  </blocks>\r\n"
-				+ "</spawn>";
 	}
 }
