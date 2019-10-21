@@ -38,11 +38,12 @@ public abstract class AbstractBawn implements IBawn {
 	@Override
 	public void extract() {
 		config.clear();
+
+		int minWidth = -getMax(width), maxWidth = getMax(width), minDepth = -getMax(depth), maxDepth = getMax(depth);
 		for (int y = 0; y < height; y++)
-			for (int x = -width / 2; x < getMax(width); x++)
-				for (int z = -depth / 2; z < getMax(depth); z++) {
-					ISerializableBlock block = new SerialisableBlock(x, y, z,
-							getBlockFromCenter(x, y, z).getBlockData());
+			for (int x = minWidth; x <= maxWidth; x++)
+				for (int z = minDepth; z <= maxDepth; z++) {
+					ISerializableBlock block = new SerialisableBlock(x, y, z, getBlockFromCenter(x, y, z).getBlockData());
 					config.add(block);
 					onExtraction(block);
 				}
