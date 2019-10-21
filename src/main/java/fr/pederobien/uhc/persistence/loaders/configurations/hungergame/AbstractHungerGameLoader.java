@@ -2,9 +2,9 @@ package fr.pederobien.uhc.persistence.loaders.configurations.hungergame;
 
 import fr.pederobien.uhc.configurations.HungerGameConfiguration;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
-import fr.pederobien.uhc.persistence.loaders.AbstractPersistenceLoader;
+import fr.pederobien.uhc.persistence.loaders.configurations.AbstractConfigurationLoader;
 
-public abstract class AbstractHungerGameLoader extends AbstractPersistenceLoader<IHungerGameConfiguration> {
+public abstract class AbstractHungerGameLoader extends AbstractConfigurationLoader<IHungerGameConfiguration> {
 
 	public AbstractHungerGameLoader(String version) {
 		super(version, new HungerGameConfiguration("DefaultConfiguration"));
