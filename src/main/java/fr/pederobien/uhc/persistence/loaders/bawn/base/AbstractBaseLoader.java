@@ -2,10 +2,10 @@ package fr.pederobien.uhc.persistence.loaders.bawn.base;
 
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
-import fr.pederobien.uhc.persistence.loaders.AbstractPersistenceLoader;
+import fr.pederobien.uhc.persistence.loaders.bawn.AbstractBawnLoader;
 import fr.pederobien.uhc.world.blocks.Base;
 
-public abstract class AbstractBaseLoader extends AbstractPersistenceLoader<IBase> {
+public abstract class AbstractBaseLoader extends AbstractBawnLoader<IBase> {
 
 	public AbstractBaseLoader(String version) {
 		super(version, new Base("DefaultBase"));

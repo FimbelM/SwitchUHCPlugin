@@ -2,10 +2,10 @@ package fr.pederobien.uhc.persistence.loaders.bawn.spawn;
 
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.interfaces.ISpawn;
-import fr.pederobien.uhc.persistence.loaders.AbstractPersistenceLoader;
+import fr.pederobien.uhc.persistence.loaders.bawn.AbstractBawnLoader;
 import fr.pederobien.uhc.world.blocks.Spawn;
 
-public abstract class AbstractSpawnLoader extends AbstractPersistenceLoader<ISpawn> {
+public abstract class AbstractSpawnLoader extends AbstractBawnLoader<ISpawn> {
 	
 	public AbstractSpawnLoader(String version) {
 		super(version, new Spawn("DefaultSpawn"));
