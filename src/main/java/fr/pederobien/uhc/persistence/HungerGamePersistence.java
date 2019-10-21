@@ -30,6 +30,8 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 
 	@Override
 	public void save() {
+		if (get() == null)
+			return;
 		Document doc = newDocument();
 		doc.setXmlStandalone(true);
 		Element root = doc.createElement("hungergame");

@@ -29,6 +29,8 @@ public class BasePersistence extends AbstractBawnPersistence<IBase> {
 
 	@Override
 	public void save() {
+		if (get() == null)
+			return;
 		Document doc = newDocument();
 		doc.setXmlStandalone(true);
 
