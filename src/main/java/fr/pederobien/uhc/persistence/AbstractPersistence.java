@@ -35,9 +35,8 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 	private T elt;
 	private HashMap<String, IPersistenceLoader<T>> map;
 	protected boolean saved, loaded;
-
-	public AbstractPersistence(T elt) {
-		this.elt = elt;
+	
+	public AbstractPersistence() {
 		map = new HashMap<String, IPersistenceLoader<T>>();
 		try {
 			DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
@@ -46,6 +45,11 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public AbstractPersistence(T elt) {
+		this();
+		this.elt = elt;
 	}
 
 	protected abstract String getPath();
