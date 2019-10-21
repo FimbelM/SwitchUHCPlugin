@@ -4,7 +4,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
-import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.persistence.loaders.configurations.blockedexgame.BlockedexGameDefaultContent;
 import fr.pederobien.uhc.persistence.loaders.configurations.blockedexgame.BlockedexGameLoaderV10;
 
@@ -59,15 +58,6 @@ public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConf
 		bases.setAttribute("distance", get().getBaseFromSpawnDistance().toString());
 		root.appendChild(bases);
 		
-		Element teams = doc.createElement("teams");
-		for (ETeam t : get().getTeams()) {
-			Element team = doc.createElement("team");
-			team.setAttribute("name", t.getNameWithoutColor());
-			team.setAttribute("color", t.getColorName());
-			teams.appendChild(team);
-		}
-		root.appendChild(teams);
-
 		saveDocument(doc);
 	}
 }
