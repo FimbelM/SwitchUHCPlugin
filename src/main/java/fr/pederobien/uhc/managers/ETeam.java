@@ -7,12 +7,12 @@ import java.util.List;
 import org.bukkit.ChatColor;
 
 public enum ETeam {
-	AQUA(ChatColor.AQUA, "aqua", "Aqua"), DARK_AQUA(ChatColor.DARK_AQUA, "dark_aqua", "Dark aqua"),
-	BLUE(ChatColor.BLUE, "blue", "Blue"), DARK_BLUE(ChatColor.DARK_BLUE, "dark_blue", "Dark blue"),
+	AQUA(ChatColor.AQUA, "aqua", "Aqua"), DARK_AQUA(ChatColor.DARK_AQUA, "dark_aqua", "Dark_Aqua"),
+	BLUE(ChatColor.BLUE, "blue", "Blue"), DARK_BLUE(ChatColor.DARK_BLUE, "dark_blue", "Dark_Blue"),
 	BLACK(ChatColor.BLACK, "black", "Black"), GRAY(ChatColor.GRAY, "gray", "Gray"),
-	DARK_GRAY(ChatColor.DARK_GRAY, "dark_gray", "Dark gray"), GREEN(ChatColor.GREEN, "green", "Green"),
-	DARK_GREEN(ChatColor.DARK_GREEN, "dark_green", "Dark green"), RED(ChatColor.RED, "red", "Red"),
-	DARK_RED(ChatColor.DARK_RED, "dark_red", "Dark red"), GOLD(ChatColor.GOLD, "gold", "Gold"),
+	DARK_GRAY(ChatColor.DARK_GRAY, "dark_gray", "Dark_Gray"), GREEN(ChatColor.GREEN, "green", "Green"),
+	DARK_GREEN(ChatColor.DARK_GREEN, "dark_green", "Dark_Green"), RED(ChatColor.RED, "red", "Red"),
+	DARK_RED(ChatColor.DARK_RED, "dark_red", "Dark_Red"), GOLD(ChatColor.GOLD, "gold", "Gold"),
 	YELLOW(ChatColor.YELLOW, "yellow", "Yellow"), PINK(ChatColor.LIGHT_PURPLE, "light_purple", "Pink"),
 	PURPLE(ChatColor.DARK_PURPLE, "dark_purple", "Purple"), WHITE(ChatColor.WHITE, "white", "White");
 
