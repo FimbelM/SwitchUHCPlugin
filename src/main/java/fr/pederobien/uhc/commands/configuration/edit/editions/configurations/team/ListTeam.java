@@ -20,7 +20,7 @@ public class ListTeam<T extends IConfiguration> extends AbstractTeamEditions<T> 
 		if (teamNames.isEmpty())
 			return "No existing team for " + get().getName() + " style";
 		else if (teamNames.size() == 1)
-			return "Existing team : " + teams;
-		return "Existing teams : " + teams;
+			return "Existing team : \n" + teams;
+		return "Existing teams : \n" + teams;
 	}
 }
