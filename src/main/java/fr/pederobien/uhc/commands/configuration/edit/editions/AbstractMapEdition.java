@@ -112,6 +112,11 @@ public abstract class AbstractMapEdition implements IMapEdition {
 	public void onLoaded() {
 
 	}
+	
+	@Override
+	public void onNewCreated() {
+		
+	}
 
 	protected <T> List<T> emptyList() {
 		return new ArrayList<T>();

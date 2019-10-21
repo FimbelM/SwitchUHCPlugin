@@ -30,7 +30,11 @@ public class EditBaseConfiguration extends AbstractEditConfiguration<IBase> {
 	
 	@Override
 	public void onLoaded() {
-		for (String label : getEditions().keySet())
-			getEditions().get(label).setAvailable(true);
+		availableAll();
+	}
+	
+	@Override
+	public void onNewCreated() {
+		availableAll();
 	}
 }

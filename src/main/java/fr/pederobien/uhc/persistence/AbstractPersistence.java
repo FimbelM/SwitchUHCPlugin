@@ -68,11 +68,10 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 
 			Node version = root.getElementsByTagName("version").item(0);
 
-			set(getLoaders().get(version.getChildNodes().item(0).getNodeValue()).load(root).get());
+			elt = getLoaders().get(version.getChildNodes().item(0).getNodeValue()).load(root).get();
 		} catch (IOException e) {
 			throw new FileNotFoundException(onLoadNotFound(name));
 		}
-		loaded = true;
 		onLoaded();
 		return this;
 	}
@@ -125,7 +124,7 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 	@Override
 	public void set(T elt) {
 		this.elt = elt;
-		onLoaded();
+		onNewCreated();
 	}
 	
 	@Override
@@ -223,6 +222,12 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 	}
 	
 	private void onLoaded() {
+		loaded = true;
+		for (IObsPersistence obs : observers)
+			obs.onLoaded();
+	}
+	
+	private void onNewCreated() {
 		for (IObsPersistence obs : observers)
 			obs.onLoaded();
 	}

@@ -36,7 +36,11 @@ public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlock
 	
 	@Override
 	public void onLoaded() {
-		for (String label : getEditions().keySet())
-			getEditions().get(label).setAvailable(true);
+		availableAll();
+	}
+	
+	@Override
+	public void onNewCreated() {
+		availableAll();
 	}
 }
