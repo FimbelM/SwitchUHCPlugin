@@ -7,5 +7,12 @@ public abstract class AbstractConfPersistence<T extends IName> extends AbstractP
 
 	public AbstractConfPersistence(T elt) {
 		super(elt);
+		checkAndWriteDefault();
+	}
+	
+	private void checkAndWriteDefault() {
+		checkParentFolderExistence();
+		if (checkSaveExistence())
+			save();
 	}
 }

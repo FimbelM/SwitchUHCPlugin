@@ -11,21 +11,24 @@ public abstract class AbstractBawnPersistence<T extends IBawn> extends AbstractP
 
 	public AbstractBawnPersistence(T elt) {
 		super(elt);
+		checkAndWriteDefault();
 	}
 
 	protected abstract String getDefault();
 
-	@Override
 	protected void checkAndWriteDefault() {
 		File file = new File(getPath());
 		if (!file.exists()) {
-			file.mkdirs();
 			BufferedWriter writer = null;
 			try {
+				file.mkdir();
+				file = new File(getAbsolutePath());
+				if (!file.exists())
+					file.createNewFile();
 				writer = new BufferedWriter(new FileWriter(new File(getAbsolutePath())));
 				writer.write(getDefault());
 			} catch (IOException e) {
-
+				e.printStackTrace();
 			} finally {
 				try {
 					writer.close();
