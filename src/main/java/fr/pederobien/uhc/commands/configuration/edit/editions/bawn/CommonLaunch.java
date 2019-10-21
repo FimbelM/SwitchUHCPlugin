@@ -15,13 +15,13 @@ public abstract class CommonLaunch<T extends IBawn> extends AbstractBawnEdition<
 	public CommonLaunch(IPersistence<T> persistence, String explanation) {
 		super(persistence, "launch", explanation);
 	}
-	
+
 	protected abstract String onLaunch();
-	
+
 	protected abstract String onNotExist(String name);
-		
+
 	protected abstract String onNeedNameAndCoordinates(String name);
-	
+
 	@Override
 	public String edit(String[] args) {
 		String name = "";
@@ -71,7 +71,8 @@ public abstract class CommonLaunch<T extends IBawn> extends AbstractBawnEdition<
 		List<String> list = getPersistence().list();
 		switch (args.length) {
 		case 1:
-			list.add("[<X> <Y> <Z>]");
+			if (get() != null)
+				list.add("[<X> <Y> <Z>]");
 			if (filter(list, args[0]).isEmpty() && isInteger(args[0]))
 				return Arrays.asList("[<X> <Y> <Z>]");
 			return filter(list, args[0]);
