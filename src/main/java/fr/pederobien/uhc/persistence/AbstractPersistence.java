@@ -28,6 +28,7 @@ import org.xml.sax.SAXException;
 
 import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
+import fr.pederobien.uhc.observer.IObsPersistence;
 import fr.pederobien.uhc.persistence.loaders.IPersistenceLoader;
 
 public abstract class AbstractPersistence<T extends IUnmodifiableName> implements IPersistence<T> {
@@ -37,11 +38,14 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 	private T elt;
 	private HashMap<String, IPersistenceLoader<T>> map;
 	private IDefaultContent defaultContent;
+	private List<IObsPersistence> observers;
 	protected boolean saved, loaded;
 
 	public AbstractPersistence(IDefaultContent defaultContent) {
 		this.defaultContent = defaultContent;
 		map = new HashMap<String, IPersistenceLoader<T>>();
+		observers = new ArrayList<IObsPersistence>();
+		loaded = false;
 		try {
 			DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
 			f.setIgnoringElementContentWhitespace(true);
@@ -68,6 +72,8 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 		} catch (IOException e) {
 			throw new FileNotFoundException(onLoadNotFound(name));
 		}
+		loaded = true;
+		onLoaded();
 		return this;
 	}
 
@@ -119,6 +125,19 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 	@Override
 	public void set(T elt) {
 		this.elt = elt;
+		onLoaded();
+	}
+	
+	@Override
+	public IPersistence<T> addObserver(IObsPersistence obs) {
+		observers.add(obs);
+		return this;
+	}
+	
+	@Override
+	public IPersistence<T> removeObserver(IObsPersistence obs) {
+		observers.remove(obs);
+		return this;
 	}
 
 	protected void setSaved(boolean saved) {
@@ -201,5 +220,10 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 				}
 			}
 		}
+	}
+	
+	private void onLoaded() {
+		for (IObsPersistence obs : observers)
+			obs.onLoaded();
 	}
 }

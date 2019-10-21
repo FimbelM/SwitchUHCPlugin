@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
 
+import fr.pederobien.uhc.observer.IObsPersistence;
 import fr.pederobien.uhc.persistence.loaders.IPersistenceLoader;
 
 public interface IPersistence<T extends IUnmodifiableName> {
@@ -29,4 +30,8 @@ public interface IPersistence<T extends IUnmodifiableName> {
 	boolean isSaved();
 
 	List<String> list();
+	
+	IPersistence<T> addObserver(IObsPersistence obs);
+	
+	IPersistence<T> removeObserver(IObsPersistence obs);
 }
