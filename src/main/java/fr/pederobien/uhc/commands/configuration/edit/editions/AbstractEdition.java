@@ -9,6 +9,8 @@ public abstract class AbstractEdition<T extends IUnmodifiableName> extends Abstr
 	public AbstractEdition(IPersistence<T> persistence, String label, String explanation) {
 		super(label, explanation);
 		this.persistence = persistence;
+		if (persistence != null)
+			this.persistence.addObserver(this);
 	}
 
 	protected IPersistence<T> getPersistence() {
