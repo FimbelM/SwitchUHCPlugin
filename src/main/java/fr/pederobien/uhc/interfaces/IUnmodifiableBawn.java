@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.bukkit.block.Block;
 
+import fr.pederobien.uhc.observer.IObsBawn;
+
 public interface IUnmodifiableBawn extends IUnmodifiableName {
 
 	void extract();
@@ -23,4 +25,8 @@ public interface IUnmodifiableBawn extends IUnmodifiableName {
 	int getHeight();
 
 	int getDepth();
+	
+	void addObserver(IObsBawn obs);
+	
+	void removeObserver(IObsBawn obs);
 }

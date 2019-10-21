@@ -11,6 +11,7 @@ import fr.pederobien.uhc.interfaces.IDimension;
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.interfaces.IUnmodifiableDimension;
 import fr.pederobien.uhc.managers.WorldManager;
+import fr.pederobien.uhc.observer.IObsBawn;
 
 public abstract class AbstractBawn implements IBawn {
 	private static final Block DEFAULT_CENTER = WorldManager.getHighestBlockYAt(0, 0);
@@ -19,19 +20,23 @@ public abstract class AbstractBawn implements IBawn {
 	private int width, height, depth;
 	private String name;
 	private IDimension dimension;
+	private List<IObsBawn> observers;
 
 	public AbstractBawn(String name) {
 		this.name = name;
 		config = new ArrayList<ISerializableBlock>();
 		before = new ArrayList<ISerializableBlock>();
 		dimension = new Dimension();
+		observers = new ArrayList<IObsBawn>();
 	}
 
 	protected abstract void onExtraction(ISerializableBlock extractedBlock);
 
 	@Override
 	public void setName(String name) {
+		String oldName = this.name;
 		this.name = name;
+		onRenamed(oldName);
 	}
 
 	@Override
@@ -51,6 +56,7 @@ public abstract class AbstractBawn implements IBawn {
 					config.add(block);
 					onExtraction(block);
 				}
+		onExtracted();
 	}
 
 	@Override
@@ -103,6 +109,16 @@ public abstract class AbstractBawn implements IBawn {
 	public int getDepth() {
 		return dimension.getDepth();
 	}
+	
+	@Override
+	public void addObserver(IObsBawn obs) {
+		observers.add(obs);
+	}
+	
+	@Override
+	public void removeObserver(IObsBawn obs) {
+		observers.remove(obs);
+	}
 
 	@Override
 	public void setBlocks(List<ISerializableBlock> blocks) {
@@ -113,12 +129,16 @@ public abstract class AbstractBawn implements IBawn {
 
 	@Override
 	public void setCenter(Block center) {
+		Block oldCenter = this.center;
 		this.center = center;
+		onRecentered(oldCenter);
 	}
 	
 	@Override
 	public void setDimension(IDimension dimension) {
+		IDimension oldDimension = this.dimension;
 		this.dimension = dimension;
+		onRedimensioned(oldDimension);
 	}
 
 	@Override
@@ -146,5 +166,25 @@ public abstract class AbstractBawn implements IBawn {
 	private void updateBlock(ISerializableBlock block) {
 		getBlockFromCenter(block).setType(block.getMaterial());
 		getBlockFromCenter(block).setBlockData(block.getBlockData());
+	}
+	
+	private void onRenamed(String oldName) {
+		for (IObsBawn obs : observers)
+			obs.onRenamed(oldName, name);
+	}
+	
+	private void onExtracted() {
+		for (IObsBawn obs : observers)
+			obs.onExtracted(name);
+	}
+	
+	private void onRecentered(Block oldCenter) {
+		for (IObsBawn obs : observers)
+			obs.onReCentered(oldCenter, center);
+	}
+	
+	private void onRedimensioned(IUnmodifiableDimension oldDimension) {
+		for (IObsBawn obs : observers)
+			obs.onRedimensioned(oldDimension, dimension);
 	}
 }
