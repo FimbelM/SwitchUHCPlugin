@@ -181,12 +181,14 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 	private void checkAndWriteDefault() {
 		File file = new File(getPath());
 		if (!file.exists()) {
+			file.mkdirs();
+		}
+		
+		file = new File(getAbsolutePath(defaultContent.getName()));
+		if (!file.exists()) {
 			BufferedWriter writer = null;
 			try {
-				file.mkdir();
-				file = new File(getAbsolutePath(defaultContent.getName()));
-				if (!file.exists())
-					file.createNewFile();
+				file.createNewFile();
 				writer = new BufferedWriter(new FileWriter(file));
 				writer.write(defaultContent.getDefaultXmlContent());
 			} catch (IOException e) {
