@@ -10,7 +10,6 @@ import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.WorldManager;
 
 public class HungerGameConfiguration extends AbstractConfiguration implements IHungerGameConfiguration {
-	public static final HungerGameConfiguration DEFAULT = new HungerGameConfiguration("DefaultConfiguration");
 	private static final Block DEFAULT_CENTER = WorldManager.getHighestBlockYAt(0, 0);
 	private static final Double DEFAULT_INITIAL_BORDER_SIZE = new Double(2000);
 	private static final Double DEFAULT_FINAL_BORDER_SIZE = new Double(10);
