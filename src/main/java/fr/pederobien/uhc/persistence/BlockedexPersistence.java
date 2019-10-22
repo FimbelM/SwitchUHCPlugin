@@ -51,13 +51,13 @@ public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConf
 		root.appendChild(player);
 
 		Element bases = doc.createElement("bases");
-		bases.setAttribute("north", get().getNorthBase().getName());
-		bases.setAttribute("south", get().getSouthBase().getName());
-		bases.setAttribute("west", get().getWestBase().getName());
-		bases.setAttribute("east", get().getEastBase().getName());
+		bases.setAttribute("north", get().getNorthBase());
+		bases.setAttribute("south", get().getSouthBase());
+		bases.setAttribute("west", get().getWestBase());
+		bases.setAttribute("east", get().getEastBase());
 		bases.setAttribute("distance", get().getBaseFromSpawnDistance().toString());
 		root.appendChild(bases);
-		
+
 		saveDocument(doc);
 	}
 }
