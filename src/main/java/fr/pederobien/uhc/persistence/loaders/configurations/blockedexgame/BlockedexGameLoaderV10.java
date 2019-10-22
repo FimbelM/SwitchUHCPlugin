@@ -4,7 +4,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
-import fr.pederobien.uhc.managers.BaseManager;
 import fr.pederobien.uhc.persistence.loaders.IPersistenceLoader;
 
 public class BlockedexGameLoaderV10 extends AbstractBlockedexgameLoader {
@@ -31,10 +30,10 @@ public class BlockedexGameLoaderV10 extends AbstractBlockedexgameLoader {
 				get().setStepOnMaxHealth(Double.parseDouble(elt.getAttribute("stepOnMaxHealth")));
 				break;
 			case "bases":
-				get().setNorthBase(BaseManager.getBaseByName(elt.getAttribute("north")));
-				get().setSouthBase(BaseManager.getBaseByName(elt.getAttribute("south")));
-				get().setWestBase(BaseManager.getBaseByName(elt.getAttribute("west")));
-				get().setEastBase(BaseManager.getBaseByName(elt.getAttribute("east")));
+				get().setNorthBase(elt.getAttribute("north"));
+				get().setSouthBase(elt.getAttribute("south"));
+				get().setWestBase(elt.getAttribute("west"));
+				get().setEastBase(elt.getAttribute("east"));
 				get().setBaseFromSpawnDistance(Integer.parseInt(elt.getAttribute("distance")));
 				break;
 			default:
