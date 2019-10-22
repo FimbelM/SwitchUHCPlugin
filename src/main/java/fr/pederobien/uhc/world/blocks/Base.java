@@ -11,20 +11,18 @@ import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
-import fr.pederobien.uhc.managers.TeamsManager;
+import fr.pederobien.uhc.managers.ETeam;
 
 public class Base extends AbstractBawn implements IBase {
-	public static final Base DEFAULT = new Base("DefaultBase");
-
-	private HashMap<ISerializableBlock, ChatColor> chests;
+	private HashMap<ISerializableBlock, ETeam> chests;
 
 	public Base(String name) {
 		super(name);
-		chests = new HashMap<ISerializableBlock, ChatColor>();
+		chests = new HashMap<ISerializableBlock, ETeam>();
 	}
 
 	@Override
-	public Map<ISerializableBlock, ChatColor> getChests() {
+	public Map<ISerializableBlock, ETeam> getChests() {
 		return Collections.unmodifiableMap(chests);
 	}
 
@@ -32,7 +30,7 @@ public class Base extends AbstractBawn implements IBase {
 	public boolean isChestRestricted(Block block, Player player) {
 		for (ISerializableBlock b : chests.keySet())
 			if (getBlockFromCenter(b).equals(block))
-				return chests.get(b) == TeamsManager.getColor(player);
+				return chests.get(b).getPlayers().contains(player.getName());
 		return true;
 	}
 
@@ -50,11 +48,11 @@ public class Base extends AbstractBawn implements IBase {
 	@Override
 	protected void onExtraction(ISerializableBlock extractedBlock) {
 		if (extractedBlock.getMaterial().equals(Material.CHEST))
-			chests.put(extractedBlock, getChatColor(extractedBlock));
+			chests.put(extractedBlock, ETeam.getByColor(getChatColor(extractedBlock)));
 	}
 
 	@Override
-	public void setChests(HashMap<ISerializableBlock, ChatColor> chests) {
+	public void setChests(HashMap<ISerializableBlock, ETeam> chests) {
 		this.chests = chests;
 	}
 
