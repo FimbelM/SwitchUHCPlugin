@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import fr.pederobien.uhc.observer.IObsPersistence;
+import fr.pederobien.uhc.persistence.IDefaultContent;
 import fr.pederobien.uhc.persistence.loaders.IPersistenceLoader;
 
 public interface IPersistence<T extends IUnmodifiableName> {
@@ -14,6 +15,8 @@ public interface IPersistence<T extends IUnmodifiableName> {
 	IPersistence<T> registerLoader(IPersistenceLoader<T> loader);
 	
 	Map<String, IPersistenceLoader<T>> getLoaders();
+	
+	IDefaultContent getDefaultContent();
 
 	void save();
 
