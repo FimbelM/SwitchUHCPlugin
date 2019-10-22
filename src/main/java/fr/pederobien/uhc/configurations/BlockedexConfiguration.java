@@ -1,13 +1,10 @@
 package fr.pederobien.uhc.configurations;
 
-import org.bukkit.ChatColor;
-
 import fr.pederobien.uhc.game.blockedexgame.BlockedexGame;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
-import fr.pederobien.uhc.interfaces.IUnmodifiableBase;
 import fr.pederobien.uhc.managers.BaseManager;
 import fr.pederobien.uhc.managers.ETeam;
-import fr.pederobien.uhc.world.blocks.Base;
+import fr.pederobien.uhc.persistence.PersistenceFactory;
 
 public class BlockedexConfiguration extends AbstractConfiguration implements IBlockedexConfiguration {
 	private static final Integer DEFAULT_RADIUS_AREA_ON_PLAYER_DIE = 5;
@@ -15,26 +12,21 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	private static final Double DEFAULT_STEP_ON_MAX_HEALTH = 1.0;
 	private static final Integer DEFAULT_DIAMETER_AREA_ON_PLAYER_RESPAWN = 1000;
 	private static final Integer DEFAULT_BASE_FROM_SPAWN_DISTANCE = 1000;
-	private static final IUnmodifiableBase DEFAULT_BASE = BaseManager.getBaseByName(Base.DEFAULT.getName());
-	public static final BlockedexConfiguration DEFAULT = new BlockedexConfiguration("DefaultConfiguration");
+	private static final String DEFAULT_BASE = PersistenceFactory.getInstance().getBasePersistence().getDefaultContent()
+			.getName();
 
 	private Integer radiusAreaOnPlayerDie;
 	private Integer radiusAreaOnPlayerKill;
 	private Double stepHealth;
 	private Integer diameterArea;
-	private IUnmodifiableBase northBase, southBase, westBase, eastBase;
+	private String northBase, southBase, westBase, eastBase;
 	private Integer baseFromSpawnDistance;
 
 	public BlockedexConfiguration(String name) {
 		super(name);
 		setGame(new BlockedexGame(this));
-
-		registerBase(getNorthBase());
-		registerBase(getSouthBase());
-		registerBase(getWestBase());
-		registerBase(getEastBase());
 	}
-	
+
 	@Override
 	public boolean addTeam(ETeam team) {
 		if (teams.contains(team))
@@ -88,45 +80,45 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	}
 
 	@Override
-	public IUnmodifiableBase getNorthBase() {
+	public String getNorthBase() {
 		return northBase == null ? DEFAULT_BASE : northBase;
 	}
 
 	@Override
-	public IUnmodifiableBase getSouthBase() {
+	public String getSouthBase() {
 		return southBase == null ? DEFAULT_BASE : southBase;
 	}
 
 	@Override
-	public IUnmodifiableBase getWestBase() {
+	public String getWestBase() {
 		return westBase == null ? DEFAULT_BASE : westBase;
 	}
 
 	@Override
-	public IUnmodifiableBase getEastBase() {
+	public String getEastBase() {
 		return eastBase == null ? DEFAULT_BASE : eastBase;
 	}
 
 	@Override
-	public void setNorthBase(IUnmodifiableBase northBase) {
+	public void setNorthBase(String northBase) {
 		this.northBase = northBase;
 		registerBase(northBase);
 	}
 
 	@Override
-	public void setSouthBase(IUnmodifiableBase southBase) {
+	public void setSouthBase(String southBase) {
 		this.southBase = southBase;
 		registerBase(southBase);
 	}
 
 	@Override
-	public void setWestBase(IUnmodifiableBase westBase) {
+	public void setWestBase(String westBase) {
 		this.westBase = westBase;
 		registerBase(westBase);
 	}
 
 	@Override
-	public void setEastBase(IUnmodifiableBase eastBase) {
+	public void setEastBase(String eastBase) {
 		this.eastBase = eastBase;
 		registerBase(eastBase);
 	}
@@ -141,9 +133,8 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 		this.baseFromSpawnDistance = baseFromSpawnDistance;
 	}
 
-	private void registerBase(IUnmodifiableBase base) {
-		for (ChatColor color : base.getChests().values()) {
-			ETeam team = ETeam.getByColor(color);
+	private void registerBase(String baseName) {
+		for (ETeam team : BaseManager.getBaseByName(baseName).getChests().values()) {
 			if (!teams.contains(team))
 				teams.add(team);
 		}
