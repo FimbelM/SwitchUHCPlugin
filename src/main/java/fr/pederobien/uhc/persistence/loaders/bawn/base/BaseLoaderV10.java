@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.bukkit.ChatColor;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
+import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.persistence.loaders.IPersistenceLoader;
 import fr.pederobien.uhc.world.blocks.Dimension;
 import fr.pederobien.uhc.world.blocks.SerialisableBlock;
@@ -39,15 +39,17 @@ public class BaseLoaderV10 extends AbstractBaseLoader {
 				get().setCenter(elt.getAttribute("x"), elt.getAttribute("y"), elt.getAttribute("z"));
 				break;
 			case "chests":
-				HashMap<ISerializableBlock, ChatColor> chests = new HashMap<ISerializableBlock, ChatColor>();
+				HashMap<ISerializableBlock, ETeam> chests = new HashMap<ISerializableBlock, ETeam>();
 				for (int j = 0; j < elt.getChildNodes().getLength(); j++) {
 					if (elt.getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
 						continue;
+
 					Element chest = (Element) elt.getChildNodes().item(j);
-					chests.put(
-							new SerialisableBlock(chest.getAttribute("x"), chest.getAttribute("y"),
-									chest.getAttribute("z"), chest.getAttribute("blockdata")),
-							ChatColor.getByChar(chest.getAttribute("color")));
+					ETeam team = ETeam.getByColorName(chest.getAttribute("color"));
+					team.setName(chest.getAttribute("team"));
+
+					chests.put(new SerialisableBlock(chest.getAttribute("x"), chest.getAttribute("y"),
+							chest.getAttribute("z"), chest.getAttribute("blockdata")), team);
 				}
 				get().setChests(chests);
 				break;

@@ -63,7 +63,8 @@ public class BasePersistence extends AbstractBawnPersistence<IBase> {
 			chest.setAttribute("x", "" + b.getX());
 			chest.setAttribute("y", "" + b.getY());
 			chest.setAttribute("z", "" + b.getZ());
-			chest.setAttribute("color", "" + get().getChests().get(b).getChar());
+			chest.setAttribute("color", "" + get().getChests().get(b).getColorName());
+			chest.setAttribute("team", "" + get().getChests().get(b).getNameWithoutColor());
 			chest.setAttribute("blockdata", b.getBlockData().getAsString());
 			chests.appendChild(chest);
 		}

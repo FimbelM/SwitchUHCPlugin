@@ -2,13 +2,14 @@ package fr.pederobien.uhc.interfaces;
 
 import java.util.Map;
 
-import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
+import fr.pederobien.uhc.managers.ETeam;
+
 public interface IUnmodifiableBase extends IUnmodifiableBawn {
 	
-	Map<ISerializableBlock, ChatColor> getChests();
+	Map<ISerializableBlock, ETeam> getChests();
 
 	boolean isChestRestricted(Block block, Player player);
 	

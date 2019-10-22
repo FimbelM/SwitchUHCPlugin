@@ -2,9 +2,9 @@ package fr.pederobien.uhc.interfaces;
 
 import java.util.HashMap;
 
-import org.bukkit.ChatColor;
+import fr.pederobien.uhc.managers.ETeam;
 
 public interface IBase extends IBawn, IUnmodifiableBase {
 	
-	void setChests(HashMap<ISerializableBlock, ChatColor> chests);
+	void setChests(HashMap<ISerializableBlock, ETeam> chests);
 }

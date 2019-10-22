@@ -8,7 +8,6 @@ import org.bukkit.command.CommandSender;
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfEdition;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IPersistence;
-import fr.pederobien.uhc.interfaces.IUnmodifiableBase;
 import fr.pederobien.uhc.managers.BaseManager;
 import net.md_5.bungee.api.ChatColor;
 
@@ -19,7 +18,7 @@ public abstract class CommonBaseBlockedexGame extends AbstractConfEdition<IBlock
 		super(persistence, label, explanation);
 	}
 
-	protected abstract void setBase(IUnmodifiableBase base);
+	protected abstract void setBase(String baseName);
 
 	protected abstract String onBaseSetted();
 
@@ -28,8 +27,8 @@ public abstract class CommonBaseBlockedexGame extends AbstractConfEdition<IBlock
 		String name;
 		try {
 			name = args[0];
-			if (BaseManager.checkBaseAvailable(name)) {
-				setBase(BaseManager.getBaseByName(name));
+			if (BaseManager.checkBaseAvailable(name, get().getTeams())) {
+				setBase(name);
 				return onBaseSetted();
 			}
 			return "Base does not support all team (number or color)";
@@ -41,7 +40,7 @@ public abstract class CommonBaseBlockedexGame extends AbstractConfEdition<IBlock
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		if (args.length == 1) {
-			List<String> bases = BaseManager.availableBasesAccordingTeam();
+			List<String> bases = BaseManager.availableBasesAccordingTeam(get().getTeams());
 			if (bases.size() == 0)
 				sendMessageToSender(sender, ChatColor.RED + "No existing bases that supports team (number or color)");
 			return filter(bases, args[0]);
