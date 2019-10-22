@@ -109,13 +109,18 @@ public abstract class AbstractMapEdition implements IMapEdition {
 	}
 
 	@Override
+	public void onBeforeLaunching() {
+
+	}
+
+	@Override
 	public void onLoaded() {
 
 	}
-	
+
 	@Override
 	public void onNewCreated() {
-		
+
 	}
 
 	protected <T> List<T> emptyList() {

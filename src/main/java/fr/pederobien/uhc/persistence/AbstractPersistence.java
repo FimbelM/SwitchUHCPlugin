@@ -62,6 +62,7 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 
 	@Override
 	public IPersistence<T> load(String name) throws FileNotFoundException {
+		onBeforeLaunching();
 		try {
 			Document doc = getDocument(getPath() + name + ".xml");
 			Element root = doc.getDocumentElement();
@@ -80,6 +81,11 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 	public IPersistence<T> registerLoader(IPersistenceLoader<T> loader) {
 		map.put(loader.getVersion(), loader);
 		return this;
+	}
+	
+	@Override
+	public IDefaultContent getDefaultContent() {
+		return defaultContent;
 	}
 
 	@Override
@@ -230,5 +236,10 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 	private void onNewCreated() {
 		for (IObsPersistence obs : observers)
 			obs.onLoaded();
+	}
+	
+	private void onBeforeLaunching() {
+		for (IObsPersistence obs : observers)
+			obs.onBeforeLaunching();
 	}
 }

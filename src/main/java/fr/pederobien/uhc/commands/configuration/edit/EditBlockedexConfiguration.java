@@ -4,6 +4,7 @@ import fr.pederobien.uhc.commands.configuration.edit.editions.IMapEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.blockedexgame.BlockedexGameEditionsFactory;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
+import fr.pederobien.uhc.managers.BaseManager;
 
 public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlockedexConfiguration> {
 	private static final BlockedexGameEditionsFactory factory = BlockedexGameEditionsFactory.getInstance();
@@ -32,6 +33,11 @@ public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlock
 		
 		getEditions().get(load.getLabel()).setAvailable(true);
 		getEditions().get(newConf.getLabel()).setAvailable(true);
+	}
+	
+	@Override
+	public void onBeforeLaunching() {
+		BaseManager.loadPersistences();
 	}
 	
 	@Override
