@@ -33,10 +33,10 @@ public class ExtractBase extends CommonExtract<IBase> {
 		return builder.toString();
 	}
 
-	private String colorName(Collection<ChatColor> colors) {
+	private String colorName(Collection<ETeam> teams) {
 		String colorName = "";
-		for (ChatColor color : colors)
-			colorName += ETeam.getByColor(color).getNameWithColor() + " ";
+		for (ETeam team : teams)
+			colorName += team.getNameWithColor() + " ";
 		return colorName;
 	}
 }
