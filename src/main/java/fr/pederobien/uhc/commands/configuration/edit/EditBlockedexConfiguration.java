@@ -3,33 +3,33 @@ package fr.pederobien.uhc.commands.configuration.edit;
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.blockedexgame.BlockedexGameEditionsFactory;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
+import fr.pederobien.uhc.interfaces.IMapEdition;
 
 public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlockedexConfiguration> {
 	private static final BlockedexGameEditionsFactory factory = BlockedexGameEditionsFactory.getInstance();
-	//private IMapEdition bases;
 
 	public EditBlockedexConfiguration(IConfigurationContext context) {
 		super(factory.getPersistence(), "bd", "to configure a blockedex game style");
 
-		/*IMapEdition load = factory.createLoadEdition();
-		IMapEdition newConf = factory.createNewEdition();
-		bases = factory.createBasesEdition();
+		IMapEdition<IBlockedexConfiguration> load = factory.createLoadEdition();
+		IMapEdition<IBlockedexConfiguration> newConf = factory.createNewEdition();
 		
-		addEditions(factory.createGameTimeEdition(),
-				factory.createScoreboardRefreshEdition(),
-				factory.createRenameEdition(),
-				load, newConf,
-				factory.createCurrentEdition(),
-				factory.createAsCurrentEdition(context),
-				factory.createSaveEdition(),
-				factory.createListEdition(),
-				factory.createHelpEdition(this),
-				bases,
-				factory.createBaseDistanceEdition(),
-				factory.createTeamEdition());
+		addEdition(factory.createAsCurrentEdition(context))
+		.addEdition(factory.createBaseDistanceEdition())
+		.addEdition(factory.createBasesEdition())
+		.addEdition(factory.createCurrentEdition())
+		.addEdition(factory.createGameTimeEdition())
+		.addEdition(factory.createHelpEdition(this))
+		.addEdition(factory.createListEdition())
+		.addEdition(load)
+		.addEdition(newConf)
+		.addEdition(factory.createRenameEdition())
+		.addEdition(factory.createSaveEdition())
+		.addEdition(factory.createScoreboardRefreshEdition())
+		.addEdition(factory.createTeamEdition());
 		
 		getEditions().get(load.getLabel()).setAvailable(true);
-		getEditions().get(newConf.getLabel()).setAvailable(true);*/
+		getEditions().get(newConf.getLabel()).setAvailable(true);
 	}
 	
 	/*@Override
