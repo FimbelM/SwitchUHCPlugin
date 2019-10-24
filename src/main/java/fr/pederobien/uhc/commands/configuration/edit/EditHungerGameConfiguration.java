@@ -3,6 +3,7 @@ package fr.pederobien.uhc.commands.configuration.edit;
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.hungergame.HungerGameEditionsFactory;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
+import fr.pederobien.uhc.interfaces.IMapEdition;
 
 public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHungerGameConfiguration> {
 	private static final HungerGameEditionsFactory factory = HungerGameEditionsFactory.getInstance();
@@ -10,35 +11,25 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHung
 	public EditHungerGameConfiguration(IConfigurationContext context) {
 		super(factory.getPersistence(), "hg", "to configure a hunger game style");
 
-		/*IMapEdition load = factory.createLoadEdition();
-		IMapEdition newConf = factory.createNewEdition();
+		IMapEdition<IHungerGameConfiguration> load = factory.createLoadEdition();
+		IMapEdition<IHungerGameConfiguration> newConf = factory.createNewEdition();
 		
-		addEditions(factory.createBorderCenterEdition(),
-				factory.createInitialBorderDiameterEdition(),
-				factory.createFinalBorderDiameterEdition(),
-				factory.createGameTimeEdition(),
-				factory.createFractionTimeEdition(),
-				factory.createScoreboardRefreshEdition(),
-				factory.createRenameEdition(),
-				load, newConf,
-				factory.createCurrentEdition(),
-				factory.createAsCurrentEdition(context),
-				factory.createSaveEdition(),
-				factory.createListEdition(),
-				factory.createHelpEdition(this),
-				factory.createTeamEdition());
-		
+		addEdition(factory.createAsCurrentEdition(context))
+		.addEdition(factory.createBorderCenterEdition())
+		.addEdition(factory.createCurrentEdition())
+		.addEdition(factory.createFinalBorderDiameterEdition())
+		.addEdition(factory.createFractionTimeEdition())
+		.addEdition(factory.createHelpEdition(this))
+		.addEdition(factory.createInitialBorderDiameterEdition())
+		.addEdition(factory.createListEdition())
+		.addEdition(load)
+		.addEdition(newConf)
+		.addEdition(factory.createRenameEdition())
+		.addEdition(factory.createSaveEdition())
+		.addEdition(factory.createScoreboardRefreshEdition())
+		.addEdition(factory.createTeamEdition());
+
 		getEditions().get(load.getLabel()).setAvailable(true);
-		getEditions().get(newConf.getLabel()).setAvailable(true);*/
+		getEditions().get(newConf.getLabel()).setAvailable(true);
 	}
-	
-	/*@Override
-	public void onLoaded() {
-		availableAll();
-	}
-	
-	@Override
-	public void onNewCreated() {
-		availableAll();
-	}*/
 }
