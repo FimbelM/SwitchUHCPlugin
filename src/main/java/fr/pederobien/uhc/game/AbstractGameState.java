@@ -22,6 +22,7 @@ import fr.pederobien.uhc.task.ITaskLauncher;
 public abstract class AbstractGameState implements IGameState {
 	protected static ITaskLauncher taskLauncher;
 	protected static IScoreboardLauncher scoreboardLauncher;
+	protected String message;
 
 	@Override
 	public boolean initiate() {
@@ -50,7 +51,7 @@ public abstract class AbstractGameState implements IGameState {
 	
 	@Override
 	public String getMessage() {
-		return null;
+		return message;
 	}
 
 	@Override
