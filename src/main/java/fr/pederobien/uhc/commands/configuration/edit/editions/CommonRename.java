@@ -7,12 +7,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.interfaces.IName;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
-public abstract class CommonRename<T extends IName> extends AbstractEdition<T> {
+public abstract class CommonRename<T extends IName> extends AbstractMapEdition<T> {
 
-	public CommonRename(IPersistence<T> persistence, String explanation) {
-		super(persistence, "rename", explanation);
+	public CommonRename(String explanation) {
+		super("rename", explanation);
 	}
 
 	protected abstract String onAlreadyExisting(String newName);

@@ -2,13 +2,12 @@ package fr.pederobien.uhc.commands.configuration.edit.editions;
 
 import java.util.List;
 
-import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 
-public abstract class CommonList<T extends IUnmodifiableName> extends AbstractEdition<T> {
+public abstract class CommonList<T extends IUnmodifiableName> extends AbstractMapEdition<T> {
 
-	public CommonList(IPersistence<T> persistence, String explanation) {
-		super(persistence, "list", explanation);
+	public CommonList(String explanation) {
+		super("list", explanation);
 	}
 
 	protected abstract String onSizeGreatThan0();

@@ -10,11 +10,11 @@ import fr.pederobien.uhc.configurations.ConfigurationsFactory;
 import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 
-public abstract class CommonNew<T extends IUnmodifiableName> extends AbstractEdition<T> {
+public abstract class CommonNew<T extends IUnmodifiableName> extends AbstractMapEdition<T> {
 	protected ConfigurationsFactory factory = ConfigurationsFactory.getInstance();
 
 	public CommonNew(IPersistence<T> persistence, String explanation) {
-		super(persistence, "new", explanation);
+		super("new", explanation);
 	}
 
 	protected abstract String onAlreadyExisting(String name);
