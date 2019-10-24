@@ -1,6 +1,7 @@
 package fr.pederobien.uhc.commands.configuration.edit;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.spawn.SpawnEditionsFactory;
+import fr.pederobien.uhc.interfaces.IMapEdition;
 import fr.pederobien.uhc.interfaces.ISpawn;
 
 public class EditSpawnConfiguration extends AbstractEditConfiguration<ISpawn> {
@@ -9,22 +10,23 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration<ISpawn> {
 	public EditSpawnConfiguration() {
 		super(factory.getPersistence(), "spawn", "to configure a spawn");
 		
-		/*IMapEdition launch = factory.createLaunchEdition();
-		IMapEdition newSpawn = factory.createNewEdition();
-
-		addEditions(factory.createCenterEdition(),
-				factory.createDimensionsEdition(),
-				factory.createRenameEdition(),
-				factory.createCurrentEdition(),
-				newSpawn, launch,
-				factory.createSaveEdition(),
-				factory.createRemoveEdition(),
-				factory.createExtractEdition(),
-				factory.createListEdition(),
-				factory.createHelpEdition(this));
+		IMapEdition<ISpawn> launch = factory.createLaunchEdition();
+		IMapEdition<ISpawn> newSpawn = factory.createNewEdition();
 		
+		addEdition(factory.createCenterEdition())
+		.addEdition(factory.createCurrentEdition())
+		.addEdition(factory.createDimensionsEdition())
+		.addEdition(factory.createExtractEdition())
+		.addEdition(factory.createHelpEdition(this))
+		.addEdition(launch)
+		.addEdition(factory.createListEdition())
+		.addEdition(newSpawn)
+		.addEdition(factory.createRemoveEdition())
+		.addEdition(factory.createRenameEdition())
+		.addEdition(factory.createSaveEdition());
+
 		getEditions().get(launch.getLabel()).setAvailable(true);
-		getEditions().get(newSpawn.getLabel()).setAvailable(true);*/
+		getEditions().get(newSpawn.getLabel()).setAvailable(true);
 	}
 	
 	/*@Override
