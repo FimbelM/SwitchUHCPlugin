@@ -1,6 +1,5 @@
 package fr.pederobien.uhc.commands.configuration.edit;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.IMapEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.spawn.SpawnEditionsFactory;
 import fr.pederobien.uhc.interfaces.ISpawn;
 
@@ -10,7 +9,7 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration<ISpawn> {
 	public EditSpawnConfiguration() {
 		super(factory.getPersistence(), "spawn", "to configure a spawn");
 		
-		IMapEdition launch = factory.createLaunchEdition();
+		/*IMapEdition launch = factory.createLaunchEdition();
 		IMapEdition newSpawn = factory.createNewEdition();
 
 		addEditions(factory.createCenterEdition(),
@@ -25,10 +24,10 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration<ISpawn> {
 				factory.createHelpEdition(this));
 		
 		getEditions().get(launch.getLabel()).setAvailable(true);
-		getEditions().get(newSpawn.getLabel()).setAvailable(true);
+		getEditions().get(newSpawn.getLabel()).setAvailable(true);*/
 	}
 	
-	@Override
+	/*@Override
 	public void onLoaded() {
 		availableAll();
 	}
@@ -36,5 +35,5 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration<ISpawn> {
 	@Override
 	public void onNewCreated() {
 		availableAll();
-	}
+	}*/
 }

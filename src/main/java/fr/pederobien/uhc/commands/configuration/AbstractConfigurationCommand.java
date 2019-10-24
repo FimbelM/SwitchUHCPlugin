@@ -5,19 +5,21 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.pederobien.uhc.commands.AbstractCommand;
-import fr.pederobien.uhc.commands.configuration.edit.editions.IMapEdition;
+import fr.pederobien.uhc.interfaces.IEditConfiguration;
+import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 
-public abstract class AbstractConfigurationCommand extends AbstractCommand {
-	private IMapEdition conf;
+public abstract class AbstractConfigurationCommand<T extends IUnmodifiableName> extends AbstractCommand {
+	private IEditConfiguration<T> configuration;
 
-	public AbstractConfigurationCommand(JavaPlugin plugin, String command, IMapEdition conf) {
-		super(plugin, command, conf);
-		this.conf = conf;
+	public AbstractConfigurationCommand(JavaPlugin plugin, String cmd, IEditConfiguration<T> conf) {
+		super(plugin, cmd);
+		configuration = conf;
+		command.setTabCompleter(conf);
 	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		sendMessageToSender(sender, conf.edit(args));
+		sendMessageToSender(sender, configuration.edit(args));
 		return true;
 	}
 }
