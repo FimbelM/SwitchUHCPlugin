@@ -2,12 +2,11 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.base;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonRename;
 import fr.pederobien.uhc.interfaces.IBase;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class RenameBase extends CommonRename<IBase> {
 
-	public RenameBase(IPersistence<IBase> persistence) {
-		super(persistence, "to rename the base");
+	public RenameBase() {
+		super("to rename the base");
 	}
 
 	@Override

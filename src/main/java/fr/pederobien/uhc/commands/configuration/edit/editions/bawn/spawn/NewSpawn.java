@@ -1,13 +1,12 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.spawn;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonNew;
-import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.ISpawn;
 
 public class NewSpawn extends CommonNew<ISpawn> {
 
-	public NewSpawn(IPersistence<ISpawn> persistence) {
-		super(persistence, "to create a new spawn");
+	public NewSpawn() {
+		super("to create a new spawn");
 	}
 
 	@Override

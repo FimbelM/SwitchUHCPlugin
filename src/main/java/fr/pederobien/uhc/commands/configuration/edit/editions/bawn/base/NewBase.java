@@ -2,12 +2,11 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.base;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonNew;
 import fr.pederobien.uhc.interfaces.IBase;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class NewBase extends CommonNew<IBase> {
 
-	public NewBase(IPersistence<IBase> persistence) {
-		super(persistence, "to create a new base");
+	public NewBase() {
+		super("to create a new base");
 	}
 
 	@Override

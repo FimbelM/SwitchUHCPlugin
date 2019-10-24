@@ -8,12 +8,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.interfaces.IBawn;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public abstract class CommonLaunch<T extends IBawn> extends AbstractBawnEdition<T> {
 
-	public CommonLaunch(IPersistence<T> persistence, String explanation) {
-		super(persistence, "launch", explanation);
+	public CommonLaunch(String explanation) {
+		super("launch", explanation);
 	}
 
 	protected abstract String onLaunch();

@@ -7,12 +7,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.interfaces.IBawn;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class CommonCenter<T extends IBawn> extends AbstractBawnEdition<T> {
 
-	public CommonCenter(IPersistence<T> persistence) {
-		super(persistence, "center", "to set the center");
+	public CommonCenter() {
+		super("center", "to set the center");
 	}
 
 	@Override

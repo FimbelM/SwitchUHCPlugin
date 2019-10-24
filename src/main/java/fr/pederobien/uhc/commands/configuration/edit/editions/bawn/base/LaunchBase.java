@@ -2,12 +2,11 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.base;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.CommonLaunch;
 import fr.pederobien.uhc.interfaces.IBase;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class LaunchBase extends CommonLaunch<IBase> {
 
-	public LaunchBase(IPersistence<IBase> persistence) {
-		super(persistence, "to launch a base");
+	public LaunchBase() {
+		super("to launch a base");
 	}
 
 	@Override

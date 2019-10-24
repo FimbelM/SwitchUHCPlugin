@@ -1,13 +1,12 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.spawn;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonRename;
-import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.ISpawn;
 
 public class RenameSpawn extends CommonRename<ISpawn> {
 
-	public RenameSpawn(IPersistence<ISpawn> persistence) {
-		super(persistence, "to rename the spawn");
+	public RenameSpawn() {
+		super("to rename the spawn");
 	}
 
 	@Override

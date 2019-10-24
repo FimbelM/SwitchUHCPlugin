@@ -1,13 +1,12 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.spawn;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.CommonRemove;
-import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.ISpawn;
 
 public class RemoveSpawn extends CommonRemove<ISpawn> {
 
-	public RemoveSpawn(IPersistence<ISpawn> persistence) {
-		super(persistence, "to remove the spawn from the world");
+	public RemoveSpawn() {
+		super("to remove the spawn from the world");
 	}
 
 	@Override

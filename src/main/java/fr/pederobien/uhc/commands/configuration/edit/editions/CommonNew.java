@@ -7,13 +7,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.configurations.ConfigurationsFactory;
-import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 
 public abstract class CommonNew<T extends IUnmodifiableName> extends AbstractMapEdition<T> {
 	protected ConfigurationsFactory factory = ConfigurationsFactory.getInstance();
 
-	public CommonNew(IPersistence<T> persistence, String explanation) {
+	public CommonNew(String explanation) {
 		super("new", explanation);
 	}
 

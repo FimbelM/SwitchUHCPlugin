@@ -1,7 +1,7 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.spawn;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.IMapEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.AbstractBawnEditionsFactory;
+import fr.pederobien.uhc.interfaces.IMapEdition;
 import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.ISpawn;
 import fr.pederobien.uhc.persistence.PersistenceFactory;
@@ -22,42 +22,42 @@ public class SpawnEditionsFactory extends AbstractBawnEditionsFactory<ISpawn> {
 	}
 
 	@Override
-	public IMapEdition createNewEdition() {
-		return new NewSpawn(persistence);
+	public IMapEdition<ISpawn> createNewEdition() {
+		return new NewSpawn();
 	}
 
 	@Override
-	public IMapEdition createExtractEdition() {
-		return new ExtractSpawn(persistence);
+	public IMapEdition<ISpawn> createExtractEdition() {
+		return new ExtractSpawn();
 	}
 
 	@Override
-	public IMapEdition createRenameEdition() {
-		return new RenameSpawn(persistence);
+	public IMapEdition<ISpawn> createRenameEdition() {
+		return new RenameSpawn();
 	}
 
 	@Override
-	public IMapEdition createSaveEdition() {
-		return new SaveSpawn(persistence);
+	public IMapEdition<ISpawn> createSaveEdition() {
+		return new SaveSpawn();
 	}
 
 	@Override
-	public IMapEdition createListEdition() {
-		return new ListSpawn(persistence);
+	public IMapEdition<ISpawn> createListEdition() {
+		return new ListSpawn();
 	}
 
 	@Override
-	public IMapEdition createCurrentEdition() {
-		return new CurrentSpawn(persistence);
+	public IMapEdition<ISpawn> createCurrentEdition() {
+		return new CurrentSpawn();
 	}
 
 	@Override
-	public IMapEdition createLaunchEdition() {
-		return new LaunchSpawn(persistence);
+	public IMapEdition<ISpawn> createLaunchEdition() {
+		return new LaunchSpawn();
 	}
 
 	@Override
-	public IMapEdition createRemoveEdition() {
-		return new RemoveSpawn(persistence);
+	public IMapEdition<ISpawn> createRemoveEdition() {
+		return new RemoveSpawn();
 	}
 }

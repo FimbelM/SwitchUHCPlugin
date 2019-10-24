@@ -2,12 +2,11 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.base;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonList;
 import fr.pederobien.uhc.interfaces.IBase;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class ListBase extends CommonList<IBase> {
 
-	public ListBase(IPersistence<IBase> persistence) {
-		super(persistence, "to display all existing base(s)");
+	public ListBase() {
+		super("to display all existing base(s)");
 	}
 
 	@Override

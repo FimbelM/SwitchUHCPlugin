@@ -6,13 +6,12 @@ import org.bukkit.ChatColor;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.CommonExtract;
 import fr.pederobien.uhc.interfaces.IBase;
-import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.managers.ETeam;
 
 public class ExtractBase extends CommonExtract<IBase> {
 
-	public ExtractBase(IPersistence<IBase> persistence) {
-		super(persistence, "to extract base's blocks");
+	public ExtractBase() {
+		super("to extract base's blocks");
 	}
 
 	@Override

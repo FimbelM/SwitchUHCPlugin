@@ -1,13 +1,12 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.spawn;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.CommonLaunch;
-import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.ISpawn;
 
 public class LaunchSpawn extends CommonLaunch<ISpawn> {
 
-	public LaunchSpawn(IPersistence<ISpawn> persistence) {
-		super(persistence, "to launch a spawn in the world");
+	public LaunchSpawn() {
+		super("to launch a spawn in the world");
 	}
 
 	@Override

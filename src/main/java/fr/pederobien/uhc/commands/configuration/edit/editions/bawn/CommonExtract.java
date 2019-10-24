@@ -1,12 +1,11 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn;
 
 import fr.pederobien.uhc.interfaces.IBawn;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public abstract class CommonExtract<T extends IBawn> extends AbstractBawnEdition<T> {
 
-	public CommonExtract(IPersistence<T> persistence, String explanation) {
-		super(persistence, "extract", explanation);
+	public CommonExtract(String explanation) {
+		super("extract", explanation);
 	}
 
 	protected abstract String onExtracted();

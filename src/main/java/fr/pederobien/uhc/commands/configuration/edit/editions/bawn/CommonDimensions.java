@@ -7,13 +7,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.interfaces.IBawn;
-import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.world.blocks.Dimension;
 
 public class CommonDimensions<T extends IBawn> extends AbstractBawnEdition<T> {
 
-	public CommonDimensions(IPersistence<T> persistence) {
-		super(persistence, "dimensions", "to set the dimensions (width height depth)");
+	public CommonDimensions() {
+		super("dimensions", "to set the dimensions (width height depth)");
 	}
 
 	@Override
