@@ -12,6 +12,7 @@ public class CommonTeam<T extends IConfiguration> extends AbstractConfEdition<T>
 		addEdition(factory.createAddPlayerEdition())
 		.addEdition(factory.createAddTeamEdition())
 		.addEdition(factory.createListTeamEdition())
+		.addEdition(factory.createModifierTeam())
 		.addEdition(factory.createMovePlayerEdition())
 		.addEdition(factory.createRandomTeamEdition())
 		.addEdition(factory.createRemovePlayerEdition())

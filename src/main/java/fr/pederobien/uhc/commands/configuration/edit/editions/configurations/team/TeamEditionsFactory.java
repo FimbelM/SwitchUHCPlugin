@@ -32,4 +32,8 @@ public class TeamEditionsFactory<T extends IConfiguration> {
 	public IMapEdition<T> createRemoveTeamEdition() {
 		return new RemoveTeam<T>();
 	}
+	
+	public IMapEdition<T> createModifierTeam() {
+		return new ModifierTeam<T>();
+	}
 }
