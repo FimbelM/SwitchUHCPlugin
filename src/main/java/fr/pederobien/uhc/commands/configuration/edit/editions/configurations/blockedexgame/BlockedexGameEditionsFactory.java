@@ -62,20 +62,8 @@ public class BlockedexGameEditionsFactory extends AbstractConfigurationEditionsF
 		return new SaveBlockedexGame(persistence);
 	}
 
-	public IMapEdition createNorthBaseEdition() {
-		return new NorthBaseBlockedexGame(persistence);
-	}
-
-	public IMapEdition createSouthBaseEdition() {
-		return new SouthBaseBlockedexGame(persistence);
-	}
-
-	public IMapEdition createWestBaseEdition() {
-		return new WestBaseBlockedexGame(persistence);
-	}
-
-	public IMapEdition createEastBaseEdition() {
-		return new EastBaseBlockedexGame(persistence);
+	public IMapEdition createBasesEdition() {
+		return new CommonBase(persistence);
 	}
 
 	public IMapEdition createBaseDistanceEdition() {

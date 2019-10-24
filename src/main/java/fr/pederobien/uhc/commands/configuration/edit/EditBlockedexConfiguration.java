@@ -8,12 +8,14 @@ import fr.pederobien.uhc.managers.BaseManager;
 
 public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlockedexConfiguration> {
 	private static final BlockedexGameEditionsFactory factory = BlockedexGameEditionsFactory.getInstance();
+	private IMapEdition bases;
 
 	public EditBlockedexConfiguration(IConfigurationContext context) {
 		super(factory.getPersistence(), "bd", "to configure a blockedex game style");
 
 		IMapEdition load = factory.createLoadEdition();
 		IMapEdition newConf = factory.createNewEdition();
+		bases = factory.createBasesEdition();
 		
 		addEditions(factory.createGameTimeEdition(),
 				factory.createScoreboardRefreshEdition(),
@@ -24,15 +26,20 @@ public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlock
 				factory.createSaveEdition(),
 				factory.createListEdition(),
 				factory.createHelpEdition(this),
-				factory.createNorthBaseEdition(),
-				factory.createSouthBaseEdition(),
-				factory.createWestBaseEdition(),
-				factory.createEastBaseEdition(),
+				bases,
 				factory.createBaseDistanceEdition(),
 				factory.createTeamEdition());
 		
 		getEditions().get(load.getLabel()).setAvailable(true);
 		getEditions().get(newConf.getLabel()).setAvailable(true);
+	}
+	
+	@Override
+	public String edit(String[] args) {
+		String message = super.edit(args);
+		if (get().getTeams().size() > 0)
+			bases.setAvailable(true);
+		return message;
 	}
 	
 	@Override
@@ -43,10 +50,12 @@ public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlock
 	@Override
 	public void onLoaded() {
 		availableAll();
+		bases.setAvailable(false);
 	}
 	
 	@Override
 	public void onNewCreated() {
 		availableAll();
+		bases.setAvailable(false);
 	}
 }
