@@ -4,14 +4,6 @@ import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.IMapEdition;
 
 public class TeamEditionsFactory<T extends IConfiguration> {
-	private boolean alreadyInstanciate = false;
-	
-	public TeamEditionsFactory() {
-		synchronized (TeamEditionsFactory.class) {
-			if (alreadyInstanciate)
-				throw new IllegalArgumentException("Class TeamEditionsFactory already implemented");
-		}
-	}
 
 	public IMapEdition<T> createAddPlayerEdition() {
 		return new AddPlayer<T>();
