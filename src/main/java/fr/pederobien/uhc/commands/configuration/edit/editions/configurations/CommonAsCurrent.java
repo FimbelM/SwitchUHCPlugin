@@ -4,13 +4,12 @@ import java.io.FileNotFoundException;
 
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public abstract class CommonAsCurrent<T extends IConfiguration> extends AbstractConfEdition<T> {
 	private IConfigurationContext context;
 
-	public CommonAsCurrent(IPersistence<T> persistence, IConfigurationContext context, String explanation) {
-		super(persistence, "ascurrent", explanation);
+	public CommonAsCurrent(IConfigurationContext context, String explanation) {
+		super("ascurrent", explanation);
 		this.context = context;
 	}
 

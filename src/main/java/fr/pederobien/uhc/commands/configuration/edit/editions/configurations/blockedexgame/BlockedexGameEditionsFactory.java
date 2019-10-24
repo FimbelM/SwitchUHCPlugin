@@ -1,9 +1,9 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.blockedexgame;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.IMapEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfigurationEditionsFactory;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
+import fr.pederobien.uhc.interfaces.IMapEdition;
 import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.persistence.PersistenceFactory;
 
@@ -23,50 +23,50 @@ public class BlockedexGameEditionsFactory extends AbstractConfigurationEditionsF
 	}
 
 	@Override
-	public IMapEdition createAsCurrentEdition(IConfigurationContext context) {
-		return new AsCurrentBlockedexGame(persistence, context);
+	public IMapEdition<IBlockedexConfiguration> createAsCurrentEdition(IConfigurationContext context) {
+		return new AsCurrentBlockedexGame(context);
 	}
 
 	@Override
-	public IMapEdition createGameTimeEdition() {
-		return new GameTimeBlockedexGame(persistence);
+	public IMapEdition<IBlockedexConfiguration> createGameTimeEdition() {
+		return new GameTimeBlockedexGame();
 	}
 
 	@Override
-	public IMapEdition createLoadEdition() {
-		return new LoadBlockedexGame(persistence);
+	public IMapEdition<IBlockedexConfiguration> createLoadEdition() {
+		return new LoadBlockedexGame();
 	}
 
 	@Override
-	public IMapEdition createListEdition() {
-		return new ListeBlockedexGame(persistence);
+	public IMapEdition<IBlockedexConfiguration> createListEdition() {
+		return new ListeBlockedexGame();
 	}
 
 	@Override
-	public IMapEdition createCurrentEdition() {
-		return new CurrentBlockedexGame(persistence);
+	public IMapEdition<IBlockedexConfiguration> createCurrentEdition() {
+		return new CurrentBlockedexGame();
 	}
 
 	@Override
-	public IMapEdition createNewEdition() {
-		return new NewBlockedexGame(persistence);
+	public IMapEdition<IBlockedexConfiguration> createNewEdition() {
+		return new NewBlockedexGame();
 	}
 
 	@Override
-	public IMapEdition createRenameEdition() {
-		return new RenameBlockedexGame(persistence);
+	public IMapEdition<IBlockedexConfiguration> createRenameEdition() {
+		return new RenameBlockedexGame();
 	}
 
 	@Override
-	public IMapEdition createSaveEdition() {
-		return new SaveBlockedexGame(persistence);
+	public IMapEdition<IBlockedexConfiguration> createSaveEdition() {
+		return new SaveBlockedexGame();
 	}
 
-	public IMapEdition createBasesEdition() {
-		return new CommonBase(persistence);
+	public IMapEdition<IBlockedexConfiguration> createBasesEdition() {
+		return new CommonBase();
 	}
 
-	public IMapEdition createBaseDistanceEdition() {
-		return new BaseDistanceBlockedexGame(persistence);
+	public IMapEdition<IBlockedexConfiguration> createBaseDistanceEdition() {
+		return new BaseDistanceBlockedexGame();
 	}
 }

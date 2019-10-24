@@ -1,12 +1,9 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.blockedexgame.bases;
 
-import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
-
 public class SouthBaseBlockedexGame extends AbstractBaseEdition {
 
-	protected SouthBaseBlockedexGame(IPersistence<IBlockedexConfiguration> persistence) {
-		super(persistence, "south", "to set the base at the south of the spawn");
+	protected SouthBaseBlockedexGame() {
+		super("south", "to set the base at the south of the spawn");
 	}
 
 	@Override

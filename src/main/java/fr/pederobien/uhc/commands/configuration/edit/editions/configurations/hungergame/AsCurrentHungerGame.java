@@ -3,12 +3,11 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.hu
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.CommonAsCurrent;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class AsCurrentHungerGame extends CommonAsCurrent<IHungerGameConfiguration> {
 
-	public AsCurrentHungerGame(IPersistence<IHungerGameConfiguration> persistence, IConfigurationContext context) {
-		super(persistence, context, "to set the current hunger game style as the current style");
+	public AsCurrentHungerGame(IConfigurationContext context) {
+		super(context, "to set the current hunger game style as the current style");
 	}
 
 	@Override

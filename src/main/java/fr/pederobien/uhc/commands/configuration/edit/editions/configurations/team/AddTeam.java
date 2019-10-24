@@ -8,15 +8,14 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 
 public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
-	public AddTeam(IPersistence<T> persistence) {
-		super(persistence, "addteam", "to add a team to a style");
+	public AddTeam() {
+		super("addteam", "to add a team to a style");
 	}
 
 	@Override

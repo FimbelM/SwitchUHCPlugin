@@ -7,21 +7,20 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.TeamsManager;
 
 public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 	private static final String ALL = "all";
 
-	public RemoveTeam(IPersistence<T> persistence) {
-		super(persistence, "removeteam", "to remove a team from a style");
+	public RemoveTeam() {
+		super("removeteam", "to remove a team from a style");
 	}
 
 	@Override
 	public String edit(String[] args) {
 		if (args[0].equals(ALL)) {
-			List<ETeam> teams = emptyList();
+			List<ETeam> teams = new ArrayList<ETeam>();
 			teams.addAll(get().getTeams());
 			for (ETeam team : teams) {
 				TeamsManager.removeTeam(team.getNameWithoutColor());

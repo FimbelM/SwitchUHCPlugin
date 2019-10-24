@@ -2,12 +2,11 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.bl
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonRename;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class RenameBlockedexGame extends CommonRename<IBlockedexConfiguration> {
 
-	public RenameBlockedexGame(IPersistence<IBlockedexConfiguration> persistence) {
-		super(persistence, "to change the name of current blockedex game style");
+	public RenameBlockedexGame() {
+		super("to change the name of current blockedex game style");
 	}
 
 	@Override

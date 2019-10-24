@@ -2,12 +2,11 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.bl
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonList;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class ListeBlockedexGame extends CommonList<IBlockedexConfiguration> {
 
-	public ListeBlockedexGame(IPersistence<IBlockedexConfiguration> persistence) {
-		super(persistence, "to display all existing blockedex game style (s)");
+	public ListeBlockedexGame() {
+		super("to display all existing blockedex game style (s)");
 	}
 
 	@Override

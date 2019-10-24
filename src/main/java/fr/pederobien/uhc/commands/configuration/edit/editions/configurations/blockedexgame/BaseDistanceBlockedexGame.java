@@ -8,12 +8,11 @@ import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfEdition;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class BaseDistanceBlockedexGame extends AbstractConfEdition<IBlockedexConfiguration> {
 
-	public BaseDistanceBlockedexGame(IPersistence<IBlockedexConfiguration> persistence) {
-		super(persistence, "basedistance", "to set the distance between each base's center and spawn's center");
+	public BaseDistanceBlockedexGame() {
+		super("basedistance", "to set the distance between each base's center and spawn's center");
 	}
 
 	@Override

@@ -2,12 +2,11 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.bl
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonNew;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class NewBlockedexGame extends CommonNew<IBlockedexConfiguration> {
 
-	public NewBlockedexGame(IPersistence<IBlockedexConfiguration> persistence) {
-		super(persistence, "to create a new blockedex game style");
+	public NewBlockedexGame() {
+		super("to create a new blockedex game style");
 	}
 
 	@Override

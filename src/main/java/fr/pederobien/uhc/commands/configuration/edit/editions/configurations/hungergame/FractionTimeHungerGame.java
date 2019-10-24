@@ -10,12 +10,11 @@ import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfEdition;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class FractionTimeHungerGame extends AbstractConfEdition<IHungerGameConfiguration> {
 
-	public FractionTimeHungerGame(IPersistence<IHungerGameConfiguration> persistence) {
-		super(persistence, "fractiontime", "to set the time after which player will not respawn in survival mode");
+	public FractionTimeHungerGame() {
+		super("fractiontime", "to set the time after which player will not respawn in survival mode");
 	}
 
 	@Override

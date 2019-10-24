@@ -3,14 +3,13 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.te
 import java.util.List;
 
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class ListTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
-	public ListTeam(IPersistence<T> persistence) {
-		super(persistence, "list", "to list the existing team for a game style");
+	public ListTeam() {
+		super("list", "to list the existing team for a game style");
 	}
-	
+
 	@Override
 	public String edit(String[] args) {
 		String teams = "";

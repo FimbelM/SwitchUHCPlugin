@@ -2,12 +2,11 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.hu
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.CommonLoad;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class LoadHungerGame extends CommonLoad<IHungerGameConfiguration> {
 
-	public LoadHungerGame(IPersistence<IHungerGameConfiguration> persistence) {
-		super(persistence, "to load an hunger game style");
+	public LoadHungerGame() {
+		super("to load an hunger game style");
 	}
 
 	@Override

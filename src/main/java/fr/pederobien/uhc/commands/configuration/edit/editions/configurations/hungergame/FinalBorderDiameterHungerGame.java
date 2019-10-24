@@ -8,12 +8,11 @@ import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfEdition;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class FinalBorderDiameterHungerGame extends AbstractConfEdition<IHungerGameConfiguration> {
 
-	public FinalBorderDiameterHungerGame(IPersistence<IHungerGameConfiguration> persistence) {
-		super(persistence, "finalborderdiameter", "to set the final diameter of the world's border");
+	public FinalBorderDiameterHungerGame() {
+		super("finalborderdiameter", "to set the final diameter of the world's border");
 	}
 
 	@Override

@@ -9,12 +9,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public abstract class CommonGameTime<T extends IConfiguration> extends AbstractConfEdition<T> {
 
-	public CommonGameTime(IPersistence<T> persistence, String explanation) {
-		super(persistence, "gametime", explanation);
+	public CommonGameTime(String explanation) {
+		super("gametime", explanation);
 	}
 
 	@Override

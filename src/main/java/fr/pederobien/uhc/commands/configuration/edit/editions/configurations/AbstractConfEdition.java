@@ -2,14 +2,13 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations;
 
 import java.time.LocalTime;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractEdition;
+import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractMapEdition;
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
-public abstract class AbstractConfEdition<T extends IConfiguration> extends AbstractEdition<T> {
+public abstract class AbstractConfEdition<T extends IConfiguration> extends AbstractMapEdition<T> {
 
-	public AbstractConfEdition(IPersistence<T> persistence, String label, String explanation) {
-		super(persistence, label, explanation);
+	public AbstractConfEdition(String label, String explanation) {
+		super(label, explanation);
 	}
 
 	protected String showTime(LocalTime time) {

@@ -7,12 +7,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public abstract class CommonLoad<T extends IConfiguration> extends AbstractConfEdition<T> {
 
-	public CommonLoad(IPersistence<T> persistence, String explanation) {
-		super(persistence, "load", explanation);
+	public CommonLoad(String explanation) {
+		super("load", explanation);
 	}
 
 	protected abstract String onStyleLoaded();

@@ -2,12 +2,11 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.hu
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonNew;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class NewHungerGame extends CommonNew<IHungerGameConfiguration> {
 
-	public NewHungerGame(IPersistence<IHungerGameConfiguration> persistence) {
-		super(persistence, "to create a new hunger game style");
+	public NewHungerGame() {
+		super("to create a new hunger game style");
 	}
 
 	@Override

@@ -8,15 +8,14 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 
 public class MovePlayer<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
-	public MovePlayer(IPersistence<T> persistence) {
-		super(persistence, "moveplayer", "to move a player from its initial to its final team");
+	public MovePlayer() {
+		super("moveplayer", "to move a player from its initial to its final team");
 	}
 
 	@Override

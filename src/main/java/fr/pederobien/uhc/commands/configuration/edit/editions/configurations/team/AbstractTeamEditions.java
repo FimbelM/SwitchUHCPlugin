@@ -4,33 +4,32 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractEdition;
+import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractMapEdition;
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 
-public abstract class AbstractTeamEditions<T extends IConfiguration> extends AbstractEdition<T> {
+public abstract class AbstractTeamEditions<T extends IConfiguration> extends AbstractMapEdition<T> {
 
-	public AbstractTeamEditions(IPersistence<T> persistence, String label, String explanation) {
-		super(persistence, label, explanation);
+	public AbstractTeamEditions(String label, String explanation) {
+		super(label, explanation);
 	}
-	
+
 	protected List<String> getTeamNamesWithoutColor() {
 		List<String> teams = emptyList();
 		for (ETeam team : get().getTeams())
 			teams.add(team.getNameWithoutColor());
 		return teams;
 	}
-	
+
 	protected List<String> getTeamNamesWithColor() {
 		List<String> teams = emptyList();
 		for (ETeam team : get().getTeams())
 			teams.add(team.getNameWithColor());
 		return teams;
 	}
-	
+
 	protected List<String> getTeams(String[] teamAlreadyMentionned) {
 		List<String> teams = new ArrayList<String>();
 		for (ETeam team : get().getTeams())
@@ -38,7 +37,7 @@ public abstract class AbstractTeamEditions<T extends IConfiguration> extends Abs
 				teams.add(team.getNameWithoutColor());
 		return teams;
 	}
-	
+
 	protected List<String> getFreePlayersName(String[] playersAlreadyMentionned) {
 		List<String> players = emptyList();
 		List<String> allPlayers = PlayerManager.getPlayersName();
@@ -53,7 +52,7 @@ public abstract class AbstractTeamEditions<T extends IConfiguration> extends Abs
 				players.add(player);
 		return players;
 	}
-	
+
 	protected List<String> getPlayersName(String teamName, String[] playersAlreadyMentionned) {
 		List<String> players = emptyList();
 		for (String name : TeamsManager.getPlayersName(teamName)) {

@@ -2,12 +2,11 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.bl
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.CommonLoad;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class LoadBlockedexGame extends CommonLoad<IBlockedexConfiguration> {
 
-	public LoadBlockedexGame(IPersistence<IBlockedexConfiguration> persistence) {
-		super(persistence, "to load a blockedex game style");
+	public LoadBlockedexGame() {
+		super("to load a blockedex game style");
 	}
 
 	@Override

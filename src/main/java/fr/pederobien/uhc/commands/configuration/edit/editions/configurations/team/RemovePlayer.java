@@ -8,15 +8,14 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 
 public class RemovePlayer<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
-	public RemovePlayer(IPersistence<T> persistence) {
-		super(persistence, "removeplayer", "to remove players from a team");
+	public RemovePlayer() {
+		super("removeplayer", "to remove players from a team");
 	}
 
 	@Override

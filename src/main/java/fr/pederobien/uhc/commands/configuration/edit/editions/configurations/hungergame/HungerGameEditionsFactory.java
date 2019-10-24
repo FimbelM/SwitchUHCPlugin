@@ -1,9 +1,9 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.hungergame;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.IMapEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfigurationEditionsFactory;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
+import fr.pederobien.uhc.interfaces.IMapEdition;
 import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.persistence.PersistenceFactory;
 
@@ -23,58 +23,58 @@ public class HungerGameEditionsFactory extends AbstractConfigurationEditionsFact
 	}
 
 	@Override
-	public IMapEdition createAsCurrentEdition(IConfigurationContext context) {
-		return new AsCurrentHungerGame(persistence, context);
+	public IMapEdition<IHungerGameConfiguration> createAsCurrentEdition(IConfigurationContext context) {
+		return new AsCurrentHungerGame(context);
 	}
 
 	@Override
-	public IMapEdition createGameTimeEdition() {
-		return new GameTimeHungerGame(persistence);
+	public IMapEdition<IHungerGameConfiguration> createGameTimeEdition() {
+		return new GameTimeHungerGame();
 	}
 
 	@Override
-	public IMapEdition createLoadEdition() {
-		return new LoadHungerGame(persistence);
+	public IMapEdition<IHungerGameConfiguration> createLoadEdition() {
+		return new LoadHungerGame();
 	}
 
 	@Override
-	public IMapEdition createListEdition() {
-		return new ListHungerGame(persistence);
+	public IMapEdition<IHungerGameConfiguration> createListEdition() {
+		return new ListHungerGame();
 	}
 
 	@Override
-	public IMapEdition createCurrentEdition() {
-		return new CurrentHungerGame(persistence);
+	public IMapEdition<IHungerGameConfiguration> createCurrentEdition() {
+		return new CurrentHungerGame();
 	}
 
 	@Override
-	public IMapEdition createNewEdition() {
-		return new NewHungerGame(persistence);
+	public IMapEdition<IHungerGameConfiguration> createNewEdition() {
+		return new NewHungerGame();
 	}
 
 	@Override
-	public IMapEdition createRenameEdition() {
-		return new RenameHungerGame(persistence);
+	public IMapEdition<IHungerGameConfiguration> createRenameEdition() {
+		return new RenameHungerGame();
 	}
 
 	@Override
-	public IMapEdition createSaveEdition() {
-		return new SaveHungerGame(persistence);
+	public IMapEdition<IHungerGameConfiguration> createSaveEdition() {
+		return new SaveHungerGame();
 	}
 
-	public IMapEdition createBorderCenterEdition() {
-		return new BorderCenterHungerGame(persistence);
+	public IMapEdition<IHungerGameConfiguration> createBorderCenterEdition() {
+		return new BorderCenterHungerGame();
 	}
 
-	public IMapEdition createInitialBorderDiameterEdition() {
-		return new InitialBorderDiameterHungerGame(persistence);
+	public IMapEdition<IHungerGameConfiguration> createInitialBorderDiameterEdition() {
+		return new InitialBorderDiameterHungerGame();
 	}
 
-	public IMapEdition createFinalBorderDiameterEdition() {
-		return new FinalBorderDiameterHungerGame(persistence);
+	public IMapEdition<IHungerGameConfiguration> createFinalBorderDiameterEdition() {
+		return new FinalBorderDiameterHungerGame();
 	}
 
-	public IMapEdition createFractionTimeEdition() {
-		return new FractionTimeHungerGame(persistence);
+	public IMapEdition<IHungerGameConfiguration> createFractionTimeEdition() {
+		return new FractionTimeHungerGame();
 	}
 }

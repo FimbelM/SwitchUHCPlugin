@@ -7,12 +7,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class CommonScoreboardRefresh<T extends IConfiguration> extends AbstractConfEdition<T> {
 
-	public CommonScoreboardRefresh(IPersistence<T> persistence) {
-		super(persistence, "scoreboardrefresh",
+	public CommonScoreboardRefresh() {
+		super("scoreboardrefresh",
 				"to set the number of servers's tic after which the scoreboard of each player is refreshed");
 	}
 

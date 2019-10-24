@@ -8,12 +8,11 @@ import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfEdition;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class InitialBorderDiameterHungerGame extends AbstractConfEdition<IHungerGameConfiguration> {
 
-	public InitialBorderDiameterHungerGame(IPersistence<IHungerGameConfiguration> persistence) {
-		super(persistence, "initialborderdiameter", "to set the initial diameter of the world's border");
+	public InitialBorderDiameterHungerGame() {
+		super("initialborderdiameter", "to set the initial diameter of the world's border");
 	}
 
 	@Override

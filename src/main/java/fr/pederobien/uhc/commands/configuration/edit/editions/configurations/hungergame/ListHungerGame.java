@@ -2,12 +2,11 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.hu
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonList;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
-import fr.pederobien.uhc.interfaces.IPersistence;
 
 public class ListHungerGame extends CommonList<IHungerGameConfiguration> {
 
-	public ListHungerGame(IPersistence<IHungerGameConfiguration> persistence) {
-		super(persistence, "to display all existing hunger game style (s)");
+	public ListHungerGame() {
+		super("to display all existing hunger game style (s)");
 	}
 
 	@Override
