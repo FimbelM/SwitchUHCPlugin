@@ -1,34 +1,64 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
-public abstract class AbstractMapEdition implements IMapEdition {
-	private HashMap<String, IMapEdition> map;
-	private String help, editionsHelp, label, explanation;
-	private boolean available;
+import fr.pederobien.uhc.interfaces.IMapEdition;
+import fr.pederobien.uhc.interfaces.IPersistenceEdition;
+import fr.pederobien.uhc.interfaces.IUnmodifiableName;
+import fr.pederobien.uhc.interfaces.IWithChildEdition;
+
+public class AbstractMapEdition<T extends IUnmodifiableName> extends AbstractEdition implements IMapEdition<T> {
 
 	public AbstractMapEdition(String label, String explanation) {
-		this.label = label;
-		this.explanation = explanation;
-		available = true;
-		map = new HashMap<String, IMapEdition>();
-		help = ChatColor.RED + getLabel() + " - " + ChatColor.BLUE + explanation;
-		editionsHelp = "";
+		super(label, explanation);
 	}
 
 	@Override
+	public String edit(String[] args) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setAvailable(boolean available) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isAvailable() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public IWithChildEdition<T> addEdition(IMapEdition<T> edition) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IWithChildEdition<T> removeEdition(IMapEdition<T> edition) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setParent(IPersistenceEdition<T> parent) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/*@Override
 	public String edit(String[] args) {
 		String label = "";
 		try {
@@ -139,5 +169,5 @@ public abstract class AbstractMapEdition implements IMapEdition {
 	private void addEdition(IMapEdition edition) {
 		map.put(edition.getLabel(), edition);
 		editionsHelp += edition.help() + "\r\n";
-	}
+	}*/
 }

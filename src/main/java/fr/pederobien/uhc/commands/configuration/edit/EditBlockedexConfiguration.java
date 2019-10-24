@@ -1,13 +1,12 @@
 package fr.pederobien.uhc.commands.configuration.edit;
 
-import fr.pederobien.uhc.commands.configuration.edit.editions.IMapEdition;
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.blockedexgame.BlockedexGameEditionsFactory;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
 
 public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlockedexConfiguration> {
 	private static final BlockedexGameEditionsFactory factory = BlockedexGameEditionsFactory.getInstance();
-	private IMapEdition bases;
+	//private IMapEdition bases;
 
 	public EditBlockedexConfiguration(IConfigurationContext context) {
 		super(factory.getPersistence(), "bd", "to configure a blockedex game style");
@@ -33,13 +32,13 @@ public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlock
 		getEditions().get(newConf.getLabel()).setAvailable(true);*/
 	}
 	
-	@Override
+	/*@Override
 	public String edit(String[] args) {
 		String message = super.edit(args);
 		if (get().getTeams().size() > 0)
 			bases.setAvailable(true);
 		return message;
-	}
+	}*/
 	
 	/*@Override
 	public void onBeforeLaunching() {

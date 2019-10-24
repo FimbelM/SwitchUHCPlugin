@@ -1,23 +1,29 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions;
 
-import fr.pederobien.uhc.interfaces.IPersistence;
-import fr.pederobien.uhc.interfaces.IUnmodifiableName;
+import org.bukkit.ChatColor;
 
-public abstract class AbstractEdition<T extends IUnmodifiableName> extends AbstractMapEdition {
-	private IPersistence<T> persistence;
+import fr.pederobien.uhc.interfaces.IEdition;
 
-	public AbstractEdition(IPersistence<T> persistence, String label, String explanation) {
-		super(label, explanation);
-		this.persistence = persistence;
-		if (persistence != null)
-			this.persistence.addObserver(this);
+public abstract class AbstractEdition implements IEdition {
+	private String label, explanation;
+
+	public AbstractEdition(String label, String explanation) {
+		this.label = label;
+		this.explanation = explanation;
 	}
 
-	protected IPersistence<T> getPersistence() {
-		return persistence;
+	@Override
+	public String help() {
+		return ChatColor.DARK_RED + label + " - " + ChatColor.DARK_AQUA + explanation;
 	}
 
-	protected T get() {
-		return persistence.get();
+	@Override
+	public String getLabel() {
+		return label;
+	}
+
+	@Override
+	public String getExplanation() {
+		return explanation;
 	}
 }

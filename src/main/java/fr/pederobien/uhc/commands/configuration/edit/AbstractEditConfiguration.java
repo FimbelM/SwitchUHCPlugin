@@ -6,8 +6,10 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.interfaces.IEditConfiguration;
+import fr.pederobien.uhc.interfaces.IMapEdition;
 import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
+import fr.pederobien.uhc.interfaces.IWithChildEdition;
 
 public class AbstractEditConfiguration<T extends IUnmodifiableName> implements IEditConfiguration<T> {
 
@@ -55,5 +57,29 @@ public class AbstractEditConfiguration<T extends IUnmodifiableName> implements I
 	public T get() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public IWithChildEdition<T> addEdition(IMapEdition<T> edition) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IWithChildEdition<T> removeEdition(IMapEdition<T> edition) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setAvailable(boolean available) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isAvailable() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
