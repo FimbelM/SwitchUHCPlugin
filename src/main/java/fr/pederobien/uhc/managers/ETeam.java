@@ -21,7 +21,7 @@ public enum ETeam {
 	private static List<String> colorsName = new ArrayList<String>();
 	private ChatColor color;
 	private String colorName;
-	private String name;
+	private String name, defaultName;
 	private List<String> players;
 
 	static {
@@ -54,7 +54,7 @@ public enum ETeam {
 	private ETeam(ChatColor color, String colorName, String name) {
 		this.color = color;
 		this.colorName = colorName;
-		this.name = name;
+		this.defaultName = this.name = name;
 		players = new ArrayList<String>();
 	}
 
@@ -76,18 +76,8 @@ public enum ETeam {
 
 	public ETeam setName(String name) {
 		this.name = name;
-		return this;
-	}
-
-	public ETeam addPlayer(String... players) {
-		for (String player : players)
-			this.players.add(player);
-		return this;
-	}
-
-	public ETeam removePlayer(String... players) {
-		for (String player : players)
-			this.players.remove(player);
+		if (name == null)
+			this.name = defaultName;
 		return this;
 	}
 

@@ -38,7 +38,7 @@ public class RemovePlayer<T extends IConfiguration> extends AbstractTeamEditions
 
 		for (String player : players) {
 			TeamsManager.leaveTeam(team.getNameWithoutColor(), player);
-			team.removePlayer(player);
+			team.getPlayers().remove(player);
 		}
 
 		if (players.isEmpty())

@@ -40,7 +40,7 @@ public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 			TeamsManager.createTeam(team);
 			for (String player : players) {
 				TeamsManager.joinTeam(team.getNameWithoutColor(), player);
-				team.addPlayer(player);
+				team.getPlayers().add(player);
 			}
 
 			String player;

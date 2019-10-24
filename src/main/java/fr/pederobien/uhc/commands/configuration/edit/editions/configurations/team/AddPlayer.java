@@ -38,7 +38,7 @@ public class AddPlayer<T extends IConfiguration> extends AbstractTeamEditions<T>
 
 		for (String player : players) {
 			TeamsManager.joinTeam(team.getNameWithoutColor(), player);
-			team.addPlayer(player);
+			team.getPlayers().add(player);
 		}
 		if (players.isEmpty())
 			return "No players added";

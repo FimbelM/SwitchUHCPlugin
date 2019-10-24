@@ -61,4 +61,11 @@ public abstract class AbstractTeamEditions<T extends IConfiguration> extends Abs
 		}
 		return players;
 	}
+	
+	protected List<String> getAvailableColors() {
+		List<String> availableColors = ETeam.getColorsName();
+		for (ETeam team : get().getTeams())
+			availableColors.remove(team.getNameWithoutColor());
+		return availableColors;
+	}
 }

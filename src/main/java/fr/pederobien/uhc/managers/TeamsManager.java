@@ -240,7 +240,7 @@ public class TeamsManager {
 			for (int j = 0; j < maxPlayer; j++) {
 				Player randomPlayer = players.get(rand.nextInt(players.size()));
 				TeamsManager.joinTeam(teams.get(i).getNameWithoutColor(), randomPlayer.getName());
-				teams.get(i).addPlayer(randomPlayer.getName());
+				teams.get(i).getPlayers().add(randomPlayer.getName());
 				players.remove(randomPlayer);
 			}
 		}
