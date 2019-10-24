@@ -3,6 +3,7 @@ package fr.pederobien.uhc.game;
 import java.time.LocalTime;
 
 import org.bukkit.GameMode;
+import org.bukkit.GameRule;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -108,6 +109,7 @@ public abstract class AbstractGameState implements IGameState {
 		PlayerManager.setGameModeOfPlayers(GameMode.SURVIVAL);
 		WorldManager.setTimeDay();
 		WorldManager.setWeatherSun();
+		WorldManager.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
 	}
 
 	protected void onStop() {

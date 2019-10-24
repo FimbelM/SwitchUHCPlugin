@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.Set;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameRule;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -151,13 +152,22 @@ public class WorldManager {
 	public static void setTimeDay() {
 		setTime(0L);
 	}
-
-	public static void setWeather(int duration) {
+	
+	public static void setWeatherDuration(int duration) {
 		world.setWeatherDuration(duration);
+	}
+	
+	public static void setThundering(boolean thundering) {
+		world.setThundering(thundering);
+	}
+	
+	public static void setStorm(boolean hasStorm) {
+		world.setStorm(hasStorm);
 	}
 
 	public static void setWeatherSun() {
-		setWeather(0);
+		setThundering(false);
+		setStorm(false);
 	}
 
 	public static Location getSpawnOnJoin() {
@@ -221,6 +231,10 @@ public class WorldManager {
 					break;
 				}
 		return players;
+	}
+	
+	public static <T> void setGameRule(GameRule<T> gameRule, T value) {
+		world.setGameRule(gameRule, value);
 	}
 
 	private static boolean isInInterval(int value, int lowerBound, int upperBound) {

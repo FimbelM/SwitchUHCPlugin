@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.GameMode;
+import org.bukkit.GameRule;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -54,7 +55,10 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 		AbstractCommand.setConfigurationContext(context);
 		AbstractCommand.setListener(listener);
 
+		WorldManager.setTimeDay();
+		WorldManager.setWeatherSun();
 		WorldManager.setPVP(false);
+		WorldManager.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
 
 		new PauseCommand(this, "pausegame");
 		new StartCommand(this, "startgame");
