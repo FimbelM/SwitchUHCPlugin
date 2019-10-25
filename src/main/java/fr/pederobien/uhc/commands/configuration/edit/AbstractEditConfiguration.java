@@ -4,6 +4,7 @@ import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractMapEdition
 import fr.pederobien.uhc.interfaces.IEditConfiguration;
 import fr.pederobien.uhc.interfaces.IMapEdition;
 import fr.pederobien.uhc.interfaces.IPersistence;
+import fr.pederobien.uhc.interfaces.IPersistenceEdition;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 import fr.pederobien.uhc.interfaces.IWithChildEdition;
 
@@ -14,11 +15,17 @@ public abstract class AbstractEditConfiguration<T extends IUnmodifiableName> ext
 	public AbstractEditConfiguration(IPersistence<T> persistence, String label, String explanation) {
 		super(label, explanation);
 		this.persistence = persistence;
+		this.persistence.addObserver(this);
 	}
 	
 	@Override
 	public IWithChildEdition<T> addEdition(IMapEdition<T> edition) {
 		return super.addEdition(edition.setAvailable(false));
+	}
+	
+	@Override
+	public IPersistenceEdition<T> getParent() {
+		return this;
 	}
 
 	@Override
@@ -33,9 +40,7 @@ public abstract class AbstractEditConfiguration<T extends IUnmodifiableName> ext
 
 	@Override
 	public void onCurrentChange(T newElt) {
-		if (newElt != null)
-			return;
-		setAllAvailable(false);
+		setAllAvailable(newElt != null);
 	}
 
 	private void setAllAvailable(boolean available) {
