@@ -32,28 +32,8 @@ public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlock
 		getEditions().get(newConf.getLabel()).setAvailable(true);
 	}
 	
-	/*@Override
-	public String edit(String[] args) {
-		String message = super.edit(args);
-		if (get().getTeams().size() > 0)
-			bases.setAvailable(true);
-		return message;
-	}*/
-	
-	/*@Override
-	public void onBeforeLaunching() {
-		BaseManager.loadPersistences();
-	}
-	
 	@Override
-	public void onLoaded() {
-		availableAll();
-		bases.setAvailable(false);
+	public void onCurrentChange(IBlockedexConfiguration newElt) {
+		
 	}
-	
-	@Override
-	public void onNewCreated() {
-		availableAll();
-		bases.setAvailable(false);
-	}*/
 }

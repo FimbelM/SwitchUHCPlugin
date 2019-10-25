@@ -29,13 +29,8 @@ public class EditBaseConfiguration extends AbstractEditConfiguration<IBase> {
 		getEditions().get(newBase.getLabel()).setAvailable(true);
 	}
 	
-	/*@Override
-	public void onLoaded() {
-		availableAll();
-	}
-	
 	@Override
-	public void onNewCreated() {
-		availableAll();
-	}*/
+	public void onCurrentChange(IBase newElt) {
+		
+	}
 }

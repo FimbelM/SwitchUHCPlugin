@@ -34,7 +34,7 @@ public interface IPersistence<T extends IUnmodifiableName> {
 
 	List<String> list();
 	
-	IPersistence<T> addObserver(IObsPersistence obs);
+	IPersistence<T> addObserver(IObsPersistence<T> obs);
 	
-	IPersistence<T> removeObserver(IObsPersistence obs);
+	IPersistence<T> removeObserver(IObsPersistence<T> obs);
 }

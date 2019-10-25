@@ -38,13 +38,13 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 	private T elt;
 	private HashMap<String, IPersistenceLoader<T>> map;
 	private IDefaultContent defaultContent;
-	private List<IObsPersistence> observers;
+	private List<IObsPersistence<T>> observers;
 	protected boolean saved, loaded;
 
 	public AbstractPersistence(IDefaultContent defaultContent) {
 		this.defaultContent = defaultContent;
 		map = new HashMap<String, IPersistenceLoader<T>>();
-		observers = new ArrayList<IObsPersistence>();
+		observers = new ArrayList<IObsPersistence<T>>();
 		loaded = false;
 		try {
 			DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
@@ -62,7 +62,6 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 
 	@Override
 	public IPersistence<T> load(String name) throws FileNotFoundException {
-		onBeforeLaunching();
 		try {
 			Document doc = getDocument(getPath() + name + ".xml");
 			Element root = doc.getDocumentElement();
@@ -73,7 +72,6 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 		} catch (IOException e) {
 			throw new FileNotFoundException(onLoadNotFound(name));
 		}
-		onLoaded();
 		return this;
 	}
 
@@ -128,19 +126,19 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 	}
 
 	@Override
-	public void set(T elt) {
+	final public void set(T elt) {
 		this.elt = elt;
-		onNewCreated();
+		onCurrentChange();
 	}
 	
 	@Override
-	public IPersistence<T> addObserver(IObsPersistence obs) {
+	public IPersistence<T> addObserver(IObsPersistence<T> obs) {
 		observers.add(obs);
 		return this;
 	}
 	
 	@Override
-	public IPersistence<T> removeObserver(IObsPersistence obs) {
+	public IPersistence<T> removeObserver(IObsPersistence<T> obs) {
 		observers.remove(obs);
 		return this;
 	}
@@ -227,19 +225,8 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 		}
 	}
 	
-	private void onLoaded() {
-		loaded = true;
-		for (IObsPersistence obs : observers)
-			obs.onLoaded();
-	}
-	
-	private void onNewCreated() {
-		for (IObsPersistence obs : observers)
-			obs.onLoaded();
-	}
-	
-	private void onBeforeLaunching() {
-		for (IObsPersistence obs : observers)
-			obs.onBeforeLaunching();
+	private void onCurrentChange() {
+		for (IObsPersistence<T> obs : observers)
+			obs.onCurrentChange(get());
 	}
 }

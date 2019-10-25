@@ -1,12 +1,8 @@
 package fr.pederobien.uhc.observer;
 
-public interface IObsPersistence {
-	
-	void onBeforeLaunching();
+import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 
-	void onLoaded();
+public interface IObsPersistence<T extends IUnmodifiableName> {
 	
-	void onNewCreated();
-	
-	void onDeleted();
+	void onCurrentChange(T newElt);
 }

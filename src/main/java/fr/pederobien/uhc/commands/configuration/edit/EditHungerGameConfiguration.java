@@ -32,4 +32,9 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHung
 		getEditions().get(load.getLabel()).setAvailable(true);
 		getEditions().get(newConf.getLabel()).setAvailable(true);
 	}
+	
+	@Override
+	public void onCurrentChange(IHungerGameConfiguration newElt) {
+		
+	}
 }

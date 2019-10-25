@@ -29,13 +29,8 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration<ISpawn> {
 		getEditions().get(newSpawn.getLabel()).setAvailable(true);
 	}
 	
-	/*@Override
-	public void onLoaded() {
-		availableAll();
-	}
-	
 	@Override
-	public void onNewCreated() {
-		availableAll();
-	}*/
+	public void onCurrentChange(ISpawn newElt) {
+		
+	}
 }
