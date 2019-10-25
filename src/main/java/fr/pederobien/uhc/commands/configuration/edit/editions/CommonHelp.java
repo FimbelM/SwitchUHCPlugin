@@ -1,7 +1,9 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -35,13 +37,24 @@ public class CommonHelp<T extends IUnmodifiableName> extends AbstractMapEdition<
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		try {
+			Collection<IMapEdition<T>> values = conf.getEditions().values();
+			
 			IMapEdition<T> edition = conf.getEditions().get(args[0]);
 			for (int i = 1; i < args.length; i++) {
-				edition = edition.getEditions().get(args[i]);
+				if (edition != null) {
+					System.out.println("Edition : " + edition.getLabel());
+					values = edition.getEditions().values();
+					edition = edition.getEditions().get(args[i]);
+				}
 			}
-			return filter(edition.getEditions().values().stream().filter(e -> e.isAvailable()).map(e -> e.getLabel()).collect(Collectors.toList()), args[args.length - 1]);
+			return filter(filterValues(values).collect(Collectors.toList()), args[args.length - 1]);
 		} catch (IndexOutOfBoundsException | NullPointerException e) {
 			return emptyList();
 		}
+	}
+
+	private Stream<String> filterValues(Collection<IMapEdition<T>> values) {
+		return values.stream().filter(e -> e.isAvailable()).filter(e -> !e.getLabel().equals("help"))
+				.map(e -> e.getLabel());
 	}
 }
