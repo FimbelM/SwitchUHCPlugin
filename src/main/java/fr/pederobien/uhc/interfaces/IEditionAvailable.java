@@ -1,8 +1,8 @@
 package fr.pederobien.uhc.interfaces;
 
-public interface IEditionAvailable {
+public interface IEditionAvailable<T extends IUnmodifiableName> {
 
-	void setAvailable(boolean available);
+	IMapEdition<T> setAvailable(boolean available);
 	
 	boolean isAvailable();
 }

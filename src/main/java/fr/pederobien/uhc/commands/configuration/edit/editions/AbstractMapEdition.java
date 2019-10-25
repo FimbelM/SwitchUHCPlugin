@@ -62,10 +62,11 @@ public class AbstractMapEdition<T extends IUnmodifiableName> extends AbstractEdi
 	}
 
 	@Override
-	public void setAvailable(boolean available) {
+	public IMapEdition<T> setAvailable(boolean available) {
 		this.available = available;
 		for (String label : editions.keySet())
 			editions.get(label).setAvailable(available);
+		return this;
 	}
 
 	@Override
