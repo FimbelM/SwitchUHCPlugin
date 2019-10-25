@@ -68,7 +68,7 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 
 			Node version = root.getElementsByTagName("version").item(0);
 
-			elt = getLoaders().get(version.getChildNodes().item(0).getNodeValue()).load(root).get();
+			set(getLoaders().get(version.getChildNodes().item(0).getNodeValue()).load(root).get());
 		} catch (IOException e) {
 			throw new FileNotFoundException(onLoadNotFound(name));
 		}
