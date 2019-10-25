@@ -7,4 +7,6 @@ public interface IObsPersistence {
 	void onLoaded();
 	
 	void onNewCreated();
+	
+	void onDeleted();
 }
