@@ -99,7 +99,7 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 	@Override
 	public IWithChildEdition<T> addEdition(IMapEdition<T> edition) {
 		editions.put(edition.getLabel(), edition);
-		edition.setParent(parent);
+		edition.setParent(getParent());
 		return this;
 	}
 
@@ -118,6 +118,11 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 	@Override
 	public void setParent(IPersistenceEdition<T> parent) {
 		this.parent = parent;
+	}
+	
+	@Override
+	public IPersistenceEdition<T> getParent() {
+		return parent;
 	}
 
 	@Override
