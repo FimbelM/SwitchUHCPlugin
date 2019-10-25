@@ -15,7 +15,7 @@ public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlock
 		.addEdition(factory.createBasesEdition())
 		.addEdition(factory.createCurrentEdition())
 		.addEdition(factory.createGameTimeEdition())
-		.addEdition(factory.createHelpEdition(this))
+		.addEdition(factory.createHelpEdition(this).setUnmodifiable(true))
 		.addEdition(factory.createListEdition())
 		.addEdition(factory.createLoadEdition().setUnmodifiable(true))
 		.addEdition(factory.createNewEdition().setUnmodifiable(true))

@@ -18,7 +18,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHung
 		.addEdition(factory.createCurrentEdition())
 		.addEdition(factory.createFinalBorderDiameterEdition())
 		.addEdition(factory.createFractionTimeEdition())
-		.addEdition(factory.createHelpEdition(this))
+		.addEdition(factory.createHelpEdition(this).setUnmodifiable(true))
 		.addEdition(factory.createInitialBorderDiameterEdition())
 		.addEdition(factory.createListEdition())
 		.addEdition(factory.createLoadEdition().setUnmodifiable(true))

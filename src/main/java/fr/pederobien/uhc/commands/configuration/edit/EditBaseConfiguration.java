@@ -13,7 +13,7 @@ public class EditBaseConfiguration extends AbstractEditConfiguration<IBase> {
 		.addEdition(factory.createCurrentEdition())
 		.addEdition(factory.createDimensionsEdition())
 		.addEdition(factory.createExtractEdition())
-		.addEdition(factory.createHelpEdition(this))
+		.addEdition(factory.createHelpEdition(this).setUnmodifiable(true))
 		.addEdition(factory.createLaunchEdition().setUnmodifiable(true))
 		.addEdition(factory.createListEdition())
 		.addEdition(factory.createNewEdition().setUnmodifiable(true))
