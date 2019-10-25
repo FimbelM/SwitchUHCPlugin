@@ -6,7 +6,7 @@ import fr.pederobien.uhc.interfaces.IBase;
 public class LaunchBase extends CommonLaunch<IBase> {
 
 	public LaunchBase() {
-		super("to launch a base");
+		super("to launch a base in the world");
 	}
 
 	@Override
