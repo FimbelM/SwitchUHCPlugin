@@ -40,6 +40,11 @@ public class SpawnEditionsFactory extends AbstractBawnEditionsFactory<ISpawn> {
 	public IMapEdition<ISpawn> createSaveEdition() {
 		return new SaveSpawn();
 	}
+	
+	@Override
+	public IMapEdition<ISpawn> createDeleteEdition() {
+		return new DeleteSpawn();
+	}
 
 	@Override
 	public IMapEdition<ISpawn> createListEdition() {

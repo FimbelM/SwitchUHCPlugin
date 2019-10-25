@@ -26,6 +26,8 @@ public abstract class AbstractEditionsFactory<T extends IUnmodifiableName> {
 
 	public abstract IMapEdition<T> createSaveEdition();
 	
+	public abstract IMapEdition<T> createDeleteEdition();
+	
 	public IPersistence<T> getPersistence() {
 		return persistence;
 	}

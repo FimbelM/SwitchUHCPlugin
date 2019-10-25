@@ -22,7 +22,7 @@ public class AbstractMapEdition<T extends IUnmodifiableName> extends AbstractEdi
 	private IPersistenceEdition<T> parent;
 	private boolean available;
 	private HashMap<String, IMapEdition<T>> editions;
-	
+
 	public AbstractMapEdition(String label, String explanation) {
 		super(label, explanation);
 		available = true;
@@ -86,7 +86,7 @@ public class AbstractMapEdition<T extends IUnmodifiableName> extends AbstractEdi
 		edition.setParent(null);
 		return this;
 	}
-	
+
 	@Override
 	public Map<String, IMapEdition<T>> getEditions() {
 		return Collections.unmodifiableMap(editions);
@@ -96,63 +96,22 @@ public class AbstractMapEdition<T extends IUnmodifiableName> extends AbstractEdi
 	public void setParent(IPersistenceEdition<T> parent) {
 		this.parent = parent;
 	}
-	
+
 	@Override
 	public T get() {
 		return parent.get();
 	}
-	
+
 	@Override
 	public IPersistence<T> getPersistence() {
 		return parent.getPersistence();
 	}
-	
+
 	protected List<String> emptyList() {
 		return new ArrayList<String>();
 	}
-	
-	protected List<String> filter(Collection<String> list, String filter) {
-		return list.stream().filter(str -> str.matches(filter + "(.*)")).collect(Collectors.toList());
-	}
-
-	/*@Override
-	public String help() {
-		if (editionsHelp.length() == 0)
-			return help;
-		else
-			return editionsHelp;
-	}
-
-	@Override
-	public void onBeforeLaunching() {
-
-	}
-
-	@Override
-	public void onLoaded() {
-
-	}
-
-	@Override
-	public void onNewCreated() {
-
-	}
-
-	protected <T> List<T> emptyList() {
-		return new ArrayList<T>();
-	}
 
 	protected List<String> filter(Collection<String> list, String filter) {
-		return list.stream().filter(str -> str.matches(filter + "(.*)")).collect(Collectors.toList());
+		return list.stream().filter(str -> str.startsWith(filter)).collect(Collectors.toList());
 	}
-
-	protected void sendMessageToSender(CommandSender sender, String message) {
-		if (sender instanceof Player)
-			((Player) sender).sendMessage(message);
-	}
-
-	private void addEdition(IMapEdition edition) {
-		map.put(edition.getLabel(), edition);
-		editionsHelp += edition.help() + "\r\n";
-	}*/
 }

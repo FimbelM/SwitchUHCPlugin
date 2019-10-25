@@ -61,6 +61,11 @@ public class HungerGameEditionsFactory extends AbstractConfigurationEditionsFact
 	public IMapEdition<IHungerGameConfiguration> createSaveEdition() {
 		return new SaveHungerGame();
 	}
+	
+	@Override
+	public IMapEdition<IHungerGameConfiguration> createDeleteEdition() {
+		return new DeleteHungerGame();
+	}
 
 	public IMapEdition<IHungerGameConfiguration> createBorderCenterEdition() {
 		return new BorderCenterHungerGame();
