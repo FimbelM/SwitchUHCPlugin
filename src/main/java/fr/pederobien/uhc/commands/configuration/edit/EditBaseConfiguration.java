@@ -6,12 +6,13 @@ import fr.pederobien.uhc.interfaces.IMapEdition;
 
 public class EditBaseConfiguration extends AbstractEditConfiguration<IBase> {
 	private static final BaseEditionsFactory factory = BaseEditionsFactory.getInstance();
+	IMapEdition<IBase> launch = factory.createLaunchEdition();
+	IMapEdition<IBase> newBase = factory.createNewEdition();
 
 	public EditBaseConfiguration() {
 		super(factory.getPersistence(), "base", "to configure a base");
-
-		IMapEdition<IBase> launch = factory.createLaunchEdition();
-		IMapEdition<IBase> newBase = factory.createNewEdition();
+		
+		addUnmodifiableEdition(launch).addUnmodifiableEdition(newBase);
 		
 		addEdition(factory.createCenterEdition())
 		.addEdition(factory.createCurrentEdition())
@@ -24,13 +25,5 @@ public class EditBaseConfiguration extends AbstractEditConfiguration<IBase> {
 		.addEdition(factory.createRemoveEdition())
 		.addEdition(factory.createRenameEdition())
 		.addEdition(factory.createSaveEdition());
-		
-		getEditions().get(launch.getLabel()).setAvailable(true);
-		getEditions().get(newBase.getLabel()).setAvailable(true);
-	}
-	
-	@Override
-	public void onCurrentChange(IBase newElt) {
-		
 	}
 }

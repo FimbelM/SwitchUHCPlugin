@@ -7,12 +7,13 @@ import fr.pederobien.uhc.interfaces.IMapEdition;
 
 public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlockedexConfiguration> {
 	private static final BlockedexGameEditionsFactory factory = BlockedexGameEditionsFactory.getInstance();
+	IMapEdition<IBlockedexConfiguration> load = factory.createLoadEdition();
+	IMapEdition<IBlockedexConfiguration> newConf = factory.createNewEdition();
 
 	public EditBlockedexConfiguration(IConfigurationContext context) {
 		super(factory.getPersistence(), "bd", "to configure a blockedex game style");
 
-		IMapEdition<IBlockedexConfiguration> load = factory.createLoadEdition();
-		IMapEdition<IBlockedexConfiguration> newConf = factory.createNewEdition();
+		addUnmodifiableEdition(load).addUnmodifiableEdition(newConf);
 		
 		addEdition(factory.createAsCurrentEdition(context))
 		.addEdition(factory.createBaseDistanceEdition())
@@ -27,13 +28,5 @@ public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlock
 		.addEdition(factory.createSaveEdition())
 		.addEdition(factory.createScoreboardRefreshEdition())
 		.addEdition(factory.createTeamEdition());
-		
-		getEditions().get(load.getLabel()).setAvailable(true);
-		getEditions().get(newConf.getLabel()).setAvailable(true);
-	}
-	
-	@Override
-	public void onCurrentChange(IBlockedexConfiguration newElt) {
-		
 	}
 }

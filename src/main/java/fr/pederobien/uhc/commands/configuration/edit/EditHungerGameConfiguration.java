@@ -7,12 +7,13 @@ import fr.pederobien.uhc.interfaces.IMapEdition;
 
 public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHungerGameConfiguration> {
 	private static final HungerGameEditionsFactory factory = HungerGameEditionsFactory.getInstance();
+	IMapEdition<IHungerGameConfiguration> load = factory.createLoadEdition();
+	IMapEdition<IHungerGameConfiguration> newConf = factory.createNewEdition();
 
 	public EditHungerGameConfiguration(IConfigurationContext context) {
 		super(factory.getPersistence(), "hg", "to configure a hunger game style");
-
-		IMapEdition<IHungerGameConfiguration> load = factory.createLoadEdition();
-		IMapEdition<IHungerGameConfiguration> newConf = factory.createNewEdition();
+		
+		addUnmodifiableEdition(load).addUnmodifiableEdition(newConf);
 		
 		addEdition(factory.createAsCurrentEdition(context))
 		.addEdition(factory.createBorderCenterEdition())
@@ -28,13 +29,5 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHung
 		.addEdition(factory.createSaveEdition())
 		.addEdition(factory.createScoreboardRefreshEdition())
 		.addEdition(factory.createTeamEdition());
-
-		getEditions().get(load.getLabel()).setAvailable(true);
-		getEditions().get(newConf.getLabel()).setAvailable(true);
-	}
-	
-	@Override
-	public void onCurrentChange(IHungerGameConfiguration newElt) {
-		
 	}
 }

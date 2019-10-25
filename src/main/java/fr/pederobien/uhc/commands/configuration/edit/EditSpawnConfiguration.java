@@ -6,12 +6,13 @@ import fr.pederobien.uhc.interfaces.ISpawn;
 
 public class EditSpawnConfiguration extends AbstractEditConfiguration<ISpawn> {
 	private static final SpawnEditionsFactory factory = SpawnEditionsFactory.getInstance();
+	IMapEdition<ISpawn> launch = factory.createLaunchEdition();
+	IMapEdition<ISpawn> newSpawn = factory.createNewEdition();
 
 	public EditSpawnConfiguration() {
 		super(factory.getPersistence(), "spawn", "to configure a spawn");
 		
-		IMapEdition<ISpawn> launch = factory.createLaunchEdition();
-		IMapEdition<ISpawn> newSpawn = factory.createNewEdition();
+		addUnmodifiableEdition(launch).addUnmodifiableEdition(newSpawn);
 		
 		addEdition(factory.createCenterEdition())
 		.addEdition(factory.createCurrentEdition())
@@ -24,13 +25,5 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration<ISpawn> {
 		.addEdition(factory.createRemoveEdition())
 		.addEdition(factory.createRenameEdition())
 		.addEdition(factory.createSaveEdition());
-
-		getEditions().get(launch.getLabel()).setAvailable(true);
-		getEditions().get(newSpawn.getLabel()).setAvailable(true);
-	}
-	
-	@Override
-	public void onCurrentChange(ISpawn newElt) {
-		
 	}
 }
