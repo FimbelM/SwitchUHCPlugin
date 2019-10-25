@@ -18,9 +18,9 @@ import fr.pederobien.uhc.interfaces.IPersistenceEdition;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 import fr.pederobien.uhc.interfaces.IWithChildEdition;
 
-public class AbstractMapEdition<T extends IUnmodifiableName> extends AbstractEdition implements IMapEdition<T> {
+public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends AbstractEdition implements IMapEdition<T> {
 	private IPersistenceEdition<T> parent;
-	private boolean available;
+	private boolean available, unmodifiable;
 	private HashMap<String, IMapEdition<T>> editions;
 
 	public AbstractMapEdition(String label, String explanation) {
@@ -60,9 +60,31 @@ public class AbstractMapEdition<T extends IUnmodifiableName> extends AbstractEdi
 			return emptyList();
 		}
 	}
+	
+	@Override
+	public String help() {
+		String help = super.help() + "\r\n";
+		for (IMapEdition<T> edition : editions.values())
+			if (edition.isAvailable())
+				help += edition.help() + "\r\n";
+		return help;
+	}
+	
+	@Override
+	public IMapEdition<T> setUnmodifiable(boolean unmodifiable) {
+		this.unmodifiable = unmodifiable;
+		return this;
+	}
+	
+	@Override
+	public boolean isUnmodifiable() {
+		return unmodifiable;
+	}
 
 	@Override
 	public IMapEdition<T> setAvailable(boolean available) {
+		if (unmodifiable)
+			return this;
 		this.available = available;
 		for (String label : editions.keySet())
 			editions.get(label).setAvailable(available);

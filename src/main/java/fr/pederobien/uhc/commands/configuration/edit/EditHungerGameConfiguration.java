@@ -12,9 +12,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHung
 
 	public EditHungerGameConfiguration(IConfigurationContext context) {
 		super(factory.getPersistence(), "hg", "to configure a hunger game style");
-		
-		addUnmodifiableEdition(load).addUnmodifiableEdition(newConf);
-		
+				
 		addEdition(factory.createAsCurrentEdition(context))
 		.addEdition(factory.createBorderCenterEdition())
 		.addEdition(factory.createCurrentEdition())
@@ -23,8 +21,8 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHung
 		.addEdition(factory.createHelpEdition(this))
 		.addEdition(factory.createInitialBorderDiameterEdition())
 		.addEdition(factory.createListEdition())
-		.addEdition(load)
-		.addEdition(newConf)
+		.addEdition(factory.createLoadEdition().setUnmodifiable(true))
+		.addEdition(factory.createNewEdition().setUnmodifiable(true))
 		.addEdition(factory.createRenameEdition())
 		.addEdition(factory.createSaveEdition())
 		.addEdition(factory.createScoreboardRefreshEdition())
