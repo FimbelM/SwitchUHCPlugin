@@ -3,6 +3,7 @@ package fr.pederobien.uhc.scoreboard.hungergame;
 import java.time.LocalTime;
 import java.util.List;
 
+import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.scoreboard.AbstractScoreboard;
 import fr.pederobien.uhc.task.TimeTask;
 
@@ -14,10 +15,8 @@ public class HungerGameScoreboard extends AbstractScoreboard implements IHGScore
 	private IHGScoreboardState stop;
 	private IHGScoreboardState current;
 	
-	private TimeTask task;
-	
-	public HungerGameScoreboard(TimeTask task) {
-		this.task = task;
+	public HungerGameScoreboard(TimeTask task, List<ETeam> teams) {
+		super(task, teams);
 		
 		initial = new InitialState(this);
 		before = new BeforeBorderMoveState(this);
@@ -96,10 +95,5 @@ public class HungerGameScoreboard extends AbstractScoreboard implements IHGScore
 	@Override
 	public IHGScoreboardState getStopState() {
 		return stop;
-	}
-
-	@Override
-	public TimeTask getTask() {
-		return task;
 	}
 }

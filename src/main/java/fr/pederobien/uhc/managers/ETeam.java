@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 
 public enum ETeam {
 	AQUA(ChatColor.AQUA, "aqua", "Aqua"), DARK_AQUA(ChatColor.DARK_AQUA, "dark_aqua", "Dark_Aqua"),
@@ -83,5 +84,10 @@ public enum ETeam {
 
 	public List<String> getPlayers() {
 		return players;
+	}
+
+	public long getNumberPlayersOnMode(GameMode mode) {
+		return players.stream().map(n -> PlayerManager.getPlayer(n)).map(p -> p.getGameMode())
+				.filter(p -> p.equals(mode)).count();
 	}
 }

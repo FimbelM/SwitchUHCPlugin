@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.bukkit.ChatColor;
 
+import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.ScoreboardManager;
 import fr.pederobien.uhc.task.TimeTask;
 
@@ -13,12 +14,14 @@ public abstract class AbstractScoreboardState implements IScoreboardState {
 	private List<String> entries;
 	private String title;
 	private TimeTask task;
+	private List<ETeam> teams;
 	private int spaces;
 
 	public AbstractScoreboardState(IScoreboard scoreboard, String title) {
 		this.title = title;
 		entries = new ArrayList<String>();
 		task = scoreboard.getTask();
+		teams = scoreboard.getTeams();
 	}
 
 	protected abstract void updateEntries();
@@ -58,6 +61,10 @@ public abstract class AbstractScoreboardState implements IScoreboardState {
 
 	protected TimeTask getTask() {
 		return task;
+	}
+	
+	protected List<ETeam> getTeams() {
+		return teams;
 	}
 
 	protected void addEntries(String score) {

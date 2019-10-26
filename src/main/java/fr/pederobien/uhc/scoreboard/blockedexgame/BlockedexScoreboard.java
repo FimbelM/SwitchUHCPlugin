@@ -3,6 +3,7 @@ package fr.pederobien.uhc.scoreboard.blockedexgame;
 import java.time.LocalTime;
 import java.util.List;
 
+import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.scoreboard.AbstractScoreboard;
 import fr.pederobien.uhc.task.TimeTask;
 
@@ -13,10 +14,8 @@ public class BlockedexScoreboard extends AbstractScoreboard implements IBDScoreb
 	private IBDScoreboardState stop;
 	private IBDScoreboardState current;
 
-	private TimeTask task;
-
-	public BlockedexScoreboard(TimeTask task) {
-		this.task = task;
+	public BlockedexScoreboard(TimeTask task, List<ETeam> teams) {
+		super(task, teams);
 
 		initial = new InitialState(this);
 		started = new StartedState(this);
@@ -89,10 +88,5 @@ public class BlockedexScoreboard extends AbstractScoreboard implements IBDScoreb
 	@Override
 	public void time(LocalTime time) {
 		current.time(time);
-	}
-
-	@Override
-	public TimeTask getTask() {
-		return task;
 	}
 }
