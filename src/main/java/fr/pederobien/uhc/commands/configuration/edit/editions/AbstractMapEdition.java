@@ -117,7 +117,11 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 
 	@Override
 	public void setParent(IPersistenceEdition<T> parent) {
+		if (parent == null)
+			return;
 		this.parent = parent;
+		for (IMapEdition<T> edition : editions.values())
+			edition.setParent(parent);
 	}
 	
 	@Override
