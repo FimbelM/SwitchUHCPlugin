@@ -12,11 +12,12 @@ import org.bukkit.entity.Player;
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IUnmodifiableBase;
+import fr.pederobien.uhc.interfaces.IUnmodifiableBlockedexConfiguration;
 import fr.pederobien.uhc.persistence.PersistenceFactory;
 
 public class BaseManager {
 	private static HashMap<String, IBase> allBases = new HashMap<String, IBase>();
-	private static HashMap<String, IBase> gameBases = new HashMap<String, IBase>();
+	private static List<IBase> gameBases = new ArrayList<IBase>();
 	private static boolean loaded = false;
 	
 	public static void loadPersistences() {
@@ -30,13 +31,25 @@ public class BaseManager {
 		}
 		loaded = true;
 	}
+	
+	public static boolean setBlockedexGameCurrentConfiguration(IUnmodifiableBlockedexConfiguration configuration) {
+		if (checkBaseAvailable(configuration.getEastBase(), configuration.getTeams()))
+			gameBases.add(allBases.get(configuration.getEastBase()));
+		if (checkBaseAvailable(configuration.getNorthBase(), configuration.getTeams()))
+			gameBases.add(allBases.get(configuration.getNorthBase()));
+		if (checkBaseAvailable(configuration.getSouthBase(), configuration.getTeams()))
+			gameBases.add(allBases.get(configuration.getSouthBase()));
+		if (checkBaseAvailable(configuration.getWestBase(), configuration.getTeams()))
+			gameBases.add(allBases.get(configuration.getWestBase()));
+		return gameBases.size() == 4;
+	}
 
 	public static boolean isChestAccessible(Player player, Block block) {
 		if (!block.getType().equals(Material.CHEST))
 			return true;
 
 		boolean accessible = true;
-		for (IUnmodifiableBase base : gameBases.values())
+		for (IBase base : gameBases)
 			accessible &= !base.isChestRestricted(block, player);
 		return accessible;
 	}

@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.game.blockedexgame;
 
+import fr.pederobien.uhc.managers.BaseManager;
 import fr.pederobien.uhc.managers.BlockedexPlayerManager;
 import fr.pederobien.uhc.scoreboard.launcher.BDScoreboardLauncher;
 import fr.pederobien.uhc.task.TaskLauncher;
@@ -17,7 +18,12 @@ public class InitialState extends AbstractBlockedexState {
 		timeLine = new TimeLine(taskLauncher.getTask());
 		scoreboardLauncher = new BDScoreboardLauncher(taskLauncher.getTask());
 		bdPlayerManager = new BlockedexPlayerManager();
-		return true;
+
+		if (BaseManager.setBlockedexGameCurrentConfiguration(game.getConfiguration()))
+			return true;
+
+		message = "One or more bases (north, south, west, east) or not defined";
+		return false;
 	}
 
 	@Override
