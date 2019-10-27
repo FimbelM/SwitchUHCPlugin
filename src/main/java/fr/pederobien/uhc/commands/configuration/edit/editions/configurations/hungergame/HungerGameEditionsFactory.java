@@ -86,4 +86,8 @@ public class HungerGameEditionsFactory extends AbstractConfigurationEditionsFact
 	public IMapEdition<IHungerGameConfiguration> createWarningTimeEdition() {
 		return new WarningTimeHungerGame();
 	}
+	
+	public IMapEdition<IHungerGameConfiguration> createPvpTimeEdition() {
+		return new PvpTimeHungerGame();
+	}
 }

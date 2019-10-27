@@ -16,12 +16,15 @@ public abstract class AbstractHungerGameState extends AbstractGameState implemen
 
 	public AbstractHungerGameState(IHungerGame game) {
 		this.game = game;
-		alreadyWarned = false;
 	}
 
 	protected void shouldStopGame() {
 		if (PlayerManager.getNumberOfPlayersOnMode(GameMode.SURVIVAL) == 1)
 			stop();
+	}
+	
+	protected void authorizedPvp() {
+		WorldManager.setPVP(true);
 	}
 	
 	protected void warnPlayers() {

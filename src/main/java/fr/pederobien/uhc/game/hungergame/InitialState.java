@@ -25,10 +25,12 @@ public class InitialState extends AbstractHungerGameState {
 		taskLauncher = new TaskLauncher(game.getConfiguration().getGameTime());
 		timeLine = new TimeLine(taskLauncher.getTask());
 		scoreboardLauncher = new HGScoreboardLauncher(taskLauncher.getTask(), game.getConfiguration().getTeams());
+		alreadyWarned = false;
 		
 		timeLine.addObserver(game.getConfiguration().getFractionTime(), game);
 		timeLine.addObserver(game.getConfiguration().getGameTime(), game);
 		timeLine.addObserver(game.getConfiguration().getGameTime().minusSeconds(game.getConfiguration().getWarningTime().toSecondOfDay()), game);
+		timeLine.addObserver(game.getConfiguration().getPvpTime(), game);
 		timeLine.addObserver(game.getConfiguration().getGameTime(), scoreboardLauncher);
 		return true;
 	}

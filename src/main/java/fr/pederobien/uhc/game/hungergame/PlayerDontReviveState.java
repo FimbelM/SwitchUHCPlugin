@@ -37,6 +37,8 @@ public class PlayerDontReviveState extends AbstractHungerGameState {
 
 	@Override
 	public void time(LocalTime time) {
+		if (time.equals(game.getConfiguration().getPvpTime()))
+			authorizedPvp();
 		if (time.equals(game.getConfiguration().getWarningTime()))
 			warnPlayers();
 		if (time.equals(game.getConfiguration().getGameTime()))

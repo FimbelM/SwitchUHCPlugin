@@ -23,6 +23,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHung
 		.addEdition(factory.createListEdition())
 		.addEdition(factory.createLoadEdition().setUnmodifiable(true))
 		.addEdition(factory.createNewEdition().setUnmodifiable(true))
+		.addEdition(factory.createPvpTimeEdition())
 		.addEdition(factory.createRenameEdition())
 		.addEdition(factory.createSaveEdition())
 		.addEdition(factory.createScoreboardRefreshEdition())

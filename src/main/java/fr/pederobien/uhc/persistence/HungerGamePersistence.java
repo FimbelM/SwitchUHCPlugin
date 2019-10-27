@@ -64,6 +64,7 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 		time.setAttribute("game", get().getGameTime().toString());
 		time.setAttribute("fraction", get().getFractionTime().toString());
 		time.setAttribute("warning", get().getWarningTime().toString());
+		time.setAttribute("pvp", get().getPvpTime().toString());
 		time.setAttribute("scoreboardrefresh", "" + get().getScoreboardRefresh());
 		root.appendChild(time);
 

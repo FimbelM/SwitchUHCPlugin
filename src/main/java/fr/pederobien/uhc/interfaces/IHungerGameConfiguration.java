@@ -17,4 +17,6 @@ public interface IHungerGameConfiguration extends IConfiguration, IUnmodifiableH
 	void setFractionTime(LocalTime fractionTime);
 	
 	void setWarningTime(LocalTime warningTime);
+	
+	void setPvpTime(LocalTime pvpTime);
 }

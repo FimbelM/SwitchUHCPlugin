@@ -15,4 +15,6 @@ public interface IUnmodifiableHungerGameConfiguration extends IUnmodifiableConfi
 	LocalTime getFractionTime();
 	
 	LocalTime getWarningTime();
+	
+	LocalTime getPvpTime();
 }

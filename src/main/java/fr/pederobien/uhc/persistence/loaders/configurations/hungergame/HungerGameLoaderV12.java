@@ -48,6 +48,7 @@ public class HungerGameLoaderV12 extends AbstractHungerGameLoader {
 				get().setGameTime(LocalTime.parse(elt.getAttribute("game")));
 				get().setFractionTime(LocalTime.parse(elt.getAttribute("fraction")));
 				get().setWarningTime(LocalTime.parse(elt.getAttribute("warning")));
+				get().setPvpTime(LocalTime.parse(elt.getAttribute("pvp")));
 				get().setScoreboardRefresh(Long.parseLong(elt.getAttribute("scoreboardrefresh")));
 				break;
 			case "teams":
