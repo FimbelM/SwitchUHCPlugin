@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -145,5 +146,9 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 
 	protected List<String> filter(Collection<String> list, String filter) {
 		return list.stream().filter(str -> str.startsWith(filter)).collect(Collectors.toList());
+	}
+	
+	protected List<String> filter(Stream<String> stream, String begining) {
+		return stream.filter(str -> str.startsWith(begining)).collect(Collectors.toList());
 	}
 }
