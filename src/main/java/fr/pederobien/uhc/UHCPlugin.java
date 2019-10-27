@@ -26,7 +26,6 @@ import fr.pederobien.uhc.commands.configuration.SpawnConfigurationCommand;
 import fr.pederobien.uhc.commands.game.PauseCommand;
 import fr.pederobien.uhc.commands.game.StartCommand;
 import fr.pederobien.uhc.commands.game.StopCommand;
-import fr.pederobien.uhc.commands.team.RemoveAllTeamCommand;
 import fr.pederobien.uhc.configurations.ConfigurationContext;
 import fr.pederobien.uhc.game.GameStateException;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
@@ -63,7 +62,6 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 		new PauseCommand(this, "pausegame");
 		new StartCommand(this, "startgame");
 		new StopCommand(this, "stopgame");
-		new RemoveAllTeamCommand(this, "teamremoveall");
 		new HungerGameConfigurationCommand(this, "hg");
 		new SpawnConfigurationCommand(this, "spawn");
 		new BlockedexConfigurationCommand(this, "bd");
