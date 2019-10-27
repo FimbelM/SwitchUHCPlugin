@@ -3,6 +3,7 @@ package fr.pederobien.uhc.managers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -12,8 +13,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.BukkitManager;
+import fr.pederobien.uhc.interfaces.IUnmodifiableConfiguration;
 
 public class TeamsManager {
+	private static IUnmodifiableConfiguration currentConfiguration;
+	
+	public static void setCurrentConfiguration(IUnmodifiableConfiguration currentConfiguration) {
+		TeamsManager.currentConfiguration = currentConfiguration;
+	}
 
 	public static List<Team> getTeams() {
 		return new ArrayList<Team>(Bukkit.getScoreboardManager().getMainScoreboard().getTeams());
@@ -147,9 +154,12 @@ public class TeamsManager {
 	}
 
 	public static List<Player> getCollegues(Player player) {
-		List<Player> collegues = getPlayers(getTeam(player));
-		collegues.remove(player);
-		return collegues;
+		return currentConfiguration.getTeams().stream()
+				.filter(t -> t.getPlayers().contains(player.getName()))
+				.map(t -> t.getPlayers()
+						.stream().filter(n -> !n.equals(player.getName()))
+						.map(n -> PlayerManager.getPlayer(n)))
+				.findFirst().get().collect(Collectors.toList());
 	}
 
 	public static Player getRandomCollegue(Player player) {
