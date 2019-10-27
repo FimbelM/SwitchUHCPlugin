@@ -3,6 +3,7 @@ package fr.pederobien.uhc.managers;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -241,18 +242,11 @@ public class PlayerManager {
 	}
 
 	public static List<Player> getClosePlayers(Player src, List<Player> players, int distance) {
-		List<Player> nearPlayer = new ArrayList<Player>();
-		int deltaX;
-		int deltaY;
-		int deltaZ;
-		for (Player player : players) {
-			deltaX = Math.abs(src.getLocation().getBlockX() - player.getLocation().getBlockX());
-			deltaY = Math.abs(src.getLocation().getBlockY() - player.getLocation().getBlockY());
-			deltaZ = Math.abs(src.getLocation().getBlockZ() - player.getLocation().getBlockZ());
-			if (deltaX <= distance && deltaY < distance && deltaZ < distance)
-				nearPlayer.add(player);
-		}
-		return nearPlayer;
+		return players.stream()
+				.filter(p -> Math.abs(src.getLocation().getBlockX() - p.getLocation().getBlockX()) <= distance)
+				.filter(p -> Math.abs(src.getLocation().getBlockY() - p.getLocation().getBlockY()) <= distance)
+				.filter(p -> Math.abs(src.getLocation().getBlockZ() - p.getLocation().getBlockZ()) <= distance)
+				.collect(Collectors.toList());
 	}
 
 	public static void dropPlayerInventoryItemNaturally(Player player) {
