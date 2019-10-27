@@ -17,11 +17,11 @@ public abstract class AbstractTeamEditions<T extends IConfiguration> extends Abs
 		super(label, explanation);
 	}
 
-	protected List<String> getTeamNamesWithoutColor() {
+	protected Stream<String> getTeamNamesWithoutColor() {
 		List<String> teams = emptyList();
 		for (ETeam team : get().getTeams())
 			teams.add(team.getNameWithoutColor());
-		return teams;
+		return teams.stream();
 	}
 
 	protected List<String> getTeamNamesWithColor() {
@@ -31,35 +31,24 @@ public abstract class AbstractTeamEditions<T extends IConfiguration> extends Abs
 		return teams;
 	}
 
-	protected List<String> getTeams(String[] teamAlreadyMentionned) {
+	protected Stream<String> getTeams(String[] teamAlreadyMentionned) {
 		List<String> teams = new ArrayList<String>();
 		for (ETeam team : get().getTeams())
 			if (!Arrays.asList(teamAlreadyMentionned).contains(team.getNameWithoutColor()))
 				teams.add(team.getNameWithoutColor());
-		return teams;
+		return teams.stream();
 	}
 
-	protected List<String> getFreePlayersName(String[] playersAlreadyMentionned) {
-		List<String> players = emptyList();
-		List<String> allPlayers = PlayerManager.getPlayersName();
-		List<String> playersInTeam = emptyList();
-
-		for (ETeam team : get().getTeams())
-			playersInTeam.addAll(team.getPlayers());
-
-		allPlayers.removeAll(playersInTeam);
-		for (String player : allPlayers)
-			if (!Arrays.asList(playersAlreadyMentionned).contains(player))
-				players.add(player);
-		return players;
+	protected Stream<String> getFreePlayersName(String[] playersAlreadyMentionned) {
+		return PlayerManager.getPlayers().stream().map(p -> p.getName())
+				.filter(n -> get().getPlayersRegistered().contains(n));
 	}
 
 	protected Stream<String> getPlayersName(String teamName, String[] playersAlreadyMentionned) {
-		return TeamsManager.getPlayers(TeamsManager.getTeam(teamName)).stream()
-		.map(p -> p.getName())
-		.filter(s -> !Arrays.asList(playersAlreadyMentionned).contains(s));
+		return TeamsManager.getPlayers(TeamsManager.getTeam(teamName)).stream().map(p -> p.getName())
+				.filter(s -> !Arrays.asList(playersAlreadyMentionned).contains(s));
 	}
-	
+
 	protected List<String> getAvailableColors() {
 		List<String> availableColors = ETeam.getColorsName();
 		for (ETeam team : get().getTeams())

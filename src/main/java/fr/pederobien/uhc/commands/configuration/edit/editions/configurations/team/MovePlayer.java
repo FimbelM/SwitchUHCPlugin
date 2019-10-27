@@ -57,9 +57,7 @@ public class MovePlayer<T extends IConfiguration> extends AbstractTeamEditions<T
 		case 1:
 			return filter(getTeamNamesWithoutColor(), args[0]);
 		case 2:
-			List<String> teams = getTeamNamesWithoutColor();
-			teams.remove(args[0]);
-			return filter(teams, args[args.length - 1]);
+			return filter(getTeamNamesWithoutColor().filter(n -> !n.equals(args[0])), args[args.length - 1]);
 		}
 		return filter(getPlayersName(args[0], Arrays.copyOfRange(args, 1, args.length)), args[args.length - 1]);
 	}

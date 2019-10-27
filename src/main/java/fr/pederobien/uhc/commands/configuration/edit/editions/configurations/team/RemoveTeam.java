@@ -2,6 +2,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.te
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -52,12 +53,12 @@ public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-		List<String> teams = getTeams(args);
+		Stream<String> teams = getTeams(args);
 		switch (args.length) {
 		case 1:
-			teams.add(ALL);
+			teams = Stream.concat(teams, Stream.of(ALL));
 		case 2:
-			teams = args[0].equals(ALL) ? emptyList() : teams;
+			teams = args[0].equals(ALL) ? emptyList().stream() : getTeams(args);
 		default:
 			break;
 		}
