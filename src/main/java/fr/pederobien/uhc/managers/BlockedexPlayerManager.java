@@ -5,7 +5,6 @@ import java.util.HashMap;
 import org.bukkit.GameMode;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.BukkitManager;
 
@@ -14,7 +13,7 @@ public class BlockedexPlayerManager extends PlayerManager {
 
 	public BlockedexPlayerManager() {
 		map = new HashMap<Player, Restriction>();
-		for (Team team : TeamsManager.getTeams())
+		for (ETeam team : TeamsManager.getTeams())
 			for (Player player : TeamsManager.getPlayers(team))
 				map.put(player, new Restriction(player, team));
 	}
@@ -45,7 +44,7 @@ public class BlockedexPlayerManager extends PlayerManager {
 		private PlayerRestriction playerRestriction;
 		private TeamRestriction teamRestriction;
 
-		public Restriction(Player player, Team team) {
+		public Restriction(Player player, ETeam team) {
 			playerRestriction = new PlayerRestriction(player);
 			teamRestriction = new TeamRestriction(team);
 		}
@@ -84,10 +83,10 @@ public class BlockedexPlayerManager extends PlayerManager {
 	}
 
 	private class TeamRestriction {
-		private Team team;
+		private ETeam team;
 		private int maxDeath;
 
-		public TeamRestriction(Team team) {
+		public TeamRestriction(ETeam team) {
 			this.team = team;
 			maxDeath = TeamsManager.getPlayers(team).size();
 		}
@@ -101,12 +100,13 @@ public class BlockedexPlayerManager extends PlayerManager {
 		}
 
 		public void eliminate() {
-			BukkitManager.broadcastMessageAsTitle("Team " + team.getName() + " eliminated");
-			for (Player player : TeamsManager.getPlayers(team)) {
-				PlayerManager.dropPlayerInventoryItemNaturally(player);
-				PlayerManager.setGameModeOfPlayer(player, GameMode.SPECTATOR);
-				PlayerManager.teleporte(player, WorldManager.getSpawnOnJoin());
-			}
+			BukkitManager.broadcastMessageAsTitle("Team " + team.getNameWithColor() + " eliminated");
+			
+			TeamsManager.getPlayers(team).parallelStream().forEach(p -> {
+				PlayerManager.dropPlayerInventoryItemNaturally(p);
+				PlayerManager.setGameModeOfPlayer(p, GameMode.SPECTATOR);
+				PlayerManager.teleporte(p, WorldManager.getSpawnOnJoin());
+			});
 		}
 	}
 }

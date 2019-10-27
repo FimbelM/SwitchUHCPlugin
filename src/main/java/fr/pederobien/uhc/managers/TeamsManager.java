@@ -21,22 +21,18 @@ public class TeamsManager {
 		TeamsManager.currentConfiguration = currentConfiguration;
 	}
 
-	public static List<Team> getTeams() {
-		return new ArrayList<Team>(Bukkit.getScoreboardManager().getMainScoreboard().getTeams());
+	public static List<ETeam> getTeams() {
+		return currentConfiguration.getTeams();
 	}
 
-	public static Team getTeam(Player player) {
-		for (Team team : getTeams())
-			if (getPlayers(team).contains(player))
-				return team;
-		return null;
+	public static ETeam getTeam(Player player) {
+		return getTeams().stream().filter(t -> t.getPlayers().contains(player.getName())).findFirst().get();
 	}
 
-	public static List<Player> getPlayers(Team team) {
-		List<Player> players = new ArrayList<Player>();
-		for (String pl : team.getEntries())
-			players.add(Bukkit.getPlayer(pl));
-		return players;
+	public static List<Player> getPlayers(ETeam team) {
+		return getTeams().stream().
+		filter(t -> t.equals(team))
+		.findFirst().get().getPlayers().stream().map(n -> PlayerManager.getPlayer(n)).collect(Collectors.toList());
 	}
 
 	public static List<String> getPlayersName(Team team) {
@@ -46,40 +42,28 @@ public class TeamsManager {
 		return players;
 	}
 
-	public static Team getTeam(String name) {
-		for (Team team : getTeams())
-			if (team.getName().equals(name))
-				return team;
-		return null;
+	public static ETeam getTeam(String name) {
+		return getTeams().stream().filter(t -> t.getNameWithoutColor().equals(name)).findFirst().get();
 	}
 
-	public static Team getTeam(ChatColor color) {
-		for (Team team : getTeams())
-			if (team.getColor().equals(color))
-				return team;
-		return null;
+	public static ETeam getTeam(ChatColor color) {
+		return getTeams().stream().filter(t -> t.getColor().equals(color)).findFirst().get();
 	}
 
 	public static List<Player> getPlayersInTeam() {
-		List<Player> players = new ArrayList<Player>();
-		for (Team team : getTeams())
-			players.addAll(getPlayers(team));
-		return players;
+		return currentConfiguration.getPlayersRegistered().stream().map(n -> PlayerManager.getPlayer(n)).collect(Collectors.toList());
 	}
 
 	public static ChatColor getColor(Player player) {
 		return getTeam(player) == null ? ChatColor.RESET : getTeam(player).getColor();
 	}
 
-	public static int getNumberOfPlayers(Team team) {
+	public static int getNumberOfPlayers(ETeam team) {
 		return getPlayers(team).size();
 	}
 
 	public static int getNumberOfPlayerInTeam() {
-		int sum = 0;
-		for (Team team : getTeams())
-			sum += getNumberOfPlayers(team);
-		return sum;
+		return currentConfiguration.getPlayersRegistered().size();
 	}
 
 	public static List<Player> getCollegues(Player player) {
@@ -128,21 +112,19 @@ public class TeamsManager {
 	}
 
 	public static void removeAllTeam() {
-		for (Team team : getTeams())
-			removeTeam(team.getName());
+		currentConfiguration.getTeams().clear();
 	}
 
-	public static void teleporteTeam(Team team, Location location) {
+	public static void teleporteTeam(ETeam team, Location location) {
 		PlayerManager.teleporteAllPlayers(getPlayers(team), location);
 	}
 
-	public static void teleporteRandomlyTeam(Team team, int bound) {
+	public static void teleporteRandomlyTeam(ETeam team, int bound) {
 		PlayerManager.teleporteAllPlayers(getPlayers(team), WorldManager.getRandomlyLocation(bound));
 	}
 
 	public static void teleporteRandomlyAllTeams(int bound) {
-		for (Team team : getTeams())
-			teleporteRandomlyTeam(team, bound);
+		getTeams().stream().forEach(t -> teleporteRandomlyTeam(t, bound));
 	}
 
 	public static void dispatchPlayerRandomlyInTeam(List<ETeam> teams) {
