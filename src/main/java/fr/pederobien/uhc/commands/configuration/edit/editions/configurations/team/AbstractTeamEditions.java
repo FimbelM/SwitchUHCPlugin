@@ -3,6 +3,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.te
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractMapEdition;
 import fr.pederobien.uhc.interfaces.IConfiguration;
@@ -53,13 +54,10 @@ public abstract class AbstractTeamEditions<T extends IConfiguration> extends Abs
 		return players;
 	}
 
-	protected List<String> getPlayersName(String teamName, String[] playersAlreadyMentionned) {
-		List<String> players = emptyList();
-		for (String name : TeamsManager.getPlayersName(teamName)) {
-			if (!Arrays.asList(playersAlreadyMentionned).contains(name))
-				players.add(name);
-		}
-		return players;
+	protected Stream<String> getPlayersName(String teamName, String[] playersAlreadyMentionned) {
+		return TeamsManager.getPlayers(TeamsManager.getTeam(teamName)).stream()
+		.map(p -> p.getName())
+		.filter(s -> !Arrays.asList(playersAlreadyMentionned).contains(s));
 	}
 	
 	protected List<String> getAvailableColors() {
