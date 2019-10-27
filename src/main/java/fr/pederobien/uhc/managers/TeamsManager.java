@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Team;
@@ -17,7 +16,7 @@ import fr.pederobien.uhc.interfaces.IUnmodifiableConfiguration;
 
 public class TeamsManager {
 	private static IUnmodifiableConfiguration currentConfiguration;
-	
+
 	public static void setCurrentConfiguration(IUnmodifiableConfiguration currentConfiguration) {
 		TeamsManager.currentConfiguration = currentConfiguration;
 	}
@@ -26,50 +25,10 @@ public class TeamsManager {
 		return new ArrayList<Team>(Bukkit.getScoreboardManager().getMainScoreboard().getTeams());
 	}
 
-	public static List<String> getTeamsName() {
-		List<String> teams = new ArrayList<String>();
-		for (Team team : getTeams())
-			teams.add(team.getName());
-		return teams;
-	}
-
-	public static List<Team> getOtherTeam(Player player) {
-		List<Team> others = new ArrayList<Team>();
-		Team team = getTeam(player);
-		for (Team t : getTeams())
-			if (!t.equals(team))
-				others.add(t);
-		return others;
-
-	}
-
-	public static List<String> getOtherTeamNames(String playerName) {
-		List<String> others = new ArrayList<String>();
-		String teamName = getTeamName(playerName);
-		for (String t : getTeamsName())
-			if (!t.equals(teamName))
-				others.add(t);
-		return others;
-	}
-
 	public static Team getTeam(Player player) {
 		for (Team team : getTeams())
 			if (getPlayers(team).contains(player))
 				return team;
-		return null;
-	}
-
-	public static String getTeamName(Player player) {
-		for (Team team : getTeams())
-			if (getPlayers(team).contains(player))
-				return team.getName();
-		return null;
-	}
-
-	public static String getTeamName(String playerName) {
-		for (Team team : getTeams())
-			if (getPlayersName(team).contains(playerName))
-				return team.getName();
 		return null;
 	}
 
@@ -83,13 +42,6 @@ public class TeamsManager {
 	public static List<String> getPlayersName(Team team) {
 		List<String> players = new ArrayList<String>();
 		for (String pl : team.getEntries())
-			players.add(Bukkit.getPlayer(pl).getName());
-		return players;
-	}
-
-	public static List<String> getPlayersName(String teamName) {
-		List<String> players = new ArrayList<String>();
-		for (String pl : getPlayersName(getTeam(teamName)))
 			players.add(Bukkit.getPlayer(pl).getName());
 		return players;
 	}
@@ -115,29 +67,6 @@ public class TeamsManager {
 		return players;
 	}
 
-	public static List<String> getPlayersNameInTeam() {
-		List<String> players = new ArrayList<String>();
-		for (Team team : getTeams())
-			players.addAll(getPlayersName(team));
-		return players;
-	}
-
-	public static List<Player> getPlayersNotInTeam() {
-		List<Player> players = PlayerManager.getPlayers();
-		for (Team team : getTeams())
-			for (Player player : getPlayers(team))
-				players.remove(player);
-		return players;
-	}
-
-	public static List<String> getPlayersNameNotInTeam() {
-		List<String> players = PlayerManager.getPlayersName();
-		for (Team team : getTeams())
-			for (String name : getPlayersName(team))
-				players.remove(name);
-		return players;
-	}
-
 	public static ChatColor getColor(Player player) {
 		return getTeam(player) == null ? ChatColor.RESET : getTeam(player).getColor();
 	}
@@ -154,11 +83,9 @@ public class TeamsManager {
 	}
 
 	public static List<Player> getCollegues(Player player) {
-		return currentConfiguration.getTeams().stream()
-				.filter(t -> t.getPlayers().contains(player.getName()))
-				.map(t -> t.getPlayers()
-						.stream().filter(n -> !n.equals(player.getName()))
-						.map(n -> PlayerManager.getPlayer(n)))
+		return currentConfiguration
+				.getTeams().stream().filter(t -> t.getPlayers().contains(player.getName())).map(t -> t.getPlayers()
+						.stream().filter(n -> !n.equals(player.getName())).map(n -> PlayerManager.getPlayer(n)))
 				.findFirst().get().collect(Collectors.toList());
 	}
 
@@ -169,20 +96,6 @@ public class TeamsManager {
 	public static Player getRandom(List<Player> players) {
 		Random rand = new Random();
 		return players.get(rand.nextInt(players.size()));
-	}
-
-	public static List<Player> getTeamPlayersOnMode(Team team, GameMode mode) {
-		List<Player> players = new ArrayList<Player>();
-		for (String str : team.getEntries()) {
-			Player player = Bukkit.getPlayer(str);
-			if (player != null && player.getGameMode() == mode)
-				players.add(player);
-		}
-		return players;
-	}
-
-	public static int getNumberTeamPlayersOnMode(Team team, GameMode mode) {
-		return getTeamPlayersOnMode(team, mode).size();
 	}
 
 	public static void createTeam(String name) {
