@@ -41,7 +41,7 @@ public abstract class AbstractTeamEditions<T extends IConfiguration> extends Abs
 	}
 
 	protected Stream<String> getFreePlayersName(String[] playersAlreadyMentionned) {
-		return PlayerManager.getPlayers().stream().map(p -> p.getName())
+		return PlayerManager.getPlayers().map(p -> p.getName())
 				.filter(n -> get().getPlayersRegistered().contains(n));
 	}
 

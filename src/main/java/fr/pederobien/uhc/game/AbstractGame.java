@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Sound;
-import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 import fr.pederobien.uhc.managers.PlayerManager;
@@ -20,8 +19,7 @@ public abstract class AbstractGame implements IGame {
 	
 	@Override
 	public void onPlayerDie(PlayerDeathEvent event) {
-		for (Player player : PlayerManager.getPlayers())
-			player.playSound(player.getLocation(), Sound.ENTITY_WITHER_DEATH, 10, 1);
+		PlayerManager.getPlayers().forEach(p -> p.playSound(p.getLocation(), Sound.ENTITY_WITHER_DEATH, 10, 1));
 	}
 	
 	@Override

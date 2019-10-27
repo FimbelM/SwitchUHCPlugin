@@ -1,9 +1,9 @@
 package fr.pederobien.uhc.managers;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -19,31 +19,27 @@ public class PlayerManager {
 	public static final int MAX_EFFECT_DURATION = 999999;
 	public static final int MAX_EFFECT_AMPLIFIER = 99;
 
-	public static List<Player> getPlayers() {
+	public static Stream<Player> getPlayers() {
 		List<Player> players = new ArrayList<>();
 		for (Player player : Bukkit.getOnlinePlayers())
 			players.add(player);
-		return players;
-	}
-	
-	public static List<String> getPlayersName() {
-		List<String> players = new ArrayList<String>();
-		for (Player player : Bukkit.getOnlinePlayers())
-			players.add(player.getName());
-		return players;
+		return players.stream();
 	}
 
-	public static int getNumberOfPlayer() {
-		return getPlayers().size();
+	public static long getNumberOfPlayer() {
+		return getPlayers().count();
 	}
 
 	public static Player getPlayer(String name) {
 		return Bukkit.getPlayer(name);
 	}
+	
+	public static void removeInventoryOfPlayer(Player player) {
+		player.getInventory().clear();
+	}
 
 	public static void removeInventoryOfPlayers() {
-		for (Player player : getPlayers())
-			player.getInventory().clear();
+		getPlayers().forEach(p -> removeInventoryOfPlayer(p));
 	}
 
 	public static void setLevelOfPlayer(Player player, int level) {
@@ -51,8 +47,7 @@ public class PlayerManager {
 	}
 
 	public static void setLevelOfPlayers(int level) {
-		for (Player player : getPlayers())
-			setLevelOfPlayer(player, level);
+		getPlayers().forEach(p -> setLevelOfPlayer(p, level));
 	}
 
 	public static void setFoodLevelOfPlayer(Player player, int level) {
@@ -60,8 +55,7 @@ public class PlayerManager {
 	}
 
 	public static void setFoodLevelOfPlayers(int level) {
-		for (Player player : getPlayers())
-			setFoodLevelOfPlayer(player, level);
+		getPlayers().forEach(p -> setFoodLevelOfPlayer(p, level));
 	}
 
 	public static void maxFoodForPlayers() {
@@ -77,47 +71,39 @@ public class PlayerManager {
 	}
 
 	public static void resetMaxHealthOfPlayers() {
-		for (Player player : getPlayers())
-			resetMaxHealthOfPlayer(player);
+		getPlayers().forEach(p -> resetMaxHealthOfPlayer(p));
 	}
 
 	public static void setHealthOfPlayer(Player player, double level) {
 		player.setHealth(level);
 	}
 	
-	public static void setHealthOfPlayers(List<Player> players, double level) {
-		for (Player player : players)
-			setHealthOfPlayer(player, level);
+	public static void setHealthOfPlayers(Stream<Player> players, double level) {
+		players.forEach(p -> setHealthOfPlayer(p, level));
 	}
 
 	public static void setHealthOfPlayers(double level) {
-		for (Player player : getPlayers())
-			setHealthOfPlayer(player, level);
+		getPlayers().forEach(p -> setHealthOfPlayer(p, level));
 	}
 
 	public static void maxLifeToPlayers() {
 		setHealthOfPlayers(20);
 	}
 
-	public static List<Player> getPlayersOnMode(GameMode mode) {
-		List<Player> players = new ArrayList<Player>();
-		for (Player player : getPlayers())
-			if (player.getGameMode().equals(mode))
-				players.add(player);
-		return players;
+	public static Stream<Player> getPlayersOnMode(GameMode mode) {
+		return getPlayers().filter(p -> p.getGameMode().equals(mode));
 	}
 
-	public static int getNumberOfPlayersOnMode(GameMode mode) {
-		return getPlayersOnMode(mode).size();
+	public static long getNumberOfPlayersOnMode(GameMode mode) {
+		return getPlayersOnMode(mode).count();
 	}
 
 	public static void setGameModeOfPlayer(Player player, GameMode mode) {
 		player.setGameMode(mode);
 	}
 
-	public static void setGameModeOfPlayers(List<Player> players, GameMode mode) {
-		for (Player player : players)
-			setGameModeOfPlayer(player, mode);
+	public static void setGameModeOfPlayers(Stream<Player> players, GameMode mode) {
+		players.forEach(p -> setGameModeOfPlayer(p, mode));
 	}
 
 	public static void setGameModeOfPlayers(GameMode mode) {
@@ -129,8 +115,7 @@ public class PlayerManager {
 	}
 
 	public static void teleporteAllPlayers(List<Player> players, Location location) {
-		for (Player player : players)
-			teleporte(player, location);
+		players.parallelStream().forEach(p -> teleporte(p, location));
 	}
 
 	public static void teleporte(Player player, Entity entity) {
@@ -138,25 +123,22 @@ public class PlayerManager {
 	}
 
 	public static void teleporteAllPlayers(List<Player> players, Entity entity) {
-		for (Player player : players)
-			teleporte(player, entity);
+		players.parallelStream().forEach(p -> teleporte(p, entity));
 	}
 
 	public static void teleporteAllPlayers(Location location) {
-		for (Player player : getPlayers())
-			teleporte(player, location);
+		getPlayers().forEach(p -> teleporte(p, location));
 	}
 
 	public static void giveEffect(Player player, PotionEffect effect) {
 		player.addPotionEffect(effect);
 	}
 
-	public static void giveEffect(List<Player> players, PotionEffect effect) {
-		for (Player player : players)
-			giveEffect(player, effect);
+	public static void giveEffect(Stream<Player> players, PotionEffect effect) {
+		players.forEach(p -> giveEffect(p, effect));
 	}
 
-	public static void giveEffectToAllPlayers(List<PotionEffect> effects) {
+	public static void giveEffectToAllPlayers(Stream<PotionEffect> effects) {
 		giveEffects(getPlayers(), effects);
 	}
 
@@ -164,15 +146,12 @@ public class PlayerManager {
 		giveEffects(getPlayers(), createEffect(types));
 	}
 
-	public static void giveEffects(Player player, List<PotionEffect> effects) {
-		for (PotionEffect effect : effects)
-			giveEffect(player, effect);
+	public static void giveEffects(Player player, Stream<PotionEffect> effects) {
+		effects.forEach(e -> giveEffect(player, e));
 	}
 
-	public static void giveEffects(List<Player> players, List<PotionEffect> effects) {
-		for (Player player : players)
-			for (PotionEffect effect : effects)
-				giveEffect(player, effect);
+	public static void giveEffects(Stream<Player> players, Stream<PotionEffect> effects) {
+		players.forEach(p -> effects.forEach(e -> giveEffect(p, e)));
 	}
 
 	public static PotionEffect createEffect(PotionEffectType type, int duration, int amplifier, boolean ambient, boolean particles) {
@@ -191,18 +170,15 @@ public class PlayerManager {
 		return createEffect(type, 20, 1);
 	}
 
-	public static List<PotionEffect> createEffect(PotionEffectType... types) {
-		List<PotionEffect> effects = new ArrayList<PotionEffect>();
-		for (PotionEffectType type : types)
-			effects.add(createEffect(type));
-		return effects;
+	public static Stream<PotionEffect> createEffect(PotionEffectType... types) {
+		return Stream.of(types).map(t -> createEffect(t));
 	}
 
 	public static void giveEffectToPlayerOnMode(GameMode mode, PotionEffect effect) {
 		giveEffect(getPlayersOnMode(mode), effect);
 	}
 
-	public static void giveEffectsToPlayerOnMode(GameMode mode, List<PotionEffect> effects) {
+	public static void giveEffectsToPlayerOnMode(GameMode mode, Stream<PotionEffect> effects) {
 		giveEffects(getPlayersOnMode(mode), effects);
 	}
 
@@ -211,30 +187,23 @@ public class PlayerManager {
 	}
 
 	public static void removeEffect(List<Player> players, PotionEffectType type) {
-		for (Player player : players)
-			removeEffect(player, type);
+		players.parallelStream().forEach(p -> removeEffect(p, type));
 	}
 
 	public static void removeEffect(Player player, List<PotionEffectType> types) {
-		for (PotionEffectType type : types)
-			removeEffect(player, type);
+		types.parallelStream().forEach(t -> removeEffect(player, t));
 	}
 
 	public static void removeEffect(List<Player> players, List<PotionEffectType> types) {
-		for (Player player : players)
-			for (PotionEffectType type : types)
-				removeEffect(player, type);
+		players.parallelStream().forEach(p -> types.parallelStream().forEach(t -> removeEffect(p, t)));
 	}
 
 	public static void removeAllEffects(Player player) {
-		Collection<PotionEffect> activeEffects = player.getActivePotionEffects();
-		for (PotionEffect effect : activeEffects)
-			player.removePotionEffect(effect.getType());
+		player.getActivePotionEffects().stream().forEach(e -> player.removePotionEffect(e.getType()));
 	}
 
 	public static void removeAllEffectsToAllPlayers() {
-		for (Player player : getPlayers())
-			removeAllEffects(player);
+		getPlayers().forEach(p -> removeAllEffects(p));
 	}
 	
 	public static List<Player> getCloseCollegues(Player src, int distance) {
@@ -256,25 +225,23 @@ public class PlayerManager {
 		player.getInventory().clear();
 	}
 
-	public static void dropPlayersInventoryItemNaturally(List<Player> players) {
-		for (Player player : players)
-			dropPlayerInventoryItemNaturally(player);
+	public static void dropPlayersInventoryItemNaturally(Stream<Player> players) {
+		players.forEach(p -> dropPlayerInventoryItemNaturally(p));
 	}
 
 	public static void dropPlayersInventoryItemNaturally() {
 		dropPlayersInventoryItemNaturally(getPlayers());
 	}
 	
-	public static void sendMessageToPlayers(List<Player> players, String message) {
-		for (Player player : players)
-			player.sendMessage(message);
+	public static void sendMessageToPlayers(Stream<Player> players, String message) {
+		players.forEach(p -> p.sendMessage(message));
 	}
 	
 	public static void killPlayer(Player player) {
 		setHealthOfPlayer(player, 0);
 	}
 	
-	public static void killPlayers(List<Player> players) {
+	public static void killPlayers(Stream<Player> players) {
 		setHealthOfPlayers(players, 0);
 	}
 }

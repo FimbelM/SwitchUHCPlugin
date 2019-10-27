@@ -1,10 +1,9 @@
 package fr.pederobien.uhc.managers;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
@@ -30,14 +29,14 @@ public class WorldManager {
 	private static String worldName = "world";
 	private static WorldBorder border;
 	private static ISpawn spawn;
-	
+
 	static {
 		rand = new Random();
 		MOBS = new HashSet<>();
 		world = getWorld(worldName);
 		border = world.getWorldBorder();
 		world.setSpawnLocation(getHighestBlockYAt(0, 0).getLocation());
-		
+
 		MOBS.add(EntityType.BLAZE);
 		MOBS.add(EntityType.CAVE_SPIDER);
 		MOBS.add(EntityType.CREEPER);
@@ -77,11 +76,11 @@ public class WorldManager {
 	public static void setPVP(boolean pvp) {
 		world.setPVP(pvp);
 	}
-	
+
 	public static Location createDefaultLocation(int x, int y, int z) {
 		return new Location(SURFACE_WORLD, x, y, z);
 	}
-	
+
 	public static Block getBlockAt(String world, int x, int y, int z) {
 		return Bukkit.getWorld(world).getBlockAt(x, y, z);
 	}
@@ -152,15 +151,15 @@ public class WorldManager {
 	public static void setTimeDay() {
 		setTime(0L);
 	}
-	
+
 	public static void setWeatherDuration(int duration) {
 		world.setWeatherDuration(duration);
 	}
-	
+
 	public static void setThundering(boolean thundering) {
 		world.setThundering(thundering);
 	}
-	
+
 	public static void setStorm(boolean hasStorm) {
 		world.setStorm(hasStorm);
 	}
@@ -214,25 +213,18 @@ public class WorldManager {
 
 	public static boolean isLocationUnderSpawn(Location location) {
 		if (spawn != null)
-		return isInInterval(location.getBlockX() - spawn.getCenter().getLocation().getBlockX(), -spawn.getWidth() / 2,
-				spawn.getWidth() / 2)
-				&& isInInterval(location.getBlockZ() - spawn.getCenter().getLocation().getBlockZ(),
-						-spawn.getDepth() / 2, spawn.getDepth() / 2);
+			return isInInterval(location.getBlockX() - spawn.getCenter().getLocation().getBlockX(),
+					-spawn.getWidth() / 2, spawn.getWidth() / 2)
+					&& isInInterval(location.getBlockZ() - spawn.getCenter().getLocation().getBlockZ(),
+							-spawn.getDepth() / 2, spawn.getDepth() / 2);
 		else
 			return false;
 	}
-	
-	public static List<Player> getPlayersInWorld(World... worlds) {
-		List<Player> players = new ArrayList<Player>();
-		for (Player player : PlayerManager.getPlayers())
-			for (World world : worlds)
-				if (player.getLocation().getWorld().equals(world)) {
-					players.add(player);
-					break;
-				}
-		return players;
+
+	public static Stream<Player> getPlayersInWorld(World... worlds) {
+		return PlayerManager.getPlayers().filter(p -> Stream.of(worlds).anyMatch(w -> p.getLocation().getWorld().equals(w)));
 	}
-	
+
 	public static <T> void setGameRule(GameRule<T> gameRule, T value) {
 		world.setGameRule(gameRule, value);
 	}

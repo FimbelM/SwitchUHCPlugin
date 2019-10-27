@@ -16,13 +16,11 @@ public class ScoreboardManager {
 	private static int spaces;
 
 	public static void setPlayersScoreboard(Scoreboard scoreboard) {
-		for (Player player : PlayerManager.getPlayers())
-			player.setScoreboard(scoreboard);
+		PlayerManager.getPlayers().forEach(p -> p.setScoreboard(scoreboard));
 	}
 
 	public static void setPlayersScoreboardWithCurrentLocation(IScoreboard sc) {
-		for (Player player : PlayerManager.getPlayers())
-			setPlayerScoreboardWithCurrentLocation(player, sc);
+		PlayerManager.getPlayers().forEach(p -> setPlayerScoreboardWithCurrentLocation(p, sc));
 	}
 
 	public static Objective registerNewObjective(String title) {
@@ -53,8 +51,7 @@ public class ScoreboardManager {
 	}
 
 	public static void removePlayersScoreboard() {
-		for (Player player : PlayerManager.getPlayers())
-			removePlayerScoreboard(player);
+		PlayerManager.getPlayers().forEach(p -> removePlayerScoreboard(p));
 	}
 
 	public static Objective addEmptyLine(Objective objective) {

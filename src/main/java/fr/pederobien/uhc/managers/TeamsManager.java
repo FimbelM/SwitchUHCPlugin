@@ -129,7 +129,7 @@ public class TeamsManager {
 
 	public static void dispatchPlayerRandomlyInTeam(List<ETeam> teams) {
 		Random rand = new Random();
-		List<Player> players = PlayerManager.getPlayers();
+		List<Player> players = PlayerManager.getPlayers().collect(Collectors.toList());
 
 		int quotient = players.size() / teams.size();
 		int reste = players.size() % teams.size();

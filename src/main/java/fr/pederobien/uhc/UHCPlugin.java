@@ -1,7 +1,6 @@
 package fr.pederobien.uhc;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.stream.Stream;
 
 import org.bukkit.GameMode;
 import org.bukkit.GameRule;
@@ -15,7 +14,6 @@ import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import fr.pederobien.uhc.commands.AbstractCommand;
@@ -39,7 +37,6 @@ import fr.pederobien.uhc.world.EventListener;
 public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 	private IConfigurationContext context;
 	private EventListener listener;
-	private List<PotionEffect> effects;
 
 	@Override
 	public void onEnable() {
@@ -68,8 +65,6 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 		new BaseConfigurationCommand(this, "base");
 
 		listener.addObservers(this);
-
-		initialEffects();
 	}
 
 	@Override
@@ -144,17 +139,14 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 			PlayerManager.setGameModeOfPlayer(player, GameMode.CREATIVE);
 		else {
 			PlayerManager.setGameModeOfPlayer(player, GameMode.ADVENTURE);
-			PlayerManager.giveEffects(player, effects);
+			PlayerManager.giveEffects(player,
+					Stream.of(
+							PlayerManager.createEffect(PotionEffectType.REGENERATION, PlayerManager.MAX_EFFECT_DURATION,
+									PlayerManager.MAX_EFFECT_AMPLIFIER),
+							PlayerManager.createEffect(PotionEffectType.SATURATION, PlayerManager.MAX_EFFECT_DURATION,
+									PlayerManager.MAX_EFFECT_AMPLIFIER),
+							PlayerManager.createEffect(PotionEffectType.DAMAGE_RESISTANCE,
+									PlayerManager.MAX_EFFECT_DURATION, PlayerManager.MAX_EFFECT_AMPLIFIER)));
 		}
-	}
-
-	private void initialEffects() {
-		effects = new ArrayList<PotionEffect>();
-		effects.add(PlayerManager.createEffect(PotionEffectType.REGENERATION, PlayerManager.MAX_EFFECT_DURATION,
-				PlayerManager.MAX_EFFECT_AMPLIFIER));
-		effects.add(PlayerManager.createEffect(PotionEffectType.SATURATION, PlayerManager.MAX_EFFECT_DURATION,
-				PlayerManager.MAX_EFFECT_AMPLIFIER));
-		effects.add(PlayerManager.createEffect(PotionEffectType.DAMAGE_RESISTANCE, PlayerManager.MAX_EFFECT_DURATION,
-				PlayerManager.MAX_EFFECT_AMPLIFIER));
 	}
 }
