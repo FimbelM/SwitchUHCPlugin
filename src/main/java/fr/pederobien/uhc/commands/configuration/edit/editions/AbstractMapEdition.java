@@ -39,7 +39,7 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 				return editions.get(label).edit(Arrays.copyOfRange(args, 1, args.length));
 			else
 				return "Command " + label + " is not available";
-		} catch (ArrayIndexOutOfBoundsException e) {
+		} catch (IndexOutOfBoundsException e) {
 			return "Cannot run command " + getLabel() + ", arguments are missing";
 		} catch (NullPointerException e) {
 			e.printStackTrace();

@@ -22,9 +22,9 @@ public abstract class CommonList<T extends IUnmodifiableName> extends AbstractMa
 			builder.append(onSizeGreatThan0());
 		else
 			builder.append(onSizeEquals0());
+		
+		list.stream().forEach(str -> builder.append(str.concat("\n")));
 
-		for (String str : list)
-			builder.append(str.concat("\n"));
 		return builder.toString();
 	}
 }

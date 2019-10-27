@@ -64,10 +64,7 @@ public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 		case 1:
 			return Arrays.asList("<name>");
 		case 2:
-			List<String> teamColors = ETeam.getColorsName();
-			for (ETeam team : get().getTeams())
-				teamColors.remove(team.getColorName());
-			return filter(teamColors, args[1]);
+			return filter(getAvailableColors(), args[1]);
 		}
 		return filter(getFreePlayersName(Arrays.copyOfRange(args, 2, args.length)), args[args.length - 1]);
 	}

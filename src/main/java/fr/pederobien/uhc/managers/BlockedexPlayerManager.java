@@ -13,9 +13,7 @@ public class BlockedexPlayerManager extends PlayerManager {
 
 	public BlockedexPlayerManager() {
 		map = new HashMap<Player, Restriction>();
-		for (ETeam team : TeamsManager.getTeams())
-			for (Player player : TeamsManager.getPlayers(team))
-				map.put(player, new Restriction(player, team));
+		TeamsManager.getTeams().forEach(t -> TeamsManager.getPlayers(t).forEach(p -> map.put(p, new Restriction(p, t))));
 	}
 
 	public void decreaseMaxHealth(Player player, double decrease) {
@@ -84,11 +82,11 @@ public class BlockedexPlayerManager extends PlayerManager {
 
 	private class TeamRestriction {
 		private ETeam team;
-		private int maxDeath;
+		private long maxDeath;
 
 		public TeamRestriction(ETeam team) {
 			this.team = team;
-			maxDeath = TeamsManager.getPlayers(team).size();
+			maxDeath = TeamsManager.getPlayers(team).count();
 		}
 
 		public void decreaseMaxDeath() {
@@ -102,7 +100,7 @@ public class BlockedexPlayerManager extends PlayerManager {
 		public void eliminate() {
 			BukkitManager.broadcastMessageAsTitle("Team " + team.getNameWithColor() + " eliminated");
 			
-			TeamsManager.getPlayers(team).parallelStream().forEach(p -> {
+			TeamsManager.getPlayers(team).forEach(p -> {
 				PlayerManager.dropPlayerInventoryItemNaturally(p);
 				PlayerManager.setGameModeOfPlayer(p, GameMode.SPECTATOR);
 				PlayerManager.teleporte(p, WorldManager.getSpawnOnJoin());

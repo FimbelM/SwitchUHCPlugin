@@ -3,6 +3,7 @@ package fr.pederobien.uhc.configurations;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import fr.pederobien.uhc.game.IGame;
 import fr.pederobien.uhc.interfaces.IConfiguration;
@@ -82,11 +83,11 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	}
 	
 	@Override
-	public List<String> getPlayersRegistered() {
+	public Stream<String> getPlayersRegistered() {
 		List<String> players = new ArrayList<String>();
 		for (ETeam team : getTeams())
 			players.addAll(team.getPlayers());
-		return players;
+		return players.stream();
 	}
 	
 	protected void setGame(IGame game) {

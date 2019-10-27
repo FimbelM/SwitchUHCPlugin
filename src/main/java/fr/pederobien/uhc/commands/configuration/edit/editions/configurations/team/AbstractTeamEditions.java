@@ -3,7 +3,6 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.te
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractMapEdition;
@@ -41,17 +40,16 @@ public abstract class AbstractTeamEditions<T extends IConfiguration> extends Abs
 	}
 
 	protected Stream<String> getFreePlayersName(String[] playersAlreadyMentionned) {
-		return PlayerManager.getPlayers().map(p -> p.getName())
-				.filter(n -> get().getPlayersRegistered().contains(n));
+		return PlayerManager.getPlayers().map(p -> p.getName()).filter(n -> get().getPlayersRegistered().anyMatch(p -> n.equals(p)));
 	}
 
-	protected Stream<String> getPlayersName(String teamName, String[] playersAlreadyMentionned) {
-		return TeamsManager.getPlayers(TeamsManager.getTeam(teamName)).stream().map(p -> p.getName())
-				.filter(s -> !Arrays.asList(playersAlreadyMentionned).contains(s));
+	protected Stream<String> getPlayersName(String teamName, Stream<String> playersAlreadyMentionned) {
+		return TeamsManager.getPlayers(TeamsManager.getTeam(teamName)).map(p -> p.getName())
+				.filter(s -> playersAlreadyMentionned.anyMatch(p -> p.equals(s)));
 	}
 
 	protected Stream<String> getAvailableColors() {
-		List<String> usedColor = get().getTeams().stream().map(t -> t.getColorName()).collect(Collectors.toList());
-		return ETeam.getColorsName().stream().filter(c -> !usedColor.contains(c));
+		return ETeam.getColorsName().stream()
+				.filter(c -> get().getTeams().stream().map(t -> t.getColorName()).anyMatch(n -> !c.equals(n)));
 	}
 }

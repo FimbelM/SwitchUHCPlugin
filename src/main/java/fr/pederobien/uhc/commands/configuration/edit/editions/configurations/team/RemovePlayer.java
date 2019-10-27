@@ -2,6 +2,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.te
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -52,9 +53,6 @@ public class RemovePlayer<T extends IConfiguration> extends AbstractTeamEditions
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		if (args.length == 1)
 			return filter(getTeamNamesWithoutColor(), args[0]);
-		List<String> playersAlreadyMentionned = emptyList();
-		for (int i = 1; i < args.length; i++)
-			playersAlreadyMentionned.add(args[i]);
-		return filter(getPlayersName(args[0], Arrays.copyOfRange(args, 1, args.length)), args[args.length - 1]);
+		return filter(getPlayersName(args[0], Stream.of(Arrays.copyOfRange(args, 1, args.length))), args[args.length - 1]);
 	}
 }

@@ -62,16 +62,15 @@ public abstract class AbstractBawn implements IBawn {
 	@Override
 	public void launch() {
 		before.clear();
-		for (ISerializableBlock block : config) {
-			before.add(new SerialisableBlock(block, getBlockFromCenter(block).getBlockData()));
-			updateBlock(block);
-		}
+		config.stream().forEach(b -> {
+			before.add(new SerialisableBlock(b, getBlockFromCenter(b).getBlockData()));
+			updateBlock(b);
+		});
 	}
 
 	@Override
 	public void remove() {
-		for (ISerializableBlock block : before)
-			updateBlock(block);
+		before.stream().forEach(b -> updateBlock(b));
 	}
 
 	@Override
@@ -151,14 +150,10 @@ public abstract class AbstractBawn implements IBawn {
 	}
 
 	protected Block getBlockFromCenter(ISerializableBlock block) {
-		return getCenter().getRelative(block.getX(), block.getY(), block.getZ());
+		return getBlockFromCenter(block.getX(), block.getY(), block.getZ());
 	}
 
-	protected void clearBlocks() {
-		config.clear();
-	}
-
-	protected int getMax(int value) {
+	private int getMax(int value) {
 		int max = value / 2;
 		return max % 2 == 1 ? max + 1 : max;
 	}

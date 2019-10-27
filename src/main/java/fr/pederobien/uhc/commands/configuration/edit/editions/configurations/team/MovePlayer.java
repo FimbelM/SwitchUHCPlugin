@@ -2,6 +2,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.te
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -59,6 +60,6 @@ public class MovePlayer<T extends IConfiguration> extends AbstractTeamEditions<T
 		case 2:
 			return filter(getTeamNamesWithoutColor().filter(n -> !n.equals(args[0])), args[args.length - 1]);
 		}
-		return filter(getPlayersName(args[0], Arrays.copyOfRange(args, 1, args.length)), args[args.length - 1]);
+		return filter(getPlayersName(args[0], Stream.of(Arrays.copyOfRange(args, 1, args.length))), args[args.length - 1]);
 	}
 }

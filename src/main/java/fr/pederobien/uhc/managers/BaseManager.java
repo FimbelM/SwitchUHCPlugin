@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -54,13 +55,8 @@ public class BaseManager {
 		return accessible;
 	}
 
-	public static List<String> availableBasesAccordingTeam(List<ETeam> teams) {
-		List<String> availableBases = new ArrayList<String>();
-
-		for (IBase base : allBases.values())
-			if (checkBaseAvailable(base, teams))
-				availableBases.add(base.getName());
-		return availableBases;
+	public static Stream<String> availableBasesAccordingTeam(List<ETeam> teams) {
+		return allBases.values().stream().filter(b -> checkBaseAvailable(b, teams)).map(b -> b.getName());
 	}
 
 	public static boolean checkBaseAvailable(String baseName, List<ETeam> teams) {

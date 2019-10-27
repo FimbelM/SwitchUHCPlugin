@@ -2,6 +2,7 @@ package fr.pederobien.uhc.configurations;
 
 import java.time.LocalTime;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -166,7 +167,7 @@ public class ConfigurationContext implements IConfigurationContext {
 	}
 	
 	@Override
-	public List<String> getPlayersRegistered() {
+	public Stream<String> getPlayersRegistered() {
 		return configuration.getPlayersRegistered();
 	}
 

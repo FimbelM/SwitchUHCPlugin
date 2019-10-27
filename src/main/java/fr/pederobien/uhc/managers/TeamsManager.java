@@ -1,15 +1,13 @@
 package fr.pederobien.uhc.managers;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.Team;
 
 import fr.pederobien.uhc.BukkitManager;
 import fr.pederobien.uhc.interfaces.IUnmodifiableConfiguration;
@@ -21,56 +19,43 @@ public class TeamsManager {
 		TeamsManager.currentConfiguration = currentConfiguration;
 	}
 
-	public static List<ETeam> getTeams() {
-		return currentConfiguration.getTeams();
+	public static Stream<ETeam> getTeams() {
+		return currentConfiguration.getTeams().stream();
 	}
 
 	public static ETeam getTeam(Player player) {
-		return getTeams().stream().filter(t -> t.getPlayers().contains(player.getName())).findFirst().get();
+		return getTeams().filter(t -> t.getPlayers().contains(player.getName())).findFirst().get();
 	}
 
-	public static List<Player> getPlayers(ETeam team) {
-		return getTeams().stream().
-		filter(t -> t.equals(team))
-		.findFirst().get().getPlayers().stream().map(n -> PlayerManager.getPlayer(n)).collect(Collectors.toList());
-	}
-
-	public static List<String> getPlayersName(Team team) {
-		List<String> players = new ArrayList<String>();
-		for (String pl : team.getEntries())
-			players.add(Bukkit.getPlayer(pl).getName());
-		return players;
+	public static Stream<Player> getPlayers(ETeam team) {
+		return getTeams().filter(t -> t.equals(team)).findFirst().get().getPlayers().stream()
+				.map(n -> PlayerManager.getPlayer(n));
 	}
 
 	public static ETeam getTeam(String name) {
-		return getTeams().stream().filter(t -> t.getNameWithoutColor().equals(name)).findFirst().get();
+		return getTeams().filter(t -> t.getNameWithoutColor().equals(name)).findFirst().get();
 	}
 
 	public static ETeam getTeam(ChatColor color) {
-		return getTeams().stream().filter(t -> t.getColor().equals(color)).findFirst().get();
-	}
-
-	public static List<Player> getPlayersInTeam() {
-		return currentConfiguration.getPlayersRegistered().stream().map(n -> PlayerManager.getPlayer(n)).collect(Collectors.toList());
+		return getTeams().filter(t -> t.getColor().equals(color)).findFirst().get();
 	}
 
 	public static ChatColor getColor(Player player) {
 		return getTeam(player) == null ? ChatColor.RESET : getTeam(player).getColor();
 	}
 
-	public static int getNumberOfPlayers(ETeam team) {
-		return getPlayers(team).size();
+	public static long getNumberOfPlayers(ETeam team) {
+		return getPlayers(team).count();
 	}
 
-	public static int getNumberOfPlayerInTeam() {
-		return currentConfiguration.getPlayersRegistered().size();
+	public static long getNumberOfPlayerInTeam() {
+		return currentConfiguration.getPlayersRegistered().count();
 	}
 
 	public static List<Player> getCollegues(Player player) {
-		return currentConfiguration
-				.getTeams().stream().filter(t -> t.getPlayers().contains(player.getName())).map(t -> t.getPlayers()
-						.stream().filter(n -> !n.equals(player.getName())).map(n -> PlayerManager.getPlayer(n)))
-				.findFirst().get().collect(Collectors.toList());
+		return currentConfiguration.getTeams().stream().filter(t -> t.getPlayers().contains(player.getName()))
+				.findFirst().get().getPlayers().stream().filter(n -> !n.equals(player.getName()))
+				.map(n -> PlayerManager.getPlayer(n)).collect(Collectors.toList());
 	}
 
 	public static Player getRandomCollegue(Player player) {
@@ -124,7 +109,7 @@ public class TeamsManager {
 	}
 
 	public static void teleporteRandomlyAllTeams(int bound) {
-		getTeams().stream().forEach(t -> teleporteRandomlyTeam(t, bound));
+		getTeams().forEach(t -> teleporteRandomlyTeam(t, bound));
 	}
 
 	public static void dispatchPlayerRandomlyInTeam(List<ETeam> teams) {

@@ -36,14 +36,8 @@ public abstract class AbstractBaseEdition extends AbstractMapEdition<IBlockedexC
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-		if (args.length == 1) {
-			List<String> bases = BaseManager.availableBasesAccordingTeam(get().getTeams());
-			/*
-			 * if (bases.size() == 0) sendMessageToSender(sender, ChatColor.RED +
-			 * "No existing bases that supports team (number or color)");
-			 */
-			return filter(bases, args[0]);
-		}
+		if (args.length == 1)
+			return filter(BaseManager.availableBasesAccordingTeam(get().getTeams()), args[0]);
 		return super.onTabComplete(sender, command, alias, args);
 	}
 }

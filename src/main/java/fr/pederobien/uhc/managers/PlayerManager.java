@@ -114,16 +114,16 @@ public class PlayerManager {
 		player.teleport(location);
 	}
 
-	public static void teleporteAllPlayers(List<Player> players, Location location) {
-		players.parallelStream().forEach(p -> teleporte(p, location));
+	public static void teleporteAllPlayers(Stream<Player> players, Location location) {
+		players.forEach(p -> teleporte(p, location));
 	}
 
 	public static void teleporte(Player player, Entity entity) {
 		player.teleport(entity);
 	}
 
-	public static void teleporteAllPlayers(List<Player> players, Entity entity) {
-		players.parallelStream().forEach(p -> teleporte(p, entity));
+	public static void teleporteAllPlayers(Stream<Player> players, Entity entity) {
+		players.forEach(p -> teleporte(p, entity));
 	}
 
 	public static void teleporteAllPlayers(Location location) {
@@ -186,16 +186,16 @@ public class PlayerManager {
 		player.removePotionEffect(type);
 	}
 
-	public static void removeEffect(List<Player> players, PotionEffectType type) {
-		players.parallelStream().forEach(p -> removeEffect(p, type));
+	public static void removeEffect(Stream<Player> players, PotionEffectType type) {
+		players.forEach(p -> removeEffect(p, type));
 	}
 
-	public static void removeEffect(Player player, List<PotionEffectType> types) {
-		types.parallelStream().forEach(t -> removeEffect(player, t));
+	public static void removeEffect(Player player, Stream<PotionEffectType> types) {
+		types.forEach(t -> removeEffect(player, t));
 	}
 
-	public static void removeEffect(List<Player> players, List<PotionEffectType> types) {
-		players.parallelStream().forEach(p -> types.parallelStream().forEach(t -> removeEffect(p, t)));
+	public static void removeEffect(Stream<Player> players, Stream<PotionEffectType> types) {
+		players.forEach(p -> types.forEach(t -> removeEffect(p, t)));
 	}
 
 	public static void removeAllEffects(Player player) {

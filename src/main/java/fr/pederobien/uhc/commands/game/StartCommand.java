@@ -16,7 +16,7 @@ public class StartCommand extends AbstractCommand {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		try {
-			if (confContext.getPlayersRegistered().size() != PlayerManager.getNumberOfPlayer())
+			if (confContext.getPlayersRegistered().count() != PlayerManager.getNumberOfPlayer())
 				sendMessageToSender(sender, "There are players that are not in a team");
 			else {
 				if (confContext.initiate())
