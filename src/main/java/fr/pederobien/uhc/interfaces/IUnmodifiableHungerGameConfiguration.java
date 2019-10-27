@@ -13,4 +13,6 @@ public interface IUnmodifiableHungerGameConfiguration extends IUnmodifiableConfi
 	Double getFinalBorderDiameter();
 	
 	LocalTime getFractionTime();
+	
+	LocalTime getWarningTime();
 }

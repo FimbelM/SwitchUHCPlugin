@@ -82,4 +82,8 @@ public class HungerGameEditionsFactory extends AbstractConfigurationEditionsFact
 	public IMapEdition<IHungerGameConfiguration> createFractionTimeEdition() {
 		return new FractionTimeHungerGame();
 	}
+	
+	public IMapEdition<IHungerGameConfiguration> createWarningTimeEdition() {
+		return new WarningTimeHungerGame();
+	}
 }

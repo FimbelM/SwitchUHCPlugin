@@ -14,9 +14,10 @@ public class HungerGameConfiguration extends AbstractConfiguration implements IH
 	private static final Double DEFAULT_INITIAL_BORDER_SIZE = new Double(2000);
 	private static final Double DEFAULT_FINAL_BORDER_SIZE = new Double(10);
 	private static final LocalTime DEFAULT_FRACTION_TIME = LocalTime.of(0, 45, 0);
+	private static final LocalTime DEFAULT_WARNING_TIME = LocalTime.of(0, 5, 0);
 	private Block borderCenter;
 	private Double initialBorderDiameter, finalBorderDiameter;
-	private LocalTime fractionTime;
+	private LocalTime fractionTime, warningTime;
 
 	public HungerGameConfiguration(String name) {
 		super(name);
@@ -69,5 +70,15 @@ public class HungerGameConfiguration extends AbstractConfiguration implements IH
 	@Override
 	public void setFractionTime(LocalTime fractionTime) {
 		this.fractionTime = fractionTime;
+	}
+	
+	@Override
+	public LocalTime getWarningTime() {
+		return warningTime == null ? DEFAULT_WARNING_TIME : warningTime;
+	}
+	
+	@Override
+	public void setWarningTime(LocalTime warningTime) {
+		this.warningTime = warningTime;
 	}
 }

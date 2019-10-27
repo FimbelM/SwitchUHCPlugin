@@ -38,10 +38,10 @@ public class PlayerReviveState extends AbstractHungerGameState {
 
 	@Override
 	public void time(LocalTime time) {
-		if (time.equals(game.getConfiguration().getFractionTime())) {
-			BukkitManager.broadcastMessageAsTitle("Plus de résurrection", "red");
-			game.setCurrentState(game.getPlayerDontRevive());
-		}
+		if (time.equals(game.getConfiguration().getWarningTime()))
+			warnPlayers();
+		if (time.equals(game.getConfiguration().getFractionTime()))
+			changeFromReviveToNotRevive();
 	}
 
 	@Override
@@ -62,5 +62,10 @@ public class PlayerReviveState extends AbstractHungerGameState {
 			event.setRespawnLocation(WorldManager.getSpawnOnJoin());
 		else
 			event.setRespawnLocation(WorldManager.getRandomlyLocation(WorldManager.getCurrentDiameter().intValue()));
+	}
+
+	private void changeFromReviveToNotRevive() {
+		BukkitManager.broadcastMessageAsTitle("Plus de résurrection", "red");
+		game.setCurrentState(game.getPlayerDontRevive());
 	}
 }

@@ -8,14 +8,16 @@ import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.persistence.loaders.configurations.hungergame.HungerGameDefaultContent;
 import fr.pederobien.uhc.persistence.loaders.configurations.hungergame.HungerGameLoaderV10;
 import fr.pederobien.uhc.persistence.loaders.configurations.hungergame.HungerGameLoaderV11;
+import fr.pederobien.uhc.persistence.loaders.configurations.hungergame.HungerGameLoaderV12;
 
 public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameConfiguration> {
-	private static final double CURRENT_VERSION = 1.1;
+	private static final double CURRENT_VERSION = 1.2;
 
 	public HungerGamePersistence() {
 		super(new HungerGameDefaultContent());
 
-		registerLoader(new HungerGameLoaderV10()).registerLoader(new HungerGameLoaderV11());
+		registerLoader(new HungerGameLoaderV10()).registerLoader(new HungerGameLoaderV11())
+				.registerLoader(new HungerGameLoaderV12());
 	}
 
 	@Override
@@ -61,6 +63,7 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 		Element time = doc.createElement("time");
 		time.setAttribute("game", get().getGameTime().toString());
 		time.setAttribute("fraction", get().getFractionTime().toString());
+		time.setAttribute("warning", get().getWarningTime().toString());
 		time.setAttribute("scoreboardrefresh", "" + get().getScoreboardRefresh());
 		root.appendChild(time);
 

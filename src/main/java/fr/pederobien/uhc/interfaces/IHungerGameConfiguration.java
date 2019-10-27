@@ -15,4 +15,6 @@ public interface IHungerGameConfiguration extends IConfiguration, IUnmodifiableH
 	void setFinalBorderDiameter(double finalBorderDiameter);
 	
 	void setFractionTime(LocalTime fractionTime);
+	
+	void setWarningTime(LocalTime warningTime);
 }

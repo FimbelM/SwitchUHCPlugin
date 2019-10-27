@@ -10,25 +10,28 @@ import fr.pederobien.uhc.managers.WorldManager;
 import fr.pederobien.uhc.task.TimeLine;
 
 public abstract class AbstractHungerGameState extends AbstractGameState implements IHungerGameState {
-	protected IHungerGame game;
 	protected static TimeLine timeLine;
-	protected static LocalTime warningTime;
+	protected static boolean alreadyWarned;
+	protected IHungerGame game;
 
 	public AbstractHungerGameState(IHungerGame game) {
 		this.game = game;
+		alreadyWarned = false;
 	}
 
 	protected void shouldStopGame() {
 		if (PlayerManager.getNumberOfPlayersOnMode(GameMode.SURVIVAL) == 1)
-			game.stop();
+			stop();
 	}
-
-	protected boolean warnPlayer(LocalTime time) {
-		boolean b = time.equals(warningTime);
-		if (b)
-			PlayerManager.sendMessageToPlayers(
-					WorldManager.getPlayersInWorld(WorldManager.NETHER_WORLD, WorldManager.END_WORLD),
-					"Go back to the surface or you will die in 1 minute");
-		return b;
+	
+	protected void warnPlayers() {
+		if (!alreadyWarned)
+		PlayerManager.sendMessageToPlayers(WorldManager.getPlayersInWorld(WorldManager.NETHER_WORLD, WorldManager.END_WORLD),
+				"Go back to the surface or you will die in " + showTime(game.getConfiguration().getWarningTime()));
+		alreadyWarned = false;
+	}
+	
+	protected String showTime(LocalTime time) {
+		return time.getHour() + "h " + time.getMinute() + "m " + time.getSecond() + "s";
 	}
 }
