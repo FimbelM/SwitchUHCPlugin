@@ -7,6 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.interfaces.IConfiguration;
+import fr.pederobien.uhc.managers.ETeam;
 
 public abstract class CommonLoad<T extends IConfiguration> extends AbstractConfEdition<T> {
 
@@ -38,5 +39,12 @@ public abstract class CommonLoad<T extends IConfiguration> extends AbstractConfE
 		if (args.length == 1)
 			return filter(getPersistence().list(), args[0]);
 		return super.onTabComplete(sender, command, alias, args);
+	}
+	
+	protected String getTeamNamesWithColor() {
+		String names = "";
+		for (ETeam team : get().getTeams())
+			names += team.getNameWithColor() + " ";
+		return names;
 	}
 }
