@@ -15,7 +15,7 @@ public class ListTeam<T extends IConfiguration> extends AbstractTeamEditions<T> 
 		String teams = "";
 		List<String> teamNames = getTeamNamesWithColor();
 		for (String t : teamNames)
-			teams += t + "\r\n";
+			teams += t + "\n";
 		if (teamNames.isEmpty())
 			return "No existing team for " + get().getName() + " style";
 		else if (teamNames.size() == 1)
