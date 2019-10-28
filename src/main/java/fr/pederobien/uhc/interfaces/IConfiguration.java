@@ -13,6 +13,4 @@ public interface IConfiguration extends IUnmodifiableConfiguration, IName {
 	void setScoreboardRefresh(Long refresh);
 
 	void setGameTime(LocalTime gameTime);
-
-	void createAssociatedTeams();
 }

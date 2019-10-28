@@ -65,7 +65,6 @@ public class HungerGameLoaderV12 extends AbstractHungerGameLoader {
 				break;
 			}
 		}
-		get().createAssociatedTeams();
 		return this;
 	}
 }

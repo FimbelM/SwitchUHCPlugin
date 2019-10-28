@@ -170,9 +170,4 @@ public class ConfigurationContext implements IConfigurationContext {
 	public Stream<String> getPlayersRegistered() {
 		return configuration.getPlayersRegistered();
 	}
-
-	@Override
-	public void createAssociatedTeams() {
-		configuration.createAssociatedTeams();
-	}
 }

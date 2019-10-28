@@ -40,7 +40,6 @@ public class BlockedexGameLoaderV10 extends AbstractBlockedexgameLoader {
 				break;
 			}
 		}
-		get().createAssociatedTeams();
 		return this;
 	}
 }
