@@ -11,7 +11,7 @@ public class LoadHungerGame extends CommonLoad<IHungerGameConfiguration> {
 
 	@Override
 	protected String onStyleLoaded() {
-		return "Hunger game style loaded : " + get().getName();
+		return "Hunger game style loaded : " + get().getName() + "\nteam(s) created : " + getTeamNamesWithColor();
 	}
 
 	@Override

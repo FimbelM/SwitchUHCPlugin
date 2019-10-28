@@ -11,8 +11,7 @@ public class LoadBlockedexGame extends CommonLoad<IBlockedexConfiguration> {
 
 	@Override
 	protected String onStyleLoaded() {
-		get().createAssociatedTeams();
-		return "Blockedex game style loaded : " + getPersistence().get().getName();
+		return "Blockedex game style loaded : " + getPersistence().get().getName() + "\nteam(s) created : " + getTeamNamesWithColor();
 	}
 
 	@Override
