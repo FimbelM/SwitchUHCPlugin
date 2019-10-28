@@ -2,7 +2,6 @@ package fr.pederobien.uhc.configurations;
 
 import fr.pederobien.uhc.game.blockedexgame.BlockedexGame;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
-import fr.pederobien.uhc.managers.BaseManager;
 import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.persistence.PersistenceFactory;
 
@@ -102,25 +101,21 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	@Override
 	public void setNorthBase(String northBase) {
 		this.northBase = northBase;
-		registerBase(northBase);
 	}
 
 	@Override
 	public void setSouthBase(String southBase) {
 		this.southBase = southBase;
-		registerBase(southBase);
 	}
 
 	@Override
 	public void setWestBase(String westBase) {
 		this.westBase = westBase;
-		registerBase(westBase);
 	}
 
 	@Override
 	public void setEastBase(String eastBase) {
 		this.eastBase = eastBase;
-		registerBase(eastBase);
 	}
 
 	@Override
@@ -131,12 +126,5 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	@Override
 	public void setBaseFromSpawnDistance(int baseFromSpawnDistance) {
 		this.baseFromSpawnDistance = baseFromSpawnDistance;
-	}
-
-	private void registerBase(String baseName) {
-		for (ETeam team : BaseManager.getBaseByName(baseName).getChests().values()) {
-			if (!teams.contains(team))
-				teams.add(team);
-		}
 	}
 }
