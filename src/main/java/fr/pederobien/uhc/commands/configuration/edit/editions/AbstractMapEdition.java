@@ -143,6 +143,10 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 	protected List<String> emptyList() {
 		return new ArrayList<String>();
 	}
+	
+	protected boolean startWithIgnoreCase(String str, String beginning) {
+		return str.substring(0, beginning.length()).equalsIgnoreCase(beginning);
+	}
 
 	protected List<String> filter(Collection<String> list, String filter) {
 		return list.stream().filter(str -> str.startsWith(filter)).collect(Collectors.toList());

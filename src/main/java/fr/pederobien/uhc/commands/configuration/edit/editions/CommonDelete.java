@@ -1,7 +1,6 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -13,13 +12,13 @@ public abstract class CommonDelete<T extends IUnmodifiableName> extends Abstract
 	public CommonDelete(String explanation) {
 		super("delete", explanation);
 	}
-	
+
 	protected abstract String onDeleted(String name);
-	
+
 	@Override
 	public String edit(String[] args) {
 		String name = args[0];
-		if (name.startsWith("Default"))
+		if (startWithIgnoreCase(name, "default"))
 			return "Cannot delete " + name;
 		getPersistence().delete(name);
 		if (get().getName().equals(name))
@@ -29,6 +28,6 @@ public abstract class CommonDelete<T extends IUnmodifiableName> extends Abstract
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-		return filter(getPersistence().list().stream().filter(l -> !l.startsWith("Default")).collect(Collectors.toList()), args[0]);
+		return filter(getPersistence().list().stream().filter(l -> !startWithIgnoreCase(l, "default")), args[0]);
 	}
 }

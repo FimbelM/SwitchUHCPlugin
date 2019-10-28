@@ -31,6 +31,8 @@ public abstract class CommonNew<T extends IUnmodifiableName> extends AbstractMap
 			getPersistence().save();
 			if (getPersistence().exist(name))
 				return onAlreadyExisting(name);
+			else if (startWithIgnoreCase(name, "default"))
+				return name + " must not start with default (ignoring case)";
 			else {
 				getPersistence().set(getNew(name));
 				return onCreated();
