@@ -11,6 +11,7 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration<ISpawn> {
 				
 		addEdition(factory.createCenterEdition())
 		.addEdition(factory.createCurrentEdition())
+		.addEdition(factory.createDeleteEdition().setUnmodifiable(true))
 		.addEdition(factory.createDimensionsEdition())
 		.addEdition(factory.createExtractEdition())
 		.addEdition(factory.createHelpEdition(this).setUnmodifiable(true))

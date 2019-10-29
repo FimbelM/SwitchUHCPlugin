@@ -18,6 +18,9 @@ public abstract class CommonList<T extends IUnmodifiableName> extends AbstractMa
 	public String edit(String[] args) {
 		StringBuilder builder = new StringBuilder();
 		List<String> list = getPersistence().list();
+		if (!list.contains(get().getName()))
+			list.add(get().getName());
+		
 		if (list.size() > 0)
 			builder.append(onSizeGreatThan0());
 		else

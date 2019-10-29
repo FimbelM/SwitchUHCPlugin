@@ -28,6 +28,9 @@ public abstract class CommonDelete<T extends IUnmodifiableName> extends Abstract
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-		return filter(getPersistence().list().stream().filter(l -> !startWithIgnoreCase(l, "default")), args[0]);
+		List<String> list = getPersistence().list();
+		if (get() != null && !list.contains(get().getName()))
+			list.add(get().getName());
+		return filter(list.stream().filter(l -> !startWithIgnoreCase(l, "default")), args[0]);
 	}
 }
