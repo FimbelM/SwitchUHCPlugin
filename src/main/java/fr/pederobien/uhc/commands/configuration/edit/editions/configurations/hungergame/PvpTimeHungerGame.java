@@ -21,7 +21,7 @@ public class PvpTimeHungerGame extends AbstractConfEdition<IHungerGameConfigurat
 	public String edit(String[] args) {
 		try {
 			get().setPvpTime(LocalTime.parse(args[0]));
-			return "Pvp time defined : " + showTime(get().getWarningTime());
+			return "Pvp time defined : " + showTime(get().getPvpTime());
 		} catch (DateTimeParseException e) {
 			return "Cannot set the pvp time, need the time at format hh:mm:ss";
 		}
