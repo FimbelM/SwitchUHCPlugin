@@ -1,5 +1,10 @@
 package fr.pederobien.uhc.commands.configuration.edit;
 
+import java.util.List;
+
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+
 import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractMapEdition;
 import fr.pederobien.uhc.interfaces.IEditConfiguration;
 import fr.pederobien.uhc.interfaces.IMapEdition;
@@ -16,6 +21,17 @@ public abstract class AbstractEditConfiguration<T extends IUnmodifiableName> ext
 		super(label, explanation);
 		this.persistence = persistence;
 		this.persistence.addObserver(this);
+	}
+	
+	@Override
+	public String edit(String[] args) {
+		return isAvailable() ? super.edit(args) : "Command " + getLabel() + " not available yet";
+	}
+	
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+		return isAvailable() ? super.onTabComplete(sender, command, alias, args) : emptyList();
+		
 	}
 	
 	@Override

@@ -24,5 +24,7 @@ public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlock
 		.addEdition(factory.createSaveEdition())
 		.addEdition(factory.createScoreboardRefreshEdition())
 		.addEdition(factory.createTeamEdition());
+		
+		setAvailable(false);
 	}
 }
