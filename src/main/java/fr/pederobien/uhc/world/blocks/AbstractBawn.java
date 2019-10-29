@@ -17,7 +17,6 @@ public abstract class AbstractBawn implements IBawn {
 	private static final Block DEFAULT_CENTER = WorldManager.getHighestBlockYAt(0, 0);
 	private Block center;
 	private List<ISerializableBlock> config, before;
-	private int width, height, depth;
 	private String name;
 	private IDimension dimension;
 	private List<IObsBawn> observers;
@@ -48,8 +47,8 @@ public abstract class AbstractBawn implements IBawn {
 	public void extract() {
 		config.clear();
 
-		int minWidth = -getMax(width), maxWidth = getMax(width), minDepth = -getMax(depth), maxDepth = getMax(depth);
-		for (int y = 0; y < height; y++)
+		int maxWidth = getWidth() / 2, minWidth = -getWidth() / 2, maxDepth = getDepth() / 2, minDepth = -getDepth() / 2;
+		for (int y = 0; y < getHeight(); y++)
 			for (int x = minWidth; x <= maxWidth; x++)
 				for (int z = minDepth; z <= maxDepth; z++) {
 					ISerializableBlock block = new SerialisableBlock(x, y, z, getBlockFromCenter(x, y, z).getBlockData());
@@ -151,11 +150,6 @@ public abstract class AbstractBawn implements IBawn {
 
 	protected Block getBlockFromCenter(ISerializableBlock block) {
 		return getBlockFromCenter(block.getX(), block.getY(), block.getZ());
-	}
-
-	private int getMax(int value) {
-		int max = value / 2;
-		return max % 2 == 1 ? max + 1 : max;
 	}
 
 	private void updateBlock(ISerializableBlock block) {
