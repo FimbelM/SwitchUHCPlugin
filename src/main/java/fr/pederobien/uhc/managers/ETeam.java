@@ -1,6 +1,7 @@
 package fr.pederobien.uhc.managers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -51,6 +52,13 @@ public enum ETeam {
 	public static List<String> getColorsName() {
 		return colorsName;
 	}
+	
+	public static ETeam getByContent(String player) {
+		for (ETeam team : values())
+			if (team.getPlayers().contains(player))
+				return team;
+		return null;
+	}
 
 	private ETeam(ChatColor color, String colorName, String name) {
 		this.color = color;
@@ -77,13 +85,41 @@ public enum ETeam {
 
 	public ETeam setName(String name) {
 		this.name = name;
-		if (name == null)
-			this.name = defaultName;
+		return this;
+	}
+	
+	public ETeam resetName() {
+		name = defaultName;
 		return this;
 	}
 
 	public List<String> getPlayers() {
-		return players;
+		return Collections.unmodifiableList(players);
+	}
+	
+	public void addPlayers(String... players) {
+		for (String player : players) {
+			PlayerManager.getPlayer(player).setDisplayName(color + player + ChatColor.RESET);
+			this.players.add(player);
+		}
+	}
+	
+	public void addPlayers(List<String> players) {
+		for (String player : players)
+			addPlayers(player);
+	}
+	
+	public void removePlayers(String... players) {
+		for (String player : players) {
+			PlayerManager.getPlayer(player).setDisplayName(player);
+			this.players.remove(player);
+		}
+	}
+	
+	public void removeAllPlayers() {
+		int size = players.size();
+		for (int i = 0; i < size; i++)
+			removePlayers(players.get(0));
 	}
 
 	public long getNumberPlayersOnMode(GameMode mode) {

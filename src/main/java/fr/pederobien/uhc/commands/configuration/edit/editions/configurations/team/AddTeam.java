@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.team;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,7 +11,6 @@ import org.bukkit.entity.Player;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.PlayerManager;
-import fr.pederobien.uhc.managers.TeamsManager;
 
 public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
@@ -23,12 +23,12 @@ public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 		try {
 			ETeam team = ETeam.getByColorName(args[1]);
 			team.setName(args[0]);
-			List<String> players = emptyList();
+			List<Player> players = new ArrayList<Player>();
 			String playerNames = team.getColor() + "";
 			for (int i = 2; i < args.length; i++) {
 				try {
 					Player player = PlayerManager.getPlayer(args[i]);
-					players.add(player.getName());
+					players.add(player);
 					playerNames += player.getName() + " ";
 				} catch (NullPointerException e) {
 					return args[i] + " is not a player";
@@ -37,20 +37,15 @@ public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 			if (!get().addTeam(team))
 				return "A team as already the color " + team.getColorName();
 
-			TeamsManager.createTeam(team);
-			for (String player : players) {
-				TeamsManager.joinTeam(team.getNameWithoutColor(), player);
-				team.getPlayers().add(player);
-			}
+			for (Player player : players)
+				team.addPlayers(player.getName());
 
-			String player;
-			if (players.isEmpty())
-				player = "no players added";
-			else if (players.size() == 1)
-				player = "player added : " + playerNames;
-			else
-				player = "players added : " + playerNames;
-			return "Team " + team.getNameWithColor() + " created, " + player;
+			String player = "";
+			if (players.size() == 1)
+				player = ", player added : " + playerNames;
+			else if (players.size() > 1)
+				player = ", players added : " + playerNames;
+			return "Team " + team.getNameWithColor() + " created" + player;
 		} catch (IndexOutOfBoundsException e) {
 			return "Cannot create a new team, arguments are missing";
 		} catch (NullPointerException e) {

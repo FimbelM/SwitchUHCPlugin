@@ -2,7 +2,6 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.te
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -11,7 +10,6 @@ import org.bukkit.entity.Player;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.PlayerManager;
-import fr.pederobien.uhc.managers.TeamsManager;
 
 public class RemovePlayer<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
@@ -37,10 +35,8 @@ public class RemovePlayer<T extends IConfiguration> extends AbstractTeamEditions
 			}
 		}
 
-		for (String player : players) {
-			TeamsManager.leaveTeam(team.getNameWithoutColor(), player);
-			team.getPlayers().remove(player);
-		}
+		for (String player : players)
+			team.removePlayers(player);
 
 		if (players.isEmpty())
 			return "No player removed from " + team.getNameWithColor();
@@ -53,6 +49,6 @@ public class RemovePlayer<T extends IConfiguration> extends AbstractTeamEditions
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		if (args.length == 1)
 			return filter(getTeamNamesWithoutColor(), args[0]);
-		return filter(getPlayersName(args[0], Stream.of(Arrays.copyOfRange(args, 1, args.length))), args[args.length - 1]);
+		return filter(getPlayersName(args[0], Arrays.copyOfRange(args, 1, args.length)), args[args.length - 1]);
 	}
 }

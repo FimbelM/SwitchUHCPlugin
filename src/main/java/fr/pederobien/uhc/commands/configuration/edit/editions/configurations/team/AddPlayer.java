@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.team;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,7 +11,6 @@ import org.bukkit.entity.Player;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.PlayerManager;
-import fr.pederobien.uhc.managers.TeamsManager;
 
 public class AddPlayer<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
@@ -24,22 +24,21 @@ public class AddPlayer<T extends IConfiguration> extends AbstractTeamEditions<T>
 		if (team == null)
 			return args[0] + " does not correspond to a team";
 
-		List<String> players = emptyList();
+		List<Player> players = new ArrayList<Player>();
 		String playerNames = "";
 		for (int i = 1; i < args.length; i++) {
 			try {
 				Player player = PlayerManager.getPlayer(args[i]);
-				players.add(player.getName());
+				players.add(player);
 				playerNames += player.getName() + " ";
 			} catch (NullPointerException e) {
 				return args[i] + " is not a player";
 			}
 		}
 
-		for (String player : players) {
-			TeamsManager.joinTeam(team.getNameWithoutColor(), player);
-			team.getPlayers().add(player);
-		}
+		for (Player player : players)
+			team.addPlayers(player.getName());
+
 		if (players.isEmpty())
 			return "No players added";
 		else if (players.size() == 1)

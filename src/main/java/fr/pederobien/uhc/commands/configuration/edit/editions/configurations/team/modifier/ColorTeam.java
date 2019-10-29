@@ -19,16 +19,19 @@ public class ColorTeam<T extends IConfiguration> extends AbstractTeamEditions<T>
 	public String edit(String[] args) {
 		ETeam oldTeam = ETeam.getByName(args[0]);
 		if (oldTeam == null)
-			return args[0] + "does not correspond to a team";
+			return args[0] + " does not correspond to a team";
 		ETeam newTeam = ETeam.getByColorName(args[1]);
 		if (newTeam == null)
 			return args[1] + " does not correspond to a color";
 
-		newTeam.setName(oldTeam.getNameWithColor());
-		oldTeam.setName(null);
-		newTeam.getPlayers().addAll(oldTeam.getPlayers());
-		oldTeam.getPlayers().clear();
-		return "Team " + newTeam.getNameWithColor() + " updated";
+		newTeam.setName(oldTeam.getNameWithoutColor());
+		oldTeam.resetName();
+		newTeam.addPlayers(oldTeam.getPlayers());
+		oldTeam.removeAllPlayers();
+		
+		get().removeTeam(oldTeam);
+		get().addTeam(newTeam);
+		return newTeam.getNameWithColor() + "'s color updated";
 	}
 
 	@Override

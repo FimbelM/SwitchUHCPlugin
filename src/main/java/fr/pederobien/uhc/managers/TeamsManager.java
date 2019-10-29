@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.managers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -14,6 +15,7 @@ import fr.pederobien.uhc.interfaces.IUnmodifiableConfiguration;
 
 public class TeamsManager {
 	private static IUnmodifiableConfiguration currentConfiguration;
+	private static Random rand = new Random();
 
 	public static void setCurrentConfiguration(IUnmodifiableConfiguration currentConfiguration) {
 		TeamsManager.currentConfiguration = currentConfiguration;
@@ -32,16 +34,30 @@ public class TeamsManager {
 				.map(n -> PlayerManager.getPlayer(n));
 	}
 
+	public static Stream<Player> getPlayersInTeam() {
+		return currentConfiguration.getPlayersRegistered().map(n -> PlayerManager.getPlayer(n));
+	}
+	
+	public static Stream<Player> getPlayersNotInTeam() {
+		List<Player> players = PlayerManager.getPlayers().collect(Collectors.toList());
+		players.removeAll(getPlayersInTeam().collect(Collectors.toList()));
+		return players.stream();
+	}
+
 	public static ETeam getTeam(String name) {
 		return getTeams().filter(t -> t.getNameWithoutColor().equals(name)).findFirst().get();
 	}
 
 	public static ETeam getTeam(ChatColor color) {
-		return getTeams().filter(t -> t.getColor().equals(color)).findFirst().get();
+		for (ETeam team : ETeam.values())
+			if (team.getColor().equals(color))
+				return team;
+		return null;
 	}
 
 	public static ChatColor getColor(Player player) {
-		return getTeam(player) == null ? ChatColor.RESET : getTeam(player).getColor();
+		ETeam team = ETeam.getByContent(player.getName());
+		return team == null ? ChatColor.RESET : team.getColor();
 	}
 
 	public static long getNumberOfPlayers(ETeam team) {
@@ -113,13 +129,21 @@ public class TeamsManager {
 	}
 
 	public static void dispatchPlayerRandomlyInTeam(List<ETeam> teams) {
-		Random rand = new Random();
 		List<Player> players = PlayerManager.getPlayers().collect(Collectors.toList());
-
+		for (ETeam team : teams)
+			team.removeAllPlayers();
+		
+		List<ETeam> copy = new ArrayList<ETeam>(teams);
+		
 		int quotient = players.size() / teams.size();
 		int reste = players.size() % teams.size();
-
-		for (int i = 0; i < teams.size(); i++) {
+		
+		Random random = new Random();
+		
+		for (int i = 0; i < random.nextInt(20); i++)
+			rand.nextInt(copy.size());
+		
+		for (int i = 0; i < players.size(); i++) {
 			int maxPlayer = 0;
 			if (reste == 0)
 				maxPlayer = quotient;
@@ -127,12 +151,11 @@ public class TeamsManager {
 				maxPlayer = quotient + 1;
 				reste--;
 			}
-			for (int j = 0; j < maxPlayer; j++) {
-				Player randomPlayer = players.get(rand.nextInt(players.size()));
-				TeamsManager.joinTeam(teams.get(i).getNameWithoutColor(), randomPlayer.getName());
-				teams.get(i).getPlayers().add(randomPlayer.getName());
-				players.remove(randomPlayer);
-			}
+			
+			ETeam randomTeam = copy.get(rand.nextInt(copy.size()));
+			randomTeam.addPlayers(players.get(i).getName());
+			if (randomTeam.getPlayers().size() == maxPlayer)
+				copy.remove(randomTeam);
 		}
 	}
 }

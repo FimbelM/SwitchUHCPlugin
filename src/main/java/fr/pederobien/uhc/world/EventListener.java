@@ -3,7 +3,6 @@ package fr.pederobien.uhc.world;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -71,9 +70,7 @@ public class EventListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerChat(AsyncPlayerChatEvent event) {
-		ChatColor color = TeamsManager.getColor(event.getPlayer());
-		event.getPlayer().setDisplayName(color + event.getPlayer().getName() + ChatColor.RESET);
-		event.setMessage(color + event.getMessage());
+		event.setMessage(TeamsManager.getColor(event.getPlayer()) + event.getMessage());
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

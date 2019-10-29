@@ -13,12 +13,16 @@ public class RandomTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 	@Override
 	public String edit(String[] args) {
 		TeamsManager.dispatchPlayerRandomlyInTeam(get().getTeams());
-		String players = "";
+		String teams = "Random teams created :\n";
 		for (ETeam team : get().getTeams()) {
-			for (String player : team.getPlayers())
-				players += player + " ";
-			players += "have been added to " + team.getNameWithColor() + "\r\n";
+			teams += team.getColor() + team.getNameWithoutColor() + " [";
+			for (int i = 0; i < team.getPlayers().size(); i++) {
+				teams += team.getPlayers().get(i);
+				if (i < team.getPlayers().size() - 1)
+					teams += " ";
+			}
+			teams += "]\n";
 		}
-		return players;
+		return teams;
 	}
 }

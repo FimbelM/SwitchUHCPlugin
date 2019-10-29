@@ -33,7 +33,7 @@ public class PlayerManager {
 	public static Player getPlayer(String name) {
 		return Bukkit.getPlayer(name);
 	}
-	
+
 	public static void removeInventoryOfPlayer(Player player) {
 		player.getInventory().clear();
 	}
@@ -77,7 +77,7 @@ public class PlayerManager {
 	public static void setHealthOfPlayer(Player player, double level) {
 		player.setHealth(level);
 	}
-	
+
 	public static void setHealthOfPlayers(Stream<Player> players, double level) {
 		players.forEach(p -> setHealthOfPlayer(p, level));
 	}
@@ -154,7 +154,8 @@ public class PlayerManager {
 		players.forEach(p -> effects.forEach(e -> giveEffect(p, e)));
 	}
 
-	public static PotionEffect createEffect(PotionEffectType type, int duration, int amplifier, boolean ambient, boolean particles) {
+	public static PotionEffect createEffect(PotionEffectType type, int duration, int amplifier, boolean ambient,
+			boolean particles) {
 		return new PotionEffect(type, duration, amplifier, ambient, particles);
 	}
 
@@ -205,7 +206,7 @@ public class PlayerManager {
 	public static void removeAllEffectsToAllPlayers() {
 		getPlayers().forEach(p -> removeAllEffects(p));
 	}
-	
+
 	public static List<Player> getCloseCollegues(Player src, int distance) {
 		return getClosePlayers(src, TeamsManager.getCollegues(src), distance);
 	}
@@ -232,15 +233,15 @@ public class PlayerManager {
 	public static void dropPlayersInventoryItemNaturally() {
 		dropPlayersInventoryItemNaturally(getPlayers());
 	}
-	
+
 	public static void sendMessageToPlayers(Stream<Player> players, String message) {
 		players.forEach(p -> p.sendMessage(message));
 	}
-	
+
 	public static void killPlayer(Player player) {
 		setHealthOfPlayer(player, 0);
 	}
-	
+
 	public static void killPlayers(Stream<Player> players) {
 		setHealthOfPlayers(players, 0);
 	}

@@ -1,8 +1,7 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.team;
 
-import java.util.List;
-
 import fr.pederobien.uhc.interfaces.IConfiguration;
+import fr.pederobien.uhc.managers.ETeam;
 
 public class ListTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
@@ -13,12 +12,18 @@ public class ListTeam<T extends IConfiguration> extends AbstractTeamEditions<T> 
 	@Override
 	public String edit(String[] args) {
 		String teams = "";
-		List<String> teamNames = getTeamNamesWithColor();
-		for (String t : teamNames)
-			teams += t + "\n";
-		if (teamNames.isEmpty())
+		for (ETeam team : get().getTeams()) {
+			teams += team.getColor() + team.getNameWithoutColor() + " [";
+			for (int i = 0; i < team.getPlayers().size(); i++) {
+				teams += team.getPlayers().get(i);
+				if (i < team.getPlayers().size() - 1)
+					teams += " ";
+			}
+			teams += "]\n";
+		}
+		if (get().getTeams().isEmpty())
 			return "No existing team for " + get().getName() + " style";
-		else if (teamNames.size() == 1)
+		else if (get().getTeams().size() == 1)
 			return "Existing team : \n" + teams;
 		return "Existing teams : \n" + teams;
 	}

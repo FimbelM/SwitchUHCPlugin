@@ -29,7 +29,7 @@ public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 			}
 			return "All teams have been removed";
 		}
-		
+
 		List<ETeam> teams = new ArrayList<ETeam>();
 		String teamNames = "";
 		for (int i = 0; i < args.length; i++) {
@@ -42,9 +42,11 @@ public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 			}
 		}
 
-		for (ETeam team : teams)
+		for (ETeam team : teams) {
+			team.removeAllPlayers();
 			get().removeTeam(team);
-		
+		}
+
 		if (teams.isEmpty())
 			return "No team to remove";
 		else if (teams.size() == 1)

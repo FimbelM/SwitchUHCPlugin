@@ -1,15 +1,14 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.team;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractMapEdition;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.PlayerManager;
-import fr.pederobien.uhc.managers.TeamsManager;
 
 public abstract class AbstractTeamEditions<T extends IConfiguration> extends AbstractMapEdition<T> {
 
@@ -18,38 +17,35 @@ public abstract class AbstractTeamEditions<T extends IConfiguration> extends Abs
 	}
 
 	protected Stream<String> getTeamNamesWithoutColor() {
-		List<String> teams = emptyList();
-		for (ETeam team : get().getTeams())
-			teams.add(team.getNameWithoutColor());
-		return teams.stream();
+		return get().getTeams().stream().map(t -> t.getNameWithoutColor());
 	}
 
 	protected List<String> getTeamNamesWithColor() {
-		List<String> teams = emptyList();
-		for (ETeam team : get().getTeams())
-			teams.add(team.getNameWithColor());
-		return teams;
+		return get().getTeams().stream().map(t -> t.getNameWithColor()).collect(Collectors.toList());
 	}
 
 	protected Stream<String> getTeams(String[] teamAlreadyMentionned) {
-		List<String> teams = new ArrayList<String>();
-		for (ETeam team : get().getTeams())
-			if (!Arrays.asList(teamAlreadyMentionned).contains(team.getNameWithoutColor()))
-				teams.add(team.getNameWithoutColor());
-		return teams.stream();
+		return get().getTeams().stream().map(t -> t.getNameWithoutColor())
+				.filter(n -> !Arrays.asList(teamAlreadyMentionned).contains(n));
 	}
 
 	protected Stream<String> getFreePlayersName(String[] playersAlreadyMentionned) {
-		return PlayerManager.getPlayers().map(p -> p.getName()).filter(n -> get().getPlayersRegistered().anyMatch(p -> n.equals(p)));
+		List<String> players = PlayerManager.getPlayers().map(p -> p.getName()).collect(Collectors.toList());
+		players.removeAll(get().getPlayersRegistered().collect(Collectors.toList()));
+		return players.stream().filter(s -> !Arrays.asList(playersAlreadyMentionned).contains(s));
 	}
 
-	protected Stream<String> getPlayersName(String teamName, Stream<String> playersAlreadyMentionned) {
-		return TeamsManager.getPlayers(TeamsManager.getTeam(teamName)).map(p -> p.getName())
-				.filter(s -> playersAlreadyMentionned.anyMatch(p -> p.equals(s)));
+	protected Stream<String> getPlayersName(String teamName, String[] playersAlreadyMentionned) {
+		return get().getTeams().stream().filter(t -> t.getNameWithoutColor().equals(teamName)).findFirst().get()
+		.getPlayers().stream().filter(s -> !Arrays.asList(playersAlreadyMentionned).contains(s));
 	}
 
 	protected Stream<String> getAvailableColors() {
-		return ETeam.getColorsName().stream()
-				.filter(c -> get().getTeams().stream().map(t -> t.getColorName()).anyMatch(n -> !c.equals(n)));
+		return ETeam.getColorsName().stream().filter(c -> {
+			for (ETeam team : get().getTeams())
+				if (c.equals(team.getColorName()))
+					return false;
+			return true;
+		});
 	}
 }

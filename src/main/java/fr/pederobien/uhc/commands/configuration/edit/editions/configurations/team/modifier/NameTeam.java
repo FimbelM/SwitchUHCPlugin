@@ -3,6 +3,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.te
 import java.util.Arrays;
 import java.util.List;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -23,7 +24,7 @@ public class NameTeam<T extends IConfiguration> extends AbstractTeamEditions<T> 
 		if (team == null)
 			return oldName + "does not correspond to a team";
 		team.setName(newName);
-		return "Team " + newName + " renamed";
+		return "Team " + team.getColor() + oldName + ChatColor.RESET + " renamed as " + team.getNameWithColor();
 	}
 
 	@Override
@@ -32,7 +33,7 @@ public class NameTeam<T extends IConfiguration> extends AbstractTeamEditions<T> 
 		case 1:
 			return filter(getTeamNamesWithoutColor(), args[0]);
 		case 2:
-			return Arrays.asList("<NewName");
+			return Arrays.asList("<NewName>");
 		}
 		return super.onTabComplete(sender, command, alias, args);
 	}
