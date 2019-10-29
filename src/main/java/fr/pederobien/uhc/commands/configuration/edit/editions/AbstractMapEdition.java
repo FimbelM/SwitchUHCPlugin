@@ -27,6 +27,7 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 	public AbstractMapEdition(String label, String explanation) {
 		super(label, explanation);
 		available = true;
+		unmodifiable = false;
 		editions = new HashMap<String, IMapEdition<T>>();
 	}
 
