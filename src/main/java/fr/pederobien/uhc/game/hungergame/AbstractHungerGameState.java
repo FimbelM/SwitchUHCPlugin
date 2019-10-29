@@ -4,7 +4,9 @@ import java.time.LocalTime;
 
 import org.bukkit.GameMode;
 
+import fr.pederobien.uhc.BukkitManager;
 import fr.pederobien.uhc.game.AbstractGameState;
+import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.WorldManager;
 import fr.pederobien.uhc.task.TimeLine;
@@ -24,6 +26,7 @@ public abstract class AbstractHungerGameState extends AbstractGameState implemen
 	}
 	
 	protected void authorizedPvp() {
+		BukkitManager.broadcastMessageAsTitle("PVP allowed", ETeam.DARK_RED.getColorName());
 		WorldManager.setPVP(true);
 	}
 	
