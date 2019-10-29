@@ -21,7 +21,7 @@ public abstract class CommonDelete<T extends IUnmodifiableName> extends Abstract
 		if (startWithIgnoreCase(name, "default"))
 			return "Cannot delete " + name;
 		getPersistence().delete(name);
-		if (get().getName().equals(name))
+		if (get() != null && get().getName().equals(name))
 			getPersistence().set(null);
 		return onDeleted(name);
 	}
