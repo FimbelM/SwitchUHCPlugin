@@ -54,6 +54,7 @@ public class HungerGameLoaderV12 extends AbstractHungerGameLoader {
 				get().setScoreboardRefresh(Long.parseLong(elt.getAttribute("scoreboardrefresh")));
 				break;
 			case "teams":
+				get().getTeams().clear();
 				for (int j = 0; j < elt.getChildNodes().getLength(); j++) {
 					if (elt.getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
 						continue;
