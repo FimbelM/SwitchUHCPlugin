@@ -11,7 +11,18 @@ public class LoadHungerGame extends CommonLoad<IHungerGameConfiguration> {
 
 	@Override
 	protected String onStyleLoaded() {
-		return "Hunger game style loaded : " + get().getName() + "\nteam(s) created : " + getTeamNamesWithColor();
+		String style = "Hunger game style loaded : " + get().getName() + "\n";
+		switch (get().getTeams().size()) {
+		case 0 :
+			style += "No team created";
+			break;
+		case 1 :
+			style += "Team " + get().getTeams().get(0).getNameWithColor() + " created";
+			break;
+		default :
+			style += "Teams created : " + getTeamNamesWithColor();
+		}
+		return style;
 	}
 
 	@Override
