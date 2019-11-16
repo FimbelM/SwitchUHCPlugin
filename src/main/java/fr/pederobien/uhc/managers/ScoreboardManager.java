@@ -2,7 +2,6 @@ package fr.pederobien.uhc.managers;
 
 import java.util.List;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -10,6 +9,7 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
+import fr.pederobien.uhc.BukkitManager;
 import fr.pederobien.uhc.scoreboard.IScoreboard;
 
 public class ScoreboardManager {
@@ -24,7 +24,7 @@ public class ScoreboardManager {
 	}
 
 	public static Objective registerNewObjective(String title) {
-		return Bukkit.getScoreboardManager().getNewScoreboard().registerNewObjective("Objective", "dummy", title);
+		return BukkitManager.getScoreboardManager().getNewScoreboard().registerNewObjective("Objective", "dummy", title);
 	}
 
 	public static Objective registerNewObjective(String title, DisplaySlot displaySlot) {

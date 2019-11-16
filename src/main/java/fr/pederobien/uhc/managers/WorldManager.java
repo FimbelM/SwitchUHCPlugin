@@ -5,7 +5,6 @@ import java.util.Random;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -16,6 +15,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
+import fr.pederobien.uhc.BukkitManager;
 import fr.pederobien.uhc.interfaces.ISpawn;
 
 public class WorldManager {
@@ -70,7 +70,7 @@ public class WorldManager {
 	}
 
 	public static World getWorld(String name) {
-		return Bukkit.getWorld(name);
+		return BukkitManager.getWorld(name);
 	}
 
 	public static void setPVP(boolean pvp) {
@@ -82,11 +82,11 @@ public class WorldManager {
 	}
 
 	public static Block getBlockAt(String world, int x, int y, int z) {
-		return Bukkit.getWorld(world).getBlockAt(x, y, z);
+		return BukkitManager.getWorld(world).getBlockAt(x, y, z);
 	}
 
 	public static Block getBlockAt(String world, Location location) {
-		return Bukkit.getWorld(world).getBlockAt(location.getBlockX(), location.getBlockY(), location.getBlockZ());
+		return BukkitManager.getWorld(world).getBlockAt(location.getBlockX(), location.getBlockY(), location.getBlockZ());
 	}
 
 	public static Block getBlockAt(int x, int y, int z) {

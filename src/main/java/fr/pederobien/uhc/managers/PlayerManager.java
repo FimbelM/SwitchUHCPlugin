@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
@@ -15,13 +14,15 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import fr.pederobien.uhc.BukkitManager;
+
 public class PlayerManager {
 	public static final int MAX_EFFECT_DURATION = 999999;
 	public static final int MAX_EFFECT_AMPLIFIER = 99;
 
 	public static Stream<Player> getPlayers() {
 		List<Player> players = new ArrayList<>();
-		for (Player player : Bukkit.getOnlinePlayers())
+		for (Player player : BukkitManager.getOnlinePlayers())
 			players.add(player);
 		return players.stream();
 	}
@@ -31,7 +32,7 @@ public class PlayerManager {
 	}
 
 	public static Player getPlayer(String name) {
-		return Bukkit.getPlayer(name);
+		return BukkitManager.getPlayer(name);
 	}
 
 	public static void removeInventoryOfPlayer(Player player) {
