@@ -15,8 +15,9 @@ public class HungerGameConfiguration extends AbstractConfiguration implements IH
 	private static final LocalTime DEFAULT_FRACTION_TIME = LocalTime.of(0, 45, 0);
 	private static final LocalTime DEFAULT_WARNING_TIME = LocalTime.of(0, 5, 0);
 	private static final LocalTime DEFAULT_PVP_TIME = LocalTime.of(0, 0, 0);
+	private static final Double DEFAULT_BORDER_SPEED = 1.0;
 	private Block borderCenter;
-	private Double initialBorderDiameter, finalBorderDiameter;
+	private Double initialBorderDiameter, finalBorderDiameter, blocksPerSeconds;
 	private LocalTime fractionTime, warningTime, pvpTime;
 
 	public HungerGameConfiguration(String name) {
@@ -87,5 +88,15 @@ public class HungerGameConfiguration extends AbstractConfiguration implements IH
 	@Override
 	public void setPvpTime(LocalTime pvpTime) {
 		this.pvpTime = pvpTime;
+	}
+	
+	@Override
+	public Double getBorderSpeed() {
+		return blocksPerSeconds == null ? DEFAULT_BORDER_SPEED : blocksPerSeconds;
+	}
+	
+	@Override
+	public void setBorderSpeed(double blocksPerSeconds) {
+		this.blocksPerSeconds = blocksPerSeconds;
 	}
 }

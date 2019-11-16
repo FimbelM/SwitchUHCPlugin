@@ -78,6 +78,10 @@ public class HungerGameEditionsFactory extends AbstractConfigurationEditionsFact
 	public IMapEdition<IHungerGameConfiguration> createFinalBorderDiameterEdition() {
 		return new FinalBorderDiameterHungerGame();
 	}
+	
+	public IMapEdition<IHungerGameConfiguration> createSpeedBorderEdition() {
+		return new SpeedBorderHungerGame();
+	}
 
 	public IMapEdition<IHungerGameConfiguration> createFractionTimeEdition() {
 		return new FractionTimeHungerGame();

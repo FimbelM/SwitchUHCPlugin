@@ -59,6 +59,10 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 		diameter.setAttribute("initial", "" + get().getInitialBorderDiameter());
 		diameter.setAttribute("final", "" + get().getFinalBorderDiameter());
 		border.appendChild(diameter);
+		
+		Element speed = doc.createElement("speed");
+		speed.appendChild(doc.createTextNode(get().getBorderSpeed().toString()));
+		border.appendChild(speed);
 
 		Element time = doc.createElement("time");
 		time.setAttribute("game", get().getGameTime().toString());

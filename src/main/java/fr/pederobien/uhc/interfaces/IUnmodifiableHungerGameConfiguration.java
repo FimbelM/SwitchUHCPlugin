@@ -17,4 +17,6 @@ public interface IUnmodifiableHungerGameConfiguration extends IUnmodifiableConfi
 	LocalTime getWarningTime();
 	
 	LocalTime getPvpTime();
+	
+	Double getBorderSpeed();
 }

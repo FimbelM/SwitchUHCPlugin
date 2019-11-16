@@ -39,6 +39,8 @@ public class HungerGameLoaderV12 extends AbstractHungerGameLoader {
 						get().setInitialBorderDiameter(Double.parseDouble(child.getAttribute("initial")));
 						get().setFinalBorderDiameter(Double.parseDouble(child.getAttribute("final")));
 						break;
+					case "speed":
+						get().setBorderSpeed(Double.parseDouble(child.getChildNodes().item(0).getNodeValue()));
 					default:
 						break;
 					}

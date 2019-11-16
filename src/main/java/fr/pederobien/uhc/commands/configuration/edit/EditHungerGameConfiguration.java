@@ -29,6 +29,7 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHung
 		.addEdition(factory.createRenameEdition())
 		.addEdition(factory.createSaveEdition())
 		.addEdition(factory.createScoreboardRefreshEdition())
+		.addEdition(factory.createSpeedBorderEdition())
 		.addEdition(factory.createTeamEdition())
 		.addEdition(factory.createWarningTimeEdition());
 	}

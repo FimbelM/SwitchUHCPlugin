@@ -27,7 +27,7 @@ public class HungerGameState extends AbstractHungerGameState {
 	@Override
 	public void relaunch() {
 		BukkitManager.broadcastMessageAsTitle("Reprise");
-		WorldManager.moveBorder(game.getConfiguration().getFinalBorderDiameter(), WorldManager.getCurrentDiameter().longValue());
+		WorldManager.moveBorder(game.getConfiguration().getFinalBorderDiameter(), WorldManager.getCurrentDiameter().longValue()/game.getConfiguration().getBorderSpeed().longValue());
 		taskLauncher.relaunched();
 		scoreboardLauncher.relaunched();
 	}

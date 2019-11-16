@@ -19,4 +19,6 @@ public interface IHungerGameConfiguration extends IConfiguration, IUnmodifiableH
 	void setWarningTime(LocalTime warningTime);
 	
 	void setPvpTime(LocalTime pvpTime);
+	
+	void setBorderSpeed(double blocksPerSeconds);
 }
