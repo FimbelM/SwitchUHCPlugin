@@ -41,6 +41,7 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 			else
 				return "Command " + label + " is not available";
 		} catch (IndexOutOfBoundsException e) {
+			e.printStackTrace();
 			return "Cannot run command " + getLabel() + ", arguments are missing";
 		} catch (NullPointerException e) {
 			e.printStackTrace();
