@@ -46,7 +46,6 @@ public class BaseLoaderV10 extends AbstractBaseLoader {
 
 					Element chest = (Element) elt.getChildNodes().item(j);
 					ETeam team = ETeam.getByColorName(chest.getAttribute("color"));
-					team.setName(chest.getAttribute("team"));
 
 					chests.put(new SerialisableBlock(chest.getAttribute("x"), chest.getAttribute("y"),
 							chest.getAttribute("z"), chest.getAttribute("blockdata")), team);

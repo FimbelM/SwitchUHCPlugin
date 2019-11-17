@@ -17,10 +17,10 @@ public class BaseDefaultContent implements IDefaultContent {
 				"  <dimensions depth=\"7\" height=\"5\" width=\"7\"/>\r\n" + 
 				"  <center x=\"0\" y=\"100\" z=\"0\"/>\r\n" + 
 				"  <chests>\r\n" + 
-				"    <chest blockdata=\"minecraft:chest[facing=west,type=single,waterlogged=false]\" color=\"aqua\" team=\"Aqua\" x=\"-1\" y=\"1\" z=\"0\"/>\r\n" + 
-				"    <chest blockdata=\"minecraft:chest[facing=south,type=single,waterlogged=false]\" color=\"yellow\" team=\"vikings\" x=\"0\" y=\"1\" z=\"1\"/>\r\n" + 
-				"    <chest blockdata=\"minecraft:chest[facing=north,type=single,waterlogged=false]\" color=\"dark_red\" team=\"barbaric\" x=\"0\" y=\"1\" z=\"-1\"/>\r\n" + 
-				"    <chest blockdata=\"minecraft:chest[facing=east,type=single,waterlogged=false]\" color=\"gold\" team=\"spartiate\" x=\"1\" y=\"1\" z=\"0\"/>\r\n" + 
+				"    <chest blockdata=\"minecraft:chest[facing=west,type=single,waterlogged=false]\" color=\"aqua\" x=\"-1\" y=\"1\" z=\"0\"/>\r\n" + 
+				"    <chest blockdata=\"minecraft:chest[facing=north,type=single,waterlogged=false]\" color=\"dark_red\" x=\"0\" y=\"1\" z=\"-1\"/>\r\n" + 
+				"    <chest blockdata=\"minecraft:chest[facing=east,type=single,waterlogged=false]\" color=\"gold\" x=\"1\" y=\"1\" z=\"0\"/>\r\n" + 
+				"    <chest blockdata=\"minecraft:chest[facing=south,type=single,waterlogged=false]\" color=\"yellow\" x=\"0\" y=\"1\" z=\"1\"/>\r\n" + 
 				"  </chests>\r\n" + 
 				"  <blocks>\r\n" + 
 				"    <block blockdata=\"minecraft:air\" x=\"-3\" y=\"0\" z=\"-3\"/>\r\n" + 
@@ -269,6 +269,7 @@ public class BaseDefaultContent implements IDefaultContent {
 				"    <block blockdata=\"minecraft:air\" x=\"3\" y=\"4\" z=\"2\"/>\r\n" + 
 				"    <block blockdata=\"minecraft:air\" x=\"3\" y=\"4\" z=\"3\"/>\r\n" + 
 				"  </blocks>\r\n" + 
-				"</base>\r\n";
+				"</base>\r\n" + 
+				"";
 	}
 }

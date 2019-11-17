@@ -43,9 +43,7 @@ public class BlockedexGameLoaderV10 extends AbstractBlockedexgameLoader {
 					if (elt.getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
 						continue;
 					Element t = (Element) elt.getChildNodes().item(j);
-					ETeam team = ETeam.getByColorName(t.getAttribute("color"));
-					team.setName(t.getAttribute("name"));
-					get().addTeam(team);
+					get().addTeam(ETeam.getByColorName(t.getAttribute("color")).setName(t.getAttribute("name")));
 				}
 				break;
 			default:
