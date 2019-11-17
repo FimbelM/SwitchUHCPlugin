@@ -2,6 +2,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.base;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.CommonLaunch;
 import fr.pederobien.uhc.interfaces.IBase;
+import fr.pederobien.uhc.managers.ETeam;
 
 public class LaunchBase extends CommonLaunch<IBase> {
 
@@ -11,7 +12,21 @@ public class LaunchBase extends CommonLaunch<IBase> {
 
 	@Override
 	protected String onLaunch() {
-		return "Base " + get().getName() + " launched at " + showBlock(get().getCenter());
+		String base = "Base " + get().getName() + " launched at " + showBlock(get().getCenter()) + "\n";
+		switch (get().getChestsNumber()) {
+		case 0:
+			base += "No team color supported";
+			break;
+		case 1:
+			base += "Team color " + get().getChests().values().iterator().next().getNameWithColor();
+			break;
+		default:
+			String teamColors = "";
+			for (ETeam team : get().getChests().values())
+				teamColors += team.getColorNameWithColor() + " ";
+			base += "Team color supported : " + teamColors;
+		}
+		return base;
 	}
 
 	@Override
