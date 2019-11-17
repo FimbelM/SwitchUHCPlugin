@@ -2,6 +2,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.bl
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.CommonLoad;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
+import fr.pederobien.uhc.managers.BaseManager;
 
 public class LoadBlockedexGame extends CommonLoad<IBlockedexConfiguration> {
 
@@ -22,6 +23,7 @@ public class LoadBlockedexGame extends CommonLoad<IBlockedexConfiguration> {
 		default :
 			style += "Teams created : " + getTeamNamesWithColor();
 		}
+		BaseManager.loadBases();
 		return style;
 	}
 
