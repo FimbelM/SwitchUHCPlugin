@@ -1,7 +1,6 @@
 package fr.pederobien.uhc.managers;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Stream;
@@ -18,7 +17,8 @@ import fr.pederobien.uhc.persistence.PersistenceFactory;
 
 public class BaseManager {
 	private static HashMap<String, IBase> allBases = new HashMap<String, IBase>();
-	private static List<IBase> gameBases = new ArrayList<IBase>();
+	private static HashMap<Orientation, IBase> gameBases = new HashMap<Orientation, IBase>();
+	private static IUnmodifiableBlockedexConfiguration configuration;
 	private static boolean loaded = false;
 	
 	public static void loadBases() {
@@ -34,15 +34,29 @@ public class BaseManager {
 	}
 	
 	public static boolean setBlockedexGameCurrentConfiguration(IUnmodifiableBlockedexConfiguration configuration) {
+		BaseManager.configuration = configuration;
 		if (checkBaseAvailable(configuration.getEastBase(), configuration.getTeams()))
-			gameBases.add(allBases.get(configuration.getEastBase()));
+			gameBases.put(Orientation.EAST, allBases.get(configuration.getEastBase()));
 		if (checkBaseAvailable(configuration.getNorthBase(), configuration.getTeams()))
-			gameBases.add(allBases.get(configuration.getNorthBase()));
+			gameBases.put(Orientation.NORTH, allBases.get(configuration.getNorthBase()));
 		if (checkBaseAvailable(configuration.getSouthBase(), configuration.getTeams()))
-			gameBases.add(allBases.get(configuration.getSouthBase()));
+			gameBases.put(Orientation.SOUTH, allBases.get(configuration.getSouthBase()));
 		if (checkBaseAvailable(configuration.getWestBase(), configuration.getTeams()))
-			gameBases.add(allBases.get(configuration.getWestBase()));
+			gameBases.put(Orientation.WEST, allBases.get(configuration.getWestBase()));
 		return gameBases.size() == 4;
+	}
+	
+	public static void launchBlockedexBases() {
+		gameBases.get(Orientation.NORTH).setCenter(WorldManager.getSpawnOnJoin().getBlock().getRelative(0, 0, configuration.getBaseFromSpawnDistance()));
+		gameBases.get(Orientation.SOUTH).setCenter(WorldManager.getSpawnOnJoin().getBlock().getRelative(0, 0, -configuration.getBaseFromSpawnDistance()));
+		gameBases.get(Orientation.WEST).setCenter(WorldManager.getSpawnOnJoin().getBlock().getRelative(-configuration.getBaseFromSpawnDistance(), 0, 0));
+		gameBases.get(Orientation.EAST).setCenter(WorldManager.getSpawnOnJoin().getBlock().getRelative(configuration.getBaseFromSpawnDistance(), 0, 0));
+		
+		gameBases.values().forEach(b -> b.launch());
+	}
+	
+	public static void removeBlockedexBases() {
+		gameBases.values().forEach(b -> b.remove());
 	}
 
 	public static boolean isChestAccessible(Player player, Block block) {
@@ -50,7 +64,7 @@ public class BaseManager {
 			return true;
 
 		boolean accessible = true;
-		for (IBase base : gameBases)
+		for (IBase base : gameBases.values())
 			accessible &= !base.isChestRestricted(block, player);
 		return accessible;
 	}
@@ -80,5 +94,9 @@ public class BaseManager {
 			return true;
 		}
 		return false;
+	}
+	
+	private enum Orientation {
+		NORTH, SOUTH, WEST, EAST;
 	}
 }
