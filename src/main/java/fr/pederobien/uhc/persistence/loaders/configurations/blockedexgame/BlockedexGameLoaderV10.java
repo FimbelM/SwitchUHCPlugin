@@ -38,6 +38,7 @@ public class BlockedexGameLoaderV10 extends AbstractBlockedexgameLoader {
 				get().setBaseFromSpawnDistance(Integer.parseInt(elt.getAttribute("distance")));
 				break;
 			case "teams":
+				get().getTeams().clear();
 				for (int j = 0; j < elt.getChildNodes().getLength(); j++) {
 					if (elt.getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
 						continue;
