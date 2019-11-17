@@ -47,6 +47,8 @@ public abstract class AbstractConfiguration implements IConfiguration {
 
 	@Override
 	public boolean addTeam(ETeam team) {
+		if (teams.contains(team))
+			return false;
 		return teams.add(team);
 	}
 
