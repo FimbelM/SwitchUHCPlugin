@@ -16,7 +16,7 @@ public class InitialState extends AbstractBlockedexState {
 	@Override
 	public boolean initiate() {
 		if (!BaseManager.setBlockedexGameCurrentConfiguration(game.getConfiguration())) {
-			message = "One or more bases (north, south, west, east) or not defined";
+			message = "One or more bases (north, south, west, east) are not defined or not available";
 			return false;
 		}
 		
