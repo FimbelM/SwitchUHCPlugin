@@ -2,7 +2,6 @@ package fr.pederobien.uhc.configurations;
 
 import fr.pederobien.uhc.game.blockedexgame.BlockedexGame;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
-import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.persistence.PersistenceFactory;
 
 public class BlockedexConfiguration extends AbstractConfiguration implements IBlockedexConfiguration {
@@ -24,13 +23,6 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	public BlockedexConfiguration(String name) {
 		super(name);
 		setGame(new BlockedexGame(this));
-	}
-
-	@Override
-	public boolean addTeam(ETeam team) {
-		if (teams.contains(team))
-			return false;
-		return teams.add(team);
 	}
 
 	@Override
