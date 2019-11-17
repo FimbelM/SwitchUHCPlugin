@@ -82,6 +82,10 @@ public enum ETeam {
 	public String getColorName() {
 		return colorName;
 	}
+	
+	public String getColorNameWithColor() {
+		return color + colorName + ChatColor.RESET;
+	}
 
 	public ETeam setName(String name) {
 		this.name = name;
