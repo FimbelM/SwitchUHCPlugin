@@ -25,17 +25,21 @@ public class ExtractBase extends CommonExtract<IBase> {
 
 	@Override
 	protected String onExtracted() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Base " + get().getName() + " extracted\n")
-				.append("Number of chests : " + get().getChestsNumber() + "\n")
-				.append("Recognized teams : " + colorName(get().getChests().values()) + "\n");
-		return builder.toString();
+		String onExtracted = "Base " + get().getName() + " extracted\n";
+		switch (get().getChestsNumber()) {
+		case 1:
+			onExtracted += "One chest for " + get().getChests().values().iterator().next().getColorNameWithColor() + " team";
+			break;
+			default:
+				onExtracted += "Chests for teams : " + colorName(get().getChests().values());
+		}
+		return onExtracted;
 	}
 
 	private String colorName(Collection<ETeam> teams) {
 		String colorName = "";
 		for (ETeam team : teams)
-			colorName += team.getNameWithColor() + " ";
+			colorName += team.getColorNameWithColor() + " ";
 		return colorName;
 	}
 }
