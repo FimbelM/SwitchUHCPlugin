@@ -22,7 +22,7 @@ public class InitialState extends AbstractBlockedexState {
 		taskLauncher = new TaskLauncher(game.getConfiguration().getGameTime());
 		timeLine = new TimeLine(taskLauncher.getTask());
 		scoreboardLauncher = new BDScoreboardLauncher(taskLauncher.getTask(), game.getConfiguration().getTeams());
-		bdPlayerManager = new BlockedexPlayerManager();
+		bdPlayerManager = new BlockedexPlayerManager(game.getConfiguration());
 
 		BaseManager.launchBlockedexBases();
 		return true;

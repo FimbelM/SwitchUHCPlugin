@@ -7,13 +7,14 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.BukkitManager;
+import fr.pederobien.uhc.interfaces.IUnmodifiableBlockedexConfiguration;
 
 public class BlockedexPlayerManager extends PlayerManager {
 	private HashMap<Player, Restriction> map;
 
-	public BlockedexPlayerManager() {
+	public BlockedexPlayerManager(IUnmodifiableBlockedexConfiguration configuration) {
 		map = new HashMap<Player, Restriction>();
-		TeamsManager.getTeams().forEach(t -> TeamsManager.getPlayers(t).forEach(p -> map.put(p, new Restriction(p, t))));
+		configuration.getTeams().forEach(t -> TeamsManager.getPlayers(t).forEach(p -> map.put(p, new Restriction(p, t))));
 	}
 
 	public void decreaseMaxHealth(Player player, double decrease) {
