@@ -15,6 +15,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import fr.pederobien.uhc.BukkitManager;
+import fr.pederobien.uhc.interfaces.IUnmodifiableConfiguration;
 
 public class PlayerManager {
 	public static final int MAX_EFFECT_DURATION = 999999;
@@ -208,8 +209,8 @@ public class PlayerManager {
 		getPlayers().forEach(p -> removeAllEffects(p));
 	}
 
-	public static List<Player> getCloseCollegues(Player src, int distance) {
-		return getClosePlayers(src, TeamsManager.getCollegues(src), distance);
+	public static List<Player> getCloseCollegues(IUnmodifiableConfiguration configuration, Player src, int distance) {
+		return getClosePlayers(src, TeamsManager.getCollegues(configuration, src), distance);
 	}
 
 	public static List<Player> getClosePlayers(Player src, List<Player> players, int distance) {

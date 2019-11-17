@@ -9,7 +9,6 @@ import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.managers.ETeam;
-import fr.pederobien.uhc.managers.TeamsManager;
 
 public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 	private static final String ALL = "all";
@@ -23,10 +22,8 @@ public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 		if (args[0].equals(ALL)) {
 			List<ETeam> teams = new ArrayList<ETeam>();
 			teams.addAll(get().getTeams());
-			for (ETeam team : teams) {
-				TeamsManager.removeTeam(team.getNameWithoutColor());
+			for (ETeam team : teams)
 				get().removeTeam(team);
-			}
 			return "All teams have been removed";
 		}
 

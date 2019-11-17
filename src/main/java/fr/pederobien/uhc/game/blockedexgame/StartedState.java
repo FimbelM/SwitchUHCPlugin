@@ -28,7 +28,7 @@ public class StartedState extends AbstractBlockedexState {
 	public void onPlayerDie(PlayerDeathEvent event) {
 		event.setKeepInventory(true);
 		Player player = event.getEntity();
-		collegues = TeamsManager.getCollegues(player);
+		collegues = TeamsManager.getCollegues(game.getConfiguration(), player);
 
 		onPlayerDie(player);
 	}
@@ -40,9 +40,10 @@ public class StartedState extends AbstractBlockedexState {
 		else if (collegues.size() > 0)
 			event.setRespawnLocation(TeamsManager.getRandom(collegues).getLocation());
 		else
-			event.setRespawnLocation(WorldManager.getRandomlyLocation(game.getConfiguration().getDiameterAreaOnPlayerRespawn()));
+			event.setRespawnLocation(
+					WorldManager.getRandomlyLocation(game.getConfiguration().getDiameterAreaOnPlayerRespawn()));
 	}
-	
+
 	@Override
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		if (!BaseManager.isChestAccessible(event.getPlayer(), event.getClickedBlock()))
@@ -66,7 +67,8 @@ public class StartedState extends AbstractBlockedexState {
 	}
 
 	private void onPlayerDieByPlayer(Player player) {
-		List<Player> players = PlayerManager.getCloseCollegues(player, game.getConfiguration().getRadiusAreaOnPlayerDie());
+		List<Player> players = PlayerManager.getCloseCollegues(game.getConfiguration(), player,
+				game.getConfiguration().getRadiusAreaOnPlayerDie());
 		if (players.size() > 0) {
 			players.add(player);
 			players.forEach(p -> bdPlayerManager.decreaseMaxHealth(p, game.getConfiguration().getStepOnMaxHealth()));
@@ -75,7 +77,8 @@ public class StartedState extends AbstractBlockedexState {
 	}
 
 	private void onPlayerKill(Player player) {
-		List<Player> players = PlayerManager.getCloseCollegues(player, game.getConfiguration().getRadiusAreaOnPlayerKill());
+		List<Player> players = PlayerManager.getCloseCollegues(game.getConfiguration(), player,
+				game.getConfiguration().getRadiusAreaOnPlayerKill());
 		if (players.size() > 0) {
 			players.add(player);
 			players.forEach(p -> bdPlayerManager.increaseMaxHealth(p, game.getConfiguration().getStepOnMaxHealth()));
