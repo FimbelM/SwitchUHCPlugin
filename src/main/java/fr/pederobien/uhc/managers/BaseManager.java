@@ -21,7 +21,7 @@ public class BaseManager {
 	private static List<IBase> gameBases = new ArrayList<IBase>();
 	private static boolean loaded = false;
 	
-	public static void loadPersistences() {
+	public static void loadBases() {
 		if (loaded)
 			return;
 		IPersistence<IBase> persistence = PersistenceFactory.getInstance().getBasePersistence();
