@@ -101,6 +101,14 @@ public class WorldManager {
 		return world.getHighestBlockAt(x, z);
 	}
 
+	public static Block getHighestBlockAt(Block block) {
+		return getHighestBlockYAt(block.getX(), block.getZ());
+	}
+
+	public static Block getHighestBlockAt(Location location, int offsetX, int offsetY, int offsetZ) {
+		return getHighestBlockAt(location.getBlock().getRelative(offsetX, offsetY, offsetZ));
+	}
+
 	public static Block getBelowBlock(Block block) {
 		return world.getBlockAt(block.getLocation().add(new Vector(0, -1, 0)));
 	}
