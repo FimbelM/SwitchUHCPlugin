@@ -20,6 +20,7 @@ public class BaseManager {
 	private static HashMap<Orientation, IBase> gameBases = new HashMap<Orientation, IBase>();
 	private static IUnmodifiableBlockedexConfiguration configuration;
 	private static boolean loaded = false;
+	private static Block northCenter, southCenter, westCenter, eastCenter;
 	
 	public static void loadBases() {
 		if (loaded)
@@ -32,7 +33,7 @@ public class BaseManager {
 		}
 		loaded = true;
 	}
-	
+
 	public static boolean setBlockedexGameCurrentConfiguration(IUnmodifiableBlockedexConfiguration configuration) {
 		BaseManager.configuration = configuration;
 		if (checkBaseAvailable(configuration.getEastBase(), configuration.getTeams()))
@@ -45,18 +46,33 @@ public class BaseManager {
 			gameBases.put(Orientation.WEST, allBases.get(configuration.getWestBase()));
 		return gameBases.size() == 4;
 	}
-	
-	public static void launchBlockedexBases() {
-		gameBases.get(Orientation.NORTH).setCenter(WorldManager.getSpawnOnJoin().getBlock().getRelative(0, 0, configuration.getBaseFromSpawnDistance()));
-		gameBases.get(Orientation.SOUTH).setCenter(WorldManager.getSpawnOnJoin().getBlock().getRelative(0, 0, -configuration.getBaseFromSpawnDistance()));
-		gameBases.get(Orientation.WEST).setCenter(WorldManager.getSpawnOnJoin().getBlock().getRelative(-configuration.getBaseFromSpawnDistance(), 0, 0));
-		gameBases.get(Orientation.EAST).setCenter(WorldManager.getSpawnOnJoin().getBlock().getRelative(configuration.getBaseFromSpawnDistance(), 0, 0));
-		
-		gameBases.values().forEach(b -> b.launch());
+
+	public static void launchBlockedexBases() { 
+		gameBases.get(Orientation.NORTH).setCenter(northCenter = WorldManager.getHighestBlockAt(WorldManager.getSpawnOnJoin(), 0, 0, configuration.getBaseFromSpawnDistance()));
+		gameBases.get(Orientation.NORTH).launch();
+
+		gameBases.get(Orientation.SOUTH).setCenter(southCenter = WorldManager.getHighestBlockAt(WorldManager.getSpawnOnJoin(), 0, 0, -configuration.getBaseFromSpawnDistance()));
+		gameBases.get(Orientation.SOUTH).launch();
+
+		gameBases.get(Orientation.WEST).setCenter(westCenter = WorldManager.getHighestBlockAt(WorldManager.getSpawnOnJoin(), -configuration.getBaseFromSpawnDistance(), 0, 0));
+		gameBases.get(Orientation.WEST).launch();
+
+		gameBases.get(Orientation.EAST).setCenter(eastCenter = WorldManager.getHighestBlockAt(WorldManager.getSpawnOnJoin(), configuration.getBaseFromSpawnDistance(), 0, 0));
+		gameBases.get(Orientation.EAST).launch();
 	}
-	
+
 	public static void removeBlockedexBases() {
-		gameBases.values().forEach(b -> b.remove());
+		gameBases.get(Orientation.NORTH).setCenter(northCenter);
+		gameBases.get(Orientation.NORTH).remove();
+
+		gameBases.get(Orientation.SOUTH).setCenter(southCenter);
+		gameBases.get(Orientation.SOUTH).remove();
+
+		gameBases.get(Orientation.WEST).setCenter(westCenter);
+		gameBases.get(Orientation.WEST).remove();
+
+		gameBases.get(Orientation.EAST).setCenter(eastCenter);
+		gameBases.get(Orientation.EAST).remove();
 	}
 
 	public static boolean isChestAccessible(Player player, Block block) {
@@ -95,7 +111,7 @@ public class BaseManager {
 		}
 		return false;
 	}
-	
+
 	private enum Orientation {
 		NORTH, SOUTH, WEST, EAST;
 	}
