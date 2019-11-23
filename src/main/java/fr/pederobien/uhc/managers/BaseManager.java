@@ -52,7 +52,7 @@ public class BaseManager {
 			}
 			if (checkBaseAvailable(configuration.getEastBase(), configuration.getTeams())) {
 				IBase east = (IBase) allBases.get(configuration.getEastBase()).clone();
-				east.setCenter(WorldManager.getHighestBlockFromSpawn(0, 0, configuration.getBaseFromSpawnDistance()));
+				east.setCenter(WorldManager.getHighestBlockFromSpawn(configuration.getBaseFromSpawnDistance(), 0, 0));
 				gameBases.put(Orientation.EAST, east);
 			}
 

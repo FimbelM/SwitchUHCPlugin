@@ -69,7 +69,6 @@ public abstract class AbstractBawn implements IBawn {
 
 	@Override
 	public void remove() {
-		System.out.println("Removing base " + getName() + "(center " + center.getX() + " " + center.getY() + " " + center.getZ() + ")");
 		before.stream().forEach(b -> updateBlock(b));
 	}
 
