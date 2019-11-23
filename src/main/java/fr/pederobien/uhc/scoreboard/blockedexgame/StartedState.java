@@ -1,5 +1,7 @@
 package fr.pederobien.uhc.scoreboard.blockedexgame;
 
+import fr.pederobien.uhc.managers.BaseManager;
+
 public class StartedState extends AbstractBlockedexScoreboardState {
 
 	public StartedState(IBDScoreboard scoreboard) {
@@ -8,7 +10,12 @@ public class StartedState extends AbstractBlockedexScoreboardState {
 
 	@Override
 	protected void updateEntries() {
-
+		addEntries("East", showBlock(BaseManager.getEastBaseCenter()));
+		addEntries("West", showBlock(BaseManager.getWestBaseCenter()));
+		addEntries("South", showBlock(BaseManager.getSouthBaseCenter()));
+		addEntries("North", showBlock(BaseManager.getNorthBaseCenter()));
+		addEmptyLine();
+		addEntries("Temps", prepareTime(getTask().getDecreasingTime()));
 	}
 
 	@Override

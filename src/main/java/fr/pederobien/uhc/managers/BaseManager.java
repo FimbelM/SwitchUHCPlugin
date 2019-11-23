@@ -108,6 +108,26 @@ public class BaseManager {
 		}
 		return false;
 	}
+	
+	public static Block getNorthBaseCenter() {
+		return getCenter(Orientation.NORTH);
+	}
+	
+	public static Block getSouthBaseCenter() {
+		return getCenter(Orientation.SOUTH);
+	}
+	
+	public static Block getWestBaseCenter() {
+		return getCenter(Orientation.WEST);
+	}
+	
+	public static Block getEastBaseCenter() {
+		return getCenter(Orientation.EAST);
+	}
+	
+	private static Block getCenter(Orientation orientation) {
+		return gameBases.get(orientation).getCenter();
+	}
 
 	private enum Orientation {
 		NORTH, SOUTH, WEST, EAST;

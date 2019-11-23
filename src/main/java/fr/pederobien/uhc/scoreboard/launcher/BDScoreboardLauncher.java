@@ -5,16 +5,14 @@ import fr.pederobien.uhc.scoreboard.IScoreboard;
 import fr.pederobien.uhc.scoreboard.blockedexgame.BlockedexScoreboard;
 import fr.pederobien.uhc.task.TimeTask;
 
-public class BDScoreboardLauncher extends AbstractScoreboardLauncher {
-	private IUnmodifiableBlockedexConfiguration configuration;
+public class BDScoreboardLauncher extends AbstractScoreboardLauncher<IUnmodifiableBlockedexConfiguration> {
 	
 	public BDScoreboardLauncher(TimeTask task, IUnmodifiableBlockedexConfiguration configuration) {
-		super(task);
-		this.configuration = configuration;
+		super(task, configuration);
 	}
 
 	@Override
 	protected IScoreboard getScoreboard() {
-		return new BlockedexScoreboard(task, configuration);
+		return new BlockedexScoreboard(getTask(), getConfiguration());
 	}
 }

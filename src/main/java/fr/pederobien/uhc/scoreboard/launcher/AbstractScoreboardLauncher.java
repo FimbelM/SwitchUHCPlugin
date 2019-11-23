@@ -5,15 +5,18 @@ import java.time.LocalTime;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.pederobien.uhc.PluginDeposit;
+import fr.pederobien.uhc.interfaces.IUnmodifiableConfiguration;
 import fr.pederobien.uhc.scoreboard.IScoreboard;
 import fr.pederobien.uhc.task.TimeTask;
 
-public abstract class AbstractScoreboardLauncher extends BukkitRunnable implements IScoreboardLauncher {
+public abstract class AbstractScoreboardLauncher<T extends IUnmodifiableConfiguration> extends BukkitRunnable implements IScoreboardLauncher {
 	private IScoreboard scoreboard;
-	protected TimeTask task;
+	private T configuration;
+	private TimeTask task;
 
-	public AbstractScoreboardLauncher(TimeTask task) {
+	public AbstractScoreboardLauncher(TimeTask task, T configuration) {
 		this.task = task;
+		this.configuration = configuration;
 		scoreboard = getScoreboard();
 	}
 
@@ -64,5 +67,13 @@ public abstract class AbstractScoreboardLauncher extends BukkitRunnable implemen
 	@Override
 	public void time(LocalTime time) {
 		scoreboard.time(time);
+	}
+	
+	protected TimeTask getTask() {
+		return task;
+	}
+	
+	protected T getConfiguration() {
+		return configuration;
 	}
 }

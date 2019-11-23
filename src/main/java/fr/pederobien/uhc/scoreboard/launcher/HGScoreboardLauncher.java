@@ -5,16 +5,14 @@ import fr.pederobien.uhc.scoreboard.IScoreboard;
 import fr.pederobien.uhc.scoreboard.hungergame.HungerGameScoreboard;
 import fr.pederobien.uhc.task.TimeTask;
 
-public class HGScoreboardLauncher extends AbstractScoreboardLauncher {
-	private IUnmodifiableHungerGameConfiguration configuration;
+public class HGScoreboardLauncher extends AbstractScoreboardLauncher<IUnmodifiableHungerGameConfiguration> {
 
 	public HGScoreboardLauncher(TimeTask task, IUnmodifiableHungerGameConfiguration configuration) {
-		super(task);
-		this.configuration = configuration;
+		super(task, configuration);
 	}
 
 	@Override
 	protected IScoreboard getScoreboard() {
-		return new HungerGameScoreboard(task, configuration);
+		return new HungerGameScoreboard(getTask(), getConfiguration());
 	}
 }
