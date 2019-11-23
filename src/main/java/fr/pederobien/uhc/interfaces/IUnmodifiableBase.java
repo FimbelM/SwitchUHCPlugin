@@ -6,12 +6,13 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.world.event.PlayerInteractEventResponse;
 
 public interface IUnmodifiableBase extends IUnmodifiableBawn {
 	
 	Map<ISerializableBlock, ETeam> getChests();
 
-	boolean isChestRestricted(Block block, Player player);
+	PlayerInteractEventResponse isChestRestricted(Block block, Player player);
 	
 	int getChestsNumber();
 }

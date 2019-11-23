@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.world.event.PlayerInteractEventResponse;
 
 public class Base extends AbstractBawn implements IBase {
 	private HashMap<ISerializableBlock, ETeam> chests;
@@ -27,11 +28,11 @@ public class Base extends AbstractBawn implements IBase {
 	}
 
 	@Override
-	public boolean isChestRestricted(Block block, Player player) {
+	public PlayerInteractEventResponse isChestRestricted(Block block, Player player) {
 		for (ISerializableBlock b : chests.keySet())
 			if (getBlockFromCenter(b).equals(block))
-				return chests.get(b).getPlayers().contains(player.getName());
-		return true;
+				return new PlayerInteractEventResponse(!chests.get(b).getPlayers().contains(player.getName()), chests.get(b), block, player);
+		return new PlayerInteractEventResponse(false, ETeam.All, block, player);
 	}
 
 	@Override
@@ -54,6 +55,11 @@ public class Base extends AbstractBawn implements IBase {
 	@Override
 	public void setChests(HashMap<ISerializableBlock, ETeam> chests) {
 		this.chests = chests;
+	}
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 
 	private ChatColor getChatColor(ISerializableBlock chest) {

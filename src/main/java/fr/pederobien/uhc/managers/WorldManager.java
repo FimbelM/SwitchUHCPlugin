@@ -104,6 +104,10 @@ public class WorldManager {
 	public static Block getHighestBlockAt(Block block) {
 		return getHighestBlockYAt(block.getX(), block.getZ());
 	}
+	
+	public static Block getHighestBlockFromSpawn(int offsetX, int offsetY, int offsetZ) {
+		return getHighestBlockAt(getSpawnOnJoin(), offsetX, offsetY, offsetZ);
+	}
 
 	public static Block getHighestBlockAt(Location location, int offsetX, int offsetY, int offsetZ) {
 		return getHighestBlockAt(location.getBlock().getRelative(offsetX, offsetY, offsetZ));

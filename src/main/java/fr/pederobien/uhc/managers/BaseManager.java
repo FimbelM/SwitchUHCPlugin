@@ -14,14 +14,13 @@ import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IUnmodifiableBase;
 import fr.pederobien.uhc.interfaces.IUnmodifiableBlockedexConfiguration;
 import fr.pederobien.uhc.persistence.PersistenceFactory;
+import fr.pederobien.uhc.world.event.PlayerInteractEventResponse;
 
 public class BaseManager {
 	private static HashMap<String, IBase> allBases = new HashMap<String, IBase>();
 	private static HashMap<Orientation, IBase> gameBases = new HashMap<Orientation, IBase>();
-	private static IUnmodifiableBlockedexConfiguration configuration;
 	private static boolean loaded = false;
-	private static Block northCenter, southCenter, westCenter, eastCenter;
-	
+
 	public static void loadBases() {
 		if (loaded)
 			return;
@@ -35,54 +34,52 @@ public class BaseManager {
 	}
 
 	public static boolean setBlockedexGameCurrentConfiguration(IUnmodifiableBlockedexConfiguration configuration) {
-		BaseManager.configuration = configuration;
-		if (checkBaseAvailable(configuration.getEastBase(), configuration.getTeams()))
-			gameBases.put(Orientation.EAST, allBases.get(configuration.getEastBase()));
-		if (checkBaseAvailable(configuration.getNorthBase(), configuration.getTeams()))
-			gameBases.put(Orientation.NORTH, allBases.get(configuration.getNorthBase()));
-		if (checkBaseAvailable(configuration.getSouthBase(), configuration.getTeams()))
-			gameBases.put(Orientation.SOUTH, allBases.get(configuration.getSouthBase()));
-		if (checkBaseAvailable(configuration.getWestBase(), configuration.getTeams()))
-			gameBases.put(Orientation.WEST, allBases.get(configuration.getWestBase()));
+		try {
+			if (checkBaseAvailable(configuration.getNorthBase(), configuration.getTeams())) {
+				IBase north = (IBase) allBases.get(configuration.getNorthBase()).clone();
+				north.setCenter(WorldManager.getHighestBlockFromSpawn(0, 0, configuration.getBaseFromSpawnDistance()));
+				gameBases.put(Orientation.NORTH, north);
+			}
+			if (checkBaseAvailable(configuration.getSouthBase(), configuration.getTeams())) {
+				IBase south = (IBase) (IBase) allBases.get(configuration.getSouthBase()).clone();
+				south.setCenter(WorldManager.getHighestBlockFromSpawn(0, 0, -configuration.getBaseFromSpawnDistance()));
+				gameBases.put(Orientation.SOUTH, south);
+			}
+			if (checkBaseAvailable(configuration.getWestBase(), configuration.getTeams())) {
+				IBase west = (IBase) allBases.get(configuration.getWestBase()).clone();
+				west.setCenter(WorldManager.getHighestBlockFromSpawn(-configuration.getBaseFromSpawnDistance(), 0, 0));
+				gameBases.put(Orientation.WEST, west);
+			}
+			if (checkBaseAvailable(configuration.getEastBase(), configuration.getTeams())) {
+				IBase east = (IBase) allBases.get(configuration.getEastBase()).clone();
+				east.setCenter(WorldManager.getHighestBlockFromSpawn(0, 0, configuration.getBaseFromSpawnDistance()));
+				gameBases.put(Orientation.EAST, east);
+			}
+
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
 		return gameBases.size() == 4;
 	}
 
-	public static void launchBlockedexBases() { 
-		gameBases.get(Orientation.NORTH).setCenter(northCenter = WorldManager.getHighestBlockAt(WorldManager.getSpawnOnJoin(), 0, 0, configuration.getBaseFromSpawnDistance()));
-		gameBases.get(Orientation.NORTH).launch();
-
-		gameBases.get(Orientation.SOUTH).setCenter(southCenter = WorldManager.getHighestBlockAt(WorldManager.getSpawnOnJoin(), 0, 0, -configuration.getBaseFromSpawnDistance()));
-		gameBases.get(Orientation.SOUTH).launch();
-
-		gameBases.get(Orientation.WEST).setCenter(westCenter = WorldManager.getHighestBlockAt(WorldManager.getSpawnOnJoin(), -configuration.getBaseFromSpawnDistance(), 0, 0));
-		gameBases.get(Orientation.WEST).launch();
-
-		gameBases.get(Orientation.EAST).setCenter(eastCenter = WorldManager.getHighestBlockAt(WorldManager.getSpawnOnJoin(), configuration.getBaseFromSpawnDistance(), 0, 0));
-		gameBases.get(Orientation.EAST).launch();
+	public static void launchBlockedexBases() {
+		gameBases.values().forEach(b -> b.launch());
 	}
 
 	public static void removeBlockedexBases() {
-		gameBases.get(Orientation.NORTH).setCenter(northCenter);
-		gameBases.get(Orientation.NORTH).remove();
-
-		gameBases.get(Orientation.SOUTH).setCenter(southCenter);
-		gameBases.get(Orientation.SOUTH).remove();
-
-		gameBases.get(Orientation.WEST).setCenter(westCenter);
-		gameBases.get(Orientation.WEST).remove();
-
-		gameBases.get(Orientation.EAST).setCenter(eastCenter);
-		gameBases.get(Orientation.EAST).remove();
+		gameBases.values().forEach(b -> b.remove());
 	}
 
-	public static boolean isChestAccessible(Player player, Block block) {
+	public static PlayerInteractEventResponse isChestAccessible(Player player, Block block) {
 		if (!block.getType().equals(Material.CHEST))
-			return true;
+			return new PlayerInteractEventResponse(false, ETeam.All, block, player);
 
-		boolean accessible = true;
-		for (IBase base : gameBases.values())
-			accessible &= !base.isChestRestricted(block, player);
-		return accessible;
+		for (IBase base : gameBases.values()) {
+			PlayerInteractEventResponse response = base.isChestRestricted(block, player);
+			if (!response.getTeamAllowed().equals(ETeam.All))
+				return response;
+		}
+		return new PlayerInteractEventResponse(false, ETeam.All, block, player);
 	}
 
 	public static Stream<String> availableBasesAccordingTeam(List<ETeam> teams) {

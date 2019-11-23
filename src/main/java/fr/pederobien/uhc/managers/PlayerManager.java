@@ -236,8 +236,12 @@ public class PlayerManager {
 		dropPlayersInventoryItemNaturally(getPlayers());
 	}
 
+	public static void sendMessageToPlayer(Player player, String message) {
+		player.sendMessage(message);
+	}
+	
 	public static void sendMessageToPlayers(Stream<Player> players, String message) {
-		players.forEach(p -> p.sendMessage(message));
+		players.forEach(p -> sendMessageToPlayer(p, message));
 	}
 
 	public static void killPlayer(Player player) {

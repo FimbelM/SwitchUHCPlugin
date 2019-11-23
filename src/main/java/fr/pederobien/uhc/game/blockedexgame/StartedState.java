@@ -11,6 +11,8 @@ import fr.pederobien.uhc.managers.BaseManager;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
+import fr.pederobien.uhc.world.event.PlayerInteractEventResponse;
+import net.md_5.bungee.api.ChatColor;
 
 public class StartedState extends AbstractBlockedexState {
 	private List<Player> collegues;
@@ -46,8 +48,11 @@ public class StartedState extends AbstractBlockedexState {
 
 	@Override
 	public void onPlayerInteract(PlayerInteractEvent event) {
-		if (!BaseManager.isChestAccessible(event.getPlayer(), event.getClickedBlock()))
-			event.setCancelled(true);
+		PlayerInteractEventResponse response = BaseManager.isChestAccessible(event.getPlayer(), event.getClickedBlock());
+		if (!response.isChestRestricted())
+			return;
+		event.setCancelled(true);
+		PlayerManager.sendMessageToPlayer(event.getPlayer(), ChatColor.RED + "This chest is reserved for team " + response.getTeamAllowed().getNameWithColor());
 	}
 
 	private void onPlayerDie(Player player) {
