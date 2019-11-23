@@ -1,20 +1,20 @@
 package fr.pederobien.uhc.scoreboard.launcher;
 
-import java.util.List;
-
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.interfaces.IUnmodifiableHungerGameConfiguration;
 import fr.pederobien.uhc.scoreboard.IScoreboard;
 import fr.pederobien.uhc.scoreboard.hungergame.HungerGameScoreboard;
 import fr.pederobien.uhc.task.TimeTask;
 
 public class HGScoreboardLauncher extends AbstractScoreboardLauncher {
-	
-	public HGScoreboardLauncher(TimeTask task, List<ETeam> teams) {
-		super(task, teams);
+	private IUnmodifiableHungerGameConfiguration configuration;
+
+	public HGScoreboardLauncher(TimeTask task, IUnmodifiableHungerGameConfiguration configuration) {
+		super(task);
+		this.configuration = configuration;
 	}
 
 	@Override
 	protected IScoreboard getScoreboard() {
-		return new HungerGameScoreboard(task, teams);
+		return new HungerGameScoreboard(task, configuration);
 	}
 }

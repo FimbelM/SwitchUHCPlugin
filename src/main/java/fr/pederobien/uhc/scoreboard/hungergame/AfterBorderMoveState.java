@@ -29,7 +29,7 @@ public class AfterBorderMoveState extends AbstractHungerGameScoreboardState {
 	}
 
 	public void registerTeam() {
-		for (ETeam team : getTeams())
+		for (ETeam team : scoreboard.getConfiguration().getTeams())
 			addEntries(team.getNameWithColor(), "" + team.getNumberPlayersOnMode(GameMode.SURVIVAL));
 		addEmptyLine();
 	}

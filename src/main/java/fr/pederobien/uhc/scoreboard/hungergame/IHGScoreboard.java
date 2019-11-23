@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.scoreboard.hungergame;
 
+import fr.pederobien.uhc.interfaces.IUnmodifiableHungerGameConfiguration;
 import fr.pederobien.uhc.scoreboard.IScoreboard;
 
 public interface IHGScoreboard extends IScoreboard {
@@ -17,4 +18,6 @@ public interface IHGScoreboard extends IScoreboard {
 	IHGScoreboardState getPauseState();
 	
 	IHGScoreboardState getStopState();
+	
+	IUnmodifiableHungerGameConfiguration getConfiguration();
 }

@@ -2,7 +2,6 @@ package fr.pederobien.uhc.scoreboard;
 
 import java.util.List;
 
-import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.observer.IObsTimeLine;
 import fr.pederobien.uhc.task.TimeTask;
 
@@ -23,6 +22,4 @@ public interface IScoreboard extends IObsTimeLine {
 	void stop();
 	
 	TimeTask getTask();
-	
-	List<ETeam> getTeams();
 }
