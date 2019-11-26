@@ -72,7 +72,7 @@ public class HungerGameConfiguration extends AbstractConfiguration implements IH
 
 	@Override
 	public LocalTime getWarningTime() {
-		return warningTime == null ? DEFAULT_WARNING_TIME : warningTime;
+		return warningTime == null ? DEFAULT_WARNING_TIME : getGameTime().minusSeconds(warningTime.toSecondOfDay());
 	}
 
 	@Override

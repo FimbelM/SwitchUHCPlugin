@@ -41,7 +41,7 @@ public class PlayerReviveState extends AbstractHungerGameState {
 		if (time.equals(game.getConfiguration().getPvpTime()))
 			authorizedPvp();
 		if (time.equals(game.getConfiguration().getWarningTime()))
-			warnPlayers();
+			warnPlayers(time);
 		if (time.equals(game.getConfiguration().getFractionTime()))
 			changeFromReviveToNotRevive();
 	}
