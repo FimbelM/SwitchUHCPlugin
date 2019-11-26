@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.game.hungergame;
 
+import java.time.Duration;
 import java.time.LocalTime;
 
 import org.bukkit.GameMode;
@@ -24,19 +25,21 @@ public abstract class AbstractHungerGameState extends AbstractGameState implemen
 		if (PlayerManager.getNumberOfPlayersOnMode(GameMode.SURVIVAL) == 1)
 			stop();
 	}
-	
+
 	protected void authorizedPvp() {
 		BukkitManager.broadcastMessageAsTitle("PVP allowed", ETeam.DARK_RED.getColorName());
 		WorldManager.setPVP(true);
 	}
-	
-	protected void warnPlayers() {
+
+	protected void warnPlayers(LocalTime time) {
 		if (!alreadyWarned)
-		PlayerManager.sendMessageToPlayers(WorldManager.getPlayersInWorld(WorldManager.NETHER_WORLD, WorldManager.END_WORLD),
-				"Go back to the surface or you will die in " + showTime(game.getConfiguration().getWarningTime()));
-		alreadyWarned = false;
+			PlayerManager.sendMessageToPlayers(
+					WorldManager.getPlayersInWorld(WorldManager.NETHER_WORLD, WorldManager.END_WORLD),
+					"Go back to the surface or you will die in " + showTime(LocalTime
+							.ofNanoOfDay(Duration.between(time, game.getConfiguration().getGameTime()).toNanos())));
+		alreadyWarned = true;
 	}
-	
+
 	protected String showTime(LocalTime time) {
 		return time.getHour() + "h " + time.getMinute() + "m " + time.getSecond() + "s";
 	}
