@@ -31,8 +31,7 @@ public abstract class CommonLaunch<T extends IBawn> extends AbstractBawnEdition<
 			getPersistence().save();
 			try {
 				name = args[0];
-				getPersistence().load(name);
-				get().launch();
+				getPersistence().load(name).get().launch();
 				return onLaunch();
 			} catch (FileNotFoundException e) {
 				return onNotExist(name);
@@ -51,8 +50,7 @@ public abstract class CommonLaunch<T extends IBawn> extends AbstractBawnEdition<
 			name = args[0];
 			getPersistence().save();
 			try {
-				getPersistence().load(name);
-				get().setCenter(args[1], args[2], args[3]);
+				getPersistence().load(name).get().setCenter(args[1], args[2], args[3]);
 				get().launch();
 				return onLaunch();
 			} catch (FileNotFoundException e) {

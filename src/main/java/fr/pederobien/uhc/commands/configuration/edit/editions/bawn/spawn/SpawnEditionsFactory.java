@@ -65,4 +65,8 @@ public class SpawnEditionsFactory extends AbstractBawnEditionsFactory<ISpawn> {
 	public IMapEdition<ISpawn> createRemoveEdition() {
 		return new RemoveSpawn();
 	}
+	
+	public IMapEdition<ISpawn> createRandomEdition() {
+		return new RandomSpawn();
+	}
 }
