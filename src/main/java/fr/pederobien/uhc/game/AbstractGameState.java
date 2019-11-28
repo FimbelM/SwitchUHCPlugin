@@ -110,7 +110,7 @@ public abstract class AbstractGameState implements IGameState {
 		PlayerManager.setGameModeOfPlayers(GameMode.SURVIVAL);
 		WorldManager.setTimeDay();
 		WorldManager.setWeatherSun();
-		WorldManager.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+		WorldManager.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true);
 	}
 
 	protected void onStop() {
