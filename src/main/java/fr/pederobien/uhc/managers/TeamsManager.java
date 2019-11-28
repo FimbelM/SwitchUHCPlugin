@@ -9,6 +9,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+import fr.pederobien.uhc.BukkitManager;
 import fr.pederobien.uhc.interfaces.IUnmodifiableConfiguration;
 
 public class TeamsManager {
@@ -44,6 +45,20 @@ public class TeamsManager {
 
 	public static void teleporteRandomlyAllTeams(IUnmodifiableConfiguration configuration, int bound) {
 		configuration.getTeams().forEach(t -> teleporteRandomlyTeam(t, bound));
+	}
+	
+	public static void createTeams(List<ETeam> teams) {
+		for (ETeam team : teams) {
+			BukkitManager.dispatchCommand("team add " + team.getNameWithoutColor());
+			BukkitManager.dispatchCommand("team modify " + team.getNameWithoutColor() + " color " + team.getColorName());
+			for (String player : team.getPlayers())
+				BukkitManager.dispatchCommand("team join " + team.getNameWithoutColor() + " " + player);
+		}
+	}
+	
+	public static void removeTeams(List<ETeam> teams) {
+		for (ETeam team : teams)
+			BukkitManager.dispatchCommand("team remove " + team.getNameWithoutColor());
 	}
 
 	public static void dispatchPlayerRandomlyInTeam(IUnmodifiableConfiguration configuration) {

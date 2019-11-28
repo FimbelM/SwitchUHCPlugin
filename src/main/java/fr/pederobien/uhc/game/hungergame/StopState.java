@@ -3,6 +3,7 @@ package fr.pederobien.uhc.game.hungergame;
 import org.bukkit.GameMode;
 
 import fr.pederobien.uhc.managers.PlayerManager;
+import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
 
 public class StopState extends AbstractHungerGameState {
@@ -14,6 +15,7 @@ public class StopState extends AbstractHungerGameState {
 	@Override
 	public void stop() {
 		onStop();
+		TeamsManager.removeTeams(game.getConfiguration().getTeams());
 		PlayerManager.setGameModeOfPlayers(GameMode.CREATIVE);
 		WorldManager.removeBorder();
 	}

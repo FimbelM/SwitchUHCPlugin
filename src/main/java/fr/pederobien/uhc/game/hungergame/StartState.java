@@ -16,6 +16,7 @@ public class StartState extends AbstractHungerGameState {
 		WorldManager.setPVP(false);
 		WorldManager.setWorldBorderCenter(game.getConfiguration().getBorderCenter());
 		WorldManager.setWorldBorderDiameter(game.getConfiguration().getInitialBorderDiameter());
+		TeamsManager.createTeams(game.getConfiguration().getTeams());
 		TeamsManager.teleporteRandomlyAllTeams(game.getConfiguration(), game.getConfiguration().getInitialBorderDiameter().intValue());
 		BukkitManager.broadcastMessageAsTitle("Match à mort par équipe");
 		taskLauncher.run(0, 20L);
