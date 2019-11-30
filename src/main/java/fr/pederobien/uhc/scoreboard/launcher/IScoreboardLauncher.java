@@ -1,6 +1,6 @@
 package fr.pederobien.uhc.scoreboard.launcher;
 
-import fr.pederobien.uhc.observer.IObsTimeLine;
+import fr.pederobien.uhc.observers.IObsTimeLine;
 
 public interface IScoreboardLauncher extends IObsTimeLine {
 	

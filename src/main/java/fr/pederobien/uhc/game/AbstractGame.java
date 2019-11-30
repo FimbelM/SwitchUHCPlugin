@@ -8,7 +8,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.WorldManager;
-import fr.pederobien.uhc.observer.IObsGame;
+import fr.pederobien.uhc.observers.IObsGame;
 
 public abstract class AbstractGame implements IGame {
 	private List<IObsGame> observers;

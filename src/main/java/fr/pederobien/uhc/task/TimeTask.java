@@ -4,7 +4,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.pederobien.uhc.observer.IObsTimeTask;
+import fr.pederobien.uhc.observers.IObsTimeTask;
 
 public class TimeTask {
 	private LocalTime totalTime, increasingTime, decreasingTime, pauseTime, limitTime;

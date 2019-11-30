@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
 
-import fr.pederobien.uhc.observer.IObsPersistence;
+import fr.pederobien.uhc.observers.IObsPersistence;
 import fr.pederobien.uhc.persistence.IDefaultContent;
 import fr.pederobien.uhc.persistence.loaders.IPersistenceLoader;
 

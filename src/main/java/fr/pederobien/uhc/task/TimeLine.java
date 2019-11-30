@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import fr.pederobien.uhc.observer.IObsTimeLine;
-import fr.pederobien.uhc.observer.IObsTimeTask;
+import fr.pederobien.uhc.observers.IObsTimeLine;
+import fr.pederobien.uhc.observers.IObsTimeTask;
 
 public class TimeLine implements IObsTimeTask {
 	private HashMap<LocalTime, List<IObsTimeLine>> map;

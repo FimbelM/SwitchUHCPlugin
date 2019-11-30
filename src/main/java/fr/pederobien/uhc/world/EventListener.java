@@ -17,7 +17,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.managers.TeamsManager;
-import fr.pederobien.uhc.observer.IObsListener;
+import fr.pederobien.uhc.observers.IObsListener;
 
 public class EventListener implements Listener {
 	private List<IObsListener> observers;

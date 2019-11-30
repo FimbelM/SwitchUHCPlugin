@@ -18,7 +18,7 @@ import fr.pederobien.uhc.game.IGame;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
 import fr.pederobien.uhc.managers.ETeam;
-import fr.pederobien.uhc.observer.IObsGame;
+import fr.pederobien.uhc.observers.IObsGame;
 
 public class ConfigurationContext implements IConfigurationContext {
 	private IConfiguration configuration;

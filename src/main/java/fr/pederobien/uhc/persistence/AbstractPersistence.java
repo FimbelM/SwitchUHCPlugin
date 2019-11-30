@@ -28,7 +28,7 @@ import org.xml.sax.SAXException;
 
 import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
-import fr.pederobien.uhc.observer.IObsPersistence;
+import fr.pederobien.uhc.observers.IObsPersistence;
 import fr.pederobien.uhc.persistence.loaders.IPersistenceLoader;
 
 public abstract class AbstractPersistence<T extends IUnmodifiableName> implements IPersistence<T> {

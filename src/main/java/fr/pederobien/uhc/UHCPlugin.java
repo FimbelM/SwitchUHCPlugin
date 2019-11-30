@@ -29,8 +29,8 @@ import fr.pederobien.uhc.game.GameStateException;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.WorldManager;
-import fr.pederobien.uhc.observer.IObsGame;
-import fr.pederobien.uhc.observer.IObsListener;
+import fr.pederobien.uhc.observers.IObsGame;
+import fr.pederobien.uhc.observers.IObsListener;
 import fr.pederobien.uhc.scoreboard.ScoreboardStateException;
 import fr.pederobien.uhc.world.EventListener;
 

@@ -11,7 +11,7 @@ import fr.pederobien.uhc.interfaces.IDimension;
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.interfaces.IUnmodifiableDimension;
 import fr.pederobien.uhc.managers.WorldManager;
-import fr.pederobien.uhc.observer.IObsBawn;
+import fr.pederobien.uhc.observers.IObsBawn;
 
 public abstract class AbstractBawn implements IBawn {
 	private static final Block DEFAULT_CENTER = WorldManager.getHighestBlockYAt(0, 0);
