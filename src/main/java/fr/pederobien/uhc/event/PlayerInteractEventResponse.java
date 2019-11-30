@@ -1,4 +1,4 @@
-package fr.pederobien.uhc.world.event;
+package fr.pederobien.uhc.event;
 
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;

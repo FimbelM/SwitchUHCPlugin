@@ -9,10 +9,10 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
+import fr.pederobien.uhc.event.PlayerInteractEventResponse;
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.managers.ETeam;
-import fr.pederobien.uhc.world.event.PlayerInteractEventResponse;
 
 public class Base extends AbstractBawn implements IBase {
 	private HashMap<ISerializableBlock, ETeam> chests;

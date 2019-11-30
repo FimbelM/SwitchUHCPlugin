@@ -9,12 +9,12 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
+import fr.pederobien.uhc.event.PlayerInteractEventResponse;
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IUnmodifiableBase;
 import fr.pederobien.uhc.interfaces.IUnmodifiableBlockedexConfiguration;
 import fr.pederobien.uhc.persistence.PersistenceFactory;
-import fr.pederobien.uhc.world.event.PlayerInteractEventResponse;
 
 public class BaseManager {
 	private static HashMap<String, IBase> allBases = new HashMap<String, IBase>();

@@ -7,11 +7,11 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
+import fr.pederobien.uhc.event.PlayerInteractEventResponse;
 import fr.pederobien.uhc.managers.BaseManager;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
-import fr.pederobien.uhc.world.event.PlayerInteractEventResponse;
 import net.md_5.bungee.api.ChatColor;
 
 public class StartedState extends AbstractBlockedexState {
