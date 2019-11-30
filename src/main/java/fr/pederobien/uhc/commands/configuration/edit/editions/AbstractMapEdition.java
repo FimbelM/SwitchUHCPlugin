@@ -53,32 +53,29 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		try {
 			IMapEdition<T> edition = editions.get(args[0]);
-			if (edition != null && edition.isAvailable()) {
+			if (edition != null && edition.isAvailable())
 				return edition.onTabComplete(sender, command, alias, Arrays.copyOfRange(args, 1, args.length));
-			}
-			return filter(new ArrayList<String>(
-					editions.keySet().stream().filter(l -> editions.get(l).isAvailable()).collect(Collectors.toList())),
-					args[0]);
+			return filter(editions.keySet().stream().filter(l -> editions.get(l).isAvailable()), args[0]);
 		} catch (IndexOutOfBoundsException e) {
 			return emptyList();
 		}
 	}
-	
+
 	@Override
 	public String help() {
-		String help = super.help() + "\r\n";
+		String help = super.help() + "\n";
 		for (IMapEdition<T> edition : editions.values())
 			if (edition.isAvailable())
-				help += edition.help() + "\r\n";
+				help += edition.help() + "\n";
 		return help;
 	}
-	
+
 	@Override
 	public IMapEdition<T> setUnmodifiable(boolean unmodifiable) {
 		this.unmodifiable = unmodifiable;
 		return this;
 	}
-	
+
 	@Override
 	public boolean isUnmodifiable() {
 		return unmodifiable;
@@ -126,7 +123,7 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 		for (IMapEdition<T> edition : editions.values())
 			edition.setParent(parent);
 	}
-	
+
 	@Override
 	public IPersistenceEdition<T> getParent() {
 		return parent;
@@ -145,7 +142,7 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 	protected List<String> emptyList() {
 		return new ArrayList<String>();
 	}
-	
+
 	protected boolean startWithIgnoreCase(String str, String beginning) {
 		return str.length() < beginning.length() ? false : str.substring(0, beginning.length()).equalsIgnoreCase(beginning);
 	}
@@ -153,7 +150,7 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 	protected List<String> filter(Collection<String> list, String filter) {
 		return list.stream().filter(str -> str.startsWith(filter)).collect(Collectors.toList());
 	}
-	
+
 	protected List<String> filter(Stream<String> stream, String begining) {
 		return stream.filter(str -> str.startsWith(begining)).collect(Collectors.toList());
 	}
