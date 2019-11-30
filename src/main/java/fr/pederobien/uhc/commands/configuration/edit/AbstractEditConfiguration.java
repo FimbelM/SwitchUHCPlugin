@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.commands.configuration.edit;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.command.Command;
@@ -12,15 +13,19 @@ import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IPersistenceEdition;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 import fr.pederobien.uhc.interfaces.IWithChildEdition;
+import fr.pederobien.uhc.observers.IObsEditConfiguration;
 
 public abstract class AbstractEditConfiguration<T extends IUnmodifiableName> extends AbstractMapEdition<T>
 		implements IEditConfiguration<T> {
 	private IPersistence<T> persistence;
+	private List<IObsEditConfiguration> observers;
 
 	public AbstractEditConfiguration(IPersistence<T> persistence, String label, String explanation) {
 		super(label, explanation);
 		this.persistence = persistence;
 		this.persistence.addObserver(this);
+		
+		observers = new ArrayList<IObsEditConfiguration>();
 	}
 	
 	@Override
@@ -57,6 +62,18 @@ public abstract class AbstractEditConfiguration<T extends IUnmodifiableName> ext
 	@Override
 	public void onCurrentChange(T newElt) {
 		setAllAvailable(newElt != null);
+	}
+	
+	@Override
+	public IEditConfiguration<T> addObserver(IObsEditConfiguration obs) {
+		observers.add(obs);
+		return this;
+	}
+	
+	@Override
+	public IEditConfiguration<T> removeObserver(IObsEditConfiguration obs) {
+		observers.remove(obs);
+		return this;
 	}
 
 	private void setAllAvailable(boolean available) {
