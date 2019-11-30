@@ -2,7 +2,6 @@ package fr.pederobien.uhc.commands.configuration.edit.editions;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.bukkit.command.Command;
@@ -38,7 +37,7 @@ public class CommonHelp<T extends IUnmodifiableName> extends AbstractMapEdition<
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		try {
 			Collection<IMapEdition<T>> values = conf.getEditions().values();
-			
+
 			IMapEdition<T> edition = conf.getEditions().get(args[0]);
 			for (int i = 1; i < args.length; i++) {
 				if (edition != null) {
