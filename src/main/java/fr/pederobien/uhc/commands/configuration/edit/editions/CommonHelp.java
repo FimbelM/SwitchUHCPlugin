@@ -47,7 +47,7 @@ public class CommonHelp<T extends IUnmodifiableName> extends AbstractMapEdition<
 					edition = edition.getEditions().get(args[i]);
 				}
 			}
-			return filter(filterValues(values).collect(Collectors.toList()), args[args.length - 1]);
+			return filter(filterValues(values), args[args.length - 1]);
 		} catch (IndexOutOfBoundsException | NullPointerException e) {
 			return emptyList();
 		}
