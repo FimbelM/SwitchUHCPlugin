@@ -3,6 +3,7 @@ package fr.pederobien.uhc;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -64,5 +65,9 @@ public class BukkitManager {
 	
 	public static List<OfflinePlayer> getOperators() {
 		return new ArrayList<OfflinePlayer>(Bukkit.getServer().getOperators());
+	}
+	
+	public static Stream<Player> getOnlineOperators() {
+		return getOperators().stream().map(p -> p.getPlayer()).filter(p -> p != null);
 	}
 }
