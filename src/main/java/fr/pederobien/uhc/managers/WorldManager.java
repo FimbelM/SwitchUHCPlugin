@@ -26,14 +26,13 @@ public class WorldManager {
 
 	private static Random rand;
 	private static World world;
-	private static String worldName = "world";
 	private static WorldBorder border;
 	private static ISpawn spawn;
 
 	static {
 		rand = new Random();
 		MOBS = new HashSet<>();
-		world = getWorld(worldName);
+		world = SURFACE_WORLD;
 		border = world.getWorldBorder();
 		world.setSpawnLocation(getHighestBlockYAt(0, 0).getLocation());
 
@@ -104,7 +103,7 @@ public class WorldManager {
 	public static Block getHighestBlockAt(Block block) {
 		return getHighestBlockYAt(block.getX(), block.getZ());
 	}
-	
+
 	public static Block getHighestBlockFromSpawn(int offsetX, int offsetY, int offsetZ) {
 		return getHighestBlockAt(getSpawnOnJoin(), offsetX, offsetY, offsetZ);
 	}
@@ -215,12 +214,12 @@ public class WorldManager {
 		return getHighestBlockYAt(randomX, randomZ).getLocation();
 	}
 
-	public static void createRespawnArea() {
+	public static void createCrossUnderSpawn(Material material) {
 		Location respawn = getSpawnOnRespawn();
 		for (int x = -1; x < 2; x++)
-			getBlockAt(respawn.clone().add(new Vector(x, 0, 0))).setType(Material.BEDROCK);
-		getBlockAt(respawn.clone().add(new Vector(0, 0, 1))).setType(Material.BEDROCK);
-		getBlockAt(respawn.clone().add(new Vector(0, 0, -1))).setType(Material.BEDROCK);
+			getBlockAt(respawn.clone().add(new Vector(x, 0, 0))).setType(material);
+		getBlockAt(respawn.clone().add(new Vector(0, 0, 1))).setType(material);
+		getBlockAt(respawn.clone().add(new Vector(0, 0, -1))).setType(material);
 	}
 
 	public static boolean isLocationUnderSpawn(Location location) {
@@ -246,11 +245,16 @@ public class WorldManager {
 	}
 
 	private static Location getSurfaceBlockY(Location location) {
-		Location loc = location.clone().add(new Vector(0, -2, 0));
+		Location spawnNotDefined = getHighestBlockYAt(0, 0).getLocation();
+		if (location.equals(spawnNotDefined))
+			return spawnNotDefined;
+		else {
+			Location loc = location.clone().add(new Vector(0, -2, 0));
 
-		while (isBlockTypeOf(getBlockAt(loc), Material.AIR, Material.VOID_AIR))
-			loc = loc.add(new Vector(0, -1, 0));
+			while (isBlockTypeOf(getBlockAt(loc), Material.AIR, Material.VOID_AIR))
+				loc = loc.add(new Vector(0, -1, 0));
 
-		return loc;
+			return loc;
+		}
 	}
 }

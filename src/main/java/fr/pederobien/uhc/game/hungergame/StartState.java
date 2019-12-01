@@ -1,5 +1,7 @@
 package fr.pederobien.uhc.game.hungergame;
 
+import org.bukkit.Material;
+
 import fr.pederobien.uhc.BukkitManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
@@ -16,6 +18,7 @@ public class StartState extends AbstractHungerGameState {
 		WorldManager.setPVP(false);
 		WorldManager.setWorldBorderCenter(game.getConfiguration().getBorderCenter());
 		WorldManager.setWorldBorderDiameter(game.getConfiguration().getInitialBorderDiameter());
+		WorldManager.createCrossUnderSpawn(Material.BEDROCK);
 		TeamsManager.createTeams(game.getConfiguration().getTeams());
 		TeamsManager.teleporteRandomlyAllTeams(game.getConfiguration(), game.getConfiguration().getInitialBorderDiameter().intValue());
 		BukkitManager.broadcastMessageAsTitle("Match à mort par équipe");

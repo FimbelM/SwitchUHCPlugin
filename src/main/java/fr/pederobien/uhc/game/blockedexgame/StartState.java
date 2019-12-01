@@ -1,6 +1,9 @@
 package fr.pederobien.uhc.game.blockedexgame;
 
+import org.bukkit.Material;
+
 import fr.pederobien.uhc.managers.BaseManager;
+import fr.pederobien.uhc.managers.WorldManager;
 
 public class StartState extends AbstractBlockedexState {
 
@@ -11,6 +14,7 @@ public class StartState extends AbstractBlockedexState {
 	@Override
 	public void start() {
 		onStart();
+		WorldManager.createCrossUnderSpawn(Material.BEDROCK);
 		BaseManager.launchBlockedexBases();
 		taskLauncher.run(0, 20L);
 		scoreboardLauncher.run(0, game.getConfiguration().getScoreboardRefresh());
