@@ -22,7 +22,7 @@ public abstract class AbstractGame implements IGame {
 	}
 
 	@Override
-	public void AddObserver(IObsGame obs) {
+	public void addObserver(IObsGame obs) {
 		observers.add(obs);
 	}
 
