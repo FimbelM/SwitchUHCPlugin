@@ -7,30 +7,36 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfEdition;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
 
 public class InitialBorderDiameterHungerGame extends AbstractConfEdition<IHungerGameConfiguration> {
 
 	public InitialBorderDiameterHungerGame() {
-		super("initialborderdiameter", "to set the initial diameter of the world's border");
+		super("initialborderdiameter", MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_EXPLANATION);
 	}
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		try {
-			get().setInitialBorderDiameter(Integer.parseInt(args[0]));
-			return "Initial border diameter defined : " + get().getInitialBorderDiameter();
+			int diameter = Integer.parseInt(args[0]);
+			if (diameter < 0)
+				return MessageCode.INITIAL_BORDER_NEGATIVE_DIAMETER;
+			get().setInitialBorderDiameter(diameter);
+			return MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_DEFINED
+					.withArgs(get().getInitialBorderDiameter().toString());
 		} catch (IndexOutOfBoundsException e) {
-			return "Cannot set the initial diameter, need diameter";
+			return MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_MISSING_DIAMETER;
 		} catch (NumberFormatException e) {
-			return "Cannot parse initial diameter";
+			return MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_BAD_DIAMETER_FORMAT;
 		}
 	}
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		if (args.length == 1)
-			return Arrays.asList("<initialdiameter>");
+			return Arrays.asList(
+					getMessageOnTabComplete(sender, MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE));
 		return super.onTabComplete(sender, command, alias, args);
 	}
 }

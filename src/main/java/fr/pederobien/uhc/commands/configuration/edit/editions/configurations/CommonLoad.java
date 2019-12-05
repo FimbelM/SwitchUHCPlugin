@@ -6,31 +6,32 @@ import java.util.List;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.managers.ETeam;
 
 public abstract class CommonLoad<T extends IConfiguration> extends AbstractConfEdition<T> {
 
-	public CommonLoad(String explanation) {
+	public CommonLoad(MessageCode explanation) {
 		super("load", explanation);
 	}
 
-	protected abstract String onStyleLoaded();
+	protected abstract MessageCode onStyleLoaded(String name);
 
-	protected abstract String onNameIsMissing();
+	protected abstract MessageCode onNameIsMissing();
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		String name = "";
 		try {
 			name = args[0];
 			getPersistence().save();
 			getPersistence().load(name);
-			return onStyleLoaded();
+			return onStyleLoaded(name);
 		} catch (IndexOutOfBoundsException e) {
 			return onNameIsMissing();
 		} catch (FileNotFoundException e) {
-			return "Cannot load style " + name + ", style does not exist";
+			return MessageCode.LOAD_CANNOT_LOAD.withArgs(name);
 		}
 	}
 

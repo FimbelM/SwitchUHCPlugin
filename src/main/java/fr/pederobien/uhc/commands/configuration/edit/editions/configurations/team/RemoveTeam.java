@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.managers.ETeam;
 
@@ -14,17 +15,17 @@ public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 	private static final String ALL = "all";
 
 	public RemoveTeam() {
-		super("removeteam", "to remove a team from a style");
+		super("removeteam", MessageCode.TEAM_REMOVETEAM_EXPLANATION);
 	}
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		if (args[0].equals(ALL)) {
 			List<ETeam> teams = new ArrayList<ETeam>();
 			teams.addAll(get().getTeams());
 			for (ETeam team : teams)
 				get().removeTeam(team);
-			return "All teams have been removed";
+			return MessageCode.TEAM_REMOVETEAM_ALL_TEAMS_REMOVED;
 		}
 
 		List<ETeam> teams = new ArrayList<ETeam>();
@@ -35,7 +36,7 @@ public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 				teams.add(team);
 				teamNames += team.getNameWithColor() + " ";
 			} catch (NullPointerException e) {
-				return args[i] + " does not correspond to a team";
+				return MessageCode.TEAM_BAD_TEAM.withArgs(args[i]);
 			}
 		}
 
@@ -44,11 +45,14 @@ public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 			get().removeTeam(team);
 		}
 
-		if (teams.isEmpty())
-			return "No team to remove";
-		else if (teams.size() == 1)
-			return "Team " + teamNames + "removed";
-		return "Teams " + teamNames + "removed";
+		switch (teams.size()) {
+		case 0:
+			return MessageCode.TEAM_REMOVETEAM_NO_TEAM_REMOVED;
+		case 1:
+			return MessageCode.TEAM_REMOVETEAM_ONE_TEAM_REMOVED.withArgs(teamNames);
+		default:
+			return MessageCode.TEAM_REMOVETEAM_TEAMS_REMOVED.withArgs(teamNames);
+		}
 	}
 
 	@Override

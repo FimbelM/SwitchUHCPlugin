@@ -1,51 +1,51 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
+import fr.pederobien.uhc.dictionary.DictionaryManager;
+import fr.pederobien.uhc.dictionary.NotificationCenter;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IMapEdition;
 import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IPersistenceEdition;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
-import fr.pederobien.uhc.interfaces.IWithChildEdition;
 
-public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends AbstractEdition implements IMapEdition<T> {
+public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends AbstractEdition
+		implements IMapEdition<T> {
 	private IPersistenceEdition<T> parent;
-	private boolean available, unmodifiable;
+	private boolean available, modifiable;
 	private HashMap<String, IMapEdition<T>> editions;
 
-	public AbstractMapEdition(String label, String explanation) {
+	public AbstractMapEdition(String label, MessageCode explanation) {
 		super(label, explanation);
 		available = true;
-		unmodifiable = false;
+		modifiable = true;
 		editions = new HashMap<String, IMapEdition<T>>();
 	}
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		String label = "";
 		try {
 			label = args[0];
 			if (editions.get(label).isAvailable())
 				return editions.get(label).edit(Arrays.copyOfRange(args, 1, args.length));
 			else
-				return "Command " + label + " is not available";
+				return MessageCode.COMMAND_NOT_AVAILABLE.withArgs(label);
 		} catch (IndexOutOfBoundsException e) {
 			e.printStackTrace();
-			return "Cannot run command " + getLabel() + ", arguments are missing";
+			return MessageCode.CANNOT_RUN_COMMAND.withArgs(getLabel());
 		} catch (NullPointerException e) {
 			e.printStackTrace();
-			return "Argument " + label + " is not a valid argument";
+			return MessageCode.ARGUMENT_NOT_VALID.withArgs(label);
 		}
 	}
 
@@ -62,28 +62,19 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 	}
 
 	@Override
-	public String help() {
-		String help = super.help() + "\n";
-		for (IMapEdition<T> edition : editions.values())
-			if (edition.isAvailable())
-				help += edition.help() + "\n";
-		return help;
-	}
-
-	@Override
-	public IMapEdition<T> setUnmodifiable(boolean unmodifiable) {
-		this.unmodifiable = unmodifiable;
+	public IMapEdition<T> setModifiable(boolean modifiable) {
+		this.modifiable = modifiable;
 		return this;
 	}
 
 	@Override
-	public boolean isUnmodifiable() {
-		return unmodifiable;
+	public boolean isModifiable() {
+		return modifiable;
 	}
 
 	@Override
 	public IMapEdition<T> setAvailable(boolean available) {
-		if (unmodifiable)
+		if (!modifiable)
 			return this;
 		this.available = available;
 		for (String label : editions.keySet())
@@ -97,61 +88,45 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 	}
 
 	@Override
-	public IWithChildEdition<T> addEdition(IMapEdition<T> edition) {
+	public IMapEdition<T> addEdition(IMapEdition<T> edition) {
 		editions.put(edition.getLabel(), edition);
-		edition.setParent(getParent());
 		return this;
 	}
 
 	@Override
-	public IWithChildEdition<T> removeEdition(IMapEdition<T> edition) {
+	public IMapEdition<T> removeEdition(IMapEdition<T> edition) {
 		editions.remove(edition.getLabel());
-		edition.setParent(null);
 		return this;
 	}
 
 	@Override
-	public Map<String, IMapEdition<T>> getEditions() {
+	public Map<String, IMapEdition<T>> getChildren() {
 		return Collections.unmodifiableMap(editions);
 	}
 
 	@Override
 	public void setParent(IPersistenceEdition<T> parent) {
-		if (parent == null)
-			return;
 		this.parent = parent;
 		for (IMapEdition<T> edition : editions.values())
 			edition.setParent(parent);
 	}
 
-	@Override
-	public IPersistenceEdition<T> getParent() {
-		return parent;
-	}
-
-	@Override
 	public T get() {
 		return parent.get();
 	}
 
-	@Override
 	public IPersistence<T> getPersistence() {
 		return parent.getPersistence();
 	}
 
-	protected List<String> emptyList() {
-		return new ArrayList<String>();
-	}
-
 	protected boolean startWithIgnoreCase(String str, String beginning) {
-		return str.length() < beginning.length() ? false : str.substring(0, beginning.length()).equalsIgnoreCase(beginning);
+		return str.length() < beginning.length() ? false
+				: str.substring(0, beginning.length()).equalsIgnoreCase(beginning);
 	}
 
-	protected List<String> filter(Collection<String> list, String filter) {
-		return list.stream().filter(str -> str.startsWith(filter)).collect(Collectors.toList());
-	}
-
-	protected List<String> filter(Stream<String> stream, String begining) {
-		return stream.filter(str -> str.startsWith(begining)).collect(Collectors.toList());
+	protected String getMessageOnTabComplete(CommandSender sender, MessageCode code) {
+		return sender instanceof Player
+				? DictionaryManager.getMessage(NotificationCenter.getLocale((Player) sender), code)
+				: null;
 	}
 }

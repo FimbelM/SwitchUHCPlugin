@@ -14,12 +14,13 @@ public abstract class AbstractConfigurationCommand<T extends IUnmodifiableName> 
 	public AbstractConfigurationCommand(JavaPlugin plugin, String cmd, IEditConfiguration<T> conf) {
 		super(plugin, cmd);
 		configuration = conf;
-		command.setTabCompleter(conf);
+		command.setTabCompleter(configuration);
+		configuration.addObserver(this);
 	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		sendMessageToSender(sender, configuration.edit(args));
+		configuration.edit(sender, args);
 		return true;
 	}
 }

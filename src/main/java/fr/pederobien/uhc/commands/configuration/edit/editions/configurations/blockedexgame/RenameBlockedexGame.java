@@ -1,26 +1,27 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.blockedexgame;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonRename;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 
 public class RenameBlockedexGame extends CommonRename<IBlockedexConfiguration> {
 
 	public RenameBlockedexGame() {
-		super("to change the name of current blockedex game style");
+		super(MessageCode.RENAME_BLOCKEDEX_GAME_EXPLANATION);
 	}
 
 	@Override
-	protected String onAlreadyExisting(String newName) {
-		return "Cannot rename blockedex game style " + get().getName() + " as " + newName + ", style already exist";
+	protected MessageCode onAlreadyExisting(String newName) {
+		return MessageCode.RENAME_BLOCKEDEX_GAME_ALREADY_EXISTING.withArgs(get().getName(), newName);
 	}
 
 	@Override
-	protected String onRename(String oldName, String newName) {
-		return "Style " + oldName + " renamed as " + newName;
+	protected MessageCode onRename(String oldName, String newName) {
+		return MessageCode.RENAME_BLOCKEDEX_GAME_RENAMED.withArgs(oldName, newName);
 	}
 
 	@Override
-	protected String onNameIsMissing() {
-		return null;
+	protected MessageCode onNameIsMissing(String oldName) {
+		return MessageCode.RENAME_BLOCKEDEX_GAME_MISSING_NAME.withArgs(oldName);
 	}
 }

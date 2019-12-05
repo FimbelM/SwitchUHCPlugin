@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.game;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.observers.IObsGame;
 import fr.pederobien.uhc.observers.IObsListener;
 
@@ -15,9 +16,9 @@ public interface IGame extends IObsListener {
 	
 	void relaunch();
 	
-	void AddObserver(IObsGame obs);
+	void addObserver(IObsGame obs);
 	
 	void removeObserver(IObsGame obs);
 	
-	String getMessage();
+	MessageCode getMessage();
 }

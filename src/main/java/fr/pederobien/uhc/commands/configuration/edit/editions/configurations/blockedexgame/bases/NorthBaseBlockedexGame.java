@@ -1,9 +1,11 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.blockedexgame.bases;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+
 public class NorthBaseBlockedexGame extends AbstractBaseEdition {
 
 	protected NorthBaseBlockedexGame() {
-		super("north", "to set the base at the north of the spawn");
+		super("north", MessageCode.BASE_NORTH_BLOCKEDEX_GAME_EXPLANATION);
 	}
 
 	@Override
@@ -12,7 +14,7 @@ public class NorthBaseBlockedexGame extends AbstractBaseEdition {
 	}
 
 	@Override
-	protected String onBaseSetted() {
-		return "Base " + get().getNorthBase() + " defined as the north base";
+	protected MessageCode onBaseSetted() {
+		return MessageCode.BASE_NORTH_BLOCKEDEX_GAME_SETTED.withArgs(get().getNorthBase());
 	}
 }

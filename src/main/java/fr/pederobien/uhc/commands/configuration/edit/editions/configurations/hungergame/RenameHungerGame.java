@@ -1,26 +1,27 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.hungergame;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonRename;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
 
 public class RenameHungerGame extends CommonRename<IHungerGameConfiguration> {
 
 	public RenameHungerGame() {
-		super("to change the name of current hunger game style");
+		super(MessageCode.RENAME_HUNGER_GAME_EXPLANATION);
 	}
 
 	@Override
-	protected String onAlreadyExisting(String newName) {
-		return "Cannot rename hunger game style " + get().getName() + " as " + newName + ", style already exist";
+	protected MessageCode onAlreadyExisting(String newName) {
+		return MessageCode.RENAME_HUNGER_GAME_ALREADY_EXISTING.withArgs(get().getName(), newName);
 	}
 
 	@Override
-	protected String onRename(String oldName, String newName) {
-		return "Style " + oldName + " renamed as " + newName;
+	protected MessageCode onRename(String oldName, String newName) {
+		return MessageCode.RENAME_HUNGER_GAME_RENAMED.withArgs(oldName, newName);
 	}
 
 	@Override
-	protected String onNameIsMissing() {
-		return "Cannot rename hunger game style, need the new name";
+	protected MessageCode onNameIsMissing(String oldName) {
+		return MessageCode.RENAME_HUNGER_GAME_MISSING_NAME.withArgs(oldName);
 	}
 }

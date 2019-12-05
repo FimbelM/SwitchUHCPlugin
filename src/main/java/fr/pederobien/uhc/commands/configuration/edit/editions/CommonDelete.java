@@ -5,21 +5,22 @@ import java.util.List;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 
 public abstract class CommonDelete<T extends IUnmodifiableName> extends AbstractMapEdition<T> {
 
-	public CommonDelete(String explanation) {
+	public CommonDelete(MessageCode explanation) {
 		super("delete", explanation);
 	}
 
-	protected abstract String onDeleted(String name);
+	protected abstract MessageCode onDeleted(String name);
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		String name = args[0];
 		if (startWithIgnoreCase(name, "default"))
-			return "Cannot delete " + name;
+			return MessageCode.DELETE_ON_CANNOT_DELETE.withArgs(name);
 		getPersistence().delete(name);
 		if (get() != null && get().getName().equals(name))
 			getPersistence().set(null);

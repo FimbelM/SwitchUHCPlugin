@@ -1,9 +1,11 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.blockedexgame.bases;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+
 public class WestBaseBlockedexGame extends AbstractBaseEdition {
 
 	protected WestBaseBlockedexGame() {
-		super("west", "to set the base at the west of the spawn");
+		super("west", MessageCode.BASE_WEST_BLOCKEDEX_GAME_EXPLANATION);
 	}
 
 	@Override
@@ -12,7 +14,7 @@ public class WestBaseBlockedexGame extends AbstractBaseEdition {
 	}
 
 	@Override
-	protected String onBaseSetted() {
-		return "Base " + get().getWestBase() + " defined as the west base";
+	protected MessageCode onBaseSetted() {
+		return MessageCode.BASE_WEST_BLOCKEDEX_GAME_SETTED.withArgs(get().getWestBase());
 	}
 }

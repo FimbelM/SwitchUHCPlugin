@@ -1,16 +1,17 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.spawn;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.CommonRemove;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.ISpawn;
 
 public class RemoveSpawn extends CommonRemove<ISpawn> {
 
 	public RemoveSpawn() {
-		super("to remove the spawn from the world");
+		super(MessageCode.REMOVE_SPAWN_EXPLANATION);
 	}
 
 	@Override
-	protected String onRemove() {
-		return "Spawn " + get().getName() + " removed from the world";
+	protected MessageCode onRemove() {
+		return MessageCode.REMOVE_SPAWN_REMOVED.withArgs(get().getName());
 	}
 }

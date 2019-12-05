@@ -2,38 +2,37 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.base;
 
 import java.util.Collection;
 
-import org.bukkit.ChatColor;
-
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.CommonExtract;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+import fr.pederobien.uhc.exceptions.BaseExtractionException;
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.managers.ETeam;
 
 public class ExtractBase extends CommonExtract<IBase> {
 
 	public ExtractBase() {
-		super("to extract base's blocks");
+		super(MessageCode.EXTRACT_BASE_EXPLANATION);
 	}
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		try {
 			return super.edit(args);
-		} catch (IllegalArgumentException e) {
-			return ChatColor.RED + e.getMessage();
+		} catch (BaseExtractionException e) {
+			return e.getCode();
 		}
 	}
 
 	@Override
-	protected String onExtracted() {
-		String onExtracted = "Base " + get().getName() + " extracted\n";
+	protected MessageCode onExtracted() {
 		switch (get().getChestsNumber()) {
 		case 1:
-			onExtracted += "One chest for " + get().getChests().values().iterator().next().getColorNameWithColor() + " team";
-			break;
-			default:
-				onExtracted += "Chests for teams : " + colorName(get().getChests().values());
+			return MessageCode.EXTRACT_BASE_ONE_CHEST_EXTRACTED.withArgs(get().getName(),
+					get().getChests().values().iterator().next().getColorNameWithColor());
+		default:
+			return MessageCode.EXTRACT_BASE_CHESTS_EXTRACTED.withArgs(get().getName(),
+					colorName(get().getChests().values()));
 		}
-		return onExtracted;
 	}
 
 	private String colorName(Collection<ETeam> teams) {

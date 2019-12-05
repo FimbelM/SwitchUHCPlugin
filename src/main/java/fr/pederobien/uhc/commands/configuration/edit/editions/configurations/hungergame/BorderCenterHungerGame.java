@@ -7,24 +7,24 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfEdition;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
 
 public class BorderCenterHungerGame extends AbstractConfEdition<IHungerGameConfiguration> {
 
 	public BorderCenterHungerGame() {
-		super("bordercenter", "to set the center of the world's border");
+		super("bordercenter", MessageCode.BORDER_CENTER_HUNGER_GAME_EXPLANATION);
 	}
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		try {
 			get().setBorderCenter(args[0], args[1]);
-			return "Border center defined in : " + get().getBorderCenter().getX() + " "
-					+ get().getBorderCenter().getZ();
+			return MessageCode.BORDER_CENTER_HUNGER_GAME_DEFINED.withArgs("" + get().getBorderCenter().getX(), "" + get().getBorderCenter().getZ());
 		} catch (IndexOutOfBoundsException | NullPointerException e) {
-			return "Cannot set the border center, need coordinates <X> <Z>";
+			return MessageCode.BORDER_CENTER_HUNGER_GAME_MISSING_COORDINATES;
 		} catch (NumberFormatException e) {
-			return "Cannot parse <X> or <Z> argument";
+			return MessageCode.BORDER_CENTER_HUNGER_GAME_BAD_COORDINATES_FORMAT;
 		}
 	}
 

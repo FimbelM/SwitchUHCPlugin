@@ -1,34 +1,33 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.blockedexgame;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.CommonLoad;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.managers.BaseManager;
 
 public class LoadBlockedexGame extends CommonLoad<IBlockedexConfiguration> {
 
 	public LoadBlockedexGame() {
-		super("to load a blockedex game style");
+		super(MessageCode.LOAD_BLOCKEDEX_GAME_EXPLANATION);
 	}
 
 	@Override
-	protected String onStyleLoaded() {
-		String style = "Blockedex game style loaded : " + get().getName() + "\n";
+	protected MessageCode onStyleLoaded(String name) {
+		MessageCode message;
 		switch (get().getTeams().size()) {
 		case 0 :
-			style += "No team created";
-			break;
+			message = MessageCode.LOAD_BLOCKEDEX_GAME_STYLE_NO_TEAM_CREATED_LOADED.withArgs(name);
 		case 1 :
-			style += "Team " + get().getTeams().get(0).getNameWithColor() + " created";
-			break;
+			message = MessageCode.LOAD_BLOCKEDEX_GAME_STYLE_ONE_TEAM_CREATED_LOADED.withArgs(name, getTeamNamesWithColor());
 		default :
-			style += "Teams created : " + getTeamNamesWithColor();
+			message = MessageCode.LOAD_BLOCKEDEX_GAME_STYLE_TEAMS_CREATED_LOADED.withArgs(name, getTeamNamesWithColor());
 		}
 		BaseManager.loadBases();
-		return style;
+		return message;
 	}
 
 	@Override
-	protected String onNameIsMissing() {
-		return "Cannot load blockedex game style, need the name";
+	protected MessageCode onNameIsMissing() {
+		return MessageCode.LOAD_BLOCKEDEX_GAME_MISSING_NAME;
 	}
 }

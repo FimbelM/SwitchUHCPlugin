@@ -7,31 +7,34 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfEdition;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
 
 public class SpeedBorderHungerGame extends AbstractConfEdition<IHungerGameConfiguration> {
 
 	public SpeedBorderHungerGame() {
-		super("speedborder", "to change the speed when the border is moving");
+		super("speedborder", MessageCode.SPEED_BORDER_HUNGER_GAME_EXPLANATION);
 	}
-	
+
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		try {
 			double speed = Double.parseDouble(args[0]);
 			if (speed <= 0)
-				return "The speed must strictly positive";
+				return MessageCode.SPEED_BORDER_HUNGER_GAME_NEGATIVE;
 			get().setBorderSpeed(speed);
-			return "The border speed defined as " + get().getBorderSpeed() + " blocks per second";
+			return MessageCode.SPEED_BORDER_HUNGER_GAME_DEFINED.withArgs(get().getBorderSpeed().toString());
+		} catch (IndexOutOfBoundsException e) {
+			return MessageCode.SPEED_BORDER_HUNGER_GAME_MISSING_SPEED;
 		} catch (NumberFormatException e) {
-			return "Speed must be a double value (example : 1.5)";
+			return MessageCode.SPEED_BORDER_HUNGER_GAME_BAD_SPEED_FORMAT;
 		}
 	}
-	
+
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		if (args.length == 1)
-			return Arrays.asList("<blocks per second>");
+			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.SPEED_BORDER_HUNGER_GAME_TAB_COMPLETE));
 		return super.onTabComplete(sender, command, alias, args);
 	}
 }

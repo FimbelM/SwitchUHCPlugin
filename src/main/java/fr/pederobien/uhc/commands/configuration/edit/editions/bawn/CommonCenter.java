@@ -6,24 +6,24 @@ import java.util.List;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IBawn;
 
 public class CommonCenter<T extends IBawn> extends AbstractBawnEdition<T> {
 
 	public CommonCenter() {
-		super("center", "to set the center");
+		super("center", MessageCode.CENTER_EXPLANATION);
 	}
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		try {
 			get().setCenter(args[0], args[1], args[2]);
-			return "Center defined in : " + get().getCenter().getX() + " " + get().getCenter().getY() + " "
-					+ get().getCenter().getZ();
+			return MessageCode.CENTER_DEFINED.withArgs("" + get().getCenter().getX(), "" + get().getCenter().getY(), "" + get().getCenter().getZ());
 		} catch (IndexOutOfBoundsException e) {
-			return "Cannot set center's coordinates, need <X> <Y> <Z>";
+			return MessageCode.CENTER_COORDINATES_ARE_MISSING;
 		} catch (NumberFormatException e) {
-			return "Cannot parse <X> or <Y> or <Z> argument";
+			return MessageCode.CENTER_BAD_COORDINATES_FORMAT;
 		}
 	}
 

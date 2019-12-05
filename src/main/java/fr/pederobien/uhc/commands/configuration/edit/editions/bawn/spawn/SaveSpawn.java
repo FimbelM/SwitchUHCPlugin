@@ -1,16 +1,17 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.spawn;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonSave;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.ISpawn;
 
 public class SaveSpawn extends CommonSave<ISpawn> {
 
 	public SaveSpawn() {
-		super("to save a spawn");
+		super(MessageCode.SAVE_SPAWN_EXPLANATION);
 	}
 
 	@Override
-	protected String onSave() {
-		return "Spawn " + get().getName() + " saved";
+	protected MessageCode onSave() {
+		return MessageCode.SAVE_SPAWN_SAVED.withArgs(get().getName());
 	}
 }

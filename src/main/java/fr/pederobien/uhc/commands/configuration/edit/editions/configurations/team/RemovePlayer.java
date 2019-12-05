@@ -7,6 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.PlayerManager;
@@ -14,14 +15,14 @@ import fr.pederobien.uhc.managers.PlayerManager;
 public class RemovePlayer<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
 	public RemovePlayer() {
-		super("removeplayer", "to remove players from a team");
+		super("removeplayer", MessageCode.TEAM_REMOVEPLAYER_EXPLANATION);
 	}
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		ETeam team = ETeam.getByName(args[0]);
 		if (team == null)
-			return args[0] + " does not correspond to a team";
+			return MessageCode.TEAM_BAD_TEAM.withArgs(args[0]);
 
 		List<String> players = emptyList();
 		String playerNames = "";
@@ -31,18 +32,21 @@ public class RemovePlayer<T extends IConfiguration> extends AbstractTeamEditions
 				players.add(player.getName());
 				playerNames += player.getName() + " ";
 			} catch (NullPointerException e) {
-				return args[i] + " is not a player";
+				return MessageCode.TEAM_BAD_PLAYER.withArgs(args[i]);
 			}
 		}
 
 		for (String player : players)
 			team.removePlayers(player);
 
-		if (players.isEmpty())
-			return "No player removed from " + team.getNameWithColor();
-		if (players.size() == 1)
-			return "Player " + playerNames + "removed from " + team.getNameWithColor();
-		return "Players " + playerNames + "removed from " + team.getNameWithColor();
+		switch (players.size()) {
+		case 0:
+			return MessageCode.TEAM_REMOVEPLAYER_NO_PLAYER_REMOVED.withArgs(team.getNameWithColor());
+		case 1:
+			return MessageCode.TEAM_REMOVEPLAYER_ONE_PLAYER_REMOVED.withArgs(playerNames, team.getNameWithColor());
+		default:
+			return MessageCode.TEAM_REMOVEPLAYER_PLAYERS_REMOVED.withArgs(playerNames, team.getNameWithColor());
+		}
 	}
 
 	@Override

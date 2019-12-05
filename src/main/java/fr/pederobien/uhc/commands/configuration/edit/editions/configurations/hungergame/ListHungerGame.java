@@ -1,21 +1,27 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.hungergame;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonList;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
 
 public class ListHungerGame extends CommonList<IHungerGameConfiguration> {
 
 	public ListHungerGame() {
-		super("to display all existing hunger game style (s)");
+		super(MessageCode.LIST_HUNGER_GAME_EXPLANATION);
 	}
 
 	@Override
-	protected String onSizeGreatThan0() {
-		return "List of existing hunger game style (s) :\n";
+	protected MessageCode onSizeEquals0() {
+		return MessageCode.LIST_HUNGER_GAME_SIZE_EQUALS_0;
 	}
 
 	@Override
-	protected String onSizeEquals0() {
-		return "No existing hunger game style";
+	protected MessageCode onSizeEquals1(String name) {
+		return MessageCode.LIST_HUNGER_GAME_SIZE_EQUALS_1.withArgs(name);
+	}
+
+	@Override
+	protected MessageCode onSizeGreaterThan0(String allNames) {
+		return MessageCode.LIST_HUNGER_GAME_SIZE_GREATER_THAN_0.withArgs(allNames);
 	}
 }

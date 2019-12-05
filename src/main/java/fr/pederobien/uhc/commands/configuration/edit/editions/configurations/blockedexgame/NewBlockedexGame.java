@@ -1,22 +1,23 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.blockedexgame;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonNew;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 
 public class NewBlockedexGame extends CommonNew<IBlockedexConfiguration> {
 
 	public NewBlockedexGame() {
-		super("to create a new blockedex game style");
+		super(MessageCode.NEW_BLOCKEDEX_GAME_EXPLANATION);
 	}
 
 	@Override
-	protected String onAlreadyExisting(String name) {
-		return "The blockedex game style " + name + " already exist";
+	protected MessageCode onAlreadyExisting(String name) {
+		return MessageCode.NEW_BLOCKEDEX_GAME_ALREADY_EXISTING.withArgs(name);
 	}
 
 	@Override
-	protected String onCreated() {
-		return "New blockedex game style " + get().getName() + " created";
+	protected MessageCode onCreated() {
+		return MessageCode.NEW_BLOCKEDEX_GAME_CREATED.withArgs(get().getName());
 	}
 
 	@Override
@@ -25,7 +26,7 @@ public class NewBlockedexGame extends CommonNew<IBlockedexConfiguration> {
 	}
 
 	@Override
-	protected String onNameIsMissing() {
-		return "Cannot create a new blockedex game style, need the name";
+	protected MessageCode onNameIsMissing() {
+		return MessageCode.NEW_BLOCKEDEX_GAME_MISSING_NAME;
 	}
 }

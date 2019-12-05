@@ -9,7 +9,9 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.event.PlayerInteractEventResponse;
+import fr.pederobien.uhc.exceptions.BaseExtractionException;
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.managers.ETeam;
@@ -101,13 +103,13 @@ public class Base extends AbstractBawn implements IBase {
 			return ChatColor.WHITE;
 
 		case MAGENTA_WOOL:
-			throw new IllegalArgumentException("Usage of magenta wool is forbidden, please use pink or purple woord");
+			throw new BaseExtractionException(MessageCode.EXTRACT_BASE_MAGENTA_WOOL_IS_FORBIDDEN);
 
 		case BROWN_WOOL:
-			throw new IllegalArgumentException("Brown wool as no equivalent in team's color");
+			throw new BaseExtractionException(MessageCode.EXTRACT_BASE_BROWN_WOOL_HAS_NO_EQUIVALENT);
 
 		default:
-			throw new IllegalArgumentException("Material under chest is not wool");
+			throw new BaseExtractionException(MessageCode.EXTRACT_BASE_MATERIAL_UNDER_CHEST_IS_NOT_WOOL);
 		}
 	}
 

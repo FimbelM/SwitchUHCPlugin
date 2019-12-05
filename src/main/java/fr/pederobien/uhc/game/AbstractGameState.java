@@ -14,6 +14,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.potion.PotionEffectType;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.WorldManager;
 import fr.pederobien.uhc.scoreboard.launcher.IScoreboardLauncher;
@@ -22,7 +23,7 @@ import fr.pederobien.uhc.task.ITaskLauncher;
 public abstract class AbstractGameState implements IGameState {
 	protected static ITaskLauncher taskLauncher;
 	protected static IScoreboardLauncher scoreboardLauncher;
-	protected String message;
+	protected MessageCode message;
 
 	@Override
 	public boolean initiate() {
@@ -48,9 +49,9 @@ public abstract class AbstractGameState implements IGameState {
 	public void stop() {
 		throw new GameStateException("This method cannot be called by this state");
 	}
-	
+
 	@Override
-	public String getMessage() {
+	public MessageCode getMessage() {
 		return message;
 	}
 

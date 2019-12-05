@@ -20,6 +20,11 @@ public class SpawnEditionsFactory extends AbstractBawnEditionsFactory<ISpawn> {
 		public static final SpawnEditionsFactory factory = new SpawnEditionsFactory(
 				PersistenceFactory.getInstance().getSpawnPersistence());
 	}
+	
+	@Override
+	public IMapEdition<ISpawn> createDimensionsEdition() {
+		return new DimensionsSpawn();
+	}
 
 	@Override
 	public IMapEdition<ISpawn> createNewEdition() {

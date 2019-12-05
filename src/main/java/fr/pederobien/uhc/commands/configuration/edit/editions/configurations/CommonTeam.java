@@ -6,13 +6,14 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.team.TeamEditionsFactory;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 
 public class CommonTeam<T extends IConfiguration> extends AbstractConfEdition<T> {
 	private final TeamEditionsFactory<T> factory = new TeamEditionsFactory<T>();
 	
 	public CommonTeam() {
-		super("team", "to manage team for game style");
+		super("team", MessageCode.TEAM_EXPLANATION);
 
 		addEdition(factory.createAddPlayerEdition())
 		.addEdition(factory.createAddTeamEdition())

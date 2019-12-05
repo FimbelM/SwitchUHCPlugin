@@ -8,21 +8,24 @@ import java.util.List;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 
 public abstract class CommonGameTime<T extends IConfiguration> extends AbstractConfEdition<T> {
 
-	public CommonGameTime(String explanation) {
+	public CommonGameTime(MessageCode explanation) {
 		super("gametime", explanation);
 	}
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		try {
 			get().setGameTime(LocalTime.parse(args[0]));
-			return "Game time defined : " + showTime(get().getGameTime());
-		} catch (IndexOutOfBoundsException | DateTimeParseException e) {
-			return "Cannot set the game time, need time at format hh:mm:ss";
+			return MessageCode.GAME_TIME_DEFINED.withArgs("" + get().getGameTime().getHour(), "" + get().getGameTime().getMinute(), "" + get().getGameTime().getSecond());
+		} catch (IndexOutOfBoundsException e) {
+			return MessageCode.GAME_TIME_MISSING_TIME;
+		} catch (DateTimeParseException e) {
+			return MessageCode.GAME_TIME_BAD_TIME_FORMAT;
 		}
 	}
 

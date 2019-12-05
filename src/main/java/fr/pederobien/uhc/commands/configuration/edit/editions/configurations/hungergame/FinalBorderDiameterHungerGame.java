@@ -7,30 +7,36 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfEdition;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
 
 public class FinalBorderDiameterHungerGame extends AbstractConfEdition<IHungerGameConfiguration> {
 
 	public FinalBorderDiameterHungerGame() {
-		super("finalborderdiameter", "to set the final diameter of the world's border");
+		super("finalborderdiameter", MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_EXPLANATION);
 	}
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		try {
-			get().setFinalBorderDiameter(Integer.parseInt(args[0]));
-			return "Final border diameter defined : " + get().getFinalBorderDiameter();
+			int diameter = Integer.parseInt(args[0]);
+			if (diameter < 0)
+				return MessageCode.FINAL_BORDER_NEGATIVE_DIAMETER;
+			get().setFinalBorderDiameter(diameter);
+			return MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_DEFINED
+					.withArgs(get().getFinalBorderDiameter().toString());
 		} catch (IndexOutOfBoundsException e) {
-			return "Cannot set the final diameter, need diameter";
+			return MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_MISSING_DIAMETER;
 		} catch (NumberFormatException e) {
-			return "Cannot parse final diameter";
+			return MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_BAD_DIAMETER_FORMAT;
 		}
 	}
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		if (args.length == 1)
-			return Arrays.asList("<finaldiameter>");
+			return Arrays.asList(
+					getMessageOnTabComplete(sender, MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE));
 		return super.onTabComplete(sender, command, alias, args);
 	}
 }

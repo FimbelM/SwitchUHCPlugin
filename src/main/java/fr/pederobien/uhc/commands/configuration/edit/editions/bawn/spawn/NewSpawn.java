@@ -1,22 +1,23 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.spawn;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonNew;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.ISpawn;
 
 public class NewSpawn extends CommonNew<ISpawn> {
 
 	public NewSpawn() {
-		super("to create a new spawn");
+		super(MessageCode.NEW_SPAWN_EXPLANATION);
 	}
 
 	@Override
-	protected String onAlreadyExisting(String name) {
-		return "The spawn " + name + " already exist";
+	protected MessageCode onAlreadyExisting(String name) {
+		return MessageCode.NEW_SPAWN_ALREADY_EXISTING.withArgs(name);
 	}
 
 	@Override
-	protected String onCreated() {
-		return "New spawn " + get().getName() + " created";
+	protected MessageCode onCreated() {
+		return MessageCode.NEW_SPAWN_CREATED.withArgs(get().getName());
 	}
 
 	@Override
@@ -25,7 +26,7 @@ public class NewSpawn extends CommonNew<ISpawn> {
 	}
 
 	@Override
-	protected String onNameIsMissing() {
-		return "Cannot create a new spawn, need the name";
+	protected MessageCode onNameIsMissing() {
+		return MessageCode.NEW_SPAWN_MISSING_NAME;
 	}
 }

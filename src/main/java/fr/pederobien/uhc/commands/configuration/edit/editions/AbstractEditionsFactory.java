@@ -1,6 +1,5 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions;
 
-import fr.pederobien.uhc.interfaces.IEditConfiguration;
 import fr.pederobien.uhc.interfaces.IMapEdition;
 import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
@@ -10,10 +9,6 @@ public abstract class AbstractEditionsFactory<T extends IUnmodifiableName> {
 
 	protected AbstractEditionsFactory(IPersistence<T> persistence) {
 		this.persistence = persistence;
-	}
-
-	public IMapEdition<T> createHelpEdition(IEditConfiguration<T> conf) {
-		return new CommonHelp<T>(conf);
 	}
 
 	public abstract IMapEdition<T> createListEdition();

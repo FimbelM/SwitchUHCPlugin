@@ -6,22 +6,23 @@ import java.util.List;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IName;
 
 public abstract class CommonRename<T extends IName> extends AbstractMapEdition<T> {
 
-	public CommonRename(String explanation) {
+	public CommonRename(MessageCode explanation) {
 		super("rename", explanation);
 	}
 
-	protected abstract String onAlreadyExisting(String newName);
+	protected abstract MessageCode onAlreadyExisting(String newName);
 
-	protected abstract String onRename(String oldName, String newName);
+	protected abstract MessageCode onRename(String oldName, String newName);
 
-	protected abstract String onNameIsMissing();
+	protected abstract MessageCode onNameIsMissing(String oldName);
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		try {
 			String newName = args[0];
 			if (getPersistence().exist(newName))
@@ -32,14 +33,14 @@ public abstract class CommonRename<T extends IName> extends AbstractMapEdition<T
 				return onRename(oldName, newName);
 			}
 		} catch (IndexOutOfBoundsException e) {
-			return onNameIsMissing();
+			return onNameIsMissing(get().getName());
 		}
 	}
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		if (args.length == 1)
-			return Arrays.asList("<newname>");
+			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.RENAME_TAB_COMPLETE));
 		return super.onTabComplete(sender, command, alias, args);
 	}
 }

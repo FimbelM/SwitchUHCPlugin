@@ -6,24 +6,27 @@ import java.util.List;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IBawn;
 import fr.pederobien.uhc.world.blocks.Dimension;
 
-public class CommonDimensions<T extends IBawn> extends AbstractBawnEdition<T> {
+public abstract class CommonDimensions<T extends IBawn> extends AbstractBawnEdition<T> {
 
-	public CommonDimensions() {
-		super("dimensions", "to set the dimensions (width height depth)");
+	public CommonDimensions(MessageCode explanation) {
+		super("dimensions", explanation);
 	}
+	
+	protected abstract MessageCode dimensionsDefined(int width, int height, int depth);
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		try {
 			get().setDimension(new Dimension(args[0], args[1], args[2]));
-			return "Dimensions defined as : " + get().getWidth() + " " + get().getHeight() + " " + get().getDepth();
+			return dimensionsDefined(get().getWidth(), get().getHeight(), get().getDepth());
 		} catch (IndexOutOfBoundsException e) {
-			return "Cannot change dimensions, need <width> <height> <depth>";
+			return MessageCode.DIMENSIONS_MISSING_DIMENSIONS;
 		} catch (NumberFormatException e) {
-			return "Cannot parse width or height or depth";
+			return MessageCode.DIMENSIONS_BAD_DIMENSIONS_FORMAT;
 		}
 	}
 
@@ -31,11 +34,11 @@ public class CommonDimensions<T extends IBawn> extends AbstractBawnEdition<T> {
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		switch (args.length) {
 		case 1:
-			return Arrays.asList("<width> <height> <depth>");
+			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.DIMENSIONS_WITDH_HEIGHT_DEPTH_TAB_COMPLETE));
 		case 2:
-			return Arrays.asList("<height> <depth>");
+			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.DIMENSIONS_HEIGHT_DEPTH_TAB_COMPLETE));
 		case 3:
-			return Arrays.asList("<depth>");
+			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.DIMENSIONS_DEPTH_TAB_COMPLETE));
 		}
 		return super.onTabComplete(sender, command, alias, args);
 	}

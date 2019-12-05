@@ -1,21 +1,27 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.base;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonList;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IBase;
 
 public class ListBase extends CommonList<IBase> {
 
 	public ListBase() {
-		super("to display all existing base(s)");
+		super(MessageCode.LIST_BASE_EXPLANATION);
 	}
 
 	@Override
-	protected String onSizeGreatThan0() {
-		return "List of existing base(s) :\n";
+	protected MessageCode onSizeEquals0() {
+		return MessageCode.LIST_BASE_SIZE_EQUALS_0;
 	}
 
 	@Override
-	protected String onSizeEquals0() {
-		return "No existing base";
+	protected MessageCode onSizeEquals1(String name) {
+		return MessageCode.LIST_BASE_SIZE_EQUALS_1.withArgs(name);
+	}
+
+	@Override
+	protected MessageCode onSizeGreaterThan0(String allNames) {
+		return MessageCode.LIST_BASE_SIZE_GREATER_THAN_0.withArgs(allNames);
 	}
 }

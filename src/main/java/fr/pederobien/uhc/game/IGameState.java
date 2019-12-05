@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.game;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.observers.IObsListener;
 import fr.pederobien.uhc.observers.IObsTimeLine;
 
@@ -15,5 +16,5 @@ public interface IGameState extends IObsListener, IObsTimeLine {
 
 	void stop();
 	
-	String getMessage();
+	MessageCode getMessage();
 }

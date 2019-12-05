@@ -15,9 +15,7 @@ public abstract class AbstractBawnEditionsFactory<T extends IBawn> extends Abstr
 		return new CommonCenter<T>();
 	}
 
-	public IMapEdition<T> createDimensionsEdition() {
-		return new CommonDimensions<T>();
-	}
+	public abstract IMapEdition<T> createDimensionsEdition();
 
 	public abstract IMapEdition<T> createExtractEdition();
 

@@ -6,21 +6,22 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractMapEdition;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 import fr.pederobien.uhc.managers.BaseManager;
 
 public abstract class AbstractBaseEdition extends AbstractMapEdition<IBlockedexConfiguration> {
 
-	public AbstractBaseEdition(String label, String explanation) {
+	public AbstractBaseEdition(String label, MessageCode explanation) {
 		super(label, explanation);
 	}
 
 	protected abstract void setBase(String baseName);
 
-	protected abstract String onBaseSetted();
+	protected abstract MessageCode onBaseSetted();
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		String name;
 		try {
 			name = args[0];
@@ -28,9 +29,9 @@ public abstract class AbstractBaseEdition extends AbstractMapEdition<IBlockedexC
 				setBase(name);
 				return onBaseSetted();
 			}
-			return "Base does not support all team (number or color)";
+			return MessageCode.BASE_BLOCKEDEX_GAME_DOES_NOT_SUPPORT_TEAM;
 		} catch (IndexOutOfBoundsException e) {
-			return "Cannot set base, need the name";
+			return MessageCode.BASE_BLOCKEDEX_GAME_MISSING_NAME;
 		}
 	}
 

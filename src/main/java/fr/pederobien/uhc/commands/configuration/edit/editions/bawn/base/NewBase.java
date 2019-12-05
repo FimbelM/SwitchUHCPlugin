@@ -1,22 +1,23 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.base;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonNew;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IBase;
 
 public class NewBase extends CommonNew<IBase> {
 
 	public NewBase() {
-		super("to create a new base");
+		super(MessageCode.NEW_BASE_EXPLANATION);
 	}
 
 	@Override
-	protected String onAlreadyExisting(String name) {
-		return "The base " + name + " already exist";
+	protected MessageCode onAlreadyExisting(String name) {
+		return MessageCode.NEW_BASE_ALREADY_EXISTING.withArgs(name);
 	}
 
 	@Override
-	protected String onCreated() {
-		return "New base " + get().getName() + " created";
+	protected MessageCode onCreated() {
+		return MessageCode.NEW_BASE_CREATED.withArgs(get().getName());
 	}
 
 	@Override
@@ -25,7 +26,7 @@ public class NewBase extends CommonNew<IBase> {
 	}
 
 	@Override
-	protected String onNameIsMissing() {
-		return "Cannot create a new spawn, need the name";
+	protected MessageCode onNameIsMissing() {
+		return MessageCode.NEW_BASE_MISSING_NAME;
 	}
 }

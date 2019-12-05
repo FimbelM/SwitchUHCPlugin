@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.game.blockedexgame;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.managers.BaseManager;
 import fr.pederobien.uhc.managers.BlockedexPlayerManager;
 import fr.pederobien.uhc.scoreboard.launcher.BDScoreboardLauncher;
@@ -15,7 +16,7 @@ public class InitialState extends AbstractBlockedexState {
 	@Override
 	public boolean initiate() {
 		if (!BaseManager.setBlockedexGameCurrentConfiguration(game.getConfiguration())) {
-			message = "One or more bases (north, south, west, east) are not defined or not available";
+			message = MessageCode.BAD_BASES_CONFIGURATION;
 			return false;
 		}
 

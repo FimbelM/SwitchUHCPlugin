@@ -2,36 +2,35 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations;
 
 import java.io.FileNotFoundException;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
 
 public abstract class CommonAsCurrent<T extends IConfiguration> extends AbstractConfEdition<T> {
 	private IConfigurationContext context;
 
-	public CommonAsCurrent(IConfigurationContext context, String explanation) {
+	public CommonAsCurrent(IConfigurationContext context, MessageCode explanation) {
 		super("ascurrent", explanation);
 		this.context = context;
 	}
 
-	protected abstract String onNameIsMissing();
-
-	protected abstract String onStyleNotDefined();
+	protected abstract MessageCode onStyleNotDefined(String name);
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		if (args.length == 0) {
 			context.setCurrentConfiguration(getPersistence().get());
-			return "Style " + get().getName() + " defined as current style";
+			return MessageCode.AS_CURRENT_STYLE_DEFINED.withArgs(get().getName());
 		} else {
 			getPersistence().save();
+			String name = "";
 			try {
-				getPersistence().load(args[0]);
+				name = args[0];
+				getPersistence().load(name);
 				context.setCurrentConfiguration(get());
-				return "Style " + get().getName() + " defined as current style";
-			} catch (IndexOutOfBoundsException e) {
-				return onNameIsMissing();
+				return MessageCode.AS_CURRENT_STYLE_DEFINED.withArgs(get().getName());
 			} catch (FileNotFoundException e) {
-				return onStyleNotDefined();
+				return onStyleNotDefined(name);
 			}
 		}
 	}

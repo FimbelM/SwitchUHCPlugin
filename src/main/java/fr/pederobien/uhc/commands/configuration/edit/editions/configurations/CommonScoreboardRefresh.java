@@ -6,31 +6,39 @@ import java.util.List;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 
 public class CommonScoreboardRefresh<T extends IConfiguration> extends AbstractConfEdition<T> {
 
 	public CommonScoreboardRefresh() {
-		super("scoreboardrefresh",
-				"to set the number of servers's tic after which the scoreboard of each player is refreshed");
+		super("scoreboardrefresh", MessageCode.SCOREBOARD_REFRESH_EXPLANATION);
 	}
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		try {
-			get().setScoreboardRefresh(Long.parseLong(args[0]));
-			return "Scoreboard refreshed each " + get().getScoreboardRefresh() + " tics";
+			long refresh = Long.parseLong(args[0]);
+			if (refresh < 0)
+				return MessageCode.SCOREBOARD_REFRESH_NEGATIVE_TIC_DEFINED;
+			if (refresh == 1) {
+				get().setScoreboardRefresh(refresh);
+				return MessageCode.SCOREBOARD_REFRESH_ONE_TIC_DEFINED;
+			} else {
+				get().setScoreboardRefresh(refresh);
+				return MessageCode.SCOREBOARD_REFRESH_TICS_DEFINED.withArgs("" + refresh);
+			}
 		} catch (IndexOutOfBoundsException e) {
-			return "Cannot set the scoreboard refrresh value, need a number of tics";
+			return MessageCode.SCOREBOARD_REFRESH_MISSING_TICS;
 		} catch (NumberFormatException e) {
-			return "Cannot parse number of tics";
+			return MessageCode.SCOREBOARD_REFRESH_BAD_TICS_FORMAT;
 		}
 	}
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		if (args.length == 1)
-			return Arrays.asList("<number of tics>");
+			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.SCOREBOARD_REFRESH_TAB_COMPLETE));
 		return super.onTabComplete(sender, command, alias, args);
 	}
 }

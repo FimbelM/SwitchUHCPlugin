@@ -6,32 +6,33 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.team.AbstractTeamEditions;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.managers.ETeam;
 
 public class ColorTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
 	public ColorTeam() {
-		super("color", "to change the color of a team");
+		super("color", MessageCode.TEAM_MODIFY_COLOR_EXPLANATION);
 	}
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		ETeam oldTeam = ETeam.getByName(args[0]);
 		if (oldTeam == null)
-			return args[0] + " does not correspond to a team";
+			return MessageCode.TEAM_BAD_TEAM.withArgs(args[0]);
 		ETeam newTeam = ETeam.getByColorName(args[1]);
 		if (newTeam == null)
-			return args[1] + " does not correspond to a color";
+			return MessageCode.TEAM_BAD_COLOR.withArgs(args[1]);
 
 		newTeam.setName(oldTeam.getNameWithoutColor());
 		oldTeam.resetName();
 		newTeam.addPlayers(oldTeam.getPlayers());
 		oldTeam.removeAllPlayers();
-		
+
 		get().removeTeam(oldTeam);
 		get().addTeam(newTeam);
-		return newTeam.getNameWithColor() + "'s color updated";
+		return MessageCode.TEAM_MODIFY_COLOR_MODIFIED.withArgs(newTeam.getNameWithColor());
 	}
 
 	@Override

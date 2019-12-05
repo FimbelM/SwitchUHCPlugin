@@ -1,21 +1,27 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.spawn;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonList;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.ISpawn;
 
 public class ListSpawn extends CommonList<ISpawn> {
 
 	public ListSpawn() {
-		super("to display all existing spawn(s)");
+		super(MessageCode.LIST_SPAWN_EXPLANATION);
 	}
 
 	@Override
-	protected String onSizeGreatThan0() {
-		return "List of existing spawn(s) :\n";
+	protected MessageCode onSizeEquals0() {
+		return MessageCode.LIST_SPAWN_SIZE_EQUALS_0;
 	}
 
 	@Override
-	protected String onSizeEquals0() {
-		return "No existing spawn";
+	protected MessageCode onSizeEquals1(String name) {
+		return MessageCode.LIST_SPAWN_SIZE_EQUALS_1.withArgs(name);
+	}
+
+	@Override
+	protected MessageCode onSizeGreaterThan0(String allNames) {
+		return MessageCode.LIST_SPAWN_SIZE_GREATER_THAN_0.withArgs(allNames);
 	}
 }

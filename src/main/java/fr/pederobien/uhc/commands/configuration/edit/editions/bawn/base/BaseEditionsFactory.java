@@ -20,6 +20,11 @@ public class BaseEditionsFactory extends AbstractBawnEditionsFactory<IBase> {
 		public static final BaseEditionsFactory factory = new BaseEditionsFactory(
 				PersistenceFactory.getInstance().getBasePersistence());
 	}
+	
+	@Override
+	public IMapEdition<IBase> createDimensionsEdition() {
+		return new DimensionsBase();
+	}
 
 	@Override
 	public IMapEdition<IBase> createExtractEdition() {

@@ -2,9 +2,11 @@ package fr.pederobien.uhc.commands.game;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.pederobien.uhc.commands.AbstractCommand;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.managers.PlayerManager;
 
 public class StartCommand extends AbstractCommand {
@@ -17,16 +19,16 @@ public class StartCommand extends AbstractCommand {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		try {
 			if (confContext.getPlayersRegistered().count() != PlayerManager.getNumberOfPlayer())
-				sendMessageToSender(sender, "There are players that are not in a team");
+				sendMessage((Player) sender, MessageCode.PLAYERS_NOT_IN_TEAM);
 			else {
 				if (confContext.initiate())
 					confContext.start();
 				else
-					sendMessageToSender(sender, confContext.getMessage());
+					sendMessage((Player) sender, confContext.getMessage());
 			}
 		} catch (NullPointerException e) {
 			e.printStackTrace();
-			sendMessageToSender(sender, "No game setted to be launch, use command edit to edit a new game");
+			sendMessage((Player) sender, MessageCode.NO_GAME_STYLE_DEFINED_AS_CURRENT);
 		}
 		return true;
 	}

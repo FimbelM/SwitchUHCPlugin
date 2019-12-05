@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.game.AbstractGame;
 import fr.pederobien.uhc.interfaces.IUnmodifiableHungerGameConfiguration;
 
@@ -102,9 +103,9 @@ public class HungerGame extends AbstractGame implements IHungerGame {
 		super.stop();
 		current.stop();
 	}
-	
+
 	@Override
-	public String getMessage() {
+	public MessageCode getMessage() {
 		return current.getMessage();
 	}
 

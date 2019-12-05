@@ -8,6 +8,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.PlayerManager;
@@ -15,11 +16,11 @@ import fr.pederobien.uhc.managers.PlayerManager;
 public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
 	public AddTeam() {
-		super("addteam", "to add a team to a style");
+		super("addteam", MessageCode.TEAM_ADDTEAM_EXPLANATION);
 	}
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		try {
 			ETeam team = ETeam.getByColorName(args[1]);
 			team.setName(args[0]);
@@ -31,25 +32,27 @@ public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 					players.add(player);
 					playerNames += player.getName() + " ";
 				} catch (NullPointerException e) {
-					return args[i] + " is not a player";
+					return MessageCode.TEAM_BAD_PLAYER.withArgs(args[i]);
 				}
 			}
 			if (!get().addTeam(team))
-				return "A team as already the color " + team.getColorName();
+				return MessageCode.TEAM_ADDTEAM_ALREADY_EXISTING_COLOR.withArgs(team.getColorName());
 
 			for (Player player : players)
 				team.addPlayers(player.getName());
 
-			String player = "";
-			if (players.size() == 1)
-				player = ", player added : " + playerNames;
-			else if (players.size() > 1)
-				player = ", players added : " + playerNames;
-			return "Team " + team.getNameWithColor() + " created" + player;
+			switch (players.size()) {
+			case 0:
+				return MessageCode.TEAM_ADDTEAM_TEAM_NO_PLAYER_ADDED.withArgs(team.getNameWithColor());
+			case 1:
+				return MessageCode.TEAM_ADDTEAM_TEAM_ONE_PLAYER_ADDED.withArgs(team.getNameWithColor(), playerNames);
+			default:
+				return MessageCode.TEAM_ADDTEAM_TEAM_PLAYERS_ADDED.withArgs(team.getNameWithColor(), playerNames);
+			}
 		} catch (IndexOutOfBoundsException e) {
-			return "Cannot create a new team, arguments are missing";
+			return MessageCode.TEAM_ADDTEAM_MISSING_ARGUMENTS;
 		} catch (NullPointerException e) {
-			return "Cannot create a new team, " + args[1] + " does not correspond to a color";
+			return MessageCode.TEAM_BAD_COLOR.withArgs(args[1]);
 		}
 	}
 
@@ -57,7 +60,7 @@ public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		switch (args.length) {
 		case 1:
-			return Arrays.asList("<name>");
+			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.NEW_NAME_TAB_COMPLETE));
 		case 2:
 			return filter(getAvailableColors(), args[1]);
 		}

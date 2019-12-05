@@ -14,6 +14,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.PluginDeposit;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.game.IGame;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
@@ -28,7 +29,7 @@ public class ConfigurationContext implements IConfigurationContext {
 		if (this.configuration != null)
 			getGame().removeObserver(PluginDeposit.plugin);
 		this.configuration = configuration;
-		getGame().AddObserver(PluginDeposit.plugin);
+		getGame().addObserver(PluginDeposit.plugin);
 	}
 
 	@Override
@@ -62,13 +63,13 @@ public class ConfigurationContext implements IConfigurationContext {
 	}
 
 	@Override
-	public String getMessage() {
+	public MessageCode getMessage() {
 		return getGame().getMessage();
 	}
 
 	@Override
-	public void AddObserver(IObsGame obs) {
-		getGame().AddObserver(obs);
+	public void addObserver(IObsGame obs) {
+		getGame().addObserver(obs);
 	}
 
 	@Override
@@ -140,7 +141,7 @@ public class ConfigurationContext implements IConfigurationContext {
 	public boolean addTeam(ETeam team) {
 		return configuration.addTeam(team);
 	}
-	
+
 	@Override
 	public void removeTeam(ETeam team) {
 		configuration.removeTeam(team);
@@ -165,7 +166,7 @@ public class ConfigurationContext implements IConfigurationContext {
 	public void setGameTime(LocalTime gameTime) {
 		configuration.setGameTime(gameTime);
 	}
-	
+
 	@Override
 	public Stream<String> getPlayersRegistered() {
 		return configuration.getPlayersRegistered();

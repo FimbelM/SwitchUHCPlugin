@@ -6,6 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.PlayerManager;
@@ -13,18 +14,18 @@ import fr.pederobien.uhc.managers.PlayerManager;
 public class MovePlayer<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
 	public MovePlayer() {
-		super("moveplayer", "to move a player from its initial to its final team");
+		super("moveplayer", MessageCode.TEAM_REMOVEPLAYER_EXPLANATION);
 	}
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		Player player = null;
 		String name = "";
 		try {
 			player = PlayerManager.getPlayer(args[0]);
 			name = player.getName();
 		} catch (NullPointerException e) {
-			return args[0] + " is not a player";
+			return MessageCode.TEAM_BAD_PLAYER.withArgs(args[0]);
 		}
 		ETeam oldTeam = null;
 		for (ETeam team : get().getTeams())
@@ -35,12 +36,12 @@ public class MovePlayer<T extends IConfiguration> extends AbstractTeamEditions<T
 
 		ETeam newTeam = ETeam.getByName(args[1]);
 		if (newTeam == null)
-			return args[1] + " does not correspond to a team";
+			return MessageCode.TEAM_BAD_TEAM.withArgs(args[1]);
 
 		oldTeam.removePlayers(name);
 		newTeam.addPlayers(name);
 
-		return name + " moved from " + oldTeam.getNameWithColor() + " to " + newTeam.getNameWithColor();
+		return MessageCode.TEAM_MOVEPLAYER_MOVED.withArgs(oldTeam.getNameWithColor(), newTeam.getNameWithColor());
 	}
 
 	@Override

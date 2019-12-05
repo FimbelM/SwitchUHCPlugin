@@ -1,16 +1,17 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.team;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.managers.ETeam;
 
 public class ListTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
 	public ListTeam() {
-		super("list", "to list the existing team for a game style");
+		super("list", MessageCode.TEAM_LIST_EXPLANATION);
 	}
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		String teams = "";
 		for (ETeam team : get().getTeams()) {
 			teams += team.getColor() + team.getNameWithoutColor() + " [";
@@ -21,10 +22,14 @@ public class ListTeam<T extends IConfiguration> extends AbstractTeamEditions<T> 
 			}
 			teams += "]\n";
 		}
-		if (get().getTeams().isEmpty())
-			return "No existing team for " + get().getName() + " style";
-		else if (get().getTeams().size() == 1)
-			return "Existing team : \n" + teams;
-		return "Existing teams : \n" + teams;
+
+		switch (get().getTeams().size()) {
+		case 0:
+			return MessageCode.TEAM_LIST_NO_EXISTING_TEAM.withArgs(get().getName());
+		case 1:
+			return MessageCode.TEAM_LIST_ONE_EXISTING_TEAM.withArgs(get().getName(), teams);
+		default:
+			return MessageCode.TEAM_LIST_EXISTING_TEAMS.withArgs(get().getName(), teams);
+		}
 	}
 }

@@ -9,16 +9,17 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.AbstractBawnEdition;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.ISpawn;
 
 public class RandomSpawn extends AbstractBawnEdition<ISpawn> {
 
 	public RandomSpawn() {
-		super("random", "to load randomly a spawn");
+		super("random", MessageCode.RANDOM_SPAWN_EXPLANATION);
 	}
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		List<String> spawns = getPersistence().list();
 		String name = spawns.get(new Random().nextInt(spawns.size()));
 		try {
@@ -28,14 +29,14 @@ public class RandomSpawn extends AbstractBawnEdition<ISpawn> {
 			}
 			getPersistence().load(name).get().setCenter(args[0], args[1], args[2]);
 			get().launch();
-			return "Spawn" + name + "launched at " + showBlock(get().getCenter());
+			return MessageCode.RANDOM_SPAWN_LAUNCHED.withArgs(name, "" + get().getCenter().getX(), "" + get().getCenter().getY(), "" + get().getCenter().getZ());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			return "Cannot launch randomly spawn " + name + ", spawn does not exist";
+			return MessageCode.RANDOM_SPAWN_CANNOT_BE_LAUNCHED.withArgs(name);
 		} catch (IndexOutOfBoundsException e) {
-			return "Cannot launch randomly a spawn, need center's coordinates <X> <Y> <Z>";
+			return MessageCode.RANDOM_SPAWN_MISSING_COORDINATES;
 		} catch (NumberFormatException e) {
-			return "Cannot parse <X> or <Y> or <Z> argument";
+			return MessageCode.BAD_COORDINATES_FORMAT;
 		}
 	}
 

@@ -7,32 +7,33 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.configurations.ConfigurationsFactory;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 
 public abstract class CommonNew<T extends IUnmodifiableName> extends AbstractMapEdition<T> {
 	protected ConfigurationsFactory factory = ConfigurationsFactory.getInstance();
 
-	public CommonNew(String explanation) {
+	public CommonNew(MessageCode explanation) {
 		super("new", explanation);
 	}
 
-	protected abstract String onAlreadyExisting(String name);
+	protected abstract MessageCode onAlreadyExisting(String name);
 
-	protected abstract String onCreated();
+	protected abstract MessageCode onCreated();
 
 	protected abstract T getNew(String name);
 
-	protected abstract String onNameIsMissing();
+	protected abstract MessageCode onNameIsMissing();
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		try {
 			String name = args[0];
 			getPersistence().save();
 			if (getPersistence().exist(name))
 				return onAlreadyExisting(name);
 			else if (startWithIgnoreCase(name, "default"))
-				return name + " must not start with default (ignoring case)";
+				return MessageCode.NEW_NAME_MUST_NOT_START_BY_DEFAULT.withArgs(name);
 			else {
 				getPersistence().set(getNew(name));
 				return onCreated();
@@ -45,7 +46,7 @@ public abstract class CommonNew<T extends IUnmodifiableName> extends AbstractMap
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		if (args.length == 1)
-			return Arrays.asList("<name>");
+			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.NEW_NAME_TAB_COMPLETE));
 		return super.onTabComplete(sender, command, alias, args);
 	}
 }

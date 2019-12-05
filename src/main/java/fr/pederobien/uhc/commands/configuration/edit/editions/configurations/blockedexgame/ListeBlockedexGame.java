@@ -1,21 +1,27 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.blockedexgame;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonList;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 
 public class ListeBlockedexGame extends CommonList<IBlockedexConfiguration> {
 
 	public ListeBlockedexGame() {
-		super("to display all existing blockedex game style (s)");
+		super(MessageCode.LIST_BLOCKEDEX_GAME_EXPLANATION);
 	}
 
 	@Override
-	protected String onSizeGreatThan0() {
-		return "List of existing blockedex game style (s) :\n";
+	protected MessageCode onSizeEquals0() {
+		return MessageCode.LIST_BLOCKEDEX_GAME_SIZE_EQUALS_0;
 	}
 
 	@Override
-	protected String onSizeEquals0() {
-		return "No existing blockedex game style";
+	protected MessageCode onSizeEquals1(String name) {
+		return MessageCode.LIST_BLOCKEDEX_GAME_SIZE_EQUALS_1.withArgs(name);
+	}
+
+	@Override
+	protected MessageCode onSizeGreaterThan0(String allNames) {
+		return MessageCode.LIST_BLOCKEDEX_GAME_SIZE_GREATER_THAN_0.withArgs(allNames);
 	}
 }

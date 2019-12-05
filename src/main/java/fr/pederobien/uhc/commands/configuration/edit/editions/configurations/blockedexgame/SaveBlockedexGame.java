@@ -1,16 +1,17 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.blockedexgame;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonSave;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 
 public class SaveBlockedexGame extends CommonSave<IBlockedexConfiguration> {
 
 	public SaveBlockedexGame() {
-		super("to save the current blockedex game style");
+		super(MessageCode.SAVE_BLOCKEDEX_GAME_EXPLANATION);
 	}
 
 	@Override
-	protected String onSave() {
-		return "Style " + get().getName() + " saved";
+	protected MessageCode onSave() {
+		return MessageCode.SAVE_BLOCKEDEX_GAME_SAVED.withArgs(get().getName());
 	}
 }

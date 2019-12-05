@@ -8,23 +8,24 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.team.AbstractTeamEditions;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.managers.ETeam;
 
 public class NameTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
 	public NameTeam() {
-		super("name", "to modify the name of a team");
+		super("name", MessageCode.TEAM_MODIFY_NAME_EXPLANATION);
 	}
 	
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		String oldName = args[0], newName = args[1];
 		ETeam team = ETeam.getByName(oldName);
 		if (team == null)
-			return oldName + "does not correspond to a team";
+			return MessageCode.TEAM_BAD_TEAM.withArgs(oldName);
 		team.setName(newName);
-		return "Team " + team.getColor() + oldName + ChatColor.RESET + " renamed as " + team.getNameWithColor();
+		return MessageCode.TEAM_MODIFY_NAME_MODIFIED.withArgs(team.getColor() + oldName + ChatColor.RESET, team.getNameWithColor());
 	}
 
 	@Override
@@ -33,7 +34,7 @@ public class NameTeam<T extends IConfiguration> extends AbstractTeamEditions<T> 
 		case 1:
 			return filter(getTeamNamesWithoutColor(), args[0]);
 		case 2:
-			return Arrays.asList("<NewName>");
+			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.RENAME_TAB_COMPLETE));
 		}
 		return super.onTabComplete(sender, command, alias, args);
 	}

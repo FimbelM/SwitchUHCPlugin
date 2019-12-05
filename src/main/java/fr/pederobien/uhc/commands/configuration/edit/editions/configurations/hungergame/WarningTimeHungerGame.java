@@ -9,22 +9,25 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.AbstractConfEdition;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
 
 public class WarningTimeHungerGame extends AbstractConfEdition<IHungerGameConfiguration> {
 
 	public WarningTimeHungerGame() {
-		super("warningtime", "correspond to the time before the game time after which all players "
-				+ "in the nether or in the end will be warn that they will die if " + "they stay in the current world");
+		super("warningtime", MessageCode.WARNING_TIME_HUNGER_GAME_EXPLANATION);
 	}
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		try {
 			get().setWarningTime(LocalTime.parse(args[0]));
-			return "Warning time defined : " + showTime(get().getWarningTime());
+			return MessageCode.WARNING_TIME_HUNGER_GAME_DEFINED.withArgs("" + get().getWarningTime().getHour(),
+					"" + get().getWarningTime().getHour(), "" + get().getWarningTime().getHour());
+		} catch (IndexOutOfBoundsException e) {
+			return MessageCode.WARNING_TIME_HUNGER_GAME_MISSING_TIME;
 		} catch (DateTimeParseException e) {
-			return "Cannot set the warning time, need the time at format hh:mm:ss";
+			return MessageCode.WARNING_TIME_HUNGER_GAME_BAD_TIME_FORMAT;
 		}
 	}
 

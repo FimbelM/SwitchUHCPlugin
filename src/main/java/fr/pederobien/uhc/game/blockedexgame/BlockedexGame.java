@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.game.AbstractGame;
 import fr.pederobien.uhc.interfaces.IUnmodifiableBlockedexConfiguration;
 
@@ -93,9 +94,9 @@ public class BlockedexGame extends AbstractGame implements IBlockedexGame {
 		super.stop();
 		current.stop();
 	}
-	
+
 	@Override
-	public String getMessage() {
+	public MessageCode getMessage() {
 		return current.getMessage();
 	}
 
@@ -134,7 +135,7 @@ public class BlockedexGame extends AbstractGame implements IBlockedexGame {
 	public void onCreatureSpawn(CreatureSpawnEvent event) {
 		current.onCreatureSpawn(event);
 	}
-	
+
 	@Override
 	public void onPlayerPortalEvent(PlayerPortalEvent event) {
 		current.onPlayerPortalEvent(event);

@@ -7,22 +7,25 @@ import java.util.List;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IBawn;
 
 public abstract class CommonLaunch<T extends IBawn> extends AbstractBawnEdition<T> {
 
-	public CommonLaunch(String explanation) {
+	public CommonLaunch(MessageCode explanation) {
 		super("launch", explanation);
 	}
 
-	protected abstract String onLaunch();
+	protected abstract MessageCode onLaunch();
 
-	protected abstract String onNotExist(String name);
+	protected abstract MessageCode onNotExist(String name);
+	
+	protected abstract MessageCode onNeedCoordinates(String name);
 
-	protected abstract String onNeedNameAndCoordinates(String name);
+	protected abstract MessageCode onNeedNameAndCoordinates(String name);
 
 	@Override
-	public String edit(String[] args) {
+	public MessageCode edit(String[] args) {
 		String name = "";
 		if (args.length == 0) {
 			get().launch();
@@ -42,9 +45,9 @@ public abstract class CommonLaunch<T extends IBawn> extends AbstractBawnEdition<
 				get().launch();
 				return onLaunch();
 			} catch (IndexOutOfBoundsException e) {
-				return "Cannot launch spawn " + get().getName() + ", need center's coordinates <X> <Y> <Z>";
+				return onNeedCoordinates(name);
 			} catch (NumberFormatException e) {
-				return "Cannot parse center's coordinates";
+				return MessageCode.LAUNCH_BAD_COORDINATES_FORMAT;
 			}
 		} else {
 			name = args[0];
@@ -58,7 +61,7 @@ public abstract class CommonLaunch<T extends IBawn> extends AbstractBawnEdition<
 			} catch (IndexOutOfBoundsException e) {
 				return onNeedNameAndCoordinates(name);
 			} catch (NumberFormatException e) {
-				return "Cannot parse center's coordinates";
+				return MessageCode.LAUNCH_BAD_COORDINATES_FORMAT;
 			}
 		}
 	}

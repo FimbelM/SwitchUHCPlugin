@@ -1,22 +1,23 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.hungergame;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.CommonNew;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
 
 public class NewHungerGame extends CommonNew<IHungerGameConfiguration> {
 
 	public NewHungerGame() {
-		super("to create a new hunger game style");
+		super(MessageCode.NEW_HUNGER_GAME_EXPLANATION);
 	}
 
 	@Override
-	protected String onAlreadyExisting(String name) {
-		return "The hunger game style " + name + " already exist";
+	protected MessageCode onAlreadyExisting(String name) {
+		return MessageCode.NEW_HUNGER_GAME_ALREADY_EXISTING.withArgs(name);
 	}
 
 	@Override
-	protected String onCreated() {
-		return "New hunger game style " + get().getName() + " created";
+	protected MessageCode onCreated() {
+		return MessageCode.NEW_HUNGER_GAME_CREATED.withArgs(get().getName());
 	}
 
 	@Override
@@ -25,7 +26,7 @@ public class NewHungerGame extends CommonNew<IHungerGameConfiguration> {
 	}
 
 	@Override
-	protected String onNameIsMissing() {
-		return "Cannot create a new hunger game style, need the name";
+	protected MessageCode onNameIsMissing() {
+		return MessageCode.NEW_HUNGER_GAME_MISSING_NAME;
 	}
 }
