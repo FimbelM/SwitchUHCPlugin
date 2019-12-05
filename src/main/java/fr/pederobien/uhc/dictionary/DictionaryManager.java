@@ -14,7 +14,6 @@ public class DictionaryManager {
 	}
 
 	public static String getMessage(Locale locale, MessageCode code) {
-		System.out.println("Locale parsed : " + locale);
 		return context.getMessage(locale, code);
 	}
 }

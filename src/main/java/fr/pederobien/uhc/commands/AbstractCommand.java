@@ -12,6 +12,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.pederobien.uhc.dictionary.NotificationCenter;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+import fr.pederobien.uhc.event.EventFactory;
+import fr.pederobien.uhc.event.MessageEvent;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
 import fr.pederobien.uhc.observers.IObsMessageSender;
 import fr.pederobien.uhc.world.EventListener;
@@ -34,8 +36,8 @@ public abstract class AbstractCommand implements CommandExecutor, IObsMessageSen
 	}
 
 	@Override
-	public void sendMessage(CommandSender sender, MessageCode code) {
-		NotificationCenter.sendMessage(sender, code);
+	public void sendMessage(MessageEvent event) {
+		NotificationCenter.sendMessage(event.getSender(), event.getCode());
 	}
 
 	public static void setConfigurationContext(IConfigurationContext confContext) {
@@ -46,5 +48,9 @@ public abstract class AbstractCommand implements CommandExecutor, IObsMessageSen
 	public static void setListener(EventListener listener) {
 		if (AbstractCommand.listener == null)
 			AbstractCommand.listener = listener;
+	}
+	
+	protected MessageEvent createMessageEvent(CommandSender sender, MessageCode code, String... args) {
+		return EventFactory.createMessageEvent(sender, code, args);
 	}
 }

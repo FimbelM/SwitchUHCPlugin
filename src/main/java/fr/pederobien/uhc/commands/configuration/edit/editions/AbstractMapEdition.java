@@ -13,6 +13,8 @@ import org.bukkit.entity.Player;
 import fr.pederobien.uhc.dictionary.DictionaryManager;
 import fr.pederobien.uhc.dictionary.NotificationCenter;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+import fr.pederobien.uhc.event.EventFactory;
+import fr.pederobien.uhc.event.MessageCodeEvent;
 import fr.pederobien.uhc.interfaces.IMapEdition;
 import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IPersistenceEdition;
@@ -128,5 +130,9 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 		return sender instanceof Player
 				? DictionaryManager.getMessage(NotificationCenter.getLocale((Player) sender), code)
 				: null;
+	}
+	
+	protected MessageCodeEvent createMessageCodeEvent(MessageCode code, String... args) {
+		return EventFactory.createMessageCodeEvent(code, args);
 	}
 }
