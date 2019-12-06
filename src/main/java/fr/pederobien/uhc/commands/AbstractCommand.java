@@ -37,7 +37,7 @@ public abstract class AbstractCommand implements CommandExecutor, IObsMessageSen
 
 	@Override
 	public void sendMessage(MessageEvent event) {
-		NotificationCenter.sendMessage(event.getSender(), event.getCode());
+		NotificationCenter.sendMessage(event);
 	}
 
 	public static void setConfigurationContext(IConfigurationContext confContext) {
