@@ -206,10 +206,12 @@ public enum MessageCode implements IMessageCode {
 		this.permission = permission;
 	}
 
+	@Override
 	public MessagePermission getPermission() {
 		return permission;
 	}
 
+	@Override
 	public void setPermission(MessagePermission permission) {
 		this.permission = permission;
 	}
