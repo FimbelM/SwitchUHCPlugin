@@ -10,6 +10,10 @@ public class EventFactory {
 		return new MessageCodeEvent(code, args);
 	}
 	
+	public static MessageEvent createMessageEvent(CommandSender sender, MessageCodeEvent event) {
+		return new MessageEvent(sender, event);
+	}
+	
 	public static MessageEvent createMessageEvent(CommandSender sender, MessageCode code, String... args) {
 		return new MessageEvent(sender, createMessageCodeEvent(code, args));
 	}

@@ -14,6 +14,7 @@ import org.bukkit.command.CommandSender;
 import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractEdition;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.event.EventFactory;
+import fr.pederobien.uhc.event.MessageCodeEvent;
 import fr.pederobien.uhc.event.MessageEvent;
 import fr.pederobien.uhc.interfaces.IEditConfiguration;
 import fr.pederobien.uhc.interfaces.IHelper;
@@ -27,6 +28,7 @@ public class AbstractEditConfiguration<T extends IUnmodifiableName> extends Abst
 	private IPersistence<T> persistence;
 	private IHelper<T> helper;
 	private List<IObsMessageSender> observers;
+	private CommandSender sender;
 	private HashMap<String, IMapEdition<T>> editions;
 	private boolean available;
 
@@ -88,6 +90,7 @@ public class AbstractEditConfiguration<T extends IUnmodifiableName> extends Abst
 	public IEditConfiguration<T> addEdition(IMapEdition<T> edition) {
 		edition.setAvailable(false);
 		edition.setParent(this);
+		edition.addObserver(this);
 		editions.put(edition.getLabel(), edition);
 		return this;
 	}
@@ -122,22 +125,23 @@ public class AbstractEditConfiguration<T extends IUnmodifiableName> extends Abst
 
 	@Override
 	public void edit(CommandSender sender, String[] args) {
+		this.sender = sender;
 		String label = "";
 		try {
 			label = args[0];
 			if (label.equals(helper.getLabel()))
 				sender.sendMessage(helper.edit(sender, args));
 			else if (editions.get(label).isAvailable())
-				sendMessage(sender, editions.get(label).edit(Arrays.copyOfRange(args, 1, args.length)));
+				sendMessage(editions.get(label).edit(Arrays.copyOfRange(args, 1, args.length)));
 			else
-				sendMessage(sender, MessageCode.COMMAND_NOT_AVAILABLE.withArgs(label));
+				sendMessage(MessageCode.COMMAND_NOT_AVAILABLE.withArgs(label));
 		} catch (IndexOutOfBoundsException e) {
 			e.printStackTrace();
-			sendMessage(sender, MessageCode.CANNOT_RUN_COMMAND.withArgs(getLabel()));
+			sendMessage(MessageCode.CANNOT_RUN_COMMAND.withArgs(getLabel()));
 			return;
 		} catch (NullPointerException e) {
 			e.printStackTrace();
-			sendMessage(sender, MessageCode.ARGUMENT_NOT_VALID.withArgs(label));
+			sendMessage(MessageCode.ARGUMENT_NOT_VALID.withArgs(label));
 		}
 	}
 
@@ -146,8 +150,15 @@ public class AbstractEditConfiguration<T extends IUnmodifiableName> extends Abst
 		this.helper = helper;
 		return this;
 	}
+	
+	@Override
+	public void sendMessage(MessageCodeEvent event) {
+		MessageEvent messageEvent = EventFactory.createMessageEvent(sender, event);
+		for (IObsMessageSender obs : observers)
+			obs.sendMessage(messageEvent);
+	}
 
-	private void sendMessage(CommandSender sender, MessageCode code, String... args) {
+	private void sendMessage(MessageCode code, String... args) {
 		MessageEvent event = EventFactory.createMessageEvent(sender, code, args);
 		for (IObsMessageSender obs : observers)
 			obs.sendMessage(event);

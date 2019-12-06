@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -19,18 +20,21 @@ import fr.pederobien.uhc.interfaces.IMapEdition;
 import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IPersistenceEdition;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
+import fr.pederobien.uhc.observers.IObsMessageCodeSender;
 
 public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends AbstractEdition
 		implements IMapEdition<T> {
 	private IPersistenceEdition<T> parent;
 	private boolean available, modifiable;
 	private HashMap<String, IMapEdition<T>> editions;
+	private List<IObsMessageCodeSender> observers;
 
 	public AbstractMapEdition(String label, MessageCode explanation) {
 		super(label, explanation);
 		available = true;
 		modifiable = true;
 		editions = new HashMap<String, IMapEdition<T>>();
+		observers = new ArrayList<IObsMessageCodeSender>();
 	}
 
 	@Override
@@ -111,6 +115,28 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 		this.parent = parent;
 		for (IMapEdition<T> edition : editions.values())
 			edition.setParent(parent);
+	}
+	
+	@Override
+	public IMapEdition<T> addObserver(IObsMessageCodeSender obs) {
+		observers.add(obs);
+		for (IMapEdition<T> edition : editions.values())
+			edition.addObserver(obs);
+		return this;
+	}
+	
+	@Override
+	public IMapEdition<T> removeObserver(IObsMessageCodeSender obs) {
+		observers.remove(obs);
+		for (IMapEdition<T> edition : editions.values())
+			edition.removeObserver(obs);
+		return this;
+	}
+	
+	@Override
+	public void sendMessage(MessageCodeEvent event) {
+		for (IObsMessageCodeSender obs : observers)
+			obs.sendMessage(event);
 	}
 
 	public T get() {
