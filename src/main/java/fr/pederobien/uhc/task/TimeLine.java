@@ -15,7 +15,7 @@ public class TimeLine implements IObsTimeTask {
 		map = new HashMap<>();
 		task.addObserver(this);
 	}
-	
+
 	public void addObserver(LocalTime time, IObsTimeLine function) {
 		if (map.containsKey(time))
 			map.get(time).add(function);
@@ -25,7 +25,7 @@ public class TimeLine implements IObsTimeTask {
 			map.put(time, list);
 		}
 	}
-	
+
 	public void removeObserver(LocalTime time, IObsTimeLine function) {
 		map.get(time).remove(function);
 		if (map.get(time).size() == 0)

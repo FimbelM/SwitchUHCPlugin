@@ -20,7 +20,7 @@ public class SerialisableBlock implements ISerializableBlock {
 	public SerialisableBlock(int x, int y, int z, String blockData) {
 		this(x, y, z, BukkitManager.createBlockData(blockData));
 	}
-	
+
 	public SerialisableBlock(ISerializableBlock block, BlockData data) {
 		loc = WorldManager.createDefaultLocation(block.getX(), block.getY(), block.getZ());
 		this.data = data;
@@ -61,11 +61,10 @@ public class SerialisableBlock implements ISerializableBlock {
 			return false;
 		else {
 			SerialisableBlock block = (SerialisableBlock) obj;
-			return getX() == block.getX() && getY() == block.getY() && getZ() == block.getZ()
-					&& getMaterial() == block.getMaterial();
+			return getX() == block.getX() && getY() == block.getY() && getZ() == block.getZ() && getMaterial() == block.getMaterial();
 		}
 	}
-	
+
 	@Override
 	public String toString() {
 		return getClass().getSimpleName() + "{x=" + getX() + ",y=" + getY() + ",z=" + getZ() + ",blockData=" + data + "}";

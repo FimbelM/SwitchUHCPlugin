@@ -11,11 +11,11 @@ import fr.pederobien.uhc.persistence.loaders.IPersistenceLoader;
 public interface IPersistence<T extends IUnmodifiableName> {
 
 	IPersistence<T> load(String name) throws FileNotFoundException;
-	
+
 	IPersistence<T> registerLoader(IPersistenceLoader<T> loader);
-	
+
 	Map<String, IPersistenceLoader<T>> getLoaders();
-	
+
 	IDefaultContent getDefaultContent();
 
 	void save();
@@ -33,8 +33,8 @@ public interface IPersistence<T extends IUnmodifiableName> {
 	boolean isSaved();
 
 	List<String> list();
-	
+
 	IPersistence<T> addObserver(IObsPersistence<T> obs);
-	
+
 	IPersistence<T> removeObserver(IObsPersistence<T> obs);
 }

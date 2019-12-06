@@ -4,7 +4,7 @@ import fr.pederobien.uhc.interfaces.IDimension;
 
 public class Dimension implements IDimension {
 	private int width, height, depth;
-	
+
 	public Dimension() {
 		this(0, 0, 0);
 	}

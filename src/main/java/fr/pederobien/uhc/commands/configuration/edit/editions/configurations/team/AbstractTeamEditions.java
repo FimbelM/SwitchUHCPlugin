@@ -26,8 +26,7 @@ public abstract class AbstractTeamEditions<T extends IConfiguration> extends Abs
 	}
 
 	protected Stream<String> getTeams(String[] teamAlreadyMentionned) {
-		return get().getTeams().stream().map(t -> t.getNameWithoutColor())
-				.filter(n -> !Arrays.asList(teamAlreadyMentionned).contains(n));
+		return get().getTeams().stream().map(t -> t.getNameWithoutColor()).filter(n -> !Arrays.asList(teamAlreadyMentionned).contains(n));
 	}
 
 	protected Stream<String> getFreePlayersName(String[] playersAlreadyMentionned) {
@@ -37,8 +36,8 @@ public abstract class AbstractTeamEditions<T extends IConfiguration> extends Abs
 	}
 
 	protected Stream<String> getPlayersName(String teamName, String[] playersAlreadyMentionned) {
-		return get().getTeams().stream().filter(t -> t.getNameWithoutColor().equals(teamName)).findFirst().get()
-		.getPlayers().stream().filter(s -> !Arrays.asList(playersAlreadyMentionned).contains(s));
+		return get().getTeams().stream().filter(t -> t.getNameWithoutColor().equals(teamName)).findFirst().get().getPlayers().stream()
+				.filter(s -> !Arrays.asList(playersAlreadyMentionned).contains(s));
 	}
 
 	protected Stream<String> getAvailableColors() {

@@ -12,7 +12,7 @@ public class StopState extends AbstractBlockedexScoreboardState {
 	protected void updateEntries() {
 
 	}
-	
+
 	@Override
 	public void stop() {
 		ScoreboardManager.removePlayersScoreboard();

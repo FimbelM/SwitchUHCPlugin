@@ -11,6 +11,6 @@ public interface IBawn extends IName, IUnmodifiableBawn {
 	void setCenter(Block center);
 
 	void setCenter(String x, String y, String z);
-	
+
 	void setDimension(IDimension dimension);
 }

@@ -6,8 +6,7 @@ import fr.pederobien.uhc.interfaces.IConfigurationContext;
 import fr.pederobien.uhc.interfaces.IMapEdition;
 import fr.pederobien.uhc.interfaces.IPersistence;
 
-public abstract class AbstractConfigurationEditionsFactory<T extends IConfiguration>
-		extends AbstractEditionsFactory<T> {
+public abstract class AbstractConfigurationEditionsFactory<T extends IConfiguration> extends AbstractEditionsFactory<T> {
 
 	public AbstractConfigurationEditionsFactory(IPersistence<T> persistence) {
 		super(persistence);

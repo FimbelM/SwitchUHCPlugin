@@ -61,7 +61,7 @@ public class HungerGameEditionsFactory extends AbstractConfigurationEditionsFact
 	public IMapEdition<IHungerGameConfiguration> createSaveEdition() {
 		return new SaveHungerGame();
 	}
-	
+
 	@Override
 	public IMapEdition<IHungerGameConfiguration> createDeleteEdition() {
 		return new DeleteHungerGame();
@@ -78,7 +78,7 @@ public class HungerGameEditionsFactory extends AbstractConfigurationEditionsFact
 	public IMapEdition<IHungerGameConfiguration> createFinalBorderDiameterEdition() {
 		return new FinalBorderDiameterHungerGame();
 	}
-	
+
 	public IMapEdition<IHungerGameConfiguration> createSpeedBorderEdition() {
 		return new SpeedBorderHungerGame();
 	}
@@ -86,11 +86,11 @@ public class HungerGameEditionsFactory extends AbstractConfigurationEditionsFact
 	public IMapEdition<IHungerGameConfiguration> createFractionTimeEdition() {
 		return new FractionTimeHungerGame();
 	}
-	
+
 	public IMapEdition<IHungerGameConfiguration> createWarningTimeEdition() {
 		return new WarningTimeHungerGame();
 	}
-	
+
 	public IMapEdition<IHungerGameConfiguration> createPvpTimeEdition() {
 		return new PvpTimeHungerGame();
 	}

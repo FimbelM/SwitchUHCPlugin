@@ -156,8 +156,7 @@ public class PlayerManager {
 		players.forEach(p -> effects.forEach(e -> giveEffect(p, e)));
 	}
 
-	public static PotionEffect createEffect(PotionEffectType type, int duration, int amplifier, boolean ambient,
-			boolean particles) {
+	public static PotionEffect createEffect(PotionEffectType type, int duration, int amplifier, boolean ambient, boolean particles) {
 		return new PotionEffect(type, duration, amplifier, ambient, particles);
 	}
 
@@ -214,11 +213,9 @@ public class PlayerManager {
 	}
 
 	public static List<Player> getClosePlayers(Player src, List<Player> players, int distance) {
-		return players.stream()
-				.filter(p -> Math.abs(src.getLocation().getBlockX() - p.getLocation().getBlockX()) <= distance)
+		return players.stream().filter(p -> Math.abs(src.getLocation().getBlockX() - p.getLocation().getBlockX()) <= distance)
 				.filter(p -> Math.abs(src.getLocation().getBlockY() - p.getLocation().getBlockY()) <= distance)
-				.filter(p -> Math.abs(src.getLocation().getBlockZ() - p.getLocation().getBlockZ()) <= distance)
-				.collect(Collectors.toList());
+				.filter(p -> Math.abs(src.getLocation().getBlockZ() - p.getLocation().getBlockZ()) <= distance).collect(Collectors.toList());
 	}
 
 	public static void dropPlayerInventoryItemNaturally(Player player) {
@@ -239,7 +236,7 @@ public class PlayerManager {
 	public static void sendMessageToPlayer(Player player, String message) {
 		player.sendMessage(message);
 	}
-	
+
 	public static void sendMessageToPlayers(Stream<Player> players, String message) {
 		players.forEach(p -> sendMessageToPlayer(p, message));
 	}

@@ -58,7 +58,7 @@ public class BlockedexPersistence extends AbstractConfPersistence<IBlockedexConf
 		bases.setAttribute("east", get().getEastBase());
 		bases.setAttribute("distance", get().getBaseFromSpawnDistance().toString());
 		root.appendChild(bases);
-		
+
 		Element teams = doc.createElement("teams");
 		for (ETeam t : get().getTeams()) {
 			Element team = doc.createElement("team");

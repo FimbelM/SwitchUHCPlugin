@@ -80,7 +80,7 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 		map.put(loader.getVersion(), loader);
 		return this;
 	}
-	
+
 	@Override
 	public IDefaultContent getDefaultContent() {
 		return defaultContent;
@@ -130,13 +130,13 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 		this.elt = elt;
 		onCurrentChange();
 	}
-	
+
 	@Override
 	public IPersistence<T> addObserver(IObsPersistence<T> obs) {
 		observers.add(obs);
 		return this;
 	}
-	
+
 	@Override
 	public IPersistence<T> removeObserver(IObsPersistence<T> obs) {
 		observers.remove(obs);
@@ -205,7 +205,7 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 		if (!file.exists()) {
 			file.mkdirs();
 		}
-		
+
 		file = new File(getAbsolutePath(defaultContent.getName()));
 		if (!file.exists()) {
 			BufferedWriter writer = null;
@@ -224,7 +224,7 @@ public abstract class AbstractPersistence<T extends IUnmodifiableName> implement
 			}
 		}
 	}
-	
+
 	private void onCurrentChange() {
 		for (IObsPersistence<T> obs : observers)
 			obs.onCurrentChange(get());

@@ -23,5 +23,5 @@ public interface IHungerGame extends IGame, IObsTimeLine {
 	IHungerGameState getStop();
 
 	IUnmodifiableHungerGameConfiguration getConfiguration();
-	
+
 }

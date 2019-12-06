@@ -58,7 +58,8 @@ public class PlayerDontReviveState extends AbstractHungerGameState {
 
 	private void changeFromDontReviveToHungerGame() {
 		BukkitManager.broadcastMessageAsTitle("Déplacement bordure", "red");
-		WorldManager.moveBorder(game.getConfiguration().getFinalBorderDiameter(), game.getConfiguration().getInitialBorderDiameter().longValue()/game.getConfiguration().getBorderSpeed().longValue());
+		WorldManager.moveBorder(game.getConfiguration().getFinalBorderDiameter(),
+				game.getConfiguration().getInitialBorderDiameter().longValue() / game.getConfiguration().getBorderSpeed().longValue());
 		PlayerManager.killPlayers(WorldManager.getPlayersInWorld(WorldManager.END_WORLD, WorldManager.NETHER_WORLD));
 		game.setCurrentState(game.getHungerGame());
 	}

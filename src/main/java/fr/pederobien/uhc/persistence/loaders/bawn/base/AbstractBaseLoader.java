@@ -13,8 +13,7 @@ public abstract class AbstractBaseLoader extends AbstractBawnLoader<IBase> {
 
 	protected void show() {
 		System.out.println("Name : " + get().getName());
-		System.out.println("Center : " + get().getCenter().getX() + " " + get().getCenter().getY() + " "
-				+ get().getCenter().getZ());
+		System.out.println("Center : " + get().getCenter().getX() + " " + get().getCenter().getY() + " " + get().getCenter().getZ());
 		System.out.println("chests");
 		for (ISerializableBlock b : get().getChests().keySet())
 			System.out.println("\t" + b.getX() + " " + b.getY() + " " + b.getZ() + " " + get().getChests().get(b));

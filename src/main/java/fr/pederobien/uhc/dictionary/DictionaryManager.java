@@ -9,8 +9,7 @@ public class DictionaryManager {
 	private static IDictionaryContext context = new DictionaryContext();
 
 	static {
-		context.registerDictionary(DictionaryFactory.createEnglishDictionary())
-				.registerDictionary(DictionaryFactory.createFrenchDictionary());
+		context.registerDictionary(DictionaryFactory.createEnglishDictionary()).registerDictionary(DictionaryFactory.createFrenchDictionary());
 	}
 
 	public static String getMessage(Locale locale, MessageCodeEvent event) {

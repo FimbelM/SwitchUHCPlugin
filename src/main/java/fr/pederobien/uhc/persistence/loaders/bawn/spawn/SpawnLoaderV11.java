@@ -37,8 +37,8 @@ public class SpawnLoaderV11 extends AbstractSpawnLoader {
 					if (elt.getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
 						continue;
 					Element block = (Element) elt.getChildNodes().item(j);
-					blocksStr.add(new SerialisableBlock(block.getAttribute("x"), block.getAttribute("y"),
-							block.getAttribute("z"), block.getAttribute("blockdata")));
+					blocksStr.add(new SerialisableBlock(block.getAttribute("x"), block.getAttribute("y"), block.getAttribute("z"),
+							block.getAttribute("blockdata")));
 				}
 				get().setBlocks(blocksStr);
 				break;

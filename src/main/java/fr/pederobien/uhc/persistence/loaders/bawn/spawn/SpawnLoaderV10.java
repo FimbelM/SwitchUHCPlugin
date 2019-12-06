@@ -38,8 +38,7 @@ public class SpawnLoaderV10 extends AbstractSpawnLoader {
 					if (elt.getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
 						continue;
 					Element block = (Element) elt.getChildNodes().item(j);
-					blocksStr.add(new SerialisableBlock(block.getAttribute("x"), block.getAttribute("y"),
-							block.getAttribute("z"),
+					blocksStr.add(new SerialisableBlock(block.getAttribute("x"), block.getAttribute("y"), block.getAttribute("z"),
 							Material.valueOf(block.getAttribute("material")).createBlockData().getAsString()));
 				}
 				get().setBlocks(blocksStr);
@@ -48,7 +47,7 @@ public class SpawnLoaderV10 extends AbstractSpawnLoader {
 				break;
 			}
 		}
-		
+
 		return this;
 	}
 }

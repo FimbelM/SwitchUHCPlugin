@@ -67,8 +67,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.CENTER_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Center defined in " + args[0] + " " + args[1] + " "
-						+ args[2];
+				return "Center defined in " + args[0] + " " + args[1] + " " + args[2];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.CENTER_COORDINATES_ARE_MISSING) {
 			@Override
@@ -161,8 +160,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.EXTRACT_BASE_ONE_CHEST_EXTRACTED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Base " + args[0] + " extracted\nOne chest for " + args[1]
-						+ " team";
+				return "Base " + args[0] + " extracted\nOne chest for " + args[1] + " team";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.EXTRACT_BASE_CHESTS_EXTRACTED) {
 			@Override
@@ -194,8 +192,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_BASE_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Dimensions of the base " + args[0] + " defined as " + args[1]
-						+ " " + args[2] + " " + args[3];
+				return "Dimensions of the base " + args[0] + " defined as " + args[1] + " " + args[2] + " " + args[3];
 			}
 		});
 
@@ -207,22 +204,17 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_NO_TEAM_SUPPORTED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Base " + args[0] + " launched at " + args[1] + " "
-						+ args[2] + " " + args[3] + "\nNo team color supported";
+				return "Base " + args[0] + " launched at " + args[1] + " " + args[2] + " " + args[3] + "\nNo team color supported";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_ONE_TEAM_SUPPORTED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Base " + args[0] + " launched at " + args[1] + " "
-						+ args[2] + " " + args[3] + "\nOne team color supported : "
-						+ args[4];
+				return "Base " + args[0] + " launched at " + args[1] + " " + args[2] + " " + args[3] + "\nOne team color supported : " + args[4];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_TEAMS_SUPPORTED_LAUNCHED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Base " + args[0] + " launched at " + args[1] + " "
-						+ args[2] + " " + args[3] + "\nTeam colors supported : "
-						+ args[4];
+				return "Base " + args[0] + " launched at " + args[1] + " " + args[2] + " " + args[3] + "\nTeam colors supported : " + args[4];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_NOT_EXISTING) {
 			@Override
@@ -237,8 +229,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_MISSING_NAME_AND_COORDINATES) {
 			@Override
 			public String getMessage(String... args) {
-				return "Cannot launch base " + args[0]
-						+ " need the base’s name and center’s coordinates <X> <Y> <Z>";
+				return "Cannot launch base " + args[0] + " need the base’s name and center’s coordinates <X> <Y> <Z>";
 			}
 		});
 
@@ -311,8 +302,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_BASE_ALREADY_EXISTING) {
 			@Override
 			public String getMessage(String... args) {
-				return "Cannot rename base " + args[0] + " as " + args[1]
-						+ ", base already exist";
+				return "Cannot rename base " + args[0] + " as " + args[1] + ", base already exist";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_BASE_MISSING_NAME) {
 			@Override
@@ -332,7 +322,7 @@ public class EnglishDictionary extends AbstractDictionary {
 				return "Base " + args[0] + " saved";
 			}
 		});
-		
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.SPAWN_EDITION_CONFIGURATION_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
@@ -375,7 +365,7 @@ public class EnglishDictionary extends AbstractDictionary {
 				return "Spawn " + args[0] + " extracted";
 			}
 		});
-		
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_SPAWN_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
@@ -384,8 +374,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_BASE_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Dimensions of the spawn " + args[0] + " defined as " + args[1]
-						+ " " + args[2] + " " + args[3];
+				return "Dimensions of the spawn " + args[0] + " defined as " + args[1] + " " + args[2] + " " + args[3];
 			}
 		});
 
@@ -397,8 +386,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_SPAWN_LAUNCHED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Spawn " + args[0] + " launched at " + args[1] + " "
-						+ args[2] + " " + args[3];
+				return "Spawn " + args[0] + " launched at " + args[1] + " " + args[2] + " " + args[3];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_SPAWN_NOT_EXISTING) {
 			@Override
@@ -413,8 +401,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_SPAWN_MISSING_NAME_AND_COORDINATES) {
 			@Override
 			public String getMessage(String... args) {
-				return "Cannot launch spawn " + args[0]
-						+ " need the spawn’s name and center’s coordinates <X> <Y> <Z>";
+				return "Cannot launch spawn " + args[0] + " need the spawn’s name and center’s coordinates <X> <Y> <Z>";
 			}
 		});
 
@@ -461,7 +448,7 @@ public class EnglishDictionary extends AbstractDictionary {
 				return "Cannot create a new spawn, need the name";
 			}
 		});
-		
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.RANDOM_SPAWN_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
@@ -509,8 +496,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_SPAWN_ALREADY_EXISTING) {
 			@Override
 			public String getMessage(String... args) {
-				return "Cannot rename spawn " + args[0] + " as " + args[1]
-						+ ", spawn already exist";
+				return "Cannot rename spawn " + args[0] + " as " + args[1] + ", spawn already exist";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_SPAWN_MISSING_NAME) {
 			@Override
@@ -541,8 +527,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Game time defined : " + args[0] + "h " + args[1] + "m "
-						+ args[2] + "s";
+				return "Game time defined : " + args[0] + "h " + args[1] + "m " + args[2] + "s";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_MISSING_TIME) {
 			@Override
@@ -733,8 +718,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_MOVEPLAYER_MOVED) {
 			@Override
 			public String getMessage(String... args) {
-				return args[0] + " moved from " + args[1] + " to "
-						+ args[2];
+				return args[0] + " moved from " + args[1] + " to " + args[2];
 			}
 		});
 
@@ -798,7 +782,7 @@ public class EnglishDictionary extends AbstractDictionary {
 				return "All teams have been removed";
 			}
 		});
-		
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.HUNGER_GAME_EDITION_CONFIGURATION_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
@@ -814,8 +798,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.AS_CURRENT_HUNGER_GAME_NOT_EXISTING_STYLE) {
 			@Override
 			public String getMessage(String... args) {
-				return "Cannot set the hunger game style " + args[0]
-						+ " as the current style, style does not exist";
+				return "Cannot set the hunger game style " + args[0] + " as the current style, style does not exist";
 			}
 		});
 
@@ -885,19 +868,17 @@ public class EnglishDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Cannot set the final border diameter, need the diameter";
 			}
-		}).registerMessage(
-				new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_BAD_DIAMETER_FORMAT) {
-					@Override
-					public String getMessage(String... args) {
-						return "Cannot parse final diameter";
-					}
-				})
-				.registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE) {
-					@Override
-					public String getMessage(String... args) {
-						return "<final diameter>";
-					}
-				});
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_BAD_DIAMETER_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot parse final diameter";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE) {
+			@Override
+			public String getMessage(String... args) {
+				return "<final diameter>";
+			}
+		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_HUNGER_GAME_EXPLANATION) {
 			@Override
@@ -907,8 +888,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_HUNGER_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Player will respawn in spectator mode after " + args[0] + "h "
-						+ args[1] + "m " + args[2] + "s of play";
+				return "Player will respawn in spectator mode after " + args[0] + "h " + args[1] + "m " + args[2] + "s of play";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_HUNGER_GAME_MISSING_TIME) {
 			@Override
@@ -925,8 +905,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Game time defined : " + args[0] + "h " + args[1] + "m "
-						+ args[2] + "s";
+				return "Game time defined : " + args[0] + "h " + args[1] + "m " + args[2] + "s";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_MISSING_TIME) {
 			@Override
@@ -967,19 +946,17 @@ public class EnglishDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Cannot set the initial border diameter, need the diameter";
 			}
-		}).registerMessage(
-				new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_BAD_DIAMETER_FORMAT) {
-					@Override
-					public String getMessage(String... args) {
-						return "Cannot parse initial diameter";
-					}
-				}).registerMessage(
-						new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE) {
-							@Override
-							public String getMessage(String... args) {
-								return "<initial diameter>";
-							}
-						});
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_BAD_DIAMETER_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot parse initial diameter";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE) {
+			@Override
+			public String getMessage(String... args) {
+				return "<initial diameter>";
+			}
+		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.LIST_HUNGER_GAME_EXPLANATION) {
 			@Override
@@ -1023,14 +1000,12 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_HUNGER_GAME_STYLE_ONE_TEAM_CREATED_LOADED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Hunger game style " + args[0] + " loaded\nTeam " + args[1]
-						+ " created";
+				return "Hunger game style " + args[0] + " loaded\nTeam " + args[1] + " created";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_HUNGER_GAME_STYLE_TEAMS_CREATED_LOADED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Hunger game style " + args[0] + " loaded\nTeam created : "
-						+ args[1];
+				return "Hunger game style " + args[0] + " loaded\nTeam created : " + args[1];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_HUNGER_GAME_MISSING_NAME) {
 			@Override
@@ -1069,8 +1044,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.PVP_TIME_HUNGER_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Pvp is authorized after " + args[0] + "h " + args[1] + "m "
-						+ args[2] + "s of play";
+				return "Pvp is authorized after " + args[0] + "h " + args[1] + "m " + args[2] + "s of play";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.PVP_TIME_HUNGER_GAME_MISSING_TIME) {
 			@Override
@@ -1097,8 +1071,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_HUNGER_GAME_ALREADY_EXISTING) {
 			@Override
 			public String getMessage(String... args) {
-				return "Cannot rename the hunger game style " + args[0] + " as " + args[1]
-						+ ", style already exist";
+				return "Cannot rename the hunger game style " + args[0] + " as " + args[1] + ", style already exist";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_HUNGER_GAME_MISSING_NAME) {
 			@Override
@@ -1159,8 +1132,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_HUNGER_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Warning players " + args[0] + "h " + args[1] + "m "
-						+ args[2] + "s before moving border";
+				return "Warning players " + args[0] + "h " + args[1] + "m " + args[2] + "s before moving border";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_HUNGER_GAME_MISSING_TIME) {
 			@Override
@@ -1204,8 +1176,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_MUST_GO_BACK_TO_THE_OVERWORLD) {
 			@Override
 			public String getMessage(String... args) {
-				return "Go back to the overworld or you will die in " + args[0] + "h "
-						+ args[0] + "m " + args[0] + "s";
+				return "Go back to the overworld or you will die in " + args[0] + "h " + args[0] + "m " + args[0] + "s";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_MUST_STAY_IN_THE_OVERWORLD) {
 			@Override
@@ -1220,7 +1191,7 @@ public class EnglishDictionary extends AbstractDictionary {
 				return "to configure a blockedex game style";
 			}
 		});
-		
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.AS_CURRENT_BLOCKEDEX_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
@@ -1396,14 +1367,12 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_BLOCKEDEX_GAME_STYLE_ONE_TEAM_CREATED_LOADED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Blockedex game style " + args[0] + " loaded\nTeam " + args[1]
-						+ " created";
+				return "Blockedex game style " + args[0] + " loaded\nTeam " + args[1] + " created";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_BLOCKEDEX_GAME_STYLE_TEAMS_CREATED_LOADED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Blockedex game style " + args[0] + " loaded\nTeam created : "
-						+ args[1];
+				return "Blockedex game style " + args[0] + " loaded\nTeam created : " + args[1];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_BLOCKEDEX_GAME_MISSING_NAME) {
 			@Override
@@ -1433,7 +1402,7 @@ public class EnglishDictionary extends AbstractDictionary {
 				return "Cannot create a new blockedex game style, need the name";
 			}
 		});
-		
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_BLOCKEDEX_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
@@ -1447,8 +1416,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_BLOCKEDEX_GAME_ALREADY_EXISTING) {
 			@Override
 			public String getMessage(String... args) {
-				return "Cannot rename the blockedex game style " + args[0] + " as " + args[1]
-						+ ", style already exist";
+				return "Cannot rename the blockedex game style " + args[0] + " as " + args[1] + ", style already exist";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_BLOCKEDEX_GAME_MISSING_NAME) {
 			@Override
@@ -1479,8 +1447,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.CHEST_IS_RESTRICTED) {
 			@Override
 			public String getMessage(String... args) {
-				return "This chest is reserved for team " + args[0] + " you are in team "
-						+ args[1];
+				return "This chest is reserved for team " + args[0] + " you are in team " + args[1];
 			}
 		});
 

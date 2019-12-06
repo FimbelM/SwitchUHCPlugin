@@ -29,11 +29,11 @@ public class ConfigurationsFactory {
 	public IConfigurationContext createConfigurationContext() {
 		return new ConfigurationContext();
 	}
-	
+
 	public ISpawn createSpawn(String name) {
 		return new Spawn(name);
 	}
-	
+
 	public IBase createBase(String name) {
 		return new Base(name);
 	}

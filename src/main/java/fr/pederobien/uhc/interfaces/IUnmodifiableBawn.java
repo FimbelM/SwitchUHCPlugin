@@ -25,8 +25,8 @@ public interface IUnmodifiableBawn extends IUnmodifiableName {
 	int getHeight();
 
 	int getDepth();
-	
+
 	void addObserver(IObsBawn obs);
-	
+
 	void removeObserver(IObsBawn obs);
 }

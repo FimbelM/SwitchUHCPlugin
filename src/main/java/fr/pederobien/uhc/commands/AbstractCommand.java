@@ -50,7 +50,7 @@ public abstract class AbstractCommand implements CommandExecutor, IObsMessageSen
 		if (AbstractCommand.listener == null)
 			AbstractCommand.listener = listener;
 	}
-	
+
 	protected MessageEvent createMessageEvent(CommandSender sender, MessageCode code, String... args) {
 		return EventFactory.createMessageEvent(sender, code, args);
 	}

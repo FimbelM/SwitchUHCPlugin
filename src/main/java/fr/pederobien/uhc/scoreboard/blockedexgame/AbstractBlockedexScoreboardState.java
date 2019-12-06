@@ -17,7 +17,7 @@ public abstract class AbstractBlockedexScoreboardState extends AbstractScoreboar
 	public void pause(IBDScoreboardState before) {
 		throw new ScoreboardStateException("This method cannot be called by this state");
 	}
-	
+
 	protected String showBlock(Block block) {
 		return block.getX() + " " + block.getY() + " " + block.getZ();
 	}

@@ -6,7 +6,7 @@ import fr.pederobien.uhc.scoreboard.blockedexgame.BlockedexScoreboard;
 import fr.pederobien.uhc.task.TimeTask;
 
 public class BDScoreboardLauncher extends AbstractScoreboardLauncher<IUnmodifiableBlockedexConfiguration> {
-	
+
 	public BDScoreboardLauncher(TimeTask task, IUnmodifiableBlockedexConfiguration configuration) {
 		super(task, configuration);
 	}

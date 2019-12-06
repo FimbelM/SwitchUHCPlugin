@@ -3,7 +3,7 @@ package fr.pederobien.uhc.scoreboard.launcher;
 import fr.pederobien.uhc.observers.IObsTimeLine;
 
 public interface IScoreboardLauncher extends IObsTimeLine {
-	
+
 	void run(long delay, long period);
 
 	void start();
@@ -15,6 +15,6 @@ public interface IScoreboardLauncher extends IObsTimeLine {
 	void relaunched();
 
 	void stop();
-	
+
 	void cancel();
 }

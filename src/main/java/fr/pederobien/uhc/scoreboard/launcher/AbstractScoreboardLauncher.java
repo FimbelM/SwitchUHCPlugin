@@ -68,11 +68,11 @@ public abstract class AbstractScoreboardLauncher<T extends IUnmodifiableConfigur
 	public void time(LocalTime time) {
 		scoreboard.time(time);
 	}
-	
+
 	protected TimeTask getTask() {
 		return task;
 	}
-	
+
 	protected T getConfiguration() {
 		return configuration;
 	}

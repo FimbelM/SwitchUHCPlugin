@@ -2,7 +2,7 @@ package fr.pederobien.uhc.interfaces;
 
 import java.util.Map;
 
-public interface INodeEdition<T extends IEdition, U> extends IEdition{
+public interface INodeEdition<T extends IEdition, U> extends IEdition {
 
 	U addEdition(T elt);
 

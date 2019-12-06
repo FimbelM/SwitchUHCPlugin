@@ -2,7 +2,7 @@ package fr.pederobien.uhc.scoreboard.blockedexgame;
 
 public class PauseState extends AbstractBlockedexScoreboardState {
 	private IBDScoreboardState before;
-	
+
 	public PauseState(IBDScoreboard scoreboard) {
 		super(scoreboard, "Partie Suspendue");
 	}

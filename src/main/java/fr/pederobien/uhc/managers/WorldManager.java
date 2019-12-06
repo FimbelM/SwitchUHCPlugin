@@ -224,10 +224,8 @@ public class WorldManager {
 
 	public static boolean isLocationUnderSpawn(Location location) {
 		if (spawn != null)
-			return isInInterval(location.getBlockX() - spawn.getCenter().getLocation().getBlockX(),
-					-spawn.getWidth() / 2, spawn.getWidth() / 2)
-					&& isInInterval(location.getBlockZ() - spawn.getCenter().getLocation().getBlockZ(),
-							-spawn.getDepth() / 2, spawn.getDepth() / 2);
+			return isInInterval(location.getBlockX() - spawn.getCenter().getLocation().getBlockX(), -spawn.getWidth() / 2, spawn.getWidth() / 2)
+					&& isInInterval(location.getBlockZ() - spawn.getCenter().getLocation().getBlockZ(), -spawn.getDepth() / 2, spawn.getDepth() / 2);
 		else
 			return false;
 	}

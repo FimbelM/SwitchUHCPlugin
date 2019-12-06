@@ -10,8 +10,7 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	private static final Double DEFAULT_STEP_ON_MAX_HEALTH = 1.0;
 	private static final Integer DEFAULT_DIAMETER_AREA_ON_PLAYER_RESPAWN = 1000;
 	private static final Integer DEFAULT_BASE_FROM_SPAWN_DISTANCE = 1000;
-	private static final String DEFAULT_BASE = PersistenceFactory.getInstance().getBasePersistence().getDefaultContent()
-			.getName();
+	private static final String DEFAULT_BASE = PersistenceFactory.getInstance().getBasePersistence().getDefaultContent().getName();
 
 	private Integer radiusAreaOnPlayerDie;
 	private Integer radiusAreaOnPlayerKill;

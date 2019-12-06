@@ -11,9 +11,7 @@ public class CommonBase extends AbstractConfEdition<IBlockedexConfiguration> {
 	protected CommonBase() {
 		super("base", MessageCode.BASE_BLOCKEDEX_GAME_EXPLANATION);
 
-		addEdition(factory.createEastBaseEdition())
-		.addEdition(factory.createNorthBaseEdition())
-		.addEdition(factory.createSouthBaseEdition())
-		.addEdition(factory.createWestBaseEdition());
+		addEdition(factory.createEastBaseEdition()).addEdition(factory.createNorthBaseEdition()).addEdition(factory.createSouthBaseEdition())
+				.addEdition(factory.createWestBaseEdition());
 	}
 }

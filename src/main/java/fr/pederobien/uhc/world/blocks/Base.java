@@ -58,7 +58,7 @@ public class Base extends AbstractBawn implements IBase {
 	public void setChests(HashMap<ISerializableBlock, ETeam> chests) {
 		this.chests = chests;
 	}
-	
+
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();

@@ -9,19 +9,13 @@ public class EditBaseConfiguration extends AbstractEditConfiguration<IBase> {
 
 	public EditBaseConfiguration() {
 		super(factory.getPersistence(), "base", MessageCode.BASE_EDITION_CONFIGURATION_EXPLANATION);
-				
-		addEdition(factory.createCenterEdition())
-		.addEdition(factory.createCurrentEdition())
-		.addEdition(factory.createDeleteEdition().setModifiable(false))
-		.addEdition(factory.createDimensionsEdition())
-		.addEdition(factory.createExtractEdition())
-		.addEdition(factory.createLaunchEdition().setModifiable(false))
-		.addEdition(factory.createListEdition())
-		.addEdition(factory.createNewEdition().setModifiable(false))
-		.addEdition(factory.createRemoveEdition())
-		.addEdition(factory.createRenameEdition())
-		.addEdition(factory.createSaveEdition());
-		
+
+		addEdition(factory.createCenterEdition()).addEdition(factory.createCurrentEdition())
+				.addEdition(factory.createDeleteEdition().setModifiable(false)).addEdition(factory.createDimensionsEdition())
+				.addEdition(factory.createExtractEdition()).addEdition(factory.createLaunchEdition().setModifiable(false))
+				.addEdition(factory.createListEdition()).addEdition(factory.createNewEdition().setModifiable(false))
+				.addEdition(factory.createRemoveEdition()).addEdition(factory.createRenameEdition()).addEdition(factory.createSaveEdition());
+
 		setAvailable(false);
 	}
 }

@@ -17,10 +17,9 @@ public class SpawnEditionsFactory extends AbstractBawnEditionsFactory<ISpawn> {
 	}
 
 	private static class SingletonHolder {
-		public static final SpawnEditionsFactory factory = new SpawnEditionsFactory(
-				PersistenceFactory.getInstance().getSpawnPersistence());
+		public static final SpawnEditionsFactory factory = new SpawnEditionsFactory(PersistenceFactory.getInstance().getSpawnPersistence());
 	}
-	
+
 	@Override
 	public IMapEdition<ISpawn> createDimensionsEdition() {
 		return new DimensionsSpawn();
@@ -45,7 +44,7 @@ public class SpawnEditionsFactory extends AbstractBawnEditionsFactory<ISpawn> {
 	public IMapEdition<ISpawn> createSaveEdition() {
 		return new SaveSpawn();
 	}
-	
+
 	@Override
 	public IMapEdition<ISpawn> createDeleteEdition() {
 		return new DeleteSpawn();
@@ -70,7 +69,7 @@ public class SpawnEditionsFactory extends AbstractBawnEditionsFactory<ISpawn> {
 	public IMapEdition<ISpawn> createRemoveEdition() {
 		return new RemoveSpawn();
 	}
-	
+
 	public IMapEdition<ISpawn> createRandomEdition() {
 		return new RandomSpawn();
 	}

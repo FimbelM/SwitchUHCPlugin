@@ -16,8 +16,7 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 	public HungerGamePersistence() {
 		super(new HungerGameDefaultContent());
 
-		registerLoader(new HungerGameLoaderV10()).registerLoader(new HungerGameLoaderV11())
-				.registerLoader(new HungerGameLoaderV12());
+		registerLoader(new HungerGameLoaderV10()).registerLoader(new HungerGameLoaderV11()).registerLoader(new HungerGameLoaderV12());
 	}
 
 	@Override
@@ -59,7 +58,7 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 		diameter.setAttribute("initial", "" + get().getInitialBorderDiameter());
 		diameter.setAttribute("final", "" + get().getFinalBorderDiameter());
 		border.appendChild(diameter);
-		
+
 		Element speed = doc.createElement("speed");
 		speed.appendChild(doc.createTextNode(get().getBorderSpeed().toString()));
 		border.appendChild(speed);

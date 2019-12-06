@@ -26,7 +26,7 @@ public class AddPlayer<T extends IConfiguration> extends AbstractTeamEditions<T>
 			sendMessage(MessageCode.TEAM_BAD_TEAM, args[0]);
 			return;
 		}
-		
+
 		List<Player> players = new ArrayList<Player>();
 		String playerNames = "";
 		for (int i = 1; i < args.length; i++) {

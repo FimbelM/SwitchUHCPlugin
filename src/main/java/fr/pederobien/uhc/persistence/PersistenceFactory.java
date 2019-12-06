@@ -37,7 +37,7 @@ public class PersistenceFactory {
 			spawnPersistence = new SpawnPersistence();
 		return spawnPersistence;
 	}
-	
+
 	public synchronized IPersistence<IBase> getBasePersistence() {
 		if (basePersistence == null)
 			basePersistence = new BasePersistence();

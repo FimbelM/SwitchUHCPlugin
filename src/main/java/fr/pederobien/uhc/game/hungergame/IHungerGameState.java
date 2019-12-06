@@ -4,5 +4,4 @@ import fr.pederobien.uhc.game.IGameState;
 
 public interface IHungerGameState extends IGameState {
 
-	
 }

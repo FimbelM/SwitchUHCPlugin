@@ -79,15 +79,14 @@ public abstract class AbstractBawn implements IBawn {
 
 	@Override
 	public String toString() {
-		return name + "{width=" + getWidth() + ",height=" + getHeight() + ",depth=" + getDepth() + ",center="
-				+ getCenter() + "}";
+		return name + "{width=" + getWidth() + ",height=" + getHeight() + ",depth=" + getDepth() + ",center=" + getCenter() + "}";
 	}
 
 	@Override
 	public Block getCenter() {
 		return center == null ? DEFAULT_CENTER : center;
 	}
-	
+
 	@Override
 	public IUnmodifiableDimension getDimension() {
 		return dimension;
@@ -107,12 +106,12 @@ public abstract class AbstractBawn implements IBawn {
 	public int getDepth() {
 		return dimension.getDepth();
 	}
-	
+
 	@Override
 	public void addObserver(IObsBawn obs) {
 		observers.add(obs);
 	}
-	
+
 	@Override
 	public void removeObserver(IObsBawn obs) {
 		observers.remove(obs);
@@ -131,7 +130,7 @@ public abstract class AbstractBawn implements IBawn {
 		this.center = center;
 		onRecentered(oldCenter);
 	}
-	
+
 	@Override
 	public void setDimension(IDimension dimension) {
 		IDimension oldDimension = this.dimension;
@@ -156,22 +155,22 @@ public abstract class AbstractBawn implements IBawn {
 		getBlockFromCenter(block).setType(block.getMaterial());
 		getBlockFromCenter(block).setBlockData(block.getBlockData());
 	}
-	
+
 	private void onRenamed(String oldName) {
 		for (IObsBawn obs : observers)
 			obs.onRenamed(oldName, name);
 	}
-	
+
 	private void onExtracted() {
 		for (IObsBawn obs : observers)
 			obs.onExtracted(name);
 	}
-	
+
 	private void onRecentered(Block oldCenter) {
 		for (IObsBawn obs : observers)
 			obs.onReCentered(oldCenter, center);
 	}
-	
+
 	private void onRedimensioned(IUnmodifiableDimension oldDimension) {
 		for (IObsBawn obs : observers)
 			obs.onRedimensioned(oldDimension, dimension);

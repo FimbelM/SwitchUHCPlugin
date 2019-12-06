@@ -34,7 +34,7 @@ public abstract class AbstractDictionary implements IDictionary {
 		map.put(message.getCode(), message);
 		return this;
 	}
-	
+
 	@Override
 	public String toString() {
 		String localestr = "";

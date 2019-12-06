@@ -17,10 +17,9 @@ public class BaseEditionsFactory extends AbstractBawnEditionsFactory<IBase> {
 	}
 
 	private static class SingletonHolder {
-		public static final BaseEditionsFactory factory = new BaseEditionsFactory(
-				PersistenceFactory.getInstance().getBasePersistence());
+		public static final BaseEditionsFactory factory = new BaseEditionsFactory(PersistenceFactory.getInstance().getBasePersistence());
 	}
-	
+
 	@Override
 	public IMapEdition<IBase> createDimensionsEdition() {
 		return new DimensionsBase();
@@ -60,7 +59,7 @@ public class BaseEditionsFactory extends AbstractBawnEditionsFactory<IBase> {
 	public IMapEdition<IBase> createSaveEdition() {
 		return new SaveBase();
 	}
-	
+
 	@Override
 	public IMapEdition<IBase> createDeleteEdition() {
 		return new DeleteBase();

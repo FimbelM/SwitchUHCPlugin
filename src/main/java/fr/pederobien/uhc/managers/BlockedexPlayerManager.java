@@ -14,8 +14,8 @@ public class BlockedexPlayerManager extends PlayerManager {
 
 	public BlockedexPlayerManager(IUnmodifiableBlockedexConfiguration configuration) {
 		map = new HashMap<Player, Restriction>();
-		configuration.getTeams().forEach(t -> t.getPlayers().stream().map(n -> PlayerManager.getPlayer(n))
-				.forEach(p -> map.put(p, new Restriction(p, t))));
+		configuration.getTeams()
+				.forEach(t -> t.getPlayers().stream().map(n -> PlayerManager.getPlayer(n)).forEach(p -> map.put(p, new Restriction(p, t))));
 	}
 
 	public void decreaseMaxHealth(Player player, double decrease) {

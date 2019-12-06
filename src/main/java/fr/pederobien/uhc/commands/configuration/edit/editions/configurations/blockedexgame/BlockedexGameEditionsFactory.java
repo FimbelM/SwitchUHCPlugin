@@ -61,7 +61,7 @@ public class BlockedexGameEditionsFactory extends AbstractConfigurationEditionsF
 	public IMapEdition<IBlockedexConfiguration> createSaveEdition() {
 		return new SaveBlockedexGame();
 	}
-	
+
 	@Override
 	public IMapEdition<IBlockedexConfiguration> createDeleteEdition() {
 		return new DeleteBlockedexGame();

@@ -16,7 +16,7 @@ public class TaskLauncher extends BukkitRunnable implements ITaskLauncher {
 	public TaskLauncher(String gameTime) {
 		this.task = new TimeTask(gameTime);
 	}
-	
+
 	@Override
 	public void run(long delay, long period) {
 		runTaskTimer(PluginDeposit.plugin, delay, period);

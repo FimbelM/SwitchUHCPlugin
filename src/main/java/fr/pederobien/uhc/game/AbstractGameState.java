@@ -102,8 +102,7 @@ public abstract class AbstractGameState implements IGameState {
 	}
 
 	protected void onStart() {
-		PlayerManager.giveEffectToAllPlayers(PotionEffectType.DAMAGE_RESISTANCE, PotionEffectType.REGENERATION,
-				PotionEffectType.SATURATION);
+		PlayerManager.giveEffectToAllPlayers(PotionEffectType.DAMAGE_RESISTANCE, PotionEffectType.REGENERATION, PotionEffectType.SATURATION);
 		PlayerManager.maxFoodForPlayers();
 		PlayerManager.resetMaxHealthOfPlayers();
 		PlayerManager.maxLifeToPlayers();

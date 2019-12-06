@@ -47,7 +47,7 @@ public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 			team.removeAllPlayers();
 			get().removeTeam(team);
 		}
-		
+
 		IMessageCode code;
 		String localArgs = null;
 		switch (teams.size()) {

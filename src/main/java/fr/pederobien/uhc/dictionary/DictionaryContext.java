@@ -21,8 +21,7 @@ public class DictionaryContext implements IDictionaryContext {
 
 	@Override
 	public String getMessage(Locale locale, MessageCodeEvent event) {
-		return map.get(locale) == null || map.get(locale).getMessage(event) == null
-				? map.get(Locale.ENGLISH).getMessage(event)
+		return map.get(locale) == null || map.get(locale).getMessage(event) == null ? map.get(Locale.ENGLISH).getMessage(event)
 				: map.get(locale).getMessage(event);
 	}
 

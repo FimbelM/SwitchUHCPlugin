@@ -139,14 +139,11 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 			PlayerManager.setGameModeOfPlayer(player, GameMode.CREATIVE);
 		else {
 			PlayerManager.setGameModeOfPlayer(player, GameMode.ADVENTURE);
-			PlayerManager.giveEffects(player,
-					Stream.of(
-							PlayerManager.createEffect(PotionEffectType.REGENERATION, PlayerManager.MAX_EFFECT_DURATION,
-									PlayerManager.MAX_EFFECT_AMPLIFIER),
-							PlayerManager.createEffect(PotionEffectType.SATURATION, PlayerManager.MAX_EFFECT_DURATION,
-									PlayerManager.MAX_EFFECT_AMPLIFIER),
-							PlayerManager.createEffect(PotionEffectType.DAMAGE_RESISTANCE,
-									PlayerManager.MAX_EFFECT_DURATION, PlayerManager.MAX_EFFECT_AMPLIFIER)));
+			PlayerManager.giveEffects(player, Stream.of(
+					PlayerManager.createEffect(PotionEffectType.REGENERATION, PlayerManager.MAX_EFFECT_DURATION, PlayerManager.MAX_EFFECT_AMPLIFIER),
+					PlayerManager.createEffect(PotionEffectType.SATURATION, PlayerManager.MAX_EFFECT_DURATION, PlayerManager.MAX_EFFECT_AMPLIFIER),
+					PlayerManager.createEffect(PotionEffectType.DAMAGE_RESISTANCE, PlayerManager.MAX_EFFECT_DURATION,
+							PlayerManager.MAX_EFFECT_AMPLIFIER)));
 		}
 	}
 }

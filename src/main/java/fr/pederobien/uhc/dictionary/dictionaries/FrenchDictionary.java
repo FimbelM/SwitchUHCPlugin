@@ -62,8 +62,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.CENTER_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Centre défini en " + args[0] + " " + args[1] + " "
-						+ args[2];
+				return "Centre défini en " + args[0] + " " + args[1] + " " + args[2];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.CENTER_COORDINATES_ARE_MISSING) {
 			@Override
@@ -143,14 +142,12 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.EXTRACT_BASE_ONE_CHEST_EXTRACTED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Base " + args[0] + " extraite\nUn coffre détecté pour la couleur d'équipe "
-						+ args[1];
+				return "Base " + args[0] + " extraite\nUn coffre détecté pour la couleur d'équipe " + args[1];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.EXTRACT_BASE_CHESTS_EXTRACTED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Base " + args[0] + " extraites"
-						+ "\nDes coffres détectés pour les couleurs d'équipes : " + args[1];
+				return "Base " + args[0] + " extraites" + "\nDes coffres détectés pour les couleurs d'équipes : " + args[1];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.EXTRACT_BASE_MAGENTA_WOOL_IS_FORBIDDEN) {
 			@Override
@@ -177,8 +174,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_BASE_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Les dimensions de la base " + args[0] + " sont " + args[1] + " "
-						+ args[2] + " " + args[3];
+				return "Les dimensions de la base " + args[0] + " sont " + args[1] + " " + args[2] + " " + args[3];
 			}
 		});
 
@@ -190,22 +186,17 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_NO_TEAM_SUPPORTED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Base " + args[0] + " chargée en " + args[1] + " "
-						+ args[2] + " " + args[3] + "\nAucune couleur d'équipe supportée";
+				return "Base " + args[0] + " chargée en " + args[1] + " " + args[2] + " " + args[3] + "\nAucune couleur d'équipe supportée";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_ONE_TEAM_SUPPORTED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Base " + args[0] + " chargée en " + args[1] + " "
-						+ args[2] + " " + args[3] + "\nUne couleur d'équipe supportée : "
-						+ args[4];
+				return "Base " + args[0] + " chargée en " + args[1] + " " + args[2] + " " + args[3] + "\nUne couleur d'équipe supportée : " + args[4];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_TEAMS_SUPPORTED_LAUNCHED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Base " + args[0] + " chargée en " + args[1] + " "
-						+ args[2] + " " + args[3] + "\nCouleurs d’équipe supportées : "
-						+ args[4];
+				return "Base " + args[0] + " chargée en " + args[1] + " " + args[2] + " " + args[3] + "\nCouleurs d’équipe supportées : " + args[4];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_NOT_EXISTING) {
 			@Override
@@ -215,14 +206,12 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_MISSING_COORDINATES) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de charger la base " + args[0]
-						+ ", il manque les coordonnées <X> ou <Y> ou <Z>";
+				return "Impossible de charger la base " + args[0] + ", il manque les coordonnées <X> ou <Y> ou <Z>";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_MISSING_NAME_AND_COORDINATES) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de charger la base " + args[0]
-						+ " il manque le nom et les coordonnées <X> ou <Y> ou <Z> du centre";
+				return "Impossible de charger la base " + args[0] + " il manque le nom et les coordonnées <X> ou <Y> ou <Z> du centre";
 			}
 		});
 
@@ -295,8 +284,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_BASE_ALREADY_EXISTING) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de renommer la base " + args[0] + " en " + args[1]
-						+ ", une base du même nom existe déjà";
+				return "Impossible de renommer la base " + args[0] + " en " + args[1] + ", une base du même nom existe déjà";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_BASE_MISSING_NAME) {
 			@Override
@@ -368,8 +356,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_SPAWN_LAUNCHED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Spawn " + args[0] + " chargé en " + args[1] + " "
-						+ args[2] + " " + args[3];
+				return "Spawn " + args[0] + " chargé en " + args[1] + " " + args[2] + " " + args[3];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_SPAWN_NOT_EXISTING) {
 			@Override
@@ -379,14 +366,12 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_SPAWN_MISSING_COORDINATES) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de charger le spawn " + args[0]
-						+ ", il manque les coordonées <X> ou <Y> ou <Z> du centre";
+				return "Impossible de charger le spawn " + args[0] + ", il manque les coordonées <X> ou <Y> ou <Z> du centre";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_SPAWN_MISSING_NAME_AND_COORDINATES) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de charger le spawn " + args[0]
-						+ " il manque le nom et les coordonnées <X> ou <Y> ou <Z> du centre";
+				return "Impossible de charger le spawn " + args[0] + " il manque le nom et les coordonnées <X> ou <Y> ou <Z> du centre";
 			}
 		});
 
@@ -442,8 +427,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RANDOM_SPAWN_LAUNCHED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Le spawn " + args[0] + " est chargé en " + args[1] + " "
-						+ args[2] + " " + args[3];
+				return "Le spawn " + args[0] + " est chargé en " + args[1] + " " + args[2] + " " + args[3];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RANDOM_SPAWN_CANNOT_BE_LAUNCHED) {
 			@Override
@@ -453,8 +437,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RANDOM_SPAWN_MISSING_COORDINATES) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de charger aléatoirement un spawn, il manque les coordonnées "
-						+ "<X> ou <Y> ou <Z> du centre";
+				return "Impossible de charger aléatoirement un spawn, il manque les coordonnées " + "<X> ou <Y> ou <Z> du centre";
 			}
 		});
 
@@ -483,8 +466,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_SPAWN_ALREADY_EXISTING) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de renommer le spawn " + args[0] + " en " + args[1]
-						+ ", un spawn du même nom existe déjà";
+				return "Impossible de renommer le spawn " + args[0] + " en " + args[1] + ", un spawn du même nom existe déjà";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_SPAWN_MISSING_NAME) {
 			@Override
@@ -515,8 +497,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Temps de jeu défini : " + args[0] + "h " + args[1] + "m "
-						+ args[2] + "s";
+				return "Temps de jeu défini : " + args[0] + "h " + args[1] + "m " + args[2] + "s";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_MISSING_TIME) {
 			@Override
@@ -707,8 +688,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_MOVEPLAYER_MOVED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Joueur " + args[0] + " déplacé dans l'équipe " + args[2]
-						+ ", ancienne équipe " + args[1];
+				return "Joueur " + args[0] + " déplacé dans l'équipe " + args[2] + ", ancienne équipe " + args[1];
 			}
 		});
 
@@ -788,8 +768,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.AS_CURRENT_HUNGER_GAME_NOT_EXISTING_STYLE) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible le style hunger game " + args[0]
-						+ " comme le style courant, ce style n'existe pas";
+				return "Impossible le style hunger game " + args[0] + " comme le style courant, ce style n'existe pas";
 			}
 		});
 
@@ -859,19 +838,17 @@ public class FrenchDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Impossible de définir le diamètre final de la bordure, il manque le diamètre";
 			}
-		}).registerMessage(
-				new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_BAD_DIAMETER_FORMAT) {
-					@Override
-					public String getMessage(String... args) {
-						return "Mauvais format du diamètre, il doit être un entier";
-					}
-				})
-				.registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE) {
-					@Override
-					public String getMessage(String... args) {
-						return "<diamètre final>";
-					}
-				});
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_BAD_DIAMETER_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "Mauvais format du diamètre, il doit être un entier";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE) {
+			@Override
+			public String getMessage(String... args) {
+				return "<diamètre final>";
+			}
+		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_HUNGER_GAME_EXPLANATION) {
 			@Override
@@ -881,8 +858,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_HUNGER_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Les joueur réapparaîtront en mode spectateur au bout de " + args[0] + "h "
-						+ args[1] + "m " + args[2] + "s of play";
+				return "Les joueur réapparaîtront en mode spectateur au bout de " + args[0] + "h " + args[1] + "m " + args[2] + "s of play";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_HUNGER_GAME_MISSING_TIME) {
 			@Override
@@ -899,8 +875,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Temps de jeu : " + args[0] + "h " + args[1] + "m "
-						+ args[2] + "s";
+				return "Temps de jeu : " + args[0] + "h " + args[1] + "m " + args[2] + "s";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_MISSING_TIME) {
 			@Override
@@ -941,19 +916,17 @@ public class FrenchDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Impossible de définir le diamètre initial, il manque le diamètre";
 			}
-		}).registerMessage(
-				new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_BAD_DIAMETER_FORMAT) {
-					@Override
-					public String getMessage(String... args) {
-						return "Impossible de définir le diamètre initial, il doit être un entier";
-					}
-				}).registerMessage(
-						new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE) {
-							@Override
-							public String getMessage(String... args) {
-								return "<diamètre initial>";
-							}
-						});
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_BAD_DIAMETER_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de définir le diamètre initial, il doit être un entier";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE) {
+			@Override
+			public String getMessage(String... args) {
+				return "<diamètre initial>";
+			}
+		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.LIST_HUNGER_GAME_EXPLANATION) {
 			@Override
@@ -980,8 +953,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_NOT_EXISTING_STYLE) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de charger le style de jeu hunger game " + args[0]
-						+ ", ce style n'existe pas";
+				return "Impossible de charger le style de jeu hunger game " + args[0] + ", ce style n'existe pas";
 			}
 		});
 
@@ -998,14 +970,12 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_HUNGER_GAME_STYLE_ONE_TEAM_CREATED_LOADED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Style hunger game " + args[0] + " chargé\nUne équipe créée "
-						+ args[1];
+				return "Style hunger game " + args[0] + " chargé\nUne équipe créée " + args[1];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_HUNGER_GAME_STYLE_TEAMS_CREATED_LOADED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Style hunger game " + args[0] + " chargé\nEquipes créées : "
-						+ args[1];
+				return "Style hunger game " + args[0] + " chargé\nEquipes créées : " + args[1];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_HUNGER_GAME_MISSING_NAME) {
 			@Override
@@ -1044,8 +1014,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.PVP_TIME_HUNGER_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Le pvp est autorisé après " + args[0] + "h " + args[1] + "m "
-						+ args[2] + " de jeu";
+				return "Le pvp est autorisé après " + args[0] + "h " + args[1] + "m " + args[2] + " de jeu";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.PVP_TIME_HUNGER_GAME_MISSING_TIME) {
 			@Override
@@ -1072,8 +1041,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_HUNGER_GAME_ALREADY_EXISTING) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de renommer le style hunger game " + args[0] + " en "
-						+ args[1] + ", ce style existe déjà";
+				return "Impossible de renommer le style hunger game " + args[0] + " en " + args[1] + ", ce style existe déjà";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_HUNGER_GAME_MISSING_NAME) {
 			@Override
@@ -1129,14 +1097,12 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_HUNGER_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour prévenir les joueurs qui sont dans le Nether / End de retourner à la "
-						+ "surface avant le déplacement de la bordure";
+				return "pour prévenir les joueurs qui sont dans le Nether / End de retourner à la " + "surface avant le déplacement de la bordure";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_HUNGER_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Les joueurs seront prévenu " + args[0] + "h " + args[1] + "m "
-						+ args[2] + "s avant le déplacement de la bordure";
+				return "Les joueurs seront prévenu " + args[0] + "h " + args[1] + "m " + args[2] + "s avant le déplacement de la bordure";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_HUNGER_GAME_MISSING_TIME) {
 			@Override
@@ -1180,8 +1146,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_MUST_GO_BACK_TO_THE_OVERWORLD) {
 			@Override
 			public String getMessage(String... args) {
-				return "Retourner à la surface ou vous allez mourrir dans " + args[0] + "h "
-						+ args[0] + "m " + args[0] + "s";
+				return "Retourner à la surface ou vous allez mourrir dans " + args[0] + "h " + args[0] + "m " + args[0] + "s";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_MUST_STAY_IN_THE_OVERWORLD) {
 			@Override
@@ -1372,14 +1337,12 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_BLOCKEDEX_GAME_STYLE_ONE_TEAM_CREATED_LOADED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Style de jeu blockedex " + args[0] + " chargé\nL'équipe "
-						+ args[1] + " a été créée";
+				return "Style de jeu blockedex " + args[0] + " chargé\nL'équipe " + args[1] + " a été créée";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_BLOCKEDEX_GAME_STYLE_TEAMS_CREATED_LOADED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Style de jeu blockedex " + args[0] + " chargé\nEquipes créées : "
-						+ args[1];
+				return "Style de jeu blockedex " + args[0] + " chargé\nEquipes créées : " + args[1];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_BLOCKEDEX_GAME_MISSING_NAME) {
 			@Override
@@ -1423,14 +1386,12 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_BLOCKEDEX_GAME_ALREADY_EXISTING) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de renommer le style de jeu blockedex " + args[0] + " en "
-						+ args[1] + ", ce style existe déjà";
+				return "Impossible de renommer le style de jeu blockedex " + args[0] + " en " + args[1] + ", ce style existe déjà";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_BLOCKEDEX_GAME_MISSING_NAME) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de renommer le style de jeu blockedex " + args[0]
-						+ ", il manque le nom";
+				return "Impossible de renommer le style de jeu blockedex " + args[0] + ", il manque le nom";
 			}
 		});
 

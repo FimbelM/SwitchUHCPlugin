@@ -89,12 +89,12 @@ public class HungerGameConfiguration extends AbstractConfiguration implements IH
 	public void setPvpTime(LocalTime pvpTime) {
 		this.pvpTime = pvpTime;
 	}
-	
+
 	@Override
 	public Double getBorderSpeed() {
 		return blocksPerSeconds == null ? DEFAULT_BORDER_SPEED : blocksPerSeconds;
 	}
-	
+
 	@Override
 	public void setBorderSpeed(double blocksPerSeconds) {
 		this.blocksPerSeconds = blocksPerSeconds;

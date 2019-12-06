@@ -15,6 +15,6 @@ public interface IGameState extends IObsListener, IObsTimeLine {
 	void relaunch();
 
 	void stop();
-	
+
 	MessageCode getMessage();
 }

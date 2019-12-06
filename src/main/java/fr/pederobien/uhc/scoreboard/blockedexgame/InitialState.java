@@ -10,7 +10,7 @@ public class InitialState extends AbstractBlockedexScoreboardState {
 	protected void updateEntries() {
 
 	}
-	
+
 	@Override
 	public void start() {
 		scoreboard.setCurrentState(scoreboard.getStartedState());

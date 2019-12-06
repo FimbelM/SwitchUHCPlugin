@@ -21,9 +21,8 @@ public class TeamsManager {
 	}
 
 	public static List<Player> getCollegues(IUnmodifiableConfiguration configuration, Player player) {
-		return configuration.getTeams().stream().filter(t -> t.getPlayers().contains(player.getName())).findFirst()
-				.get().getPlayers().stream().filter(n -> !n.equals(player.getName()))
-				.map(n -> PlayerManager.getPlayer(n)).collect(Collectors.toList());
+		return configuration.getTeams().stream().filter(t -> t.getPlayers().contains(player.getName())).findFirst().get().getPlayers().stream()
+				.filter(n -> !n.equals(player.getName())).map(n -> PlayerManager.getPlayer(n)).collect(Collectors.toList());
 	}
 
 	public static Player getRandomCollegue(IUnmodifiableConfiguration configuration, Player player) {
@@ -46,7 +45,7 @@ public class TeamsManager {
 	public static void teleporteRandomlyAllTeams(IUnmodifiableConfiguration configuration, int bound) {
 		configuration.getTeams().forEach(t -> teleporteRandomlyTeam(t, bound));
 	}
-	
+
 	public static void createTeams(List<ETeam> teams) {
 		for (ETeam team : teams) {
 			BukkitManager.dispatchCommand("team add " + team.getNameWithoutColor());
@@ -55,7 +54,7 @@ public class TeamsManager {
 				BukkitManager.dispatchCommand("team join " + team.getNameWithoutColor() + " " + player);
 		}
 	}
-	
+
 	public static void removeTeams(List<ETeam> teams) {
 		for (ETeam team : teams)
 			BukkitManager.dispatchCommand("team remove " + team.getNameWithoutColor());

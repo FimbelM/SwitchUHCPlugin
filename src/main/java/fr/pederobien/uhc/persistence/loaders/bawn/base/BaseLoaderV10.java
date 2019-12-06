@@ -32,8 +32,7 @@ public class BaseLoaderV10 extends AbstractBaseLoader {
 				get().setName(elt.getChildNodes().item(0).getNodeValue());
 				break;
 			case "dimensions":
-				get().setDimension(new Dimension(elt.getAttribute("width"), elt.getAttribute("height"),
-						elt.getAttribute("depth")));
+				get().setDimension(new Dimension(elt.getAttribute("width"), elt.getAttribute("height"), elt.getAttribute("depth")));
 				break;
 			case "center":
 				get().setCenter(elt.getAttribute("x"), elt.getAttribute("y"), elt.getAttribute("z"));
@@ -47,8 +46,8 @@ public class BaseLoaderV10 extends AbstractBaseLoader {
 					Element chest = (Element) elt.getChildNodes().item(j);
 					ETeam team = ETeam.getByColorName(chest.getAttribute("color"));
 
-					chests.put(new SerialisableBlock(chest.getAttribute("x"), chest.getAttribute("y"),
-							chest.getAttribute("z"), chest.getAttribute("blockdata")), team);
+					chests.put(new SerialisableBlock(chest.getAttribute("x"), chest.getAttribute("y"), chest.getAttribute("z"),
+							chest.getAttribute("blockdata")), team);
 				}
 				get().setChests(chests);
 				break;
@@ -58,8 +57,8 @@ public class BaseLoaderV10 extends AbstractBaseLoader {
 					if (elt.getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
 						continue;
 					Element block = (Element) elt.getChildNodes().item(j);
-					blocks.add(new SerialisableBlock(block.getAttribute("x"), block.getAttribute("y"),
-							block.getAttribute("z"), block.getAttribute("blockdata")));
+					blocks.add(new SerialisableBlock(block.getAttribute("x"), block.getAttribute("y"), block.getAttribute("z"),
+							block.getAttribute("blockdata")));
 				}
 				get().setBlocks(blocks);
 				break;
