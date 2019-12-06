@@ -1,6 +1,8 @@
 package fr.pederobien.uhc.dictionary.dictionaries;
 
-public enum MessageCode {
+import fr.pederobien.uhc.interfaces.IMessageCode;
+
+public enum MessageCode implements IMessageCode {
 
 	// Common message
 	DELETE_ON_CANNOT_DELETE,

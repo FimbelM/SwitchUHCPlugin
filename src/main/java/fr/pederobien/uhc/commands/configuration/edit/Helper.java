@@ -13,6 +13,7 @@ import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractEdition;
 import fr.pederobien.uhc.dictionary.DictionaryManager;
 import fr.pederobien.uhc.dictionary.NotificationCenter;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+import fr.pederobien.uhc.event.EventFactory;
 import fr.pederobien.uhc.interfaces.IEditConfiguration;
 import fr.pederobien.uhc.interfaces.IHelper;
 import fr.pederobien.uhc.interfaces.IMapEdition;
@@ -21,7 +22,7 @@ import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 
 public class Helper<T extends IUnmodifiableName> extends AbstractEdition implements IHelper<T> {
 	private IEditConfiguration<T> configuration;
-	
+
 	public Helper(IEditConfiguration<T> configuration) {
 		super("help", MessageCode.HELP_EXPLANATION);
 		this.configuration = configuration;
@@ -53,31 +54,32 @@ public class Helper<T extends IUnmodifiableName> extends AbstractEdition impleme
 
 	@Override
 	public String edit(CommandSender sender, String[] args) {
-		try  {
-		IMapEdition<T> edition = configuration.getChildren().get(args[0]);
-		for (int i = 1; i < args.length; i++)
-			if (edition != null)
-				edition = edition.getChildren().get(args[i]);
-		return translate(sender, edition);
+		try {
+			IMapEdition<T> edition = configuration.getChildren().get(args[0]);
+			for (int i = 1; i < args.length; i++)
+				if (edition != null)
+					edition = edition.getChildren().get(args[i]);
+			return translate(sender, edition);
 		} catch (IndexOutOfBoundsException e) {
 			return translate(sender, configuration);
 		}
 	}
-	
+
 	private Stream<String> filterValues(Collection<IMapEdition<T>> values) {
 		return values.stream().filter(e -> e.isAvailable()).filter(e -> !e.getLabel().equals("help"))
 				.map(e -> e.getLabel());
 	}
-	
+
 	private <U> String translate(CommandSender sender, INodeEdition<IMapEdition<T>, U> edition) {
 		String translation = help(sender, edition);
 		for (IMapEdition<T> e : edition.getChildren().values())
 			translation += help(sender, e);
 		return translation;
 	}
-	
+
 	private <U> String help(CommandSender sender, INodeEdition<IMapEdition<T>, U> edition) {
-		String explanation = DictionaryManager.getMessage(NotificationCenter.getLocale((Player) sender), edition.getExplanation());
+		String explanation = DictionaryManager.getMessage(NotificationCenter.getLocale((Player) sender),
+				EventFactory.createMessageCodeEvent(edition.getExplanation()));
 		return ChatColor.DARK_RED + edition.getLabel() + " - " + ChatColor.DARK_AQUA + explanation + "\n";
 	}
 }

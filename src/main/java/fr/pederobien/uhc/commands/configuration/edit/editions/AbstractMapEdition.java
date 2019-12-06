@@ -154,7 +154,7 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 
 	protected String getMessageOnTabComplete(CommandSender sender, MessageCode code) {
 		return sender instanceof Player
-				? DictionaryManager.getMessage(NotificationCenter.getLocale((Player) sender), code)
+				? DictionaryManager.getMessage(NotificationCenter.getLocale((Player) sender), createMessageCodeEvent(code))
 				: null;
 	}
 	

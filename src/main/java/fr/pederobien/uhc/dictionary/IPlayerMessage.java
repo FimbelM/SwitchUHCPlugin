@@ -1,10 +1,10 @@
 package fr.pederobien.uhc.dictionary;
 
-import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 
 public interface IPlayerMessage {
 
-	MessageCode getCode();
+	IMessageCode getCode();
 
-	String getMessage();
+	String getMessage(String... args);
 }

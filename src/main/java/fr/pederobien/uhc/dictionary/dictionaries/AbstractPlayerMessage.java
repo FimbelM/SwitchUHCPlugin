@@ -1,16 +1,17 @@
 package fr.pederobien.uhc.dictionary.dictionaries;
 
 import fr.pederobien.uhc.dictionary.IPlayerMessage;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 
 public abstract class AbstractPlayerMessage implements IPlayerMessage {
-	private MessageCode code;
+	private IMessageCode code;
 
-	protected AbstractPlayerMessage(MessageCode code) {
+	protected AbstractPlayerMessage(IMessageCode code) {
 		this.code = code;
 	}
 
 	@Override
-	public MessageCode getCode() {
+	public IMessageCode getCode() {
 		return code;
 	}
 }

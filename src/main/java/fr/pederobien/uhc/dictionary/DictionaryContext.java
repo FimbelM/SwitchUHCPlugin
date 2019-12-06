@@ -3,7 +3,7 @@ package fr.pederobien.uhc.dictionary;
 import java.util.HashMap;
 import java.util.Locale;
 
-import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+import fr.pederobien.uhc.event.MessageCodeEvent;
 
 public class DictionaryContext implements IDictionaryContext {
 	private HashMap<Locale, IDictionary> map;
@@ -20,10 +20,10 @@ public class DictionaryContext implements IDictionaryContext {
 	}
 
 	@Override
-	public String getMessage(Locale locale, MessageCode code) {
-		return map.get(locale) == null || map.get(locale).getMessage(code) == null
-				? map.get(Locale.ENGLISH).getMessage(code)
-				: map.get(locale).getMessage(code);
+	public String getMessage(Locale locale, MessageCodeEvent event) {
+		return map.get(locale) == null || map.get(locale).getMessage(event) == null
+				? map.get(Locale.ENGLISH).getMessage(event)
+				: map.get(locale).getMessage(event);
 	}
 
 	@Override

@@ -1,17 +1,17 @@
 package fr.pederobien.uhc.event;
 
-import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 
 public class MessageCodeEvent {
-	private MessageCode code;
+	private IMessageCode code;
 	private String[] args;
 	
-	public MessageCodeEvent(MessageCode code, String... args) {
+	public MessageCodeEvent(IMessageCode code, String... args) {
 		this.code = code;
 		this.args = args;
 	}
 	
-	public MessageCode getCode() {
+	public IMessageCode getCode() {
 		return code;
 	}
 	
