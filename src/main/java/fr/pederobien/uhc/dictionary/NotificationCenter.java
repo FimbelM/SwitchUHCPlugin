@@ -27,7 +27,6 @@ public class NotificationCenter {
 	}
 
 	public static Locale getLocale(Player player) {
-		System.out.println("Locale : " + player.getLocale());
 		return Locale.forLanguageTag(player.getLocale().replace('_', '-'));
 	}
 
