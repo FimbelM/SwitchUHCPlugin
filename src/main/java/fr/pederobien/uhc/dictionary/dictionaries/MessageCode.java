@@ -199,7 +199,7 @@ public enum MessageCode implements IMessageCode {
 	private MessagePermission permission;
 
 	private MessageCode() {
-		this(MessagePermission.COMMAND_SENDER);
+		this(MessagePermission.OPERATORS);
 	}
 
 	private MessageCode(MessagePermission permission) {
