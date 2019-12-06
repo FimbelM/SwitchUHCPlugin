@@ -1,12 +1,14 @@
 package fr.pederobien.uhc.game.hungergame;
 
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.BukkitManager;
+import fr.pederobien.uhc.dictionary.NotificationCenter;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+import fr.pederobien.uhc.event.EventFactory;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.WorldManager;
 
@@ -27,7 +29,8 @@ public class HungerGameState extends AbstractHungerGameState {
 	@Override
 	public void relaunch() {
 		BukkitManager.broadcastMessageAsTitle("Reprise");
-		WorldManager.moveBorder(game.getConfiguration().getFinalBorderDiameter(), WorldManager.getCurrentDiameter().longValue()/game.getConfiguration().getBorderSpeed().longValue());
+		WorldManager.moveBorder(game.getConfiguration().getFinalBorderDiameter(),
+				WorldManager.getCurrentDiameter().longValue() / game.getConfiguration().getBorderSpeed().longValue());
 		taskLauncher.relaunched();
 		scoreboardLauncher.relaunched();
 	}
@@ -47,10 +50,11 @@ public class HungerGameState extends AbstractHungerGameState {
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
 		event.setRespawnLocation(WorldManager.getSpawnOnJoin());
 	}
-	
+
 	@Override
 	public void onPlayerPortalEvent(PlayerPortalEvent event) {
 		event.setCancelled(true);
-		event.getPlayer().sendMessage(ChatColor.RED + "You cannot go into the " + event.getTo().getWorld().getName());
+		NotificationCenter.sendMessage(EventFactory.createMessageEvent(event.getPlayer(), MessageCode.PLAYER_MUST_STAY_IN_THE_OVERWORLD,
+				event.getTo().getWorld().getName()));
 	}
 }

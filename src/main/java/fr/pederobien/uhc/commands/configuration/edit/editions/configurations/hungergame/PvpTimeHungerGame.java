@@ -19,16 +19,15 @@ public class PvpTimeHungerGame extends AbstractConfEdition<IHungerGameConfigurat
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		try {
 			get().setPvpTime(LocalTime.parse(args[0]));
-			return MessageCode.PVP_TIME_HUNGER_GAME_DEFINED.withArgs("" + get().getPvpTime().getHour(),
-					"" + get().getPvpTime().getMinute(), "" + get().getPvpTime().getSecond());
+			sendMessage(MessageCode.PVP_TIME_HUNGER_GAME_DEFINED, "" + get().getPvpTime().getHour(), "" + get().getPvpTime().getMinute(),
+					"" + get().getPvpTime().getSecond());
 		} catch (IndexOutOfBoundsException e) {
-			return MessageCode.PVP_TIME_HUNGER_GAME_MISSING_TIME;
-		}
-		catch (DateTimeParseException e) {
-			return MessageCode.PVP_TIME_HUNGER_GAME_BAD_TIME_FORMAT;
+			sendMessage(MessageCode.PVP_TIME_HUNGER_GAME_MISSING_TIME);
+		} catch (DateTimeParseException e) {
+			sendMessage(MessageCode.PVP_TIME_HUNGER_GAME_BAD_TIME_FORMAT);
 		}
 	}
 

@@ -17,26 +17,27 @@ public class InitialBorderDiameterHungerGame extends AbstractConfEdition<IHunger
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		try {
 			int diameter = Integer.parseInt(args[0]);
-			if (diameter < 0)
-				return MessageCode.INITIAL_BORDER_NEGATIVE_DIAMETER;
+			if (diameter < 0) {
+				sendMessage(MessageCode.INITIAL_BORDER_NEGATIVE_DIAMETER);
+				return;
+			}
+
 			get().setInitialBorderDiameter(diameter);
-			return MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_DEFINED
-					.withArgs(get().getInitialBorderDiameter().toString());
+			sendMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_DEFINED, get().getInitialBorderDiameter().toString());
 		} catch (IndexOutOfBoundsException e) {
-			return MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_MISSING_DIAMETER;
+			sendMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_MISSING_DIAMETER);
 		} catch (NumberFormatException e) {
-			return MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_BAD_DIAMETER_FORMAT;
+			sendMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_BAD_DIAMETER_FORMAT);
 		}
 	}
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		if (args.length == 1)
-			return Arrays.asList(
-					getMessageOnTabComplete(sender, MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE));
+			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE));
 		return super.onTabComplete(sender, command, alias, args);
 	}
 }

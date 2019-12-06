@@ -14,7 +14,7 @@ public class WestBaseBlockedexGame extends AbstractBaseEdition {
 	}
 
 	@Override
-	protected MessageCode onBaseSetted() {
-		return MessageCode.BASE_WEST_BLOCKEDEX_GAME_SETTED.withArgs(get().getWestBase());
+	protected void onBaseSetted() {
+		sendMessage(MessageCode.BASE_WEST_BLOCKEDEX_GAME_SETTED, get().getWestBase());
 	}
 }

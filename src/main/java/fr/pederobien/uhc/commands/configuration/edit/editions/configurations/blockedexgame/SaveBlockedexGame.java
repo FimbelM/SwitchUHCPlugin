@@ -11,7 +11,7 @@ public class SaveBlockedexGame extends CommonSave<IBlockedexConfiguration> {
 	}
 
 	@Override
-	protected MessageCode onSave() {
-		return MessageCode.SAVE_BLOCKEDEX_GAME_SAVED.withArgs(get().getName());
+	protected void onSave() {
+		sendMessage(MessageCode.SAVE_BLOCKEDEX_GAME_SAVED, get().getName());
 	}
 }

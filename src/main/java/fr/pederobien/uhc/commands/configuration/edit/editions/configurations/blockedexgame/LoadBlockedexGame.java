@@ -12,22 +12,23 @@ public class LoadBlockedexGame extends CommonLoad<IBlockedexConfiguration> {
 	}
 
 	@Override
-	protected MessageCode onStyleLoaded(String name) {
-		MessageCode message;
+	protected void onStyleLoaded(String name) {
 		switch (get().getTeams().size()) {
-		case 0 :
-			message = MessageCode.LOAD_BLOCKEDEX_GAME_STYLE_NO_TEAM_CREATED_LOADED.withArgs(name);
-		case 1 :
-			message = MessageCode.LOAD_BLOCKEDEX_GAME_STYLE_ONE_TEAM_CREATED_LOADED.withArgs(name, getTeamNamesWithColor());
-		default :
-			message = MessageCode.LOAD_BLOCKEDEX_GAME_STYLE_TEAMS_CREATED_LOADED.withArgs(name, getTeamNamesWithColor());
+		case 0:
+			sendMessage(MessageCode.LOAD_BLOCKEDEX_GAME_STYLE_NO_TEAM_CREATED_LOADED, name);
+			break;
+		case 1:
+			sendMessage(MessageCode.LOAD_BLOCKEDEX_GAME_STYLE_ONE_TEAM_CREATED_LOADED, name, getTeamNamesWithColor());
+			break;
+		default:
+			sendMessage(MessageCode.LOAD_BLOCKEDEX_GAME_STYLE_TEAMS_CREATED_LOADED, name, getTeamNamesWithColor());
+			break;
 		}
 		BaseManager.loadBases();
-		return message;
 	}
 
 	@Override
-	protected MessageCode onNameIsMissing() {
-		return MessageCode.LOAD_BLOCKEDEX_GAME_MISSING_NAME;
+	protected void onNameIsMissing() {
+		sendMessage(MessageCode.LOAD_BLOCKEDEX_GAME_MISSING_NAME);
 	}
 }

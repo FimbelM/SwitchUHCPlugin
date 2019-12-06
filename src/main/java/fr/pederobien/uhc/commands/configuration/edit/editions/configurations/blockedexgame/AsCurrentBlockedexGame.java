@@ -12,7 +12,7 @@ public class AsCurrentBlockedexGame extends CommonAsCurrent<IBlockedexConfigurat
 	}
 
 	@Override
-	protected MessageCode onStyleNotDefined(String name) {
-		return MessageCode.AS_CURRENT_BLOCKEDEX_GAME_NOT_EXISTING_STYLE.withArgs(name);
+	protected void onStyleNotDefined(String name) {
+		sendMessage(MessageCode.AS_CURRENT_BLOCKEDEX_GAME_NOT_EXISTING_STYLE, name);
 	}
 }

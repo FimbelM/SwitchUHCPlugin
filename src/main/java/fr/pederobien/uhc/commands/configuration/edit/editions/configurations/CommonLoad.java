@@ -8,30 +8,31 @@ import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 import fr.pederobien.uhc.managers.ETeam;
 
 public abstract class CommonLoad<T extends IConfiguration> extends AbstractConfEdition<T> {
 
-	public CommonLoad(MessageCode explanation) {
+	public CommonLoad(IMessageCode explanation) {
 		super("load", explanation);
 	}
 
-	protected abstract MessageCode onStyleLoaded(String name);
+	protected abstract void onStyleLoaded(String name);
 
-	protected abstract MessageCode onNameIsMissing();
+	protected abstract void onNameIsMissing();
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		String name = "";
 		try {
 			name = args[0];
 			getPersistence().save();
 			getPersistence().load(name);
-			return onStyleLoaded(name);
+			onStyleLoaded(name);
 		} catch (IndexOutOfBoundsException e) {
-			return onNameIsMissing();
+			onNameIsMissing();
 		} catch (FileNotFoundException e) {
-			return MessageCode.LOAD_CANNOT_LOAD.withArgs(name);
+			sendMessage(MessageCode.LOAD_CANNOT_LOAD, name);
 		}
 	}
 
@@ -41,7 +42,7 @@ public abstract class CommonLoad<T extends IConfiguration> extends AbstractConfE
 			return filter(getPersistence().list(), args[0]);
 		return super.onTabComplete(sender, command, alias, args);
 	}
-	
+
 	protected String getTeamNamesWithColor() {
 		String names = "";
 		for (ETeam team : get().getTeams())

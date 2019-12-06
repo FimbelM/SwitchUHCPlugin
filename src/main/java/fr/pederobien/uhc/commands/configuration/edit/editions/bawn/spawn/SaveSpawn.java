@@ -11,7 +11,7 @@ public class SaveSpawn extends CommonSave<ISpawn> {
 	}
 
 	@Override
-	protected MessageCode onSave() {
-		return MessageCode.SAVE_SPAWN_SAVED.withArgs(get().getName());
+	protected void onSave() {
+		sendMessage(MessageCode.SAVE_SPAWN_SAVED, get().getName());
 	}
 }

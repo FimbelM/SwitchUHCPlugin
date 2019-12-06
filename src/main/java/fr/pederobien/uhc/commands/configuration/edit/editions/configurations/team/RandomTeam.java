@@ -12,7 +12,7 @@ public class RandomTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		TeamsManager.dispatchPlayerRandomlyInTeam(get());
 		String teams = "";
 		for (ETeam team : get().getTeams()) {
@@ -24,6 +24,6 @@ public class RandomTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 			}
 			teams += "]\n";
 		}
-		return MessageCode.TEAM_RANDOMTEAM_DISPATCHED.withArgs(teams);
+		sendMessage(MessageCode.TEAM_RANDOMTEAM_DISPATCHED, teams);
 	}
 }

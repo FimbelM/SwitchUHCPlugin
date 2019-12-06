@@ -11,7 +11,7 @@ public class DeleteBlockedexGame extends CommonDelete<IBlockedexConfiguration> {
 	}
 
 	@Override
-	protected MessageCode onDeleted(String name) {
-		return MessageCode.DELETE_BLOCKEDEX_GAME_MESSAGE.withArgs(name);
+	protected void onDeleted(String name) {
+		sendMessage(MessageCode.DELETE_BLOCKEDEX_GAME_MESSAGE, name);
 	}
 }

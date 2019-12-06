@@ -19,15 +19,15 @@ public class WarningTimeHungerGame extends AbstractConfEdition<IHungerGameConfig
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		try {
 			get().setWarningTime(LocalTime.parse(args[0]));
-			return MessageCode.WARNING_TIME_HUNGER_GAME_DEFINED.withArgs("" + get().getWarningTime().getHour(),
-					"" + get().getWarningTime().getHour(), "" + get().getWarningTime().getHour());
+			sendMessage(MessageCode.WARNING_TIME_HUNGER_GAME_DEFINED, "" + get().getWarningTime().getHour(), "" + get().getWarningTime().getHour(),
+					"" + get().getWarningTime().getHour());
 		} catch (IndexOutOfBoundsException e) {
-			return MessageCode.WARNING_TIME_HUNGER_GAME_MISSING_TIME;
+			sendMessage(MessageCode.WARNING_TIME_HUNGER_GAME_MISSING_TIME);
 		} catch (DateTimeParseException e) {
-			return MessageCode.WARNING_TIME_HUNGER_GAME_BAD_TIME_FORMAT;
+			sendMessage(MessageCode.WARNING_TIME_HUNGER_GAME_BAD_TIME_FORMAT);
 		}
 	}
 

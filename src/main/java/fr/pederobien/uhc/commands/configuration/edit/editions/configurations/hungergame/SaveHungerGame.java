@@ -11,7 +11,7 @@ public class SaveHungerGame extends CommonSave<IHungerGameConfiguration> {
 	}
 
 	@Override
-	protected MessageCode onSave() {
-		return MessageCode.SAVE_HUNGER_GAME_SAVED.withArgs(get().getName());
+	protected void onSave() {
+		sendMessage(MessageCode.SAVE_HUNGER_GAME_SAVED, get().getName());
 	}
 }

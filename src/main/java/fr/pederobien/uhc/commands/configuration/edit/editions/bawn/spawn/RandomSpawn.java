@@ -19,7 +19,7 @@ public class RandomSpawn extends AbstractBawnEdition<ISpawn> {
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		List<String> spawns = getPersistence().list();
 		String name = spawns.get(new Random().nextInt(spawns.size()));
 		try {
@@ -29,14 +29,15 @@ public class RandomSpawn extends AbstractBawnEdition<ISpawn> {
 			}
 			getPersistence().load(name).get().setCenter(args[0], args[1], args[2]);
 			get().launch();
-			return MessageCode.RANDOM_SPAWN_LAUNCHED.withArgs(name, "" + get().getCenter().getX(), "" + get().getCenter().getY(), "" + get().getCenter().getZ());
+			sendMessage(MessageCode.RANDOM_SPAWN_LAUNCHED, name, "" + get().getCenter().getX(), "" + get().getCenter().getY(),
+					"" + get().getCenter().getZ());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			return MessageCode.RANDOM_SPAWN_CANNOT_BE_LAUNCHED.withArgs(name);
+			sendMessage(MessageCode.RANDOM_SPAWN_CANNOT_BE_LAUNCHED, name);
 		} catch (IndexOutOfBoundsException e) {
-			return MessageCode.RANDOM_SPAWN_MISSING_COORDINATES;
+			sendMessage(MessageCode.RANDOM_SPAWN_MISSING_COORDINATES);
 		} catch (NumberFormatException e) {
-			return MessageCode.BAD_COORDINATES_FORMAT;
+			sendMessage(MessageCode.BAD_COORDINATES_FORMAT);
 		}
 	}
 

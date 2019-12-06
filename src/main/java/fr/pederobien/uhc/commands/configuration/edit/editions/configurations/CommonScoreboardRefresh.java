@@ -16,22 +16,22 @@ public class CommonScoreboardRefresh<T extends IConfiguration> extends AbstractC
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		try {
 			long refresh = Long.parseLong(args[0]);
 			if (refresh < 0)
-				return MessageCode.SCOREBOARD_REFRESH_NEGATIVE_TIC_DEFINED;
+				sendMessage(MessageCode.SCOREBOARD_REFRESH_NEGATIVE_TIC_DEFINED);
 			if (refresh == 1) {
 				get().setScoreboardRefresh(refresh);
-				return MessageCode.SCOREBOARD_REFRESH_ONE_TIC_DEFINED;
+				sendMessage(MessageCode.SCOREBOARD_REFRESH_ONE_TIC_DEFINED);
 			} else {
 				get().setScoreboardRefresh(refresh);
-				return MessageCode.SCOREBOARD_REFRESH_TICS_DEFINED.withArgs("" + refresh);
+				sendMessage(MessageCode.SCOREBOARD_REFRESH_TICS_DEFINED, "" + refresh);
 			}
 		} catch (IndexOutOfBoundsException e) {
-			return MessageCode.SCOREBOARD_REFRESH_MISSING_TICS;
+			sendMessage(MessageCode.SCOREBOARD_REFRESH_MISSING_TICS);
 		} catch (NumberFormatException e) {
-			return MessageCode.SCOREBOARD_REFRESH_BAD_TICS_FORMAT;
+			sendMessage(MessageCode.SCOREBOARD_REFRESH_BAD_TICS_FORMAT);
 		}
 	}
 

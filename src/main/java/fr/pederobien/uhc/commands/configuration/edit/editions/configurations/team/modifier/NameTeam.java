@@ -17,15 +17,19 @@ public class NameTeam<T extends IConfiguration> extends AbstractTeamEditions<T> 
 	public NameTeam() {
 		super("name", MessageCode.TEAM_MODIFY_NAME_EXPLANATION);
 	}
-	
+
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		String oldName = args[0], newName = args[1];
 		ETeam team = ETeam.getByName(oldName);
-		if (team == null)
-			return MessageCode.TEAM_BAD_TEAM.withArgs(oldName);
+
+		if (team == null) {
+			sendMessage(MessageCode.TEAM_BAD_TEAM, oldName);
+			return;
+		}
+
 		team.setName(newName);
-		return MessageCode.TEAM_MODIFY_NAME_MODIFIED.withArgs(team.getColor() + oldName + ChatColor.RESET, team.getNameWithColor());
+		sendMessage(MessageCode.TEAM_MODIFY_NAME_MODIFIED, team.getColor() + oldName + ChatColor.RESET, team.getNameWithColor());
 	}
 
 	@Override

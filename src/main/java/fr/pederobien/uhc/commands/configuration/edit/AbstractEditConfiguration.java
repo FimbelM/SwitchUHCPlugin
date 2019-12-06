@@ -23,8 +23,7 @@ import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 import fr.pederobien.uhc.observers.IObsMessageSender;
 
-public class AbstractEditConfiguration<T extends IUnmodifiableName> extends AbstractEdition
-		implements IEditConfiguration<T> {
+public class AbstractEditConfiguration<T extends IUnmodifiableName> extends AbstractEdition implements IEditConfiguration<T> {
 	private IPersistence<T> persistence;
 	private IHelper<T> helper;
 	private List<IObsMessageSender> observers;
@@ -55,8 +54,7 @@ public class AbstractEditConfiguration<T extends IUnmodifiableName> extends Abst
 				if (edition != null && edition.isAvailable())
 					return edition.onTabComplete(sender, command, alias, Arrays.copyOfRange(args, 1, args.length));
 
-				List<String> labels = editions.keySet().stream().filter(l -> editions.get(l).isAvailable())
-						.collect(Collectors.toList());
+				List<String> labels = editions.keySet().stream().filter(l -> editions.get(l).isAvailable()).collect(Collectors.toList());
 				labels.add(helper.getLabel());
 				return filter(labels, args[0]);
 			} catch (IndexOutOfBoundsException e) {
@@ -130,18 +128,18 @@ public class AbstractEditConfiguration<T extends IUnmodifiableName> extends Abst
 		try {
 			label = args[0];
 			if (label.equals(helper.getLabel()))
-				sender.sendMessage(helper.edit(sender, args));
+				helper.edit(sender, args);
 			else if (editions.get(label).isAvailable())
-				sendMessage(editions.get(label).edit(Arrays.copyOfRange(args, 1, args.length)));
+				editions.get(label).edit(Arrays.copyOfRange(args, 1, args.length));
 			else
-				sendMessage(MessageCode.COMMAND_NOT_AVAILABLE.withArgs(label));
+				sendMessage(MessageCode.COMMAND_NOT_AVAILABLE, label);
 		} catch (IndexOutOfBoundsException e) {
 			e.printStackTrace();
-			sendMessage(MessageCode.CANNOT_RUN_COMMAND.withArgs(getLabel()));
+			sendMessage(MessageCode.CANNOT_RUN_COMMAND, getLabel());
 			return;
 		} catch (NullPointerException e) {
 			e.printStackTrace();
-			sendMessage(MessageCode.ARGUMENT_NOT_VALID.withArgs(label));
+			sendMessage(MessageCode.ARGUMENT_NOT_VALID, label);
 		}
 	}
 
@@ -150,7 +148,7 @@ public class AbstractEditConfiguration<T extends IUnmodifiableName> extends Abst
 		this.helper = helper;
 		return this;
 	}
-	
+
 	@Override
 	public void sendMessage(MessageCodeEvent event) {
 		MessageEvent messageEvent = EventFactory.createMessageEvent(sender, event);

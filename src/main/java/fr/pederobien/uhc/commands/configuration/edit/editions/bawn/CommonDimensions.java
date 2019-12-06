@@ -8,25 +8,26 @@ import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IBawn;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 import fr.pederobien.uhc.world.blocks.Dimension;
 
 public abstract class CommonDimensions<T extends IBawn> extends AbstractBawnEdition<T> {
 
-	public CommonDimensions(MessageCode explanation) {
+	public CommonDimensions(IMessageCode explanation) {
 		super("dimensions", explanation);
 	}
-	
-	protected abstract MessageCode dimensionsDefined(int width, int height, int depth);
+
+	protected abstract void dimensionsDefined(int width, int height, int depth);
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		try {
 			get().setDimension(new Dimension(args[0], args[1], args[2]));
-			return dimensionsDefined(get().getWidth(), get().getHeight(), get().getDepth());
+			dimensionsDefined(get().getWidth(), get().getHeight(), get().getDepth());
 		} catch (IndexOutOfBoundsException e) {
-			return MessageCode.DIMENSIONS_MISSING_DIMENSIONS;
+			sendMessage(MessageCode.DIMENSIONS_MISSING_DIMENSIONS);
 		} catch (NumberFormatException e) {
-			return MessageCode.DIMENSIONS_BAD_DIMENSIONS_FORMAT;
+			sendMessage(MessageCode.DIMENSIONS_BAD_DIMENSIONS_FORMAT);
 		}
 	}
 

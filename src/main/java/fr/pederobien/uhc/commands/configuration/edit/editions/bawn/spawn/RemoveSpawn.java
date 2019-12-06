@@ -11,7 +11,7 @@ public class RemoveSpawn extends CommonRemove<ISpawn> {
 	}
 
 	@Override
-	protected MessageCode onRemove() {
-		return MessageCode.REMOVE_SPAWN_REMOVED.withArgs(get().getName());
+	protected void onRemove() {
+		sendMessage(MessageCode.REMOVE_SPAWN_REMOVED, get().getName());
 	}
 }

@@ -11,13 +11,13 @@ public class NewSpawn extends CommonNew<ISpawn> {
 	}
 
 	@Override
-	protected MessageCode onAlreadyExisting(String name) {
-		return MessageCode.NEW_SPAWN_ALREADY_EXISTING.withArgs(name);
+	protected void onAlreadyExisting(String name) {
+		sendMessage(MessageCode.NEW_SPAWN_ALREADY_EXISTING, name);
 	}
 
 	@Override
-	protected MessageCode onCreated() {
-		return MessageCode.NEW_SPAWN_CREATED.withArgs(get().getName());
+	protected void onCreated() {
+		sendMessage(MessageCode.NEW_SPAWN_CREATED, get().getName());
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public class NewSpawn extends CommonNew<ISpawn> {
 	}
 
 	@Override
-	protected MessageCode onNameIsMissing() {
-		return MessageCode.NEW_SPAWN_MISSING_NAME;
+	protected void onNameIsMissing() {
+		sendMessage(MessageCode.NEW_SPAWN_MISSING_NAME);
 	}
 }

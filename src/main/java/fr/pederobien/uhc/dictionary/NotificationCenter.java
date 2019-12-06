@@ -17,7 +17,8 @@ public class NotificationCenter {
 			PlayerManager.getPlayers().forEach(p -> sendMessage(p, event));
 			break;
 		case COMMAND_SENDER:
-			sendMessage((Player) event.getSender(), event);
+			if (event.getSender() instanceof Player)
+				sendMessage((Player) event.getSender(), event);
 			break;
 		case OPERATORS:
 			BukkitManager.getOnlineOperators().forEach(p -> sendMessage(p, event));

@@ -1,19 +1,19 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions;
 
-import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 
 public abstract class CommonSave<T extends IUnmodifiableName> extends AbstractMapEdition<T> {
 
-	public CommonSave(MessageCode explanation) {
+	public CommonSave(IMessageCode explanation) {
 		super("save", explanation);
 	}
 
-	protected abstract MessageCode onSave();
+	protected abstract void onSave();
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		getPersistence().save();
-		return onSave();
+		onSave();
 	}
 }

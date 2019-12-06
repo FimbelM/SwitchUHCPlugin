@@ -20,11 +20,13 @@ public class AddPlayer<T extends IConfiguration> extends AbstractTeamEditions<T>
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		ETeam team = ETeam.getByName(args[0]);
-		if (team == null)
-			return MessageCode.TEAM_BAD_TEAM.withArgs(args[0]);
-
+		if (team == null) {
+			sendMessage(MessageCode.TEAM_BAD_TEAM, args[0]);
+			return;
+		}
+		
 		List<Player> players = new ArrayList<Player>();
 		String playerNames = "";
 		for (int i = 1; i < args.length; i++) {
@@ -33,7 +35,8 @@ public class AddPlayer<T extends IConfiguration> extends AbstractTeamEditions<T>
 				players.add(player);
 				playerNames += player.getName() + " ";
 			} catch (NullPointerException e) {
-				return MessageCode.TEAM_BAD_PLAYER.withArgs(args[i]);
+				sendMessage(MessageCode.TEAM_BAD_PLAYER, args[i]);
+				return;
 			}
 		}
 
@@ -42,11 +45,14 @@ public class AddPlayer<T extends IConfiguration> extends AbstractTeamEditions<T>
 
 		switch (players.size()) {
 		case 0:
-			return MessageCode.TEAM_ADDPLAYER_NO_PLAYER_ADDED;
+			sendMessage(MessageCode.TEAM_ADDPLAYER_NO_PLAYER_ADDED);
+			break;
 		case 1:
-			return MessageCode.TEAM_ADDPLAYER_ONE_PLAYER_ADDED.withArgs(playerNames, team.getNameWithColor());
+			sendMessage(MessageCode.TEAM_ADDPLAYER_ONE_PLAYER_ADDED, playerNames, team.getNameWithColor());
+			break;
 		default:
-			return MessageCode.TEAM_ADDPLAYER_PLAYERS_ADDED.withArgs(playerNames, team.getNameWithColor());
+			sendMessage(MessageCode.TEAM_ADDPLAYER_PLAYERS_ADDED, playerNames, team.getNameWithColor());
+			break;
 		}
 	}
 

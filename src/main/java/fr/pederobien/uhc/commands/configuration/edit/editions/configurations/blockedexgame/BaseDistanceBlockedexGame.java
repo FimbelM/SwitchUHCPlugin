@@ -17,27 +17,28 @@ public class BaseDistanceBlockedexGame extends AbstractConfEdition<IBlockedexCon
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		int distance;
 		try {
 			distance = Integer.parseInt(args[0]);
-			if (distance < 0)
-				return MessageCode.BASE_DISTANCE_BLOCKEDEX_GAME_NEGATIVE_DISTANCE;
+			if (distance < 0) {
+				sendMessage(MessageCode.BASE_DISTANCE_BLOCKEDEX_GAME_NEGATIVE_DISTANCE);
+				return;
+			}
+
 			get().setBaseFromSpawnDistance(distance);
-			return MessageCode.BASE_DISTANCE_BLOCKEDEX_GAME_DEFINED
-					.withArgs(get().getBaseFromSpawnDistance().toString());
+			sendMessage(MessageCode.BASE_DISTANCE_BLOCKEDEX_GAME_DEFINED, get().getBaseFromSpawnDistance().toString());
 		} catch (NumberFormatException e) {
-			return MessageCode.BASE_DISTANCE_BLOCKEDEX_GAME_BAD_DISTANCE_FORMAT;
+			sendMessage(MessageCode.BASE_DISTANCE_BLOCKEDEX_GAME_BAD_DISTANCE_FORMAT);
 		} catch (IndexOutOfBoundsException e) {
-			return MessageCode.BASE_DISTANCE_BLOCKEDEX_GAME_MISSING_DISTANCE;
+			sendMessage(MessageCode.BASE_DISTANCE_BLOCKEDEX_GAME_MISSING_DISTANCE);
 		}
 	}
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		if (args.length == 1)
-			return Arrays
-					.asList(getMessageOnTabComplete(sender, MessageCode.BASE_DISTANCE_BLOCKEDEX_GAME_TAB_COMPLETE));
+			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.BASE_DISTANCE_BLOCKEDEX_GAME_TAB_COMPLETE));
 		return super.onTabComplete(sender, command, alias, args);
 	}
 }

@@ -14,7 +14,7 @@ public class SouthBaseBlockedexGame extends AbstractBaseEdition {
 	}
 
 	@Override
-	protected MessageCode onBaseSetted() {
-		return MessageCode.BASE_SOUTH_BLOCKEDEX_GAME_SETTED.withArgs(get().getSouthBase());
+	protected void onBaseSetted() {
+		sendMessage(MessageCode.BASE_SOUTH_BLOCKEDEX_GAME_SETTED, get().getSouthBase());
 	}
 }

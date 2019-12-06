@@ -12,7 +12,7 @@ public class AsCurrentHungerGame extends CommonAsCurrent<IHungerGameConfiguratio
 	}
 
 	@Override
-	protected MessageCode onStyleNotDefined(String name) {
-		return MessageCode.AS_CURRENT_HUNGER_GAME_NOT_EXISTING_STYLE.withArgs(name);
+	protected void onStyleNotDefined(String name) {
+		sendMessage(MessageCode.AS_CURRENT_HUNGER_GAME_NOT_EXISTING_STYLE, name);
 	}
 }

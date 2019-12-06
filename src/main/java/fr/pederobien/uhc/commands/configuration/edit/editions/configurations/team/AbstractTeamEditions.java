@@ -6,14 +6,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractMapEdition;
-import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.PlayerManager;
 
 public abstract class AbstractTeamEditions<T extends IConfiguration> extends AbstractMapEdition<T> {
 
-	public AbstractTeamEditions(String label, MessageCode explanation) {
+	public AbstractTeamEditions(String label, IMessageCode explanation) {
 		super(label, explanation);
 	}
 

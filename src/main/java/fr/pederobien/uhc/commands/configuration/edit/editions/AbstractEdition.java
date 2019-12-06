@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IEdition;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 
 public abstract class AbstractEdition implements IEdition {
 	private String label;
-	private MessageCode explanation;
+	private IMessageCode explanation;
 
-	public AbstractEdition(String label, MessageCode explanation) {
+	public AbstractEdition(String label, IMessageCode explanation) {
 		this.label = label;
 		this.explanation = explanation;
 	}
@@ -24,10 +24,10 @@ public abstract class AbstractEdition implements IEdition {
 	}
 
 	@Override
-	public MessageCode getExplanation() {
+	public IMessageCode getExplanation() {
 		return explanation;
 	}
-	
+
 	protected List<String> emptyList() {
 		return new ArrayList<String>();
 	}

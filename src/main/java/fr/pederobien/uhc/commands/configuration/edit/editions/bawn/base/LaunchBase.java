@@ -12,36 +12,38 @@ public class LaunchBase extends CommonLaunch<IBase> {
 	}
 
 	@Override
-	protected MessageCode onLaunch() {
+	protected void onLaunch() {
 		switch (get().getChestsNumber()) {
 		case 0:
-			return MessageCode.LAUNCH_BASE_NO_TEAM_SUPPORTED.withArgs(get().getName(), "" + get().getCenter().getX(),
-					"" + get().getCenter().getY(), "" + get().getCenter().getZ());
+			sendMessage(MessageCode.LAUNCH_BASE_NO_TEAM_SUPPORTED, get().getName(), "" + get().getCenter().getX(), "" + get().getCenter().getY(),
+					"" + get().getCenter().getZ());
+			break;
 		case 1:
-			return MessageCode.LAUNCH_BASE_NO_TEAM_SUPPORTED.withArgs(get().getName(), "" + get().getCenter().getX(),
-					"" + get().getCenter().getY(), "" + get().getCenter().getZ(),
-					get().getChests().values().iterator().next().getNameWithColor());
+			sendMessage(MessageCode.LAUNCH_BASE_NO_TEAM_SUPPORTED, get().getName(), "" + get().getCenter().getX(), "" + get().getCenter().getY(),
+					"" + get().getCenter().getZ(), get().getChests().values().iterator().next().getNameWithColor());
+			break;
 		default:
 			String teamColors = "";
 			for (ETeam team : get().getChests().values())
 				teamColors += team.getColorNameWithColor() + " ";
-			return MessageCode.LAUNCH_BASE_NO_TEAM_SUPPORTED.withArgs(get().getName(), "" + get().getCenter().getX(),
-					"" + get().getCenter().getY(), "" + get().getCenter().getZ(), teamColors);
+			sendMessage(MessageCode.LAUNCH_BASE_NO_TEAM_SUPPORTED, get().getName(), "" + get().getCenter().getX(), "" + get().getCenter().getY(),
+					"" + get().getCenter().getZ(), teamColors);
+			break;
 		}
 	}
 
 	@Override
-	protected MessageCode onNotExist(String name) {
-		return MessageCode.LAUNCH_BASE_NOT_EXISTING.withArgs(name);
+	protected void onNotExist(String name) {
+		sendMessage(MessageCode.LAUNCH_BASE_NOT_EXISTING, name);
 	}
 
 	@Override
-	protected MessageCode onNeedCoordinates(String name) {
-		return MessageCode.LAUNCH_BASE_MISSING_COORDINATES.withArgs(name);
+	protected void onNeedCoordinates(String name) {
+		sendMessage(MessageCode.LAUNCH_BASE_MISSING_COORDINATES, name);
 	}
 
 	@Override
-	protected MessageCode onNeedNameAndCoordinates(String name) {
-		return MessageCode.LAUNCH_BASE_MISSING_NAME_AND_COORDINATES.withArgs(name);
+	protected void onNeedNameAndCoordinates(String name) {
+		sendMessage(MessageCode.LAUNCH_BASE_MISSING_NAME_AND_COORDINATES, name);
 	}
 }

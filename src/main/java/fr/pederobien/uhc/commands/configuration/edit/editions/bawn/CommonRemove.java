@@ -1,19 +1,19 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn;
 
-import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IBawn;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 
 public abstract class CommonRemove<T extends IBawn> extends AbstractBawnEdition<T> {
 
-	public CommonRemove(MessageCode explanation) {
+	public CommonRemove(IMessageCode explanation) {
 		super("remove", explanation);
 	}
 
-	protected abstract MessageCode onRemove();
+	protected abstract void onRemove();
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		get().remove();
-		return onRemove();
+		onRemove();
 	}
 }

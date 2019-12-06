@@ -10,22 +10,24 @@ import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 
 public abstract class CommonGameTime<T extends IConfiguration> extends AbstractConfEdition<T> {
 
-	public CommonGameTime(MessageCode explanation) {
+	public CommonGameTime(IMessageCode explanation) {
 		super("gametime", explanation);
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		try {
 			get().setGameTime(LocalTime.parse(args[0]));
-			return MessageCode.GAME_TIME_DEFINED.withArgs("" + get().getGameTime().getHour(), "" + get().getGameTime().getMinute(), "" + get().getGameTime().getSecond());
+			sendMessage(MessageCode.GAME_TIME_DEFINED, "" + get().getGameTime().getHour(), "" + get().getGameTime().getMinute(),
+					"" + get().getGameTime().getSecond());
 		} catch (IndexOutOfBoundsException e) {
-			return MessageCode.GAME_TIME_MISSING_TIME;
+			sendMessage(MessageCode.GAME_TIME_MISSING_TIME);
 		} catch (DateTimeParseException e) {
-			return MessageCode.GAME_TIME_BAD_TIME_FORMAT;
+			sendMessage(MessageCode.GAME_TIME_BAD_TIME_FORMAT);
 		}
 	}
 

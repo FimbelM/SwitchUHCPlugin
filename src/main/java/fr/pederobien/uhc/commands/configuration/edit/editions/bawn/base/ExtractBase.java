@@ -15,23 +15,23 @@ public class ExtractBase extends CommonExtract<IBase> {
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		try {
-			return super.edit(args);
+			super.edit(args);
 		} catch (BaseExtractionException e) {
-			return e.getCode();
+			sendMessage(e.getCode());
 		}
 	}
 
 	@Override
-	protected MessageCode onExtracted() {
+	protected void onExtracted() {
 		switch (get().getChestsNumber()) {
 		case 1:
-			return MessageCode.EXTRACT_BASE_ONE_CHEST_EXTRACTED.withArgs(get().getName(),
-					get().getChests().values().iterator().next().getColorNameWithColor());
+			sendMessage(MessageCode.EXTRACT_BASE_ONE_CHEST_EXTRACTED, get().getName(), colorName(get().getChests().values()));
+			break;
 		default:
-			return MessageCode.EXTRACT_BASE_CHESTS_EXTRACTED.withArgs(get().getName(),
-					colorName(get().getChests().values()));
+			sendMessage(MessageCode.EXTRACT_BASE_CHESTS_EXTRACTED, get().getName(), colorName(get().getChests().values()));
+			break;
 		}
 	}
 

@@ -9,45 +9,46 @@ import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IBawn;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 
 public abstract class CommonLaunch<T extends IBawn> extends AbstractBawnEdition<T> {
 
-	public CommonLaunch(MessageCode explanation) {
+	public CommonLaunch(IMessageCode explanation) {
 		super("launch", explanation);
 	}
 
-	protected abstract MessageCode onLaunch();
+	protected abstract void onLaunch();
 
-	protected abstract MessageCode onNotExist(String name);
-	
-	protected abstract MessageCode onNeedCoordinates(String name);
+	protected abstract void onNotExist(String name);
 
-	protected abstract MessageCode onNeedNameAndCoordinates(String name);
+	protected abstract void onNeedCoordinates(String name);
+
+	protected abstract void onNeedNameAndCoordinates(String name);
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		String name = "";
 		if (args.length == 0) {
 			get().launch();
-			return onLaunch();
+			onLaunch();
 		} else if (args.length < 2) {
 			getPersistence().save();
 			try {
 				name = args[0];
 				getPersistence().load(name).get().launch();
-				return onLaunch();
+				onLaunch();
 			} catch (FileNotFoundException e) {
-				return onNotExist(name);
+				onNotExist(name);
 			}
 		} else if (args.length < 4) {
 			try {
 				get().setCenter(args[0], args[1], args[2]);
 				get().launch();
-				return onLaunch();
+				onLaunch();
 			} catch (IndexOutOfBoundsException e) {
-				return onNeedCoordinates(name);
+				onNeedCoordinates(name);
 			} catch (NumberFormatException e) {
-				return MessageCode.LAUNCH_BAD_COORDINATES_FORMAT;
+				sendMessage(MessageCode.LAUNCH_BAD_COORDINATES_FORMAT);
 			}
 		} else {
 			name = args[0];
@@ -55,13 +56,13 @@ public abstract class CommonLaunch<T extends IBawn> extends AbstractBawnEdition<
 			try {
 				getPersistence().load(name).get().setCenter(args[1], args[2], args[3]);
 				get().launch();
-				return onLaunch();
+				onLaunch();
 			} catch (FileNotFoundException e) {
-				return onNotExist(name);
+				onNotExist(name);
 			} catch (IndexOutOfBoundsException e) {
-				return onNeedNameAndCoordinates(name);
+				onNeedNameAndCoordinates(name);
 			} catch (NumberFormatException e) {
-				return MessageCode.LAUNCH_BAD_COORDINATES_FORMAT;
+				sendMessage(MessageCode.LAUNCH_BAD_COORDINATES_FORMAT);
 			}
 		}
 	}

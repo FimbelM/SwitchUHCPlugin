@@ -11,22 +11,23 @@ public class LaunchSpawn extends CommonLaunch<ISpawn> {
 	}
 
 	@Override
-	protected MessageCode onLaunch() {
-		return MessageCode.LAUNCH_SPAWN_LAUNCHED.withArgs(get().getName(), "" + get().getCenter().getX(), "" + get().getCenter().getY(), "" + get().getCenter().getZ());
+	protected void onLaunch() {
+		sendMessage(MessageCode.LAUNCH_SPAWN_LAUNCHED, get().getName(), "" + get().getCenter().getX(), "" + get().getCenter().getY(),
+				"" + get().getCenter().getZ());
 	}
 
 	@Override
-	protected MessageCode onNotExist(String name) {
-		return MessageCode.LAUNCH_SPAWN_NOT_EXISTING.withArgs(name);
-	}
-	
-	@Override
-	protected MessageCode onNeedCoordinates(String name) {
-		return MessageCode.LAUNCH_SPAWN_MISSING_COORDINATES.withArgs(name);
+	protected void onNotExist(String name) {
+		sendMessage(MessageCode.LAUNCH_SPAWN_NOT_EXISTING, name);
 	}
 
 	@Override
-	protected MessageCode onNeedNameAndCoordinates(String name) {
-		return MessageCode.LAUNCH_SPAWN_MISSING_NAME_AND_COORDINATES.withArgs(name);
+	protected void onNeedCoordinates(String name) {
+		sendMessage(MessageCode.LAUNCH_SPAWN_MISSING_COORDINATES, name);
+	}
+
+	@Override
+	protected void onNeedNameAndCoordinates(String name) {
+		sendMessage(MessageCode.LAUNCH_SPAWN_MISSING_NAME_AND_COORDINATES, name);
 	}
 }

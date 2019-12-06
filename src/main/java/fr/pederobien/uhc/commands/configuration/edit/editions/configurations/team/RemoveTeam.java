@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 import fr.pederobien.uhc.managers.ETeam;
 
 public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
@@ -19,13 +20,14 @@ public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		if (args[0].equals(ALL)) {
 			List<ETeam> teams = new ArrayList<ETeam>();
 			teams.addAll(get().getTeams());
 			for (ETeam team : teams)
 				get().removeTeam(team);
-			return MessageCode.TEAM_REMOVETEAM_ALL_TEAMS_REMOVED;
+			sendMessage(MessageCode.TEAM_REMOVETEAM_ALL_TEAMS_REMOVED);
+			return;
 		}
 
 		List<ETeam> teams = new ArrayList<ETeam>();
@@ -36,7 +38,8 @@ public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 				teams.add(team);
 				teamNames += team.getNameWithColor() + " ";
 			} catch (NullPointerException e) {
-				return MessageCode.TEAM_BAD_TEAM.withArgs(args[i]);
+				sendMessage(MessageCode.TEAM_BAD_TEAM, args[i]);
+				return;
 			}
 		}
 
@@ -44,15 +47,23 @@ public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 			team.removeAllPlayers();
 			get().removeTeam(team);
 		}
-
+		
+		IMessageCode code;
+		String localArgs = null;
 		switch (teams.size()) {
 		case 0:
-			return MessageCode.TEAM_REMOVETEAM_NO_TEAM_REMOVED;
+			code = MessageCode.TEAM_REMOVETEAM_NO_TEAM_REMOVED;
+			break;
 		case 1:
-			return MessageCode.TEAM_REMOVETEAM_ONE_TEAM_REMOVED.withArgs(teamNames);
+			code = MessageCode.TEAM_REMOVETEAM_ONE_TEAM_REMOVED;
+			localArgs = teamNames;
+			break;
 		default:
-			return MessageCode.TEAM_REMOVETEAM_TEAMS_REMOVED.withArgs(teamNames);
+			code = MessageCode.TEAM_REMOVETEAM_TEAMS_REMOVED;
+			localArgs = teamNames;
+			break;
 		}
+		sendMessage(code, localArgs);
 	}
 
 	@Override

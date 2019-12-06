@@ -7,33 +7,34 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 import fr.pederobien.uhc.interfaces.IName;
 
 public abstract class CommonRename<T extends IName> extends AbstractMapEdition<T> {
 
-	public CommonRename(MessageCode explanation) {
+	public CommonRename(IMessageCode explanation) {
 		super("rename", explanation);
 	}
 
-	protected abstract MessageCode onAlreadyExisting(String newName);
+	protected abstract void onAlreadyExisting(String newName);
 
-	protected abstract MessageCode onRename(String oldName, String newName);
+	protected abstract void onRename(String oldName, String newName);
 
-	protected abstract MessageCode onNameIsMissing(String oldName);
+	protected abstract void onNameIsMissing(String oldName);
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		try {
 			String newName = args[0];
 			if (getPersistence().exist(newName))
-				return onAlreadyExisting(newName);
+				onAlreadyExisting(newName);
 			else {
 				String oldName = get().getName();
 				get().setName(newName);
-				return onRename(oldName, newName);
+				onRename(oldName, newName);
 			}
 		} catch (IndexOutOfBoundsException e) {
-			return onNameIsMissing(get().getName());
+			onNameIsMissing(get().getName());
 		}
 	}
 

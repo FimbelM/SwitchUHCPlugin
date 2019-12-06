@@ -17,14 +17,14 @@ public class BorderCenterHungerGame extends AbstractConfEdition<IHungerGameConfi
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		try {
 			get().setBorderCenter(args[0], args[1]);
-			return MessageCode.BORDER_CENTER_HUNGER_GAME_DEFINED.withArgs("" + get().getBorderCenter().getX(), "" + get().getBorderCenter().getZ());
+			sendMessage(MessageCode.BORDER_CENTER_HUNGER_GAME_DEFINED, "" + get().getBorderCenter().getX(), "" + get().getBorderCenter().getZ());
 		} catch (IndexOutOfBoundsException | NullPointerException e) {
-			return MessageCode.BORDER_CENTER_HUNGER_GAME_MISSING_COORDINATES;
+			sendMessage(MessageCode.BORDER_CENTER_HUNGER_GAME_MISSING_COORDINATES);
 		} catch (NumberFormatException e) {
-			return MessageCode.BORDER_CENTER_HUNGER_GAME_BAD_COORDINATES_FORMAT;
+			sendMessage(MessageCode.BORDER_CENTER_HUNGER_GAME_BAD_COORDINATES_FORMAT);
 		}
 	}
 

@@ -17,19 +17,19 @@ import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.event.EventFactory;
 import fr.pederobien.uhc.event.MessageCodeEvent;
 import fr.pederobien.uhc.interfaces.IMapEdition;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 import fr.pederobien.uhc.interfaces.IPersistence;
 import fr.pederobien.uhc.interfaces.IPersistenceEdition;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 import fr.pederobien.uhc.observers.IObsMessageCodeSender;
 
-public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends AbstractEdition
-		implements IMapEdition<T> {
+public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends AbstractEdition implements IMapEdition<T> {
 	private IPersistenceEdition<T> parent;
 	private boolean available, modifiable;
 	private HashMap<String, IMapEdition<T>> editions;
 	private List<IObsMessageCodeSender> observers;
 
-	public AbstractMapEdition(String label, MessageCode explanation) {
+	public AbstractMapEdition(String label, IMessageCode explanation) {
 		super(label, explanation);
 		available = true;
 		modifiable = true;
@@ -38,20 +38,20 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		String label = "";
 		try {
 			label = args[0];
 			if (editions.get(label).isAvailable())
-				return editions.get(label).edit(Arrays.copyOfRange(args, 1, args.length));
+				editions.get(label).edit(Arrays.copyOfRange(args, 1, args.length));
 			else
-				return MessageCode.COMMAND_NOT_AVAILABLE.withArgs(label);
+				sendMessage(MessageCode.COMMAND_NOT_AVAILABLE, label);
 		} catch (IndexOutOfBoundsException e) {
 			e.printStackTrace();
-			return MessageCode.CANNOT_RUN_COMMAND.withArgs(getLabel());
+			sendMessage(MessageCode.CANNOT_RUN_COMMAND, getLabel());
 		} catch (NullPointerException e) {
 			e.printStackTrace();
-			return MessageCode.ARGUMENT_NOT_VALID.withArgs(label);
+			sendMessage(MessageCode.ARGUMENT_NOT_VALID, label);
 		}
 	}
 
@@ -116,7 +116,7 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 		for (IMapEdition<T> edition : editions.values())
 			edition.setParent(parent);
 	}
-	
+
 	@Override
 	public IMapEdition<T> addObserver(IObsMessageCodeSender obs) {
 		observers.add(obs);
@@ -124,7 +124,7 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 			edition.addObserver(obs);
 		return this;
 	}
-	
+
 	@Override
 	public IMapEdition<T> removeObserver(IObsMessageCodeSender obs) {
 		observers.remove(obs);
@@ -132,7 +132,7 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 			edition.removeObserver(obs);
 		return this;
 	}
-	
+
 	@Override
 	public void sendMessage(MessageCodeEvent event) {
 		for (IObsMessageCodeSender obs : observers)
@@ -148,17 +148,19 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 	}
 
 	protected boolean startWithIgnoreCase(String str, String beginning) {
-		return str.length() < beginning.length() ? false
-				: str.substring(0, beginning.length()).equalsIgnoreCase(beginning);
+		return str.length() < beginning.length() ? false : str.substring(0, beginning.length()).equalsIgnoreCase(beginning);
 	}
 
-	protected String getMessageOnTabComplete(CommandSender sender, MessageCode code) {
-		return sender instanceof Player
-				? DictionaryManager.getMessage(NotificationCenter.getLocale((Player) sender), createMessageCodeEvent(code))
+	protected String getMessageOnTabComplete(CommandSender sender, IMessageCode code) {
+		return sender instanceof Player ? DictionaryManager.getMessage(NotificationCenter.getLocale((Player) sender), createMessageCodeEvent(code))
 				: null;
 	}
-	
-	protected MessageCodeEvent createMessageCodeEvent(MessageCode code, String... args) {
+
+	protected MessageCodeEvent createMessageCodeEvent(IMessageCode code, String... args) {
 		return EventFactory.createMessageCodeEvent(code, args);
+	}
+
+	protected void sendMessage(IMessageCode code, String... args) {
+		sendMessage(createMessageCodeEvent(code, args));
 	}
 }

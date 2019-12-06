@@ -4,7 +4,7 @@ import fr.pederobien.uhc.interfaces.IMessageCode;
 
 public enum MessageCode implements IMessageCode {
 
-	// Common message
+	// Common messages
 	DELETE_ON_CANNOT_DELETE,
 	HELP_EXPLANATION,
 	NEW_NAME_MUST_NOT_START_BY_DEFAULT,
@@ -355,30 +355,20 @@ public enum MessageCode implements IMessageCode {
 	GAME_SUSPENDED,
 	GAME_RESUMED;
 
-	private String[] args;
 	private MessagePermission permission;
-	
+
 	private MessageCode() {
 		this(MessagePermission.COMMAND_SENDER);
 	}
-	
+
 	private MessageCode(MessagePermission permission) {
 		this.permission = permission;
 	}
-	
-	public MessageCode withArgs(String... args) {
-		this.args = args;
-		return this;
-	}
 
-	public String[] getArgs() {
-		return args;
-	}
-	
 	public MessagePermission getPermission() {
 		return permission;
 	}
-	
+
 	public void setPermission(MessagePermission permission) {
 		this.permission = permission;
 	}

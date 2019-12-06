@@ -14,7 +14,7 @@ public class NorthBaseBlockedexGame extends AbstractBaseEdition {
 	}
 
 	@Override
-	protected MessageCode onBaseSetted() {
-		return MessageCode.BASE_NORTH_BLOCKEDEX_GAME_SETTED.withArgs(get().getNorthBase());
+	protected void onBaseSetted() {
+		sendMessage(MessageCode.BASE_NORTH_BLOCKEDEX_GAME_SETTED, get().getNorthBase());
 	}
 }

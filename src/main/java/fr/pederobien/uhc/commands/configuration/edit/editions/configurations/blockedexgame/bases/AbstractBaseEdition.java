@@ -8,30 +8,32 @@ import org.bukkit.command.CommandSender;
 import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractMapEdition;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 import fr.pederobien.uhc.managers.BaseManager;
 
 public abstract class AbstractBaseEdition extends AbstractMapEdition<IBlockedexConfiguration> {
 
-	public AbstractBaseEdition(String label, MessageCode explanation) {
+	public AbstractBaseEdition(String label, IMessageCode explanation) {
 		super(label, explanation);
 	}
 
 	protected abstract void setBase(String baseName);
 
-	protected abstract MessageCode onBaseSetted();
+	protected abstract void onBaseSetted();
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		String name;
 		try {
 			name = args[0];
 			if (BaseManager.checkBaseAvailable(name, get().getTeams())) {
 				setBase(name);
-				return onBaseSetted();
+				onBaseSetted();
+				return;
 			}
-			return MessageCode.BASE_BLOCKEDEX_GAME_DOES_NOT_SUPPORT_TEAM;
+			sendMessage(MessageCode.BASE_BLOCKEDEX_GAME_DOES_NOT_SUPPORT_TEAM);
 		} catch (IndexOutOfBoundsException e) {
-			return MessageCode.BASE_BLOCKEDEX_GAME_MISSING_NAME;
+			sendMessage(MessageCode.BASE_BLOCKEDEX_GAME_MISSING_NAME);
 		}
 	}
 

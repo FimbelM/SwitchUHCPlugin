@@ -8,38 +8,39 @@ import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.configurations.ConfigurationsFactory;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 
 public abstract class CommonNew<T extends IUnmodifiableName> extends AbstractMapEdition<T> {
 	protected ConfigurationsFactory factory = ConfigurationsFactory.getInstance();
 
-	public CommonNew(MessageCode explanation) {
+	public CommonNew(IMessageCode explanation) {
 		super("new", explanation);
 	}
 
-	protected abstract MessageCode onAlreadyExisting(String name);
+	protected abstract void onAlreadyExisting(String name);
 
-	protected abstract MessageCode onCreated();
+	protected abstract void onCreated();
 
 	protected abstract T getNew(String name);
 
-	protected abstract MessageCode onNameIsMissing();
+	protected abstract void onNameIsMissing();
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		try {
 			String name = args[0];
 			getPersistence().save();
 			if (getPersistence().exist(name))
-				return onAlreadyExisting(name);
+				onAlreadyExisting(name);
 			else if (startWithIgnoreCase(name, "default"))
-				return MessageCode.NEW_NAME_MUST_NOT_START_BY_DEFAULT.withArgs(name);
+				sendMessage(MessageCode.NEW_NAME_MUST_NOT_START_BY_DEFAULT, name);
 			else {
 				getPersistence().set(getNew(name));
-				return onCreated();
+				onCreated();
 			}
 		} catch (IndexOutOfBoundsException e) {
-			return onNameIsMissing();
+			onNameIsMissing();
 		}
 	}
 

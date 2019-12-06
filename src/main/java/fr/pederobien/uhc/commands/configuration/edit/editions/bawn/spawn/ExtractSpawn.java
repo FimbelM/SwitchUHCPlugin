@@ -11,7 +11,7 @@ public class ExtractSpawn extends CommonExtract<ISpawn> {
 	}
 
 	@Override
-	protected MessageCode onExtracted() {
-		return MessageCode.EXTRACT_SPAWN_EXTRACTED.withArgs(get().getName());
+	protected void onExtracted() {
+		sendMessage(MessageCode.EXTRACT_SPAWN_EXTRACTED, get().getName());
 	}
 }

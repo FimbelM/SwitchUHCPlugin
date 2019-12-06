@@ -11,7 +11,7 @@ public class DimensionsBase extends CommonDimensions<IBase> {
 	}
 
 	@Override
-	protected MessageCode dimensionsDefined(int width, int height, int depth) {
-		return MessageCode.DIMENSIONS_BASE_DEFINED.withArgs("" + width, "" + height, "" + depth);
+	protected void dimensionsDefined(int width, int height, int depth) {
+		sendMessage(MessageCode.DIMENSIONS_BASE_DEFINED, "" + width, "" + height, "" + depth);
 	}
 }

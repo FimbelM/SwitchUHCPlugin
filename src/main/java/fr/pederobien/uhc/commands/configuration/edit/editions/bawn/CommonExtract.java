@@ -1,19 +1,19 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.bawn;
 
-import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IBawn;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 
 public abstract class CommonExtract<T extends IBawn> extends AbstractBawnEdition<T> {
 
-	public CommonExtract(MessageCode explanation) {
+	public CommonExtract(IMessageCode explanation) {
 		super("extract", explanation);
 	}
 
-	protected abstract MessageCode onExtracted();
+	protected abstract void onExtracted();
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		get().extract();
-		return onExtracted();
+		onExtracted();
 	}
 }

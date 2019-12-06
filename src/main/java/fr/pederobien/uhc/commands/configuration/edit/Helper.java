@@ -19,6 +19,7 @@ import fr.pederobien.uhc.interfaces.IHelper;
 import fr.pederobien.uhc.interfaces.IMapEdition;
 import fr.pederobien.uhc.interfaces.INodeEdition;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
+import fr.pederobien.uhc.managers.PlayerManager;
 
 public class Helper<T extends IUnmodifiableName> extends AbstractEdition implements IHelper<T> {
 	private IEditConfiguration<T> configuration;
@@ -53,21 +54,20 @@ public class Helper<T extends IUnmodifiableName> extends AbstractEdition impleme
 	}
 
 	@Override
-	public String edit(CommandSender sender, String[] args) {
+	public void edit(CommandSender sender, String[] args) {
 		try {
 			IMapEdition<T> edition = configuration.getChildren().get(args[0]);
 			for (int i = 1; i < args.length; i++)
 				if (edition != null)
 					edition = edition.getChildren().get(args[i]);
-			return translate(sender, edition);
+			sendMessage(sender, edition);
 		} catch (IndexOutOfBoundsException e) {
-			return translate(sender, configuration);
+			sendMessage(sender, configuration);
 		}
 	}
 
 	private Stream<String> filterValues(Collection<IMapEdition<T>> values) {
-		return values.stream().filter(e -> e.isAvailable()).filter(e -> !e.getLabel().equals("help"))
-				.map(e -> e.getLabel());
+		return values.stream().filter(e -> e.isAvailable()).filter(e -> !e.getLabel().equals("help")).map(e -> e.getLabel());
 	}
 
 	private <U> String translate(CommandSender sender, INodeEdition<IMapEdition<T>, U> edition) {
@@ -81,5 +81,10 @@ public class Helper<T extends IUnmodifiableName> extends AbstractEdition impleme
 		String explanation = DictionaryManager.getMessage(NotificationCenter.getLocale((Player) sender),
 				EventFactory.createMessageCodeEvent(edition.getExplanation()));
 		return ChatColor.DARK_RED + edition.getLabel() + " - " + ChatColor.DARK_AQUA + explanation + "\n";
+	}
+
+	private <U> void sendMessage(CommandSender sender, INodeEdition<IMapEdition<T>, U> edition) {
+		if (sender instanceof Player)
+			PlayerManager.sendMessageToPlayer((Player) sender, translate(sender, edition));
 	}
 }

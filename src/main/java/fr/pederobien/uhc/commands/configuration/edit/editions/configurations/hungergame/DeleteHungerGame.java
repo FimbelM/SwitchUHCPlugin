@@ -11,7 +11,7 @@ public class DeleteHungerGame extends CommonDelete<IHungerGameConfiguration> {
 	}
 
 	@Override
-	protected MessageCode onDeleted(String name) {
-		return MessageCode.DELETE_HUNGER_GAME_MESSAGE.withArgs(name);
+	protected void onDeleted(String name) {
+		sendMessage(MessageCode.DELETE_HUNGER_GAME_MESSAGE, name);
 	}
 }

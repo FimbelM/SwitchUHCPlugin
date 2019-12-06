@@ -19,15 +19,16 @@ public class FractionTimeHungerGame extends AbstractConfEdition<IHungerGameConfi
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		try {
 			get().setFractionTime(LocalTime.parse(args[0]));
-			return MessageCode.FRACTION_TIME_HUNGER_GAME_DEFINED.withArgs("" + get().getFractionTime().getHour(),
+			sendMessage(MessageCode.FRACTION_TIME_HUNGER_GAME_DEFINED, "" + get().getFractionTime().getHour(),
 					"" + get().getFractionTime().getMinute(), "" + get().getFractionTime().getSecond());
+			return;
 		} catch (IndexOutOfBoundsException e) {
-			return MessageCode.FRACTION_TIME_HUNGER_GAME_MISSING_TIME;
+			sendMessage(MessageCode.FRACTION_TIME_HUNGER_GAME_MISSING_TIME);
 		} catch (DateTimeParseException e) {
-			return MessageCode.FRACTION_TIME_HUNGER_GAME_BAD_TIME_FORMAT;
+			sendMessage(MessageCode.FRACTION_TIME_HUNGER_GAME_BAD_TIME_FORMAT);
 		}
 	}
 

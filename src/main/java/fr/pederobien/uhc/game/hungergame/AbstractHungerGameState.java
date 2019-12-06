@@ -36,13 +36,11 @@ public abstract class AbstractHungerGameState extends AbstractGameState implemen
 
 	protected void warnPlayers(LocalTime time) {
 		if (!alreadyWarned) {
-			LocalTime toMovingBorder = LocalTime
-					.ofNanoOfDay(Duration.between(time, game.getConfiguration().getGameTime()).toNanos());
+			LocalTime toMovingBorder = LocalTime.ofNanoOfDay(Duration.between(time, game.getConfiguration().getGameTime()).toNanos());
 
 			WorldManager.getPlayersInWorld(WorldManager.NETHER_WORLD, WorldManager.END_WORLD)
-				.forEach(p -> NotificationCenter.sendMessage(EventFactory.createMessageEvent(p,
-				MessageCode.PLAYER_MUST_GO_BACK_TO_THE_OVERWORLD.withArgs("" + toMovingBorder.getHour(),
-				"" + toMovingBorder.getMinute(), "" + toMovingBorder.getSecond()))));
+					.forEach(p -> NotificationCenter.sendMessage(EventFactory.createMessageEvent(p, MessageCode.PLAYER_MUST_GO_BACK_TO_THE_OVERWORLD,
+							"" + toMovingBorder.getHour(), "" + toMovingBorder.getMinute(), "" + toMovingBorder.getSecond())));
 		}
 		alreadyWarned = true;
 	}

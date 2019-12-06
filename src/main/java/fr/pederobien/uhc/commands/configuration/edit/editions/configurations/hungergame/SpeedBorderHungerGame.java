@@ -17,17 +17,19 @@ public class SpeedBorderHungerGame extends AbstractConfEdition<IHungerGameConfig
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		try {
 			double speed = Double.parseDouble(args[0]);
-			if (speed <= 0)
-				return MessageCode.SPEED_BORDER_HUNGER_GAME_NEGATIVE;
+			if (speed <= 0) {
+				sendMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_NEGATIVE);
+				return;
+			}
 			get().setBorderSpeed(speed);
-			return MessageCode.SPEED_BORDER_HUNGER_GAME_DEFINED.withArgs(get().getBorderSpeed().toString());
+			sendMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_DEFINED, get().getBorderSpeed().toString());
 		} catch (IndexOutOfBoundsException e) {
-			return MessageCode.SPEED_BORDER_HUNGER_GAME_MISSING_SPEED;
+			sendMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_MISSING_SPEED);
 		} catch (NumberFormatException e) {
-			return MessageCode.SPEED_BORDER_HUNGER_GAME_BAD_SPEED_FORMAT;
+			sendMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_BAD_SPEED_FORMAT);
 		}
 	}
 

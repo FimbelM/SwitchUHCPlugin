@@ -11,17 +11,17 @@ public class ListBase extends CommonList<IBase> {
 	}
 
 	@Override
-	protected MessageCode onSizeEquals0() {
-		return MessageCode.LIST_BASE_SIZE_EQUALS_0;
+	protected void onSizeEquals0() {
+		sendMessage(MessageCode.LIST_BASE_SIZE_EQUALS_0);
 	}
 
 	@Override
-	protected MessageCode onSizeEquals1(String name) {
-		return MessageCode.LIST_BASE_SIZE_EQUALS_1.withArgs(name);
+	protected void onSizeEquals1(String name) {
+		sendMessage(MessageCode.LIST_BASE_SIZE_EQUALS_1, name);
 	}
 
 	@Override
-	protected MessageCode onSizeGreaterThan0(String allNames) {
-		return MessageCode.LIST_BASE_SIZE_GREATER_THAN_0.withArgs(allNames);
+	protected void onSizeGreaterThan0(String allNames) {
+		sendMessage(MessageCode.LIST_BASE_SIZE_GREATER_THAN_0, allNames);
 	}
 }

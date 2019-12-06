@@ -11,21 +11,22 @@ public class LoadHungerGame extends CommonLoad<IHungerGameConfiguration> {
 	}
 
 	@Override
-	protected MessageCode onStyleLoaded(String name) {
+	protected void onStyleLoaded(String name) {
 		switch (get().getTeams().size()) {
 		case 0:
-			return MessageCode.LOAD_HUNGER_GAME_STYLE_NO_TEAM_CREATED_LOADED.withArgs(get().getName());
+			sendMessage(MessageCode.LOAD_HUNGER_GAME_STYLE_NO_TEAM_CREATED_LOADED, get().getName());
+			break;
 		case 1:
-			return MessageCode.LOAD_HUNGER_GAME_STYLE_ONE_TEAM_CREATED_LOADED.withArgs(get().getName(),
-					getTeamNamesWithColor());
+			sendMessage(MessageCode.LOAD_HUNGER_GAME_STYLE_ONE_TEAM_CREATED_LOADED, get().getName(), getTeamNamesWithColor());
+			break;
 		default:
-			return MessageCode.LOAD_HUNGER_GAME_STYLE_TEAMS_CREATED_LOADED.withArgs(get().getName(),
-					getTeamNamesWithColor());
+			sendMessage(MessageCode.LOAD_HUNGER_GAME_STYLE_TEAMS_CREATED_LOADED, get().getName(), getTeamNamesWithColor());
+			break;
 		}
 	}
 
 	@Override
-	protected MessageCode onNameIsMissing() {
-		return MessageCode.LOAD_HUNGER_GAME_MISSING_NAME;
+	protected void onNameIsMissing() {
+		sendMessage(MessageCode.LOAD_HUNGER_GAME_MISSING_NAME);
 	}
 }

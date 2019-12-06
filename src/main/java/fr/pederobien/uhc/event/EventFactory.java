@@ -2,11 +2,11 @@ package fr.pederobien.uhc.event;
 
 import org.bukkit.command.CommandSender;
 
-import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 
 public class EventFactory {
 	
-	public static MessageCodeEvent createMessageCodeEvent(MessageCode code, String... args) {
+	public static MessageCodeEvent createMessageCodeEvent(IMessageCode code, String... args) {
 		return new MessageCodeEvent(code, args);
 	}
 	
@@ -14,7 +14,7 @@ public class EventFactory {
 		return new MessageEvent(sender, event);
 	}
 	
-	public static MessageEvent createMessageEvent(CommandSender sender, MessageCode code, String... args) {
+	public static MessageEvent createMessageEvent(CommandSender sender, IMessageCode code, String... args) {
 		return new MessageEvent(sender, createMessageCodeEvent(code, args));
 	}
 }

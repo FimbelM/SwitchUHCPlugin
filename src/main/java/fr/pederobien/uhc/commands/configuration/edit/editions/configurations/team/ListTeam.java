@@ -11,7 +11,7 @@ public class ListTeam<T extends IConfiguration> extends AbstractTeamEditions<T> 
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		String teams = "";
 		for (ETeam team : get().getTeams()) {
 			teams += team.getColor() + team.getNameWithoutColor() + " [";
@@ -25,11 +25,14 @@ public class ListTeam<T extends IConfiguration> extends AbstractTeamEditions<T> 
 
 		switch (get().getTeams().size()) {
 		case 0:
-			return MessageCode.TEAM_LIST_NO_EXISTING_TEAM.withArgs(get().getName());
+			sendMessage(MessageCode.TEAM_LIST_NO_EXISTING_TEAM, get().getName());
+			break;
 		case 1:
-			return MessageCode.TEAM_LIST_ONE_EXISTING_TEAM.withArgs(get().getName(), teams);
+			sendMessage(MessageCode.TEAM_LIST_ONE_EXISTING_TEAM, get().getName(), teams);
+			break;
 		default:
-			return MessageCode.TEAM_LIST_EXISTING_TEAMS.withArgs(get().getName(), teams);
+			sendMessage(MessageCode.TEAM_LIST_EXISTING_TEAMS, get().getName(), teams);
+			break;
 		}
 	}
 }

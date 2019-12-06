@@ -11,17 +11,17 @@ public class RenameSpawn extends CommonRename<ISpawn> {
 	}
 
 	@Override
-	protected MessageCode onAlreadyExisting(String newName) {
-		return MessageCode.RENAME_SPAWN_ALREADY_EXISTING.withArgs(get().getName(), newName);
+	protected void onAlreadyExisting(String newName) {
+		sendMessage(MessageCode.RENAME_SPAWN_ALREADY_EXISTING, get().getName(), newName);
 	}
 
 	@Override
-	protected MessageCode onRename(String oldName, String newName) {
-		return MessageCode.RENAME_SPAWN_RENAMED.withArgs(oldName, newName);
+	protected void onRename(String oldName, String newName) {
+		sendMessage(MessageCode.RENAME_SPAWN_RENAMED, oldName, newName);
 	}
 
 	@Override
-	protected MessageCode onNameIsMissing(String oldName) {
-		return MessageCode.RENAME_SPAWN_MISSING_NAME.withArgs(oldName);
+	protected void onNameIsMissing(String oldName) {
+		sendMessage(MessageCode.RENAME_SPAWN_MISSING_NAME, oldName);
 	}
 }

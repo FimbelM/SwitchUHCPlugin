@@ -19,10 +19,12 @@ public class RemovePlayer<T extends IConfiguration> extends AbstractTeamEditions
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		ETeam team = ETeam.getByName(args[0]);
-		if (team == null)
-			return MessageCode.TEAM_BAD_TEAM.withArgs(args[0]);
+		if (team == null) {
+			sendMessage(MessageCode.TEAM_BAD_TEAM, args[0]);
+			return;
+		}
 
 		List<String> players = emptyList();
 		String playerNames = "";
@@ -32,7 +34,8 @@ public class RemovePlayer<T extends IConfiguration> extends AbstractTeamEditions
 				players.add(player.getName());
 				playerNames += player.getName() + " ";
 			} catch (NullPointerException e) {
-				return MessageCode.TEAM_BAD_PLAYER.withArgs(args[i]);
+				sendMessage(MessageCode.TEAM_BAD_PLAYER, args[i]);
+				return;
 			}
 		}
 
@@ -41,11 +44,14 @@ public class RemovePlayer<T extends IConfiguration> extends AbstractTeamEditions
 
 		switch (players.size()) {
 		case 0:
-			return MessageCode.TEAM_REMOVEPLAYER_NO_PLAYER_REMOVED.withArgs(team.getNameWithColor());
+			sendMessage(MessageCode.TEAM_REMOVEPLAYER_NO_PLAYER_REMOVED, team.getNameWithColor());
+			break;
 		case 1:
-			return MessageCode.TEAM_REMOVEPLAYER_ONE_PLAYER_REMOVED.withArgs(playerNames, team.getNameWithColor());
+			sendMessage(MessageCode.TEAM_REMOVEPLAYER_ONE_PLAYER_REMOVED, playerNames, team.getNameWithColor());
+			break;
 		default:
-			return MessageCode.TEAM_REMOVEPLAYER_PLAYERS_REMOVED.withArgs(playerNames, team.getNameWithColor());
+			sendMessage(MessageCode.TEAM_REMOVEPLAYER_PLAYERS_REMOVED, playerNames, team.getNameWithColor());
+			break;
 		}
 	}
 

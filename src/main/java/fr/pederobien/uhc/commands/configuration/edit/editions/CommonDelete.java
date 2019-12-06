@@ -6,25 +6,26 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 import fr.pederobien.uhc.interfaces.IUnmodifiableName;
 
 public abstract class CommonDelete<T extends IUnmodifiableName> extends AbstractMapEdition<T> {
 
-	public CommonDelete(MessageCode explanation) {
+	public CommonDelete(IMessageCode explanation) {
 		super("delete", explanation);
 	}
 
-	protected abstract MessageCode onDeleted(String name);
+	protected abstract void onDeleted(String name);
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		String name = args[0];
 		if (startWithIgnoreCase(name, "default"))
-			return MessageCode.DELETE_ON_CANNOT_DELETE.withArgs(name);
+			sendMessage(MessageCode.DELETE_ON_CANNOT_DELETE, name);
 		getPersistence().delete(name);
 		if (get() != null && get().getName().equals(name))
 			getPersistence().set(null);
-		return onDeleted(name);
+		onDeleted(name);
 	}
 
 	@Override

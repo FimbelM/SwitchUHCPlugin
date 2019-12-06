@@ -11,7 +11,7 @@ public class RemoveBase extends CommonRemove<IBase> {
 	}
 
 	@Override
-	protected MessageCode onRemove() {
-		return MessageCode.REMOVE_BASE_REMOVED.withArgs(get().getName());
+	protected void onRemove() {
+		sendMessage(MessageCode.REMOVE_BASE_REMOVED, get().getName());
 	}
 }

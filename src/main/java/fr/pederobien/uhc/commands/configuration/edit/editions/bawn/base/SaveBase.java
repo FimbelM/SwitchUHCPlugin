@@ -11,7 +11,7 @@ public class SaveBase extends CommonSave<IBase> {
 	}
 
 	@Override
-	protected MessageCode onSave() {
-		return MessageCode.SAVE_BASE_SAVED;
+	protected void onSave() {
+		sendMessage(MessageCode.SAVE_BASE_SAVED);
 	}
 }

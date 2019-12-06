@@ -11,7 +11,7 @@ public class CurrentBlockedexGame extends AbstractConfEdition<IBlockedexConfigur
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
-		return MessageCode.CURRENT_BLOCKEDEX_GAME_MESSAGE.withArgs(get().getName());
+	public void edit(String[] args) {
+		sendMessage(MessageCode.CURRENT_BLOCKEDEX_GAME_MESSAGE, get().getName());
 	}
 }

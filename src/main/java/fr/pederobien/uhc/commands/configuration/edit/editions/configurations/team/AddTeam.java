@@ -20,7 +20,7 @@ public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		try {
 			ETeam team = ETeam.getByColorName(args[1]);
 			team.setName(args[0]);
@@ -32,27 +32,33 @@ public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 					players.add(player);
 					playerNames += player.getName() + " ";
 				} catch (NullPointerException e) {
-					return MessageCode.TEAM_BAD_PLAYER.withArgs(args[i]);
+					sendMessage(MessageCode.TEAM_BAD_PLAYER, args[i]);
+					return;
 				}
 			}
-			if (!get().addTeam(team))
-				return MessageCode.TEAM_ADDTEAM_ALREADY_EXISTING_COLOR.withArgs(team.getColorName());
+			if (!get().addTeam(team)) {
+				sendMessage(MessageCode.TEAM_ADDTEAM_ALREADY_EXISTING_COLOR, team.getColorName());
+				return;
+			}
 
 			for (Player player : players)
 				team.addPlayers(player.getName());
 
 			switch (players.size()) {
 			case 0:
-				return MessageCode.TEAM_ADDTEAM_TEAM_NO_PLAYER_ADDED.withArgs(team.getNameWithColor());
+				sendMessage(MessageCode.TEAM_ADDTEAM_TEAM_NO_PLAYER_ADDED, team.getNameWithColor());
+				break;
 			case 1:
-				return MessageCode.TEAM_ADDTEAM_TEAM_ONE_PLAYER_ADDED.withArgs(team.getNameWithColor(), playerNames);
+				sendMessage(MessageCode.TEAM_ADDTEAM_TEAM_ONE_PLAYER_ADDED, team.getNameWithColor(), playerNames);
+				break;
 			default:
-				return MessageCode.TEAM_ADDTEAM_TEAM_PLAYERS_ADDED.withArgs(team.getNameWithColor(), playerNames);
+				sendMessage(MessageCode.TEAM_ADDTEAM_TEAM_PLAYERS_ADDED, team.getNameWithColor(), playerNames);
+				break;
 			}
 		} catch (IndexOutOfBoundsException e) {
-			return MessageCode.TEAM_ADDTEAM_MISSING_ARGUMENTS;
+			sendMessage(MessageCode.TEAM_ADDTEAM_MISSING_ARGUMENTS);
 		} catch (NullPointerException e) {
-			return MessageCode.TEAM_BAD_COLOR.withArgs(args[1]);
+			sendMessage(MessageCode.TEAM_BAD_COLOR, args[1]);
 		}
 	}
 

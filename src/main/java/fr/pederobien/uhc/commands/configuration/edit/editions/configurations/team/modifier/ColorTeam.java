@@ -17,13 +17,18 @@ public class ColorTeam<T extends IConfiguration> extends AbstractTeamEditions<T>
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		ETeam oldTeam = ETeam.getByName(args[0]);
-		if (oldTeam == null)
-			return MessageCode.TEAM_BAD_TEAM.withArgs(args[0]);
+		if (oldTeam == null) {
+			sendMessage(MessageCode.TEAM_BAD_TEAM, args[0]);
+			return;
+		}
+
 		ETeam newTeam = ETeam.getByColorName(args[1]);
-		if (newTeam == null)
-			return MessageCode.TEAM_BAD_COLOR.withArgs(args[1]);
+		if (newTeam == null) {
+			sendMessage(MessageCode.TEAM_BAD_COLOR, args[1]);
+			return;
+		}
 
 		newTeam.setName(oldTeam.getNameWithoutColor());
 		oldTeam.resetName();
@@ -32,7 +37,8 @@ public class ColorTeam<T extends IConfiguration> extends AbstractTeamEditions<T>
 
 		get().removeTeam(oldTeam);
 		get().addTeam(newTeam);
-		return MessageCode.TEAM_MODIFY_COLOR_MODIFIED.withArgs(newTeam.getNameWithColor());
+		sendMessage(MessageCode.TEAM_MODIFY_COLOR_MODIFIED, newTeam.getNameWithColor());
+		return;
 	}
 
 	@Override

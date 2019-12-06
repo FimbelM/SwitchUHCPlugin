@@ -11,7 +11,7 @@ public class DeleteBase extends CommonDelete<IBase> {
 	}
 
 	@Override
-	protected MessageCode onDeleted(String name) {
-		return MessageCode.DELETE_BASE_DELETED.withArgs(name);
+	protected void onDeleted(String name) {
+		sendMessage(MessageCode.DELETE_BASE_DELETED, name);
 	}
 }

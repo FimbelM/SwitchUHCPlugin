@@ -11,7 +11,7 @@ public class DeleteSpawn extends CommonDelete<ISpawn> {
 	}
 
 	@Override
-	protected MessageCode onDeleted(String name) {
-		return MessageCode.DELETE_SPAWN_DELETED.withArgs(name);
+	protected void onDeleted(String name) {
+		sendMessage(MessageCode.DELETE_SPAWN_DELETED, name);
 	}
 }

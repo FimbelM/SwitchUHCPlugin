@@ -5,6 +5,6 @@ import org.bukkit.command.CommandSender;
 public interface IHelper<T extends IUnmodifiableName> extends IEdition {
 
 	IHelper<T> setConfig(IEditConfiguration<T> configuration);
-	
-	String edit(CommandSender sender, String[] args);
+
+	void edit(CommandSender sender, String[] args);
 }

@@ -16,14 +16,14 @@ public class CommonCenter<T extends IBawn> extends AbstractBawnEdition<T> {
 	}
 
 	@Override
-	public MessageCode edit(String[] args) {
+	public void edit(String[] args) {
 		try {
 			get().setCenter(args[0], args[1], args[2]);
-			return MessageCode.CENTER_DEFINED.withArgs("" + get().getCenter().getX(), "" + get().getCenter().getY(), "" + get().getCenter().getZ());
+			sendMessage(MessageCode.CENTER_DEFINED, "" + get().getCenter().getX(), "" + get().getCenter().getY(), "" + get().getCenter().getZ());
 		} catch (IndexOutOfBoundsException e) {
-			return MessageCode.CENTER_COORDINATES_ARE_MISSING;
+			sendMessage(MessageCode.CENTER_COORDINATES_ARE_MISSING);
 		} catch (NumberFormatException e) {
-			return MessageCode.CENTER_BAD_COORDINATES_FORMAT;
+			sendMessage(MessageCode.CENTER_BAD_COORDINATES_FORMAT);
 		}
 	}
 
