@@ -151,12 +151,12 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 		return str.length() < beginning.length() ? false : str.substring(0, beginning.length()).equalsIgnoreCase(beginning);
 	}
 
-	protected String getMessageOnTabComplete(CommandSender sender, IMessageCode code) {
+	protected String onTabComplete(CommandSender sender, IMessageCode code) {
 		return sender instanceof Player ? DictionaryManager.getMessage(NotificationCenter.getLocale((Player) sender), createMessageCodeEvent(code))
 				: null;
 	}
 
-	protected MessageCodeEvent createMessageCodeEvent(IMessageCode code, String... args) {
+	private MessageCodeEvent createMessageCodeEvent(IMessageCode code, String... args) {
 		return EventFactory.createMessageCodeEvent(code, args);
 	}
 

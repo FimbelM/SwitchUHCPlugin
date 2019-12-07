@@ -38,7 +38,7 @@ public class NameTeam<T extends IConfiguration> extends AbstractTeamEditions<T> 
 		case 1:
 			return filter(getTeamNamesWithoutColor(), args[0]);
 		case 2:
-			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.RENAME_TAB_COMPLETE));
+			return Arrays.asList(onTabComplete(sender, MessageCode.RENAME_TAB_COMPLETE));
 		}
 		return super.onTabComplete(sender, command, alias, args);
 	}

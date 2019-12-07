@@ -66,7 +66,7 @@ public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		switch (args.length) {
 		case 1:
-			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.NEW_NAME_TAB_COMPLETE));
+			return Arrays.asList(onTabComplete(sender, MessageCode.NEW_NAME_TAB_COMPLETE));
 		case 2:
 			return filter(getAvailableColors(), args[1]);
 		}

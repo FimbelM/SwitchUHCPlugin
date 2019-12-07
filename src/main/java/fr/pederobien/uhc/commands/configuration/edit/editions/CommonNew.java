@@ -47,7 +47,7 @@ public abstract class CommonNew<T extends IUnmodifiableName> extends AbstractMap
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		if (args.length == 1)
-			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.NEW_NAME_TAB_COMPLETE));
+			return Arrays.asList(onTabComplete(sender, MessageCode.NEW_NAME_TAB_COMPLETE));
 		return super.onTabComplete(sender, command, alias, args);
 	}
 }

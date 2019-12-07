@@ -38,7 +38,7 @@ public class BaseDistanceBlockedexGame extends AbstractConfEdition<IBlockedexCon
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		if (args.length == 1)
-			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.BASE_DISTANCE_BLOCKEDEX_GAME_TAB_COMPLETE));
+			return Arrays.asList(onTabComplete(sender, MessageCode.BASE_DISTANCE_BLOCKEDEX_GAME_TAB_COMPLETE));
 		return super.onTabComplete(sender, command, alias, args);
 	}
 }

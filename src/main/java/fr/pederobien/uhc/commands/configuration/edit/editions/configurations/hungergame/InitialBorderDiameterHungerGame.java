@@ -37,7 +37,7 @@ public class InitialBorderDiameterHungerGame extends AbstractConfEdition<IHunger
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		if (args.length == 1)
-			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE));
+			return Arrays.asList(onTabComplete(sender, MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE));
 		return super.onTabComplete(sender, command, alias, args);
 	}
 }

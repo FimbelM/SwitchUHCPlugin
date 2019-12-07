@@ -37,7 +37,7 @@ public class FinalBorderDiameterHungerGame extends AbstractConfEdition<IHungerGa
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		if (args.length == 1)
-			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE));
+			return Arrays.asList(onTabComplete(sender, MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE));
 		return super.onTabComplete(sender, command, alias, args);
 	}
 }

@@ -35,11 +35,11 @@ public abstract class CommonDimensions<T extends IBawn> extends AbstractBawnEdit
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		switch (args.length) {
 		case 1:
-			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.DIMENSIONS_WITDH_HEIGHT_DEPTH_TAB_COMPLETE));
+			return Arrays.asList(onTabComplete(sender, MessageCode.DIMENSIONS_WITDH_HEIGHT_DEPTH_TAB_COMPLETE));
 		case 2:
-			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.DIMENSIONS_HEIGHT_DEPTH_TAB_COMPLETE));
+			return Arrays.asList(onTabComplete(sender, MessageCode.DIMENSIONS_HEIGHT_DEPTH_TAB_COMPLETE));
 		case 3:
-			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.DIMENSIONS_DEPTH_TAB_COMPLETE));
+			return Arrays.asList(onTabComplete(sender, MessageCode.DIMENSIONS_DEPTH_TAB_COMPLETE));
 		}
 		return super.onTabComplete(sender, command, alias, args);
 	}

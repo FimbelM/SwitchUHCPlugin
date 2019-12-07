@@ -41,7 +41,7 @@ public abstract class CommonRename<T extends IName> extends AbstractMapEdition<T
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		if (args.length == 1)
-			return Arrays.asList(getMessageOnTabComplete(sender, MessageCode.RENAME_TAB_COMPLETE));
+			return Arrays.asList(onTabComplete(sender, MessageCode.RENAME_TAB_COMPLETE));
 		return super.onTabComplete(sender, command, alias, args);
 	}
 }
