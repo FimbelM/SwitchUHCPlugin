@@ -2,6 +2,7 @@ package fr.pederobien.uhc.commands.configuration.edit;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.bukkit.ChatColor;
@@ -71,8 +72,8 @@ public class Helper<T extends IUnmodifiableName> extends AbstractEdition impleme
 	}
 
 	private <U> String translate(CommandSender sender, INodeEdition<IMapEdition<T>, U> edition) {
-		String translation = help(sender, edition);
-		for (IMapEdition<T> e : edition.getChildren().values())
+		String translation = "\n" + help(sender, edition);
+		for (IMapEdition<T> e : edition.getChildren().values().stream().filter(e -> e.isAvailable()).sorted().collect(Collectors.toList()))
 			translation += help(sender, e);
 		return translation;
 	}

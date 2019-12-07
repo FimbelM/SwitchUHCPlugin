@@ -28,6 +28,11 @@ public abstract class AbstractEdition implements IEdition {
 		return explanation;
 	}
 
+	@Override
+	public int compareTo(IEdition o) {
+		return label.compareTo(o.getLabel());
+	}
+
 	protected List<String> emptyList() {
 		return new ArrayList<String>();
 	}

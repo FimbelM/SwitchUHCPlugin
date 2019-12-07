@@ -49,14 +49,20 @@ public class AbstractEditConfiguration<T extends IUnmodifiableName> extends Abst
 			return emptyList();
 		else {
 			try {
-				IMapEdition<T> edition = editions.get(args[0]);
+				String label = args[0];
+				IMapEdition<T> edition = editions.get(label);
 
-				if (edition != null && edition.isAvailable())
-					return edition.onTabComplete(sender, command, alias, Arrays.copyOfRange(args, 1, args.length));
+				if (edition == null) {
+					if (label.equals(helper.getLabel()))
+						return helper.onTabComplete(sender, command, alias, Arrays.copyOfRange(args, 1, args.length));
+					else {
+						List<String> labels = editions.keySet().stream().filter(l -> editions.get(l).isAvailable()).collect(Collectors.toList());
+						labels.add(helper.getLabel());
+						return filter(labels, args[0]);
+					}
+				}
 
-				List<String> labels = editions.keySet().stream().filter(l -> editions.get(l).isAvailable()).collect(Collectors.toList());
-				labels.add(helper.getLabel());
-				return filter(labels, args[0]);
+				return edition.isAvailable() ? edition.onTabComplete(sender, command, alias, Arrays.copyOfRange(args, 1, args.length)) : emptyList();
 			} catch (IndexOutOfBoundsException e) {
 				return emptyList();
 			}
@@ -128,7 +134,7 @@ public class AbstractEditConfiguration<T extends IUnmodifiableName> extends Abst
 		try {
 			label = args[0];
 			if (label.equals(helper.getLabel()))
-				helper.edit(sender, args);
+				helper.edit(sender, Arrays.copyOfRange(args, 1, args.length));
 			else if (editions.get(label).isAvailable())
 				editions.get(label).edit(Arrays.copyOfRange(args, 1, args.length));
 			else
