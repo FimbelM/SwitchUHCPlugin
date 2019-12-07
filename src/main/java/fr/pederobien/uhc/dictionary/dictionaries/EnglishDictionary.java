@@ -84,17 +84,17 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_MISSING_DIMENSIONS) {
 			@Override
 			public String getMessage(String... args) {
-				return "Cannot change dimensions, need <width> <height> <depth>";
+				return "Cannot set dimensions, need <width> <height> <depth>";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_BAD_DIMENSIONS_FORMAT) {
 			@Override
 			public String getMessage(String... args) {
-				return "Bad dimensions coordinates, they should be integer";
+				return "Bad dimensions format, they should be integer";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_WITDH_HEIGHT_DEPTH_TAB_COMPLETE) {
 			@Override
 			public String getMessage(String... args) {
-				return "Cannot parse width or height or depth";
+				return "<width> <height> <depth>";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_HEIGHT_DEPTH_TAB_COMPLETE) {
 
@@ -126,7 +126,7 @@ public class EnglishDictionary extends AbstractDictionary {
 
 			@Override
 			public String getMessage(String... args) {
-				return "Current base " + args[0];
+				return "Current base : " + args[0];
 			}
 		});
 
@@ -152,7 +152,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.EXTRACT_BASE_ONE_CHEST_EXTRACTED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Base " + args[0] + " extracted\nOne chest for " + args[1] + " team";
+				return "Base " + args[0] + " extracted\nOne chest for team's color : " + args[1];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.EXTRACT_BASE_CHESTS_EXTRACTED) {
 			@Override
@@ -172,7 +172,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.EXTRACT_BASE_MATERIAL_UNDER_CHEST_IS_NOT_WOOL) {
 			@Override
 			public String getMessage(String... args) {
-				return "The block under chest is not wool";
+				return "Blocks under chests are not wool";
 			}
 		});
 
@@ -203,7 +203,7 @@ public class EnglishDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Base " + args[0] + " launched at " + args[1] + " " + args[2] + " " + args[3] + "\nOne team color supported : " + args[4];
 			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_TEAMS_SUPPORTED_LAUNCHED) {
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_TEAMS_SUPPORTED) {
 			@Override
 			public String getMessage(String... args) {
 				return "Base " + args[0] + " launched at " + args[1] + " " + args[2] + " " + args[3] + "\nTeam colors supported : " + args[4];
@@ -228,7 +228,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.LIST_BASE_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "to display all existing base(s)";
+				return "to display all existing base's name";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LIST_BASE_SIZE_EQUALS_0) {
 			@Override
@@ -260,7 +260,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.NEW_BASE_ALREADY_EXISTING) {
 			@Override
 			public String getMessage(String... args) {
-				return "The base " + args[0] + " already exist";
+				return "Cannot create a new base, the base " + args[0] + " already exist";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.NEW_BASE_MISSING_NAME) {
 			@Override
@@ -363,7 +363,7 @@ public class EnglishDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "to extract from the world the blocks of the spawn";
 			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_BASE_DEFINED) {
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_SPAWN_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
 				return "Dimensions of the spawn " + args[0] + " defined as " + args[1] + " " + args[2] + " " + args[3];

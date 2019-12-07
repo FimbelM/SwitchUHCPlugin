@@ -40,7 +40,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.COMMAND_NOT_AVAILABLE) {
 			@Override
 			public String getMessage(String... args) {
-				return "Commande " + args[0] + " non disponible";
+				return "La commande " + args[0] + " non disponible";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.CANNOT_RUN_COMMAND) {
 			@Override
@@ -67,7 +67,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.CENTER_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour définir le center";
+				return "pour définir le centre";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.CENTER_DEFINED) {
 			@Override
@@ -77,14 +77,14 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.CENTER_COORDINATES_ARE_MISSING) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de modifier les coordonnées du centre, il manque <X> ou <Y> ou <Z>";
+				return "Impossible de définir les coordonnées du centre, il manque <X> ou <Y> ou <Z>";
 			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_MISSING_DIMENSIONS) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de changer les dimensions, il manque la <largeur> ou la <hauteur> ou la <profondeur>";
+				return "Impossible de définir les dimensions, il manque la <largeur> ou la <hauteur> ou la <profondeur>";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_BAD_DIMENSIONS_FORMAT) {
 			@Override
@@ -147,12 +147,12 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.EXTRACT_BASE_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour extraire du monde les blocks de la base";
+				return "pour extraire du monde les blocs de la base";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.EXTRACT_BASE_ONE_CHEST_EXTRACTED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Base " + args[0] + " extraite\nUn coffre détecté pour la couleur d'équipe " + args[1];
+				return "Base " + args[0] + " extraite\nUn coffre détecté pour la couleur d'équipe : " + args[1];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.EXTRACT_BASE_CHESTS_EXTRACTED) {
 			@Override
@@ -179,7 +179,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_BASE_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour extraire du monde les blocks de la base";
+				return "pour extraire du monde les blocs de la base";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_BASE_DEFINED) {
 			@Override
@@ -203,7 +203,7 @@ public class FrenchDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Base " + args[0] + " chargée en " + args[1] + " " + args[2] + " " + args[3] + "\nUne couleur d'équipe supportée : " + args[4];
 			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_TEAMS_SUPPORTED_LAUNCHED) {
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_TEAMS_SUPPORTED) {
 			@Override
 			public String getMessage(String... args) {
 				return "Base " + args[0] + " chargée en " + args[1] + " " + args[2] + " " + args[3] + "\nCouleurs d’équipe supportées : " + args[4];
@@ -216,7 +216,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_MISSING_COORDINATES) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de charger la base " + args[0] + ", il manque les coordonnées <X> ou <Y> ou <Z>";
+				return "Impossible de charger la base " + args[0] + ", il manque les coordonnées du centre <X> ou <Y> ou <Z>";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_MISSING_NAME_AND_COORDINATES) {
 			@Override
@@ -260,7 +260,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.NEW_BASE_ALREADY_EXISTING) {
 			@Override
 			public String getMessage(String... args) {
-				return "Une base " + args[0] + " existe déjà";
+				return "Impossible de créer une nouvelle base, la base " + args[0] + " existe déjà";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.NEW_BASE_MISSING_NAME) {
 			@Override
@@ -277,7 +277,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.REMOVE_BASE_REMOVED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Base " + args[0] + " enlevée du monde";
+				return "La base " + args[0] + " a été enlevée du monde";
 			}
 		});
 
@@ -289,7 +289,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_BASE_RENAMED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Base " + args[0] + " renommée : " + args[1];
+				return "la base " + args[0] + " a été renommée en " + args[1];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_BASE_ALREADY_EXISTING) {
 			@Override
