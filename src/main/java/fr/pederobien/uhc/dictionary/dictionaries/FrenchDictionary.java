@@ -792,11 +792,6 @@ public class FrenchDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Impossible de définir les coordonées du centre, il manque les coordonnées <X> ou <Z>";
 			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.BORDER_CENTER_HUNGER_GAME_BAD_COORDINATES_FORMAT) {
-			@Override
-			public String getMessage(String... args) {
-				return "Mauvais format des coordonnées, elles doivent être des entiers";
-			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.CURRENT_HUNGER_GAME_EXPLANATION) {

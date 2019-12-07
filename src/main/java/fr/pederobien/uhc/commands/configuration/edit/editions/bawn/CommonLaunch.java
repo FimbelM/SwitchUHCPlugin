@@ -48,7 +48,7 @@ public abstract class CommonLaunch<T extends IBawn> extends AbstractBawnEdition<
 			} catch (IndexOutOfBoundsException e) {
 				onNeedCoordinates(name);
 			} catch (NumberFormatException e) {
-				sendMessage(MessageCode.LAUNCH_BAD_COORDINATES_FORMAT);
+				sendMessage(MessageCode.BAD_COORDINATES_FORMAT);
 			}
 		} else {
 			name = args[0];
@@ -62,7 +62,7 @@ public abstract class CommonLaunch<T extends IBawn> extends AbstractBawnEdition<
 			} catch (IndexOutOfBoundsException e) {
 				onNeedNameAndCoordinates(name);
 			} catch (NumberFormatException e) {
-				sendMessage(MessageCode.LAUNCH_BAD_COORDINATES_FORMAT);
+				sendMessage(MessageCode.BAD_COORDINATES_FORMAT);
 			}
 		}
 	}

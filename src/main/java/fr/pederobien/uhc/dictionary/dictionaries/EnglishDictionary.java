@@ -79,11 +79,6 @@ public class EnglishDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Cannot set center’s coordinates, need <X> <Y> <Z>";
 			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.CENTER_BAD_COORDINATES_FORMAT) {
-			@Override
-			public String getMessage(String... args) {
-				return "Cannot parse X or Y or Z coordinate";
-			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_MISSING_DIMENSIONS) {
@@ -112,14 +107,6 @@ public class EnglishDictionary extends AbstractDictionary {
 			@Override
 			public String getMessage(String... args) {
 				return "<depth>";
-			}
-		});
-
-		registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BAD_COORDINATES_FORMAT) {
-
-			@Override
-			public String getMessage(String... args) {
-				return "Cannot parse center’s coodinates";
 			}
 		});
 
@@ -816,11 +803,6 @@ public class EnglishDictionary extends AbstractDictionary {
 			@Override
 			public String getMessage(String... args) {
 				return "Cannot set the border center, need coordinates <X> <Z>";
-			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.BORDER_CENTER_HUNGER_GAME_BAD_COORDINATES_FORMAT) {
-			@Override
-			public String getMessage(String... args) {
-				return "Cannot parse <X> or <Z> coordinate";
 			}
 		});
 

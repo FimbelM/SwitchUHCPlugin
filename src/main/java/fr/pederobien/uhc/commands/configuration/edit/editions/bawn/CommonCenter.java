@@ -23,7 +23,7 @@ public class CommonCenter<T extends IBawn> extends AbstractBawnEdition<T> {
 		} catch (IndexOutOfBoundsException e) {
 			sendMessage(MessageCode.CENTER_COORDINATES_ARE_MISSING);
 		} catch (NumberFormatException e) {
-			sendMessage(MessageCode.CENTER_BAD_COORDINATES_FORMAT);
+			sendMessage(MessageCode.BAD_COORDINATES_FORMAT);
 		}
 	}
 

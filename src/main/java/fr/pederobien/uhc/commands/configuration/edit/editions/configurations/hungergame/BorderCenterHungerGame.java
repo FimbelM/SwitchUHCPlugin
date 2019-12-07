@@ -24,7 +24,7 @@ public class BorderCenterHungerGame extends AbstractConfEdition<IHungerGameConfi
 		} catch (IndexOutOfBoundsException | NullPointerException e) {
 			sendMessage(MessageCode.BORDER_CENTER_HUNGER_GAME_MISSING_COORDINATES);
 		} catch (NumberFormatException e) {
-			sendMessage(MessageCode.BORDER_CENTER_HUNGER_GAME_BAD_COORDINATES_FORMAT);
+			sendMessage(MessageCode.BAD_COORDINATES_FORMAT);
 		}
 	}
 
