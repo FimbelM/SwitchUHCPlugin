@@ -57,6 +57,11 @@ public class EnglishDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Command " + args[0] + " not available yet";
 			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.BAD_TIME_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot parse the time, the format should be hh:mm:ss";
+			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.CENTER_EXPLANATION) {
