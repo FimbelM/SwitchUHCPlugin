@@ -534,11 +534,6 @@ public class EnglishDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Cannot set the game time, need the time";
 			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_BAD_TIME_FORMAT) {
-			@Override
-			public String getMessage(String... args) {
-				return "Cannot set the game time, wrong format, the format should be hh:mm:ss";
-			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_CANNOT_LOAD) {
@@ -895,11 +890,6 @@ public class EnglishDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Cannot set the fraction time, need the time";
 			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_HUNGER_GAME_BAD_TIME_FORMAT) {
-			@Override
-			public String getMessage(String... args) {
-				return "Cannot parse the time, the format should be hh:mm:ss";
-			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_DEFINED) {
@@ -911,11 +901,6 @@ public class EnglishDictionary extends AbstractDictionary {
 			@Override
 			public String getMessage(String... args) {
 				return "Cannot set the game time, need the time";
-			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_BAD_TIME_FORMAT) {
-			@Override
-			public String getMessage(String... args) {
-				return "Cannot parse the time, the format should be hh:mm:ss";
 			}
 		});
 
@@ -1051,11 +1036,6 @@ public class EnglishDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Cannot set the pvp time, need the time";
 			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.PVP_TIME_HUNGER_GAME_BAD_TIME_FORMAT) {
-			@Override
-			public String getMessage(String... args) {
-				return "Cannot parse the time, the format should be hh:mm:ss";
-			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_HUNGER_GAME_EXPLANATION) {
@@ -1138,11 +1118,6 @@ public class EnglishDictionary extends AbstractDictionary {
 			@Override
 			public String getMessage(String... args) {
 				return "Cannot set the warning time, need the time";
-			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_HUNGER_GAME_BAD_TIME_FORMAT) {
-			@Override
-			public String getMessage(String... args) {
-				return "Cannot parse the time, the format should be hh:mm:ss";
 			}
 		});
 

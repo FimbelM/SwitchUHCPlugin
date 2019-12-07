@@ -27,7 +27,7 @@ public class PvpTimeHungerGame extends AbstractConfEdition<IHungerGameConfigurat
 		} catch (IndexOutOfBoundsException e) {
 			sendMessage(MessageCode.PVP_TIME_HUNGER_GAME_MISSING_TIME);
 		} catch (DateTimeParseException e) {
-			sendMessage(MessageCode.PVP_TIME_HUNGER_GAME_BAD_TIME_FORMAT);
+			sendMessage(MessageCode.BAD_TIME_FORMAT);
 		}
 	}
 

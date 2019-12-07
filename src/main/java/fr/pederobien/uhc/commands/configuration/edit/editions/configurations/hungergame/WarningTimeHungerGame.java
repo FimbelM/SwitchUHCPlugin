@@ -27,7 +27,7 @@ public class WarningTimeHungerGame extends AbstractConfEdition<IHungerGameConfig
 		} catch (IndexOutOfBoundsException e) {
 			sendMessage(MessageCode.WARNING_TIME_HUNGER_GAME_MISSING_TIME);
 		} catch (DateTimeParseException e) {
-			sendMessage(MessageCode.WARNING_TIME_HUNGER_GAME_BAD_TIME_FORMAT);
+			sendMessage(MessageCode.BAD_TIME_FORMAT);
 		}
 	}
 

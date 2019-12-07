@@ -27,7 +27,7 @@ public abstract class CommonGameTime<T extends IConfiguration> extends AbstractC
 		} catch (IndexOutOfBoundsException e) {
 			sendMessage(MessageCode.GAME_TIME_MISSING_TIME);
 		} catch (DateTimeParseException e) {
-			sendMessage(MessageCode.GAME_TIME_BAD_TIME_FORMAT);
+			sendMessage(MessageCode.BAD_TIME_FORMAT);
 		}
 	}
 

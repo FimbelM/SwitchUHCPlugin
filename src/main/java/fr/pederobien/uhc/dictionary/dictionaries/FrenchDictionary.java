@@ -52,6 +52,16 @@ public class FrenchDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "L'argument " + args[0] + " n'est pas valide";
 			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.COMMAND_NOT_AVAILABLE_YET) {
+			@Override
+			public String getMessage(String... args) {
+				return "La commande " + args[0] + " n'est pas encore disponible";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.BAD_TIME_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "Mauvais format du temps, il doit respecter le schéma hh:mm:ss";
+			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.CENTER_EXPLANATION) {
@@ -504,11 +514,6 @@ public class FrenchDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Impossible de définir le temps de jeu, il manque le temps";
 			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_BAD_TIME_FORMAT) {
-			@Override
-			public String getMessage(String... args) {
-				return "Mauvais format du temps, il doit respecter le schéma hh:mm:ss";
-			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_CANNOT_LOAD) {
@@ -865,11 +870,6 @@ public class FrenchDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Impossible de définir le fraction time, il manque le temps";
 			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_HUNGER_GAME_BAD_TIME_FORMAT) {
-			@Override
-			public String getMessage(String... args) {
-				return "Mauvais format du temps, il doit respecter le schéma hh:mm:ss";
-			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_DEFINED) {
@@ -881,11 +881,6 @@ public class FrenchDictionary extends AbstractDictionary {
 			@Override
 			public String getMessage(String... args) {
 				return "Impossible de définir le temps de jeu, il manque le temps";
-			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_BAD_TIME_FORMAT) {
-			@Override
-			public String getMessage(String... args) {
-				return "Mauvais format du temps, il doit respecter le format hh:mm:ss";
 			}
 		});
 
@@ -1021,11 +1016,6 @@ public class FrenchDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Impossible de définir le pvp time, il manque le temps";
 			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.PVP_TIME_HUNGER_GAME_BAD_TIME_FORMAT) {
-			@Override
-			public String getMessage(String... args) {
-				return "Mauvais format du temps, il doit respecter le schéma hh:mm:ss";
-			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_HUNGER_GAME_EXPLANATION) {
@@ -1108,11 +1098,6 @@ public class FrenchDictionary extends AbstractDictionary {
 			@Override
 			public String getMessage(String... args) {
 				return "Impossible de définir le warning time, il manque le temps";
-			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_HUNGER_GAME_BAD_TIME_FORMAT) {
-			@Override
-			public String getMessage(String... args) {
-				return "Mauvais format du temps, il doit respecter le schéma hh:mm:ss";
 			}
 		});
 

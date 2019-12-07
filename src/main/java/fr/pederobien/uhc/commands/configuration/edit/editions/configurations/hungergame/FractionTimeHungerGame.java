@@ -28,7 +28,7 @@ public class FractionTimeHungerGame extends AbstractConfEdition<IHungerGameConfi
 		} catch (IndexOutOfBoundsException e) {
 			sendMessage(MessageCode.FRACTION_TIME_HUNGER_GAME_MISSING_TIME);
 		} catch (DateTimeParseException e) {
-			sendMessage(MessageCode.FRACTION_TIME_HUNGER_GAME_BAD_TIME_FORMAT);
+			sendMessage(MessageCode.BAD_TIME_FORMAT);
 		}
 	}
 
