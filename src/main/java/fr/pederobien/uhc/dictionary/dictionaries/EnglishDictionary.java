@@ -20,7 +20,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.NEW_NAME_MUST_NOT_START_BY_DEFAULT) {
 			@Override
 			public String getMessage(String... args) {
-				return args[0] + " must not start with default (ignoring case)";
+				return args[0] + " must not start with 'default' (ignoring case)";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.NEW_NAME_TAB_COMPLETE) {
 			@Override

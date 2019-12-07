@@ -20,8 +20,10 @@ public abstract class CommonDelete<T extends IUnmodifiableName> extends Abstract
 	@Override
 	public void edit(String[] args) {
 		String name = args[0];
-		if (startWithIgnoreCase(name, "default"))
+		if (startWithIgnoreCase(name, "default")) {
 			sendMessage(MessageCode.DELETE_ON_CANNOT_DELETE, name);
+			return;
+		}
 		getPersistence().delete(name);
 		if (get() != null && get().getName().equals(name))
 			getPersistence().set(null);
