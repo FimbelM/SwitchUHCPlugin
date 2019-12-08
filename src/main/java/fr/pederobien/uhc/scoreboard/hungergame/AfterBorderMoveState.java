@@ -2,6 +2,7 @@ package fr.pederobien.uhc.scoreboard.hungergame;
 
 import org.bukkit.GameMode;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.WorldManager;
 
@@ -14,8 +15,8 @@ public class AfterBorderMoveState extends AbstractHungerGameScoreboardState {
 	@Override
 	protected void updateEntries() {
 		registerTeam();
-		addEntries("Bordure", "" + WorldManager.getCurrentDiameter().intValue() / 2);
-		addEntries("Temps", prepareTime(getTask().getTotalTime()));
+		addEntryToTranslate(MessageCode.SCOREBOARD_HUNGER_GAME_BORDER, "" + WorldManager.getCurrentDiameter().intValue() / 2);
+		addEntryToTranslate(MessageCode.SCOREBOARD_CURRENT_GAME_TIME, prepareTime(getTask().getTotalTime()));
 	}
 
 	@Override
@@ -30,7 +31,7 @@ public class AfterBorderMoveState extends AbstractHungerGameScoreboardState {
 
 	public void registerTeam() {
 		for (ETeam team : scoreboard.getConfiguration().getTeams())
-			addEntries(team.getNameWithColor(), "" + team.getNumberPlayersOnMode(GameMode.SURVIVAL));
+			addEntryToNotTranslate(team.getNameWithColor() + " : ", "" + team.getNumberPlayersOnMode(GameMode.SURVIVAL));
 		addEmptyLine();
 	}
 }

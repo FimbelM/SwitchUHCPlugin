@@ -7,6 +7,47 @@ public class EnglishDictionary extends AbstractDictionary {
 	public EnglishDictionary() {
 		super(Locale.UK, Locale.US, Locale.ENGLISH, Locale.CANADA);
 
+		registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_CURRENT_GAME_TIME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Time : ";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_CURRENT_PAUSE_TIME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Pause : ";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_HUNGER_GAME_BORDER) {
+			@Override
+			public String getMessage(String... args) {
+				return "Border : ";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_BLOCKEDEX_GAME_NORTH_BASE) {
+			@Override
+			public String getMessage(String... args) {
+				return "North : ";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_BLOCKEDEX_GAME_SOUTH_BASE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Sud : ";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_BLOCKEDEX_GAME_WEST_BASE) {
+			@Override
+			public String getMessage(String... args) {
+				return "West : ";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_BLOCKEDEX_GAME_EAST_BASE) {
+			@Override
+			public String getMessage(String... args) {
+				return "East : ";
+			}
+		});
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.DELETE_ON_CANNOT_DELETE) {
 			@Override
 			public String getMessage(String... args) {

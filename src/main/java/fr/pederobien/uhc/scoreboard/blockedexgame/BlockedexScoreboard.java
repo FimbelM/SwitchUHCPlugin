@@ -3,6 +3,7 @@ package fr.pederobien.uhc.scoreboard.blockedexgame;
 import java.time.LocalTime;
 import java.util.List;
 
+import fr.pederobien.uhc.interfaces.IScoreboardMessage;
 import fr.pederobien.uhc.interfaces.IUnmodifiableBlockedexConfiguration;
 import fr.pederobien.uhc.scoreboard.AbstractScoreboard;
 import fr.pederobien.uhc.task.TimeTask;
@@ -69,7 +70,7 @@ public class BlockedexScoreboard extends AbstractScoreboard implements IBDScoreb
 	}
 
 	@Override
-	public List<String> getEntries() {
+	public List<IScoreboardMessage> getEntries() {
 		return current.getEntries();
 	}
 

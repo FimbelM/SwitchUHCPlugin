@@ -3,6 +3,7 @@ package fr.pederobien.uhc.scoreboard.hungergame;
 import java.time.LocalTime;
 import java.util.List;
 
+import fr.pederobien.uhc.interfaces.IScoreboardMessage;
 import fr.pederobien.uhc.interfaces.IUnmodifiableHungerGameConfiguration;
 import fr.pederobien.uhc.scoreboard.AbstractScoreboard;
 import fr.pederobien.uhc.task.TimeTask;
@@ -40,7 +41,7 @@ public class HungerGameScoreboard extends AbstractScoreboard implements IHGScore
 	}
 
 	@Override
-	public List<String> getEntries() {
+	public List<IScoreboardMessage> getEntries() {
 		return current.getEntries();
 	}
 

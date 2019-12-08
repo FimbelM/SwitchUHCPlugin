@@ -10,6 +10,8 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
 import fr.pederobien.uhc.BukkitManager;
+import fr.pederobien.uhc.dictionary.DictionaryManager;
+import fr.pederobien.uhc.interfaces.IScoreboardMessage;
 import fr.pederobien.uhc.scoreboard.IScoreboard;
 
 public class ScoreboardManager {
@@ -71,8 +73,14 @@ public class ScoreboardManager {
 		spaces = 0;
 		Objective obj = registerNewObjectiveOnSideBarDisplaySlot(TeamsManager.getColor(player) + sc.getTitle());
 
-		for (String entry : sc.getEntries())
-			addEntries(obj, entry);
+		for (IScoreboardMessage message : sc.getEntries())
+			if (message == null)
+				addEmptyLine(obj);
+			else if (message.toTranslate())
+				addEntries(obj,
+						ChatColor.GOLD + DictionaryManager.getMessage(player, message.getCode()) + ChatColor.DARK_GREEN + message.getMessage());
+			else
+				addEntries(obj, ChatColor.GOLD + message.getKey() + ChatColor.DARK_GREEN + message.getMessage());
 
 		addEmptyLine(obj);
 		addEntries(obj, showCoordinates(player));

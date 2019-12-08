@@ -1,5 +1,7 @@
 package fr.pederobien.uhc.scoreboard.hungergame;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+
 public class PauseState extends AbstractHungerGameScoreboardState {
 	private IHGScoreboardState before;
 
@@ -9,8 +11,8 @@ public class PauseState extends AbstractHungerGameScoreboardState {
 
 	@Override
 	protected void updateEntries() {
-		addEntries("Jeu", prepareTime(getTask().getTotalTime()));
-		addEntries("Pause", prepareTime(getTask().getPauseTime()));
+		addEntryToTranslate(MessageCode.SCOREBOARD_CURRENT_GAME_TIME, prepareTime(getTask().getTotalTime()));
+		addEntryToTranslate(MessageCode.SCOREBOARD_CURRENT_PAUSE_TIME, prepareTime(getTask().getPauseTime()));
 	}
 
 	@Override

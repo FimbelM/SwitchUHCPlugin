@@ -2,6 +2,8 @@ package fr.pederobien.uhc.scoreboard.hungergame;
 
 import java.time.LocalTime;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+
 public class BeforeBorderMoveState extends AbstractHungerGameScoreboardState {
 
 	public BeforeBorderMoveState(IHGScoreboard scoreboard) {
@@ -10,8 +12,8 @@ public class BeforeBorderMoveState extends AbstractHungerGameScoreboardState {
 
 	@Override
 	protected void updateEntries() {
-		addEntries("Bordure", prepareTime(getTask().getDecreasingTime()));
-		addEntries("Temps", prepareTime(getTask().getTotalTime()));
+		addEntryToTranslate(MessageCode.SCOREBOARD_HUNGER_GAME_BORDER, prepareTime(getTask().getDecreasingTime()));
+		addEntryToTranslate(MessageCode.SCOREBOARD_CURRENT_GAME_TIME, prepareTime(getTask().getTotalTime()));
 	}
 
 	@Override

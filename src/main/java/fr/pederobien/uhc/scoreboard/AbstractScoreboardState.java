@@ -4,20 +4,19 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.ChatColor;
-
-import fr.pederobien.uhc.managers.ScoreboardManager;
+import fr.pederobien.uhc.interfaces.IMessageCode;
+import fr.pederobien.uhc.interfaces.IScoreboardMessage;
 import fr.pederobien.uhc.task.TimeTask;
 
 public abstract class AbstractScoreboardState implements IScoreboardState {
-	private List<String> entries;
+	private List<IScoreboardMessage> entries;
 	private String title;
 	private TimeTask task;
 	private int spaces;
 
 	public AbstractScoreboardState(IScoreboard scoreboard, String title) {
 		this.title = title;
-		entries = new ArrayList<String>();
+		entries = new ArrayList<IScoreboardMessage>();
 		task = scoreboard.getTask();
 	}
 
@@ -29,7 +28,7 @@ public abstract class AbstractScoreboardState implements IScoreboardState {
 	}
 
 	@Override
-	public List<String> getEntries() {
+	public List<IScoreboardMessage> getEntries() {
 		spaces = 0;
 		entries.clear();
 		updateEntries();
@@ -60,16 +59,20 @@ public abstract class AbstractScoreboardState implements IScoreboardState {
 		return task;
 	}
 
-	protected void addEntries(String score) {
-		entries.add(score);
+	protected void addEntryToTranslate(IMessageCode code, String message) {
+		addEntry(code, true, null, message);
 	}
 
-	protected void addEntries(String key, String value) {
-		addEntries(ChatColor.GOLD + key + ": " + ChatColor.DARK_GREEN + value);
+	protected void addEntryToNotTranslate(String key, String message) {
+		addEntry(null, false, key, message);
 	}
 
 	protected void addEmptyLine() {
-		addEntries(ScoreboardManager.emptyLine());
+		addEntries(null);
+	}
+
+	private void addEntries(IScoreboardMessage message) {
+		entries.add(message);
 	}
 
 	protected String prepareTime(LocalTime time) {
@@ -79,5 +82,42 @@ public abstract class AbstractScoreboardState implements IScoreboardState {
 		}
 		spaces++;
 		return prepareTime;
+	}
+
+	private void addEntry(IMessageCode code, boolean toTranslate, String key, String message) {
+		addEntries(new ScoreboardMessage(code, toTranslate, key, message));
+	}
+
+	private class ScoreboardMessage implements IScoreboardMessage {
+		private IMessageCode code;
+		private boolean toTranslate;
+		private String key, message;
+
+		public ScoreboardMessage(IMessageCode code, boolean toTranslate, String key, String message) {
+			this.code = code;
+			this.toTranslate = toTranslate;
+			this.key = key;
+			this.message = message;
+		}
+
+		@Override
+		public IMessageCode getCode() {
+			return code;
+		}
+
+		@Override
+		public boolean toTranslate() {
+			return toTranslate;
+		}
+
+		@Override
+		public String getKey() {
+			return key;
+		}
+
+		@Override
+		public String getMessage() {
+			return message;
+		}
 	}
 }

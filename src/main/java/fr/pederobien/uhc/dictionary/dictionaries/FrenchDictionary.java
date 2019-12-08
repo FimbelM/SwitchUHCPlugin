@@ -7,6 +7,47 @@ public class FrenchDictionary extends AbstractDictionary {
 	public FrenchDictionary() {
 		super(Locale.FRANCE, Locale.FRENCH, Locale.CANADA_FRENCH);
 
+		registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_CURRENT_GAME_TIME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Temps : ";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_CURRENT_PAUSE_TIME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Pause : ";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_HUNGER_GAME_BORDER) {
+			@Override
+			public String getMessage(String... args) {
+				return "Bordure : ";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_BLOCKEDEX_GAME_NORTH_BASE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Nord : ";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_BLOCKEDEX_GAME_SOUTH_BASE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Sud : ";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_BLOCKEDEX_GAME_WEST_BASE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Ouest : ";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_BLOCKEDEX_GAME_EAST_BASE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Est : ";
+			}
+		});
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.DELETE_ON_CANNOT_DELETE) {
 			@Override
 			public String getMessage(String... args) {
@@ -858,7 +899,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_HUNGER_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Les joueur réapparaîtront en mode spectateur au bout de " + args[0] + "h " + args[1] + "m " + args[2] + "s of play";
+				return "Les joueurs réapparaîtront en mode spectateur au bout de " + args[0] + "h " + args[1] + "m " + args[2] + "s de jeu";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_HUNGER_GAME_MISSING_TIME) {
 			@Override
