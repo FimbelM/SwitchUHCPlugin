@@ -736,6 +736,11 @@ public class FrenchDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Joueur " + args[0] + " déplacé dans l'équipe " + args[2] + ", ancienne équipe " + args[1];
 			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_MOVEPLAYER_PLAYER_NOT_IN_TEAM) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de changer l'équipe du joueur " + args[0] + ", le joueur n'est pas dans une équipe";
+			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_RANDOMTEAM_EXPLANATION) {

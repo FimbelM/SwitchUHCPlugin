@@ -748,6 +748,11 @@ public class EnglishDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return args[0] + " moved from " + args[1] + " to " + args[2];
 			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_MOVEPLAYER_PLAYER_NOT_IN_TEAM) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot move player " + args[0] + ", player is not in a team";
+			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_RANDOMTEAM_EXPLANATION) {
