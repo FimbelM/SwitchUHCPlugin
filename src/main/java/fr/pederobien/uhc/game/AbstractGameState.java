@@ -4,6 +4,7 @@ import java.time.LocalTime;
 
 import org.bukkit.GameMode;
 import org.bukkit.GameRule;
+import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -14,7 +15,10 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.potion.PotionEffectType;
 
+import fr.pederobien.uhc.dictionary.NotificationCenter;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+import fr.pederobien.uhc.event.EventFactory;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.WorldManager;
 import fr.pederobien.uhc.scoreboard.launcher.IScoreboardLauncher;
@@ -117,5 +121,9 @@ public abstract class AbstractGameState implements IGameState {
 		taskLauncher.cancel();
 		scoreboardLauncher.cancel();
 		PlayerManager.teleporteAllPlayers(WorldManager.getSpawnOnJoin());
+	}
+
+	protected void sendMessage(Player player, IMessageCode code, String... args) {
+		NotificationCenter.sendMessage(EventFactory.createMessageEvent(player, code, args));
 	}
 }

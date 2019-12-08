@@ -7,12 +7,13 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.event.PlayerInteractEventResponse;
 import fr.pederobien.uhc.managers.BaseManager;
+import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
-import net.md_5.bungee.api.ChatColor;
 
 public class StartedState extends AbstractBlockedexState {
 	private List<Player> collegues;
@@ -47,12 +48,12 @@ public class StartedState extends AbstractBlockedexState {
 
 	@Override
 	public void onPlayerInteract(PlayerInteractEvent event) {
-		PlayerInteractEventResponse response = BaseManager.isChestAccessible(event.getPlayer(), event.getClickedBlock());
-		if (!response.isChestRestricted())
+		PlayerInteractEventResponse response = BaseManager.isRestricted(ETeam.getByContent(event.getPlayer().getName()), event.getClickedBlock());
+		if (!response.isRestricted())
 			return;
+
 		event.setCancelled(true);
-		PlayerManager.sendMessageToPlayer(event.getPlayer(),
-				ChatColor.RED + "This chest is reserved for team " + response.getTeamAllowed().getNameWithColor());
+		sendMessage(event.getPlayer(), MessageCode.CHEST_IS_RESTRICTED, response.getColorAllowed().getNameWithColor());
 	}
 
 	private void onPlayerDie(Player player) {
