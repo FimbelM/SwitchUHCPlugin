@@ -37,7 +37,6 @@ public abstract class AbstractCommand implements CommandExecutor, IObsMessageSen
 
 	@Override
 	public void sendMessage(MessageEvent event) {
-		System.out.println("Message to NotificationCenter");
 		NotificationCenter.sendMessage(event);
 	}
 
