@@ -12,9 +12,7 @@ import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractEdition;
 import fr.pederobien.uhc.dictionary.DictionaryManager;
-import fr.pederobien.uhc.dictionary.NotificationCenter;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
-import fr.pederobien.uhc.event.EventFactory;
 import fr.pederobien.uhc.interfaces.IEditConfiguration;
 import fr.pederobien.uhc.interfaces.IHelper;
 import fr.pederobien.uhc.interfaces.IMapEdition;
@@ -79,8 +77,7 @@ public class Helper<T extends IUnmodifiableName> extends AbstractEdition impleme
 	}
 
 	private <U> String help(CommandSender sender, INodeEdition<IMapEdition<T>, U> edition) {
-		String explanation = DictionaryManager.getMessage(NotificationCenter.getLocale((Player) sender),
-				EventFactory.createMessageCodeEvent(edition.getExplanation()));
+		String explanation = DictionaryManager.getMessage((Player) sender, edition.getExplanation());
 		return ChatColor.DARK_RED + edition.getLabel() + " - " + ChatColor.DARK_AQUA + explanation + "\n";
 	}
 

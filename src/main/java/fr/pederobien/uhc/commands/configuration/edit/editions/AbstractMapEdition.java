@@ -12,7 +12,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.dictionary.DictionaryManager;
-import fr.pederobien.uhc.dictionary.NotificationCenter;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.event.EventFactory;
 import fr.pederobien.uhc.event.MessageCodeEvent;
@@ -152,8 +151,7 @@ public abstract class AbstractMapEdition<T extends IUnmodifiableName> extends Ab
 	}
 
 	protected String onTabComplete(CommandSender sender, IMessageCode code) {
-		return sender instanceof Player ? DictionaryManager.getMessage(NotificationCenter.getLocale((Player) sender), createMessageCodeEvent(code))
-				: null;
+		return sender instanceof Player ? DictionaryManager.getMessage((Player) sender, code) : null;
 	}
 
 	private MessageCodeEvent createMessageCodeEvent(IMessageCode code, String... args) {
