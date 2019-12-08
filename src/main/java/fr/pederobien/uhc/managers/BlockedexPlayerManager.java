@@ -14,8 +14,7 @@ public class BlockedexPlayerManager extends PlayerManager {
 
 	public BlockedexPlayerManager(IUnmodifiableBlockedexConfiguration configuration) {
 		map = new HashMap<Player, Restriction>();
-		configuration.getTeams()
-				.forEach(t -> t.getPlayers().stream().map(n -> PlayerManager.getPlayer(n)).forEach(p -> map.put(p, new Restriction(p, t))));
+		configuration.getTeams().forEach(t -> t.getPlayers().stream().forEach(p -> map.put(PlayerManager.getPlayer(p), new Restriction(p, t))));
 	}
 
 	public void decreaseMaxHealth(Player player, double decrease) {
@@ -28,12 +27,8 @@ public class BlockedexPlayerManager extends PlayerManager {
 
 	public void decreasePlayerTeamMaxDeath(Player player) {
 		TeamRestriction restriction = map.get(player).getTeamRestriction();
-		restriction.decreaseMaxDeath();
-		if (restriction.isTeamEliminated()) {
-			PlayerManager.setGameModeOfPlayer(player, GameMode.SPECTATOR);
-			restriction.eliminate();
-		} else
-			PlayerManager.setGameModeOfPlayer(player, GameMode.SURVIVAL);
+		if (restriction.decreaseMaxDeath())
+			PlayerManager.setGameModeOfPlayer(player, restriction.isTeamEliminated() ? GameMode.SPECTATOR : GameMode.SURVIVAL);
 	}
 
 	public boolean isTeamPlayerEliminated(Player player) {
@@ -44,7 +39,7 @@ public class BlockedexPlayerManager extends PlayerManager {
 		private PlayerRestriction playerRestriction;
 		private TeamRestriction teamRestriction;
 
-		public Restriction(Player player, ETeam team) {
+		public Restriction(String player, ETeam team) {
 			playerRestriction = new PlayerRestriction(player);
 			teamRestriction = new TeamRestriction(team);
 		}
@@ -61,8 +56,8 @@ public class BlockedexPlayerManager extends PlayerManager {
 	private class PlayerRestriction {
 		private Player player;
 
-		public PlayerRestriction(Player player) {
-			this.player = player;
+		public PlayerRestriction(String player) {
+			this.player = PlayerManager.getPlayer(player);
 		}
 
 		public double getMaxHealth() {
@@ -91,8 +86,11 @@ public class BlockedexPlayerManager extends PlayerManager {
 			maxDeath = team.getPlayers().size();
 		}
 
-		public void decreaseMaxDeath() {
+		public boolean decreaseMaxDeath() {
 			maxDeath--;
+			if (isTeamEliminated())
+				eliminate();
+			return isTeamEliminated();
 		}
 
 		public boolean isTeamEliminated() {
