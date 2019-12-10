@@ -5,7 +5,6 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-import fr.pederobien.uhc.BukkitManager;
 import fr.pederobien.uhc.dictionary.NotificationCenter;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.event.EventFactory;
@@ -20,7 +19,7 @@ public class HungerGameState extends AbstractHungerGameState {
 
 	@Override
 	public void pause() {
-		BukkitManager.broadcastMessageAsTitle("Partie suspendue");
+		sendTitle(MessageCode.GAME_SUSPENDED);
 		WorldManager.stopBorder();
 		taskLauncher.pause();
 		scoreboardLauncher.pause();
@@ -28,9 +27,9 @@ public class HungerGameState extends AbstractHungerGameState {
 
 	@Override
 	public void relaunch() {
-		BukkitManager.broadcastMessageAsTitle("Reprise");
-		WorldManager.moveBorder(game.getConfiguration().getFinalBorderDiameter(),
-				WorldManager.getCurrentDiameter().longValue() / game.getConfiguration().getBorderSpeed().longValue());
+		sendTitle(MessageCode.GAME_RESUMED);
+		WorldManager.moveBorder(getConfiguration().getFinalBorderDiameter(),
+				WorldManager.getCurrentDiameter().longValue() / getConfiguration().getBorderSpeed().longValue());
 		taskLauncher.relaunched();
 		scoreboardLauncher.relaunched();
 	}

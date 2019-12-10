@@ -5,11 +5,11 @@ import java.time.LocalTime;
 
 import org.bukkit.GameMode;
 
-import fr.pederobien.uhc.BukkitManager;
 import fr.pederobien.uhc.dictionary.NotificationCenter;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.event.EventFactory;
 import fr.pederobien.uhc.game.AbstractGameState;
+import fr.pederobien.uhc.interfaces.IUnmodifiableHungerGameConfiguration;
 import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.WorldManager;
@@ -30,18 +30,22 @@ public abstract class AbstractHungerGameState extends AbstractGameState implemen
 	}
 
 	protected void authorizedPvp() {
-		BukkitManager.broadcastMessageAsTitle("PVP allowed", ETeam.DARK_RED.getColorName());
+		sendTitle(ETeam.DARK_RED, MessageCode.PVP_ALLOWED);
 		WorldManager.setPVP(true);
 	}
 
 	protected void warnPlayers(LocalTime time) {
 		if (!alreadyWarned) {
-			LocalTime toMovingBorder = LocalTime.ofNanoOfDay(Duration.between(time, game.getConfiguration().getGameTime()).toNanos());
+			LocalTime toMovingBorder = LocalTime.ofNanoOfDay(Duration.between(time, getConfiguration().getGameTime()).toNanos());
 
 			WorldManager.getPlayersInWorld(WorldManager.NETHER_WORLD, WorldManager.END_WORLD)
 					.forEach(p -> NotificationCenter.sendMessage(EventFactory.createMessageEvent(p, MessageCode.PLAYER_MUST_GO_BACK_TO_THE_OVERWORLD,
 							"" + toMovingBorder.getHour(), "" + toMovingBorder.getMinute(), "" + toMovingBorder.getSecond())));
 		}
 		alreadyWarned = true;
+	}
+
+	protected IUnmodifiableHungerGameConfiguration getConfiguration() {
+		return game.getConfiguration();
 	}
 }

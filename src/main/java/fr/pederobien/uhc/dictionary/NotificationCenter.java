@@ -32,6 +32,6 @@ public class NotificationCenter {
 	}
 
 	private static void sendMessage(Player player, MessageCodeEvent event) {
-		PlayerManager.sendMessageToPlayer(player, DictionaryManager.getMessage(getLocale(player), event));
+		PlayerManager.sendMessageToPlayer(player, DictionaryManager.getMessage(player, event));
 	}
 }

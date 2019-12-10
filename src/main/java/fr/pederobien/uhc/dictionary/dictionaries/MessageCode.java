@@ -193,7 +193,7 @@ public enum MessageCode implements IMessageCode {
 	BAD_BASES_CONFIGURATION,
 
 	// On game messages
-	CHEST_IS_RESTRICTED,
+	CHEST_IS_RESTRICTED, TEAM_ELIMINATED,
 
 	// Start messages
 	PLAYERS_NOT_IN_TEAM, NO_GAME_STYLE_DEFINED_AS_CURRENT,

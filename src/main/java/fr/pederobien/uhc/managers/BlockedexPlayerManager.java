@@ -7,6 +7,8 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.BukkitManager;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+import fr.pederobien.uhc.event.EventFactory;
 import fr.pederobien.uhc.interfaces.IUnmodifiableBlockedexConfiguration;
 
 public class BlockedexPlayerManager extends PlayerManager {
@@ -98,7 +100,7 @@ public class BlockedexPlayerManager extends PlayerManager {
 		}
 
 		public void eliminate() {
-			BukkitManager.broadcastMessageAsTitle("Team " + team.getNameWithColor() + " eliminated");
+			BukkitManager.sendTitleToPlayers(EventFactory.createMessageCodeEvent(MessageCode.TEAM_ELIMINATED, team.getNameWithColor()));
 
 			team.getPlayers().stream().map(n -> PlayerManager.getPlayer(n)).forEach(p -> {
 				PlayerManager.dropPlayerInventoryItemNaturally(p);

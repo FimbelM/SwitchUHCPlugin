@@ -7,7 +7,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-import fr.pederobien.uhc.BukkitManager;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+import fr.pederobien.uhc.managers.ETeam;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.WorldManager;
 
@@ -19,14 +20,14 @@ public class PlayerReviveState extends AbstractHungerGameState {
 
 	@Override
 	public void pause() {
-		BukkitManager.broadcastMessageAsTitle("Partie suspendue");
+		sendTitle(MessageCode.GAME_SUSPENDED);
 		taskLauncher.pause();
 		scoreboardLauncher.pause();
 	}
 
 	@Override
 	public void relaunch() {
-		BukkitManager.broadcastMessageAsTitle("Reprise");
+		sendTitle(MessageCode.GAME_RESUMED);
 		taskLauncher.relaunched();
 		scoreboardLauncher.relaunched();
 	}
@@ -38,11 +39,11 @@ public class PlayerReviveState extends AbstractHungerGameState {
 
 	@Override
 	public void time(LocalTime time) {
-		if (time.equals(game.getConfiguration().getPvpTime()))
+		if (time.equals(getConfiguration().getPvpTime()))
 			authorizedPvp();
-		if (time.equals(game.getConfiguration().getWarningTime()))
+		if (time.equals(getConfiguration().getWarningTime()))
 			warnPlayers(time);
-		if (time.equals(game.getConfiguration().getFractionTime()))
+		if (time.equals(getConfiguration().getFractionTime()))
 			changeFromReviveToNotRevive();
 	}
 
@@ -67,7 +68,7 @@ public class PlayerReviveState extends AbstractHungerGameState {
 	}
 
 	private void changeFromReviveToNotRevive() {
-		BukkitManager.broadcastMessageAsTitle("Plus de résurrection", "red");
+		sendTitle(ETeam.DARK_RED, MessageCode.NO_MORE_RESURRECTION);
 		game.setCurrentState(game.getPlayerDontRevive());
 	}
 }

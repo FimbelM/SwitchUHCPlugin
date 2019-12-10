@@ -2,7 +2,7 @@ package fr.pederobien.uhc.game.hungergame;
 
 import org.bukkit.Material;
 
-import fr.pederobien.uhc.BukkitManager;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
 
@@ -16,14 +16,14 @@ public class StartState extends AbstractHungerGameState {
 	public void start() {
 		onStart();
 		WorldManager.setPVP(false);
-		WorldManager.setWorldBorderCenter(game.getConfiguration().getBorderCenter());
-		WorldManager.setWorldBorderDiameter(game.getConfiguration().getInitialBorderDiameter());
+		WorldManager.setWorldBorderCenter(getConfiguration().getBorderCenter());
+		WorldManager.setWorldBorderDiameter(getConfiguration().getInitialBorderDiameter());
 		WorldManager.createCrossUnderSpawn(Material.BEDROCK);
-		TeamsManager.createTeams(game.getConfiguration().getTeams());
-		TeamsManager.teleporteRandomlyAllTeams(game.getConfiguration(), game.getConfiguration().getInitialBorderDiameter().intValue());
-		BukkitManager.broadcastMessageAsTitle("Match à mort par équipe");
+		TeamsManager.createTeams(getConfiguration().getTeams());
+		TeamsManager.teleporteRandomlyAllTeams(getConfiguration(), getConfiguration().getInitialBorderDiameter().intValue());
+		sendTitle(MessageCode.TEAM_DEATH_MATCH);
 		taskLauncher.run(0, 20L);
-		scoreboardLauncher.run(0, game.getConfiguration().getScoreboardRefresh());
+		scoreboardLauncher.run(0, getConfiguration().getScoreboardRefresh());
 		game.setCurrentState(game.getPlayerRevive());
 	}
 }

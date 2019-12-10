@@ -1,7 +1,5 @@
 package fr.pederobien.uhc.dictionary;
 
-import java.util.Locale;
-
 import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.dictionary.dictionaries.DictionaryFactory;
@@ -16,8 +14,8 @@ public class DictionaryManager {
 		context.registerDictionary(DictionaryFactory.createEnglishDictionary()).registerDictionary(DictionaryFactory.createFrenchDictionary());
 	}
 
-	public static String getMessage(Locale locale, MessageCodeEvent event) {
-		return context.getMessage(locale, event);
+	public static String getMessage(Player player, MessageCodeEvent event) {
+		return context.getMessage(NotificationCenter.getLocale(player), event);
 	}
 
 	public static String getMessage(Player player, IMessageCode code, String... args) {

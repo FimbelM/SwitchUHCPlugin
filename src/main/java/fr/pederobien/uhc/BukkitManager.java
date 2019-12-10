@@ -13,6 +13,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.ScoreboardManager;
 
+import fr.pederobien.uhc.dictionary.DictionaryManager;
+import fr.pederobien.uhc.event.MessageCodeEvent;
+import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.PlayerManager;
+
 public class BukkitManager {
 
 	public static Collection<? extends Player> getOnlinePlayers() {
@@ -39,12 +44,25 @@ public class BukkitManager {
 		return Bukkit.createBlockData(data);
 	}
 
-	public static void broadcastMessageAsTitle(String message) {
-		dispatchCommand("title @a title " + "{\"text\":\"" + message + "\"}");
+	public static void sendTitleToPlayers(MessageCodeEvent event) {
+		PlayerManager.getPlayers().forEach(player -> {
+			sendTitleToPlayer(player, event);
+		});
 	}
 
-	public static void broadcastMessageAsTitle(String message, String color) {
-		dispatchCommand("title @a title " + "{\"text\":\"" + message + "\",\"color\":\"" + color + "\"}");
+	public static void sendTitleToPlayer(Player player, MessageCodeEvent event) {
+		dispatchCommand("title " + player.getName() + " title " + "{\"text\":\"" + DictionaryManager.getMessage(player, event) + "\"}");
+	}
+
+	public static void sendTitleToPlayers(MessageCodeEvent event, ETeam color) {
+		PlayerManager.getPlayers().forEach(player -> {
+			sendTitleToPlayer(player, event, color);
+		});
+	}
+
+	public static void sendTitleToPlayer(Player player, MessageCodeEvent event, ETeam color) {
+		dispatchCommand("title " + player.getName() + " title " + "{\"text\":\"" + DictionaryManager.getMessage(player, event) + "\",\"color\":\""
+				+ color.getColorName() + "\"}");
 	}
 
 	public static void broadcastMessage(String message) {

@@ -1445,6 +1445,11 @@ public class FrenchDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Ce coffre est reservé à l'équipe" + args[0] + " vous êtes dans l'équipe " + args[1];
 			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_ELIMINATED) {
+			@Override
+			public String getMessage(String... args) {
+				return "L'équipe " + args[0] + " a été éliminée ";
+			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.PLAYERS_NOT_IN_TEAM) {

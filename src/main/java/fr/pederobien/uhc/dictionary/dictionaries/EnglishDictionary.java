@@ -1457,6 +1457,11 @@ public class EnglishDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "This chest is reserved for team " + args[0] + " you are in team " + args[1];
 			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_ELIMINATED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Team " + args[0] + " eliminated ";
+			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.PLAYERS_NOT_IN_TEAM) {
