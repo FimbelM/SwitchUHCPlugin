@@ -470,6 +470,23 @@ public class FrenchDictionary extends AbstractDictionary {
 			}
 		});
 
+		registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_SPAWN_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour définir le spawn des joueurs lorsque le spawn est chargé dans le monde";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_SPAWN_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Les joueurs apparaîtront en " + args[0] + " " + args[1] + " " + args[2];
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_SPAWN_MISSING_COORDINATES) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de définir les coordonnées du spawn des joueurs, il manque <X> ou <Y> ou <Z>";
+			}
+		});
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.RANDOM_SPAWN_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {

@@ -482,6 +482,23 @@ public class EnglishDictionary extends AbstractDictionary {
 			}
 		});
 
+		registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_SPAWN_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to set the player's spawn when the spawn is launched on the world";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_SPAWN_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Players will spawn at " + args[0] + " " + args[1] + " " + args[2];
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_SPAWN_MISSING_COORDINATES) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot set player spawn’s coordinates, need <X> <Y> <Z>";
+			}
+		});
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.RANDOM_SPAWN_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
