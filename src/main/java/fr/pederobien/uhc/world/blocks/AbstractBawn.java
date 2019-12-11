@@ -140,7 +140,7 @@ public abstract class AbstractBawn implements IBawn {
 
 	@Override
 	public void setCenter(String x, String y, String z) {
-		center = WorldManager.getBlockAt(Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(z));
+		setCenter(WorldManager.getBlockAt(Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(z)));
 	}
 
 	protected Block getBlockFromCenter(int x, int y, int z) {
