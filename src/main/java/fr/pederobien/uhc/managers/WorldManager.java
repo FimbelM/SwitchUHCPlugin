@@ -16,7 +16,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import fr.pederobien.uhc.BukkitManager;
-import fr.pederobien.uhc.interfaces.ISpawn;
+import fr.pederobien.uhc.interfaces.IUnmodifiableSpawn;
 
 public class WorldManager {
 	public static final Set<EntityType> MOBS;
@@ -27,7 +27,7 @@ public class WorldManager {
 	private static Random rand;
 	private static World world;
 	private static WorldBorder border;
-	private static ISpawn spawn;
+	private static IUnmodifiableSpawn spawn;
 
 	static {
 		rand = new Random();
@@ -184,10 +184,10 @@ public class WorldManager {
 		return world.getSpawnLocation();
 	}
 
-	public static void setSpawn(ISpawn spawn) {
+	public static void setSpawn(IUnmodifiableSpawn spawn) {
 		WorldManager.spawn = spawn;
 		if (spawn != null)
-			world.setSpawnLocation(spawn.getCenter().getLocation().clone().add(new Vector(0, 1, 0)));
+			world.setSpawnLocation(spawn.getPlayerSpawn().getLocation());
 		else
 			world.setSpawnLocation(getHighestBlockYAt(0, 0).getLocation());
 	}
@@ -215,7 +215,7 @@ public class WorldManager {
 	}
 
 	public static void createCrossUnderSpawn(Material material) {
-		Location respawn = getSpawnOnRespawn();
+		Location respawn = spawn.getCenter().getLocation().clone().add(new Vector(0, -1, 0));
 		for (int x = -1; x < 2; x++)
 			getBlockAt(respawn.clone().add(new Vector(x, 0, 0))).setType(material);
 		getBlockAt(respawn.clone().add(new Vector(0, 0, 1))).setType(material);

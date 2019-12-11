@@ -13,4 +13,6 @@ public interface IObsBawn {
 	void onReCentered(Block oldCenter, Block newCenter);
 
 	void onRedimensioned(IUnmodifiableDimension oldDimension, IUnmodifiableDimension newDimension);
+
+	void onPlayerSpawnChanged(Block oldPlayerSpawn, Block newPlayerSpawn);
 }
