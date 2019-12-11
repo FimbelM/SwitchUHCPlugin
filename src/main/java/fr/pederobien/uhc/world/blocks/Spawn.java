@@ -45,6 +45,11 @@ public class Spawn extends AbstractBawn implements ISpawn {
 		onPlayerSpawnChanged(oldPlayerSpawn);
 	}
 
+	@Override
+	public void setPlayerSpawn(String x, String y, String z) {
+		setPlayerSpawn(WorldManager.getBlockAt(Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(z)));
+	}
+
 	private void onPlayerSpawnChanged(Block oldPlayerSpawn) {
 		for (IObsBawn obs : observers)
 			obs.onPlayerSpawnChanged(oldPlayerSpawn, playerSpawn);

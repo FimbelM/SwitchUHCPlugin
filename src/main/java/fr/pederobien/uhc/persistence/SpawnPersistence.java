@@ -59,6 +59,12 @@ public class SpawnPersistence extends AbstractBawnPersistence<ISpawn> {
 		center.setAttribute("z", "" + get().getCenter().getZ());
 		root.appendChild(center);
 
+		Element playerSpawn = doc.createElement("playerSpawn");
+		playerSpawn.setAttribute("x", "" + get().getPlayerSpawn().getX());
+		playerSpawn.setAttribute("y", "" + get().getPlayerSpawn().getY());
+		playerSpawn.setAttribute("z", "" + get().getPlayerSpawn().getZ());
+		root.appendChild(playerSpawn);
+
 		Element blocks = doc.createElement("blocks");
 		for (ISerializableBlock b : get().getBlocks()) {
 			Element block = doc.createElement("block");

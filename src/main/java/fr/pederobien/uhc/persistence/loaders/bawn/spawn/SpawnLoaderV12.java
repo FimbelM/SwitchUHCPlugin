@@ -35,6 +35,9 @@ public class SpawnLoaderV12 extends AbstractSpawnLoader {
 			case "center":
 				get().setCenter(elt.getAttribute("x"), elt.getAttribute("y"), elt.getAttribute("z"));
 				break;
+			case "playerSpawn":
+				get().setPlayerSpawn(elt.getAttribute("x"), elt.getAttribute("y"), elt.getAttribute("z"));
+				break;
 			case "blocks":
 				List<ISerializableBlock> blocksStr = new ArrayList<ISerializableBlock>();
 				for (int j = 0; j < elt.getChildNodes().getLength(); j++) {
