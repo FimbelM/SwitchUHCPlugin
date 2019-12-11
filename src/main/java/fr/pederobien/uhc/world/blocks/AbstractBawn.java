@@ -19,7 +19,7 @@ public abstract class AbstractBawn implements IBawn {
 	private List<ISerializableBlock> config, before;
 	private String name;
 	private IDimension dimension;
-	private List<IObsBawn> observers;
+	protected List<IObsBawn> observers;
 
 	public AbstractBawn(String name) {
 		this.name = name;
