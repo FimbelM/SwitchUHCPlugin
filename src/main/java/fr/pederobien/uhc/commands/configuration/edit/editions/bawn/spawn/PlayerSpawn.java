@@ -19,9 +19,9 @@ public class PlayerSpawn extends AbstractBawnEdition<ISpawn> {
 	@Override
 	public void edit(String[] args) {
 		try {
-			get().setCenter(args[0], args[1], args[2]);
-			sendMessage(MessageCode.PLAYER_SPAWN_DEFINED, "" + get().getCenter().getX(), "" + get().getCenter().getY(),
-					"" + get().getCenter().getZ());
+			get().setPlayerSpawn(args[0], args[1], args[2]);
+			sendMessage(MessageCode.PLAYER_SPAWN_DEFINED, "" + get().getPlayerSpawn().getX(), "" + get().getPlayerSpawn().getY(),
+					"" + get().getPlayerSpawn().getZ());
 		} catch (IndexOutOfBoundsException e) {
 			sendMessage(MessageCode.PLAYER_SPAWN_MISSING_COORDINATES);
 		} catch (NumberFormatException e) {
