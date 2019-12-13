@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 
 import fr.pederobien.uhc.interfaces.IBawn;
@@ -69,6 +70,8 @@ public abstract class AbstractBawn implements IBawn {
 
 	@Override
 	public void remove() {
+		if (before.isEmpty())
+			config.stream().forEach(b -> before.add(new SerialisableBlock(b, Material.AIR.createBlockData())));
 		before.stream().forEach(b -> updateBlock(b));
 	}
 
