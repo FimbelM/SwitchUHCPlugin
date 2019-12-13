@@ -154,6 +154,11 @@ public abstract class AbstractBawn implements IBawn {
 		return getBlockFromCenter(block.getX(), block.getY(), block.getZ());
 	}
 
+	protected ISerializableBlock getRelativeBlockFromTheWorld(Block block) {
+		return new SerialisableBlock(block.getX() - getCenter().getX(), block.getY() - getCenter().getY(), block.getZ() - getCenter().getZ(),
+				block.getBlockData());
+	}
+
 	private void updateBlock(ISerializableBlock block) {
 		getBlockFromCenter(block).setType(block.getMaterial());
 		getBlockFromCenter(block).setBlockData(block.getBlockData());

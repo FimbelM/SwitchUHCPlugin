@@ -6,4 +6,6 @@ public interface IUnmodifiableSpawn extends IUnmodifiableBawn {
 
 	Block getPlayerSpawn();
 
+	ISerializableBlock getPlayerSpawnRelativeToCenter();
+
 }

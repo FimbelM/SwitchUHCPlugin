@@ -39,6 +39,11 @@ public class Spawn extends AbstractBawn implements ISpawn {
 	}
 
 	@Override
+	public ISerializableBlock getPlayerSpawnRelativeToCenter() {
+		return getRelativeBlockFromTheWorld(getPlayerSpawn());
+	}
+
+	@Override
 	public void setPlayerSpawn(Block playerSpawn) {
 		Block oldPlayerSpawn = this.playerSpawn;
 		this.playerSpawn = playerSpawn;
@@ -48,6 +53,11 @@ public class Spawn extends AbstractBawn implements ISpawn {
 	@Override
 	public void setPlayerSpawn(String x, String y, String z) {
 		setPlayerSpawn(WorldManager.getBlockAt(Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(z)));
+	}
+
+	@Override
+	public void setPlayerSpawnRelativeToCenter(String x, String y, String z) {
+		setPlayerSpawn(getBlockFromCenter(Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(z)));
 	}
 
 	private void onPlayerSpawnChanged(Block oldPlayerSpawn) {
