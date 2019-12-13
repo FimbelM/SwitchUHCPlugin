@@ -12,6 +12,6 @@ public class DimensionsBase extends CommonDimensions<IBase> {
 
 	@Override
 	protected void dimensionsDefined(int width, int height, int depth) {
-		sendMessage(MessageCode.DIMENSIONS_BASE_DEFINED, "" + width, "" + height, "" + depth);
+		sendMessage(MessageCode.DIMENSIONS_BASE_DEFINED, get().getName(), "" + width, "" + height, "" + depth);
 	}
 }

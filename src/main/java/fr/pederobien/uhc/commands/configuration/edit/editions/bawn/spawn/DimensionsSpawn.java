@@ -12,6 +12,6 @@ public class DimensionsSpawn extends CommonDimensions<ISpawn> {
 
 	@Override
 	protected void dimensionsDefined(int width, int height, int depth) {
-		sendMessage(MessageCode.DIMENSIONS_SPAWN_DEFINED, "" + width, "" + height, "" + depth);
+		sendMessage(MessageCode.DIMENSIONS_SPAWN_DEFINED, get().getName(), "" + width, "" + height, "" + depth);
 	}
 }
