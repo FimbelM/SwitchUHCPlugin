@@ -10,7 +10,7 @@ import fr.pederobien.uhc.observers.IObsBawn;
 public class Spawn extends AbstractBawn implements ISpawn {
 	private static final Block DEFAULT_PLAYER_SPAWN = WorldManager.getHighestBlockYAt(0, 0);
 
-	private Block playerSpawn;
+	private ISerializableBlock playerSpawn;
 
 	public Spawn(String name) {
 		super(name);
@@ -35,7 +35,7 @@ public class Spawn extends AbstractBawn implements ISpawn {
 
 	@Override
 	public Block getPlayerSpawn() {
-		return playerSpawn == null ? DEFAULT_PLAYER_SPAWN : playerSpawn;
+		return playerSpawn == null ? DEFAULT_PLAYER_SPAWN : getBlockFromCenter(playerSpawn);
 	}
 
 	@Override
@@ -45,8 +45,8 @@ public class Spawn extends AbstractBawn implements ISpawn {
 
 	@Override
 	public void setPlayerSpawn(Block playerSpawn) {
-		Block oldPlayerSpawn = this.playerSpawn;
-		this.playerSpawn = playerSpawn;
+		Block oldPlayerSpawn = getPlayerSpawn();
+		this.playerSpawn = getRelativeBlockFromTheWorld(playerSpawn);
 		onPlayerSpawnChanged(oldPlayerSpawn);
 	}
 
@@ -62,6 +62,6 @@ public class Spawn extends AbstractBawn implements ISpawn {
 
 	private void onPlayerSpawnChanged(Block oldPlayerSpawn) {
 		for (IObsBawn obs : observers)
-			obs.onPlayerSpawnChanged(oldPlayerSpawn, playerSpawn);
+			obs.onPlayerSpawnChanged(oldPlayerSpawn, getPlayerSpawn());
 	}
 }
