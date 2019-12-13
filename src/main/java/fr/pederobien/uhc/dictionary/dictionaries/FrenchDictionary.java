@@ -387,6 +387,18 @@ public class FrenchDictionary extends AbstractDictionary {
 			}
 		});
 
+		registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_SPAWN_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour définir les dimensions du spawn";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_SPAWN_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Les dimensions du spawn " + args[0] + " sont " + args[1] + " " + args[2] + " " + args[3];
+			}
+		});
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.EXTRACT_SPAWN_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {

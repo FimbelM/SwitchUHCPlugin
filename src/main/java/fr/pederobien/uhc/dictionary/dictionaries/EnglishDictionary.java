@@ -185,6 +185,18 @@ public class EnglishDictionary extends AbstractDictionary {
 			}
 		});
 
+		registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_BASE_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to extract from the world the blocks of the base";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_BASE_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Dimensions of the base " + args[0] + " defined as " + args[1] + " " + args[2] + " " + args[3];
+			}
+		});
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.EXTRACT_BASE_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
@@ -214,18 +226,6 @@ public class EnglishDictionary extends AbstractDictionary {
 			@Override
 			public String getMessage(String... args) {
 				return "Blocks under chests are not wool";
-			}
-		});
-
-		registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_BASE_EXPLANATION) {
-			@Override
-			public String getMessage(String... args) {
-				return "to extract from the world the blocks of the base";
-			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_BASE_DEFINED) {
-			@Override
-			public String getMessage(String... args) {
-				return "Dimensions of the base " + args[0] + " defined as " + args[1] + " " + args[2] + " " + args[3];
 			}
 		});
 
@@ -387,6 +387,18 @@ public class EnglishDictionary extends AbstractDictionary {
 			}
 		});
 
+		registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_SPAWN_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to set the dimensions of the spawn";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_SPAWN_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Dimensions of the spawn " + args[0] + " defined as " + args[1] + " " + args[2] + " " + args[3];
+			}
+		});
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.EXTRACT_SPAWN_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
@@ -396,18 +408,6 @@ public class EnglishDictionary extends AbstractDictionary {
 			@Override
 			public String getMessage(String... args) {
 				return "Spawn " + args[0] + " extracted";
-			}
-		});
-
-		registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_SPAWN_EXPLANATION) {
-			@Override
-			public String getMessage(String... args) {
-				return "to extract from the world the blocks of the spawn";
-			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.DIMENSIONS_SPAWN_DEFINED) {
-			@Override
-			public String getMessage(String... args) {
-				return "Dimensions of the spawn " + args[0] + " defined as " + args[1] + " " + args[2] + " " + args[3];
 			}
 		});
 
