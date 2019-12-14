@@ -441,7 +441,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.LIST_SPAWN_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "to display all existing spawn(s)";
+				return "to display all existing spawn's names";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LIST_SPAWN_SIZE_EQUALS_0) {
 			@Override
@@ -502,7 +502,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.RANDOM_SPAWN_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "to load randomly a spawn";
+				return "to launch randomly a spawn on the world";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RANDOM_SPAWN_LAUNCHED) {
 			@Override
@@ -512,12 +512,12 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RANDOM_SPAWN_CANNOT_BE_LAUNCHED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Cannot launch randomly spawn " + args[0] + ", spawn does not exist";
+				return "Cannot launch spawn " + args[0] + ", spawn does not exist";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RANDOM_SPAWN_MISSING_COORDINATES) {
 			@Override
 			public String getMessage(String... args) {
-				return "Cannot launch randomly a spawn, need center's coordinates <X> <Y> <Z>";
+				return "Cannot launch a spawn, need center's coordinates <X> <Y> <Z>";
 			}
 		});
 
@@ -558,7 +558,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.SAVE_SPAWN_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "to save a spawn";
+				return "to save the current spawn";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SAVE_SPAWN_SAVED) {
 			@Override

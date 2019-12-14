@@ -402,7 +402,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.EXTRACT_SPAWN_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour extraire du monde les blocks du spawn";
+				return "pour extraire du monde les blocs du spawn";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.EXTRACT_SPAWN_EXTRACTED) {
 			@Override
@@ -429,7 +429,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_SPAWN_MISSING_COORDINATES) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de charger le spawn " + args[0] + ", il manque les coordonées <X> ou <Y> ou <Z> du centre";
+				return "Impossible de charger le spawn " + args[0] + ", il manque les coordonnées <X> ou <Y> ou <Z> du centre";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_SPAWN_MISSING_NAME_AND_COORDINATES) {
 			@Override
@@ -502,7 +502,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.RANDOM_SPAWN_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour charger aléatoirement un spawn";
+				return "pour charger aléatoirement un spawn dans le monde";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RANDOM_SPAWN_LAUNCHED) {
 			@Override
@@ -517,7 +517,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RANDOM_SPAWN_MISSING_COORDINATES) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de charger aléatoirement un spawn, il manque les coordonnées " + "<X> ou <Y> ou <Z> du centre";
+				return "Impossible de charger un spawn, il manque les coordonnées " + "<X> ou <Y> ou <Z> du centre";
 			}
 		});
 
@@ -529,7 +529,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.REMOVE_SPAWN_REMOVED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Spawn " + args[0] + " enlevé du monde";
+				return "Spawn " + args[0] + " a été enlevé du monde";
 			}
 		});
 
@@ -558,7 +558,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.SAVE_SPAWN_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour sauvegarder le spawn";
+				return "pour sauvegarder le spawn courant";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SAVE_SPAWN_SAVED) {
 			@Override
