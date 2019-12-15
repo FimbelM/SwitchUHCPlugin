@@ -577,12 +577,12 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Temps de jeu défini : " + args[0] + "h " + args[1] + "m " + args[2] + "s";
+				return "Game time défini : " + args[0] + "h " + args[1] + "m " + args[2] + "s";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_MISSING_TIME) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de définir le temps de jeu, il manque le temps";
+				return "Impossible de définir le game time, il manque le temps";
 			}
 		});
 
@@ -601,7 +601,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_REFRESH_NEGATIVE_TIC_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "La fréquence doit être positive";
+				return "Le nombre de tics doit être positive";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_REFRESH_ONE_TIC_DEFINED) {
 			@Override

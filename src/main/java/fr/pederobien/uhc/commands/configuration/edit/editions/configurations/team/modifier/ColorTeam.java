@@ -18,9 +18,10 @@ public class ColorTeam<T extends IConfiguration> extends AbstractTeamEditions<T>
 
 	@Override
 	public void edit(String[] args) {
-		ETeam oldTeam = ETeam.getByName(args[0]);
+		String name = args[0];
+		ETeam oldTeam = ETeam.getByName(name);
 		if (oldTeam == null) {
-			sendMessage(MessageCode.TEAM_BAD_TEAM, args[0]);
+			sendMessage(MessageCode.TEAM_BAD_TEAM, name);
 			return;
 		}
 

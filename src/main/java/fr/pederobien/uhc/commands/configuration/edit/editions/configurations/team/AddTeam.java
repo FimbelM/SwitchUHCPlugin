@@ -29,8 +29,8 @@ public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 			for (int i = 2; i < args.length; i++) {
 				try {
 					Player player = PlayerManager.getPlayer(args[i]);
-					players.add(player);
 					playerNames += player.getName() + " ";
+					players.add(player);
 				} catch (NullPointerException e) {
 					sendMessage(MessageCode.TEAM_BAD_PLAYER, args[i]);
 					return;

@@ -35,8 +35,8 @@ public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 		for (int i = 0; i < args.length; i++) {
 			try {
 				ETeam team = ETeam.getByName(args[i]);
-				teams.add(team);
 				teamNames += team.getNameWithColor() + " ";
+				teams.add(team);
 			} catch (NullPointerException e) {
 				sendMessage(MessageCode.TEAM_BAD_TEAM, args[i]);
 				return;

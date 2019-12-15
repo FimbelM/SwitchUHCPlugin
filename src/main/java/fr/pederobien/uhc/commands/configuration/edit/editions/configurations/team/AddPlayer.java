@@ -21,9 +21,10 @@ public class AddPlayer<T extends IConfiguration> extends AbstractTeamEditions<T>
 
 	@Override
 	public void edit(String[] args) {
-		ETeam team = ETeam.getByName(args[0]);
+		String name = args[0];
+		ETeam team = ETeam.getByName(name);
 		if (team == null) {
-			sendMessage(MessageCode.TEAM_BAD_TEAM, args[0]);
+			sendMessage(MessageCode.TEAM_BAD_TEAM, name);
 			return;
 		}
 
@@ -32,8 +33,8 @@ public class AddPlayer<T extends IConfiguration> extends AbstractTeamEditions<T>
 		for (int i = 1; i < args.length; i++) {
 			try {
 				Player player = PlayerManager.getPlayer(args[i]);
-				players.add(player);
 				playerNames += player.getName() + " ";
+				players.add(player);
 			} catch (NullPointerException e) {
 				sendMessage(MessageCode.TEAM_BAD_PLAYER, args[i]);
 				return;

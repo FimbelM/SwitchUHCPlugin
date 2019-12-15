@@ -596,12 +596,12 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_REFRESH_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "to set number of server’s tic after which the scoreboard of each player is refreshed";
+				return "to set the number of server’s tic after which the scoreboard of each player is refreshed";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_REFRESH_NEGATIVE_TIC_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "The number of tic must be strictly positive";
+				return "The number of tics must be strictly positive";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_REFRESH_ONE_TIC_DEFINED) {
 			@Override

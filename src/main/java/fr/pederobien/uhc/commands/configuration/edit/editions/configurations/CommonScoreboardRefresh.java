@@ -21,7 +21,7 @@ public class CommonScoreboardRefresh<T extends IConfiguration> extends AbstractC
 			long refresh = Long.parseLong(args[0]);
 			if (refresh < 0)
 				sendMessage(MessageCode.SCOREBOARD_REFRESH_NEGATIVE_TIC_DEFINED);
-			if (refresh == 1) {
+			else if (refresh == 1) {
 				get().setScoreboardRefresh(refresh);
 				sendMessage(MessageCode.SCOREBOARD_REFRESH_ONE_TIC_DEFINED);
 			} else {
