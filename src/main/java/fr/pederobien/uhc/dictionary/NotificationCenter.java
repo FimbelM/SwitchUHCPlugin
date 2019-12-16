@@ -1,7 +1,5 @@
 package fr.pederobien.uhc.dictionary;
 
-import java.util.Locale;
-
 import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.BukkitManager;
@@ -25,10 +23,6 @@ public class NotificationCenter {
 		default:
 			break;
 		}
-	}
-
-	public static Locale getLocale(Player player) {
-		return Locale.forLanguageTag(player.getLocale().replace('_', '-'));
 	}
 
 	private static void sendMessage(Player player, MessageCodeEvent event) {
