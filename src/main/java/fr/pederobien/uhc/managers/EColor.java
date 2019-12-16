@@ -8,7 +8,7 @@ import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 
-public enum ETeam {
+public enum EColor {
 	AQUA(ChatColor.AQUA, "aqua", "Aqua"), DARK_AQUA(ChatColor.DARK_AQUA, "dark_aqua", "Dark_Aqua"), BLUE(ChatColor.BLUE, "blue", "Blue"),
 	DARK_BLUE(ChatColor.DARK_BLUE, "dark_blue", "Dark_Blue"), BLACK(ChatColor.BLACK, "black", "Black"), GRAY(ChatColor.GRAY, "gray", "Gray"),
 	DARK_GRAY(ChatColor.DARK_GRAY, "dark_gray", "Dark_Gray"), GREEN(ChatColor.GREEN, "green", "Green"),
@@ -17,8 +17,8 @@ public enum ETeam {
 	PINK(ChatColor.LIGHT_PURPLE, "light_purple", "Pink"), PURPLE(ChatColor.DARK_PURPLE, "dark_purple", "Purple"),
 	WHITE(ChatColor.WHITE, "white", "White");
 
-	private static HashMap<ChatColor, ETeam> mapColor = new HashMap<ChatColor, ETeam>();
-	private static HashMap<String, ETeam> mapColorName = new HashMap<String, ETeam>();
+	private static HashMap<ChatColor, EColor> mapColor = new HashMap<ChatColor, EColor>();
+	private static HashMap<String, EColor> mapColorName = new HashMap<String, EColor>();
 	private static List<String> colorsName = new ArrayList<String>();
 	private ChatColor color;
 	private String colorName;
@@ -26,25 +26,25 @@ public enum ETeam {
 	private List<String> players;
 
 	static {
-		for (ETeam team : values()) {
+		for (EColor team : values()) {
 			mapColor.put(team.getColor(), team);
 			mapColorName.put(team.getColorName(), team);
 			colorsName.add(team.getColorName());
 		}
 	}
 
-	public static ETeam getByColor(ChatColor color) {
+	public static EColor getByColor(ChatColor color) {
 		return mapColor.get(color);
 	}
 
-	public static ETeam getByName(String name) {
-		for (ETeam team : values())
+	public static EColor getByName(String name) {
+		for (EColor team : values())
 			if (team.getNameWithoutColor().equals(name))
 				return team;
 		return null;
 	}
 
-	public static ETeam getByColorName(String colorName) {
+	public static EColor getByColorName(String colorName) {
 		return mapColorName.get(colorName);
 	}
 
@@ -52,14 +52,14 @@ public enum ETeam {
 		return colorsName;
 	}
 
-	public static ETeam getByContent(String player) {
-		for (ETeam team : values())
+	public static EColor getByContent(String player) {
+		for (EColor team : values())
 			if (team.getPlayers().contains(player))
 				return team;
 		return null;
 	}
 
-	private ETeam(ChatColor color, String colorName, String name) {
+	private EColor(ChatColor color, String colorName, String name) {
 		this.color = color;
 		this.colorName = colorName;
 		this.defaultName = this.name = name;
@@ -86,12 +86,12 @@ public enum ETeam {
 		return color + colorName + ChatColor.RESET;
 	}
 
-	public ETeam setName(String name) {
+	public EColor setName(String name) {
 		this.name = name;
 		return this;
 	}
 
-	public ETeam resetName() {
+	public EColor resetName() {
 		name = defaultName;
 		return this;
 	}

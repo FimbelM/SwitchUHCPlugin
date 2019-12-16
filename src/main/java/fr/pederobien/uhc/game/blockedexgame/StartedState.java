@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.event.PlayerInteractEventResponse;
 import fr.pederobien.uhc.managers.BaseManager;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
@@ -48,7 +48,7 @@ public class StartedState extends AbstractBlockedexState {
 
 	@Override
 	public void onPlayerInteract(PlayerInteractEvent event) {
-		PlayerInteractEventResponse response = BaseManager.isRestricted(ETeam.getByContent(event.getPlayer().getName()), event.getClickedBlock());
+		PlayerInteractEventResponse response = BaseManager.isRestricted(EColor.getByContent(event.getPlayer().getName()), event.getClickedBlock());
 		if (!response.isRestricted())
 			return;
 

@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 import fr.pederobien.uhc.managers.PlayerManager;
 
 public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
@@ -22,7 +22,7 @@ public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 	@Override
 	public void edit(String[] args) {
 		try {
-			ETeam team = ETeam.getByColorName(args[1]);
+			EColor team = EColor.getByColorName(args[1]);
 			team.setName(args[0]);
 			List<Player> players = new ArrayList<Player>();
 			String playerNames = team.getColor() + "";

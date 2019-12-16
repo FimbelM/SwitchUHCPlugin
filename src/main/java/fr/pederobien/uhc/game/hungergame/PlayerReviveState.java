@@ -8,7 +8,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.WorldManager;
 
@@ -68,7 +68,7 @@ public class PlayerReviveState extends AbstractHungerGameState {
 	}
 
 	private void changeFromReviveToNotRevive() {
-		sendTitle(ETeam.DARK_RED, MessageCode.NO_MORE_RESURRECTION);
+		sendTitle(EColor.DARK_RED, MessageCode.NO_MORE_RESURRECTION);
 		game.setCurrentState(game.getPlayerDontRevive());
 	}
 }

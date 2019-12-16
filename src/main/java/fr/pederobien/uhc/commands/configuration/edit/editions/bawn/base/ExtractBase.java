@@ -6,7 +6,7 @@ import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.CommonExtract
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.exceptions.BaseExtractionException;
 import fr.pederobien.uhc.interfaces.IBase;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 
 public class ExtractBase extends CommonExtract<IBase> {
 
@@ -35,9 +35,9 @@ public class ExtractBase extends CommonExtract<IBase> {
 		}
 	}
 
-	private String colorName(Collection<ETeam> teams) {
+	private String colorName(Collection<EColor> teams) {
 		String colorName = "";
-		for (ETeam team : teams)
+		for (EColor team : teams)
 			colorName += team.getColorNameWithColor() + " ";
 		return colorName;
 	}

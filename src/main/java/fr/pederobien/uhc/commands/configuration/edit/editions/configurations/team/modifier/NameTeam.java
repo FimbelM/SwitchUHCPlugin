@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.team.AbstractTeamEditions;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 
 public class NameTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
@@ -21,7 +21,7 @@ public class NameTeam<T extends IConfiguration> extends AbstractTeamEditions<T> 
 	@Override
 	public void edit(String[] args) {
 		String oldName = args[0], newName = args[1];
-		ETeam team = ETeam.getByName(oldName);
+		EColor team = EColor.getByName(oldName);
 
 		if (team == null) {
 			sendMessage(MessageCode.TEAM_BAD_TEAM, oldName);

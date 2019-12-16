@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractMapEdition;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.IMessageCode;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 import fr.pederobien.uhc.managers.PlayerManager;
 
 public abstract class AbstractTeamEditions<T extends IConfiguration> extends AbstractMapEdition<T> {
@@ -41,8 +41,8 @@ public abstract class AbstractTeamEditions<T extends IConfiguration> extends Abs
 	}
 
 	protected Stream<String> getAvailableColors() {
-		return ETeam.getColorsName().stream().filter(c -> {
-			for (ETeam team : get().getTeams())
+		return EColor.getColorsName().stream().filter(c -> {
+			for (EColor team : get().getTeams())
 				if (c.equals(team.getColorName()))
 					return false;
 			return true;

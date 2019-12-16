@@ -9,7 +9,7 @@ import org.w3c.dom.Node;
 
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 import fr.pederobien.uhc.persistence.loaders.IPersistenceLoader;
 import fr.pederobien.uhc.world.blocks.Dimension;
 import fr.pederobien.uhc.world.blocks.SerialisableBlock;
@@ -38,13 +38,13 @@ public class BaseLoaderV10 extends AbstractBaseLoader {
 				get().setCenter(elt.getAttribute("x"), elt.getAttribute("y"), elt.getAttribute("z"));
 				break;
 			case "chests":
-				HashMap<ISerializableBlock, ETeam> chests = new HashMap<ISerializableBlock, ETeam>();
+				HashMap<ISerializableBlock, EColor> chests = new HashMap<ISerializableBlock, EColor>();
 				for (int j = 0; j < elt.getChildNodes().getLength(); j++) {
 					if (elt.getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
 						continue;
 
 					Element chest = (Element) elt.getChildNodes().item(j);
-					ETeam team = ETeam.getByColorName(chest.getAttribute("color"));
+					EColor team = EColor.getByColorName(chest.getAttribute("color"));
 
 					chests.put(new SerialisableBlock(chest.getAttribute("x"), chest.getAttribute("y"), chest.getAttribute("z"),
 							chest.getAttribute("blockdata")), team);

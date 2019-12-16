@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 import fr.pederobien.uhc.managers.PlayerManager;
 
 public class MovePlayer<T extends IConfiguration> extends AbstractTeamEditions<T> {
@@ -29,14 +29,14 @@ public class MovePlayer<T extends IConfiguration> extends AbstractTeamEditions<T
 			return;
 		}
 
-		ETeam oldTeam = null;
-		for (ETeam team : get().getTeams())
+		EColor oldTeam = null;
+		for (EColor team : get().getTeams())
 			if (team.getPlayers().contains(name)) {
 				oldTeam = team;
 				break;
 			}
 
-		ETeam newTeam = ETeam.getByName(args[1]);
+		EColor newTeam = EColor.getByName(args[1]);
 		if (newTeam == null) {
 			sendMessage(MessageCode.TEAM_BAD_TEAM, args[1]);
 			return;

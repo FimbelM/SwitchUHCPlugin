@@ -7,7 +7,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.WorldManager;
 
@@ -58,7 +58,7 @@ public class PlayerDontReviveState extends AbstractHungerGameState {
 	}
 
 	private void changeFromDontReviveToHungerGame() {
-		sendTitle(ETeam.DARK_RED, MessageCode.MOVING_BORDER);
+		sendTitle(EColor.DARK_RED, MessageCode.MOVING_BORDER);
 		WorldManager.moveBorder(getConfiguration().getFinalBorderDiameter(),
 				getConfiguration().getInitialBorderDiameter().longValue() / getConfiguration().getBorderSpeed().longValue());
 		PlayerManager.killPlayers(WorldManager.getPlayersInWorld(WorldManager.END_WORLD, WorldManager.NETHER_WORLD));

@@ -20,7 +20,7 @@ import fr.pederobien.uhc.dictionary.NotificationCenter;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.event.EventFactory;
 import fr.pederobien.uhc.interfaces.IMessageCode;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.WorldManager;
 import fr.pederobien.uhc.scoreboard.launcher.IScoreboardLauncher;
@@ -133,7 +133,7 @@ public abstract class AbstractGameState implements IGameState {
 		BukkitManager.sendTitleToPlayers(EventFactory.createMessageCodeEvent(code, args));
 	}
 
-	protected void sendTitle(ETeam color, IMessageCode code, String... args) {
+	protected void sendTitle(EColor color, IMessageCode code, String... args) {
 		BukkitManager.sendTitleToPlayers(EventFactory.createMessageCodeEvent(code, args), color);
 	}
 }

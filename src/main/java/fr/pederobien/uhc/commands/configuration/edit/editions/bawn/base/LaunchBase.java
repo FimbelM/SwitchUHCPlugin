@@ -3,7 +3,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.bawn.base;
 import fr.pederobien.uhc.commands.configuration.edit.editions.bawn.CommonLaunch;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IBase;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 
 public class LaunchBase extends CommonLaunch<IBase> {
 
@@ -24,7 +24,7 @@ public class LaunchBase extends CommonLaunch<IBase> {
 			break;
 		default:
 			String teamColors = "";
-			for (ETeam team : get().getChests().values())
+			for (EColor team : get().getChests().values())
 				teamColors += team.getColorNameWithColor() + " ";
 			sendMessage(MessageCode.LAUNCH_BASE_TEAMS_SUPPORTED, get().getName(), "" + get().getCenter().getX(), "" + get().getCenter().getY(),
 					"" + get().getCenter().getZ(), teamColors);

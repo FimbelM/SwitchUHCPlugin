@@ -3,7 +3,7 @@ package fr.pederobien.uhc.event;
 import org.bukkit.command.CommandSender;
 
 import fr.pederobien.uhc.interfaces.IMessageCode;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 
 public class EventFactory {
 
@@ -19,7 +19,7 @@ public class EventFactory {
 		return new MessageEvent(sender, createMessageCodeEvent(code, args));
 	}
 
-	public static PlayerInteractEventResponse createPlayerInteractEventResponse(boolean restricted, ETeam colorAllowed) {
+	public static PlayerInteractEventResponse createPlayerInteractEventResponse(boolean restricted, EColor colorAllowed) {
 		return new PlayerInteractEventResponse(restricted, colorAllowed);
 	}
 }

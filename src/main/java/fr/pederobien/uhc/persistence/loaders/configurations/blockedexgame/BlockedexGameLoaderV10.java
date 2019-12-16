@@ -4,7 +4,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 import fr.pederobien.uhc.persistence.loaders.IPersistenceLoader;
 
 public class BlockedexGameLoaderV10 extends AbstractBlockedexgameLoader {
@@ -43,7 +43,7 @@ public class BlockedexGameLoaderV10 extends AbstractBlockedexgameLoader {
 					if (elt.getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
 						continue;
 					Element t = (Element) elt.getChildNodes().item(j);
-					get().addTeam(ETeam.getByColorName(t.getAttribute("color")).setName(t.getAttribute("name")));
+					get().addTeam(EColor.getByColorName(t.getAttribute("color")).setName(t.getAttribute("name")));
 				}
 				break;
 			default:

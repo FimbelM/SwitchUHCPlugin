@@ -5,13 +5,13 @@ import java.util.Map;
 import org.bukkit.block.Block;
 
 import fr.pederobien.uhc.event.PlayerInteractEventResponse;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 
 public interface IUnmodifiableBase extends IUnmodifiableBawn {
 
-	Map<ISerializableBlock, ETeam> getChests();
+	Map<ISerializableBlock, EColor> getChests();
 
-	PlayerInteractEventResponse isChestRestricted(Block block, ETeam team);
+	PlayerInteractEventResponse isChestRestricted(Block block, EColor team);
 
 	int getChestsNumber();
 }

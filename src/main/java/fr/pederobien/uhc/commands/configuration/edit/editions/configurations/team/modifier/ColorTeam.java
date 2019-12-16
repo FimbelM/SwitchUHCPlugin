@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.team.AbstractTeamEditions;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 
 public class ColorTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
@@ -19,13 +19,13 @@ public class ColorTeam<T extends IConfiguration> extends AbstractTeamEditions<T>
 	@Override
 	public void edit(String[] args) {
 		String name = args[0];
-		ETeam oldTeam = ETeam.getByName(name);
+		EColor oldTeam = EColor.getByName(name);
 		if (oldTeam == null) {
 			sendMessage(MessageCode.TEAM_BAD_TEAM, name);
 			return;
 		}
 
-		ETeam newTeam = ETeam.getByColorName(args[1]);
+		EColor newTeam = EColor.getByColorName(args[1]);
 		if (newTeam == null) {
 			sendMessage(MessageCode.TEAM_BAD_COLOR, args[1]);
 			return;
@@ -48,7 +48,7 @@ public class ColorTeam<T extends IConfiguration> extends AbstractTeamEditions<T>
 		case 1:
 			return filter(getTeamNamesWithoutColor(), args[0]);
 		case 2:
-			ETeam team = ETeam.getByName(args[0]);
+			EColor team = EColor.getByName(args[0]);
 			if (team == null)
 				return emptyList();
 			return filter(getAvailableColors(), args[1]);

@@ -14,25 +14,25 @@ import fr.pederobien.uhc.event.PlayerInteractEventResponse;
 import fr.pederobien.uhc.exceptions.BaseExtractionException;
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 
 public class Base extends AbstractBawn implements IBase {
-	private HashMap<ISerializableBlock, ETeam> chests;
+	private HashMap<ISerializableBlock, EColor> chests;
 
 	public Base(String name) {
 		super(name);
-		chests = new HashMap<ISerializableBlock, ETeam>();
+		chests = new HashMap<ISerializableBlock, EColor>();
 	}
 
 	@Override
-	public Map<ISerializableBlock, ETeam> getChests() {
+	public Map<ISerializableBlock, EColor> getChests() {
 		return Collections.unmodifiableMap(chests);
 	}
 
 	@Override
-	public PlayerInteractEventResponse isChestRestricted(Block block, ETeam color) {
+	public PlayerInteractEventResponse isChestRestricted(Block block, EColor color) {
 		boolean restricted = false;
-		ETeam colorAuthorized = color;
+		EColor colorAuthorized = color;
 		for (ISerializableBlock b : chests.keySet())
 			if (getBlockFromCenter(b).equals(block)) {
 				colorAuthorized = chests.get(b);
@@ -55,11 +55,11 @@ public class Base extends AbstractBawn implements IBase {
 	@Override
 	protected void onExtraction(ISerializableBlock extractedBlock) {
 		if (extractedBlock.getMaterial().equals(Material.CHEST))
-			chests.put(extractedBlock, ETeam.getByColor(getChatColor(extractedBlock)));
+			chests.put(extractedBlock, EColor.getByColor(getChatColor(extractedBlock)));
 	}
 
 	@Override
-	public void setChests(HashMap<ISerializableBlock, ETeam> chests) {
+	public void setChests(HashMap<ISerializableBlock, EColor> chests) {
 		this.chests = chests;
 	}
 

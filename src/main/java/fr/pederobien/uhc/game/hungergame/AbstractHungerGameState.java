@@ -10,7 +10,7 @@ import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.event.EventFactory;
 import fr.pederobien.uhc.game.AbstractGameState;
 import fr.pederobien.uhc.interfaces.IUnmodifiableHungerGameConfiguration;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.WorldManager;
 import fr.pederobien.uhc.task.TimeLine;
@@ -30,7 +30,7 @@ public abstract class AbstractHungerGameState extends AbstractGameState implemen
 	}
 
 	protected void authorizedPvp() {
-		sendTitle(ETeam.DARK_RED, MessageCode.PVP_ALLOWED);
+		sendTitle(EColor.DARK_RED, MessageCode.PVP_ALLOWED);
 		WorldManager.setPVP(true);
 	}
 

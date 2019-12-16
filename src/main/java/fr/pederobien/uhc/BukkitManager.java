@@ -15,7 +15,7 @@ import org.bukkit.scoreboard.ScoreboardManager;
 
 import fr.pederobien.uhc.dictionary.DictionaryManager;
 import fr.pederobien.uhc.event.MessageCodeEvent;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 import fr.pederobien.uhc.managers.PlayerManager;
 
 public class BukkitManager {
@@ -54,13 +54,13 @@ public class BukkitManager {
 		dispatchCommand("title " + player.getName() + " title " + "{\"text\":\"" + DictionaryManager.getMessage(player, event) + "\"}");
 	}
 
-	public static void sendTitleToPlayers(MessageCodeEvent event, ETeam color) {
+	public static void sendTitleToPlayers(MessageCodeEvent event, EColor color) {
 		PlayerManager.getPlayers().forEach(player -> {
 			sendTitleToPlayer(player, event, color);
 		});
 	}
 
-	public static void sendTitleToPlayer(Player player, MessageCodeEvent event, ETeam color) {
+	public static void sendTitleToPlayer(Player player, MessageCodeEvent event, EColor color) {
 		dispatchCommand("title " + player.getName() + " title " + "{\"text\":\"" + DictionaryManager.getMessage(player, event) + "\",\"color\":\""
 				+ color.getColorName() + "\"}");
 	}

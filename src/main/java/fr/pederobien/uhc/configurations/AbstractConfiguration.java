@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 import fr.pederobien.uhc.game.IGame;
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 
 public abstract class AbstractConfiguration implements IConfiguration {
 	private static final Long DEFAULT_SCOREBOARD_REFRESH = new Long(5);
@@ -18,11 +18,11 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	private Long scoreboardRefresh;
 	private LocalTime gameTime;
 
-	protected List<ETeam> teams;
+	protected List<EColor> teams;
 
 	protected AbstractConfiguration(String name) {
 		this.name = name;
-		teams = new ArrayList<ETeam>();
+		teams = new ArrayList<EColor>();
 	}
 
 	@Override
@@ -41,19 +41,19 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	}
 
 	@Override
-	public List<ETeam> getTeams() {
+	public List<EColor> getTeams() {
 		return teams;
 	}
 
 	@Override
-	public boolean addTeam(ETeam team) {
+	public boolean addTeam(EColor team) {
 		if (teams.contains(team))
 			return false;
 		return teams.add(team);
 	}
 
 	@Override
-	public void removeTeam(ETeam team) {
+	public void removeTeam(EColor team) {
 		teams.remove(team);
 	}
 
@@ -80,7 +80,7 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	@Override
 	public Stream<String> getPlayersRegistered() {
 		List<String> players = new ArrayList<String>();
-		for (ETeam team : getTeams())
+		for (EColor team : getTeams())
 			players.addAll(team.getPlayers());
 		return players.stream();
 	}

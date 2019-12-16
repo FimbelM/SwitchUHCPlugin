@@ -18,7 +18,7 @@ import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.game.IGame;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 import fr.pederobien.uhc.observers.IObsGame;
 
 public class ConfigurationContext implements IConfigurationContext {
@@ -133,17 +133,17 @@ public class ConfigurationContext implements IConfigurationContext {
 	}
 
 	@Override
-	public List<ETeam> getTeams() {
+	public List<EColor> getTeams() {
 		return configuration.getTeams();
 	}
 
 	@Override
-	public boolean addTeam(ETeam team) {
+	public boolean addTeam(EColor team) {
 		return configuration.addTeam(team);
 	}
 
 	@Override
-	public void removeTeam(ETeam team) {
+	public void removeTeam(EColor team) {
 		configuration.removeTeam(team);
 	}
 

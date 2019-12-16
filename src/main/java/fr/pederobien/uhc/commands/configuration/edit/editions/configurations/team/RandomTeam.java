@@ -2,7 +2,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.te
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 import fr.pederobien.uhc.managers.TeamsManager;
 
 public class RandomTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
@@ -15,7 +15,7 @@ public class RandomTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 	public void edit(String[] args) {
 		TeamsManager.dispatchPlayerRandomlyInTeam(get());
 		String teams = "";
-		for (ETeam team : get().getTeams()) {
+		for (EColor team : get().getTeams()) {
 			teams += team.getColor() + team.getNameWithoutColor() + " [";
 			for (int i = 0; i < team.getPlayers().size(); i++) {
 				teams += team.getPlayers().get(i);

@@ -70,7 +70,7 @@ public class BaseManager {
 		gameBases.values().forEach(b -> b.remove());
 	}
 
-	public static PlayerInteractEventResponse isRestricted(ETeam color, Block block) {
+	public static PlayerInteractEventResponse isRestricted(EColor color, Block block) {
 		if (!block.getType().equals(Material.CHEST))
 			return EventFactory.createPlayerInteractEventResponse(false, null);
 
@@ -82,11 +82,11 @@ public class BaseManager {
 		return new PlayerInteractEventResponse(false, null);
 	}
 
-	public static Stream<String> availableBasesAccordingTeam(List<ETeam> teams) {
+	public static Stream<String> availableBasesAccordingTeam(List<EColor> teams) {
 		return allBases.values().stream().filter(b -> checkBaseAvailable(b, teams)).map(b -> b.getName());
 	}
 
-	public static boolean checkBaseAvailable(String baseName, List<ETeam> teams) {
+	public static boolean checkBaseAvailable(String baseName, List<EColor> teams) {
 		return checkBaseAvailable(allBases.get(baseName), teams);
 	}
 
@@ -94,12 +94,12 @@ public class BaseManager {
 		return allBases.get(name);
 	}
 
-	public static boolean checkBaseAvailable(IBase base, List<ETeam> teams) {
+	public static boolean checkBaseAvailable(IBase base, List<EColor> teams) {
 		if (base == null)
 			return false;
 		if (teams.size() <= base.getChestsNumber()) {
 			boolean supportTeam = true;
-			for (ETeam team : teams) {
+			for (EColor team : teams) {
 				supportTeam &= base.getChests().containsValue(team);
 				if (!supportTeam)
 					return false;

@@ -6,7 +6,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 import fr.pederobien.uhc.persistence.loaders.IPersistenceLoader;
 
 public class HungerGameLoaderV11 extends AbstractHungerGameLoader {
@@ -54,7 +54,7 @@ public class HungerGameLoaderV11 extends AbstractHungerGameLoader {
 					if (elt.getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
 						continue;
 					Element t = (Element) elt.getChildNodes().item(j);
-					ETeam team = ETeam.getByColorName(t.getAttribute("color"));
+					EColor team = EColor.getByColorName(t.getAttribute("color"));
 					team.setName(t.getAttribute("name"));
 					get().addTeam(team);
 				}

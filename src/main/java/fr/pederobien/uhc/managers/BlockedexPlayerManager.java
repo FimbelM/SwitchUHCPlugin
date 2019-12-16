@@ -41,7 +41,7 @@ public class BlockedexPlayerManager extends PlayerManager {
 		private PlayerRestriction playerRestriction;
 		private TeamRestriction teamRestriction;
 
-		public Restriction(String player, ETeam team) {
+		public Restriction(String player, EColor team) {
 			playerRestriction = new PlayerRestriction(player);
 			teamRestriction = new TeamRestriction(team);
 		}
@@ -80,10 +80,10 @@ public class BlockedexPlayerManager extends PlayerManager {
 	}
 
 	private class TeamRestriction {
-		private ETeam team;
+		private EColor team;
 		private long maxDeath;
 
-		public TeamRestriction(ETeam team) {
+		public TeamRestriction(EColor team) {
 			this.team = team;
 			maxDeath = team.getPlayers().size();
 		}

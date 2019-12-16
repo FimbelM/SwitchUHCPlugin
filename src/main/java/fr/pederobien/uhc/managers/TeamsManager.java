@@ -16,7 +16,7 @@ public class TeamsManager {
 	private static Random rand = new Random();
 
 	public static ChatColor getColor(Player player) {
-		ETeam team = ETeam.getByContent(player.getName());
+		EColor team = EColor.getByContent(player.getName());
 		return team == null ? ChatColor.RESET : team.getColor();
 	}
 
@@ -34,11 +34,11 @@ public class TeamsManager {
 		return players.get(rand.nextInt(players.size()));
 	}
 
-	public static void teleporteTeam(ETeam team, Location location) {
+	public static void teleporteTeam(EColor team, Location location) {
 		PlayerManager.teleporteAllPlayers(team.getPlayers().stream().map(n -> PlayerManager.getPlayer(n)), location);
 	}
 
-	public static void teleporteRandomlyTeam(ETeam team, int bound) {
+	public static void teleporteRandomlyTeam(EColor team, int bound) {
 		teleporteTeam(team, WorldManager.getRandomlyLocation(bound));
 	}
 
@@ -46,8 +46,8 @@ public class TeamsManager {
 		configuration.getTeams().forEach(t -> teleporteRandomlyTeam(t, bound));
 	}
 
-	public static void createTeams(List<ETeam> teams) {
-		for (ETeam team : teams) {
+	public static void createTeams(List<EColor> teams) {
+		for (EColor team : teams) {
 			BukkitManager.dispatchCommand("team add " + team.getNameWithoutColor());
 			BukkitManager.dispatchCommand("team modify " + team.getNameWithoutColor() + " color " + team.getColorName());
 			for (String player : team.getPlayers())
@@ -55,17 +55,17 @@ public class TeamsManager {
 		}
 	}
 
-	public static void removeTeams(List<ETeam> teams) {
-		for (ETeam team : teams)
+	public static void removeTeams(List<EColor> teams) {
+		for (EColor team : teams)
 			BukkitManager.dispatchCommand("team remove " + team.getNameWithoutColor());
 	}
 
 	public static void dispatchPlayerRandomlyInTeam(IUnmodifiableConfiguration configuration) {
 		List<Player> players = PlayerManager.getPlayers().collect(Collectors.toList());
-		for (ETeam team : configuration.getTeams())
+		for (EColor team : configuration.getTeams())
 			team.removeAllPlayers();
 
-		List<ETeam> copy = new ArrayList<ETeam>(configuration.getTeams());
+		List<EColor> copy = new ArrayList<EColor>(configuration.getTeams());
 
 		int quotient = players.size() / copy.size();
 		int reste = players.size() % copy.size();
@@ -84,7 +84,7 @@ public class TeamsManager {
 				reste--;
 			}
 
-			ETeam randomTeam = copy.get(rand.nextInt(copy.size()));
+			EColor randomTeam = copy.get(rand.nextInt(copy.size()));
 			randomTeam.addPlayers(players.get(i).getName());
 			if (randomTeam.getPlayers().size() == maxPlayer)
 				copy.remove(randomTeam);

@@ -2,13 +2,13 @@ package fr.pederobien.uhc.interfaces;
 
 import java.time.LocalTime;
 
-import fr.pederobien.uhc.managers.ETeam;
+import fr.pederobien.uhc.managers.EColor;
 
 public interface IConfiguration extends IUnmodifiableConfiguration, IName {
 
-	boolean addTeam(ETeam team);
+	boolean addTeam(EColor team);
 
-	void removeTeam(ETeam team);
+	void removeTeam(EColor team);
 
 	void setScoreboardRefresh(Long refresh);
 
