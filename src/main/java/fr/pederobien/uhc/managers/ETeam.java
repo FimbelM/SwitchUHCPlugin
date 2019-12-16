@@ -15,7 +15,7 @@ public enum ETeam {
 	DARK_GREEN(ChatColor.DARK_GREEN, "dark_green", "Dark_Green"), RED(ChatColor.RED, "red", "Red"),
 	DARK_RED(ChatColor.DARK_RED, "dark_red", "Dark_Red"), GOLD(ChatColor.GOLD, "gold", "Gold"), YELLOW(ChatColor.YELLOW, "yellow", "Yellow"),
 	PINK(ChatColor.LIGHT_PURPLE, "light_purple", "Pink"), PURPLE(ChatColor.DARK_PURPLE, "dark_purple", "Purple"),
-	WHITE(ChatColor.WHITE, "white", "White"), All(ChatColor.RESET, "reset", "All");
+	WHITE(ChatColor.WHITE, "white", "White");
 
 	private static HashMap<ChatColor, ETeam> mapColor = new HashMap<ChatColor, ETeam>();
 	private static HashMap<String, ETeam> mapColorName = new HashMap<String, ETeam>();
