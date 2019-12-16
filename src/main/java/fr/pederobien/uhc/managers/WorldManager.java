@@ -192,8 +192,9 @@ public class WorldManager {
 			world.setSpawnLocation(getHighestBlockYAt(0, 0).getLocation());
 	}
 
-	public static Location getSpawnOnRespawn() {
-		return getSurfaceBlockY(getSpawnOnJoin());
+	public static void removeSpawn() {
+		if (spawn != null)
+			spawn.remove();
 	}
 
 	public static Double getCurrentDiameter() {
@@ -215,7 +216,9 @@ public class WorldManager {
 	}
 
 	public static void createCrossUnderSpawn(Material material) {
-		Location respawn = spawn.getCenter().getLocation().clone().add(new Vector(0, -1, 0));
+		if (spawn == null)
+			return;
+		Location respawn = getSurfaceBlockY(spawn.getCenter().getLocation().clone().add(new Vector(0, -1, 0)));
 		for (int x = -1; x < 2; x++)
 			getBlockAt(respawn.clone().add(new Vector(x, 0, 0))).setType(material);
 		getBlockAt(respawn.clone().add(new Vector(0, 0, 1))).setType(material);
