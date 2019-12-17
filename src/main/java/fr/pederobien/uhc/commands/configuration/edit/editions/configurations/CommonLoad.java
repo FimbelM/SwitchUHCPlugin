@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.IMessageCode;
-import fr.pederobien.uhc.managers.EColor;
+import fr.pederobien.uhc.interfaces.ITeam;
 
 public abstract class CommonLoad<T extends IConfiguration> extends AbstractConfEdition<T> {
 
@@ -45,8 +45,8 @@ public abstract class CommonLoad<T extends IConfiguration> extends AbstractConfE
 
 	protected String getTeamNamesWithColor() {
 		String names = "";
-		for (EColor team : get().getTeams())
-			names += team.getNameWithColor() + " ";
+		for (ITeam team : get().getTeams())
+			names += team.getColoredName() + " ";
 		return names;
 	}
 }

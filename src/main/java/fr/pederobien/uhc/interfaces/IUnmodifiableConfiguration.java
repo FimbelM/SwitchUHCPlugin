@@ -5,13 +5,14 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import fr.pederobien.uhc.game.IGame;
-import fr.pederobien.uhc.managers.EColor;
 
 public interface IUnmodifiableConfiguration extends IUnmodifiableName {
 
 	IGame getGame();
 
-	List<EColor> getTeams();
+	List<ITeam> getTeams();
+
+	ITeam getTeamByName(String name);
 
 	Long getScoreboardRefresh();
 

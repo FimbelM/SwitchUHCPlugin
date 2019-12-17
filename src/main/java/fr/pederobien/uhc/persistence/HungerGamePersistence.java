@@ -4,7 +4,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
-import fr.pederobien.uhc.managers.EColor;
+import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.persistence.loaders.configurations.hungergame.HungerGameDefaultContent;
 import fr.pederobien.uhc.persistence.loaders.configurations.hungergame.HungerGameLoaderV10;
 import fr.pederobien.uhc.persistence.loaders.configurations.hungergame.HungerGameLoaderV11;
@@ -72,10 +72,10 @@ public class HungerGamePersistence extends AbstractConfPersistence<IHungerGameCo
 		root.appendChild(time);
 
 		Element teams = doc.createElement("teams");
-		for (EColor t : get().getTeams()) {
+		for (ITeam t : get().getTeams()) {
 			Element team = doc.createElement("team");
-			team.setAttribute("name", t.getNameWithoutColor());
-			team.setAttribute("color", t.getColorName());
+			team.setAttribute("name", t.getName());
+			team.setAttribute("color", t.getColor().getColorName());
 			teams.appendChild(team);
 		}
 		root.appendChild(teams);

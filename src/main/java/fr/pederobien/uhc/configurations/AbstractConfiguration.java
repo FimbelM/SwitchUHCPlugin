@@ -3,11 +3,12 @@ package fr.pederobien.uhc.configurations;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import fr.pederobien.uhc.game.IGame;
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.managers.EColor;
+import fr.pederobien.uhc.interfaces.ITeam;
 
 public abstract class AbstractConfiguration implements IConfiguration {
 	private static final Long DEFAULT_SCOREBOARD_REFRESH = new Long(5);
@@ -18,11 +19,11 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	private Long scoreboardRefresh;
 	private LocalTime gameTime;
 
-	protected List<EColor> teams;
+	protected List<ITeam> teams;
 
 	protected AbstractConfiguration(String name) {
 		this.name = name;
-		teams = new ArrayList<EColor>();
+		teams = new ArrayList<ITeam>();
 	}
 
 	@Override
@@ -41,19 +42,27 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	}
 
 	@Override
-	public List<EColor> getTeams() {
+	public List<ITeam> getTeams() {
 		return teams;
 	}
 
 	@Override
-	public boolean addTeam(EColor team) {
+	public ITeam getTeamByName(String name) {
+		for (ITeam team : getTeams())
+			if (team.getName().equals(name))
+				return team;
+		return null;
+	}
+
+	@Override
+	public boolean addTeam(ITeam team) {
 		if (teams.contains(team))
 			return false;
 		return teams.add(team);
 	}
 
 	@Override
-	public void removeTeam(EColor team) {
+	public void removeTeam(ITeam team) {
 		teams.remove(team);
 	}
 
@@ -80,8 +89,8 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	@Override
 	public Stream<String> getPlayersRegistered() {
 		List<String> players = new ArrayList<String>();
-		for (EColor team : getTeams())
-			players.addAll(team.getPlayers());
+		for (ITeam team : getTeams())
+			players.addAll(team.getPlayers().stream().map(p -> p.getName()).collect(Collectors.toList()));
 		return players.stream();
 	}
 

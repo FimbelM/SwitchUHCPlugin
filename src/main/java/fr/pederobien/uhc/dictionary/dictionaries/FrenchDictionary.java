@@ -719,12 +719,12 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_LIST_ONE_EXISTING_TEAM) {
 			@Override
 			public String getMessage(String... args) {
-				return "Il existe une équipe :\n" + args[0];
+				return "Il existe une équipe pour le style " + args[0] + ":\n" + args[1];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_LIST_EXISTING_TEAMS) {
 			@Override
 			public String getMessage(String... args) {
-				return "Liste des équipes :\n" + args[0];
+				return "Liste des équipes pour le style " + args[0] + ":\n" + args[1];
 			}
 		});
 
@@ -780,7 +780,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_RANDOMTEAM_DISPATCHED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Equipes aléatoires créées :\n" + args[1];
+				return "Equipes aléatoires créées :\n" + args[0];
 			}
 		});
 

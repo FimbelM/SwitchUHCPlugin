@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import fr.pederobien.uhc.BukkitManager;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.event.EventFactory;
+import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.interfaces.IUnmodifiableBlockedexConfiguration;
 
 public class BlockedexPlayerManager extends PlayerManager {
@@ -16,7 +17,7 @@ public class BlockedexPlayerManager extends PlayerManager {
 
 	public BlockedexPlayerManager(IUnmodifiableBlockedexConfiguration configuration) {
 		map = new HashMap<Player, Restriction>();
-		configuration.getTeams().forEach(t -> t.getPlayers().stream().forEach(p -> map.put(PlayerManager.getPlayer(p), new Restriction(p, t))));
+		configuration.getTeams().forEach(t -> t.getPlayers().stream().forEach(p -> map.put(p, new Restriction(p, t))));
 	}
 
 	public void decreaseMaxHealth(Player player, double decrease) {
@@ -41,7 +42,7 @@ public class BlockedexPlayerManager extends PlayerManager {
 		private PlayerRestriction playerRestriction;
 		private TeamRestriction teamRestriction;
 
-		public Restriction(String player, EColor team) {
+		public Restriction(Player player, ITeam team) {
 			playerRestriction = new PlayerRestriction(player);
 			teamRestriction = new TeamRestriction(team);
 		}
@@ -58,8 +59,8 @@ public class BlockedexPlayerManager extends PlayerManager {
 	private class PlayerRestriction {
 		private Player player;
 
-		public PlayerRestriction(String player) {
-			this.player = PlayerManager.getPlayer(player);
+		public PlayerRestriction(Player player) {
+			this.player = player;
 		}
 
 		public double getMaxHealth() {
@@ -80,10 +81,10 @@ public class BlockedexPlayerManager extends PlayerManager {
 	}
 
 	private class TeamRestriction {
-		private EColor team;
+		private ITeam team;
 		private long maxDeath;
 
-		public TeamRestriction(EColor team) {
+		public TeamRestriction(ITeam team) {
 			this.team = team;
 			maxDeath = team.getPlayers().size();
 		}
@@ -100,9 +101,9 @@ public class BlockedexPlayerManager extends PlayerManager {
 		}
 
 		public void eliminate() {
-			BukkitManager.sendTitleToPlayers(EventFactory.createMessageCodeEvent(MessageCode.TEAM_ELIMINATED, team.getNameWithColor()));
+			BukkitManager.sendTitleToPlayers(EventFactory.createMessageCodeEvent(MessageCode.TEAM_ELIMINATED, team.getColoredName()));
 
-			team.getPlayers().stream().map(n -> PlayerManager.getPlayer(n)).forEach(p -> {
+			team.getPlayers().stream().forEach(p -> {
 				PlayerManager.dropPlayerInventoryItemNaturally(p);
 				PlayerManager.setGameModeOfPlayer(p, GameMode.SPECTATOR);
 				PlayerManager.teleporte(p, WorldManager.getSpawnOnJoin());

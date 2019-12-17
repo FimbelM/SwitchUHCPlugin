@@ -35,10 +35,10 @@ public class ExtractBase extends CommonExtract<IBase> {
 		}
 	}
 
-	private String colorName(Collection<EColor> teams) {
+	private String colorName(Collection<EColor> colors) {
 		String colorName = "";
-		for (EColor team : teams)
-			colorName += team.getColorNameWithColor() + " ";
+		for (EColor color : colors)
+			colorName += color.getColoredColorName() + " ";
 		return colorName;
 	}
 }

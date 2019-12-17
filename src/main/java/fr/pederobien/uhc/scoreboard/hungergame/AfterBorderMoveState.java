@@ -3,7 +3,7 @@ package fr.pederobien.uhc.scoreboard.hungergame;
 import org.bukkit.GameMode;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
-import fr.pederobien.uhc.managers.EColor;
+import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.managers.WorldManager;
 
 public class AfterBorderMoveState extends AbstractHungerGameScoreboardState {
@@ -30,8 +30,8 @@ public class AfterBorderMoveState extends AbstractHungerGameScoreboardState {
 	}
 
 	public void registerTeam() {
-		for (EColor team : scoreboard.getConfiguration().getTeams())
-			addEntryToNotTranslate(team.getNameWithColor() + " : ", "" + team.getNumberPlayersOnMode(GameMode.SURVIVAL));
+		for (ITeam team : scoreboard.getConfiguration().getTeams())
+			addEntryToNotTranslate(team.getColoredName() + " : ", "" + team.getPlayersOnMode(GameMode.SURVIVAL).size());
 		addEmptyLine();
 	}
 }

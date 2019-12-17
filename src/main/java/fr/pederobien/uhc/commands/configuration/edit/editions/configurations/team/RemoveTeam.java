@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.IMessageCode;
-import fr.pederobien.uhc.managers.EColor;
+import fr.pederobien.uhc.interfaces.ITeam;
 
 public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 	private static final String ALL = "all";
@@ -21,30 +21,32 @@ public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 
 	@Override
 	public void edit(String[] args) {
+		List<ITeam> teams = new ArrayList<ITeam>();
+
 		if (args[0].equals(ALL)) {
-			List<EColor> teams = new ArrayList<EColor>();
 			teams.addAll(get().getTeams());
-			for (EColor team : teams)
+			for (ITeam team : teams)
 				get().removeTeam(team);
 			sendMessage(MessageCode.TEAM_REMOVETEAM_ALL_TEAMS_REMOVED);
 			return;
 		}
 
-		List<EColor> teams = new ArrayList<EColor>();
 		String teamNames = "";
 		for (int i = 0; i < args.length; i++) {
 			try {
-				EColor team = EColor.getByName(args[i]);
-				teamNames += team.getNameWithColor() + " ";
+				ITeam team = get().getTeamByName(args[i]);
+				teamNames += team.getColoredName();
 				teams.add(team);
+				if (i < args.length)
+					teamNames += " ";
 			} catch (NullPointerException e) {
 				sendMessage(MessageCode.TEAM_BAD_TEAM, args[i]);
 				return;
 			}
 		}
 
-		for (EColor team : teams) {
-			team.removeAllPlayers();
+		for (ITeam team : teams) {
+			team.clear();
 			get().removeTeam(team);
 		}
 
@@ -73,7 +75,7 @@ public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 		case 1:
 			teams = Stream.concat(teams, Stream.of(ALL));
 		case 2:
-			teams = args[0].equals(ALL) ? emptyList().stream() : getTeams(args);
+			teams = args[0].equals(ALL) ? ((List<String>) emptyList()).stream() : getTeams(args);
 		default:
 			break;
 		}

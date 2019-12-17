@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.team.AbstractTeamEditions;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
+import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.managers.EColor;
 
 public class ColorTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
@@ -19,26 +20,21 @@ public class ColorTeam<T extends IConfiguration> extends AbstractTeamEditions<T>
 	@Override
 	public void edit(String[] args) {
 		String name = args[0];
-		EColor oldTeam = EColor.getByName(name);
-		if (oldTeam == null) {
+		ITeam team = get().getTeamByName(name);
+
+		if (team == null) {
 			sendMessage(MessageCode.TEAM_BAD_TEAM, name);
 			return;
 		}
 
-		EColor newTeam = EColor.getByColorName(args[1]);
-		if (newTeam == null) {
+		EColor color = EColor.getByColorName(args[1]);
+		if (color == null) {
 			sendMessage(MessageCode.TEAM_BAD_COLOR, args[1]);
 			return;
 		}
 
-		newTeam.setName(oldTeam.getNameWithoutColor());
-		oldTeam.resetName();
-		newTeam.addPlayers(oldTeam.getPlayers());
-		oldTeam.removeAllPlayers();
-
-		get().removeTeam(oldTeam);
-		get().addTeam(newTeam);
-		sendMessage(MessageCode.TEAM_MODIFY_COLOR_MODIFIED, newTeam.getNameWithColor());
+		team.setColor(color);
+		sendMessage(MessageCode.TEAM_MODIFY_COLOR_MODIFIED, team.getColoredName());
 		return;
 	}
 
@@ -48,7 +44,7 @@ public class ColorTeam<T extends IConfiguration> extends AbstractTeamEditions<T>
 		case 1:
 			return filter(getTeamNamesWithoutColor(), args[0]);
 		case 2:
-			EColor team = EColor.getByName(args[0]);
+			ITeam team = get().getTeamByName(args[0]);
 			if (team == null)
 				return emptyList();
 			return filter(getAvailableColors(), args[1]);

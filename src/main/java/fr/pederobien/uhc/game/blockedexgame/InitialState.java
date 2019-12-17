@@ -15,15 +15,15 @@ public class InitialState extends AbstractBlockedexState {
 
 	@Override
 	public boolean initiate() {
-		if (!BaseManager.setBlockedexGameCurrentConfiguration(game.getConfiguration())) {
+		if (!BaseManager.setBlockedexGameCurrentConfiguration(getConfiguration())) {
 			message = MessageCode.BAD_BASES_CONFIGURATION;
 			return false;
 		}
 
-		taskLauncher = new TaskLauncher(game.getConfiguration().getGameTime());
+		taskLauncher = new TaskLauncher(getConfiguration().getGameTime());
 		timeLine = new TimeLine(taskLauncher.getTask());
-		scoreboardLauncher = new BDScoreboardLauncher(taskLauncher.getTask(), game.getConfiguration());
-		bdPlayerManager = new BlockedexPlayerManager(game.getConfiguration());
+		scoreboardLauncher = new BDScoreboardLauncher(taskLauncher.getTask(), getConfiguration());
+		bdPlayerManager = new BlockedexPlayerManager(getConfiguration());
 
 		return true;
 	}

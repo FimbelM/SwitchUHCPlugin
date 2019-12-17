@@ -1,5 +1,6 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.team;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.managers.EColor;
+import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.managers.PlayerManager;
 
 public class RemovePlayer<T extends IConfiguration> extends AbstractTeamEditions<T> {
@@ -21,37 +22,38 @@ public class RemovePlayer<T extends IConfiguration> extends AbstractTeamEditions
 	@Override
 	public void edit(String[] args) {
 		String name = args[0];
-		EColor team = EColor.getByName(name);
+		ITeam team = get().getTeamByName(name);
+
 		if (team == null) {
 			sendMessage(MessageCode.TEAM_BAD_TEAM, name);
 			return;
 		}
 
-		List<String> players = emptyList();
+		List<Player> players = new ArrayList<Player>();
 		String playerNames = "";
 		for (int i = 1; i < args.length; i++) {
 			try {
 				Player player = PlayerManager.getPlayer(args[i]);
 				playerNames += player.getName() + " ";
-				players.add(player.getName());
+				players.add(player);
 			} catch (NullPointerException e) {
 				sendMessage(MessageCode.TEAM_BAD_PLAYER, args[i]);
 				return;
 			}
 		}
 
-		for (String player : players)
-			team.removePlayers(player);
+		for (Player player : players)
+			team.removePlayer(player);
 
 		switch (players.size()) {
 		case 0:
-			sendMessage(MessageCode.TEAM_REMOVEPLAYER_NO_PLAYER_REMOVED, team.getNameWithColor());
+			sendMessage(MessageCode.TEAM_REMOVEPLAYER_NO_PLAYER_REMOVED, team.getColoredName());
 			break;
 		case 1:
-			sendMessage(MessageCode.TEAM_REMOVEPLAYER_ONE_PLAYER_REMOVED, playerNames, team.getNameWithColor());
+			sendMessage(MessageCode.TEAM_REMOVEPLAYER_ONE_PLAYER_REMOVED, playerNames, team.getColoredName());
 			break;
 		default:
-			sendMessage(MessageCode.TEAM_REMOVEPLAYER_PLAYERS_REMOVED, playerNames, team.getNameWithColor());
+			sendMessage(MessageCode.TEAM_REMOVEPLAYER_PLAYERS_REMOVED, playerNames, team.getColoredName());
 			break;
 		}
 	}

@@ -12,6 +12,7 @@ import fr.pederobien.uhc.event.EventFactory;
 import fr.pederobien.uhc.event.PlayerInteractEventResponse;
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.IPersistence;
+import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.interfaces.IUnmodifiableBase;
 import fr.pederobien.uhc.interfaces.IUnmodifiableBlockedexConfiguration;
 import fr.pederobien.uhc.persistence.PersistenceFactory;
@@ -82,11 +83,11 @@ public class BaseManager {
 		return new PlayerInteractEventResponse(false, null);
 	}
 
-	public static Stream<String> availableBasesAccordingTeam(List<EColor> teams) {
+	public static Stream<String> availableBasesAccordingTeam(List<ITeam> teams) {
 		return allBases.values().stream().filter(b -> checkBaseAvailable(b, teams)).map(b -> b.getName());
 	}
 
-	public static boolean checkBaseAvailable(String baseName, List<EColor> teams) {
+	public static boolean checkBaseAvailable(String baseName, List<ITeam> teams) {
 		return checkBaseAvailable(allBases.get(baseName), teams);
 	}
 
@@ -94,13 +95,13 @@ public class BaseManager {
 		return allBases.get(name);
 	}
 
-	public static boolean checkBaseAvailable(IBase base, List<EColor> teams) {
+	public static boolean checkBaseAvailable(IBase base, List<ITeam> teams) {
 		if (base == null)
 			return false;
 		if (teams.size() <= base.getChestsNumber()) {
 			boolean supportTeam = true;
-			for (EColor team : teams) {
-				supportTeam &= base.getChests().containsValue(team);
+			for (ITeam team : teams) {
+				supportTeam &= base.getChests().containsValue(team.getColor());
 				if (!supportTeam)
 					return false;
 			}

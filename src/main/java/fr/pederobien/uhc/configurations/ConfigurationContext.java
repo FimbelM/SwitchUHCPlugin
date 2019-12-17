@@ -18,7 +18,8 @@ import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.game.IGame;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
-import fr.pederobien.uhc.managers.EColor;
+import fr.pederobien.uhc.interfaces.ITeam;
+import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.observers.IObsGame;
 
 public class ConfigurationContext implements IConfigurationContext {
@@ -29,6 +30,7 @@ public class ConfigurationContext implements IConfigurationContext {
 		if (this.configuration != null)
 			getGame().removeObserver(PluginDeposit.plugin);
 		this.configuration = configuration;
+		TeamsManager.setCurrentConfiguration(getCurrentConfiguration());
 		getGame().addObserver(PluginDeposit.plugin);
 	}
 
@@ -133,17 +135,22 @@ public class ConfigurationContext implements IConfigurationContext {
 	}
 
 	@Override
-	public List<EColor> getTeams() {
+	public List<ITeam> getTeams() {
 		return configuration.getTeams();
 	}
 
 	@Override
-	public boolean addTeam(EColor team) {
+	public ITeam getTeamByName(String name) {
+		return configuration.getTeamByName(name);
+	}
+
+	@Override
+	public boolean addTeam(ITeam team) {
 		return configuration.addTeam(team);
 	}
 
 	@Override
-	public void removeTeam(EColor team) {
+	public void removeTeam(ITeam team) {
 		configuration.removeTeam(team);
 	}
 

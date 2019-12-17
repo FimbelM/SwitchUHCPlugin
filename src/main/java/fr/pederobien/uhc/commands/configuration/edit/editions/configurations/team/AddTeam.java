@@ -10,8 +10,10 @@ import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
+import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.managers.EColor;
 import fr.pederobien.uhc.managers.PlayerManager;
+import fr.pederobien.uhc.managers.TeamsManager;
 
 public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
@@ -22,37 +24,38 @@ public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 	@Override
 	public void edit(String[] args) {
 		try {
-			EColor team = EColor.getByColorName(args[1]);
-			team.setName(args[0]);
+			ITeam team = TeamsManager.createTeam(args[0], EColor.getByColorName(args[1]));
 			List<Player> players = new ArrayList<Player>();
 			String playerNames = team.getColor() + "";
 			for (int i = 2; i < args.length; i++) {
 				try {
 					Player player = PlayerManager.getPlayer(args[i]);
-					playerNames += player.getName() + " ";
+					playerNames += player.getName();
 					players.add(player);
+					if (i < args.length - 1)
+						playerNames += " ";
 				} catch (NullPointerException e) {
 					sendMessage(MessageCode.TEAM_BAD_PLAYER, args[i]);
 					return;
 				}
 			}
 			if (!get().addTeam(team)) {
-				sendMessage(MessageCode.TEAM_ADDTEAM_ALREADY_EXISTING_COLOR, team.getColorName());
+				sendMessage(MessageCode.TEAM_ADDTEAM_ALREADY_EXISTING_COLOR, team.getColor().getColorName());
 				return;
 			}
 
 			for (Player player : players)
-				team.addPlayers(player.getName());
+				team.addPlayer(player);
 
 			switch (players.size()) {
 			case 0:
-				sendMessage(MessageCode.TEAM_ADDTEAM_TEAM_NO_PLAYER_ADDED, team.getNameWithColor());
+				sendMessage(MessageCode.TEAM_ADDTEAM_TEAM_NO_PLAYER_ADDED, team.getColoredName());
 				break;
 			case 1:
-				sendMessage(MessageCode.TEAM_ADDTEAM_TEAM_ONE_PLAYER_ADDED, team.getNameWithColor(), playerNames);
+				sendMessage(MessageCode.TEAM_ADDTEAM_TEAM_ONE_PLAYER_ADDED, team.getColoredName(), playerNames);
 				break;
 			default:
-				sendMessage(MessageCode.TEAM_ADDTEAM_TEAM_PLAYERS_ADDED, team.getNameWithColor(), playerNames);
+				sendMessage(MessageCode.TEAM_ADDTEAM_TEAM_PLAYERS_ADDED, team.getColoredName(), playerNames);
 				break;
 			}
 		} catch (IndexOutOfBoundsException e) {

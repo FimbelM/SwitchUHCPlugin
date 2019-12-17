@@ -20,12 +20,12 @@ public class LaunchBase extends CommonLaunch<IBase> {
 			break;
 		case 1:
 			sendMessage(MessageCode.LAUNCH_BASE_ONE_TEAM_SUPPORTED, get().getName(), "" + get().getCenter().getX(), "" + get().getCenter().getY(),
-					"" + get().getCenter().getZ(), get().getChests().values().iterator().next().getNameWithColor());
+					"" + get().getCenter().getZ(), get().getChests().values().iterator().next().getColoredColorName());
 			break;
 		default:
 			String teamColors = "";
-			for (EColor team : get().getChests().values())
-				teamColors += team.getColorNameWithColor() + " ";
+			for (EColor color : get().getChests().values())
+				teamColors += color.getColoredColorName() + " ";
 			sendMessage(MessageCode.LAUNCH_BASE_TEAMS_SUPPORTED, get().getName(), "" + get().getCenter().getX(), "" + get().getCenter().getY(),
 					"" + get().getCenter().getZ(), teamColors);
 			break;

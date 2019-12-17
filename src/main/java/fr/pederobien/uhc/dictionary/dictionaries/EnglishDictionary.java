@@ -780,7 +780,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_RANDOMTEAM_DISPATCHED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Random teams created :\n" + args[1];
+				return "Random teams created :\n" + args[0];
 			}
 		});
 

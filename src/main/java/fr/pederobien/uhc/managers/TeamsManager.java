@@ -10,23 +10,52 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.BukkitManager;
+import fr.pederobien.uhc.environment.UHCTeam;
+import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.interfaces.IUnmodifiableConfiguration;
 
 public class TeamsManager {
 	private static Random rand = new Random();
+	private static IUnmodifiableConfiguration configuration;
+
+	public static void setCurrentConfiguration(IUnmodifiableConfiguration configuration) {
+		TeamsManager.configuration = configuration;
+	}
 
 	public static ChatColor getColor(Player player) {
-		EColor team = EColor.getByContent(player.getName());
-		return team == null ? ChatColor.RESET : team.getColor();
+		if (configuration == null)
+			return ChatColor.RESET;
+		for (ITeam team : configuration.getTeams())
+			if (team.getPlayers().contains(player))
+				return team.getColor().getChatColor();
+		return ChatColor.RESET;
 	}
 
-	public static List<Player> getCollegues(IUnmodifiableConfiguration configuration, Player player) {
-		return configuration.getTeams().stream().filter(t -> t.getPlayers().contains(player.getName())).findFirst().get().getPlayers().stream()
-				.filter(n -> !n.equals(player.getName())).map(n -> PlayerManager.getPlayer(n)).collect(Collectors.toList());
+	public static ITeam createTeam(String name, EColor color) {
+		return UHCTeam.createTeam(name, color);
 	}
 
-	public static Player getRandomCollegue(IUnmodifiableConfiguration configuration, Player player) {
-		return getRandom(getCollegues(configuration, player));
+	public static ITeam getTeam(Player player) {
+		for (ITeam team : configuration.getTeams())
+			if (team.getPlayers().contains(player))
+				return team;
+		return null;
+	}
+
+	public static ITeam getTeam(EColor color) {
+		for (ITeam team : configuration.getTeams())
+			if (team.getColor().equals(color))
+				return team;
+		return null;
+	}
+
+	public static List<Player> getCollegues(Player player) {
+		return configuration.getTeams().stream().filter(t -> t.getPlayers().contains(player)).findFirst().get().getPlayers().stream()
+				.filter(n -> !n.equals(player)).collect(Collectors.toList());
+	}
+
+	public static Player getRandomCollegue(Player player) {
+		return getRandom(getCollegues(player));
 	}
 
 	public static Player getRandom(List<Player> players) {
@@ -34,11 +63,11 @@ public class TeamsManager {
 		return players.get(rand.nextInt(players.size()));
 	}
 
-	public static void teleporteTeam(EColor team, Location location) {
-		PlayerManager.teleporteAllPlayers(team.getPlayers().stream().map(n -> PlayerManager.getPlayer(n)), location);
+	public static void teleporteTeam(ITeam team, Location location) {
+		PlayerManager.teleporteAllPlayers(team.getPlayers().stream(), location);
 	}
 
-	public static void teleporteRandomlyTeam(EColor team, int bound) {
+	public static void teleporteRandomlyTeam(ITeam team, int bound) {
 		teleporteTeam(team, WorldManager.getRandomlyLocation(bound));
 	}
 
@@ -46,26 +75,26 @@ public class TeamsManager {
 		configuration.getTeams().forEach(t -> teleporteRandomlyTeam(t, bound));
 	}
 
-	public static void createTeams(List<EColor> teams) {
-		for (EColor team : teams) {
-			BukkitManager.dispatchCommand("team add " + team.getNameWithoutColor());
-			BukkitManager.dispatchCommand("team modify " + team.getNameWithoutColor() + " color " + team.getColorName());
-			for (String player : team.getPlayers())
-				BukkitManager.dispatchCommand("team join " + team.getNameWithoutColor() + " " + player);
+	public static void createTeams(List<ITeam> teams) {
+		for (ITeam team : teams) {
+			BukkitManager.dispatchCommand("team add " + team.getName());
+			BukkitManager.dispatchCommand("team modify " + team.getName() + " color " + team.getColor().getColorName());
+			for (Player player : team.getPlayers())
+				BukkitManager.dispatchCommand("team join " + team.getName() + " " + player.getName());
 		}
 	}
 
-	public static void removeTeams(List<EColor> teams) {
-		for (EColor team : teams)
-			BukkitManager.dispatchCommand("team remove " + team.getNameWithoutColor());
+	public static void removeTeams(List<ITeam> teams) {
+		for (ITeam team : teams)
+			BukkitManager.dispatchCommand("team remove " + team.getName());
 	}
 
-	public static void dispatchPlayerRandomlyInTeam(IUnmodifiableConfiguration configuration) {
+	public static void dispatchPlayerRandomlyInTeam(List<ITeam> teams) {
 		List<Player> players = PlayerManager.getPlayers().collect(Collectors.toList());
-		for (EColor team : configuration.getTeams())
-			team.removeAllPlayers();
+		for (ITeam team : teams)
+			team.clear();
 
-		List<EColor> copy = new ArrayList<EColor>(configuration.getTeams());
+		List<ITeam> copy = new ArrayList<ITeam>(teams);
 
 		int quotient = players.size() / copy.size();
 		int reste = players.size() % copy.size();
@@ -84,8 +113,8 @@ public class TeamsManager {
 				reste--;
 			}
 
-			EColor randomTeam = copy.get(rand.nextInt(copy.size()));
-			randomTeam.addPlayers(players.get(i).getName());
+			ITeam randomTeam = copy.get(rand.nextInt(copy.size()));
+			randomTeam.addPlayer(players.get(i));
 			if (randomTeam.getPlayers().size() == maxPlayer)
 				copy.remove(randomTeam);
 		}

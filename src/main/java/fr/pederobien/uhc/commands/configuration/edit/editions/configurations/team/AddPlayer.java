@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.managers.EColor;
+import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.managers.PlayerManager;
 
 public class AddPlayer<T extends IConfiguration> extends AbstractTeamEditions<T> {
@@ -22,7 +22,7 @@ public class AddPlayer<T extends IConfiguration> extends AbstractTeamEditions<T>
 	@Override
 	public void edit(String[] args) {
 		String name = args[0];
-		EColor team = EColor.getByName(name);
+		ITeam team = get().getTeamByName(name);
 		if (team == null) {
 			sendMessage(MessageCode.TEAM_BAD_TEAM, name);
 			return;
@@ -33,8 +33,10 @@ public class AddPlayer<T extends IConfiguration> extends AbstractTeamEditions<T>
 		for (int i = 1; i < args.length; i++) {
 			try {
 				Player player = PlayerManager.getPlayer(args[i]);
-				playerNames += player.getName() + " ";
+				playerNames += player.getName();
 				players.add(player);
+				if (i < args.length - 1)
+					playerNames += " ";
 			} catch (NullPointerException e) {
 				sendMessage(MessageCode.TEAM_BAD_PLAYER, args[i]);
 				return;
@@ -42,17 +44,17 @@ public class AddPlayer<T extends IConfiguration> extends AbstractTeamEditions<T>
 		}
 
 		for (Player player : players)
-			team.addPlayers(player.getName());
+			team.addPlayer(player);
 
 		switch (players.size()) {
 		case 0:
 			sendMessage(MessageCode.TEAM_ADDPLAYER_NO_PLAYER_ADDED);
 			break;
 		case 1:
-			sendMessage(MessageCode.TEAM_ADDPLAYER_ONE_PLAYER_ADDED, playerNames, team.getNameWithColor());
+			sendMessage(MessageCode.TEAM_ADDPLAYER_ONE_PLAYER_ADDED, playerNames, team.getColoredName());
 			break;
 		default:
-			sendMessage(MessageCode.TEAM_ADDPLAYER_PLAYERS_ADDED, playerNames, team.getNameWithColor());
+			sendMessage(MessageCode.TEAM_ADDPLAYER_PLAYERS_ADDED, playerNames, team.getColoredName());
 			break;
 		}
 	}

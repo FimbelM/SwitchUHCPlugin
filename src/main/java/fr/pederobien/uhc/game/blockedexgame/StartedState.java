@@ -9,8 +9,8 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.event.PlayerInteractEventResponse;
+import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.managers.BaseManager;
-import fr.pederobien.uhc.managers.EColor;
 import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
@@ -31,7 +31,7 @@ public class StartedState extends AbstractBlockedexState {
 	public void onPlayerDie(PlayerDeathEvent event) {
 		event.setKeepInventory(true);
 		Player player = event.getEntity();
-		collegues = TeamsManager.getCollegues(game.getConfiguration(), player);
+		collegues = TeamsManager.getCollegues(player);
 
 		onPlayerDie(player);
 	}
@@ -43,17 +43,19 @@ public class StartedState extends AbstractBlockedexState {
 		else if (collegues.size() > 0)
 			event.setRespawnLocation(TeamsManager.getRandom(collegues).getLocation());
 		else
-			event.setRespawnLocation(WorldManager.getRandomlyLocation(game.getConfiguration().getDiameterAreaOnPlayerRespawn()));
+			event.setRespawnLocation(WorldManager.getRandomlyLocation(getConfiguration().getDiameterAreaOnPlayerRespawn()));
 	}
 
 	@Override
 	public void onPlayerInteract(PlayerInteractEvent event) {
-		PlayerInteractEventResponse response = BaseManager.isRestricted(EColor.getByContent(event.getPlayer().getName()), event.getClickedBlock());
+		ITeam playerTeam = TeamsManager.getTeam(event.getPlayer());
+		PlayerInteractEventResponse response = BaseManager.isRestricted(playerTeam.getColor(), event.getClickedBlock());
+		ITeam allowedTeam = TeamsManager.getTeam(response.getColorAllowed());
 		if (!response.isRestricted())
 			return;
 
 		event.setCancelled(true);
-		sendMessage(event.getPlayer(), MessageCode.CHEST_IS_RESTRICTED, response.getColorAllowed().getNameWithColor());
+		sendMessage(event.getPlayer(), MessageCode.CHEST_IS_RESTRICTED, allowedTeam.getColoredName(), playerTeam.getColoredName());
 	}
 
 	private void onPlayerDie(Player player) {
@@ -68,25 +70,25 @@ public class StartedState extends AbstractBlockedexState {
 
 	private void onPlayerDieByEnvironment(Player player) {
 		collegues.add(player);
-		collegues.forEach(p -> bdPlayerManager.decreaseMaxHealth(p, game.getConfiguration().getStepOnMaxHealth()));
+		collegues.forEach(p -> bdPlayerManager.decreaseMaxHealth(p, getConfiguration().getStepOnMaxHealth()));
 		collegues.remove(player);
 	}
 
 	private void onPlayerDieByPlayer(Player player) {
-		List<Player> players = PlayerManager.getCloseCollegues(game.getConfiguration(), player, game.getConfiguration().getRadiusAreaOnPlayerDie());
+		List<Player> players = PlayerManager.getCloseCollegues(player, getConfiguration().getRadiusAreaOnPlayerDie());
 		if (players.size() > 0) {
 			players.add(player);
-			players.forEach(p -> bdPlayerManager.decreaseMaxHealth(p, game.getConfiguration().getStepOnMaxHealth()));
+			players.forEach(p -> bdPlayerManager.decreaseMaxHealth(p, getConfiguration().getStepOnMaxHealth()));
 		} else
-			bdPlayerManager.decreaseMaxHealth(player, game.getConfiguration().getDoubleStepOnMaxHealth());
+			bdPlayerManager.decreaseMaxHealth(player, getConfiguration().getDoubleStepOnMaxHealth());
 	}
 
 	private void onPlayerKill(Player player) {
-		List<Player> players = PlayerManager.getCloseCollegues(game.getConfiguration(), player, game.getConfiguration().getRadiusAreaOnPlayerKill());
+		List<Player> players = PlayerManager.getCloseCollegues(player, getConfiguration().getRadiusAreaOnPlayerKill());
 		if (players.size() > 0) {
 			players.add(player);
-			players.forEach(p -> bdPlayerManager.increaseMaxHealth(p, game.getConfiguration().getStepOnMaxHealth()));
+			players.forEach(p -> bdPlayerManager.increaseMaxHealth(p, getConfiguration().getStepOnMaxHealth()));
 		} else
-			bdPlayerManager.increaseMaxHealth(player, game.getConfiguration().getDoubleStepOnMaxHealth());
+			bdPlayerManager.increaseMaxHealth(player, getConfiguration().getDoubleStepOnMaxHealth());
 	}
 }

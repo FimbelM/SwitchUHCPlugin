@@ -2,7 +2,6 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.te
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.managers.EColor;
 
 public class ListTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
@@ -12,16 +11,7 @@ public class ListTeam<T extends IConfiguration> extends AbstractTeamEditions<T> 
 
 	@Override
 	public void edit(String[] args) {
-		String teams = "";
-		for (EColor team : get().getTeams()) {
-			teams += team.getColor() + team.getNameWithoutColor() + " [";
-			for (int i = 0; i < team.getPlayers().size(); i++) {
-				teams += team.getPlayers().get(i);
-				if (i < team.getPlayers().size() - 1)
-					teams += " ";
-			}
-			teams += "]\n";
-		}
+		String teams = showTeams();
 
 		switch (get().getTeams().size()) {
 		case 0:

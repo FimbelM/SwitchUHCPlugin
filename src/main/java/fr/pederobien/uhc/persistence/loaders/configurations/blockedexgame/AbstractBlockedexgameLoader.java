@@ -2,7 +2,7 @@ package fr.pederobien.uhc.persistence.loaders.configurations.blockedexgame;
 
 import fr.pederobien.uhc.configurations.BlockedexConfiguration;
 import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
-import fr.pederobien.uhc.managers.EColor;
+import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.persistence.loaders.configurations.AbstractConfigurationLoader;
 
 public abstract class AbstractBlockedexgameLoader extends AbstractConfigurationLoader<IBlockedexConfiguration> {
@@ -24,7 +24,7 @@ public abstract class AbstractBlockedexgameLoader extends AbstractConfigurationL
 		System.out.println("\tEast base : " + get().getEastBase());
 		System.out.println("\tDistance from spawn : " + get().getBaseFromSpawnDistance());
 		System.out.println("Team");
-		for (EColor team : get().getTeams())
-			System.out.println("\tName : " + team.getNameWithoutColor() + ", color : " + team.getColor());
+		for (ITeam team : get().getTeams())
+			System.out.println("\tName : " + team.getName() + ", color : " + team.getColor().getColorName());
 	}
 }
