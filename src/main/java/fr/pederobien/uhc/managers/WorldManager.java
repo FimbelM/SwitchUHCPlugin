@@ -1,6 +1,8 @@
 package fr.pederobien.uhc.managers;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -11,6 +13,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.WorldBorder;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
@@ -28,6 +31,7 @@ public class WorldManager {
 	private static World world;
 	private static WorldBorder border;
 	private static IUnmodifiableSpawn spawn;
+	private static Map<Block, BlockData> listBeforeCrossUnderSpawn;
 
 	static {
 		rand = new Random();
@@ -35,6 +39,7 @@ public class WorldManager {
 		world = SURFACE_WORLD;
 		border = world.getWorldBorder();
 		world.setSpawnLocation(getHighestBlockYAt(0, 0).getLocation());
+		listBeforeCrossUnderSpawn = new HashMap<Block, BlockData>();
 
 		MOBS.add(EntityType.BLAZE);
 		MOBS.add(EntityType.CAVE_SPIDER);
@@ -220,9 +225,14 @@ public class WorldManager {
 			return;
 		Location respawn = getSurfaceBlockY(spawn.getCenter().getLocation().clone().add(new Vector(0, -1, 0)));
 		for (int x = -1; x < 2; x++)
-			getBlockAt(respawn.clone().add(new Vector(x, 0, 0))).setType(material);
-		getBlockAt(respawn.clone().add(new Vector(0, 0, 1))).setType(material);
-		getBlockAt(respawn.clone().add(new Vector(0, 0, -1))).setType(material);
+			setBlockType(getBlockAt(respawn.clone().add(new Vector(x, 0, 0))), material);
+		setBlockType(getBlockAt(respawn.clone().add(new Vector(0, 0, 1))), material);
+		setBlockType(getBlockAt(respawn.clone().add(new Vector(0, 0, -1))), material);
+	}
+
+	public static void removeCrossUnderSpawn() {
+		for (Block block : listBeforeCrossUnderSpawn.keySet())
+			block.setBlockData(listBeforeCrossUnderSpawn.get(block));
 	}
 
 	public static boolean isLocationUnderSpawn(Location location) {
@@ -257,5 +267,10 @@ public class WorldManager {
 
 			return loc;
 		}
+	}
+
+	private static void setBlockType(Block block, Material material) {
+		listBeforeCrossUnderSpawn.put(block, block.getBlockData());
+		block.setType(material);
 	}
 }
