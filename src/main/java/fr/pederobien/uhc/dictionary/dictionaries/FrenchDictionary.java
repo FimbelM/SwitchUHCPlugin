@@ -1428,6 +1428,38 @@ public class FrenchDictionary extends AbstractDictionary {
 			}
 		});
 
+		registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_DIE_BLOCKEDEX_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour définir une zone autour du lieu de la mort d'un joueur";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_DIE_BLOCKEDEX_GAME_NEGATIVE_DISTANCE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Le rayon doit être positif";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_DIE_BLOCKEDEX_GAME_RADIUS_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "La zone autour du lieu de la mort d'un joueur a un rayon de " + args[0] + " blocs";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_DIE_BLOCKEDEX_GAME_BAD_DISTANCE_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de définir le rayon, il doit être un entier";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_DIE_BLOCKEDEX_GAME_MISSING_DISTANCE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de définir le rayon, il manque le rayon";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_DIE_BLOCKEDEX_GAME_TAB_COMPLETE) {
+			@Override
+			public String getMessage(String... args) {
+				return "<rayon>";
+			}
+		});
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_BLOCKEDEX_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
