@@ -1,12 +1,10 @@
 package fr.pederobien.uhc.interfaces;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import fr.pederobien.uhc.managers.EColor;
 
-public interface IBase extends IBawn, IUnmodifiableBase, Cloneable {
+public interface IBase extends IBawn, IUnmodifiableBase {
 
-	void setChests(HashMap<ISerializableBlock, EColor> chests);
-
-	Object clone() throws CloneNotSupportedException;
+	void setChests(Map<ISerializableBlock, EColor> chests);
 }

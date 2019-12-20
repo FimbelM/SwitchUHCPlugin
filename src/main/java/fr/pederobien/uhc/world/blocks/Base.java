@@ -17,7 +17,7 @@ import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.managers.EColor;
 
 public class Base extends AbstractBawn implements IBase {
-	private HashMap<ISerializableBlock, EColor> chests;
+	private Map<ISerializableBlock, EColor> chests;
 
 	public Base(String name) {
 		super(name);
@@ -59,13 +59,8 @@ public class Base extends AbstractBawn implements IBase {
 	}
 
 	@Override
-	public void setChests(HashMap<ISerializableBlock, EColor> chests) {
+	public void setChests(Map<ISerializableBlock, EColor> chests) {
 		this.chests = chests;
-	}
-
-	@Override
-	public Object clone() throws CloneNotSupportedException {
-		return super.clone();
 	}
 
 	private ChatColor getChatColor(ISerializableBlock chest) {

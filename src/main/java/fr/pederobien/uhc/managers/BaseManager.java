@@ -16,6 +16,8 @@ import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.interfaces.IUnmodifiableBase;
 import fr.pederobien.uhc.interfaces.IUnmodifiableBlockedexConfiguration;
 import fr.pederobien.uhc.persistence.PersistenceFactory;
+import fr.pederobien.uhc.world.blocks.Base;
+import fr.pederobien.uhc.world.blocks.Dimension;
 
 public class BaseManager {
 	private static HashMap<String, IBase> allBases = new HashMap<String, IBase>();
@@ -35,30 +37,25 @@ public class BaseManager {
 	}
 
 	public static boolean setBlockedexGameCurrentConfiguration(IUnmodifiableBlockedexConfiguration configuration) {
-		try {
-			if (checkBaseAvailable(configuration.getNorthBase(), configuration.getTeams())) {
-				IBase north = (IBase) allBases.get(configuration.getNorthBase()).clone();
-				north.setCenter(WorldManager.getHighestBlockFromSpawn(0, 0, configuration.getBaseFromSpawnDistance()));
-				gameBases.put(Orientation.NORTH, north);
-			}
-			if (checkBaseAvailable(configuration.getSouthBase(), configuration.getTeams())) {
-				IBase south = (IBase) (IBase) allBases.get(configuration.getSouthBase()).clone();
-				south.setCenter(WorldManager.getHighestBlockFromSpawn(0, 0, -configuration.getBaseFromSpawnDistance()));
-				gameBases.put(Orientation.SOUTH, south);
-			}
-			if (checkBaseAvailable(configuration.getWestBase(), configuration.getTeams())) {
-				IBase west = (IBase) allBases.get(configuration.getWestBase()).clone();
-				west.setCenter(WorldManager.getHighestBlockFromSpawn(-configuration.getBaseFromSpawnDistance(), 0, 0));
-				gameBases.put(Orientation.WEST, west);
-			}
-			if (checkBaseAvailable(configuration.getEastBase(), configuration.getTeams())) {
-				IBase east = (IBase) allBases.get(configuration.getEastBase()).clone();
-				east.setCenter(WorldManager.getHighestBlockFromSpawn(configuration.getBaseFromSpawnDistance(), 0, 0));
-				gameBases.put(Orientation.EAST, east);
-			}
-
-		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
+		if (checkBaseAvailable(configuration.getNorthBase(), configuration.getTeams())) {
+			IBase north = copy(allBases.get(configuration.getNorthBase()));
+			north.setCenter(WorldManager.getHighestBlockFromSpawn(0, 0, configuration.getBaseFromSpawnDistance()));
+			gameBases.put(Orientation.NORTH, north);
+		}
+		if (checkBaseAvailable(configuration.getSouthBase(), configuration.getTeams())) {
+			IBase south = copy(allBases.get(configuration.getSouthBase()));
+			south.setCenter(WorldManager.getHighestBlockFromSpawn(0, 0, -configuration.getBaseFromSpawnDistance()));
+			gameBases.put(Orientation.SOUTH, south);
+		}
+		if (checkBaseAvailable(configuration.getWestBase(), configuration.getTeams())) {
+			IBase west = copy(allBases.get(configuration.getWestBase()));
+			west.setCenter(WorldManager.getHighestBlockFromSpawn(-configuration.getBaseFromSpawnDistance(), 0, 0));
+			gameBases.put(Orientation.WEST, west);
+		}
+		if (checkBaseAvailable(configuration.getEastBase(), configuration.getTeams())) {
+			IBase east = copy(allBases.get(configuration.getEastBase()));
+			east.setCenter(WorldManager.getHighestBlockFromSpawn(configuration.getBaseFromSpawnDistance(), 0, 0));
+			gameBases.put(Orientation.EAST, east);
 		}
 		return gameBases.size() == 4;
 	}
@@ -108,6 +105,15 @@ public class BaseManager {
 			return true;
 		}
 		return false;
+	}
+
+	public static IBase copy(IBase origin) {
+		IBase copy = new Base(origin.getName());
+		copy.setBlocks(origin.getBlocks());
+		copy.setCenter(origin.getCenter());
+		copy.setChests(origin.getChests());
+		copy.setDimension(new Dimension(origin.getWidth(), origin.getHeight(), origin.getDepth()));
+		return copy;
 	}
 
 	public static Block getNorthBaseCenter() {
