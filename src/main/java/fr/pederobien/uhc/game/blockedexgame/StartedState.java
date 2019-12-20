@@ -23,6 +23,16 @@ public class StartedState extends AbstractBlockedexState {
 	}
 
 	@Override
+	public void pause() {
+		onPause();
+	}
+
+	@Override
+	public void relaunch() {
+		onRelaunched();
+	}
+
+	@Override
 	public void stop() {
 		game.setCurrentState(game.getStop()).stop();
 	}

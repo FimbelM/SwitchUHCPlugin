@@ -1,9 +1,12 @@
 package fr.pederobien.uhc.game;
 
 import java.time.LocalTime;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.bukkit.GameMode;
 import org.bukkit.GameRule;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -30,6 +33,11 @@ public abstract class AbstractGameState implements IGameState {
 	protected static ITaskLauncher taskLauncher;
 	protected static IScoreboardLauncher scoreboardLauncher;
 	protected MessageCode message;
+	private Map<Player, PlayerState> playersState;
+
+	public AbstractGameState() {
+		playersState = new HashMap<Player, PlayerState>();
+	}
 
 	@Override
 	public boolean initiate() {
@@ -113,10 +121,33 @@ public abstract class AbstractGameState implements IGameState {
 		PlayerManager.resetMaxHealthOfPlayers();
 		PlayerManager.maxLifeToPlayers();
 		PlayerManager.removeInventoryOfPlayers();
-		PlayerManager.setGameModeOfPlayers(GameMode.SURVIVAL);
+		PlayerManager.setGameModeOfAllPlayers(GameMode.SURVIVAL);
 		WorldManager.setTimeDay();
 		WorldManager.setWeatherSun();
 		WorldManager.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true);
+	}
+
+	protected void onPause() {
+		sendTitle(MessageCode.GAME_SUSPENDED);
+		taskLauncher.pause();
+		scoreboardLauncher.pause();
+		PlayerManager.getPlayersOnMode(GameMode.SURVIVAL).forEach(p -> {
+			playersState.put(p, new PlayerState(p));
+			PlayerManager.setGameModeOfPlayer(p, GameMode.ADVENTURE);
+			PlayerManager.giveEffects(p, PlayerManager.createEffectMaxDurationMaxModifier(PotionEffectType.DAMAGE_RESISTANCE,
+					PotionEffectType.REGENERATION, PotionEffectType.SATURATION));
+		});
+	}
+
+	protected void onRelaunched() {
+		sendTitle(MessageCode.GAME_RESUMED);
+		PlayerManager.getPlayersOnMode(GameMode.ADVENTURE).forEach(p -> {
+			PlayerManager.setGameModeOfPlayer(p, GameMode.SURVIVAL);
+			PlayerManager.removeAllEffects(p);
+			playersState.get(p).apply();
+		});
+		taskLauncher.relaunched();
+		scoreboardLauncher.relaunched();
 	}
 
 	protected void onStop() {
@@ -135,5 +166,25 @@ public abstract class AbstractGameState implements IGameState {
 
 	protected void sendTitle(EColor color, IMessageCode code, String... args) {
 		BukkitManager.sendTitleToPlayers(EventFactory.createMessageCodeEvent(code, args), color);
+	}
+
+	private class PlayerState {
+		private Player player;
+		private double health;
+		private int food;
+		private Location location;
+
+		public PlayerState(Player player) {
+			this.player = player;
+			health = player.getHealth();
+			food = player.getFoodLevel();
+			location = player.getLocation();
+		}
+
+		public void apply() {
+			player.setHealth(health);
+			player.setFoodLevel(food);
+			PlayerManager.teleporte(player, location);
+		}
 	}
 }

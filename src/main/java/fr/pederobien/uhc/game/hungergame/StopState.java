@@ -16,7 +16,7 @@ public class StopState extends AbstractHungerGameState {
 	public void stop() {
 		onStop();
 		TeamsManager.removeTeams(getConfiguration().getTeams());
-		PlayerManager.setGameModeOfPlayers(GameMode.CREATIVE);
+		PlayerManager.setGameModeOfAllPlayers(GameMode.CREATIVE);
 		WorldManager.removeBorder();
 		WorldManager.removeCrossUnderSpawn();
 	}

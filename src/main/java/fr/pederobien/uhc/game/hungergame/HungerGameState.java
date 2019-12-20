@@ -19,19 +19,15 @@ public class HungerGameState extends AbstractHungerGameState {
 
 	@Override
 	public void pause() {
-		sendTitle(MessageCode.GAME_SUSPENDED);
+		onPause();
 		WorldManager.stopBorder();
-		taskLauncher.pause();
-		scoreboardLauncher.pause();
 	}
 
 	@Override
 	public void relaunch() {
-		sendTitle(MessageCode.GAME_RESUMED);
+		onRelaunched();
 		WorldManager.moveBorder(getConfiguration().getFinalBorderDiameter(),
 				WorldManager.getCurrentDiameter().longValue() / getConfiguration().getBorderSpeed().longValue());
-		taskLauncher.relaunched();
-		scoreboardLauncher.relaunched();
 	}
 
 	@Override

@@ -107,7 +107,11 @@ public class PlayerManager {
 		players.forEach(p -> setGameModeOfPlayer(p, mode));
 	}
 
-	public static void setGameModeOfPlayers(GameMode mode) {
+	public static void setGameModeOfPlayersOnMode(GameMode oldMode, GameMode newMode) {
+		setGameModeOfPlayers(getPlayersOnMode(oldMode), newMode);
+	}
+
+	public static void setGameModeOfAllPlayers(GameMode mode) {
 		setGameModeOfPlayers(getPlayers(), mode);
 	}
 
@@ -167,12 +171,20 @@ public class PlayerManager {
 		return createEffect(type, duration, amplifier, true);
 	}
 
+	public static PotionEffect createEffectMaxDurationMaxModifier(PotionEffectType type) {
+		return createEffect(type, MAX_EFFECT_DURATION, MAX_EFFECT_AMPLIFIER);
+	}
+
 	public static PotionEffect createEffect(PotionEffectType type) {
 		return createEffect(type, 20, 1);
 	}
 
 	public static Stream<PotionEffect> createEffect(PotionEffectType... types) {
 		return Stream.of(types).map(t -> createEffect(t));
+	}
+
+	public static Stream<PotionEffect> createEffectMaxDurationMaxModifier(PotionEffectType... types) {
+		return Stream.of(types).map(t -> createEffectMaxDurationMaxModifier(t));
 	}
 
 	public static void giveEffectToPlayerOnMode(GameMode mode, PotionEffect effect) {
@@ -200,11 +212,19 @@ public class PlayerManager {
 	}
 
 	public static void removeAllEffects(Player player) {
-		player.getActivePotionEffects().stream().forEach(e -> player.removePotionEffect(e.getType()));
+		player.getActivePotionEffects().stream().forEach(e -> removeEffect(player, e.getType()));
+	}
+
+	public static void removeAllEffects(Stream<Player> players) {
+		players.forEach(p -> removeAllEffects(p));
 	}
 
 	public static void removeAllEffectsToAllPlayers() {
 		getPlayers().forEach(p -> removeAllEffects(p));
+	}
+
+	public static void removeAllEffectsToPlayerOnMode(GameMode mode) {
+		removeAllEffects(getPlayersOnMode(mode));
 	}
 
 	public static List<Player> getCloseCollegues(Player src, int distance) {

@@ -20,16 +20,12 @@ public class PlayerReviveState extends AbstractHungerGameState {
 
 	@Override
 	public void pause() {
-		sendTitle(MessageCode.GAME_SUSPENDED);
-		taskLauncher.pause();
-		scoreboardLauncher.pause();
+		onPause();
 	}
 
 	@Override
 	public void relaunch() {
-		sendTitle(MessageCode.GAME_RESUMED);
-		taskLauncher.relaunched();
-		scoreboardLauncher.relaunched();
+		onRelaunched();
 	}
 
 	@Override

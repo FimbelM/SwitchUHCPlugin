@@ -1,7 +1,5 @@
 package fr.pederobien.uhc;
 
-import java.util.stream.Stream;
-
 import org.bukkit.GameMode;
 import org.bukkit.GameRule;
 import org.bukkit.entity.Player;
@@ -140,11 +138,8 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 			PlayerManager.setGameModeOfPlayer(player, GameMode.CREATIVE);
 		else {
 			PlayerManager.setGameModeOfPlayer(player, GameMode.ADVENTURE);
-			PlayerManager.giveEffects(player, Stream.of(
-					PlayerManager.createEffect(PotionEffectType.REGENERATION, PlayerManager.MAX_EFFECT_DURATION, PlayerManager.MAX_EFFECT_AMPLIFIER),
-					PlayerManager.createEffect(PotionEffectType.SATURATION, PlayerManager.MAX_EFFECT_DURATION, PlayerManager.MAX_EFFECT_AMPLIFIER),
-					PlayerManager.createEffect(PotionEffectType.DAMAGE_RESISTANCE, PlayerManager.MAX_EFFECT_DURATION,
-							PlayerManager.MAX_EFFECT_AMPLIFIER)));
+			PlayerManager.giveEffects(player, PlayerManager.createEffectMaxDurationMaxModifier(PotionEffectType.REGENERATION,
+					PotionEffectType.SATURATION, PotionEffectType.DAMAGE_RESISTANCE));
 		}
 	}
 }

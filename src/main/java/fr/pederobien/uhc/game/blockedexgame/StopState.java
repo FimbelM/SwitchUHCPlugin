@@ -14,7 +14,7 @@ public class StopState extends AbstractBlockedexState {
 	@Override
 	public void stop() {
 		onStop();
-		PlayerManager.setGameModeOfPlayers(GameMode.ADVENTURE);
+		PlayerManager.setGameModeOfAllPlayers(GameMode.ADVENTURE);
 		BaseManager.removeBlockedexBases();
 		game.setCurrentState(game.getInitiate()).initiate();
 	}
