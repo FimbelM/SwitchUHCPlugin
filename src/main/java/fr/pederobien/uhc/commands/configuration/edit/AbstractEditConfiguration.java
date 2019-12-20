@@ -40,7 +40,7 @@ public class AbstractEditConfiguration<T extends IUnmodifiableName> extends Abst
 		editions = new HashMap<String, IMapEdition<T>>();
 		observers = new ArrayList<IObsMessageSender>();
 
-		setHelper(new Helper<T>(this));
+		setHelper(new Helper<T>());
 	}
 
 	@Override
@@ -152,6 +152,7 @@ public class AbstractEditConfiguration<T extends IUnmodifiableName> extends Abst
 	@Override
 	public IEditConfiguration<T> setHelper(IHelper<T> helper) {
 		this.helper = helper;
+		helper.setConfig(this);
 		return this;
 	}
 

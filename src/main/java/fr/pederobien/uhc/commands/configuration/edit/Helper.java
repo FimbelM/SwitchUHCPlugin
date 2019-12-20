@@ -23,9 +23,8 @@ import fr.pederobien.uhc.managers.PlayerManager;
 public class Helper<T extends IUnmodifiableName> extends AbstractEdition implements IHelper<T> {
 	private IEditConfiguration<T> configuration;
 
-	public Helper(IEditConfiguration<T> configuration) {
+	public Helper() {
 		super("help", MessageCode.HELP_EXPLANATION);
-		this.configuration = configuration;
 	}
 
 	@Override
