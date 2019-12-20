@@ -36,7 +36,7 @@ public class Base extends AbstractBawn implements IBase {
 		for (ISerializableBlock b : chests.keySet())
 			if (getBlockFromCenter(b).equals(block)) {
 				colorAuthorized = chests.get(b);
-				restricted = colorAuthorized.equals(color);
+				restricted = !colorAuthorized.equals(color);
 			}
 		return EventFactory.createPlayerInteractEventResponse(restricted, colorAuthorized);
 	}
