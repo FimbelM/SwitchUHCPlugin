@@ -347,12 +347,12 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.RESET_BASE_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour réinitialiser les caractéristiques de la base";
+				return "pour réinitialiser les caractéristiques d'une base";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SAVE_BASE_SAVED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Les caractéristiques de la base " + args[0] + " ont été réinitialisés";
+				return "Les caractéristiques de la base " + args[0] + " ont été réinitialisées";
 			}
 		});
 
@@ -564,6 +564,18 @@ public class FrenchDictionary extends AbstractDictionary {
 			@Override
 			public String getMessage(String... args) {
 				return "Impossible de renommer le spawn " + args[0] + ", il manque le nom";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.RESET_SPAWN_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour réinitialiser les caractéristiques d'un spawn";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RESET_SPAWN_MESSAGE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Les caractéristiques du spawn " + args[0] + " ont été réinitialisées";
 			}
 		});
 

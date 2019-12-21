@@ -51,6 +51,11 @@ public class SpawnEditionsFactory extends AbstractBawnEditionsFactory<ISpawn> {
 	}
 
 	@Override
+	public IMapEdition<ISpawn> createResetEdition() {
+		return new ResetSpawn();
+	}
+
+	@Override
 	public IMapEdition<ISpawn> createListEdition() {
 		return new ListSpawn();
 	}

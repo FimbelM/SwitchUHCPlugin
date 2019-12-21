@@ -567,6 +567,18 @@ public class EnglishDictionary extends AbstractDictionary {
 			}
 		});
 
+		registerMessage(new AbstractPlayerMessage(MessageCode.RESET_SPAWN_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to reset spawn's characteristics";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RESET_SPAWN_MESSAGE) {
+			@Override
+			public String getMessage(String... args) {
+				return "The characteristics of the spawn " + args[0] + " have been reset";
+			}
+		});
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.SAVE_SPAWN_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {

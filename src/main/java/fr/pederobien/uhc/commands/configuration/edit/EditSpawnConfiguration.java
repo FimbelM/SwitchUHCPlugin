@@ -15,6 +15,7 @@ public class EditSpawnConfiguration extends AbstractEditConfiguration<ISpawn> {
 				.addEdition(factory.createExtractEdition()).addEdition(factory.createLaunchEdition().setModifiable(false))
 				.addEdition(factory.createListEdition()).addEdition(factory.createNewEdition().setModifiable(false))
 				.addEdition(factory.createPlayerSpawnEdition()).addEdition(factory.createRandomEdition().setModifiable(false))
-				.addEdition(factory.createRemoveEdition()).addEdition(factory.createRenameEdition()).addEdition(factory.createSaveEdition());
+				.addEdition(factory.createRemoveEdition()).addEdition(factory.createRenameEdition()).addEdition(factory.createResetEdition())
+				.addEdition(factory.createSaveEdition());
 	}
 }
