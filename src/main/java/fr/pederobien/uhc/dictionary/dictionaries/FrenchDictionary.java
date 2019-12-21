@@ -1350,6 +1350,38 @@ public class FrenchDictionary extends AbstractDictionary {
 			}
 		});
 
+		registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_RESPAWN_BLOCKEDEX_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour définir le diamètre de la zone de réapparition des joueurs";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_RESPAWN_BLOCKEDEX_GAME_NEGATIVE_DIAMETER) {
+			@Override
+			public String getMessage(String... args) {
+				return "Le diamètre de la zone de réapparition doit être strictement positif";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_RESPAWN_BLOCKEDEX_GAME_DIAMETER_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Les joueurs réapparaîtront dans une zone de " + args[0] + "x" + args[0] + " blocs";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_RESPAWN_BLOCKEDEX_GAME_BAD_DIAMETER_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de définir le diamètre de la zone de réapparition, le diamètre doit être un entier";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_RESPAWN_BLOCKEDEX_GAME_MISSING_DIAMETER) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de définir le diamètre de la zone de réapparition, il manque le diamètre";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_RESPAWN_BLOCKEDEX_GAME_ON_TAB_COMPLETE) {
+			@Override
+			public String getMessage(String... args) {
+				return "<diamètre de la zone de réapparition>";
+			}
+		});
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_BLOCKEDEX_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {

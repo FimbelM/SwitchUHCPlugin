@@ -1350,6 +1350,38 @@ public class EnglishDictionary extends AbstractDictionary {
 			}
 		});
 
+		registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_RESPAWN_BLOCKEDEX_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to define the diameter of respawn area";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_RESPAWN_BLOCKEDEX_GAME_NEGATIVE_DIAMETER) {
+			@Override
+			public String getMessage(String... args) {
+				return "The respawn area's diameter should be strictly positive";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_RESPAWN_BLOCKEDEX_GAME_DIAMETER_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Player will respawn in an area of " + args[0] + "x" + args[0] + " blocks";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_RESPAWN_BLOCKEDEX_GAME_BAD_DIAMETER_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot set the players respawn area's diameter, the diameter should be an integer";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_RESPAWN_BLOCKEDEX_GAME_MISSING_DIAMETER) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot set the players respawn area's diameter, need the diameter";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_RESPAWN_BLOCKEDEX_GAME_ON_TAB_COMPLETE) {
+			@Override
+			public String getMessage(String... args) {
+				return "<respawn area diameter>";
+			}
+		});
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_BLOCKEDEX_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {

@@ -86,4 +86,8 @@ public class BlockedexGameEditionsFactory extends AbstractConfigurationEditionsF
 	public IMapEdition<IBlockedexConfiguration> createStepHealthEdition() {
 		return new StepHealthBlockedexGame();
 	}
+
+	public IMapEdition<IBlockedexConfiguration> createDiameterOnPlayerRespawnEdition() {
+		return new DiameterOnPlayerRespawnBlockedexGame();
+	}
 }
