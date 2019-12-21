@@ -17,7 +17,7 @@ public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlock
 				.addEdition(factory.createListEdition()).addEdition(factory.createLoadEdition().setModifiable(false))
 				.addEdition(factory.createNewEdition().setModifiable(false)).addEdition(factory.createRadiusAreaOnPlayerDieEdition())
 				.addEdition(factory.createRadiusAreaOnPlayerKillEdition()).addEdition(factory.createRenameEdition())
-				.addEdition(factory.createSaveEdition()).addEdition(factory.createStepHealthEdition())
+				.addEdition(factory.createResetEdition()).addEdition(factory.createSaveEdition()).addEdition(factory.createStepHealthEdition())
 				.addEdition(factory.createScoreboardRefreshEdition()).addEdition(factory.createTeamEdition());
 
 		setAvailable(false);

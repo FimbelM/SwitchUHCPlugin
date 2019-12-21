@@ -1570,6 +1570,18 @@ public class FrenchDictionary extends AbstractDictionary {
 			}
 		});
 
+		registerMessage(new AbstractPlayerMessage(MessageCode.RESET_BLOCKEDEX_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour réinitialiser les caractéristiques d'un style blockedex";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RESET_BLOCKEDEX_GAME_MESSAGE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Les caractéristiques du style blockedex " + args[0] + " ont été réinitialisées";
+			}
+		});
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.SAVE_BLOCKEDEX_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {

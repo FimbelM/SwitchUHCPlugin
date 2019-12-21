@@ -67,6 +67,11 @@ public class BlockedexGameEditionsFactory extends AbstractConfigurationEditionsF
 		return new DeleteBlockedexGame();
 	}
 
+	@Override
+	public IMapEdition<IBlockedexConfiguration> createResetEdition() {
+		return new ResetBlockedexGame();
+	}
+
 	public IMapEdition<IBlockedexConfiguration> createBasesEdition() {
 		return new CommonBase();
 	}
