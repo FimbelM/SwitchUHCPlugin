@@ -26,8 +26,8 @@ public class RadiusAreaOnPlayerKillBlockedexGame extends AbstractConfEdition<IBl
 				return;
 			}
 
-			get().setRadiusAreaOnPlayerDie(distance);
-			sendMessage(MessageCode.RADIUS_AREA_ON_PLAYER_KILL_BLOCKEDEX_GAME_RADIUS_DEFINED, get().getRadiusAreaOnPlayerDie().toString());
+			get().setRadiusAreaOnPlayerKill(distance);
+			sendMessage(MessageCode.RADIUS_AREA_ON_PLAYER_KILL_BLOCKEDEX_GAME_RADIUS_DEFINED, get().getRadiusAreaOnPlayerKill().toString());
 		} catch (NumberFormatException e) {
 			sendMessage(MessageCode.RADIUS_AREA_ON_PLAYER_KILL_BLOCKEDEX_GAME_BAD_DISTANCE_FORMAT);
 		} catch (IndexOutOfBoundsException e) {
