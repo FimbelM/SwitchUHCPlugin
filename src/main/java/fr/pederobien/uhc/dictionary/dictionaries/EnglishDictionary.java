@@ -1460,6 +1460,38 @@ public class EnglishDictionary extends AbstractDictionary {
 			}
 		});
 
+		registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_KILL_BLOCKEDEX_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to define a zone around the player that killed another player";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_KILL_BLOCKEDEX_GAME_NEGATIVE_DISTANCE) {
+			@Override
+			public String getMessage(String... args) {
+				return "The radius should be positive";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_KILL_BLOCKEDEX_GAME_RADIUS_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "The zone around the player that killed another player has a radius of " + args[0] + " blocks";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_KILL_BLOCKEDEX_GAME_BAD_DISTANCE_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot set the radius, the radius should be an integer";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_KILL_BLOCKEDEX_GAME_MISSING_DISTANCE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot set the radius, need the radius";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_KILL_BLOCKEDEX_GAME_TAB_COMPLETE) {
+			@Override
+			public String getMessage(String... args) {
+				return "<radius>";
+			}
+		});
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_BLOCKEDEX_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {

@@ -78,4 +78,8 @@ public class BlockedexGameEditionsFactory extends AbstractConfigurationEditionsF
 	public IMapEdition<IBlockedexConfiguration> createRadiusAreaOnPlayerDieEdition() {
 		return new RadiusAreaOnPlayerDieBlockedexGame();
 	}
+
+	public IMapEdition<IBlockedexConfiguration> createRadiusAreaOnPlayerKillEdition() {
+		return new RadiusAreaOnPlayerKillBlockedexGame();
+	}
 }
