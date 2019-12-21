@@ -12,6 +12,6 @@ public class CurrentSpawn extends AbstractBawnEdition<ISpawn> {
 
 	@Override
 	public void edit(String[] args) {
-		sendMessage(MessageCode.CURRENT_SPAWN_MESSAGE, get().getName());
+		sendMessage(MessageCode.CURRENT_SPAWN_MESSAGE, get().toString());
 	}
 }

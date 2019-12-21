@@ -63,6 +63,13 @@ public class Base extends AbstractBawn implements IBase {
 		this.chests = chests;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder(super.toString());
+		builder.append("Supported colors :\n" + showColors());
+		return builder.toString();
+	}
+
 	private ChatColor getChatColor(ISerializableBlock chest) {
 		switch (getBlockUnderChest(chest).getMaterial()) {
 		case LIGHT_BLUE_WOOL:
@@ -117,5 +124,12 @@ public class Base extends AbstractBawn implements IBase {
 			if (block.getX() == chest.getX() && block.getY() == chest.getY() - 1 && block.getZ() == chest.getZ())
 				return block;
 		return null;
+	}
+
+	private String showColors() {
+		String colors = "";
+		for (EColor color : chests.values())
+			colors += color.getColoredColorName() + "\n";
+		return colors;
 	}
 }

@@ -167,7 +167,7 @@ public class EnglishDictionary extends AbstractDictionary {
 
 			@Override
 			public String getMessage(String... args) {
-				return "Current base : " + args[0];
+				return "Current base :\n" + args[0];
 			}
 		});
 
@@ -371,7 +371,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.CURRENT_SPAWN_MESSAGE) {
 			@Override
 			public String getMessage(String... args) {
-				return "Current spawn " + args[0];
+				return "Current spawn :\n" + args[0];
 			}
 		});
 

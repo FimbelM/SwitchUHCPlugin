@@ -167,7 +167,7 @@ public class FrenchDictionary extends AbstractDictionary {
 
 			@Override
 			public String getMessage(String... args) {
-				return "Base courante : " + args[0];
+				return "Base courante :\n" + args[0];
 			}
 		});
 
@@ -371,7 +371,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.CURRENT_SPAWN_MESSAGE) {
 			@Override
 			public String getMessage(String... args) {
-				return "Spawn courant " + args[0];
+				return "Spawn courant :\n" + args[0];
 			}
 		});
 

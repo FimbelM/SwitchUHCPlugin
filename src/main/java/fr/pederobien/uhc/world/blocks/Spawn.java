@@ -60,6 +60,13 @@ public class Spawn extends AbstractBawn implements ISpawn {
 		setPlayerSpawn(getBlockFromCenter(Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(z)));
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder(super.toString());
+		builder.append("Players' spawn : " + showBlock(getPlayerSpawn()) + "");
+		return builder.toString();
+	}
+
 	private void onPlayerSpawnChanged(Block oldPlayerSpawn) {
 		for (IObsBawn obs : observers)
 			obs.onPlayerSpawnChanged(oldPlayerSpawn, getPlayerSpawn());

@@ -82,7 +82,12 @@ public abstract class AbstractBawn implements IBawn {
 
 	@Override
 	public String toString() {
-		return name + "{width=" + getWidth() + ",height=" + getHeight() + ",depth=" + getDepth() + ",center=" + getCenter() + "}";
+		StringBuilder builder = new StringBuilder("Name : " + getName() + "\n");
+		builder.append("Center : " + showBlock(getCenter()) + "\n");
+		builder.append("Width : " + getWidth() + " blocks\n");
+		builder.append("Height : " + getHeight() + " blocks\n");
+		builder.append("Depth : " + getDepth() + " blocks\n");
+		return builder.toString();
 	}
 
 	@Override
@@ -157,6 +162,10 @@ public abstract class AbstractBawn implements IBawn {
 	protected ISerializableBlock getRelativeBlockFromTheWorld(Block block) {
 		return new SerialisableBlock(block.getX() - getCenter().getX(), block.getY() - getCenter().getY(), block.getZ() - getCenter().getZ(),
 				block.getBlockData());
+	}
+
+	protected String showBlock(Block block) {
+		return "X=" + block.getX() + " Y=" + block.getY() + " Z=" + block.getZ();
 	}
 
 	private void updateBlock(ISerializableBlock block) {

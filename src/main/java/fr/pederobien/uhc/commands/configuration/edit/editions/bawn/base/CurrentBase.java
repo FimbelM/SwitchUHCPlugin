@@ -12,6 +12,6 @@ public class CurrentBase extends AbstractBawnEdition<IBase> {
 
 	@Override
 	public void edit(String[] args) {
-		sendMessage(MessageCode.CURRENT_BASE_MESSAGE, get().getName());
+		sendMessage(MessageCode.CURRENT_BASE_MESSAGE, get().toString());
 	}
 }
