@@ -16,6 +16,7 @@ import fr.pederobien.uhc.observers.IObsBawn;
 
 public abstract class AbstractBawn implements IBawn {
 	private static final Block DEFAULT_CENTER = WorldManager.getHighestBlockYAt(0, 0);
+	private static final IDimension DEFAULT_DIMENSION = new Dimension();
 	private Block center;
 	private List<ISerializableBlock> config, before;
 	private String name;
@@ -97,7 +98,7 @@ public abstract class AbstractBawn implements IBawn {
 
 	@Override
 	public IUnmodifiableDimension getDimension() {
-		return dimension;
+		return dimension == null ? DEFAULT_DIMENSION : dimension;
 	}
 
 	@Override
@@ -147,6 +148,14 @@ public abstract class AbstractBawn implements IBawn {
 	}
 
 	@Override
+	public void reset() {
+		setCenter(null);
+		setDimension(null);
+		config.clear();
+		before.clear();
+	}
+
+	@Override
 	public void setCenter(String x, String y, String z) {
 		setCenter(WorldManager.getBlockAt(Integer.parseInt(x), Integer.parseInt(y), Integer.parseInt(z)));
 	}
@@ -175,21 +184,21 @@ public abstract class AbstractBawn implements IBawn {
 
 	private void onRenamed(String oldName) {
 		for (IObsBawn obs : observers)
-			obs.onRenamed(oldName, name);
+			obs.onRenamed(oldName, getName());
 	}
 
 	private void onExtracted() {
 		for (IObsBawn obs : observers)
-			obs.onExtracted(name);
+			obs.onExtracted(getName());
 	}
 
 	private void onRecentered(Block oldCenter) {
 		for (IObsBawn obs : observers)
-			obs.onReCentered(oldCenter, center);
+			obs.onReCentered(oldCenter, getCenter());
 	}
 
 	private void onRedimensioned(IUnmodifiableDimension oldDimension) {
 		for (IObsBawn obs : observers)
-			obs.onRedimensioned(oldDimension, dimension);
+			obs.onRedimensioned(oldDimension, getDimension());
 	}
 }

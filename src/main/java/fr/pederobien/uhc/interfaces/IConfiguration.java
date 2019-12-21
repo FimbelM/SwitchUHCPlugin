@@ -2,7 +2,7 @@ package fr.pederobien.uhc.interfaces;
 
 import java.time.LocalTime;
 
-public interface IConfiguration extends IUnmodifiableConfiguration, IName {
+public interface IConfiguration extends IUnmodifiableConfiguration, IResetable {
 
 	boolean addTeam(ITeam team);
 

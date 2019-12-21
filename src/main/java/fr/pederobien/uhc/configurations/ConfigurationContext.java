@@ -180,6 +180,11 @@ public class ConfigurationContext implements IConfigurationContext {
 	}
 
 	@Override
+	public void reset() {
+		getCurrentConfiguration().reset();
+	}
+
+	@Override
 	public Stream<String> getPlayersRegistered() {
 		return getCurrentConfiguration().getPlayersRegistered();
 	}

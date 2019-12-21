@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.bukkit.block.Block;
 
-public interface IBawn extends IName, IUnmodifiableBawn {
+public interface IBawn extends IUnmodifiableBawn, IResetable {
 
 	void setBlocks(List<ISerializableBlock> blocks);
 

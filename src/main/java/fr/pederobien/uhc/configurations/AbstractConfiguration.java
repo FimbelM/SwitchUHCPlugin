@@ -21,7 +21,7 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	private Long scoreboardRefresh;
 	private LocalTime gameTime;
 
-	protected List<ITeam> teams;
+	private List<ITeam> teams;
 
 	protected AbstractConfiguration(String name) {
 		this.name = name;
@@ -102,6 +102,13 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	@Override
 	public void setGameTime(LocalTime gameTime) {
 		this.gameTime = gameTime;
+	}
+
+	@Override
+	public void reset() {
+		gameTime = null;
+		scoreboardRefresh = null;
+		teams.clear();
 	}
 
 	@Override

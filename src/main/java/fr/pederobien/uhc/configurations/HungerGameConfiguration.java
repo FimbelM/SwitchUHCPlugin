@@ -17,7 +17,7 @@ public class HungerGameConfiguration extends AbstractConfiguration implements IH
 	private static final LocalTime DEFAULT_PVP_TIME = LocalTime.of(0, 0, 0);
 	private static final Double DEFAULT_BORDER_SPEED = 1.0;
 	private Block borderCenter;
-	private Double initialBorderDiameter, finalBorderDiameter, blocksPerSeconds;
+	private Double initialBorderDiameter, finalBorderDiameter, borderSpeed;
 	private LocalTime fractionTime, warningTime, pvpTime;
 
 	public HungerGameConfiguration(String name) {
@@ -92,12 +92,12 @@ public class HungerGameConfiguration extends AbstractConfiguration implements IH
 
 	@Override
 	public Double getBorderSpeed() {
-		return blocksPerSeconds == null ? DEFAULT_BORDER_SPEED : blocksPerSeconds;
+		return borderSpeed == null ? DEFAULT_BORDER_SPEED : borderSpeed;
 	}
 
 	@Override
-	public void setBorderSpeed(double blocksPerSeconds) {
-		this.blocksPerSeconds = blocksPerSeconds;
+	public void setBorderSpeed(double borderSpeed) {
+		this.borderSpeed = borderSpeed;
 	}
 
 	@Override
@@ -111,5 +111,17 @@ public class HungerGameConfiguration extends AbstractConfiguration implements IH
 		builder.append("Pvp time : " + showTime(getPvpTime()) + "\n");
 		builder.append("Border speed : " + getBorderSpeed() + " blocks/s\n");
 		return builder.toString();
+	}
+
+	@Override
+	public void reset() {
+		super.reset();
+		borderCenter = null;
+		borderSpeed = null;
+		finalBorderDiameter = null;
+		fractionTime = null;
+		initialBorderDiameter = null;
+		pvpTime = null;
+		warningTime = null;
 	}
 }

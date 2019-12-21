@@ -61,6 +61,12 @@ public class Spawn extends AbstractBawn implements ISpawn {
 	}
 
 	@Override
+	public void reset() {
+		super.reset();
+		playerSpawn = null;
+	}
+
+	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder(super.toString());
 		builder.append("Players' spawn : " + showBlock(getPlayerSpawn()) + "");

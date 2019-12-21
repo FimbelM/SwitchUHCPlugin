@@ -64,6 +64,12 @@ public class Base extends AbstractBawn implements IBase {
 	}
 
 	@Override
+	public void reset() {
+		super.reset();
+		chests.clear();
+	}
+
+	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder(super.toString());
 		builder.append("Supported colors :\n" + showColors());

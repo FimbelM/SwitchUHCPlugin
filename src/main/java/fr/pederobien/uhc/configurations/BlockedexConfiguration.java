@@ -133,4 +133,18 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 		builder.append("East base : " + getEastBase() + "\n");
 		return builder.toString();
 	}
+
+	@Override
+	public void reset() {
+		super.reset();
+		baseFromSpawnDistance = null;
+		diameterArea = null;
+		eastBase = null;
+		northBase = null;
+		radiusAreaOnPlayerDie = null;
+		radiusAreaOnPlayerKill = null;
+		southBase = null;
+		stepHealth = null;
+		westBase = null;
+	}
 }
