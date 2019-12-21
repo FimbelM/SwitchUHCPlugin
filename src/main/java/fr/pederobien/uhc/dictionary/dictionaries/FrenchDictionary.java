@@ -1526,6 +1526,38 @@ public class FrenchDictionary extends AbstractDictionary {
 			}
 		});
 
+		registerMessage(new AbstractPlayerMessage(MessageCode.STEP_HEALTH_BLOCKEDEX_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour définir le pas lorsque la vie d'un joueur doit être augmentée ou diminuée";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.STEP_HEALTH_BLOCKEDEX_GAME_NEGATIVE_STEP) {
+			@Override
+			public String getMessage(String... args) {
+				return "Le pas doit être strictement positif";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.STEP_HEALTH_BLOCKEDEX_GAME_STEP_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "La vie d'un joueur sera augmentée/diminuée de " + args[0] + " demi-coeurs";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.STEP_HEALTH_BLOCKEDEX_GAME_BAD_STEP_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de définir le pas, il doit être un double";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.STEP_HEALTH_BLOCKEDEX_GAME_MISSING_STEP) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de définir le pas, il manque le pas";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.STEP_HEALTH_BLOCKEDEX_GAME_ON_TAB_COMPLETE) {
+			@Override
+			public String getMessage(String... args) {
+				return "<pas>";
+			}
+		});
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.BAD_BASES_CONFIGURATION) {
 			@Override
 			public String getMessage(String... args) {

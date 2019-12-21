@@ -1526,6 +1526,38 @@ public class EnglishDictionary extends AbstractDictionary {
 			}
 		});
 
+		registerMessage(new AbstractPlayerMessage(MessageCode.STEP_HEALTH_BLOCKEDEX_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to define the step when player's max health should be increased or decreased";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.STEP_HEALTH_BLOCKEDEX_GAME_NEGATIVE_STEP) {
+			@Override
+			public String getMessage(String... args) {
+				return "The step must be strictly positive";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.STEP_HEALTH_BLOCKEDEX_GAME_STEP_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Players' health will be increased/decreased by " + args[0] + " half hearts";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.STEP_HEALTH_BLOCKEDEX_GAME_BAD_STEP_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot set the player's health step, it should be a double";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.STEP_HEALTH_BLOCKEDEX_GAME_MISSING_STEP) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot set the step on player's health, need the step";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.STEP_HEALTH_BLOCKEDEX_GAME_ON_TAB_COMPLETE) {
+			@Override
+			public String getMessage(String... args) {
+				return "<step>";
+			}
+		});
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.BAD_BASES_CONFIGURATION) {
 			@Override
 			public String getMessage(String... args) {
