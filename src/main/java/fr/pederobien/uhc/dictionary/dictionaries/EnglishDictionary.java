@@ -1134,6 +1134,18 @@ public class EnglishDictionary extends AbstractDictionary {
 			}
 		});
 
+		registerMessage(new AbstractPlayerMessage(MessageCode.RESET_HUNGER_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to reset hunger game style's characteristics";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RESET_HUNGER_GAME_MESSAGE) {
+			@Override
+			public String getMessage(String... args) {
+				return "The characteristics of the hunger game style " + args[0] + " have been reset";
+			}
+		});
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.SAVE_HUNGER_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {

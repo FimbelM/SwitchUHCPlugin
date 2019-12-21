@@ -1134,6 +1134,18 @@ public class FrenchDictionary extends AbstractDictionary {
 			}
 		});
 
+		registerMessage(new AbstractPlayerMessage(MessageCode.RESET_HUNGER_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour réinitialiser les caractéristiques d'un style hunger game";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RESET_HUNGER_GAME_MESSAGE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Les caractéristiques du style hunger game " + args[0] + " ont été réinitialisées";
+			}
+		});
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.SAVE_HUNGER_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
