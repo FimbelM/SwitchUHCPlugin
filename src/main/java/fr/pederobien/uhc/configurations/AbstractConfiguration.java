@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.bukkit.block.Block;
+
 import fr.pederobien.uhc.game.IGame;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.ITeam;
@@ -43,6 +45,22 @@ public abstract class AbstractConfiguration implements IConfiguration {
 
 	@Override
 	public List<ITeam> getTeams() {
+		return teams;
+	}
+
+	@Override
+	public String showTeams() {
+		String teams = "";
+		for (ITeam team : getTeams()) {
+			String showTeam = team.getName() + "[";
+			for (int i = 0; i < team.getPlayers().size(); i++) {
+				showTeam += team.getPlayers().get(i).getName();
+				if (i < team.getPlayers().size() - 1)
+					showTeam += " ";
+			}
+			showTeam += "]\n";
+			teams += team.getColor().getInColor(showTeam);
+		}
 		return teams;
 	}
 
@@ -92,6 +110,23 @@ public abstract class AbstractConfiguration implements IConfiguration {
 		for (ITeam team : getTeams())
 			players.addAll(team.getPlayers().stream().map(p -> p.getName()).collect(Collectors.toList()));
 		return players.stream();
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder("Name : " + getName() + "\n");
+		builder.append("ScoreboardRefresh : " + getScoreboardRefresh() + "\n");
+		builder.append("GameTime : " + showTime(getGameTime()) + "\n");
+		builder.append("Teams :\n" + showTeams());
+		return builder.toString();
+	}
+
+	public String showTime(LocalTime time) {
+		return time.getHour() + "h " + time.getMinute() + "m " + time.getSecond() + "s";
+	}
+
+	public String showBlock(Block block) {
+		return "X=" + block.getX() + " Y=" + block.getY() + " Z=" + block.getZ();
 	}
 
 	protected void setGame(IGame game) {

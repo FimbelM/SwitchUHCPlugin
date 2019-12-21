@@ -27,7 +27,7 @@ public class ConfigurationContext implements IConfigurationContext {
 
 	@Override
 	public void setCurrentConfiguration(IConfiguration configuration) {
-		if (this.configuration != null)
+		if (getCurrentConfiguration() != null)
 			getGame().removeObserver(PluginDeposit.plugin);
 		this.configuration = configuration;
 		TeamsManager.setCurrentConfiguration(getCurrentConfiguration());
@@ -121,61 +121,66 @@ public class ConfigurationContext implements IConfigurationContext {
 
 	@Override
 	public IGame getGame() {
-		return configuration.getGame();
+		return getCurrentConfiguration().getGame();
 	}
 
 	@Override
 	public String getName() {
-		return configuration.getName();
+		return getCurrentConfiguration().getName();
 	}
 
 	@Override
 	public void setName(String name) {
-		configuration.setName(name);
+		getCurrentConfiguration().setName(name);
 	}
 
 	@Override
 	public List<ITeam> getTeams() {
-		return configuration.getTeams();
+		return getCurrentConfiguration().getTeams();
+	}
+
+	@Override
+	public String showTeams() {
+		return getCurrentConfiguration().showTeams();
 	}
 
 	@Override
 	public ITeam getTeamByName(String name) {
-		return configuration.getTeamByName(name);
+		return getCurrentConfiguration().getTeamByName(name);
 	}
 
 	@Override
 	public boolean addTeam(ITeam team) {
-		return configuration.addTeam(team);
+		return getCurrentConfiguration().addTeam(team);
 	}
 
 	@Override
 	public void removeTeam(ITeam team) {
-		configuration.removeTeam(team);
+		getCurrentConfiguration().removeTeam(team);
 	}
 
 	@Override
 	public Long getScoreboardRefresh() {
-		return configuration.getScoreboardRefresh();
+		return getCurrentConfiguration().getScoreboardRefresh();
 	}
 
 	@Override
 	public void setScoreboardRefresh(Long refresh) {
-		configuration.setScoreboardRefresh(refresh);
+		getCurrentConfiguration().setScoreboardRefresh(refresh);
 	}
 
 	@Override
 	public LocalTime getGameTime() {
-		return configuration.getGameTime();
+		return getCurrentConfiguration().getGameTime();
 	}
 
 	@Override
 	public void setGameTime(LocalTime gameTime) {
-		configuration.setGameTime(gameTime);
+		getCurrentConfiguration().setGameTime(gameTime);
 	}
 
 	@Override
 	public Stream<String> getPlayersRegistered() {
-		return configuration.getPlayersRegistered();
+		return getCurrentConfiguration().getPlayersRegistered();
 	}
 }

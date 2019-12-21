@@ -877,7 +877,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.CURRENT_HUNGER_GAME_MESSAGE) {
 			@Override
 			public String getMessage(String... args) {
-				return "Style hunger game courant " + args[0];
+				return "Style hunger game courant :\n" + args[0];
 			}
 		});
 
@@ -1334,7 +1334,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.CURRENT_BLOCKEDEX_GAME_MESSAGE) {
 			@Override
 			public String getMessage(String... args) {
-				return "Style de jeu blockedex courant : " + args[0];
+				return "Style de jeu blockedex courant :\n" + args[0];
 			}
 		});
 

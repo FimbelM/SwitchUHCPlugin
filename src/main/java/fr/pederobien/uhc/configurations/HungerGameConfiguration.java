@@ -99,4 +99,17 @@ public class HungerGameConfiguration extends AbstractConfiguration implements IH
 	public void setBorderSpeed(double blocksPerSeconds) {
 		this.blocksPerSeconds = blocksPerSeconds;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder(super.toString());
+		builder.append("Border center : " + showBlock(getBorderCenter()) + "\n");
+		builder.append("Initial border diameter : " + getInitialBorderDiameter() + " blocks\n");
+		builder.append("Final border diameter : " + getFinalBorderDiameter() + " blocks\n");
+		builder.append("Fraction time : " + showTime(getFractionTime()) + "\n");
+		builder.append("Warning time : " + showTime(getWarningTime()) + "\n");
+		builder.append("Pvp time : " + showTime(getPvpTime()) + "\n");
+		builder.append("Border speed : " + getBorderSpeed() + " blocks/s\n");
+		return builder.toString();
+	}
 }

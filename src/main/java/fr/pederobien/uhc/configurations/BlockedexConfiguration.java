@@ -118,4 +118,19 @@ public class BlockedexConfiguration extends AbstractConfiguration implements IBl
 	public void setBaseFromSpawnDistance(int baseFromSpawnDistance) {
 		this.baseFromSpawnDistance = baseFromSpawnDistance;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder(super.toString());
+		builder.append("Respawn area diameter : " + getDiameterAreaOnPlayerRespawn() + " blocks\n");
+		builder.append("Radius area on player die : " + getRadiusAreaOnPlayerDie() + " blocks\n");
+		builder.append("Radius area on player kill : " + getRadiusAreaOnPlayerKill() + " blocks\n");
+		builder.append("Step health : " + getStepOnMaxHealth() + " half heart\n");
+		builder.append("Spawn - Base distance : " + getBaseFromSpawnDistance() + " blocks\n");
+		builder.append("North base : " + getNorthBase() + "\n");
+		builder.append("South base : " + getSouthBase() + "\n");
+		builder.append("West base : " + getWestBase() + "\n");
+		builder.append("East base : " + getEastBase() + "\n");
+		return builder.toString();
+	}
 }

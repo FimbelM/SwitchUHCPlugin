@@ -12,6 +12,8 @@ public interface IUnmodifiableConfiguration extends IUnmodifiableName {
 
 	List<ITeam> getTeams();
 
+	String showTeams();
+
 	ITeam getTeamByName(String name);
 
 	Long getScoreboardRefresh();

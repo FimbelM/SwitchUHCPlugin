@@ -877,7 +877,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.CURRENT_HUNGER_GAME_MESSAGE) {
 			@Override
 			public String getMessage(String... args) {
-				return "Current hunger game style " + args[0];
+				return "Current hunger game style :\n" + args[0];
 			}
 		});
 
@@ -1334,7 +1334,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.CURRENT_BLOCKEDEX_GAME_MESSAGE) {
 			@Override
 			public String getMessage(String... args) {
-				return "Current blockedex game style " + args[0];
+				return "Current blockedex game style :\n" + args[0];
 			}
 		});
 

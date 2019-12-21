@@ -7,11 +7,11 @@ import fr.pederobien.uhc.interfaces.IBlockedexConfiguration;
 public class CurrentBlockedexGame extends AbstractConfEdition<IBlockedexConfiguration> {
 
 	public CurrentBlockedexGame() {
-		super("current", MessageCode.AS_CURRENT_BLOCKEDEX_GAME_EXPLANATION);
+		super("current", MessageCode.CURRENT_BLOCKEDEX_GAME_EXPLANATION);
 	}
 
 	@Override
 	public void edit(String[] args) {
-		sendMessage(MessageCode.CURRENT_BLOCKEDEX_GAME_MESSAGE, get().getName());
+		sendMessage(MessageCode.CURRENT_BLOCKEDEX_GAME_MESSAGE, get().toString());
 	}
 }

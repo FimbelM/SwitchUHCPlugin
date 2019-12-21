@@ -9,7 +9,6 @@ import java.util.stream.Stream;
 import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractMapEdition;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.IMessageCode;
-import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.managers.EColor;
 import fr.pederobien.uhc.managers.PlayerManager;
 
@@ -49,19 +48,5 @@ public abstract class AbstractTeamEditions<T extends IConfiguration> extends Abs
 			if (!forbidenColors.contains(color))
 				availableColors.add(color);
 		return availableColors.stream().map(c -> c.getColorName());
-	}
-
-	protected String showTeams() {
-		String teams = "";
-		for (ITeam team : get().getTeams()) {
-			teams += team.getColor().getChatColor() + team.getName() + " [";
-			for (int i = 0; i < team.getPlayers().size(); i++) {
-				teams += team.getPlayers().get(i).getName();
-				if (i < team.getPlayers().size() - 1)
-					teams += " ";
-			}
-			teams += "]\n";
-		}
-		return teams;
 	}
 }

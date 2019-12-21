@@ -38,6 +38,10 @@ public enum EColor {
 		return colorsName;
 	}
 
+	public String getInColor(String toShow) {
+		return this.getChatColor() + toShow + ChatColor.RESET;
+	}
+
 	private EColor(ChatColor color, String colorName) {
 		this.color = color;
 		this.colorName = colorName;
@@ -52,6 +56,6 @@ public enum EColor {
 	}
 
 	public String getColoredColorName() {
-		return color + colorName + ChatColor.RESET;
+		return getInColor(colorName);
 	}
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
@@ -29,7 +28,7 @@ public class UHCTeam implements ITeam {
 
 	@Override
 	public String getColoredName() {
-		return color.getChatColor() + name + ChatColor.RESET;
+		return color.getInColor(name);
 	}
 
 	@Override
@@ -65,12 +64,12 @@ public class UHCTeam implements ITeam {
 	public void setColor(EColor color) {
 		this.color = color;
 		for (Player player : players)
-			player.setDisplayName(getColor().getChatColor() + player.getName() + ChatColor.RESET);
+			player.setDisplayName(getColor().getInColor(player.getName()));
 	}
 
 	@Override
 	public void addPlayer(Player player) {
-		player.setDisplayName(getColor().getChatColor() + player.getName() + ChatColor.RESET);
+		player.setDisplayName(getColor().getInColor(player.getName()));
 		players.add(player);
 	}
 

@@ -3,7 +3,6 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.te
 import java.util.Arrays;
 import java.util.List;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -29,7 +28,7 @@ public class NameTeam<T extends IConfiguration> extends AbstractTeamEditions<T> 
 		}
 
 		team.setName(newName);
-		sendMessage(MessageCode.TEAM_MODIFY_NAME_MODIFIED, team.getColor().getChatColor() + oldName + ChatColor.RESET, team.getColoredName());
+		sendMessage(MessageCode.TEAM_MODIFY_NAME_MODIFIED, team.getColor().getInColor(oldName), team.getColoredName());
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public class ListTeam<T extends IConfiguration> extends AbstractTeamEditions<T> 
 
 	@Override
 	public void edit(String[] args) {
-		String teams = showTeams();
+		String teams = get().showTeams();
 
 		switch (get().getTeams().size()) {
 		case 0:
