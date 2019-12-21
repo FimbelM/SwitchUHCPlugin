@@ -69,4 +69,9 @@ public class BaseEditionsFactory extends AbstractBawnEditionsFactory<IBase> {
 	public IMapEdition<IBase> createRemoveEdition() {
 		return new RemoveBase();
 	}
+
+	@Override
+	public IMapEdition<IBase> createResetEdition() {
+		return new ResetBase();
+	}
 }

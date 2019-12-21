@@ -23,6 +23,8 @@ public abstract class AbstractEditionsFactory<T extends IUnmodifiableName> {
 
 	public abstract IMapEdition<T> createDeleteEdition();
 
+	public abstract IMapEdition<T> createResetEdition();
+
 	public IPersistence<T> getPersistence() {
 		return persistence;
 	}

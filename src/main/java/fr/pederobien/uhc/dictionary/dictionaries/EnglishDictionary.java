@@ -344,6 +344,18 @@ public class EnglishDictionary extends AbstractDictionary {
 			}
 		});
 
+		registerMessage(new AbstractPlayerMessage(MessageCode.RESET_BASE_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to reset base's characteristics";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SAVE_BASE_SAVED) {
+			@Override
+			public String getMessage(String... args) {
+				return "The characteristics of the base " + args[0] + " have been reset";
+			}
+		});
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.SAVE_BASE_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {

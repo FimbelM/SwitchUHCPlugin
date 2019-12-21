@@ -344,6 +344,18 @@ public class FrenchDictionary extends AbstractDictionary {
 			}
 		});
 
+		registerMessage(new AbstractPlayerMessage(MessageCode.RESET_BASE_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour réinitialiser les caractéristiques de la base";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SAVE_BASE_SAVED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Les caractéristiques de la base " + args[0] + " ont été réinitialisés";
+			}
+		});
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.SAVE_BASE_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
