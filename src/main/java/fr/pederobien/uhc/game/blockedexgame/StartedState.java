@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+import fr.pederobien.uhc.event.InventoryClickResponse;
 import fr.pederobien.uhc.event.PlayerInteractEventResponse;
+import fr.pederobien.uhc.interfaces.IMessageCode;
 import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.managers.BaseManager;
 import fr.pederobien.uhc.managers.PlayerManager;
@@ -70,7 +72,24 @@ public class StartedState extends AbstractBlockedexState {
 	}
 
 	@Override
-	public void onPlayerInventoryMoveItem(InventoryMoveItemEvent event) {
+	public void onPlayerInventoryClick(InventoryClickEvent event) {
+		InventoryClickResponse response = BaseManager.canDropItem(event);
+
+		if (response.canDropItem())
+			return;
+
+		event.setCancelled(true);
+		Player player = (Player) event.getWhoClicked();
+		IMessageCode code;
+
+		if (response.isBlockAlreadyDropped())
+			code = MessageCode.CANNOT_DROP_ITEM_ITEM_ALREADY_DROPPED;
+		else if (response.isBlockForbidden())
+			code = MessageCode.CANNOT_DROP_ITEM_ITEM_FORBIDDEN;
+		else
+			code = MessageCode.CANNOT_GET_ITEM_BACK;
+
+		sendMessage(player, code);
 	}
 
 	private void onPlayerDie(Player player) {

@@ -1655,6 +1655,21 @@ public class EnglishDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Team " + args[0] + " eliminated ";
 			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.CANNOT_DROP_ITEM_ITEM_FORBIDDEN) {
+			@Override
+			public String getMessage(String... args) {
+				return "This item is not recognized";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.CANNOT_DROP_ITEM_ITEM_ALREADY_DROPPED) {
+			@Override
+			public String getMessage(String... args) {
+				return "This item has already been dropped";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.CANNOT_GET_ITEM_BACK) {
+			@Override
+			public String getMessage(String... args) {
+				return "You cannot get this item back";
+			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.PLAYERS_NOT_IN_TEAM) {

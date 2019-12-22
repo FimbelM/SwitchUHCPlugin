@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -111,8 +111,8 @@ public class ConfigurationContext implements IConfigurationContext {
 	}
 
 	@Override
-	public void onPlayerInventoryMoveItem(InventoryMoveItemEvent event) {
-		getGame().onPlayerInventoryMoveItem(event);
+	public void onPlayerInventoryClick(InventoryClickEvent event) {
+		getGame().onPlayerInventoryClick(event);
 	}
 
 	@Override

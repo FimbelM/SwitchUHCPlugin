@@ -7,9 +7,12 @@ import java.util.stream.Stream;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import fr.pederobien.uhc.event.EventFactory;
+import fr.pederobien.uhc.event.InventoryClickResponse;
 import fr.pederobien.uhc.event.PlayerInteractEventResponse;
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.IPersistence;
@@ -79,6 +82,18 @@ public class BaseManager {
 				return response;
 		}
 		return EventFactory.createPlayerInteractEventResponse(event, false, null);
+	}
+
+	public static InventoryClickResponse canDropItem(InventoryClickEvent event) {
+		if (event.getClickedInventory() == null || !(event.getClickedInventory().getType().equals(InventoryType.CHEST)))
+			return EventFactory.createInventoryClickResponse(event, true, false, false, false);
+
+		for (IBase base : gameBases.values()) {
+			InventoryClickResponse response = base.canDropItem(event);
+			if (!response.canDropItem())
+				return response;
+		}
+		return EventFactory.createInventoryClickResponse(event, true, false, false, false);
 	}
 
 	public static Stream<String> availableBasesAccordingTeam(List<ITeam> teams) {

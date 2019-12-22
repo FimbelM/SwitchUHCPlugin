@@ -1655,6 +1655,21 @@ public class FrenchDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "L'équipe " + args[0] + " a été éliminée ";
 			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.CANNOT_DROP_ITEM_ITEM_FORBIDDEN) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cet item n'est pas reconnu";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.CANNOT_DROP_ITEM_ITEM_ALREADY_DROPPED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cet item a déjà été déposé";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.CANNOT_GET_ITEM_BACK) {
+			@Override
+			public String getMessage(String... args) {
+				return "Vous ne pouvez pas récupérer cet item";
+			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.PLAYERS_NOT_IN_TEAM) {

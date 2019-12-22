@@ -1,7 +1,7 @@
 package fr.pederobien.uhc.event;
 
 import org.bukkit.command.CommandSender;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import fr.pederobien.uhc.interfaces.IMessageCode;
@@ -25,8 +25,8 @@ public class EventFactory {
 		return new PlayerInteractEventResponse(event, restricted, colorAllowed);
 	}
 
-	public static InventoryMoveItemResponse createInventoryMoveItemResponse(InventoryMoveItemEvent event, boolean canDropItem, boolean blockForbidden,
+	public static InventoryClickResponse createInventoryClickResponse(InventoryClickEvent event, boolean canDropItem, boolean blockForbidden,
 			boolean blockAlreadyDropped, boolean cannotGetItemBack) {
-		return new InventoryMoveItemResponse(event, canDropItem, blockForbidden, blockAlreadyDropped, cannotGetItemBack);
+		return new InventoryClickResponse(event, canDropItem, blockForbidden, blockAlreadyDropped, cannotGetItemBack);
 	}
 }

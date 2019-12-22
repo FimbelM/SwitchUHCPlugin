@@ -6,12 +6,17 @@ import java.util.Map;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.Chest;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.event.EventFactory;
+import fr.pederobien.uhc.event.InventoryClickResponse;
 import fr.pederobien.uhc.event.PlayerInteractEventResponse;
 import fr.pederobien.uhc.exceptions.BaseExtractionException;
+import fr.pederobien.uhc.game.blockedexgame.object.BlocksToFind;
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.managers.EColor;
@@ -41,6 +46,31 @@ public class Base extends AbstractBawn implements IBase {
 				restricted = !colorAuthorized.equals(color);
 			}
 		return EventFactory.createPlayerInteractEventResponse(event, restricted, colorAuthorized);
+	}
+
+	@Override
+	public InventoryClickResponse canDropItem(InventoryClickEvent event) {
+		boolean canDropItem = true, blockForbidden = false, blockAlreadyDropped = false, cannotGetItemBack = false;
+		for (ISerializableBlock b : chests.keySet()) {
+			Block block = event.getClickedInventory().getLocation().getBlock();
+			if (!getBlockFromCenter(b).equals(block))
+				continue;
+
+			if (event.getCursor().getType().equals(Material.AIR)) {
+				canDropItem = false;
+				cannotGetItemBack = true;
+			} else if (!BlocksToFind.contains(event.getCursor().getType())) {
+				canDropItem = false;
+				blockForbidden = true;
+			} else {
+				Chest chest = (Chest) block.getState();
+				if (chest.getBlockInventory().contains(event.getCursor())) {
+					canDropItem = false;
+					blockAlreadyDropped = true;
+				}
+			}
+		}
+		return EventFactory.createInventoryClickResponse(event, canDropItem, blockForbidden, blockAlreadyDropped, cannotGetItemBack);
 	}
 
 	@Override
