@@ -2,6 +2,7 @@ package fr.pederobien.uhc.game.blockedexgame;
 
 import org.bukkit.Material;
 
+import fr.pederobien.uhc.game.blockedexgame.object.BlocksToFind;
 import fr.pederobien.uhc.managers.BaseManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
@@ -19,6 +20,7 @@ public class StartState extends AbstractBlockedexState {
 		BaseManager.launchBlockedexBases();
 		TeamsManager.createTeams(getConfiguration().getTeams());
 		TeamsManager.teleporteRandomlyAllTeams(getConfiguration(), getConfiguration().getDiameterAreaOnPlayerRespawn());
+		BlocksToFind.initialize();
 		taskLauncher.run(0, 20L);
 		scoreboardLauncher.run(0, getConfiguration().getScoreboardRefresh());
 		game.setCurrentState(game.getStarted());
