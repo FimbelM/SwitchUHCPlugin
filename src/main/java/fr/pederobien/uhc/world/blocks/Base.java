@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.event.EventFactory;
@@ -15,6 +15,7 @@ import fr.pederobien.uhc.exceptions.BaseExtractionException;
 import fr.pederobien.uhc.interfaces.IBase;
 import fr.pederobien.uhc.interfaces.ISerializableBlock;
 import fr.pederobien.uhc.managers.EColor;
+import fr.pederobien.uhc.managers.TeamsManager;
 
 public class Base extends AbstractBawn implements IBase {
 	private Map<ISerializableBlock, EColor> chests;
@@ -30,15 +31,16 @@ public class Base extends AbstractBawn implements IBase {
 	}
 
 	@Override
-	public PlayerInteractEventResponse isChestRestricted(Block block, EColor color) {
+	public PlayerInteractEventResponse isChestRestricted(PlayerInteractEvent event) {
 		boolean restricted = false;
+		EColor color = TeamsManager.getTeam(event.getPlayer()).getColor();
 		EColor colorAuthorized = color;
 		for (ISerializableBlock b : chests.keySet())
-			if (getBlockFromCenter(b).equals(block)) {
+			if (getBlockFromCenter(b).equals(event.getClickedBlock())) {
 				colorAuthorized = chests.get(b);
 				restricted = !colorAuthorized.equals(color);
 			}
-		return EventFactory.createPlayerInteractEventResponse(restricted, colorAuthorized);
+		return EventFactory.createPlayerInteractEventResponse(event, restricted, colorAuthorized);
 	}
 
 	@Override

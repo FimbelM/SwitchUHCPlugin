@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 import fr.pederobien.uhc.event.EventFactory;
 import fr.pederobien.uhc.event.PlayerInteractEventResponse;
@@ -68,16 +69,16 @@ public class BaseManager {
 		gameBases.values().forEach(b -> b.remove());
 	}
 
-	public static PlayerInteractEventResponse isRestricted(EColor color, Block block) {
-		if (!block.getType().equals(Material.CHEST))
-			return EventFactory.createPlayerInteractEventResponse(false, null);
+	public static PlayerInteractEventResponse isRestricted(PlayerInteractEvent event) {
+		if (!event.getClickedBlock().getType().equals(Material.CHEST))
+			return EventFactory.createPlayerInteractEventResponse(event, false, null);
 
 		for (IBase base : gameBases.values()) {
-			PlayerInteractEventResponse response = base.isChestRestricted(block, color);
+			PlayerInteractEventResponse response = base.isChestRestricted(event);
 			if (response.isRestricted())
 				return response;
 		}
-		return new PlayerInteractEventResponse(false, null);
+		return EventFactory.createPlayerInteractEventResponse(event, false, null);
 	}
 
 	public static Stream<String> availableBasesAccordingTeam(List<ITeam> teams) {

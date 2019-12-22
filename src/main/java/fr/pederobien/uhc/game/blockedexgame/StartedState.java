@@ -60,7 +60,7 @@ public class StartedState extends AbstractBlockedexState {
 	@Override
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		ITeam playerTeam = TeamsManager.getTeam(event.getPlayer());
-		PlayerInteractEventResponse response = BaseManager.isRestricted(playerTeam.getColor(), event.getClickedBlock());
+		PlayerInteractEventResponse response = BaseManager.isRestricted(event);
 		ITeam allowedTeam = TeamsManager.getTeam(response.getColorAllowed());
 		if (!response.isRestricted())
 			return;
@@ -71,7 +71,6 @@ public class StartedState extends AbstractBlockedexState {
 
 	@Override
 	public void onPlayerInventoryClick(InventoryClickEvent event) {
-
 	}
 
 	private void onPlayerDie(Player player) {
