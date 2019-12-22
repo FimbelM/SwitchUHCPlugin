@@ -4,6 +4,7 @@ import java.time.LocalTime;
 
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -138,6 +139,11 @@ public class HungerGame extends AbstractGame implements IHungerGame {
 	@Override
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		current.onPlayerInteract(event);
+	}
+
+	@Override
+	public void onPlayerInventoryClick(InventoryClickEvent event) {
+		current.onPlayerInventoryClick(event);
 	}
 
 	@Override

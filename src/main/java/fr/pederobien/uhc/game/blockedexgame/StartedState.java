@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
@@ -66,6 +67,11 @@ public class StartedState extends AbstractBlockedexState {
 
 		event.setCancelled(true);
 		sendMessage(event.getPlayer(), MessageCode.CHEST_IS_RESTRICTED, allowedTeam.getColoredName(), playerTeam.getColoredName());
+	}
+
+	@Override
+	public void onPlayerInventoryClick(InventoryClickEvent event) {
+
 	}
 
 	private void onPlayerDie(Player player) {

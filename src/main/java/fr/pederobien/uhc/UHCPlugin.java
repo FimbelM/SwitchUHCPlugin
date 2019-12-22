@@ -5,6 +5,7 @@ import org.bukkit.GameRule;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -120,6 +121,11 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 
 	@Override
 	public void onPlayerInteract(PlayerInteractEvent event) {
+
+	}
+
+	@Override
+	public void onPlayerInventoryClick(InventoryClickEvent event) {
 
 	}
 
