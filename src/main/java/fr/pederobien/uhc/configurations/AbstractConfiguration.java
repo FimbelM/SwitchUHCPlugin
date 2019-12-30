@@ -51,16 +51,8 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	@Override
 	public String showTeams() {
 		String teams = "";
-		for (ITeam team : getTeams()) {
-			String showTeam = team.getName() + "[";
-			for (int i = 0; i < team.getPlayers().size(); i++) {
-				showTeam += team.getPlayers().get(i).getName();
-				if (i < team.getPlayers().size() - 1)
-					showTeam += " ";
-			}
-			showTeam += "]\n";
-			teams += team.getColor().getInColor(showTeam);
-		}
+		for (ITeam team : getTeams())
+			teams += team + "\n";
 		return teams;
 	}
 

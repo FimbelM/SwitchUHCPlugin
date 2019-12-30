@@ -83,4 +83,17 @@ public class UHCTeam implements ITeam {
 	public void clear() {
 		players.clear();
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder(name);
+		builder.append(" [");
+		for (int i = 0; i < players.size(); i++) {
+			builder.append(players.get(i).getName());
+			if (i < players.size() - 1)
+				builder.append(" ");
+		}
+		builder.append("]");
+		return color.getInColor(builder.toString());
+	}
 }
