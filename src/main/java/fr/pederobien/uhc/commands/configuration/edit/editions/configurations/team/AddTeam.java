@@ -26,7 +26,7 @@ public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 		try {
 			ITeam team = TeamsManager.createTeam(args[0], EColor.getByColorName(args[1]));
 			List<Player> players = new ArrayList<Player>();
-			String playerNames = team.getColor() + "";
+			String playerNames = team.getColor().getChatColor() + "";
 			for (int i = 2; i < args.length; i++) {
 				try {
 					Player player = PlayerManager.getPlayer(args[i]);
