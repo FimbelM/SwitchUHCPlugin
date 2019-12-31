@@ -1237,7 +1237,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_MUST_GO_BACK_TO_THE_OVERWORLD) {
 			@Override
 			public String getMessage(String... args) {
-				return "Go back to the overworld or you will die in " + args[0] + "h " + args[0] + "m " + args[0] + "s";
+				return "Go back to the overworld or you will die in " + args[0] + "h " + args[1] + "m " + args[2] + "s";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_MUST_STAY_IN_THE_OVERWORLD) {
 			@Override
