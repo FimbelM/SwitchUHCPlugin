@@ -14,7 +14,7 @@ import fr.pederobien.uhc.managers.PlayerManager;
 public class MovePlayer<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
 	public MovePlayer() {
-		super("moveplayer", MessageCode.TEAM_REMOVEPLAYER_EXPLANATION);
+		super("moveplayer", MessageCode.TEAM_MOVEPLAYER_EXPLANATION);
 	}
 
 	@Override
@@ -32,6 +32,11 @@ public class MovePlayer<T extends IConfiguration> extends AbstractTeamEditions<T
 				oldTeam = team;
 				break;
 			}
+
+		if (oldTeam == null) {
+			sendMessage(MessageCode.TEAM_MOVEPLAYER_PLAYER_NOT_IN_TEAM, player.getName());
+			return;
+		}
 
 		ITeam newTeam = get().getTeamByName(args[1]);
 		if (newTeam == null) {

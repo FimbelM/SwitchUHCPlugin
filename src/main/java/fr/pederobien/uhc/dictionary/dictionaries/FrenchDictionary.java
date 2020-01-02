@@ -689,7 +689,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_ADDPLAYER_ONE_PLAYER_ADDED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Joueur " + args[0] + " ajouté à l'équipe " + args[1];
+				return "Joueur " + args[0] + " a été ajouté à l'équipe " + args[1];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_ADDPLAYER_PLAYERS_ADDED) {
 			@Override
@@ -701,7 +701,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_ADDTEAM_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour ajouter une équipe à un style";
+				return "pour ajouter une équipe à un style de jeu";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_ADDTEAM_TEAM_NO_PLAYER_ADDED) {
 			@Override
@@ -721,7 +721,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_ADDTEAM_ALREADY_EXISTING_COLOR) {
 			@Override
 			public String getMessage(String... args) {
-				return "Une équipe possède déjà cette couleur " + args[0];
+				return "La couleur " + args[0] + " est déjà utilisée";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_ADDTEAM_MISSING_ARGUMENTS) {
 			@Override
@@ -733,12 +733,12 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_LIST_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour afficher le nom des équipes du style de jeu";
+				return "pour afficher le nom des équipes d'un style de jeu";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_LIST_NO_EXISTING_TEAM) {
 			@Override
 			public String getMessage(String... args) {
-				return "Il n'existe aucune équipe pour le style " + args[0];
+				return "Il n'existe aucune équipe pour le style de jeu " + args[0];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_LIST_ONE_EXISTING_TEAM) {
 			@Override
@@ -775,19 +775,19 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_MODIFY_NAME_MODIFIED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Equipe " + args[0] + " renommée en " + args[1];
+				return "Equipe " + args[0] + " a été renommée en " + args[1];
 			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_MOVEPLAYER_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour déplacer un joueur d'une équipe à une autre équipe";
+				return "pour déplacer un joueur dans une autre équipe";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_MOVEPLAYER_MOVED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Joueur " + args[0] + " déplacé dans l'équipe " + args[2] + ", ancienne équipe " + args[1];
+				return "Joueur " + args[0] + " a été déplacé dans l'équipe " + args[2] + ", ancienne équipe " + args[1];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_MOVEPLAYER_PLAYER_NOT_IN_TEAM) {
 			@Override
@@ -821,12 +821,12 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_REMOVEPLAYER_ONE_PLAYER_REMOVED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Joueur " + args[0] + " enlevé de l'équipe " + args[1];
+				return "Le joueur " + args[0] + " a été enlevé de l'équipe " + args[1];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_REMOVEPLAYER_PLAYERS_REMOVED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Joueurs " + args[0] + " enlevé de l'équipe " + args[1];
+				return "Les joueurs " + args[0] + " ont été enlevés de l'équipe " + args[1];
 			}
 		});
 
@@ -838,7 +838,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_REMOVETEAM_NO_TEAM_REMOVED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Aucune équipe enlevée";
+				return "Aucune équipe n'a été enlevée";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_REMOVETEAM_ONE_TEAM_REMOVED) {
 			@Override
