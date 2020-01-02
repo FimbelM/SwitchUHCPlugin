@@ -872,19 +872,19 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.AS_CURRENT_HUNGER_GAME_NOT_EXISTING_STYLE) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible le style hunger game " + args[0] + " comme le style courant, ce style n'existe pas";
+				return "Impossible de définir le style hunger game " + args[0] + " comme le style courant, ce style n'existe pas";
 			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.BORDER_CENTER_HUNGER_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour définir le centre de la bordure";
+				return "pour définir le centre de la bordure du monde";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.BORDER_CENTER_HUNGER_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Le centre de la bordure est défini : " + args[0] + " " + args[1];
+				return "Le centre de la bordure se situe en : " + args[0];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.BORDER_CENTER_HUNGER_GAME_MISSING_COORDINATES) {
 			@Override
@@ -896,7 +896,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.CURRENT_HUNGER_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour connaître le nom du style de jeu hunger game courant";
+				return "pour connaître les caractéristiques du style de jeu hunger game courant";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.CURRENT_HUNGER_GAME_MESSAGE) {
 			@Override
@@ -913,7 +913,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.DELETE_HUNGER_GAME_MESSAGE) {
 			@Override
 			public String getMessage(String... args) {
-				return "Style hunger game " + args[0] + " supprimé";
+				return "Style hunger game " + args[0] + " a été supprimé";
 			}
 		});
 
@@ -940,7 +940,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_BAD_DIAMETER_FORMAT) {
 			@Override
 			public String getMessage(String... args) {
-				return "Mauvais format du diamètre, il doit être un entier";
+				return "Mauvais format du diamètre final, il doit être un entier";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE) {
 			@Override
@@ -988,7 +988,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour définir le diamètre initial de la bordure";
+				return "pour définir le diamètre initial de la bordure du monde";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_DEFINED) {
 			@Override
@@ -1008,7 +1008,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_BAD_DIAMETER_FORMAT) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de définir le diamètre initial, il doit être un entier";
+				return "Mauvais format pour le diamètre initial, il doit être un entier";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE) {
 			@Override
@@ -1020,7 +1020,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.LIST_HUNGER_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour afficher le nom des styles hunger game existant";
+				return "pour afficher le nom des styles hunger game existants";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LIST_HUNGER_GAME_SIZE_EQUALS_0) {
 			@Override
@@ -1036,13 +1036,6 @@ public class FrenchDictionary extends AbstractDictionary {
 			@Override
 			public String getMessage(String... args) {
 				return "Liste des styles de jeu hunger game existant :\n" + args[0];
-			}
-		});
-
-		registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_NOT_EXISTING_STYLE) {
-			@Override
-			public String getMessage(String... args) {
-				return "Impossible de charger le style de jeu hunger game " + args[0] + ", ce style n'existe pas";
 			}
 		});
 
@@ -1115,7 +1108,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_HUNGER_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour le changer le nom du style hunger game courant";
+				return "pour renommer style hunger game courant";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_HUNGER_GAME_RENAMED) {
 			@Override
@@ -1166,12 +1159,12 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "la vitesse de la bordure est défini à " + args[0] + " blocs/secondes";
+				return "la vitesse de la bordure est défini à " + args[0] + " bloc/s";
 			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_NEGATIVE) {
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_LESS_THAN_1) {
 			@Override
 			public String getMessage(String... args) {
-				return "la vitesse de déplacement de la bordure doit être strictement positive";
+				return "la vitesse de déplacement de la bordure doit être au moins égale à 1 bloc/s";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_MISSING_SPEED) {
 			@Override
@@ -1181,7 +1174,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_BAD_SPEED_FORMAT) {
 			@Override
 			public String getMessage(String... args) {
-				return "La valeur de la vitesse doit être un nombre";
+				return "La valeur de la vitesse doit être un double (exemple : 1.5)";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_TAB_COMPLETE) {
 			@Override
@@ -1193,7 +1186,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_HUNGER_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour prévenir les joueurs qui sont dans le Nether / End de retourner à la " + "surface avant le déplacement de la bordure";
+				return "pour prévenir les joueurs qui sont dans le Nether / End de retourner à la surface avant le déplacement de la bordure";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_HUNGER_GAME_DEFINED) {
 			@Override

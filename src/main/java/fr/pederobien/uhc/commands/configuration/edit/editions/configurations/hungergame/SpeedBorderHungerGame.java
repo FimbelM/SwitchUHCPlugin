@@ -20,8 +20,8 @@ public class SpeedBorderHungerGame extends AbstractConfEdition<IHungerGameConfig
 	public void edit(String[] args) {
 		try {
 			double speed = Double.parseDouble(args[0]);
-			if (speed <= 0) {
-				sendMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_NEGATIVE);
+			if (speed < 1) {
+				sendMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_LESS_THAN_1);
 				return;
 			}
 			get().setBorderSpeed(speed);

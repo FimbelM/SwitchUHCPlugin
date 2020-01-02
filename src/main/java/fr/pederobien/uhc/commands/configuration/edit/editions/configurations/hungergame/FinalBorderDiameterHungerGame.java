@@ -20,7 +20,7 @@ public class FinalBorderDiameterHungerGame extends AbstractConfEdition<IHungerGa
 	public void edit(String[] args) {
 		try {
 			int diameter = Integer.parseInt(args[0]);
-			if (diameter < 0) {
+			if (diameter <= 0) {
 				sendMessage(MessageCode.FINAL_BORDER_NEGATIVE_DIAMETER);
 				return;
 			}

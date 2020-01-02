@@ -20,7 +20,7 @@ public class BorderCenterHungerGame extends AbstractConfEdition<IHungerGameConfi
 	public void edit(String[] args) {
 		try {
 			get().setBorderCenter(args[0], args[1]);
-			sendMessage(MessageCode.BORDER_CENTER_HUNGER_GAME_DEFINED, "" + get().getBorderCenter().getX(), "" + get().getBorderCenter().getZ());
+			sendMessage(MessageCode.BORDER_CENTER_HUNGER_GAME_DEFINED, get().getBorderCenter().getX() + " " + get().getBorderCenter().getZ());
 		} catch (IndexOutOfBoundsException | NullPointerException e) {
 			sendMessage(MessageCode.BORDER_CENTER_HUNGER_GAME_MISSING_COORDINATES);
 		} catch (NumberFormatException e) {

@@ -884,7 +884,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.BORDER_CENTER_HUNGER_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Border center defined in : " + args[0] + " " + args[1];
+				return "Border center defined in : " + args[0];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.BORDER_CENTER_HUNGER_GAME_MISSING_COORDINATES) {
 			@Override
@@ -896,7 +896,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.CURRENT_HUNGER_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "to know the name of the current hunger game style";
+				return "to know the current hunger game style's characteristics";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.CURRENT_HUNGER_GAME_MESSAGE) {
 			@Override
@@ -913,7 +913,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.DELETE_HUNGER_GAME_MESSAGE) {
 			@Override
 			public String getMessage(String... args) {
-				return "Hunger game style " + args[0] + " deleted";
+				return "Hunger game style " + args[0] + " has been deleted";
 			}
 		});
 
@@ -940,7 +940,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_BAD_DIAMETER_FORMAT) {
 			@Override
 			public String getMessage(String... args) {
-				return "Cannot parse final diameter";
+				return "Bad format for the final diameter, it should be an integer";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE) {
 			@Override
@@ -952,7 +952,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_HUNGER_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "to set the time after which player will not respawn in survival mode";
+				return "to set the time after which players will respawn in spectator mode";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_HUNGER_GAME_DEFINED) {
 			@Override
@@ -1008,7 +1008,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_BAD_DIAMETER_FORMAT) {
 			@Override
 			public String getMessage(String... args) {
-				return "Cannot parse initial diameter";
+				return "Bad format for the initial diameter, it should be an integer";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE) {
 			@Override
@@ -1039,13 +1039,6 @@ public class EnglishDictionary extends AbstractDictionary {
 			}
 		});
 
-		registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_NOT_EXISTING_STYLE) {
-			@Override
-			public String getMessage(String... args) {
-				return "Cannot load style " + args[0] + ", style does not exist";
-			}
-		});
-
 		registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_HUNGER_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
@@ -1064,12 +1057,12 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_HUNGER_GAME_STYLE_TEAMS_CREATED_LOADED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Hunger game style " + args[0] + " loaded\nTeam created : " + args[1];
+				return "Hunger game style " + args[0] + " loaded\nTeams created : " + args[1];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_HUNGER_GAME_MISSING_NAME) {
 			@Override
 			public String getMessage(String... args) {
-				return "Cannot load hunger game style, need the name";
+				return "Cannot load an hunger game style, need the name";
 			}
 		});
 
@@ -1115,7 +1108,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_HUNGER_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "to change the name of the current hunger game style";
+				return "to rename the current hunger game style";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_HUNGER_GAME_RENAMED) {
 			@Override
@@ -1161,17 +1154,17 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "to change the border’s speed when it’s moving";
+				return "to set the border’s speed";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "The border’s speed defined as " + args[0] + " blocks/seconds";
+				return "The border’s speed defined as " + args[0] + " block/s";
 			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_NEGATIVE) {
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_LESS_THAN_1) {
 			@Override
 			public String getMessage(String... args) {
-				return "The border’s speed must be strictly positive";
+				return "The border’s speed must be equals or greater than 1 block/s";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_MISSING_SPEED) {
 			@Override
@@ -1193,12 +1186,12 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_HUNGER_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "To warn players who are in the Nether / End to return to the Overworld before moving the border";
+				return "To warn players who are in the Nether / End to return to the Overworld before the border move";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_HUNGER_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Warning players " + args[0] + "h " + args[1] + "m " + args[2] + "s before moving border";
+				return "Players will be warned " + args[0] + "h " + args[1] + "m " + args[2] + "s before moving border";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_HUNGER_GAME_MISSING_TIME) {
 			@Override
