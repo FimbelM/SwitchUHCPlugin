@@ -4,12 +4,12 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 import fr.pederobien.uhc.managers.EColor;
 
-public class PlayerInteractEventResponse extends EventResponse<PlayerInteractEvent> {
+public class PlayerInteractEventResponse extends BaseEventResponse<PlayerInteractEvent> {
 	private boolean restricted;
 	private EColor colorAllowed;
 
-	public PlayerInteractEventResponse(PlayerInteractEvent event, boolean restricted, EColor colorAllowed) {
-		super(event);
+	public PlayerInteractEventResponse(PlayerInteractEvent event, boolean founded, boolean restricted, EColor colorAllowed) {
+		super(event, founded);
 		this.restricted = restricted;
 		this.colorAllowed = colorAllowed;
 	}

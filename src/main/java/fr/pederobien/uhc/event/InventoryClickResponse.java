@@ -2,12 +2,12 @@ package fr.pederobien.uhc.event;
 
 import org.bukkit.event.inventory.InventoryClickEvent;
 
-public class InventoryClickResponse extends EventResponse<InventoryClickEvent> {
+public class InventoryClickResponse extends BaseEventResponse<InventoryClickEvent> {
 	private boolean canDropItem, blockForbidden, blockAlreadyDropped, cannotGetItemBack;
 
-	protected InventoryClickResponse(InventoryClickEvent event, boolean canDropItem, boolean blockForbidden, boolean blockAlreadyDropped,
-			boolean cannotGetItemBack) {
-		super(event);
+	protected InventoryClickResponse(InventoryClickEvent event, boolean founded, boolean canDropItem, boolean blockForbidden,
+			boolean blockAlreadyDropped, boolean cannotGetItemBack) {
+		super(event, founded);
 		this.canDropItem = canDropItem;
 		this.blockForbidden = blockForbidden;
 		this.blockAlreadyDropped = blockAlreadyDropped;

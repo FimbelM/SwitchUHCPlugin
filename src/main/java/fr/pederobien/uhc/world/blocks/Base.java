@@ -37,25 +37,27 @@ public class Base extends AbstractBawn implements IBase {
 
 	@Override
 	public PlayerInteractEventResponse isChestRestricted(PlayerInteractEvent event) {
-		boolean restricted = false;
+		boolean restricted = false, founded = false;
 		EColor color = TeamsManager.getTeam(event.getPlayer()).getColor();
 		EColor colorAuthorized = color;
 		for (ISerializableBlock b : chests.keySet())
 			if (getBlockFromCenter(b).equals(event.getClickedBlock())) {
+				founded = true;
 				colorAuthorized = chests.get(b);
 				restricted = !colorAuthorized.equals(color);
 			}
-		return EventFactory.createPlayerInteractEventResponse(event, restricted, colorAuthorized);
+		return EventFactory.createPlayerInteractEventResponse(event, founded, restricted, colorAuthorized);
 	}
 
 	@Override
 	public InventoryClickResponse canDropItem(InventoryClickEvent event) {
-		boolean canDropItem = true, blockForbidden = false, blockAlreadyDropped = false, cannotGetItemBack = false;
+		boolean founded = false, canDropItem = true, blockForbidden = false, blockAlreadyDropped = false, cannotGetItemBack = false;
 		for (ISerializableBlock b : chests.keySet()) {
 			Block block = event.getClickedInventory().getLocation().getBlock();
 			if (!getBlockFromCenter(b).equals(block))
 				continue;
 
+			founded = true;
 			if (event.getCursor().getType().equals(Material.AIR)) {
 				canDropItem = false;
 				cannotGetItemBack = true;
@@ -70,7 +72,7 @@ public class Base extends AbstractBawn implements IBase {
 				}
 			}
 		}
-		return EventFactory.createInventoryClickResponse(event, canDropItem, blockForbidden, blockAlreadyDropped, cannotGetItemBack);
+		return EventFactory.createInventoryClickResponse(event, founded, canDropItem, blockForbidden, blockAlreadyDropped, cannotGetItemBack);
 	}
 
 	@Override

@@ -74,26 +74,26 @@ public class BaseManager {
 
 	public static PlayerInteractEventResponse isRestricted(PlayerInteractEvent event) {
 		if (!event.getClickedBlock().getType().equals(Material.CHEST))
-			return EventFactory.createPlayerInteractEventResponse(event, false, null);
+			return EventFactory.createPlayerInteractEventResponse(event, false, false, null);
 
 		for (IBase base : gameBases.values()) {
 			PlayerInteractEventResponse response = base.isChestRestricted(event);
-			if (response.isRestricted())
+			if (response.isFounded())
 				return response;
 		}
-		return EventFactory.createPlayerInteractEventResponse(event, false, null);
+		return EventFactory.createPlayerInteractEventResponse(event, false, false, null);
 	}
 
 	public static InventoryClickResponse canDropItem(InventoryClickEvent event) {
 		if (event.getClickedInventory() == null || !(event.getClickedInventory().getType().equals(InventoryType.CHEST)))
-			return EventFactory.createInventoryClickResponse(event, true, false, false, false);
+			return EventFactory.createInventoryClickResponse(event, false, true, false, false, false);
 
 		for (IBase base : gameBases.values()) {
 			InventoryClickResponse response = base.canDropItem(event);
-			if (!response.canDropItem())
+			if (!response.isFounded())
 				return response;
 		}
-		return EventFactory.createInventoryClickResponse(event, true, false, false, false);
+		return EventFactory.createInventoryClickResponse(event, false, true, false, false, false);
 	}
 
 	public static Stream<String> availableBasesAccordingTeam(List<ITeam> teams) {

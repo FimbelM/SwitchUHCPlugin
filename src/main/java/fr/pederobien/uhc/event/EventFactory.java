@@ -21,12 +21,13 @@ public class EventFactory {
 		return new MessageEvent(sender, createMessageCodeEvent(code, args));
 	}
 
-	public static PlayerInteractEventResponse createPlayerInteractEventResponse(PlayerInteractEvent event, boolean restricted, EColor colorAllowed) {
-		return new PlayerInteractEventResponse(event, restricted, colorAllowed);
+	public static PlayerInteractEventResponse createPlayerInteractEventResponse(PlayerInteractEvent event, boolean founded, boolean restricted,
+			EColor colorAllowed) {
+		return new PlayerInteractEventResponse(event, founded, restricted, colorAllowed);
 	}
 
-	public static InventoryClickResponse createInventoryClickResponse(InventoryClickEvent event, boolean canDropItem, boolean blockForbidden,
-			boolean blockAlreadyDropped, boolean cannotGetItemBack) {
-		return new InventoryClickResponse(event, canDropItem, blockForbidden, blockAlreadyDropped, cannotGetItemBack);
+	public static InventoryClickResponse createInventoryClickResponse(InventoryClickEvent event, boolean founded, boolean canDropItem,
+			boolean blockForbidden, boolean blockAlreadyDropped, boolean cannotGetItemBack) {
+		return new InventoryClickResponse(event, founded, canDropItem, blockForbidden, blockAlreadyDropped, cannotGetItemBack);
 	}
 }
