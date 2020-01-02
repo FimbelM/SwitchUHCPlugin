@@ -1,13 +1,10 @@
 package fr.pederobien.uhc.game.hungergame;
 
-import java.time.Duration;
 import java.time.LocalTime;
 
 import org.bukkit.GameMode;
 
-import fr.pederobien.uhc.dictionary.NotificationCenter;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
-import fr.pederobien.uhc.event.EventFactory;
 import fr.pederobien.uhc.game.AbstractGameState;
 import fr.pederobien.uhc.interfaces.IUnmodifiableHungerGameConfiguration;
 import fr.pederobien.uhc.managers.EColor;
@@ -34,18 +31,22 @@ public abstract class AbstractHungerGameState extends AbstractGameState implemen
 		WorldManager.setPVP(true);
 	}
 
-	protected void warnPlayers(LocalTime time) {
-		if (!alreadyWarned) {
-			LocalTime toMovingBorder = LocalTime.ofNanoOfDay(Duration.between(time, getConfiguration().getGameTime()).toNanos());
-
-			WorldManager.getPlayersInWorld(WorldManager.NETHER_WORLD, WorldManager.END_WORLD)
-					.forEach(p -> NotificationCenter.sendMessage(EventFactory.createMessageEvent(p, MessageCode.PLAYER_MUST_GO_BACK_TO_THE_OVERWORLD,
-							"" + toMovingBorder.getHour(), "" + toMovingBorder.getMinute(), "" + toMovingBorder.getSecond())));
-		}
+	protected void warnPlayers() {
+		if (!alreadyWarned)
+			warn(getConfiguration().getWarningTime());
 		alreadyWarned = true;
 	}
 
 	protected IUnmodifiableHungerGameConfiguration getConfiguration() {
 		return game.getConfiguration();
+	}
+
+	protected void warn(LocalTime time) {
+		WorldManager.getPlayersInWorld(WorldManager.NETHER_WORLD, WorldManager.END_WORLD).forEach(p -> sendMessage(p,
+				MessageCode.PLAYER_MUST_GO_BACK_TO_THE_OVERWORLD, "" + time.getHour(), "" + time.getMinute(), "" + time.getSecond()));
+	}
+
+	protected LocalTime getAbsoluteWarningTime() {
+		return getConfiguration().getGameTime().minusSeconds(getConfiguration().getWarningTime().toSecondOfDay());
 	}
 }

@@ -27,7 +27,7 @@ public class InitialState extends AbstractHungerGameState {
 
 		timeLine.addObserver(getConfiguration().getFractionTime(), game);
 		timeLine.addObserver(getConfiguration().getGameTime(), game);
-		timeLine.addObserver(getConfiguration().getWarningTime(), game);
+		timeLine.addObserver(getAbsoluteWarningTime(), game);
 		timeLine.addObserver(getConfiguration().getPvpTime(), game);
 		timeLine.addObserver(getConfiguration().getGameTime(), scoreboardLauncher);
 		return true;

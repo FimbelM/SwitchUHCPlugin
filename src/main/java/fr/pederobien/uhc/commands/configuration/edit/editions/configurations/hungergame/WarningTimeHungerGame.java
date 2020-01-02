@@ -22,8 +22,8 @@ public class WarningTimeHungerGame extends AbstractConfEdition<IHungerGameConfig
 	public void edit(String[] args) {
 		try {
 			get().setWarningTime(LocalTime.parse(args[0]));
-			sendMessage(MessageCode.WARNING_TIME_HUNGER_GAME_DEFINED, "" + get().getWarningTime().getHour(), "" + get().getWarningTime().getHour(),
-					"" + get().getWarningTime().getHour());
+			sendMessage(MessageCode.WARNING_TIME_HUNGER_GAME_DEFINED, "" + get().getWarningTime().getHour(), "" + get().getWarningTime().getMinute(),
+					"" + get().getWarningTime().getSecond());
 		} catch (IndexOutOfBoundsException e) {
 			sendMessage(MessageCode.WARNING_TIME_HUNGER_GAME_MISSING_TIME);
 		} catch (DateTimeParseException e) {
