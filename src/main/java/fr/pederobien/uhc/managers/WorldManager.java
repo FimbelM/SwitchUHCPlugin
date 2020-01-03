@@ -23,9 +23,13 @@ import fr.pederobien.uhc.interfaces.IUnmodifiableSpawn;
 
 public class WorldManager {
 	public static final Set<EntityType> MOBS;
-	public static final World SURFACE_WORLD = getWorld("world");
-	public static final World NETHER_WORLD = getWorld("world_nether");
-	public static final World END_WORLD = getWorld("world_the_end");
+	public static final World SURFACE_WORLD;
+	public static final World NETHER_WORLD;
+	public static final World END_WORLD;
+
+	private static final String SURFACE_WORLD_NAME = "world";
+	private static final String NETHER_WORLD_NAME = "world_nether";
+	private static final String END_WORLD_NAME = "world_the_end";
 
 	private static Random rand;
 	private static World world;
@@ -34,6 +38,10 @@ public class WorldManager {
 	private static Map<Block, BlockData> listBeforeCrossUnderSpawn;
 
 	static {
+		SURFACE_WORLD = getWorld(SURFACE_WORLD_NAME);
+		NETHER_WORLD = getWorld(NETHER_WORLD_NAME);
+		END_WORLD = getWorld(END_WORLD_NAME);
+
 		rand = new Random();
 		MOBS = new HashSet<>();
 		world = SURFACE_WORLD;
@@ -75,6 +83,10 @@ public class WorldManager {
 
 	public static World getWorld(String name) {
 		return BukkitManager.getWorld(name);
+	}
+
+	public static String getNormalizeWorldName(String worldName) {
+		return worldName.substring("world_".length()).replace('_', ' ');
 	}
 
 	public static void setPVP(boolean pvp) {

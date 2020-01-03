@@ -1336,7 +1336,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.BASE_DISTANCE_BLOCKEDEX_GAME_NEGATIVE_DISTANCE) {
 			@Override
 			public String getMessage(String... args) {
-				return "La distance doit être positive";
+				return "La distance doit être strictement positive";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.BASE_DISTANCE_BLOCKEDEX_GAME_MISSING_DISTANCE) {
 			@Override
@@ -1358,7 +1358,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.CURRENT_BLOCKEDEX_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour connaître le nom du style de jeu blockedex courant";
+				return "pour connaître les caractéristiques du style de jeu blockedex courant";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.CURRENT_BLOCKEDEX_GAME_MESSAGE) {
 			@Override
@@ -1375,7 +1375,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.DELETE_BLOCKEDEX_GAME_MESSAGE) {
 			@Override
 			public String getMessage(String... args) {
-				return "Style blockedex " + args[0] + " supprimé";
+				return "Le style blockedex " + args[0] + " a été supprimé";
 			}
 		});
 
@@ -1421,7 +1421,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.LIST_BLOCKEDEX_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour afficher le nom de tous le(s) style(s) de jeu blockedex existants";
+				return "pour afficher le nom de tous le(s) style(s) de jeu blockedex existant(s)";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LIST_BLOCKEDEX_GAME_SIZE_EQUALS_0) {
 			@Override
@@ -1448,7 +1448,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_BLOCKEDEX_GAME_STYLE_NO_TEAM_CREATED_LOADED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Style de jeu blockedex " + args[0] + " chargé\nAucune équipe créées";
+				return "Style de jeu blockedex " + args[0] + " chargé\nAucune équipe créée";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_BLOCKEDEX_GAME_STYLE_ONE_TEAM_CREATED_LOADED) {
 			@Override
@@ -1566,7 +1566,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_BLOCKEDEX_GAME_ALREADY_EXISTING) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de renommer le style de jeu blockedex " + args[0] + " en " + args[1] + ", ce style existe déjà";
+				return "Impossible de renommer le style blockedex " + args[0] + " en " + args[1] + ", ce style existe déjà";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_BLOCKEDEX_GAME_MISSING_NAME) {
 			@Override
@@ -1590,7 +1590,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.SAVE_BLOCKEDEX_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour sauvegarder le style de jeu blockedex courant";
+				return "pour sauvegarder le style blockedex courant";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SAVE_BLOCKEDEX_GAME_SAVED) {
 			@Override
@@ -1685,7 +1685,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.GAME_RESUMED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Partie reprise";
+				return "Reprise";
 			}
 		});
 	}

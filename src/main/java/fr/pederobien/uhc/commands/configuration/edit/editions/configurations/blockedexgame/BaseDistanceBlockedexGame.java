@@ -21,7 +21,7 @@ public class BaseDistanceBlockedexGame extends AbstractConfEdition<IBlockedexCon
 		int distance;
 		try {
 			distance = Integer.parseInt(args[0]);
-			if (distance < 0) {
+			if (distance <= 0) {
 				sendMessage(MessageCode.BASE_DISTANCE_BLOCKEDEX_GAME_NEGATIVE_DISTANCE);
 				return;
 			}

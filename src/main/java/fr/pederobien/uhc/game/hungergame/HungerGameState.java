@@ -50,6 +50,6 @@ public class HungerGameState extends AbstractHungerGameState {
 	public void onPlayerPortalEvent(PlayerPortalEvent event) {
 		event.setCancelled(true);
 		NotificationCenter.sendMessage(EventFactory.createMessageEvent(event.getPlayer(), MessageCode.PLAYER_MUST_STAY_IN_THE_OVERWORLD,
-				event.getTo().getWorld().getName()));
+				WorldManager.getNormalizeWorldName(event.getTo().getWorld().getName())));
 	}
 }

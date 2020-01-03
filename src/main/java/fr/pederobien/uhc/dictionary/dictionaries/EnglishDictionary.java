@@ -1336,7 +1336,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.BASE_DISTANCE_BLOCKEDEX_GAME_NEGATIVE_DISTANCE) {
 			@Override
 			public String getMessage(String... args) {
-				return "The distance should be positive";
+				return "The distance should be strictly positive";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.BASE_DISTANCE_BLOCKEDEX_GAME_MISSING_DISTANCE) {
 			@Override
@@ -1358,7 +1358,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.CURRENT_BLOCKEDEX_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "to know the name of the current blockedex game style";
+				return "to know the current blockedex game style's characteristics";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.CURRENT_BLOCKEDEX_GAME_MESSAGE) {
 			@Override
@@ -1375,7 +1375,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.DELETE_BLOCKEDEX_GAME_MESSAGE) {
 			@Override
 			public String getMessage(String... args) {
-				return "Blockedex style " + args[0] + " deleted";
+				return "Blockedex style " + args[0] + " has been deleted";
 			}
 		});
 
@@ -1443,7 +1443,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_BLOCKEDEX_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "to load an blockedex game style";
+				return "to load a blockedex game style";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_BLOCKEDEX_GAME_STYLE_NO_TEAM_CREATED_LOADED) {
 			@Override
