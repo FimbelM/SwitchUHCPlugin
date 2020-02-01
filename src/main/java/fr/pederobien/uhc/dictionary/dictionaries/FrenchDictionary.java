@@ -772,6 +772,11 @@ public class FrenchDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "La couleur de l'équipe " + args[0] + " a été mise à jour";
 			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_MODIFY_COLOR_UNCHANGED) {
+			@Override
+			public String getMessage(String... args) {
+				return "La couleur de l'équipe " + args[0] + " est inchangée";
+			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_MODIFY_NAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {

@@ -10,6 +10,7 @@ import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.managers.EColor;
+import fr.pederobien.uhc.managers.TeamsManager;
 
 public class ColorTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
@@ -30,6 +31,16 @@ public class ColorTeam<T extends IConfiguration> extends AbstractTeamEditions<T>
 		EColor color = EColor.getByColorName(args[1]);
 		if (color == null) {
 			sendMessage(MessageCode.TEAM_BAD_COLOR, args[1]);
+			return;
+		}
+
+		if (color.equals(team.getColor())) {
+			sendMessage(MessageCode.TEAM_MODIFY_COLOR_UNCHANGED, team.getColoredName());
+			return;
+		}
+
+		if (!TeamsManager.isColorValide(get(), color)) {
+			sendMessage(MessageCode.TEAM_ADDTEAM_ALREADY_EXISTING_COLOR, color.getColoredColorName());
 			return;
 		}
 

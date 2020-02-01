@@ -772,6 +772,11 @@ public class EnglishDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return args[0] + "'s color has been updated";
 			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_MODIFY_COLOR_UNCHANGED) {
+			@Override
+			public String getMessage(String... args) {
+				return args[0] + "'s color unchanged";
+			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_MODIFY_NAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
