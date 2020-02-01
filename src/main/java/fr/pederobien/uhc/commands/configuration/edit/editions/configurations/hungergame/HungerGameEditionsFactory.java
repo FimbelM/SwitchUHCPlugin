@@ -85,7 +85,7 @@ public class HungerGameEditionsFactory extends AbstractConfigurationEditionsFact
 	}
 
 	public IMapEdition<IHungerGameConfiguration> createSpeedBorderEdition() {
-		return new SpeedBorderHungerGame();
+		return new BorderSpeedHungerGame();
 	}
 
 	public IMapEdition<IHungerGameConfiguration> createFractionTimeEdition() {

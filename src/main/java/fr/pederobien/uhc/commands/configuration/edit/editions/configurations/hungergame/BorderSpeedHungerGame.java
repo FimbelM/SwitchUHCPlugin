@@ -10,10 +10,10 @@ import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.Abs
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IHungerGameConfiguration;
 
-public class SpeedBorderHungerGame extends AbstractConfEdition<IHungerGameConfiguration> {
+public class BorderSpeedHungerGame extends AbstractConfEdition<IHungerGameConfiguration> {
 
-	public SpeedBorderHungerGame() {
-		super("speedborder", MessageCode.SPEED_BORDER_HUNGER_GAME_EXPLANATION);
+	public BorderSpeedHungerGame() {
+		super("borderspeed", MessageCode.SPEED_BORDER_HUNGER_GAME_EXPLANATION);
 	}
 
 	@Override
