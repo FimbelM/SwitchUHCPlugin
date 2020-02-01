@@ -17,6 +17,7 @@ import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.interfaces.IUnmodifiableConfiguration;
 
 public class TeamsManager {
+	public static final String ALL = "all";
 	private static Random rand = new Random();
 	private static IUnmodifiableConfiguration configuration;
 
@@ -120,6 +121,10 @@ public class TeamsManager {
 			if (randomTeam.getPlayers().size() == maxPlayer)
 				copy.remove(randomTeam);
 		}
+	}
+
+	public static boolean isNameForbidden(String name) {
+		return name.equals(ALL);
 	}
 
 	public static boolean isNameValide(IConfiguration conf, String name) {

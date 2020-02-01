@@ -11,9 +11,9 @@ import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.IMessageCode;
 import fr.pederobien.uhc.interfaces.ITeam;
+import fr.pederobien.uhc.managers.TeamsManager;
 
 public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
-	private static final String ALL = "all";
 
 	public RemoveTeam() {
 		super("removeteam", MessageCode.TEAM_REMOVETEAM_EXPLANATION);
@@ -23,7 +23,7 @@ public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 	public void edit(String[] args) {
 		List<ITeam> teams = new ArrayList<ITeam>();
 
-		if (args[0].equals(ALL)) {
+		if (args[0].equals(TeamsManager.ALL)) {
 			teams.addAll(get().getTeams());
 			for (ITeam team : teams)
 				get().removeTeam(team);
@@ -73,9 +73,11 @@ public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 		Stream<String> teams = getTeams(args);
 		switch (args.length) {
 		case 1:
-			teams = Stream.concat(teams, Stream.of(ALL));
+			teams = Stream.concat(teams, Stream.of(TeamsManager.ALL));
+			break;
 		case 2:
-			teams = args[0].equals(ALL) ? ((List<String>) emptyList()).stream() : getTeams(args);
+			teams = args[0].equals(TeamsManager.ALL) ? ((List<String>) emptyList()).stream() : getTeams(args);
+			break;
 		default:
 			break;
 		}

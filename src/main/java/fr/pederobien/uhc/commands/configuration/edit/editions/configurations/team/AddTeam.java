@@ -40,6 +40,11 @@ public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 				}
 			}
 
+			if (TeamsManager.isNameForbidden(team.getName())) {
+				sendMessage(MessageCode.TEAM_FORBIDDEN_NAME, team.getName());
+				return;
+			}
+
 			if (!TeamsManager.isNameValide(get(), team.getName())) {
 				sendMessage(MessageCode.TEAM_ALREADY_EXISTING_TEAM_NAME, team.getName());
 				return;

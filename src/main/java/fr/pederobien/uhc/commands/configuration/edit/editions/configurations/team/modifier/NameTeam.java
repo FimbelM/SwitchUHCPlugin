@@ -33,6 +33,11 @@ public class NameTeam<T extends IConfiguration> extends AbstractTeamEditions<T> 
 			return;
 		}
 
+		if (TeamsManager.isNameForbidden(newName)) {
+			sendMessage(MessageCode.TEAM_FORBIDDEN_NAME, newName);
+			return;
+		}
+
 		if (!TeamsManager.isNameValide(get(), newName)) {
 			sendMessage(MessageCode.TEAM_ALREADY_EXISTING_TEAM_NAME, newName);
 			return;
