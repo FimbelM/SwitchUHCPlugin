@@ -39,7 +39,13 @@ public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 					return;
 				}
 			}
-			if (!get().addTeam(team)) {
+
+			if (!TeamsManager.isNameValide(get(), team.getName())) {
+				sendMessage(MessageCode.TEAM_ADDTEAM_ALREADY_EXISTING_TEAM, team.getName());
+				return;
+			}
+
+			if (!TeamsManager.isColorValide(get(), team.getColor())) {
 				sendMessage(MessageCode.TEAM_ADDTEAM_ALREADY_EXISTING_COLOR, team.getColor().getColorName());
 				return;
 			}

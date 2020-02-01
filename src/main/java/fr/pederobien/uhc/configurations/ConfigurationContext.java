@@ -156,8 +156,8 @@ public class ConfigurationContext implements IConfigurationContext {
 	}
 
 	@Override
-	public boolean addTeam(ITeam team) {
-		return getCurrentConfiguration().addTeam(team);
+	public void addTeam(ITeam team) {
+		getCurrentConfiguration().addTeam(team);
 	}
 
 	@Override

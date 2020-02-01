@@ -723,6 +723,11 @@ public class EnglishDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "The color " + args[0] + " is already used";
 			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_ADDTEAM_ALREADY_EXISTING_TEAM) {
+			@Override
+			public String getMessage(String... args) {
+				return "The team " + args[0] + " already exists";
+			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_ADDTEAM_MISSING_ARGUMENTS) {
 			@Override
 			public String getMessage(String... args) {

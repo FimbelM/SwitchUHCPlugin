@@ -65,10 +65,8 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	}
 
 	@Override
-	public boolean addTeam(ITeam team) {
-		if (teams.contains(team))
-			return false;
-		return teams.add(team);
+	public void addTeam(ITeam team) {
+		teams.add(team);
 	}
 
 	@Override

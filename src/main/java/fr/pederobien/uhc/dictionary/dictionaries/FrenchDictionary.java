@@ -723,6 +723,11 @@ public class FrenchDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "La couleur " + args[0] + " est déjà utilisée";
 			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_ADDTEAM_ALREADY_EXISTING_TEAM) {
+			@Override
+			public String getMessage(String... args) {
+				return "L'équipe " + args[0] + " existe déjà";
+			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_ADDTEAM_MISSING_ARGUMENTS) {
 			@Override
 			public String getMessage(String... args) {

@@ -3,6 +3,7 @@ package fr.pederobien.uhc.managers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.bukkit.ChatColor;
@@ -11,6 +12,7 @@ import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.BukkitManager;
 import fr.pederobien.uhc.environment.UHCTeam;
+import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.interfaces.IUnmodifiableConfiguration;
 
@@ -50,8 +52,8 @@ public class TeamsManager {
 	}
 
 	public static List<Player> getCollegues(Player player) {
-		return configuration.getTeams().stream().filter(t -> t.getPlayers().contains(player)).findFirst().get().getPlayers().stream()
-				.filter(n -> !n.equals(player)).collect(Collectors.toList());
+		return configuration.getTeams().stream().filter(t -> t.getPlayers().contains(player)).findFirst().get().getPlayers().stream().filter(n -> !n.equals(player))
+				.collect(Collectors.toList());
 	}
 
 	public static Player getRandomCollegue(Player player) {
@@ -118,5 +120,20 @@ public class TeamsManager {
 			if (randomTeam.getPlayers().size() == maxPlayer)
 				copy.remove(randomTeam);
 		}
+	}
+
+	public static boolean isNameValide(IConfiguration conf, String name) {
+		return isValide(conf, t -> t.getName().equals(name));
+	}
+
+	public static boolean isColorValide(IConfiguration conf, EColor color) {
+		return isValide(conf, t -> t.getColor().equals(color));
+	}
+
+	private static boolean isValide(IConfiguration conf, Predicate<ITeam> filter) {
+		for (ITeam team : conf.getTeams())
+			if (filter.test(team))
+				return false;
+		return true;
 	}
 }
