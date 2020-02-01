@@ -3,6 +3,7 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.te
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -62,6 +63,11 @@ public class RemovePlayer<T extends IConfiguration> extends AbstractTeamEditions
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		if (args.length == 1)
 			return filter(getTeamNamesWithoutColor(), args[0]);
-		return filter(getPlayersName(args[0], Arrays.copyOfRange(args, 1, args.length)), args[args.length - 1]);
+		else {
+			Optional<ITeam> team = getTeam(args[0]);
+			if ((team.isPresent()))
+				return filter(getPlayersName(team.get(), Arrays.copyOfRange(args, 1, args.length)), args[args.length - 1]);
+		}
+		return super.onTabComplete(sender, command, alias, args);
 	}
 }

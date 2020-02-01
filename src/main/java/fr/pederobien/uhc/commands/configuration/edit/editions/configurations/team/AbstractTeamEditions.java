@@ -3,12 +3,14 @@ package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.te
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import fr.pederobien.uhc.commands.configuration.edit.editions.AbstractMapEdition;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.IMessageCode;
+import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.managers.EColor;
 import fr.pederobien.uhc.managers.PlayerManager;
 
@@ -16,6 +18,10 @@ public abstract class AbstractTeamEditions<T extends IConfiguration> extends Abs
 
 	public AbstractTeamEditions(String label, IMessageCode explanation) {
 		super(label, explanation);
+	}
+
+	protected Optional<ITeam> getTeam(String name) {
+		return get().getTeams().stream().filter(t -> t.getName().equals(name)).findFirst();
 	}
 
 	protected Stream<String> getTeamNamesWithoutColor() {
@@ -36,9 +42,8 @@ public abstract class AbstractTeamEditions<T extends IConfiguration> extends Abs
 		return players.stream().filter(s -> !Arrays.asList(playersAlreadyMentionned).contains(s));
 	}
 
-	protected Stream<String> getPlayersName(String teamName, String[] playersAlreadyMentionned) {
-		return get().getTeams().stream().filter(t -> t.getName().equals(teamName)).findFirst().get().getPlayers().stream().map(p -> p.getName())
-				.filter(s -> !Arrays.asList(playersAlreadyMentionned).contains(s));
+	protected Stream<String> getPlayersName(ITeam team, String[] playersAlreadyMentionned) {
+		return team.getPlayers().stream().map(p -> p.getName()).filter(s -> !Arrays.asList(playersAlreadyMentionned).contains(s));
 	}
 
 	protected Stream<String> getAvailableColors() {
