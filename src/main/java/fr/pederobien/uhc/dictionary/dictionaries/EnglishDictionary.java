@@ -284,7 +284,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LIST_BASE_SIZE_GREATER_THAN_0) {
 			@Override
 			public String getMessage(String... args) {
-				return "List of existing bases : " + args[0];
+				return "List of existing bases :\n" + args[0];
 			}
 		});
 
@@ -468,7 +468,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LIST_SPAWN_SIZE_GREATER_THAN_0) {
 			@Override
 			public String getMessage(String... args) {
-				return "List of existing spawns : " + args[0];
+				return "List of existing spawns :\n" + args[0];
 			}
 		});
 
@@ -1055,7 +1055,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LIST_HUNGER_GAME_SIZE_GREATER_THAN_0) {
 			@Override
 			public String getMessage(String... args) {
-				return "Existing hunger game styles :\n" + args[0];
+				return "List of existing hunger game styles :\n" + args[0];
 			}
 		});
 

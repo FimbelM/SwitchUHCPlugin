@@ -27,10 +27,13 @@ public abstract class CommonList<T extends IUnmodifiableName> extends AbstractMa
 		switch (list.size()) {
 		case 0:
 			onSizeEquals0();
+			break;
 		case 1:
 			onSizeEquals1(getAllNames(list));
+			break;
 		default:
 			onSizeGreaterThan0(getAllNames(list));
+			break;
 		}
 	}
 

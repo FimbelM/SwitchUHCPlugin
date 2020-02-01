@@ -284,7 +284,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LIST_BASE_SIZE_GREATER_THAN_0) {
 			@Override
 			public String getMessage(String... args) {
-				return "Liste des bases existantes : " + args[0];
+				return "Liste des bases existantes :\n" + args[0];
 			}
 		});
 
@@ -468,7 +468,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LIST_SPAWN_SIZE_GREATER_THAN_0) {
 			@Override
 			public String getMessage(String... args) {
-				return "Liste des spawns existants : " + args[0];
+				return "Liste des spawns existants :\n" + args[0];
 			}
 		});
 
@@ -1055,7 +1055,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LIST_HUNGER_GAME_SIZE_GREATER_THAN_0) {
 			@Override
 			public String getMessage(String... args) {
-				return "Liste des styles de jeu hunger game existant :\n" + args[0];
+				return "Liste des styles de jeu hunger game existants :\n" + args[0];
 			}
 		});
 
@@ -1456,7 +1456,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LIST_BLOCKEDEX_GAME_SIZE_GREATER_THAN_0) {
 			@Override
 			public String getMessage(String... args) {
-				return "Liste des styles de jeu blockedex :\n" + args[0];
+				return "Liste des styles de jeu blockedex existants :\n" + args[0];
 			}
 		});
 
