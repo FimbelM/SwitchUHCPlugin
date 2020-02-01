@@ -674,6 +674,16 @@ public class EnglishDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return args[0] + " does not correspond to a color";
 			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_ALREADY_EXISTING_TEAM_COLOR) {
+			@Override
+			public String getMessage(String... args) {
+				return "The color " + args[0] + " is already used";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_ALREADY_EXISTING_TEAM_NAME) {
+			@Override
+			public String getMessage(String... args) {
+				return "The team " + args[0] + " already exists";
+			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_ADDPLAYER_EXPLANATION) {
@@ -717,16 +727,6 @@ public class EnglishDictionary extends AbstractDictionary {
 			@Override
 			public String getMessage(String... args) {
 				return "Team " + args[0] + " created, players added " + args[1];
-			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_ADDTEAM_ALREADY_EXISTING_COLOR) {
-			@Override
-			public String getMessage(String... args) {
-				return "The color " + args[0] + " is already used";
-			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_ADDTEAM_ALREADY_EXISTING_TEAM) {
-			@Override
-			public String getMessage(String... args) {
-				return "The team " + args[0] + " already exists";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_ADDTEAM_MISSING_ARGUMENTS) {
 			@Override
@@ -775,7 +775,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_MODIFY_COLOR_UNCHANGED) {
 			@Override
 			public String getMessage(String... args) {
-				return args[0] + "'s color unchanged";
+				return args[0] + "'s color has not been changed";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_MODIFY_NAME_EXPLANATION) {
 			@Override
@@ -786,6 +786,11 @@ public class EnglishDictionary extends AbstractDictionary {
 			@Override
 			public String getMessage(String... args) {
 				return "Team " + args[0] + " renamed as " + args[1];
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_MODIFY_NAME_UNCHANGED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Team " + args[0] + "'s name has not been changed";
 			}
 		});
 

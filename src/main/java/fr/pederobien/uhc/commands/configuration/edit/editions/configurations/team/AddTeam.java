@@ -41,17 +41,19 @@ public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 			}
 
 			if (!TeamsManager.isNameValide(get(), team.getName())) {
-				sendMessage(MessageCode.TEAM_ADDTEAM_ALREADY_EXISTING_TEAM, team.getName());
+				sendMessage(MessageCode.TEAM_ALREADY_EXISTING_TEAM_NAME, team.getName());
 				return;
 			}
 
 			if (!TeamsManager.isColorValide(get(), team.getColor())) {
-				sendMessage(MessageCode.TEAM_ADDTEAM_ALREADY_EXISTING_COLOR, team.getColor().getColoredColorName());
+				sendMessage(MessageCode.TEAM_ALREADY_EXISTING_TEAM_COLOR, team.getColor().getColoredColorName());
 				return;
 			}
 
 			for (Player player : players)
 				team.addPlayer(player);
+
+			get().addTeam(team);
 
 			switch (players.size()) {
 			case 0:
