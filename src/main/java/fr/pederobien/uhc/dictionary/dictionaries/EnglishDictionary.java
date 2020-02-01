@@ -1091,12 +1091,12 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.PVP_TIME_HUNGER_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "to set the time after which pvp is authorized";
+				return "to set the time after which pvp is enabled";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.PVP_TIME_HUNGER_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Pvp is authorized after " + args[0] + "h " + args[1] + "m " + args[2] + "s of play";
+				return "Pvp is enabled after " + args[0] + "h " + args[1] + "m " + args[2] + "s of play";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.PVP_TIME_HUNGER_GAME_MISSING_TIME) {
 			@Override
