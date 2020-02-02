@@ -2,6 +2,7 @@ package fr.pederobien.uhc.world;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -29,50 +30,42 @@ public class EventListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerJoin(PlayerJoinEvent event) {
-		for (IObsListener obs : observers)
-			obs.onPlayerJoin(event);
+		notify(o -> o.onPlayerJoin(event));
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerDie(PlayerDeathEvent event) {
-		for (IObsListener obs : observers)
-			obs.onPlayerDie(event);
+		notify(o -> o.onPlayerDie(event));
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerQuit(PlayerQuitEvent event) {
-		for (IObsListener obs : observers)
-			obs.onPlayerQuit(event);
+		notify(o -> o.onPlayerQuit(event));
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
-		for (IObsListener obs : observers)
-			obs.onPlayerRespawn(event);
+		notify(o -> o.onPlayerRespawn(event));
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerMove(PlayerMoveEvent event) {
-		for (IObsListener obs : observers)
-			obs.onPlayerMove(event);
+		notify(o -> o.onPlayerMove(event));
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerInteract(PlayerInteractEvent event) {
-		for (IObsListener obs : observers)
-			obs.onPlayerInteract(event);
+		notify(o -> o.onPlayerInteract(event));
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerInventoryClick(InventoryClickEvent event) {
-		for (IObsListener obs : observers)
-			obs.onPlayerInventoryClick(event);
+		notify(o -> o.onPlayerInventoryClick(event));
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onCreatureSpawn(CreatureSpawnEvent event) {
-		for (IObsListener obs : observers)
-			obs.onCreatureSpawn(event);
+		notify(o -> o.onCreatureSpawn(event));
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -82,8 +75,7 @@ public class EventListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerPortalEvent(PlayerPortalEvent event) {
-		for (IObsListener obs : observers)
-			obs.onPlayerPortalEvent(event);
+		notify(o -> o.onPlayerPortalEvent(event));
 	}
 
 	public void addObservers(IObsListener obs) {
@@ -92,5 +84,10 @@ public class EventListener implements Listener {
 
 	public void removeObservers(IObsListener obs) {
 		observers.remove(obs);
+	}
+
+	private void notify(Consumer<IObsListener> consumer) {
+		for (IObsListener obs : observers)
+			consumer.accept(obs);
 	}
 }
