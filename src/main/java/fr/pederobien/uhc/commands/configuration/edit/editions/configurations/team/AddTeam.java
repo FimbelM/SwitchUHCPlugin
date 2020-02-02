@@ -24,20 +24,8 @@ public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 			String teamName = args[0];
 			EColor teamColor = EColor.getByColorName(args[1]);
 
-			if (TeamsManager.isNameForbidden(teamName)) {
-				sendMessage(MessageCode.TEAM_FORBIDDEN_NAME, teamName);
+			if (!isNameForbidden(teamName) || !isNameValide(teamName) || !isColorValide(teamColor))
 				return;
-			}
-
-			if (!TeamsManager.isNameValide(get(), teamName)) {
-				sendMessage(MessageCode.TEAM_ALREADY_EXISTING_TEAM_NAME, teamName);
-				return;
-			}
-
-			if (!TeamsManager.isColorValide(get(), teamColor)) {
-				sendMessage(MessageCode.TEAM_ALREADY_EXISTING_TEAM_COLOR, teamColor.getColoredColorName());
-				return;
-			}
 
 			ITeam team = TeamsManager.createTeam(args[0], EColor.getByColorName(args[1]));
 

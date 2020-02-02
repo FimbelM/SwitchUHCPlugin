@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -85,6 +86,18 @@ public abstract class AbstractTeamEditions<T extends IConfiguration> extends Abs
 		return new AddPlayerEvent(players, playerNames);
 	}
 
+	protected boolean isNameForbidden(String name) {
+		return check(name, n -> !TeamsManager.isNameForbidden(n), MessageCode.TEAM_FORBIDDEN_NAME, name);
+	}
+
+	protected boolean isNameValide(String name) {
+		return check(name, n -> TeamsManager.isNameValide(get(), n), MessageCode.TEAM_ALREADY_EXISTING_TEAM_NAME, name);
+	}
+
+	protected boolean isColorValide(EColor color) {
+		return check(color, c -> TeamsManager.isColorValide(get(), c), MessageCode.TEAM_ALREADY_EXISTING_TEAM_COLOR, color.getColoredColorName());
+	}
+
 	protected class AddPlayerEvent {
 		private List<Player> players;
 		private String playerNames;
@@ -101,5 +114,13 @@ public abstract class AbstractTeamEditions<T extends IConfiguration> extends Abs
 		public String getPlayerNames() {
 			return playerNames;
 		}
+	}
+
+	private <U> boolean check(U elt, Predicate<U> filter, IMessageCode code, String... args) {
+		if (!filter.test(elt)) {
+			sendMessage(code, args);
+			return false;
+		}
+		return true;
 	}
 }

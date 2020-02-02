@@ -10,7 +10,6 @@ import fr.pederobien.uhc.commands.configuration.edit.editions.configurations.tea
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.ITeam;
-import fr.pederobien.uhc.managers.TeamsManager;
 
 public class NameTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
@@ -33,15 +32,8 @@ public class NameTeam<T extends IConfiguration> extends AbstractTeamEditions<T> 
 			return;
 		}
 
-		if (TeamsManager.isNameForbidden(newName)) {
-			sendMessage(MessageCode.TEAM_FORBIDDEN_NAME, newName);
+		if (!isNameForbidden(newName) || !isNameValide(newName))
 			return;
-		}
-
-		if (!TeamsManager.isNameValide(get(), newName)) {
-			sendMessage(MessageCode.TEAM_ALREADY_EXISTING_TEAM_NAME, newName);
-			return;
-		}
 
 		team.setName(newName);
 		sendMessage(MessageCode.TEAM_MODIFY_NAME_MODIFIED, team.getColor().getInColor(oldName), team.getColoredName());
