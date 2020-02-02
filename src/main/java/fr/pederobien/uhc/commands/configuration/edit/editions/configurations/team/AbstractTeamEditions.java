@@ -61,7 +61,7 @@ public abstract class AbstractTeamEditions<T extends IConfiguration> extends Abs
 	}
 
 	protected AddPlayerEvent addPlayers(ITeam team, String... args) {
-		String playerNames = team.getColor().getChatColor() + "";
+		String playerNames = "";
 		List<Player> players = new ArrayList<Player>();
 		for (int i = 0; i < args.length; i++) {
 			try {
@@ -83,7 +83,7 @@ public abstract class AbstractTeamEditions<T extends IConfiguration> extends Abs
 
 		for (Player player : players)
 			team.addPlayer(player);
-		return new AddPlayerEvent(players, playerNames);
+		return new AddPlayerEvent(players, team.getColor().getInColor(playerNames));
 	}
 
 	protected boolean isNameForbidden(String name) {
