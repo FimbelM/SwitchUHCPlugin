@@ -689,6 +689,11 @@ public class FrenchDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Le nom " + args[0] + " est interdit pour une équipe";
 			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_PLAYER_ALREADY_IN_TEAM) {
+			@Override
+			public String getMessage(String... args) {
+				return "Le joueur " + args[0] + " est déjà dans une équipe (" + args[1] + ")";
+			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_ADDPLAYER_EXPLANATION) {

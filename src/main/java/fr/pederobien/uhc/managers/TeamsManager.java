@@ -38,11 +38,15 @@ public class TeamsManager {
 		return UHCTeam.createTeam(name, color);
 	}
 
-	public static ITeam getTeam(Player player) {
-		for (ITeam team : configuration.getTeams())
+	public static ITeam getTeam(IUnmodifiableConfiguration conf, Player player) {
+		for (ITeam team : conf.getTeams())
 			if (team.getPlayers().contains(player))
 				return team;
 		return null;
+	}
+
+	public static ITeam getTeam(Player player) {
+		return getTeam(configuration, player);
 	}
 
 	public static ITeam getTeam(EColor color) {

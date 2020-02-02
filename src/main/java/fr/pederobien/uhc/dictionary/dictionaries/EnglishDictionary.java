@@ -689,6 +689,11 @@ public class EnglishDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "The name " + args[0] + " is forbidden for a team";
 			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_PLAYER_ALREADY_IN_TEAM) {
+			@Override
+			public String getMessage(String... args) {
+				return "The player " + args[0] + " is already in a team (" + args[1] + ")";
+			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_ADDPLAYER_EXPLANATION) {

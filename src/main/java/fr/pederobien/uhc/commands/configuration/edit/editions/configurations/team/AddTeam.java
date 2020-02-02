@@ -1,18 +1,15 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.team;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.managers.EColor;
-import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.TeamsManager;
 
 public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
@@ -24,51 +21,42 @@ public class AddTeam<T extends IConfiguration> extends AbstractTeamEditions<T> {
 	@Override
 	public void edit(String[] args) {
 		try {
+			String teamName = args[0];
+			EColor teamColor = EColor.getByColorName(args[1]);
+
+			if (TeamsManager.isNameForbidden(teamName)) {
+				sendMessage(MessageCode.TEAM_FORBIDDEN_NAME, teamName);
+				return;
+			}
+
+			if (!TeamsManager.isNameValide(get(), teamName)) {
+				sendMessage(MessageCode.TEAM_ALREADY_EXISTING_TEAM_NAME, teamName);
+				return;
+			}
+
+			if (!TeamsManager.isColorValide(get(), teamColor)) {
+				sendMessage(MessageCode.TEAM_ALREADY_EXISTING_TEAM_COLOR, teamColor.getColoredColorName());
+				return;
+			}
+
 			ITeam team = TeamsManager.createTeam(args[0], EColor.getByColorName(args[1]));
-			List<Player> players = new ArrayList<Player>();
-			String playerNames = team.getColor().getChatColor() + "";
-			for (int i = 2; i < args.length; i++) {
-				try {
-					Player player = PlayerManager.getPlayer(args[i]);
-					playerNames += player.getName();
-					players.add(player);
-					if (i < args.length - 1)
-						playerNames += " ";
-				} catch (NullPointerException e) {
-					sendMessage(MessageCode.TEAM_BAD_PLAYER, args[i]);
-					return;
-				}
-			}
 
-			if (TeamsManager.isNameForbidden(team.getName())) {
-				sendMessage(MessageCode.TEAM_FORBIDDEN_NAME, team.getName());
+			AddPlayerEvent event = addPlayers(team, Arrays.copyOfRange(args, 2, args.length));
+
+			if (event == null)
 				return;
-			}
-
-			if (!TeamsManager.isNameValide(get(), team.getName())) {
-				sendMessage(MessageCode.TEAM_ALREADY_EXISTING_TEAM_NAME, team.getName());
-				return;
-			}
-
-			if (!TeamsManager.isColorValide(get(), team.getColor())) {
-				sendMessage(MessageCode.TEAM_ALREADY_EXISTING_TEAM_COLOR, team.getColor().getColoredColorName());
-				return;
-			}
-
-			for (Player player : players)
-				team.addPlayer(player);
 
 			get().addTeam(team);
 
-			switch (players.size()) {
+			switch (event.getPlayers().size()) {
 			case 0:
 				sendMessage(MessageCode.TEAM_ADDTEAM_TEAM_NO_PLAYER_ADDED, team.getColoredName());
 				break;
 			case 1:
-				sendMessage(MessageCode.TEAM_ADDTEAM_TEAM_ONE_PLAYER_ADDED, team.getColoredName(), playerNames);
+				sendMessage(MessageCode.TEAM_ADDTEAM_TEAM_ONE_PLAYER_ADDED, team.getColoredName(), event.getPlayerNames());
 				break;
 			default:
-				sendMessage(MessageCode.TEAM_ADDTEAM_TEAM_PLAYERS_ADDED, team.getColoredName(), playerNames);
+				sendMessage(MessageCode.TEAM_ADDTEAM_TEAM_PLAYERS_ADDED, team.getColoredName(), event.getPlayerNames());
 				break;
 			}
 		} catch (IndexOutOfBoundsException e) {
