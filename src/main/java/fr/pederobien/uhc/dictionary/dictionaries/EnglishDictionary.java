@@ -841,17 +841,17 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_REMOVEPLAYER_NO_PLAYER_REMOVED) {
 			@Override
 			public String getMessage(String... args) {
-				return "No player removed from team " + args[0];
+				return "No player removed";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_REMOVEPLAYER_ONE_PLAYER_REMOVED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Player " + args[0] + " removed from " + args[1];
+				return "Player " + args[0] + " has been removed from its team";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_REMOVEPLAYER_PLAYERS_REMOVED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Players " + args[0] + " removed from " + args[1];
+				return "Players " + args[0] + " have been removed from their team";
 			}
 		});
 

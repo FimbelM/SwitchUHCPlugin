@@ -47,6 +47,11 @@ public abstract class AbstractTeamEditions<T extends IConfiguration> extends Abs
 		return players.stream().filter(s -> !Arrays.asList(playersAlreadyMentionned).contains(s));
 	}
 
+	protected Stream<String> getOtherPlayersRegistered(String[] playersAlreadyMentionned) {
+		List<String> playersAlreadyMentionnedList = Arrays.asList(playersAlreadyMentionned);
+		return get().getPlayersRegistered().filter(s -> !playersAlreadyMentionnedList.contains(s));
+	}
+
 	protected Stream<String> getPlayersName(ITeam team, String[] playersAlreadyMentionned) {
 		return team.getPlayers().stream().map(p -> p.getName()).filter(s -> !Arrays.asList(playersAlreadyMentionned).contains(s));
 	}

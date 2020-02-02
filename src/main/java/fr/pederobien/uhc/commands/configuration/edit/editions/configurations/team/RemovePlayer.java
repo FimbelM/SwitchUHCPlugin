@@ -1,9 +1,7 @@
 package fr.pederobien.uhc.commands.configuration.edit.editions.configurations.team;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -11,8 +9,8 @@ import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.interfaces.IConfiguration;
-import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.managers.PlayerManager;
+import fr.pederobien.uhc.managers.TeamsManager;
 
 public class RemovePlayer<T extends IConfiguration> extends AbstractTeamEditions<T> {
 
@@ -22,17 +20,9 @@ public class RemovePlayer<T extends IConfiguration> extends AbstractTeamEditions
 
 	@Override
 	public void edit(String[] args) {
-		String name = args[0];
-		ITeam team = get().getTeamByName(name);
-
-		if (team == null) {
-			sendMessage(MessageCode.TEAM_BAD_TEAM, name);
-			return;
-		}
-
 		List<Player> players = new ArrayList<Player>();
 		String playerNames = "";
-		for (int i = 1; i < args.length; i++) {
+		for (int i = 0; i < args.length; i++) {
 			try {
 				Player player = PlayerManager.getPlayer(args[i]);
 				playerNames += player.getName() + " ";
@@ -44,30 +34,23 @@ public class RemovePlayer<T extends IConfiguration> extends AbstractTeamEditions
 		}
 
 		for (Player player : players)
-			team.removePlayer(player);
+			TeamsManager.getTeam(get(), player).removePlayer(player);
 
 		switch (players.size()) {
 		case 0:
-			sendMessage(MessageCode.TEAM_REMOVEPLAYER_NO_PLAYER_REMOVED, team.getColoredName());
+			sendMessage(MessageCode.TEAM_REMOVEPLAYER_NO_PLAYER_REMOVED);
 			break;
 		case 1:
-			sendMessage(MessageCode.TEAM_REMOVEPLAYER_ONE_PLAYER_REMOVED, playerNames, team.getColoredName());
+			sendMessage(MessageCode.TEAM_REMOVEPLAYER_ONE_PLAYER_REMOVED, playerNames);
 			break;
 		default:
-			sendMessage(MessageCode.TEAM_REMOVEPLAYER_PLAYERS_REMOVED, playerNames, team.getColoredName());
+			sendMessage(MessageCode.TEAM_REMOVEPLAYER_PLAYERS_REMOVED, playerNames);
 			break;
 		}
 	}
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-		if (args.length == 1)
-			return filter(getTeamNamesWithoutColor(), args[0]);
-		else {
-			Optional<ITeam> team = getTeam(args[0]);
-			if ((team.isPresent()))
-				return filter(getPlayersName(team.get(), Arrays.copyOfRange(args, 1, args.length)), args[args.length - 1]);
-		}
-		return super.onTabComplete(sender, command, alias, args);
+		return filter(getOtherPlayersRegistered(args), args[args.length - 1]);
 	}
 }
