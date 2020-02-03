@@ -46,7 +46,7 @@ public class UHCTeam implements ITeam {
 		List<Player> playersOnMode = new ArrayList<Player>();
 		for (Player player : players)
 			if (player.getGameMode().equals(mode))
-				playersOnMode.contains(player);
+				playersOnMode.add(player);
 		return playersOnMode;
 	}
 
