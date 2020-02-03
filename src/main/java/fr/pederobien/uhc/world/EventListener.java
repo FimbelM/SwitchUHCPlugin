@@ -18,7 +18,7 @@ import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-import fr.pederobien.uhc.managers.TeamsManager;
+import fr.pederobien.uhc.environment.UHCPlayer;
 import fr.pederobien.uhc.observers.IObsListener;
 
 public class EventListener implements Listener {
@@ -70,7 +70,7 @@ public class EventListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerChat(AsyncPlayerChatEvent event) {
-		event.setMessage(TeamsManager.getColor(event.getPlayer()) + event.getMessage());
+		event.setMessage(UHCPlayer.get(event.getPlayer()).getColor().getInColor(event.getMessage()));
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

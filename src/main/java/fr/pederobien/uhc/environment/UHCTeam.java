@@ -64,18 +64,19 @@ public class UHCTeam implements ITeam {
 	public void setColor(EColor color) {
 		this.color = color;
 		for (Player player : players)
-			player.setDisplayName(getColor().getInColor(player.getName()));
+			updateUhcPlayer(player, color);
 	}
 
 	@Override
 	public void addPlayer(Player player) {
-		player.setDisplayName(getColor().getInColor(player.getName()));
+		updateUhcPlayer(player, getColor());
 		players.add(player);
 	}
 
 	@Override
 	public void removePlayer(Player player) {
 		player.setDisplayName(player.getName());
+		updateUhcPlayer(player, null);
 		players.remove(player);
 	}
 
@@ -95,5 +96,15 @@ public class UHCTeam implements ITeam {
 		}
 		builder.append("]");
 		return color.getInColor(builder.toString());
+	}
+
+	private void updateUhcPlayer(Player player, EColor color) {
+		if (color == null) {
+			player.setDisplayName(player.getName());
+			UHCPlayer.get(player).setColor(null);
+		} else {
+			player.setDisplayName(color.getInColor(player.getName()));
+			UHCPlayer.get(player).setColor(color);
+		}
 	}
 }

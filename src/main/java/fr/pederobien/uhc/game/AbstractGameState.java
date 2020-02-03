@@ -22,6 +22,7 @@ import org.bukkit.potion.PotionEffectType;
 import fr.pederobien.uhc.BukkitManager;
 import fr.pederobien.uhc.dictionary.NotificationCenter;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
+import fr.pederobien.uhc.environment.UHCPlayer;
 import fr.pederobien.uhc.event.EventFactory;
 import fr.pederobien.uhc.interfaces.IMessageCode;
 import fr.pederobien.uhc.managers.EColor;
@@ -77,7 +78,7 @@ public abstract class AbstractGameState implements IGameState {
 
 	@Override
 	public void onPlayerJoin(PlayerJoinEvent event) {
-
+		UHCPlayer.register(event.getPlayer());
 	}
 
 	@Override
@@ -140,8 +141,8 @@ public abstract class AbstractGameState implements IGameState {
 		PlayerManager.getPlayersOnMode(GameMode.SURVIVAL).forEach(p -> {
 			playersState.put(p, new PlayerState(p));
 			PlayerManager.setGameModeOfPlayer(p, GameMode.ADVENTURE);
-			PlayerManager.giveEffects(p, PlayerManager.createEffectMaxDurationMaxModifier(PotionEffectType.DAMAGE_RESISTANCE,
-					PotionEffectType.REGENERATION, PotionEffectType.SATURATION));
+			PlayerManager.giveEffects(p,
+					PlayerManager.createEffectMaxDurationMaxModifier(PotionEffectType.DAMAGE_RESISTANCE, PotionEffectType.REGENERATION, PotionEffectType.SATURATION));
 		});
 	}
 

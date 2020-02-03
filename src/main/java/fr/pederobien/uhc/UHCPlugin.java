@@ -24,6 +24,7 @@ import fr.pederobien.uhc.commands.game.PauseCommand;
 import fr.pederobien.uhc.commands.game.StartCommand;
 import fr.pederobien.uhc.commands.game.StopCommand;
 import fr.pederobien.uhc.configurations.ConfigurationContext;
+import fr.pederobien.uhc.environment.UHCPlayer;
 import fr.pederobien.uhc.game.GameStateException;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
 import fr.pederobien.uhc.managers.PlayerManager;
@@ -94,6 +95,7 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 
 	@Override
 	public void onPlayerJoin(PlayerJoinEvent event) {
+		UHCPlayer.register(event.getPlayer());
 		PlayerManager.teleporte(event.getPlayer(), WorldManager.getSpawnOnJoin());
 		movePlayer(event.getPlayer());
 	}
@@ -144,8 +146,8 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 			PlayerManager.setGameModeOfPlayer(player, GameMode.CREATIVE);
 		else {
 			PlayerManager.setGameModeOfPlayer(player, GameMode.ADVENTURE);
-			PlayerManager.giveEffects(player, PlayerManager.createEffectMaxDurationMaxModifier(PotionEffectType.REGENERATION,
-					PotionEffectType.SATURATION, PotionEffectType.DAMAGE_RESISTANCE));
+			PlayerManager.giveEffects(player,
+					PlayerManager.createEffectMaxDurationMaxModifier(PotionEffectType.REGENERATION, PotionEffectType.SATURATION, PotionEffectType.DAMAGE_RESISTANCE));
 		}
 	}
 }

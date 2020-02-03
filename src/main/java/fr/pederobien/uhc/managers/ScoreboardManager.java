@@ -11,6 +11,7 @@ import org.bukkit.scoreboard.Scoreboard;
 
 import fr.pederobien.uhc.BukkitManager;
 import fr.pederobien.uhc.dictionary.DictionaryManager;
+import fr.pederobien.uhc.environment.UHCPlayer;
 import fr.pederobien.uhc.interfaces.IScoreboardMessage;
 import fr.pederobien.uhc.scoreboard.IScoreboard;
 
@@ -71,14 +72,13 @@ public class ScoreboardManager {
 
 	private static void setPlayerScoreboardWithCurrentLocation(Player player, IScoreboard sc) {
 		spaces = 0;
-		Objective obj = registerNewObjectiveOnSideBarDisplaySlot(TeamsManager.getColor(player) + sc.getTitle());
+		Objective obj = registerNewObjectiveOnSideBarDisplaySlot(UHCPlayer.get(player).getColor().getInColor(sc.getTitle()));
 
 		for (IScoreboardMessage message : sc.getEntries())
 			if (message == null)
 				addEmptyLine(obj);
 			else if (message.toTranslate())
-				addEntries(obj,
-						ChatColor.GOLD + DictionaryManager.getMessage(player, message.getCode()) + ChatColor.DARK_GREEN + message.getMessage());
+				addEntries(obj, ChatColor.GOLD + DictionaryManager.getMessage(player, message.getCode()) + ChatColor.DARK_GREEN + message.getMessage());
 			else
 				addEntries(obj, ChatColor.GOLD + message.getKey() + ChatColor.DARK_GREEN + message.getMessage());
 

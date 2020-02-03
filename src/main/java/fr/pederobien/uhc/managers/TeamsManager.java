@@ -6,7 +6,6 @@ import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -23,15 +22,6 @@ public class TeamsManager {
 
 	public static void setCurrentConfiguration(IUnmodifiableConfiguration configuration) {
 		TeamsManager.configuration = configuration;
-	}
-
-	public static ChatColor getColor(Player player) {
-		if (configuration == null)
-			return ChatColor.RESET;
-		for (ITeam team : configuration.getTeams())
-			if (team.getPlayers().contains(player))
-				return team.getColor().getChatColor();
-		return ChatColor.RESET;
 	}
 
 	public static ITeam createTeam(String name, EColor color) {
