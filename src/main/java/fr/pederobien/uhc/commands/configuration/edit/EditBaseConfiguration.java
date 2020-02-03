@@ -16,6 +16,6 @@ public class EditBaseConfiguration extends AbstractEditConfiguration<IBase> {
 				.addEdition(factory.createRemoveEdition()).addEdition(factory.createRenameEdition()).addEdition(factory.createResetEdition())
 				.addEdition(factory.createSaveEdition());
 
-		setAvailable(false);
+		setAvailable(false).setModifiable(false);
 	}
 }

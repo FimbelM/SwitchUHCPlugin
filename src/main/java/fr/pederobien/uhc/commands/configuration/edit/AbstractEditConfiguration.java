@@ -29,13 +29,15 @@ public class AbstractEditConfiguration<T extends IUnmodifiableName> extends Abst
 	private List<IObsMessageSender> observers;
 	private CommandSender sender;
 	private HashMap<String, IMapEdition<T>> editions;
-	private boolean available;
+	private boolean available, modifiable;
 
 	public AbstractEditConfiguration(IPersistence<T> persistence, String label, MessageCode explanation) {
 		super(label, explanation);
 		this.persistence = persistence;
 		this.persistence.addObserver(this);
+
 		available = true;
+		modifiable = true;
 
 		editions = new HashMap<String, IMapEdition<T>>();
 		observers = new ArrayList<IObsMessageSender>();
@@ -86,7 +88,22 @@ public class AbstractEditConfiguration<T extends IUnmodifiableName> extends Abst
 
 	@Override
 	public IEditConfiguration<T> setAvailable(boolean available) {
+		if (!modifiable)
+			return this;
 		this.available = available;
+		for (String label : editions.keySet())
+			editions.get(label).setAvailable(available);
+		return this;
+	}
+
+	@Override
+	public boolean isModifiable() {
+		return modifiable;
+	}
+
+	@Override
+	public IEditConfiguration<T> setModifiable(boolean modifiable) {
+		this.modifiable = modifiable;
 		return this;
 	}
 
