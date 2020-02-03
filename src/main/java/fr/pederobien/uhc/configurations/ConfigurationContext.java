@@ -146,6 +146,11 @@ public class ConfigurationContext implements IConfigurationContext {
 	}
 
 	@Override
+	public List<ITeam> getNotEmptyTeams() {
+		return getCurrentConfiguration().getNotEmptyTeams();
+	}
+
+	@Override
 	public String showTeams() {
 		return getCurrentConfiguration().showTeams();
 	}
@@ -193,5 +198,10 @@ public class ConfigurationContext implements IConfigurationContext {
 	@Override
 	public Stream<String> getPlayersRegistered() {
 		return getCurrentConfiguration().getPlayersRegistered();
+	}
+
+	@Override
+	public void prepareTeam() {
+		getCurrentConfiguration().prepareTeam();
 	}
 }

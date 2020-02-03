@@ -20,9 +20,10 @@ public class StartCommand extends AbstractCommand {
 			if (confContext.getPlayersRegistered().count() != PlayerManager.getNumberOfPlayer())
 				sendMessage(createMessageEvent(sender, MessageCode.PLAYERS_NOT_IN_TEAM));
 			else {
-				if (confContext.initiate())
+				if (confContext.initiate()) {
+					confContext.prepareTeam();
 					confContext.start();
-				else
+				} else
 					sendMessage(createMessageEvent(sender, confContext.getMessage()));
 			}
 		} catch (NullPointerException e) {

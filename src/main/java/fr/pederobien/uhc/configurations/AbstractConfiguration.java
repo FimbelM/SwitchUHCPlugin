@@ -21,11 +21,12 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	private Long scoreboardRefresh;
 	private LocalTime gameTime;
 
-	private List<ITeam> teams;
+	private List<ITeam> teams, notEmptyTeams;
 
 	protected AbstractConfiguration(String name) {
 		this.name = name;
 		teams = new ArrayList<ITeam>();
+		notEmptyTeams = new ArrayList<ITeam>();
 	}
 
 	@Override
@@ -46,6 +47,11 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	@Override
 	public List<ITeam> getTeams() {
 		return teams;
+	}
+
+	@Override
+	public List<ITeam> getNotEmptyTeams() {
+		return notEmptyTeams;
 	}
 
 	@Override
@@ -107,6 +113,13 @@ public abstract class AbstractConfiguration implements IConfiguration {
 		for (ITeam team : getTeams())
 			players.addAll(team.getPlayers().stream().map(p -> p.getName()).collect(Collectors.toList()));
 		return players.stream();
+	}
+
+	@Override
+	public void prepareTeam() {
+		for (ITeam team : teams)
+			if (!team.getPlayers().isEmpty())
+				notEmptyTeams.add(team);
 	}
 
 	@Override

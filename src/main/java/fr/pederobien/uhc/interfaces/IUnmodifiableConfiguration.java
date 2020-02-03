@@ -12,6 +12,8 @@ public interface IUnmodifiableConfiguration extends IUnmodifiableName {
 
 	List<ITeam> getTeams();
 
+	List<ITeam> getNotEmptyTeams();
+
 	String showTeams();
 
 	ITeam getTeamByName(String name);
@@ -21,4 +23,6 @@ public interface IUnmodifiableConfiguration extends IUnmodifiableName {
 	LocalTime getGameTime();
 
 	Stream<String> getPlayersRegistered();
+
+	void prepareTeam();
 }
