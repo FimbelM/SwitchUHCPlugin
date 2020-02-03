@@ -40,4 +40,11 @@ public class EditConfigurationFactory {
 			editBlockedexConfiguration = new EditBlockedexConfiguration(context);
 		return editBlockedexConfiguration;
 	}
+
+	public static void setAllAvailable(boolean available) {
+		editBaseConfiguration.setAvailable(available);
+		editSpawnConfiguration.setAvailable(available);
+		editHungerGameConfiguration.setAvailable(available);
+		editBlockedexConfiguration.setAvailable(available);
+	}
 }
