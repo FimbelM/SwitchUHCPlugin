@@ -14,11 +14,11 @@ public class EditBlockedexConfiguration extends AbstractEditConfiguration<IBlock
 		addEdition(factory.createAsCurrentEdition(context)).addEdition(factory.createBaseDistanceEdition()).addEdition(factory.createBasesEdition())
 				.addEdition(factory.createCurrentEdition()).addEdition(factory.createDeleteEdition().setModifiable(false))
 				.addEdition(factory.createDiameterOnPlayerRespawnEdition()).addEdition(factory.createGameTimeEdition())
-				.addEdition(factory.createListEdition()).addEdition(factory.createLoadEdition().setModifiable(false))
+				.addEdition(factory.createListEdition().setModifiable(false)).addEdition(factory.createLoadEdition().setModifiable(false))
 				.addEdition(factory.createNewEdition().setModifiable(false)).addEdition(factory.createRadiusAreaOnPlayerDieEdition())
-				.addEdition(factory.createRadiusAreaOnPlayerKillEdition()).addEdition(factory.createRenameEdition())
-				.addEdition(factory.createResetEdition()).addEdition(factory.createSaveEdition()).addEdition(factory.createStepHealthEdition())
-				.addEdition(factory.createScoreboardRefreshEdition()).addEdition(factory.createTeamEdition());
+				.addEdition(factory.createRadiusAreaOnPlayerKillEdition()).addEdition(factory.createRenameEdition()).addEdition(factory.createResetEdition())
+				.addEdition(factory.createSaveEdition()).addEdition(factory.createStepHealthEdition()).addEdition(factory.createScoreboardRefreshEdition())
+				.addEdition(factory.createTeamEdition());
 
 		setAvailable(false);
 	}

@@ -13,12 +13,10 @@ public class EditHungerGameConfiguration extends AbstractEditConfiguration<IHung
 
 		addEdition(factory.createAsCurrentEdition(context)).addEdition(factory.createBorderCenterEdition()).addEdition(factory.createCurrentEdition())
 				.addEdition(factory.createDeleteEdition().setModifiable(false)).addEdition(factory.createFinalBorderDiameterEdition())
-				.addEdition(factory.createFractionTimeEdition()).addEdition(factory.createGameTimeEdition())
-				.addEdition(factory.createInitialBorderDiameterEdition()).addEdition(factory.createListEdition())
-				.addEdition(factory.createLoadEdition().setModifiable(false)).addEdition(factory.createNewEdition().setModifiable(false))
-				.addEdition(factory.createPvpTimeEdition()).addEdition(factory.createRenameEdition()).addEdition(factory.createResetEdition())
-				.addEdition(factory.createSaveEdition()).addEdition(factory.createScoreboardRefreshEdition())
-				.addEdition(factory.createSpeedBorderEdition()).addEdition(factory.createTeamEdition())
-				.addEdition(factory.createWarningTimeEdition());
+				.addEdition(factory.createFractionTimeEdition()).addEdition(factory.createGameTimeEdition()).addEdition(factory.createInitialBorderDiameterEdition())
+				.addEdition(factory.createListEdition().setModifiable(false)).addEdition(factory.createLoadEdition().setModifiable(false))
+				.addEdition(factory.createNewEdition().setModifiable(false)).addEdition(factory.createPvpTimeEdition()).addEdition(factory.createRenameEdition())
+				.addEdition(factory.createResetEdition()).addEdition(factory.createSaveEdition()).addEdition(factory.createScoreboardRefreshEdition())
+				.addEdition(factory.createSpeedBorderEdition()).addEdition(factory.createTeamEdition()).addEdition(factory.createWarningTimeEdition());
 	}
 }

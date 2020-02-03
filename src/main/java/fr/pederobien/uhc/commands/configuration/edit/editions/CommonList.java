@@ -21,7 +21,7 @@ public abstract class CommonList<T extends IUnmodifiableName> extends AbstractMa
 	public void edit(String[] args) {
 		List<String> list = getPersistence().list();
 
-		if (!list.contains(get().getName()))
+		if (get() != null && !list.contains(get().getName()))
 			list.add(get().getName());
 
 		switch (list.size()) {
