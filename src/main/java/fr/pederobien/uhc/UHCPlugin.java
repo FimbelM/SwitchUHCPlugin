@@ -65,6 +65,8 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 		new BaseConfigurationCommand(this, "base");
 
 		listener.addObservers(this);
+
+		PlayerManager.getPlayers().forEach(p -> UHCPlayer.register(p));
 	}
 
 	@Override
