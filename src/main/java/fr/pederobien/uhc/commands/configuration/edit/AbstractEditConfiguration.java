@@ -132,13 +132,15 @@ public class AbstractEditConfiguration<T extends IUnmodifiableName> extends Abst
 		this.sender = sender;
 		String label = "";
 		try {
+			if (!isAvailable()) {
+				sendMessage(MessageCode.COMMAND_NOT_AVAILABLE_YET, getLabel());
+				return;
+			}
 			label = args[0];
 			if (label.equals(helper.getLabel()))
 				helper.edit(sender, Arrays.copyOfRange(args, 1, args.length));
 			else if (editions.get(label).isAvailable())
 				editions.get(label).edit(Arrays.copyOfRange(args, 1, args.length));
-			else
-				sendMessage(MessageCode.COMMAND_NOT_AVAILABLE_YET, label);
 		} catch (IndexOutOfBoundsException e) {
 			e.printStackTrace();
 			sendMessage(MessageCode.CANNOT_RUN_COMMAND, getLabel());
