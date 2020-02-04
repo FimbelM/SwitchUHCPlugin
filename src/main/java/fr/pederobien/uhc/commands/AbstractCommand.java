@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.TabCompleter;
@@ -14,11 +13,11 @@ import fr.pederobien.uhc.dictionary.NotificationCenter;
 import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.event.EventFactory;
 import fr.pederobien.uhc.event.MessageEvent;
+import fr.pederobien.uhc.interfaces.ICommand;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
-import fr.pederobien.uhc.observers.IObsMessageSender;
 import fr.pederobien.uhc.world.EventListener;
 
-public abstract class AbstractCommand implements CommandExecutor, IObsMessageSender {
+public abstract class AbstractCommand implements ICommand {
 	protected static IConfigurationContext confContext;
 	protected static EventListener listener;
 	protected PluginCommand command;
