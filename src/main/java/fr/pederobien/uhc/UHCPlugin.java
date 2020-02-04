@@ -49,7 +49,6 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 		getServer().getPluginManager().registerEvents(listener, this);
 
 		AbstractCommand.setConfigurationContext(context);
-		AbstractCommand.setListener(listener);
 
 		WorldManager.setTimeDay();
 		WorldManager.setWeatherSun();

@@ -15,11 +15,9 @@ import fr.pederobien.uhc.event.EventFactory;
 import fr.pederobien.uhc.event.MessageEvent;
 import fr.pederobien.uhc.interfaces.ICommand;
 import fr.pederobien.uhc.interfaces.IConfigurationContext;
-import fr.pederobien.uhc.world.EventListener;
 
 public abstract class AbstractCommand implements ICommand {
 	protected static IConfigurationContext confContext;
-	protected static EventListener listener;
 	protected PluginCommand command;
 
 	protected AbstractCommand(JavaPlugin plugin, String cmd) {
@@ -42,11 +40,6 @@ public abstract class AbstractCommand implements ICommand {
 	public static void setConfigurationContext(IConfigurationContext confContext) {
 		if (AbstractCommand.confContext == null)
 			AbstractCommand.confContext = confContext;
-	}
-
-	public static void setListener(EventListener listener) {
-		if (AbstractCommand.listener == null)
-			AbstractCommand.listener = listener;
 	}
 
 	protected MessageEvent createMessageEvent(CommandSender sender, MessageCode code, String... args) {
