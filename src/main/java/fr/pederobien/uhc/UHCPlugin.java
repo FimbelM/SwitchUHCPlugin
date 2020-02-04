@@ -15,14 +15,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffectType;
 
-import fr.pederobien.uhc.commands.AbstractCommand;
-import fr.pederobien.uhc.commands.configuration.BaseConfigurationCommand;
-import fr.pederobien.uhc.commands.configuration.BlockedexConfigurationCommand;
-import fr.pederobien.uhc.commands.configuration.HungerGameConfigurationCommand;
-import fr.pederobien.uhc.commands.configuration.SpawnConfigurationCommand;
-import fr.pederobien.uhc.commands.game.PauseCommand;
-import fr.pederobien.uhc.commands.game.StartCommand;
-import fr.pederobien.uhc.commands.game.StopCommand;
+import fr.pederobien.uhc.commands.configuration.CommandFactory;
 import fr.pederobien.uhc.configurations.ConfigurationContext;
 import fr.pederobien.uhc.environment.UHCPlayer;
 import fr.pederobien.uhc.game.GameStateException;
@@ -48,20 +41,12 @@ public class UHCPlugin extends JavaPlugin implements IObsListener, IObsGame {
 
 		getServer().getPluginManager().registerEvents(listener, this);
 
-		AbstractCommand.setConfigurationContext(context);
-
 		WorldManager.setTimeDay();
 		WorldManager.setWeatherSun();
 		WorldManager.setPVP(false);
 		WorldManager.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
 
-		new PauseCommand(this, "pausegame");
-		new StartCommand(this, "startgame");
-		new StopCommand(this, "stopgame");
-		new HungerGameConfigurationCommand(this, "hg");
-		new SpawnConfigurationCommand(this, "spawn");
-		new BlockedexConfigurationCommand(this, "bd");
-		new BaseConfigurationCommand(this, "base");
+		CommandFactory.initiate(this, context);
 
 		listener.addObservers(this);
 
