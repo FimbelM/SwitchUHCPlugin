@@ -124,6 +124,7 @@ public abstract class AbstractGameState implements IGameState {
 
 	protected void onStart() {
 		PlayerManager.giveEffectToAllPlayers(PotionEffectType.DAMAGE_RESISTANCE, PotionEffectType.REGENERATION, PotionEffectType.SATURATION);
+		PlayerManager.resetLevelOfPlayers();
 		PlayerManager.maxFoodForPlayers();
 		PlayerManager.resetMaxHealthOfPlayers();
 		PlayerManager.maxLifeToPlayers();
@@ -132,6 +133,7 @@ public abstract class AbstractGameState implements IGameState {
 		WorldManager.setTimeDay();
 		WorldManager.setWeatherSun();
 		WorldManager.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true);
+		WorldManager.setPVP(false);
 	}
 
 	protected void onPause() {

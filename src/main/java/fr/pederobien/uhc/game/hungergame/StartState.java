@@ -15,7 +15,6 @@ public class StartState extends AbstractHungerGameState {
 	@Override
 	public void start() {
 		onStart();
-		WorldManager.setPVP(false);
 		WorldManager.setWorldBorderCenter(getConfiguration().getBorderCenter());
 		WorldManager.setWorldBorderDiameter(getConfiguration().getInitialBorderDiameter());
 		WorldManager.createCrossUnderSpawn(Material.BEDROCK);

@@ -44,11 +44,15 @@ public class PlayerManager {
 	}
 
 	public static void setLevelOfPlayer(Player player, int level) {
-		player.giveExpLevels(-player.getTotalExperience());
+		player.giveExpLevels(-player.getTotalExperience() + level);
 	}
 
 	public static void setLevelOfPlayers(int level) {
 		getPlayers().forEach(p -> setLevelOfPlayer(p, level));
+	}
+
+	public static void resetLevelOfPlayers() {
+		setLevelOfPlayers(0);
 	}
 
 	public static void setFoodLevelOfPlayer(Player player, int level) {
