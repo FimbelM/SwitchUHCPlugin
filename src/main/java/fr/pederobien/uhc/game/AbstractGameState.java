@@ -25,19 +25,23 @@ import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.environment.UHCPlayer;
 import fr.pederobien.uhc.event.EventFactory;
 import fr.pederobien.uhc.interfaces.IMessageCode;
+import fr.pederobien.uhc.interfaces.IUnmodifiableConfiguration;
 import fr.pederobien.uhc.managers.EColor;
 import fr.pederobien.uhc.managers.PlayerManager;
+import fr.pederobien.uhc.managers.TeamsManager;
 import fr.pederobien.uhc.managers.WorldManager;
 import fr.pederobien.uhc.scoreboard.launcher.IScoreboardLauncher;
 import fr.pederobien.uhc.task.ITaskLauncher;
 
-public abstract class AbstractGameState implements IGameState {
+public abstract class AbstractGameState<T extends IUnmodifiableConfiguration> implements IGameState {
 	protected static ITaskLauncher taskLauncher;
 	protected static IScoreboardLauncher scoreboardLauncher;
 	protected MessageCode message;
+	private T configuration;
 	private Map<Player, PlayerState> playersState;
 
-	public AbstractGameState() {
+	public AbstractGameState(T configuration) {
+		this.configuration = configuration;
 		playersState = new HashMap<Player, PlayerState>();
 	}
 
@@ -134,6 +138,7 @@ public abstract class AbstractGameState implements IGameState {
 		WorldManager.setWeatherSun();
 		WorldManager.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true);
 		WorldManager.setPVP(false);
+		TeamsManager.createTeams(getConfiguration().getTeams());
 	}
 
 	protected void onPause() {
@@ -175,6 +180,10 @@ public abstract class AbstractGameState implements IGameState {
 
 	protected void sendTitle(EColor color, IMessageCode code, String... args) {
 		BukkitManager.sendTitleToPlayers(EventFactory.createMessageCodeEvent(code, args), color);
+	}
+
+	protected T getConfiguration() {
+		return configuration;
 	}
 
 	private class PlayerState {

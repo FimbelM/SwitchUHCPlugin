@@ -18,7 +18,6 @@ public class StartState extends AbstractBlockedexState {
 		onStart();
 		WorldManager.createCrossUnderSpawn(Material.BEDROCK);
 		BaseManager.launchBlockedexBases();
-		TeamsManager.createTeams(getConfiguration().getTeams());
 		TeamsManager.teleporteRandomlyAllTeams(getConfiguration(), getConfiguration().getDiameterAreaOnPlayerRespawn());
 		BlocksToFind.initialize();
 		taskLauncher.run(0, 20L);

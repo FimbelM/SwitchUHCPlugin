@@ -12,12 +12,13 @@ import fr.pederobien.uhc.managers.PlayerManager;
 import fr.pederobien.uhc.managers.WorldManager;
 import fr.pederobien.uhc.task.TimeLine;
 
-public abstract class AbstractHungerGameState extends AbstractGameState implements IHungerGameState {
+public abstract class AbstractHungerGameState extends AbstractGameState<IUnmodifiableHungerGameConfiguration> implements IHungerGameState {
 	protected static TimeLine timeLine;
 	protected static boolean alreadyWarned;
 	protected IHungerGame game;
 
 	public AbstractHungerGameState(IHungerGame game) {
+		super(game.getConfiguration());
 		this.game = game;
 	}
 
@@ -37,13 +38,9 @@ public abstract class AbstractHungerGameState extends AbstractGameState implemen
 		alreadyWarned = true;
 	}
 
-	protected IUnmodifiableHungerGameConfiguration getConfiguration() {
-		return game.getConfiguration();
-	}
-
 	protected void warn(LocalTime time) {
-		WorldManager.getPlayersInWorld(WorldManager.NETHER_WORLD, WorldManager.END_WORLD).forEach(p -> sendMessage(p,
-				MessageCode.PLAYER_MUST_GO_BACK_TO_THE_OVERWORLD, "" + time.getHour(), "" + time.getMinute(), "" + time.getSecond()));
+		WorldManager.getPlayersInWorld(WorldManager.NETHER_WORLD, WorldManager.END_WORLD)
+				.forEach(p -> sendMessage(p, MessageCode.PLAYER_MUST_GO_BACK_TO_THE_OVERWORLD, "" + time.getHour(), "" + time.getMinute(), "" + time.getSecond()));
 	}
 
 	protected LocalTime getAbsoluteWarningTime() {
