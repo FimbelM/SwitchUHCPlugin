@@ -28,7 +28,7 @@ public abstract class AbstractHungerGameState extends AbstractGameState<IUnmodif
 	}
 
 	protected void authorizedPvp() {
-		sendTitle(EColor.DARK_RED, MessageCode.PVP_ALLOWED);
+		sendTitle(EColor.DARK_RED, MessageCode.PVP_ENABLED);
 		WorldManager.setPVP(true);
 	}
 

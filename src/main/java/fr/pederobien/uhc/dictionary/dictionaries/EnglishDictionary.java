@@ -1237,10 +1237,10 @@ public class EnglishDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Team deatch match";
 			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.PVP_ALLOWED) {
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PVP_ENABLED) {
 			@Override
 			public String getMessage(String... args) {
-				return "PVP auhtorized";
+				return "PVP enabled";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.NO_MORE_RESURRECTION) {
 			@Override

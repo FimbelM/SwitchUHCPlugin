@@ -1116,12 +1116,12 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.PVP_TIME_HUNGER_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour définir le temps au bout duquel le pvp est autorisé";
+				return "pour définir le temps au bout duquel le pvp est activé";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.PVP_TIME_HUNGER_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Le pvp est autorisé après " + args[0] + "h " + args[1] + "m " + args[2] + " de jeu";
+				return "Le pvp est activé après " + args[0] + "h " + args[1] + "m " + args[2] + "s de jeu";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.PVP_TIME_HUNGER_GAME_MISSING_TIME) {
 			@Override
@@ -1237,10 +1237,10 @@ public class FrenchDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Match à mort par équipe";
 			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.PVP_ALLOWED) {
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PVP_ENABLED) {
 			@Override
 			public String getMessage(String... args) {
-				return "PVP autorisé";
+				return "PVP activé";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.NO_MORE_RESURRECTION) {
 			@Override
