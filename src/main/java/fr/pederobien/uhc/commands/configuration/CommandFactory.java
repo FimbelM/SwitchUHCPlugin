@@ -18,31 +18,31 @@ public class CommandFactory {
 	private static ICommand blockedexConfigurationCommand;
 	private static ICommand hungerGameConfigurationCommand;
 
-	public static ICommand getStartCommand(JavaPlugin plugin) {
+	public static ICommand getStartCommand() {
 		return startCommand;
 	}
 
-	public static ICommand getStopCommand(JavaPlugin plugin) {
+	public static ICommand getStopCommand() {
 		return stopCommand;
 	}
 
-	public static ICommand getPauseCommand(JavaPlugin plugin) {
+	public static ICommand getPauseCommand() {
 		return pauseCommand;
 	}
 
-	public static ICommand getBaseConfigurationCommand(JavaPlugin plugin) {
+	public static ICommand getBaseConfigurationCommand() {
 		return baseConfigurationCommand;
 	}
 
-	public static ICommand getSpawnConfigurationCommand(JavaPlugin plugin) {
+	public static ICommand getSpawnConfigurationCommand() {
 		return spawnConfigurationCommand;
 	}
 
-	public static ICommand getBlockedexConfigurationCommand(JavaPlugin plugin) {
+	public static ICommand getBlockedexConfigurationCommand() {
 		return blockedexConfigurationCommand;
 	}
 
-	public static ICommand getHungerGameConfigurationCommand(JavaPlugin plugin) {
+	public static ICommand getHungerGameConfigurationCommand() {
 		return hungerGameConfigurationCommand;
 	}
 
