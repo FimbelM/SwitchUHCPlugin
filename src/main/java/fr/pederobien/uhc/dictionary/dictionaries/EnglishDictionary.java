@@ -831,6 +831,26 @@ public class EnglishDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Random teams created :\n" + args[0];
 			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_RANDOMTEAM_BAD_MAX_PLAYER_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "Bad format for max player per team, it should be an integer";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_RANDOMTEAM_NOT_ENOUGH_TEAMS) {
+			@Override
+			public String getMessage(String... args) {
+				return "There is not enough teams";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_RANDOMTEAM_NOT_ENOUGH_PLAYERS) {
+			@Override
+			public String getMessage(String... args) {
+				return "There is not enough players";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_RANDOMTEAM_ON_TAB_COMPLETE) {
+			@Override
+			public String getMessage(String... args) {
+				return "[Max player per team]";
+			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_REMOVEPLAYER_EXPLANATION) {

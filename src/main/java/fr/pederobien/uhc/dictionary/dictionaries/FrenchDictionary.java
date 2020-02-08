@@ -831,6 +831,26 @@ public class FrenchDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Equipes aléatoires créées :\n" + args[0];
 			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_RANDOMTEAM_BAD_MAX_PLAYER_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "Mauvais format du nombre maximal de joueurs par équipe, il doit être un entier";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_RANDOMTEAM_NOT_ENOUGH_TEAMS) {
+			@Override
+			public String getMessage(String... args) {
+				return "Il n'y a pas assez d'équipes";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_RANDOMTEAM_NOT_ENOUGH_PLAYERS) {
+			@Override
+			public String getMessage(String... args) {
+				return "Il n'y a pas assez de joueurs";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_RANDOMTEAM_ON_TAB_COMPLETE) {
+			@Override
+			public String getMessage(String... args) {
+				return "[Max joueurs par équipe]";
+			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_REMOVEPLAYER_EXPLANATION) {

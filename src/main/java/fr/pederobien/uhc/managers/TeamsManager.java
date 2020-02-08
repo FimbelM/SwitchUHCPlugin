@@ -10,7 +10,9 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import fr.pederobien.uhc.BukkitManager;
+import fr.pederobien.uhc.dictionary.dictionaries.MessageCode;
 import fr.pederobien.uhc.environment.UHCTeam;
+import fr.pederobien.uhc.exceptions.RandomTeamException;
 import fr.pederobien.uhc.interfaces.IConfiguration;
 import fr.pederobien.uhc.interfaces.ITeam;
 import fr.pederobien.uhc.interfaces.IUnmodifiableConfiguration;
@@ -86,34 +88,19 @@ public class TeamsManager {
 			BukkitManager.dispatchCommand("team remove " + team.getName());
 	}
 
-	public static void dispatchPlayerRandomlyInTeam(List<ITeam> teams) {
+	public static void dispatchPlayerRandomlyInTeam(List<ITeam> teams, int maxPlayerInTeam) {
 		List<Player> players = PlayerManager.getPlayers().collect(Collectors.toList());
-		for (ITeam team : teams)
-			team.clear();
+		if (maxPlayerInTeam == -1)
+			dispatchPlayers(teams, players);
+		else {
+			checkEnoughPlayers(maxPlayerInTeam, players.size());
+			int nbTeam = checkEnoughTeam(maxPlayerInTeam, players.size(), teams.size());
 
-		List<ITeam> copy = new ArrayList<ITeam>(teams);
+			List<ITeam> copy = new ArrayList<ITeam>(teams);
+			for (int i = 0; i < teams.size() - nbTeam; i++)
+				copy.remove(rand.nextInt(copy.size()));
 
-		int quotient = players.size() / copy.size();
-		int reste = players.size() % copy.size();
-
-		Random random = new Random();
-
-		for (int i = 0; i < random.nextInt(20); i++)
-			rand.nextInt(copy.size());
-
-		for (int i = 0; i < players.size(); i++) {
-			int maxPlayer = 0;
-			if (reste == 0)
-				maxPlayer = quotient;
-			else if (reste > 0) {
-				maxPlayer = quotient + 1;
-				reste--;
-			}
-
-			ITeam randomTeam = copy.get(rand.nextInt(copy.size()));
-			randomTeam.addPlayer(players.get(i));
-			if (randomTeam.getPlayers().size() == maxPlayer)
-				copy.remove(randomTeam);
+			dispatchPlayers(copy, players, maxPlayerInTeam);
 		}
 	}
 
@@ -134,5 +121,58 @@ public class TeamsManager {
 			if (filter.test(team))
 				return false;
 		return true;
+	}
+
+	private static void checkEnoughPlayers(int maxPlayerInTeam, int nbPlayer) {
+		if (nbPlayer <= maxPlayerInTeam)
+			throw new RandomTeamException(MessageCode.TEAM_RANDOMTEAM_NOT_ENOUGH_PLAYERS);
+	}
+
+	private static int checkEnoughTeam(int maxPlayerInTeam, int nbPlayer, int nbTeam) {
+		int nbTeams = nbPlayer / maxPlayerInTeam + (nbPlayer % maxPlayerInTeam > 0 ? 1 : 0);
+		if (nbTeam < nbTeams)
+			throw new RandomTeamException(MessageCode.TEAM_RANDOMTEAM_NOT_ENOUGH_TEAMS);
+		return nbTeams;
+	}
+
+	private static void dispatchPlayers(List<ITeam> teams, List<Player> players, int maxPlayerInTeam) {
+		List<ITeam> copy = new ArrayList<>(teams);
+		for (int i = 0; i < players.size(); i++) {
+			ITeam randomTeam = copy.get(rand.nextInt(copy.size()));
+			randomTeam.addPlayer(players.get(i));
+			if (randomTeam.getPlayers().size() == maxPlayerInTeam)
+				copy.remove(randomTeam);
+		}
+	}
+
+	private static void dispatchPlayers(List<ITeam> teams, List<Player> players) {
+		for (ITeam team : teams)
+			team.clear();
+
+		List<ITeam> copy = new ArrayList<ITeam>(teams);
+
+		int quotient = players.size() / copy.size();
+		int reste = players.size() % copy.size();
+
+		for (Player player : players) {
+			int maxPlayer = quotient + (reste > 0 ? 1 : 0);
+
+			ITeam randomTeam;
+			do {
+				randomTeam = copy.get(rand.nextInt(copy.size()));
+			} while (removeTeam(copy, randomTeam, maxPlayer));
+
+			randomTeam.addPlayer(player);
+
+			if (removeTeam(copy, randomTeam, maxPlayer))
+				reste--;
+		}
+	}
+
+	private static boolean removeTeam(List<ITeam> teams, ITeam randomTeam, int maxPlayer) {
+		boolean removed = randomTeam.getPlayers().size() == maxPlayer;
+		if (removed)
+			teams.remove(randomTeam);
+		return removed;
 	}
 }
