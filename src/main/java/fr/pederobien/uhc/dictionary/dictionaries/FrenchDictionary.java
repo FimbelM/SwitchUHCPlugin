@@ -836,6 +836,11 @@ public class FrenchDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Mauvais format du nombre maximal de joueurs par équipe, il doit être un entier";
 			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_RANDOMTEAM_MAX_PLAYER_NEGATIVE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Le nombre maximum de joueur par équipe doit être strictement positif";
+			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_RANDOMTEAM_NOT_ENOUGH_TEAMS) {
 			@Override
 			public String getMessage(String... args) {

@@ -836,6 +836,11 @@ public class EnglishDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Bad format for max player per team, it should be an integer";
 			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_RANDOMTEAM_MAX_PLAYER_NEGATIVE) {
+			@Override
+			public String getMessage(String... args) {
+				return "The max player per team should be strictly positive";
+			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_RANDOMTEAM_NOT_ENOUGH_TEAMS) {
 			@Override
 			public String getMessage(String... args) {

@@ -21,7 +21,19 @@ public class RandomTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 	public void edit(String[] args) {
 		int maxPlayerInTeam;
 		try {
-			maxPlayerInTeam = args.length == 1 ? Integer.parseInt(args[0]) : -1;
+			if (args.length == 1) {
+				maxPlayerInTeam = Integer.parseInt(args[0]);
+				if (maxPlayerInTeam <= 0) {
+					sendMessage(MessageCode.TEAM_RANDOMTEAM_MAX_PLAYER_NEGATIVE);
+					return;
+				}
+			} else
+				maxPlayerInTeam = -1;
+			if (get().getTeams().size() == 0) {
+				sendMessage(MessageCode.TEAM_RANDOMTEAM_NOT_ENOUGH_TEAMS);
+				return;
+			}
+
 			TeamsManager.dispatchPlayerRandomlyInTeam(get().getTeams(), maxPlayerInTeam);
 			sendMessage(MessageCode.TEAM_RANDOMTEAM_DISPATCHED, get().showTeams());
 		} catch (NumberFormatException e) {

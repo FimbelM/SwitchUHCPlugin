@@ -80,23 +80,31 @@ public class TeamsManager {
 			BukkitManager.dispatchCommand("team modify " + team.getName() + " color " + team.getColor().getColorName());
 			for (Player player : team.getPlayers())
 				BukkitManager.dispatchCommand("team join " + team.getName() + " " + player.getName());
+			team.setCreatedOnServer(true);
 		}
 	}
 
 	public static void removeTeams(List<ITeam> teams) {
-		for (ITeam team : teams)
-			BukkitManager.dispatchCommand("team remove " + team.getName());
+		for (ITeam team : teams) {
+			if (team.isCreatedOnServer())
+				BukkitManager.dispatchCommand("team remove " + team.getName());
+			team.setCreatedOnServer(false);
+		}
 	}
 
 	public static void dispatchPlayerRandomlyInTeam(List<ITeam> teams, int maxPlayerInTeam) {
 		List<Player> players = PlayerManager.getPlayers().collect(Collectors.toList());
+		List<ITeam> copy = new ArrayList<ITeam>(teams);
+
+		for (ITeam team : teams)
+			team.clear();
+
 		if (maxPlayerInTeam == -1)
-			dispatchPlayers(teams, players);
+			dispatchPlayers(copy, players);
 		else {
 			checkEnoughPlayers(maxPlayerInTeam, players.size());
-			int nbTeam = checkEnoughTeam(maxPlayerInTeam, players.size(), teams.size());
+			int nbTeam = checkEnoughTeam(maxPlayerInTeam, players.size(), copy.size());
 
-			List<ITeam> copy = new ArrayList<ITeam>(teams);
 			for (int i = 0; i < teams.size() - nbTeam; i++)
 				copy.remove(rand.nextInt(copy.size()));
 
@@ -135,8 +143,7 @@ public class TeamsManager {
 		return nbTeams;
 	}
 
-	private static void dispatchPlayers(List<ITeam> teams, List<Player> players, int maxPlayerInTeam) {
-		List<ITeam> copy = new ArrayList<>(teams);
+	private static void dispatchPlayers(List<ITeam> copy, List<Player> players, int maxPlayerInTeam) {
 		for (int i = 0; i < players.size(); i++) {
 			ITeam randomTeam = copy.get(rand.nextInt(copy.size()));
 			randomTeam.addPlayer(players.get(i));
@@ -145,12 +152,7 @@ public class TeamsManager {
 		}
 	}
 
-	private static void dispatchPlayers(List<ITeam> teams, List<Player> players) {
-		for (ITeam team : teams)
-			team.clear();
-
-		List<ITeam> copy = new ArrayList<ITeam>(teams);
-
+	private static void dispatchPlayers(List<ITeam> copy, List<Player> players) {
 		int quotient = players.size() / copy.size();
 		int reste = players.size() % copy.size();
 

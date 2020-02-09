@@ -25,8 +25,10 @@ public class RemoveTeam<T extends IConfiguration> extends AbstractTeamEditions<T
 
 		if (args[0].equals(TeamsManager.ALL)) {
 			teams.addAll(get().getTeams());
-			for (ITeam team : teams)
+			for (ITeam team : teams) {
+				team.clear();
 				get().removeTeam(team);
+			}
 			sendMessage(MessageCode.TEAM_REMOVETEAM_ALL_TEAMS_REMOVED);
 			return;
 		}

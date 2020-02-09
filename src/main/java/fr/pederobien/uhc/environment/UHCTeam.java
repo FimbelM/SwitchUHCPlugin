@@ -14,12 +14,14 @@ public class UHCTeam implements ITeam {
 	private String name;
 	private EColor color;
 	private List<Player> players;
+	private boolean createdOnServer;
 
 	private UHCTeam(String name, EColor color) {
 		this.name = name;
 		this.color = color;
 
 		players = new ArrayList<Player>();
+		createdOnServer = false;
 	}
 
 	public static ITeam createTeam(String name, EColor color) {
@@ -51,6 +53,11 @@ public class UHCTeam implements ITeam {
 	}
 
 	@Override
+	public boolean isCreatedOnServer() {
+		return createdOnServer;
+	}
+
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -75,14 +82,20 @@ public class UHCTeam implements ITeam {
 
 	@Override
 	public void removePlayer(Player player) {
-		player.setDisplayName(player.getName());
 		updateUhcPlayer(player, null);
 		players.remove(player);
 	}
 
 	@Override
 	public void clear() {
+		for (Player player : players)
+			updateUhcPlayer(player, null);
 		players.clear();
+	}
+
+	@Override
+	public void setCreatedOnServer(boolean createdOnServer) {
+		this.createdOnServer = createdOnServer;
 	}
 
 	@Override

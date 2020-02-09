@@ -16,4 +16,6 @@ public interface IUnmodifiableTeam extends IUnmodifiableName {
 	List<Player> getPlayers();
 
 	List<Player> getPlayersOnMode(GameMode mode);
+
+	boolean isCreatedOnServer();
 }

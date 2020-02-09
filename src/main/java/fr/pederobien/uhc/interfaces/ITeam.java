@@ -13,4 +13,6 @@ public interface ITeam extends IUnmodifiableTeam, IName {
 	void removePlayer(Player player);
 
 	void clear();
+
+	void setCreatedOnServer(boolean createdOnServer);
 }
