@@ -93,11 +93,11 @@ public class TeamsManager {
 	}
 
 	public static void dispatchPlayerRandomlyInTeam(List<ITeam> teams, int maxPlayerInTeam) {
-		List<Player> players = PlayerManager.getPlayers().collect(Collectors.toList());
-		List<ITeam> copy = new ArrayList<ITeam>(teams);
-
 		for (ITeam team : teams)
 			team.clear();
+
+		List<Player> players = PlayerManager.getPlayers().collect(Collectors.toList());
+		List<ITeam> copy = new ArrayList<ITeam>(teams);
 
 		if (maxPlayerInTeam == -1)
 			dispatchPlayers(copy, players);
