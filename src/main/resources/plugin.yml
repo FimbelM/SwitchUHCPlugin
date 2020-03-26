@@ -1,5 +1,5 @@
-main: fr.pederobien.uhc.UHCPlugin
-name: UHCPlugin
+main: fr.martinfimbel.switchuhc.SwitchUHCPlugin
+name: SwitchUHCPlugin
 version: 1.0
 api-version: 1.13
 
@@ -7,22 +7,22 @@ description:
 commands:
   pausegame:
     description:
-    permission: UHCPlugin.pausegame
+    permission: SwitchUHCPlugin.pausegame
   startgame:
     description:
-    permission: UHCPlugin.startgame
+    permission: SwitchUHCPlugin.startgame
   stopgame:
     description:
-    permission: UHCPlugin.stopgame
+    permission: SwitchUHCPlugin.stopgame
   hg:
     description:
-    permission: UHCPlugin.hg
+    permission: SwitchUHCPlugin.hg
   spawn:
     description:
-    permission: UHCPlugin.spawn
+    permission: SwitchUHCPlugin.spawn
   bd:
     description:
-    permission: UHCPlugin.bd
+    permission: SwitchUHCPlugin.bd
   base:
     description:
-    permission: UHCPlugin.base
+    permission: SwitchUHCPlugin.base

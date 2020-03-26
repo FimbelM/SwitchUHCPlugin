@@ -1,0 +1,21 @@
+package fr.martinfimbel.switchuhc.commands.configuration.edit;
+
+import fr.martinfimbel.switchuhc.commands.configuration.edit.editions.bawn.base.BaseEditionsFactory;
+import fr.martinfimbel.switchuhc.dictionary.dictionaries.MessageCode;
+import fr.martinfimbel.switchuhc.interfaces.IBase;
+
+public class EditBaseConfiguration extends AbstractEditConfiguration<IBase> {
+	private static final BaseEditionsFactory factory = BaseEditionsFactory.getInstance();
+
+	public EditBaseConfiguration() {
+		super(factory.getPersistence(), "base", MessageCode.BASE_EDITION_CONFIGURATION_EXPLANATION);
+
+		addEdition(factory.createCenterEdition()).addEdition(factory.createCurrentEdition()).addEdition(factory.createDeleteEdition().setModifiable(false))
+				.addEdition(factory.createDimensionsEdition()).addEdition(factory.createExtractEdition()).addEdition(factory.createLaunchEdition().setModifiable(false))
+				.addEdition(factory.createListEdition().setModifiable(false)).addEdition(factory.createNewEdition().setModifiable(false))
+				.addEdition(factory.createRemoveEdition()).addEdition(factory.createRenameEdition()).addEdition(factory.createResetEdition())
+				.addEdition(factory.createSaveEdition());
+
+		setAvailable(false).setModifiable(false);
+	}
+}

@@ -2,16 +2,16 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>fr.pederobien</groupId>
-	<artifactId>UHCPlugin</artifactId>
+	<groupId>fr.martinfimbel</groupId>
+	<artifactId>SwitchUHCPlugin</artifactId>
 	<packaging>jar</packaging>
 	<version>1.3-SNAPSHOT</version>
-	<name>UHCPlugin</name>
+	<name>SwitchUHCPlugin</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
-		<mainClass>${project.groupId}.uhc.UHCPlugin</mainClass>
-		<author>Pierre-Emmanuel41</author>
+		<mainClass>${project.groupId}.switchuhc.SwitchUHCPlugin</mainClass>
+		<author>MartinFimbel</author>
 		<project.build.sourceEncoding>Cp1252</project.build.sourceEncoding>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -46,7 +46,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>UHCPlugin</finalName>
+		<finalName>SwitchUHCPlugin</finalName>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<resources>
 			<resource>
@@ -68,7 +68,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>fr.pederobien.uhc.UHCPlugin</mainClass>
+							<mainClass>fr.martinfimbel.switchuhc.SwitchUHCPlugin</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

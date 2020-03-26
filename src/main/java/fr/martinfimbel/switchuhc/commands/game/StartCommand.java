@@ -1,0 +1,37 @@
+package fr.martinfimbel.switchuhc.commands.game;
+
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import fr.martinfimbel.switchuhc.commands.AbstractCommand;
+import fr.martinfimbel.switchuhc.commands.configuration.edit.editions.EditConfigurationFactory;
+import fr.martinfimbel.switchuhc.dictionary.dictionaries.MessageCode;
+import fr.martinfimbel.switchuhc.managers.PlayerManager;
+
+public class StartCommand extends AbstractCommand {
+
+	public StartCommand(JavaPlugin plugin, String command) {
+		super(plugin, command);
+	}
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		try {
+			if (confContext.getPlayersRegistered().count() != PlayerManager.getNumberOfPlayer())
+				sendMessage(createMessageEvent(sender, MessageCode.PLAYERS_NOT_IN_TEAM));
+			else {
+				if (confContext.initiate()) {
+					EditConfigurationFactory.setAllAvailable(false);
+					confContext.prepareTeam();
+					confContext.start();
+				} else
+					sendMessage(createMessageEvent(sender, confContext.getMessage()));
+			}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			sendMessage(createMessageEvent(sender, MessageCode.NO_GAME_STYLE_DEFINED_AS_CURRENT));
+		}
+		return true;
+	}
+}
