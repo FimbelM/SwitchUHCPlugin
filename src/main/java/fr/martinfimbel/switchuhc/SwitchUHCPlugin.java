@@ -46,7 +46,6 @@ public class SwitchUHCPlugin extends JavaPlugin implements IObsListener, IObsGam
 		WorldManager.setWeatherSun();
 		WorldManager.setPVP(false);
 		WorldManager.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
-		WorldManager.removeBorder();
 		
 		CommandFactory.initiate(this, context);
 
@@ -87,7 +86,7 @@ public class SwitchUHCPlugin extends JavaPlugin implements IObsListener, IObsGam
 	@Override
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		// TODO Auto-generated method stub
-		String message = "Bienvenue en " + ChatColor.BLUE + ChatColor.BOLD + "UHC Switch";
+		String message = "Bienvenue en " + ChatColor.AQUA + ChatColor.BOLD + "UHC Switch";
 		event.getPlayer().sendMessage(message + " " + event.getPlayer().getName());
 		PlayerManager.teleporte(event.getPlayer(), WorldManager.createDefaultLocation(0, 70, 0));
 		movePlayer(event.getPlayer());
