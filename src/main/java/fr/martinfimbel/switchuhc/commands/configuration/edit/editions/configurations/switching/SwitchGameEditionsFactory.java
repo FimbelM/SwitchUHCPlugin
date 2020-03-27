@@ -99,4 +99,14 @@ public class SwitchGameEditionsFactory extends AbstractConfigurationEditionsFact
 	public IMapEdition<ISwitchGameConfiguration> createPvpTimeEdition() {
 		return new PvpTimeSwitchGame();
 	}
+
+	public IMapEdition<ISwitchGameConfiguration> createStartSwitchTimeEdition() {
+		return new StartSwitchTimeSwitchGame();
+	}
+
+	public IMapEdition<ISwitchGameConfiguration> createSwitchTimeEdititon() {
+		return new SwitchTimeSwitchGame();
+	}
+	
+	
 }
