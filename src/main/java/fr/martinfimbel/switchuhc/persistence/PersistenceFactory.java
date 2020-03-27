@@ -5,10 +5,12 @@ import fr.martinfimbel.switchuhc.interfaces.IBlockedexConfiguration;
 import fr.martinfimbel.switchuhc.interfaces.IHungerGameConfiguration;
 import fr.martinfimbel.switchuhc.interfaces.IPersistence;
 import fr.martinfimbel.switchuhc.interfaces.ISpawn;
+import fr.martinfimbel.switchuhc.interfaces.ISwitchGameConfiguration;
 
 public class PersistenceFactory {
 	private IPersistence<IHungerGameConfiguration> hungerGamePersistence;
 	private IPersistence<IBlockedexConfiguration> blockedexPersistence;
+	private IPersistence<ISwitchGameConfiguration> switchPersistence;
 	private IPersistence<ISpawn> spawnPersistence;
 	private IPersistence<IBase> basePersistence;
 
@@ -20,6 +22,11 @@ public class PersistenceFactory {
 		public static final PersistenceFactory factory = new PersistenceFactory();
 	}
 
+	public synchronized IPersistence<ISwitchGameConfiguration> getSwitchPersistence() {
+		if (switchPersistence == null)
+			switchPersistence = new SwitchPersistence();
+		return switchPersistence;
+	}
 	public synchronized IPersistence<IHungerGameConfiguration> getHungerGamePersistence() {
 		if (hungerGamePersistence == null)
 			hungerGamePersistence = new HungerGamePersistence();

@@ -56,5 +56,6 @@ public class CommandFactory {
 		spawnConfigurationCommand = new SpawnConfigurationCommand(plugin, "spawn");
 		blockedexConfigurationCommand = new BlockedexConfigurationCommand(plugin, "bd");
 		hungerGameConfigurationCommand = new HungerGameConfigurationCommand(plugin, "hg");
+		
 	}
 }

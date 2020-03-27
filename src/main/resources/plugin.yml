@@ -26,3 +26,6 @@ commands:
   base:
     description:
     permission: SwitchUHCPlugin.base
+  sw:
+    description:
+    permission: SwitchUHCPlugin.sw

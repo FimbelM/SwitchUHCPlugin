@@ -18,8 +18,8 @@ public class SwitchGameEditionsFactory extends AbstractConfigurationEditionsFact
 	}
 
 	private static class SingletonHolder {
-		public static final SwitchGameEditionsFactory factory = new SwitchGameEditionsFactory(null
-				/*PersistenceFactory.getInstance().getSwitchGamePersistence()*/);
+		public static final SwitchGameEditionsFactory factory = new SwitchGameEditionsFactory(
+				PersistenceFactory.getInstance().getSwitchPersistence());
 	}
 
 	@Override
