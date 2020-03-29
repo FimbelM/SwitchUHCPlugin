@@ -22,7 +22,7 @@ public class InitialState extends AbstractHungerGameState {
 
 		taskLauncher = new TaskLauncher(getConfiguration().getGameTime());
 		timeLine = new TimeLine(taskLauncher.getTask());
-		scoreboardLauncher = new HGScoreboardLauncher(taskLauncher.getTask(), getConfiguration());
+		scoreboardLauncher = new HGScoreboardLauncher(taskLauncher.getTask(), getConfiguration(), game);
 		alreadyWarned = false;
 
 		timeLine.addPonctualObserver(getConfiguration().getFractionTime(), game);
