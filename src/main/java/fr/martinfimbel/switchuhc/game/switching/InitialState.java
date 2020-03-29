@@ -22,7 +22,7 @@ public class InitialState extends AbstractSwitchGameState {
 
 		taskLauncher = new TaskLauncher(getConfiguration().getGameTime());
 		timeLine = new TimeLine(taskLauncher.getTask());
-		scoreboardLauncher = new SWScoreboardLauncher(taskLauncher.getTask(), getConfiguration());
+		scoreboardLauncher = new SWScoreboardLauncher(taskLauncher.getTask(), getConfiguration(), game);
 		alreadyWarned = false;
 
 		timeLine.addPonctualObserver(getConfiguration().getFractionTime(), game);

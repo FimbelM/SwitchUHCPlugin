@@ -3,6 +3,7 @@ package fr.martinfimbel.switchuhc.scoreboard.switching;
 import java.time.LocalTime;
 import java.util.List;
 
+import fr.martinfimbel.switchuhc.game.switching.ISwitchGame;
 import fr.martinfimbel.switchuhc.interfaces.IScoreboardMessage;
 import fr.martinfimbel.switchuhc.interfaces.IUnmodifiableSwitchConfiguration;
 import fr.martinfimbel.switchuhc.scoreboard.AbstractScoreboard;
@@ -15,12 +16,14 @@ public class SwitchGameScoreboard extends AbstractScoreboard implements ISWScore
 	private ISWScoreboardState pause;
 	private ISWScoreboardState stop;
 	private ISWScoreboardState current;
+	private ISwitchGame game;
 	private IUnmodifiableSwitchConfiguration configuration;
 
-	public SwitchGameScoreboard(TimeTask task, IUnmodifiableSwitchConfiguration configuration) {
+	public SwitchGameScoreboard(TimeTask task, IUnmodifiableSwitchConfiguration configuration, ISwitchGame game) {
 		super(task);
 
 		this.configuration = configuration;
+		this.game = game;
 		initial = new InitialState(this);
 		before = new BeforeBorderMoveState(this);
 		after = new AfterBorderMoveState(this);
@@ -52,11 +55,6 @@ public class SwitchGameScoreboard extends AbstractScoreboard implements ISWScore
 	}
 
 	@Override
-	public void update() {
-		
-	}
-
-	@Override
 	public void pause() {
 		current.pause(current);
 
@@ -71,12 +69,6 @@ public class SwitchGameScoreboard extends AbstractScoreboard implements ISWScore
 	@Override
 	public void stop() {
 		current.stop();
-	}
-
-	@Override
-	public TimeTask getTask() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 	@Override
@@ -117,6 +109,11 @@ public class SwitchGameScoreboard extends AbstractScoreboard implements ISWScore
 	@Override
 	public IUnmodifiableSwitchConfiguration getConfiguration() {
 		return configuration;
+	}
+
+	@Override
+	public LocalTime getNextSwitchTime() {
+		return game.getNextSwitchTime();
 	}
 }
 
