@@ -26,6 +26,14 @@ public class EnglishDictionary extends AbstractDictionary {
 			}
 		});
 		
+		registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_SWITCH_GAME_BORDER) {
+			@Override
+			public String getMessage(String... args) {
+				return "Border : ";
+			}
+		});
+			
+		
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_HUNGER_GAME_BORDER) {
 			@Override
@@ -2136,6 +2144,7 @@ public class EnglishDictionary extends AbstractDictionary {
 				return "The fraction time must be less than the game time";
 			}
 		});
+		
 		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH) {
 			@Override
 			public String getMessage(String... args) {
