@@ -37,6 +37,8 @@ public class SwitchGame extends AbstractGame implements ISwitchGame {
 		movingBorder = new BorderMovingState(this);
 		stop = new StopState(this);
 		current = initiate;
+		
+		nextSwitchTime = configuration.getStartSwitchTime();
 	}
 	@Override
 	public ISwitchGameState getCurrentState() {
