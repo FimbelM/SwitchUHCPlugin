@@ -27,6 +27,7 @@ public class SwitchGame extends AbstractGame implements ISwitchGame {
 
 	private LocalTime nextSwitchTime, decreasingSwitchTime;
 	private IUnmodifiableSwitchConfiguration configuration;
+	private boolean firstSwitch;
 
 	public SwitchGame(IUnmodifiableSwitchConfiguration configuration) {
 		this.configuration = configuration;
@@ -37,8 +38,8 @@ public class SwitchGame extends AbstractGame implements ISwitchGame {
 		movingBorder = new BorderMovingState(this);
 		stop = new StopState(this);
 		current = initiate;
-		
-		nextSwitchTime = decreasingSwitchTime = configuration.getStartSwitchTime();
+
+		firstSwitch = false;
 	}
 
 	@Override
@@ -177,17 +178,19 @@ public class SwitchGame extends AbstractGame implements ISwitchGame {
 	@Override
 	public void setNextSwitchTime(LocalTime time) {
 		this.nextSwitchTime = time;
+		firstSwitch = true;
 		decreasingSwitchTime = getConfiguration().getPeriodSwitchTime();
 	}
 
 	@Override
 	public LocalTime getNextSwitchTime() {
-		return nextSwitchTime;
+		return firstSwitch ? nextSwitchTime : getConfiguration().getStartSwitchTime();
 	}
 
 	@Override
 	public void notifyMinusOne() {
-		decreasingSwitchTime = decreasingSwitchTime.minusSeconds(1);
+		decreasingSwitchTime = decreasingSwitchTime == null ? getConfiguration().getStartSwitchTime()
+				: decreasingSwitchTime.minusSeconds(1);
 	}
 
 	@Override
