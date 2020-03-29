@@ -14,7 +14,7 @@ import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-import fr.martinfimbel.switchuhc.PluginDeposit;
+import fr.martinfimbel.switchuhc.SwitchPluginDeposit;
 import fr.martinfimbel.switchuhc.dictionary.dictionaries.MessageCode;
 import fr.martinfimbel.switchuhc.game.IGame;
 import fr.martinfimbel.switchuhc.interfaces.IConfiguration;
@@ -29,10 +29,10 @@ public class ConfigurationContext implements IConfigurationContext {
 	@Override
 	public void setCurrentConfiguration(IConfiguration configuration) {
 		if (getCurrentConfiguration() != null)
-			getGame().removeObserver(PluginDeposit.plugin);
+			getGame().removeObserver(SwitchPluginDeposit.plugin);
 		this.configuration = configuration;
 		TeamsManager.setCurrentConfiguration(getCurrentConfiguration());
-		getGame().addObserver(PluginDeposit.plugin);
+		getGame().addObserver(SwitchPluginDeposit.plugin);
 	}
 
 	@Override

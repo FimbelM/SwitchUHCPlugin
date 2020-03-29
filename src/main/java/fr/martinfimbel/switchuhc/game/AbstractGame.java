@@ -34,7 +34,7 @@ public abstract class AbstractGame implements IGame {
 	@Override
 	public void start() {
 		for (IObsGame obs : observers)
-			obs.onStart();
+			obs.onStart();			
 	}
 
 	@Override

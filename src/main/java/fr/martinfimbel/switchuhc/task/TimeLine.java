@@ -40,6 +40,7 @@ public class TimeLine implements IObsTimeTask {
 		if (loopFranzList != null)
 			for (IObsLoopTimeLine obs : loopFranzList) {
 				obs.time(task.getIncreasingTime());
+				obs.setNextSwitchTime(task.getIncreasingTime().plusNanos(obs.getPeriod().toNanoOfDay()));
 				addObserverToMap(repetitiveMap, task.getIncreasingTime().plusNanos(obs.getPeriod().toNanoOfDay()), obs);
 			}
 	}

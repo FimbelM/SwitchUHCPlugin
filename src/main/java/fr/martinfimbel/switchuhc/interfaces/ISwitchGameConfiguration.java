@@ -22,7 +22,7 @@ public interface ISwitchGameConfiguration extends IConfiguration, IUnmodifiableS
 
 	void setBorderSpeed(double blocksPerSeconds);
 		
-	void setSwitchTime(LocalTime switchTime);
+	void setPeriodSwitchTime(LocalTime switchTime);
 	 
 	void setStartSwitchTime(LocalTime startSwitch);
 	

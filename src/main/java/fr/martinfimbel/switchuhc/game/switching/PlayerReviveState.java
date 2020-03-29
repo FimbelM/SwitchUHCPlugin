@@ -40,6 +40,8 @@ public class PlayerReviveState extends AbstractSwitchGameState {
 			warnPlayers();
 		if (time.equals(getConfiguration().getFractionTime()))
 			changeFromReviveToNotRevive();
+		if(time.equals(game.getNextSwitchTime()))
+			Switch();
 	}
 
 	@Override

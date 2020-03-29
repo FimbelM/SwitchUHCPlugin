@@ -20,9 +20,9 @@ public class SwitchTimeSwitchGame extends AbstractConfEdition<ISwitchGameConfigu
 	@Override
 	public void edit(String[] args) {
 		try {
-			get().setSwitchTime(LocalTime.parse(args[0]));
-			sendMessage(MessageCode.SWITCH_TIME_SWITCH_GAME_DEFINED, "" + get().getSwitchTime().getHour(),
-					"" + get().getSwitchTime().getMinute(), "" + get().getSwitchTime().getSecond());
+			get().setPeriodSwitchTime(LocalTime.parse(args[0]));
+			sendMessage(MessageCode.SWITCH_TIME_SWITCH_GAME_DEFINED, "" + get().getPeriodSwitchTime().getHour(),
+					"" + get().getPeriodSwitchTime().getMinute(), "" + get().getPeriodSwitchTime().getSecond());
 			return;
 		} catch (IndexOutOfBoundsException e) {
 			sendMessage(MessageCode.SWITCH_TIME_SWITCH_GAME_MISSING_TIME);

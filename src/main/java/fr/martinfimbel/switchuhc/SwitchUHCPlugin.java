@@ -71,8 +71,7 @@ public class SwitchUHCPlugin extends JavaPlugin implements IObsListener, IObsGam
 		PlayerManager.removeAllEffectsToAllPlayers();
 		listener.removeObservers(this);
 		listener.addObservers(context);
-		WorldManager.setPVP(true);
-	
+
 	}
 
 	@Override

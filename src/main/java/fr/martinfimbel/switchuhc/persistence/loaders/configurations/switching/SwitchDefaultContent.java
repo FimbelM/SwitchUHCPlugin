@@ -23,8 +23,8 @@ public class SwitchDefaultContent implements IDefaultContent {
 				"  </border>\r\n" + 
 				"  <time fraction=\"00:45\" game=\"02:00\" pvp=\"00:20\" scoreboardrefresh=\"5\" startswitch=\"00:30\" switch=\"00:20\" warning=\"01:55\"/>\r\n" + 
 				"  <teams>\r\n" + 
-				"    <team color=\"dark_red\" name=\"NEINNEINNEIN!!!\"/>\r\n" + 
-				"    <team color=\"dark_gray\" name=\"JAJAJAJAJA!!!!!\"/>\r\n" + 
+				"    <team color=\"dark_red\" name=\"NEINNEINNEIN\"/>\r\n" + 
+				"    <team color=\"dark_gray\" name=\"JAJAJAJAJA\"/>\r\n" + 
 				"    <team color=\"gold\" name=\"TontonAdolf\"/>\r\n" + 
 				"  </teams>\r\n" + 
 				"</Switch_UHC>\r\n";

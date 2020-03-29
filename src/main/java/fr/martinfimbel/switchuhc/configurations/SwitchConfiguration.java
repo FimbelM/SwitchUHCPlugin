@@ -103,12 +103,12 @@ public class SwitchConfiguration extends AbstractConfiguration implements ISwitc
 	}
 
 	@Override
-	public LocalTime getSwitchTime() {
+	public LocalTime getPeriodSwitchTime() {
 		return switchTime == null ? DEFAULT_SWITCH_TIME : switchTime;
 	}
 
 	@Override
-	public void setSwitchTime(LocalTime switchTime) {
+	public void setPeriodSwitchTime(LocalTime switchTime) {
 		this.switchTime = switchTime;
 	}
 
@@ -133,7 +133,7 @@ public class SwitchConfiguration extends AbstractConfiguration implements ISwitc
 		builder.append("Pvp time : " + showTime(getPvpTime()) + "\n");
 		builder.append("Border speed : " + getBorderSpeed() + " blocks/s\n");
 		builder.append("First switch time : "+ showTime(getStartSwitchTime())+ "\n");
-		builder.append("Switch every : " + showTime(getSwitchTime())+ "\n");
+		builder.append("Switch every : " + showTime(getPeriodSwitchTime())+ "\n");
 		return builder.toString();
 	}
 

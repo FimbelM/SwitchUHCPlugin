@@ -55,7 +55,7 @@ public class SwitchPersistence  extends AbstractConfPersistence<ISwitchGameConfi
 		time.setAttribute("game", get().getGameTime().toString());
 		time.setAttribute("fraction", get().getFractionTime().toString());
 		time.setAttribute("startswitch", get().getStartSwitchTime().toString());
-		time.setAttribute("switch", get().getSwitchTime().toString());
+		time.setAttribute("switch", get().getPeriodSwitchTime().toString());
 		time.setAttribute("warning", get().getWarningTime().toString());
 		time.setAttribute("pvp", get().getPvpTime().toString());
 		time.setAttribute("scoreboardrefresh", "" + get().getScoreboardRefresh());

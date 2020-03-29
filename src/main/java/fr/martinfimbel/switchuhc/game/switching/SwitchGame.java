@@ -24,6 +24,8 @@ public class SwitchGame extends AbstractGame implements ISwitchGame {
 	private ISwitchGameState movingBorder;
 	private ISwitchGameState stop;
 	private ISwitchGameState current;
+	
+	private LocalTime nextSwitchTime; 
 	private IUnmodifiableSwitchConfiguration configuration;
 
 	public SwitchGame(IUnmodifiableSwitchConfiguration configuration) {
@@ -165,6 +167,15 @@ public class SwitchGame extends AbstractGame implements ISwitchGame {
 	}
 	@Override
 	public LocalTime getPeriod() {
-		return getConfiguration().getSwitchTime();
+		return getConfiguration().getPeriodSwitchTime();
+	}
+	@Override
+	public void setNextSwitchTime(LocalTime time) {
+		this.nextSwitchTime = time;
+	}
+	
+	@Override
+	public LocalTime getNextSwitchTime() {
+		return nextSwitchTime;
 	}
 }

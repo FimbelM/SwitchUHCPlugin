@@ -50,7 +50,7 @@ public class SwitchLoaderV10 extends AbstractSwitchGameLoader {
 			case "time":
 				get().setGameTime(LocalTime.parse(elt.getAttribute("game")));
 				get().setFractionTime(LocalTime.parse(elt.getAttribute("fraction")));
-				get().setSwitchTime(LocalTime.parse(elt.getAttribute("switch")));
+				get().setPeriodSwitchTime(LocalTime.parse(elt.getAttribute("switch")));
 				get().setStartSwitchTime(LocalTime.parse(elt.getAttribute("startswitch")));
 				get().setWarningTime(LocalTime.parse(elt.getAttribute("warning")));
 				get().setPvpTime(LocalTime.parse(elt.getAttribute("pvp")));

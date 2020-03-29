@@ -4,7 +4,7 @@ import java.time.LocalTime;
 
 import org.bukkit.scheduler.BukkitRunnable;
 
-import fr.martinfimbel.switchuhc.PluginDeposit;
+import fr.martinfimbel.switchuhc.SwitchPluginDeposit;
 import fr.martinfimbel.switchuhc.interfaces.IUnmodifiableConfiguration;
 import fr.martinfimbel.switchuhc.scoreboard.IScoreboard;
 import fr.martinfimbel.switchuhc.task.TimeTask;
@@ -25,7 +25,7 @@ public abstract class AbstractScoreboardLauncher<T extends IUnmodifiableConfigur
 	@Override
 	public void run(long delay, long period) {
 		start();
-		runTaskTimer(PluginDeposit.plugin, delay, period);
+		runTaskTimer(SwitchPluginDeposit.plugin, delay, period);
 	}
 
 	@Override

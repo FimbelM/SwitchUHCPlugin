@@ -4,7 +4,7 @@ import java.time.LocalTime;
 
 import org.bukkit.scheduler.BukkitRunnable;
 
-import fr.martinfimbel.switchuhc.PluginDeposit;
+import fr.martinfimbel.switchuhc.SwitchPluginDeposit;
 
 public class TaskLauncher extends BukkitRunnable implements ITaskLauncher {
 	private TimeTask task;
@@ -19,7 +19,7 @@ public class TaskLauncher extends BukkitRunnable implements ITaskLauncher {
 
 	@Override
 	public void run(long delay, long period) {
-		runTaskTimer(PluginDeposit.plugin, delay, period);
+		runTaskTimer(SwitchPluginDeposit.plugin, delay, period);
 	}
 
 	@Override

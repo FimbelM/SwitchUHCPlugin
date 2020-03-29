@@ -16,7 +16,7 @@ public interface IUnmodifiableSwitchConfiguration extends IUnmodifiableConfigura
 	
 	LocalTime getWarningTime();
 	
-	LocalTime getSwitchTime();
+	LocalTime getPeriodSwitchTime();
 	
 	LocalTime getStartSwitchTime();
 
