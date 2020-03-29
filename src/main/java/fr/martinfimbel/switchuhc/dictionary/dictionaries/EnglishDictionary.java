@@ -1871,7 +1871,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.START_SWITCH_TIME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "First Swicth time defined : " + args[0] + "h " + args[1] + "m " + args[2] + "s";
+				return "First Switch time defined : " + args[0] + "h " + args[1] + "m " + args[2] + "s";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.START_SWITCH_TIME_MISSING_TIME) {
 			@Override
@@ -1889,7 +1889,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_TIME_SWITCH_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Swicth delay defined : " + args[0] + "h " + args[1] + "m " + args[2] + "s";
+				return "Switch delay defined : " + args[0] + "h " + args[1] + "m " + args[2] + "s";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_TIME_SWITCH_GAME_MISSING_TIME) {
 			@Override
@@ -1901,7 +1901,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_SWITCH_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "to set the time after which the world border move from its initial diameter to its final diameter";
+				return "to set the time after which the world border moves from its initial diameter to its final diameter";
 			}
 		});
 
