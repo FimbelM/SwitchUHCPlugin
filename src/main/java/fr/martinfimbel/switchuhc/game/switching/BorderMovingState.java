@@ -1,5 +1,7 @@
 package fr.martinfimbel.switchuhc.game.switching;
 
+import java.time.LocalTime;
+
 import org.bukkit.GameMode;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
@@ -51,5 +53,10 @@ public class BorderMovingState extends AbstractSwitchGameState {
 		NotificationCenter.sendMessage(
 				EventFactory.createMessageEvent(event.getPlayer(), MessageCode.PLAYER_MUST_STAY_IN_THE_OVERWORLD,
 						WorldManager.getNormalizeWorldName(event.getTo().getWorld().getName())));
+	}
+	@Override
+	public void time(LocalTime time) {
+		if(time.equals(game.getNextSwitchTime()))
+			Switch();
 	}
 }
