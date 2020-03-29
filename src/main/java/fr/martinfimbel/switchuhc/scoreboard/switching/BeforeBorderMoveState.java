@@ -5,14 +5,17 @@ import java.time.LocalTime;
 import fr.martinfimbel.switchuhc.dictionary.dictionaries.MessageCode;
 
 public class BeforeBorderMoveState extends AbstractSwitchGameScoreboardState {
+	
 	public BeforeBorderMoveState(ISWScoreboard scoreboard) {
 		super(scoreboard, "Game");
 	}
 
 	@Override
 	protected void updateEntries() {
+		System.out.println("Next switch time : " + scoreboard.getNextSwitchTime());
 		addEntryToTranslate(MessageCode.SCOREBOARD_SWITCH_GAME_BORDER, prepareTime(getTask().getDecreasingTime()));
 		addEntryToTranslate(MessageCode.SCOREBOARD_CURRENT_GAME_TIME, prepareTime(getTask().getTotalTime()));
+		addEntryToTranslate(MessageCode.SCOREBOARD_TIME_BEFORE_SWITCH, prepareTime(scoreboard.getNextSwitchTime()));
 	}
 
 	@Override

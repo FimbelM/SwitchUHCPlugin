@@ -1,5 +1,7 @@
 package fr.martinfimbel.switchuhc.scoreboard.switching;
 
+import java.time.LocalTime;
+
 import fr.martinfimbel.switchuhc.interfaces.IUnmodifiableSwitchConfiguration;
 import fr.martinfimbel.switchuhc.scoreboard.IScoreboard;
 
@@ -18,6 +20,8 @@ public interface ISWScoreboard extends IScoreboard {
 	ISWScoreboardState getPauseState();
 
 	ISWScoreboardState getStopState();
+	
+	LocalTime getNextSwitchTime();
 
 	IUnmodifiableSwitchConfiguration getConfiguration();
 }
