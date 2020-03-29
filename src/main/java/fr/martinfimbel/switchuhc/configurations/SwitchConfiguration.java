@@ -133,7 +133,7 @@ public class SwitchConfiguration extends AbstractConfiguration implements ISwitc
 		builder.append("Pvp time : " + showTime(getPvpTime()) + "\n");
 		builder.append("Border speed : " + getBorderSpeed() + " blocks/s\n");
 		builder.append("First switch time : "+ showTime(getStartSwitchTime())+ "\n");
-		builder.append("Switch every : " + showTime(getStartSwitchTime())+ "\n");
+		builder.append("Switch every : " + showTime(getSwitchTime())+ "\n");
 		return builder.toString();
 	}
 
