@@ -39,6 +39,8 @@ public class PlayerDontReviveState extends AbstractSwitchGameState {
 			warnPlayers();
 		if (time.equals(getConfiguration().getGameTime()))
 			changeFromDontReviveToHungerGame();
+		if(time.equals(game.getNextSwitchTime()))
+			Switch();
 	}
 
 	@Override
