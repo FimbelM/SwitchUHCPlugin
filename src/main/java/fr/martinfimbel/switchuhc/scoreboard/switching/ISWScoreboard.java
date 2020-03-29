@@ -21,7 +21,7 @@ public interface ISWScoreboard extends IScoreboard {
 
 	ISWScoreboardState getStopState();
 	
-	LocalTime getNextSwitchTime();
-
+	LocalTime getDecreasingSwitchTime();
+	
 	IUnmodifiableSwitchConfiguration getConfiguration();
 }

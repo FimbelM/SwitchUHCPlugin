@@ -112,8 +112,8 @@ public class SwitchGameScoreboard extends AbstractScoreboard implements ISWScore
 	}
 
 	@Override
-	public LocalTime getNextSwitchTime() {
-		return game.getNextSwitchTime();
+	public LocalTime getDecreasingSwitchTime() {
+		return game.getDecreasingSwitchTime();
 	}
 }
 

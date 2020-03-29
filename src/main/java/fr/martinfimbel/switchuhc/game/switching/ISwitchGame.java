@@ -27,5 +27,7 @@ public interface ISwitchGame extends IGame, IObsTimeLine, IObsLoopTimeLine {
 	
 	LocalTime getNextSwitchTime();
 
+	LocalTime getDecreasingSwitchTime();
+	
 	IUnmodifiableSwitchConfiguration getConfiguration();
 }

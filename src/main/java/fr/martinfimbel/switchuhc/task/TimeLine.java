@@ -43,6 +43,10 @@ public class TimeLine implements IObsTimeTask {
 				obs.setNextSwitchTime(task.getIncreasingTime().plusNanos(obs.getPeriod().toNanoOfDay()));
 				addObserverToMap(repetitiveMap, task.getIncreasingTime().plusNanos(obs.getPeriod().toNanoOfDay()), obs);
 			}
+		repetitiveMap.remove(task.getIncreasingTime());
+		for (List<IObsLoopTimeLine> listObs : repetitiveMap.values())
+			for (IObsLoopTimeLine obs : listObs)
+				obs.notifyMinusOne();
 	}
 
 	public void addRepetitiveObserver(LocalTime time, IObsLoopTimeLine obs) {

@@ -7,4 +7,7 @@ public interface IObsLoopTimeLine extends IObsTimeLine{
 	LocalTime getPeriod();
 	
 	void setNextSwitchTime(LocalTime time);
+	
+	void notifyMinusOne();
+
 }

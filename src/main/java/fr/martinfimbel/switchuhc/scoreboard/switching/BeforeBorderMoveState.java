@@ -12,10 +12,9 @@ public class BeforeBorderMoveState extends AbstractSwitchGameScoreboardState {
 
 	@Override
 	protected void updateEntries() {
-		System.out.println("Next switch time : " + scoreboard.getNextSwitchTime());
 		addEntryToTranslate(MessageCode.SCOREBOARD_SWITCH_GAME_BORDER, prepareTime(getTask().getDecreasingTime()));
 		addEntryToTranslate(MessageCode.SCOREBOARD_CURRENT_GAME_TIME, prepareTime(getTask().getTotalTime()));
-		addEntryToTranslate(MessageCode.SCOREBOARD_TIME_BEFORE_SWITCH, prepareTime(scoreboard.getNextSwitchTime()));
+		addEntryToTranslate(MessageCode.SCOREBOARD_TIME_BEFORE_SWITCH, prepareTime(scoreboard.getDecreasingSwitchTime()));
 	}
 
 	@Override
