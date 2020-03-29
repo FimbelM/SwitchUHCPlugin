@@ -46,6 +46,6 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 	}
 	
 	protected void Switch() {
-		System.out.println("Switch now!!!");
+		sendTitle(EColor.GOLD, MessageCode.SWITCH);
 	}
 }
