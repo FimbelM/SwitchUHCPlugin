@@ -117,7 +117,6 @@ public class UHCTeam implements ITeam {
 			UHCPlayer.get(player).setColor(null);
 		} else {
 			player.setDisplayName(color.getInColor(player.getName()));
-			System.out.println("addplayer");
 			UHCPlayer.get(player).setColor(color);
 		}
 	}

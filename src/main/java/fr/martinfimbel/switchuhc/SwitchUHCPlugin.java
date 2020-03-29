@@ -88,6 +88,7 @@ public class SwitchUHCPlugin extends JavaPlugin implements IObsListener, IObsGam
 		// TODO Auto-generated method stub
 		String message = "Bienvenue en " + ChatColor.AQUA + ChatColor.BOLD + "UHC Switch";
 		event.getPlayer().sendMessage(message + " " + event.getPlayer().getName());
+		UHCPlayer.register(event.getPlayer());
 		PlayerManager.teleporte(event.getPlayer(), WorldManager.createDefaultLocation(0, 70, 0));
 		movePlayer(event.getPlayer());
 	}
