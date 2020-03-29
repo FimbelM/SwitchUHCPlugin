@@ -7,7 +7,7 @@ import fr.martinfimbel.switchuhc.persistence.loaders.configurations.AbstractConf
 public abstract class AbstractSwitchGameLoader extends AbstractConfigurationLoader<ISwitchGameConfiguration>{
 
 		public AbstractSwitchGameLoader(String version) {
-			super(version, new SwitchConfiguration("DefauultConfiguration"));
+			super(version, new SwitchConfiguration("DefaultConfiguration"));
 		}
 		
 		protected void show() {

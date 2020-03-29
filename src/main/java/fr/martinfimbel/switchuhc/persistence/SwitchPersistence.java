@@ -23,7 +23,7 @@ public class SwitchPersistence  extends AbstractConfPersistence<ISwitchGameConfi
 			return;
 		Document doc = newDocument();
 		doc.setXmlStandalone(true);
-		Element root = doc.createElement("Switch UHC");
+		Element root = doc.createElement("Switch_UHC");
 		doc.appendChild(root);
 
 		Element version = doc.createElement("version");
@@ -75,7 +75,7 @@ public class SwitchPersistence  extends AbstractConfPersistence<ISwitchGameConfi
 
 	@Override
 	protected String getPath() {
-		return GAME + "Switch UHC/";
+		return GAME + "Switch_UHC/";
 	}
 
 	@Override

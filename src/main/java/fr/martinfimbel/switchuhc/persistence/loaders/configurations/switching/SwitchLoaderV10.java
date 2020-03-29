@@ -17,12 +17,6 @@ public class SwitchLoaderV10 extends AbstractSwitchGameLoader {
 	}
 
 	@Override
-	public String getVersion() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public IPersistenceLoader<ISwitchGameConfiguration> load(Node root) {
 		for (int i = 0; i < root.getChildNodes().getLength(); i++) {
 			if (root.getChildNodes().item(i).getNodeType() != Node.ELEMENT_NODE)
