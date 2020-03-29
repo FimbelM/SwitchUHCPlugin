@@ -44,5 +44,8 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 	protected LocalTime getAbsoluteWarningTime() {
 		return getConfiguration().getGameTime().minusSeconds(getConfiguration().getWarningTime().toSecondOfDay());
 	}
-}
 	
+	protected void Switch() {
+		System.out.println("Switch now!!!");
+	}
+}

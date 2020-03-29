@@ -8,7 +8,7 @@ import fr.martinfimbel.switchuhc.managers.WorldManager;
 
 public class AfterBorderMoveState extends AbstractSwitchGameScoreboardState {
 	public AfterBorderMoveState(ISWScoreboard scoreboard) {
-		super(scoreboard, "Brace Yourself, Switch Is Coming");
+		super(scoreboard, "BRACE YOURSELF: BORDER MOVES");
 	}
 
 	@Override

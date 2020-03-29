@@ -11,8 +11,8 @@ import fr.martinfimbel.switchuhc.event.EventFactory;
 import fr.martinfimbel.switchuhc.managers.PlayerManager;
 import fr.martinfimbel.switchuhc.managers.WorldManager;
 
-public class SwitchGameState extends AbstractSwitchGameState {
-	public SwitchGameState(ISwitchGame game) {
+public class BorderMovingState extends AbstractSwitchGameState {
+	public BorderMovingState(ISwitchGame game) {
 		super(game);
 	}
 

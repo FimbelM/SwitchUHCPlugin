@@ -53,8 +53,7 @@ public class SwitchGameScoreboard extends AbstractScoreboard implements ISWScore
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override

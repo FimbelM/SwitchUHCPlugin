@@ -913,7 +913,7 @@ public class EnglishDictionary extends AbstractDictionary {
 				return "to configure an hunger game style";
 			}
 		});
-
+		
 		registerMessage(new AbstractPlayerMessage(MessageCode.AS_CURRENT_HUNGER_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
@@ -1736,6 +1736,428 @@ public class EnglishDictionary extends AbstractDictionary {
 			@Override
 			public String getMessage(String... args) {
 				return "Game resumed";
+			}
+		});
+		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_GAME_EDITION_CONFIGURATION_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to configure an switch style";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.AS_CURRENT_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to set the current switch style as the current style";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.AS_CURRENT_SWITCH_GAME_NOT_EXISTING_STYLE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot set the switch style " + args[0] + " as the current style, style does not exist";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.BORDER_CENTER_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to set the center of the world’s border";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.BORDER_CENTER_SWITCH_GAME_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Border center defined in : " + args[0];
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.BORDER_CENTER_SWITCH_GAME_MISSING_COORDINATES) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot set the border center, need coordinates <X> <Z>";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.CURRENT_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to know the current switch style's characteristics";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.CURRENT_SWITCH_GAME_MESSAGE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Current switch style :\n" + args[0];
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.DELETE_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to delete an switch style";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.DELETE_SWITCH_GAME_MESSAGE) {
+			@Override
+			public String getMessage(String... args) {
+				return "switch style " + args[0] + " has been deleted";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to set the final border diameter of the world’s border";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_SWITCH_GAME_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Final border diameter defined as " + args[0] + " blocks";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_NEGATIVE_DIAMETER) {
+			@Override
+			public String getMessage(String... args) {
+				return "The final border diameter should be strictly positive";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_SWITCH_GAME_MISSING_DIAMETER) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot set the final border diameter, need the diameter";
+			}
+		}).registerMessage(
+				new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_SWITCH_GAME_BAD_DIAMETER_FORMAT) {
+					@Override
+					public String getMessage(String... args) {
+						return "Bad format for the final diameter, it should be an integer";
+					}
+				})
+				.registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_SWITCH_GAME_TAB_COMPLETE) {
+					@Override
+					public String getMessage(String... args) {
+						return "<final diameter>";
+					}
+				});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to set the time after which players will respawn in spectator mode";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_SWITCH_GAME_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Player will respawn in spectator mode after " + args[0] + "h " + args[1] + "m " + args[2]
+						+ "s of play";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_SWITCH_GAME_MISSING_TIME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot set the fraction time, need the time";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Game time defined : " + args[0] + "h " + args[1] + "m " + args[2] + "s";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_MISSING_TIME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot set the game time, need the time";
+			}
+		});
+		
+		registerMessage(new AbstractPlayerMessage(MessageCode.START_SWITCH_TIME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+							return "*to set the time which define first switch";
+			}
+		});
+		registerMessage(new AbstractPlayerMessage(MessageCode.START_SWITCH_TIME_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "First Swicth time defined : " + args[0] + "h " + args[1] + "m " + args[2] + "s";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.START_SWITCH_TIME_MISSING_TIME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot set the start switch time, need to define it";
+			}
+		});
+		
+		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_TIME_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+							return "*to set the time which define delay between switches";
+			}
+		});
+		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_TIME_SWITCH_GAME_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Swicth delay defined : " + args[0] + "h " + args[1] + "m " + args[2] + "s";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_TIME_SWITCH_GAME_MISSING_TIME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot set the switch time, need to define it";
+			}
+		});
+		
+		registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to set the time after which the world border move from its initial diameter to its final diameter";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to set the initial border diameter of the world’s border";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_SWITCH_GAME_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Initial border diameter defined as " + args[0] + " blocks";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_NEGATIVE_DIAMETER) {
+			@Override
+			public String getMessage(String... args) {
+				return "The initial border diameter should be strictly positive";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_SWITCH_GAME_MISSING_DIAMETER) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot set the initial border diameter, need the diameter";
+			}
+		}).registerMessage(
+				new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_SWITCH_GAME_BAD_DIAMETER_FORMAT) {
+					@Override
+					public String getMessage(String... args) {
+						return "Bad format for the initial diameter, it should be an integer";
+					}
+				}).registerMessage(
+						new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_SWITCH_GAME_TAB_COMPLETE) {
+							@Override
+							public String getMessage(String... args) {
+								return "<initial diameter>";
+							}
+						});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.LIST_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to display all existing switch style(s)";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.LIST_SWITCH_GAME_SIZE_EQUALS_0) {
+			@Override
+			public String getMessage(String... args) {
+				return "No existing switch style";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.LIST_SWITCH_GAME_SIZE_EQUALS_1) {
+			@Override
+			public String getMessage(String... args) {
+				return "One existing switch style :\n" + args[0];
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.LIST_SWITCH_GAME_SIZE_GREATER_THAN_0) {
+			@Override
+			public String getMessage(String... args) {
+				return "List of existing switch styles :\n" + args[0];
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to load an switch style";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_SWITCH_GAME_STYLE_NO_TEAM_CREATED_LOADED) {
+			@Override
+			public String getMessage(String... args) {
+				return "switch style " + args[0] + " loaded\nNo team created";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_SWITCH_GAME_STYLE_ONE_TEAM_CREATED_LOADED) {
+			@Override
+			public String getMessage(String... args) {
+				return "switch style " + args[0] + " loaded\nTeam " + args[1] + " created";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_SWITCH_GAME_STYLE_TEAMS_CREATED_LOADED) {
+			@Override
+			public String getMessage(String... args) {
+				return "switch style " + args[0] + " loaded\nTeams created : " + args[1];
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_SWITCH_GAME_MISSING_NAME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot load an switch style, need the name";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.NEW_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to create a new switch style";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.NEW_SWITCH_GAME_CREATED) {
+			@Override
+			public String getMessage(String... args) {
+				return "New switch style " + args[0] + " created";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.NEW_SWITCH_GAME_ALREADY_EXISTING) {
+			@Override
+			public String getMessage(String... args) {
+				return "The switch style " + args[0] + " already exist";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.NEW_SWITCH_GAME_MISSING_NAME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot create a new switch style, need the name";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.PVP_TIME_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to set the time after which pvp is enabled";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PVP_TIME_SWITCH_GAME_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Pvp is enabled after " + args[0] + "h " + args[1] + "m " + args[2] + "s of play";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PVP_TIME_SWITCH_GAME_MISSING_TIME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot set the pvp time, need the time";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to rename the current switch style";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_SWITCH_GAME_RENAMED) {
+			@Override
+			public String getMessage(String... args) {
+				return "switch style " + args[0] + " renamed as " + args[1];
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_SWITCH_GAME_ALREADY_EXISTING) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot rename the switch style " + args[0] + " as " + args[1] + ", style already exist";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_SWITCH_GAME_MISSING_NAME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot rename the switch style " + args[0] + ", need the name";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.RESET_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to reset switch style's characteristics";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RESET_SWITCH_GAME_MESSAGE) {
+			@Override
+			public String getMessage(String... args) {
+				return "The characteristics of the switch style " + args[0] + " have been reset";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.SAVE_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to save the current switch style";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SAVE_SWITCH_GAME_SAVED) {
+			@Override
+			public String getMessage(String... args) {
+				return "switch style " + args[0] + " saved";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to set the border’s speed";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_SWITCH_GAME_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "The border’s speed defined as " + args[0] + " block/s";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_SWITCH_GAME_LESS_THAN_1) {
+			@Override
+			public String getMessage(String... args) {
+				return "The border’s speed must be equals or greater than 1 block/s";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_SWITCH_GAME_MISSING_SPEED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot set the border's speed, need the speed";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_SWITCH_GAME_BAD_SPEED_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "The speed must be a double value (example : 1.5)";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_SWITCH_GAME_TAB_COMPLETE) {
+			@Override
+			public String getMessage(String... args) {
+				return "<blocks per seconds>";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "To warn players who are in the Nether / End to return to the Overworld before the border move";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_SWITCH_GAME_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Players will be warned " + args[0] + "h " + args[1] + "m " + args[2] + "s before moving border";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_SWITCH_GAME_MISSING_TIME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot set the warning time, need the time";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_LESS_THAN_GAME_TIME) {
+			@Override
+			public String getMessage(String... args) {
+				return "The fraction time must be less than the game time";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.TEAM_DEATH_MATCH) {
+			@Override
+			public String getMessage(String... args) {
+				return "Team deatch match";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PVP_ENABLED) {
+			@Override
+			public String getMessage(String... args) {
+				return "PVP enabled";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.NO_MORE_RESURRECTION) {
+			@Override
+			public String getMessage(String... args) {
+				return "No more resurrection";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.MOVING_BORDER) {
+			@Override
+			public String getMessage(String... args) {
+				return "Moving border";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_MUST_GO_BACK_TO_THE_OVERWORLD) {
+			@Override
+			public String getMessage(String... args) {
+				return "Go back to the overworld or you will die in " + args[0] + "h " + args[1] + "m " + args[2] + "s";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_MUST_STAY_IN_THE_OVERWORLD) {
+			@Override
+			public String getMessage(String... args) {
+				return "You cannot go into the " + args[0];
 			}
 		});
 	}

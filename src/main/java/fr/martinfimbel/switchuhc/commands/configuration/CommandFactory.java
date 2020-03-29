@@ -17,6 +17,7 @@ public class CommandFactory {
 	private static ICommand spawnConfigurationCommand;
 	private static ICommand blockedexConfigurationCommand;
 	private static ICommand hungerGameConfigurationCommand;
+	private static ICommand switchConfigurationCommand;
 
 	public static ICommand getStartCommand() {
 		return startCommand;
@@ -45,7 +46,11 @@ public class CommandFactory {
 	public static ICommand getHungerGameConfigurationCommand() {
 		return hungerGameConfigurationCommand;
 	}
-
+	
+	public static ICommand getSwitchConfigurationCommand() {
+		return switchConfigurationCommand;
+	}
+	
 	public static void initiate(JavaPlugin plugin, IConfigurationContext context) {
 		AbstractCommand.setConfigurationContext(context);
 
@@ -56,6 +61,6 @@ public class CommandFactory {
 		spawnConfigurationCommand = new SpawnConfigurationCommand(plugin, "spawn");
 		blockedexConfigurationCommand = new BlockedexConfigurationCommand(plugin, "bd");
 		hungerGameConfigurationCommand = new HungerGameConfigurationCommand(plugin, "hg");
-		
+		switchConfigurationCommand = new SwitchConfigurationCommand(plugin, "sw");
 	}
 }

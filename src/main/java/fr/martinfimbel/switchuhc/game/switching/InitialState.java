@@ -12,7 +12,7 @@ public class InitialState extends AbstractSwitchGameState {
 	public InitialState(ISwitchGame game) {
 		super(game);
 	}
-	
+
 	@Override
 	public boolean initiate() {
 		if (Duration.between(getConfiguration().getFractionTime(), getConfiguration().getGameTime()).isNegative()) {
@@ -25,11 +25,12 @@ public class InitialState extends AbstractSwitchGameState {
 		scoreboardLauncher = new SWScoreboardLauncher(taskLauncher.getTask(), getConfiguration());
 		alreadyWarned = false;
 
-		timeLine.addObserver(getConfiguration().getFractionTime(), game);
-		timeLine.addObserver(getConfiguration().getGameTime(), game);
-		timeLine.addObserver(getAbsoluteWarningTime(), game);
-		timeLine.addObserver(getConfiguration().getPvpTime(), game);
-		timeLine.addObserver(getConfiguration().getGameTime(), scoreboardLauncher);
+		timeLine.addPonctualObserver(getConfiguration().getFractionTime(), game);
+		timeLine.addPonctualObserver(getConfiguration().getGameTime(), game);
+		timeLine.addPonctualObserver(getAbsoluteWarningTime(), game);
+		timeLine.addPonctualObserver(getConfiguration().getPvpTime(), game);
+		timeLine.addPonctualObserver(getConfiguration().getGameTime(), scoreboardLauncher);
+		timeLine.addRepetitiveObserver(getConfiguration().getStartSwitchTime(), game);
 		return true;
 	}
 

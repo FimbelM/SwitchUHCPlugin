@@ -7,13 +7,12 @@ public class SwitchDefaultContent implements IDefaultContent {
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
-		return null;
+		return "DefaultSwitchConfiguration";
 	}
 
 	@Override
 	public String getDefaultXmlContent() {
 		// TODO Auto-generated method stub
-		return null;
+		return "";
 	}
-
 }

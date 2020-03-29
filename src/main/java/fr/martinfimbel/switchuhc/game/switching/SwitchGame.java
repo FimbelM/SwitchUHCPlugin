@@ -21,7 +21,7 @@ public class SwitchGame extends AbstractGame implements ISwitchGame {
 	private ISwitchGameState start;
 	private ISwitchGameState playerRevive;
 	private ISwitchGameState playerDontRevive;
-	private ISwitchGameState switchGame;
+	private ISwitchGameState movingBorder;
 	private ISwitchGameState stop;
 	private ISwitchGameState current;
 	private IUnmodifiableSwitchConfiguration configuration;
@@ -32,7 +32,7 @@ public class SwitchGame extends AbstractGame implements ISwitchGame {
 		start = new StartState(this);
 		playerRevive = new PlayerReviveState(this);
 		playerDontRevive = new PlayerDontReviveState(this);
-		switchGame = new SwitchGameState(this);
+		movingBorder = new BorderMovingState(this);
 		stop = new StopState(this);
 		current = initiate;
 	}
@@ -68,7 +68,7 @@ public class SwitchGame extends AbstractGame implements ISwitchGame {
 
 	@Override
 	public ISwitchGameState getSwitchGame() {
-		return switchGame;
+		return movingBorder;
 	}
 
 	@Override
@@ -162,5 +162,9 @@ public class SwitchGame extends AbstractGame implements ISwitchGame {
 	@Override
 	public IUnmodifiableSwitchConfiguration getConfiguration() {
 		return configuration;
+	}
+	@Override
+	public LocalTime getPeriod() {
+		return getConfiguration().getSwitchTime();
 	}
 }
