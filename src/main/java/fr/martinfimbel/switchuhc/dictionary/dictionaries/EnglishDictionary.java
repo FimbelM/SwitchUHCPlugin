@@ -1865,8 +1865,35 @@ public class EnglishDictionary extends AbstractDictionary {
 				return "Cannot set the fraction time, need the time";
 			}
 		});
+		
+		registerMessage(new AbstractPlayerMessage(MessageCode.NUMBER_OF_SWITCHABLE_PLAYER_PER_TEAM_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "to set the number of players in each team that will be switched at every switch time";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.NUMBER_OF_SWITCHABLE_PLAYER_PER_TEAM_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Number of switchable players defined";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.NUMBER_OF_SWITCHED_PLAYERS_INFERIOR_AT_ONE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Cannot set the number of switchable players, must be equal or superior to one";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.NUMBER_OF_SWITCHABLE_PLAYER_PER_TEAM_BAD_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "Format of entry should be an integer";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.NUMBER_OF_SWITCHABLE_PLAYER_PER_TEAM_MISSING_NUMBER) {
+			@Override
+			public String getMessage(String... args) {
+				return "Missing parameter number of switched player";
+			}
+		});
 
-		registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_DEFINED) {
+	registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
 				return "Game time defined : " + args[0] + "h " + args[1] + "m " + args[2] + "s";

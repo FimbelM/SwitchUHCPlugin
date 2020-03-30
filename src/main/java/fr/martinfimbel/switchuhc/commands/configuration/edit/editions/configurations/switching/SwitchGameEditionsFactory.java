@@ -108,5 +108,8 @@ public class SwitchGameEditionsFactory extends AbstractConfigurationEditionsFact
 		return new SwitchTimeSwitchGame();
 	}
 	
+	public IMapEdition<ISwitchGameConfiguration> createNumberOfPlayerSwitchableEdition() {
+		return new NumberOfPlayerSwitchable();
+	}
 	
 }

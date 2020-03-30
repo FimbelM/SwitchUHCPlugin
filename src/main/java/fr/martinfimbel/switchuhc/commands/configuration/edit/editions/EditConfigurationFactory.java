@@ -55,5 +55,6 @@ public class EditConfigurationFactory {
 		editSpawnConfiguration.setAvailable(available);
 		editHungerGameConfiguration.setAvailable(available);
 		editBlockedexConfiguration.setAvailable(available);
+		editSwitchConfiguration.setAvailable(available);
 	}
 }

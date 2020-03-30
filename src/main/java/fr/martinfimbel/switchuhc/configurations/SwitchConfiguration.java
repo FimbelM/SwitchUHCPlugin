@@ -18,10 +18,13 @@ public class SwitchConfiguration extends AbstractConfiguration implements ISwitc
 	private static final LocalTime DEFAULT_SWITCH_TIME = LocalTime.of(0, 20, 0);
 	private static final LocalTime DEFAULT_START_SWITCH_TIME = LocalTime.of(0, 30, 0);
 	private static final Double DEFAULT_BORDER_SPEED = 1.0;
+	private static final Integer DEFAULT_NUMBER_OF_PLAYER_SWITCHABLE = 1;
 	private Block borderCenter;
 	private Double initialBorderDiameter, finalBorderDiameter, borderSpeed;
+	private Integer numberOfPlayerSwitchable;
 	private LocalTime switchTime, startSwitchTime, fractionTime, warningTime, pvpTime;
-
+	
+	
 	public SwitchConfiguration(String name) {
 		super(name);
 		setGame(new SwitchGame(this));
@@ -121,7 +124,18 @@ public class SwitchConfiguration extends AbstractConfiguration implements ISwitc
 	public void setStartSwitchTime(LocalTime startSwitchTime) {
 		this.startSwitchTime = startSwitchTime;
 	}
-
+	
+	@Override
+	public Integer getNumberOfPlayerSwitchable() {
+		return numberOfPlayerSwitchable == null ? DEFAULT_NUMBER_OF_PLAYER_SWITCHABLE : numberOfPlayerSwitchable;
+	}
+	
+	@Override
+	public void setNumberOfPlayerSwitchable(Integer numberOfSwitchablePlayer) {
+		this.numberOfPlayerSwitchable = numberOfSwitchablePlayer;
+	}
+	
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder(super.toString());
@@ -134,6 +148,7 @@ public class SwitchConfiguration extends AbstractConfiguration implements ISwitc
 		builder.append("Border speed : " + getBorderSpeed() + " blocks/s\n");
 		builder.append("First switch time : "+ showTime(getStartSwitchTime())+ "\n");
 		builder.append("Switch every : " + showTime(getPeriodSwitchTime())+ "\n");
+		builder.append("Number of players switched : " + getNumberOfPlayerSwitchable() + "\n");
 		return builder.toString();
 	}
 
@@ -147,5 +162,10 @@ public class SwitchConfiguration extends AbstractConfiguration implements ISwitc
 		initialBorderDiameter = null;
 		pvpTime = null;
 		warningTime = null;
+		startSwitchTime = null;
+		switchTime = null;
+		numberOfPlayerSwitchable = null;
 	}
+
+
 }

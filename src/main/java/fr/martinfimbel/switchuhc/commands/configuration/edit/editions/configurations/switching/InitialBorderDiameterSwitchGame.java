@@ -11,10 +11,11 @@ import fr.martinfimbel.switchuhc.dictionary.dictionaries.MessageCode;
 import fr.martinfimbel.switchuhc.interfaces.ISwitchGameConfiguration;
 
 public class InitialBorderDiameterSwitchGame extends AbstractConfEdition<ISwitchGameConfiguration> {
-	
+
 	public InitialBorderDiameterSwitchGame() {
-	super("initial_border_diameter", MessageCode.INITIAL_BORDER_DIAMETER_SWITCH_GAME_EXPLANATION);
+		super("initial_border_diameter", MessageCode.INITIAL_BORDER_DIAMETER_SWITCH_GAME_EXPLANATION);
 	}
+
 	@Override
 	public void edit(String[] args) {
 		try {
@@ -25,7 +26,8 @@ public class InitialBorderDiameterSwitchGame extends AbstractConfEdition<ISwitch
 			}
 
 			get().setInitialBorderDiameter(diameter);
-			sendMessage(MessageCode.INITIAL_BORDER_DIAMETER_SWITCH_GAME_DEFINED, get().getInitialBorderDiameter().toString());
+			sendMessage(MessageCode.INITIAL_BORDER_DIAMETER_SWITCH_GAME_DEFINED,
+					get().getInitialBorderDiameter().toString());
 		} catch (IndexOutOfBoundsException e) {
 			sendMessage(MessageCode.INITIAL_BORDER_DIAMETER_SWITCH_GAME_MISSING_DIAMETER);
 		} catch (NumberFormatException e) {

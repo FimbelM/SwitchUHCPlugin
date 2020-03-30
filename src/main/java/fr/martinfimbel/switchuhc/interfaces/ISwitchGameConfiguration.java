@@ -26,4 +26,6 @@ public interface ISwitchGameConfiguration extends IConfiguration, IUnmodifiableS
 	 
 	void setStartSwitchTime(LocalTime startSwitch);
 	
+	void setNumberOfPlayerSwitchable(Integer numberOfPlayerSwitchable);
+	
 }
