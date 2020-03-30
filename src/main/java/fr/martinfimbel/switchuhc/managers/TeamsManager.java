@@ -49,8 +49,8 @@ public class TeamsManager {
 	}
 
 	public static List<Player> getCollegues(Player player) {
-		return configuration.getTeams().stream().filter(t -> t.getPlayers().contains(player)).findFirst().get().getPlayers().stream().filter(n -> !n.equals(player))
-				.collect(Collectors.toList());
+		return configuration.getTeams().stream().filter(t -> t.getPlayers().contains(player)).findFirst().get()
+				.getPlayers().stream().filter(n -> !n.equals(player)).collect(Collectors.toList());
 	}
 
 	public static Player getRandomCollegue(Player player) {
@@ -124,6 +124,15 @@ public class TeamsManager {
 		return isValide(conf, t -> t.getColor().equals(color));
 	}
 
+	
+	public static void join(ITeam team, Player player) {
+		BukkitManager.dispatchCommand("team join " + team.getName() + " " + player.getName());
+	}
+
+	public static void leave(ITeam team, Player player) {
+		BukkitManager.dispatchCommand("team leave " + team.getName() + " " + player.getName());
+	}
+
 	private static boolean isValide(IConfiguration conf, Predicate<ITeam> filter) {
 		for (ITeam team : conf.getTeams())
 			if (filter.test(team))
@@ -177,4 +186,5 @@ public class TeamsManager {
 			teams.remove(randomTeam);
 		return removed;
 	}
+
 }
