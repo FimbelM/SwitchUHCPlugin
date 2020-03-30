@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Random;
-import java.util.stream.Collectors;
-
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -21,7 +19,6 @@ import fr.martinfimbel.switchuhc.managers.EColor;
 import fr.martinfimbel.switchuhc.managers.PlayerManager;
 import fr.martinfimbel.switchuhc.managers.WorldManager;
 import fr.martinfimbel.switchuhc.task.TimeLine;
-import fr.pederobien.minecraftdevelopmenttoolkit.managers.TeamManager;
 
 public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwitchConfiguration>
 		implements ISwitchGameState {
@@ -61,7 +58,7 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 	}
 
 	protected void Switch() {
-		/*// Copy of current teams in game
+		// Copy of current teams in game
 		List<ITeam> copyOfTeamList = new ArrayList<ITeam>(game.getConfiguration().getTeams());
 		
 		// Getting teams that contains enough players
@@ -103,7 +100,6 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 		// game.getConfiguration().getTeams().get(0).addPlayer(player);
 		
 		
-		*/
 		sendTitle(EColor.GOLD, MessageCode.SWITCH);
 	}
 }
