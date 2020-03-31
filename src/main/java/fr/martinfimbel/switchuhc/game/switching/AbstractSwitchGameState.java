@@ -60,7 +60,7 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 	protected void Switch() {
 		// Copy of current teams in game
 		List<ITeam> copyOfTeamList = new ArrayList<ITeam>(game.getConfiguration().getTeams());
-		
+
 		// Getting teams that contains enough players
 		ListIterator<ITeam> iterator = copyOfTeamList.listIterator();
 		while (iterator.hasNext()) {
@@ -68,38 +68,60 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			if (team.getPlayersOnMode(GameMode.SURVIVAL).size() < game.getConfiguration().getNumberOfPlayerSwitchable())
 				iterator.remove();
 		}
-		
+
 		// Structure used to register random player from team
 		Map<ITeam, List<Player>> randomPlayers = new HashMap<ITeam, List<Player>>();
 		Map<Player, Location> randomPlayerCoordinates = new HashMap<Player, Location>();
-		
+
 		// Object that return random int.
 		Random rand = new Random();
-		
-		// Getting a map that contains a list of random players ready to switch and coordinates
+
+		// Getting a map that contains a list of random players ready to switch and a
+		// map that link coordinates to a player
 		for (ITeam team : copyOfTeamList) {
-			List<Player> switchedPlayer = new ArrayList<Player>();
-			Location coordinatesPlayers; 
+			Location coordinatesPlayers;
 			Player player;
+
+			List<Player> switchedPlayers = new ArrayList<Player>();
 			for (int i = 0; i < game.getConfiguration().getNumberOfPlayerSwitchable(); i++)
 				// getting a list of random players
-				switchedPlayer.add(team.getPlayers().get(rand.nextInt(team.getPlayers().size())));
-			randomPlayers.put(team, switchedPlayer);
-			for (int i = 0; i< switchedPlayer.size(); i++) {
-				coordinatesPlayers = switchedPlayer.get(i).getPlayer().getLocation();
-				player = switchedPlayer.get(i).getPlayer();
+				switchedPlayers.add(team.getPlayers().get(rand.nextInt(team.getPlayers().size())));
+			
+			randomPlayers.put(team, switchedPlayers);
+			for (int i = 0; i < switchedPlayers.size(); i++) {
+				coordinatesPlayers = switchedPlayers.get(i).getLocation();
+				player = switchedPlayers.get(i);
 				randomPlayerCoordinates.put(player, coordinatesPlayers);
 			}
 		}
-		// define a permutation between players (not possible in the same team)
+
+		// Actualize teams with new teamates and teleporting players
+
+		Player player1;
+		Player player2;
+		
+		for (int i = 0; i < copyOfTeamList.size()-1; i++) {	
+			player1 = randomPlayers.get(copyOfTeamList.get(i)).get(rand.nextInt(copyOfTeamList.get(i).getPlayers().size()));
+			player2 = randomPlayers.get(copyOfTeamList.get(i+1)).get(rand.nextInt(copyOfTeamList.get(i+1).getPlayers().size()));
+			
+			game.getConfiguration().getTeams().get(i).removePlayer(player1);
+			game.getConfiguration().getTeams().get(i+1).removePlayer(player2);
+			game.getConfiguration().getTeams().get(i+1).addPlayer(player1);
+			game.getConfiguration().getTeams().get(i).addPlayer(player2);
+		
+			PlayerManager.teleporte(player1, randomPlayerCoordinates.get(player2));
+			System.out.println("Teleporting player1 to player2 coordinates");
+			PlayerManager.teleporte(player2, randomPlayerCoordinates.get(player1));
+			System.out.println("Teleporting player2 to player1 coordinates");
+		}
 		
 		
-		// Actualize teams with new team mates
+		// verify if players are in same team
 		
+		System.out.println("RandomPlayers: " + randomPlayers);
+		System.out.println("RandomPlayerCoordinates: " + randomPlayerCoordinates);
 		
-		// game.getConfiguration().getTeams().get(0).addPlayer(player);
-		
-		
+
 		sendTitle(EColor.GOLD, MessageCode.SWITCH);
 	}
 }
