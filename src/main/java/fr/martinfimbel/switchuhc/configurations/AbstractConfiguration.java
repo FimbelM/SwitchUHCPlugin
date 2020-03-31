@@ -126,7 +126,7 @@ public abstract class AbstractConfiguration implements IConfiguration {
 	public String toString() {
 		StringBuilder builder = new StringBuilder("Name : " + getName() + "\n");
 		builder.append("ScoreboardRefresh : " + getScoreboardRefresh() + "\n");
-		builder.append("GameTime : " + showTime(getGameTime()) + "\n");
+		builder.append("Moving Border Time : " + showTime(getGameTime()) + "\n");
 		builder.append("Teams :\n" + showTeams());
 		return builder.toString();
 	}
