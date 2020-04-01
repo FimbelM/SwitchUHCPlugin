@@ -66,13 +66,22 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 		ListIterator<ITeam> iterator = copyOfTeamList.listIterator();
 		while (iterator.hasNext()) {
 			ITeam team = iterator.next();
-			if (team.getPlayersOnMode(GameMode.SURVIVAL).size() < game.getConfiguration().getNumberOfPlayerSwitchable()
-					&& team.getPlayersOnMode(GameMode.SURVIVAL).size() <= 1)
+			if (team.getPlayersOnMode(GameMode.SURVIVAL).size() <= 1) {
+				System.out.println("Nombre de joueurs dans l'equipe " + team.getName() + " inferieur ou egal a un");
 				iterator.remove();
-			System.out.println("Pas assez de joueurs pour le switch");
+			} else if (team.getPlayersOnMode(GameMode.SURVIVAL).size() < game.getConfiguration()
+					.getNumberOfPlayerSwitchable()) {
+				iterator.remove();
+				System.out.println("Nombre de joueur dans l'equipe " + team.getName() + "inferieur a "
+						+ game.getConfiguration().getNumberOfPlayerSwitchable());
+			}
+			else {
+				System.out.println("L'equipe " + team.getName() + " a assez de joueurs pour faire partie des switchs");
+			}
 		}
-		for (int i = 0; i < copyOfTeamList.size(); i++) {
-			System.out.println("selected team : " + copyOfTeamList.get(i).getName());
+		// for (int i = 0; i < copyOfTeamList.size(); i++) {
+		while (iterator.hasNext()) {
+			System.out.println("Teams selected with switchable players : " + iterator.next().getName());
 		}
 
 		// Structure used to register random player from team
@@ -101,7 +110,7 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			}
 		}
 
-		// Actualize teams with new teamates and teleporting players
+		// Actualize teams with new teamates and teleporte players
 
 		Player player1;
 		Player player2;
@@ -118,7 +127,7 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			game.getConfiguration().getTeams().get(i).addPlayer(player2);
 
 			PlayerManager.teleporte(player1, randomPlayerCoordinates.get(player2));
-			PlayerManager.teleporte(player2, randomPlayerCoordinates.get(player1));		
+			PlayerManager.teleporte(player2, randomPlayerCoordinates.get(player1));
 		}
 		sendTitle(EColor.GOLD, MessageCode.SWITCH);
 	}
