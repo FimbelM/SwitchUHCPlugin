@@ -1892,6 +1892,29 @@ public class EnglishDictionary extends AbstractDictionary {
 				return "Missing parameter number of switched player";
 			}
 		});
+		
+		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_AFTER_BORDER_MOVES_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "Do you want switch to be activated after border moves";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_AFTER_BORDER_MOVES_WRONG_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "Please type Y or N";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_AFTER_BORDER_MOVES_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Switch after border moves has been defined to " + args[0];
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_AFTER_BORDER_MOVES_TAB_COMPLETE) {
+			@Override
+			public String getMessage(String... args) {
+				return "<Y/N>";
+			}
+		});
+		
 
 	registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_DEFINED) {
 			@Override
