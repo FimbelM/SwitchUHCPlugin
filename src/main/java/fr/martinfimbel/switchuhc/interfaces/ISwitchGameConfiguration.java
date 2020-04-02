@@ -28,4 +28,6 @@ public interface ISwitchGameConfiguration extends IConfiguration, IUnmodifiableS
 	
 	void setNumberOfPlayerSwitchable(Integer numberOfPlayerSwitchable);
 	
+	void setSwitchAfterBorderMoves(String letter);
+	
 }

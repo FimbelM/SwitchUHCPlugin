@@ -25,5 +25,7 @@ public interface IUnmodifiableSwitchConfiguration extends IUnmodifiableConfigura
 	Double getBorderSpeed();
 
 	Integer getNumberOfPlayerSwitchable();
+	
+	String getSwitchAfterBorderMoves();
 
 }

@@ -112,4 +112,8 @@ public class SwitchGameEditionsFactory extends AbstractConfigurationEditionsFact
 		return new NumberOfPlayerSwitchable();
 	}
 	
+	public IMapEdition<ISwitchGameConfiguration> createSwitchAfterBorderMovesEdition() {
+		return new SwitchAfterBorderMoves();
+	}
+	
 }

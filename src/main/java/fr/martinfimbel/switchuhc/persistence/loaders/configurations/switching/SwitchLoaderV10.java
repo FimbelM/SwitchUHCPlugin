@@ -65,6 +65,13 @@ public class SwitchLoaderV10 extends AbstractSwitchGameLoader {
 					get().addTeam(TeamsManager.createTeam(t.getAttribute("name"), EColor.getByColorName(t.getAttribute("color"))));
 				}
 				break;
+			case "number":
+				get().setNumberOfPlayerSwitchable(Integer.parseInt(elt.getAttribute("Number")));
+				break;
+			case "switchafter":
+				get().setSwitchAfterBorderMoves(elt.getAttribute("SwitchABM"));
+				break;
+				
 			default:
 				break;
 			}

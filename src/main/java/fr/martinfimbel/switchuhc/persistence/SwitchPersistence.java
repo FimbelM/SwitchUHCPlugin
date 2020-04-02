@@ -61,6 +61,12 @@ public class SwitchPersistence  extends AbstractConfPersistence<ISwitchGameConfi
 		time.setAttribute("scoreboardrefresh", "" + get().getScoreboardRefresh());
 		root.appendChild(time);
 
+		Element number = doc.createElement("NumberofSwitchedPerson");
+		number.setAttribute("Number", get().getNumberOfPlayerSwitchable().toString());
+		
+		Element switchafter = doc.createElement("SwitchAfterBorderMoves");
+		switchafter.setAttribute("SwitchABM", get().getSwitchAfterBorderMoves());
+		
 		Element teams = doc.createElement("teams");
 		for (ITeam t : get().getTeams()) {
 			Element team = doc.createElement("team");

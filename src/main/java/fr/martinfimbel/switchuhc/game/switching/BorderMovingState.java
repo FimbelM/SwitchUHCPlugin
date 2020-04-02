@@ -54,9 +54,15 @@ public class BorderMovingState extends AbstractSwitchGameState {
 				EventFactory.createMessageEvent(event.getPlayer(), MessageCode.PLAYER_MUST_STAY_IN_THE_OVERWORLD,
 						WorldManager.getNormalizeWorldName(event.getTo().getWorld().getName())));
 	}
+
 	@Override
 	public void time(LocalTime time) {
-		if(time.equals(game.getNextSwitchTime()))
-			Switch();
+		boolean switchAfterBorderMoves = false;
+		String YN = getConfiguration().getSwitchAfterBorderMoves();
+		if (YN == "Y") {
+			switchAfterBorderMoves = true;
+			if (time.equals(game.getNextSwitchTime()) && switchAfterBorderMoves == true)
+				Switch();
+		}
 	}
 }

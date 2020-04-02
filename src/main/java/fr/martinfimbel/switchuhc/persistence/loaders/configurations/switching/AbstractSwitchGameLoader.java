@@ -23,5 +23,7 @@ public abstract class AbstractSwitchGameLoader extends AbstractConfigurationLoad
 			System.out.println("Startswitch : " + get().getStartSwitchTime());
 			System.out.println("Switchtime : " + get().getPeriodSwitchTime());
 			System.out.println("\tScoreboard refresh : " + get().getScoreboardRefresh());
+			System.out.println("\tNumber of switched person : " + get().getNumberOfPlayerSwitchable());
+			System.out.println("\tSwitch after border moves : " + get().getSwitchAfterBorderMoves());
 		}
 }

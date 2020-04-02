@@ -197,4 +197,5 @@ public class SwitchGame extends AbstractGame implements ISwitchGame {
 	public LocalTime getDecreasingSwitchTime() {
 		return decreasingSwitchTime;
 	}
+
 }

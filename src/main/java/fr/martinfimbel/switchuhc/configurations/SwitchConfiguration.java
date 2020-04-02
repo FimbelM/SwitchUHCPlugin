@@ -19,12 +19,13 @@ public class SwitchConfiguration extends AbstractConfiguration implements ISwitc
 	private static final LocalTime DEFAULT_START_SWITCH_TIME = LocalTime.of(0, 30, 0);
 	private static final Double DEFAULT_BORDER_SPEED = 1.0;
 	private static final Integer DEFAULT_NUMBER_OF_PLAYER_SWITCHABLE = 1;
+	private static final String DEFAULT_SWITCH_AFTER_BORDER_MOVES = "Y";
 	private Block borderCenter;
 	private Double initialBorderDiameter, finalBorderDiameter, borderSpeed;
 	private Integer numberOfPlayerSwitchable;
 	private LocalTime switchTime, startSwitchTime, fractionTime, warningTime, pvpTime;
-	
-	
+	private String switchAfterBorderMoves;
+
 	public SwitchConfiguration(String name) {
 		super(name);
 		setGame(new SwitchGame(this));
@@ -124,15 +125,24 @@ public class SwitchConfiguration extends AbstractConfiguration implements ISwitc
 	public void setStartSwitchTime(LocalTime startSwitchTime) {
 		this.startSwitchTime = startSwitchTime;
 	}
-	
+
 	@Override
 	public Integer getNumberOfPlayerSwitchable() {
 		return numberOfPlayerSwitchable == null ? DEFAULT_NUMBER_OF_PLAYER_SWITCHABLE : numberOfPlayerSwitchable;
 	}
-	
+
 	@Override
 	public void setNumberOfPlayerSwitchable(Integer numberOfSwitchablePlayer) {
 		this.numberOfPlayerSwitchable = numberOfSwitchablePlayer;
+	}
+
+	public String getSwitchAfterBorderMoves() {
+		return switchAfterBorderMoves == null ? DEFAULT_SWITCH_AFTER_BORDER_MOVES : switchAfterBorderMoves;
+	}
+	
+	@Override
+	public void setSwitchAfterBorderMoves(String letter) {
+		this.switchAfterBorderMoves = letter;
 	}
 	
 	
@@ -146,9 +156,10 @@ public class SwitchConfiguration extends AbstractConfiguration implements ISwitc
 		builder.append("Warning time : " + showTime(getWarningTime()) + "\n");
 		builder.append("Pvp time : " + showTime(getPvpTime()) + "\n");
 		builder.append("Border speed : " + getBorderSpeed() + " blocks/s\n");
-		builder.append("First switch time : "+ showTime(getStartSwitchTime())+ "\n");
-		builder.append("Switch every : " + showTime(getPeriodSwitchTime())+ "\n");
+		builder.append("First switch time : " + showTime(getStartSwitchTime()) + "\n");
+		builder.append("Switch every : " + showTime(getPeriodSwitchTime()) + "\n");
 		builder.append("Number of players switched : " + getNumberOfPlayerSwitchable() + "\n");
+		builder.append("Switch after border moves : " + getSwitchAfterBorderMoves() + "\n");
 		return builder.toString();
 	}
 
@@ -165,7 +176,7 @@ public class SwitchConfiguration extends AbstractConfiguration implements ISwitc
 		startSwitchTime = null;
 		switchTime = null;
 		numberOfPlayerSwitchable = null;
+		switchAfterBorderMoves = null;
 	}
-
 
 }

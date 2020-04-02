@@ -3,6 +3,7 @@ package fr.martinfimbel.switchuhc.game.switching;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
@@ -18,6 +19,7 @@ import fr.martinfimbel.switchuhc.interfaces.ITeam;
 import fr.martinfimbel.switchuhc.interfaces.IUnmodifiableSwitchConfiguration;
 import fr.martinfimbel.switchuhc.managers.EColor;
 import fr.martinfimbel.switchuhc.managers.PlayerManager;
+import fr.martinfimbel.switchuhc.managers.TeamsManager;
 import fr.martinfimbel.switchuhc.managers.WorldManager;
 import fr.martinfimbel.switchuhc.task.TimeLine;
 
@@ -60,28 +62,27 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 
 	protected void Switch() {
 		// Copy of current teams in game
-		List<ITeam> copyOfTeamList = new ArrayList<ITeam>(game.getConfiguration().getTeams());
+		List<ITeam> copyOfTeamList = new ArrayList<ITeam>();
+		for (ITeam team : game.getConfiguration().getTeams())
+			copyOfTeamList.add((ITeam) team.clone());
 
 		// Getting teams that contains enough players
 		ListIterator<ITeam> iterator = copyOfTeamList.listIterator();
 		while (iterator.hasNext()) {
 			ITeam team = iterator.next();
-			if (team.getPlayersOnMode(GameMode.SURVIVAL).size() <= 1) {
-				System.out.println("Nombre de joueurs dans l'equipe " + team.getName() + " inferieur ou egal a un");
+
+			if (!filterTeam(team))
 				iterator.remove();
-			} else if (team.getPlayersOnMode(GameMode.SURVIVAL).size() < game.getConfiguration()
-					.getNumberOfPlayerSwitchable()) {
-				iterator.remove();
-				System.out.println("Nombre de joueur dans l'equipe " + team.getName() + "inferieur a "
-						+ game.getConfiguration().getNumberOfPlayerSwitchable());
-			}
-			else {
-				System.out.println("L'equipe " + team.getName() + " a assez de joueurs pour faire partie des switchs");
-			}
 		}
-		// for (int i = 0; i < copyOfTeamList.size(); i++) {
-		while (iterator.hasNext()) {
-			System.out.println("Teams selected with switchable players : " + iterator.next().getName());
+
+		System.out.println("Teams selected with switchable players : ");
+		for (int team = 0; team < copyOfTeamList.size(); team++) {
+			String teamName = copyOfTeamList.get(team).getName();
+			String playerNames = "";
+			for (int player = 0; player < copyOfTeamList.get(team).getPlayers().size(); player++) {
+				playerNames += copyOfTeamList.get(team).getPlayers().get(player).getName();
+			}
+			System.out.println(teamName + " : " + playerNames);
 		}
 
 		// Structure used to register random player from team
@@ -94,41 +95,78 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 		// Getting a map that contains a list of random players ready to switch and a
 		// map that link coordinates to a player
 		for (ITeam team : copyOfTeamList) {
-			Location coordinatesPlayers;
-			Player player;
-
 			List<Player> switchedPlayers = new ArrayList<Player>();
-			for (int i = 0; i < game.getConfiguration().getNumberOfPlayerSwitchable(); i++)
+
+			for (int i = 0; i < game.getConfiguration().getNumberOfPlayerSwitchable(); i++) {
 				// getting a list of random players
 				switchedPlayers.add(team.getPlayers().get(rand.nextInt(team.getPlayers().size())));
-
-			randomPlayers.put(team, switchedPlayers);
-			for (int i = 0; i < switchedPlayers.size(); i++) {
-				coordinatesPlayers = switchedPlayers.get(i).getLocation();
-				player = switchedPlayers.get(i);
-				randomPlayerCoordinates.put(player, coordinatesPlayers);
 			}
+			
+			randomPlayers.put(team, switchedPlayers);
+			for (int j = 0; j < switchedPlayers.size(); j++)
+				randomPlayerCoordinates.put(switchedPlayers.get(j), switchedPlayers.get(j).getLocation());
 		}
 
 		// Actualize teams with new teamates and teleporte players
+		Player randomPlayer1, randomPlayer2;
+		
+		Iterator<ITeam> iteratorTeam = randomPlayers.keySet().iterator();
+		ITeam team1 = null, team2 = null;
+		while (iteratorTeam.hasNext()) {
+			if (team1 == null) {
+				team1 = iteratorTeam.next();
+				if (iteratorTeam.hasNext()) {
+					team2 = iteratorTeam.next();
+				}
+			} else
+				team2 = iterator.next();
+			
+			randomPlayer1 = team1.getPlayers().get(rand.nextInt(team1.getPlayers().size()));
+			randomPlayer2 = team2.getPlayers().get(rand.nextInt(team2.getPlayers().size()));
+			
+			ITeam realTeam1 = game.getConfiguration().getTeamByName(team1.getName());
+			ITeam realTeam2 = game.getConfiguration().getTeamByName(team2.getName());
 
-		Player player1;
-		Player player2;
-
-		for (int i = 0; i < copyOfTeamList.size() - 1; i++) {
-			player1 = randomPlayers.get(copyOfTeamList.get(i))
-					.get(rand.nextInt(copyOfTeamList.get(i).getPlayers().size()));
-			player2 = randomPlayers.get(copyOfTeamList.get(i + 1))
-					.get(rand.nextInt(copyOfTeamList.get(i + 1).getPlayers().size()));
-
-			game.getConfiguration().getTeams().get(i).removePlayer(player1);
-			game.getConfiguration().getTeams().get(i + 1).removePlayer(player2);
-			game.getConfiguration().getTeams().get(i + 1).addPlayer(player1);
-			game.getConfiguration().getTeams().get(i).addPlayer(player2);
-
-			PlayerManager.teleporte(player1, randomPlayerCoordinates.get(player2));
-			PlayerManager.teleporte(player2, randomPlayerCoordinates.get(player1));
+			// Removing player from their real team
+			synchronizedRemove(realTeam1, randomPlayer1);
+			synchronizedRemove(realTeam2, randomPlayer2);
+			
+			
+			// Adding players to their new team
+			synchronizedAdd(realTeam1, randomPlayer2);
+			synchronizedAdd(realTeam2, randomPlayer1);
+			
+			PlayerManager.teleporte(randomPlayer1, randomPlayerCoordinates.get(randomPlayer2));
+			PlayerManager.teleporte(randomPlayer2, randomPlayerCoordinates.get(randomPlayer1));
+			
+			team1 = team2;
+			team2 = null;
 		}
 		sendTitle(EColor.GOLD, MessageCode.SWITCH);
+	}
+
+	private boolean filterTeam(ITeam team) {
+		List<Player> copyPlayers = team.getPlayersOnMode(GameMode.SURVIVAL);
+
+		if (copyPlayers.size() <= 1) {
+			System.out.println(team.getName() + " - one player in survival mode");
+			return false;
+		}
+
+		if (copyPlayers.size() < game.getConfiguration().getNumberOfPlayerSwitchable()) {
+			System.out.println(team.getName() + " - Not enough player in survival mode");
+			return false;
+		}
+		return true;
+	}
+	
+	private static void synchronizedAdd(ITeam team, Player player) {
+		team.addPlayer(player);
+		TeamsManager.join(team, player);
+	}
+	
+	private static void synchronizedRemove(ITeam team, Player player) {
+		team.removePlayer(player);
+		TeamsManager.leave(team, player);
 	}
 }
