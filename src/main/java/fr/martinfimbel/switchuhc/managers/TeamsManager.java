@@ -126,11 +126,11 @@ public class TeamsManager {
 
 	
 	public static void join(ITeam team, Player player) {
-		BukkitManager.dispatchCommand("team join " + team.getName() + " " + player.getName());
+		BukkitManager.dispatchCommand("team join " + team.getName() + " " + player.getName() + " ");
 	}
 
 	public static void leave(ITeam team, Player player) {
-		BukkitManager.dispatchCommand("team leave " + team.getName() + " " + player.getName());
+		BukkitManager.dispatchCommand("team leave " + team.getName() + " " + player.getName() + " ");
 	}
 
 	private static boolean isValide(IConfiguration conf, Predicate<ITeam> filter) {

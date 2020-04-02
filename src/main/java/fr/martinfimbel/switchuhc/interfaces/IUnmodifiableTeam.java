@@ -18,4 +18,6 @@ public interface IUnmodifiableTeam extends IUnmodifiableName {
 	List<Player> getPlayersOnMode(GameMode mode);
 
 	boolean isCreatedOnServer();
+	
+	Object clone();
 }

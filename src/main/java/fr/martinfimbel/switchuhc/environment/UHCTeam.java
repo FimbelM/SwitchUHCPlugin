@@ -14,18 +14,19 @@ public class UHCTeam implements ITeam {
 	private String name;
 	private EColor color;
 	private List<Player> players;
-	private boolean createdOnServer;
+	private boolean createdOnServer, isCopy;
 
-	private UHCTeam(String name, EColor color) {
+	private UHCTeam(String name, EColor color, boolean isCopy) {
 		this.name = name;
 		this.color = color;
+		this.isCopy = isCopy;
 
 		players = new ArrayList<Player>();
 		createdOnServer = false;
 	}
 
 	public static ITeam createTeam(String name, EColor color) {
-		return new UHCTeam(name, color);
+		return new UHCTeam(name, color, false);
 	}
 
 	@Override
@@ -97,6 +98,14 @@ public class UHCTeam implements ITeam {
 	public void setCreatedOnServer(boolean createdOnServer) {
 		this.createdOnServer = createdOnServer;
 	}
+	
+	@Override
+	public Object clone() {
+		ITeam team = new UHCTeam(getName(), getColor(), true);
+		for (Player player : getPlayers())
+			team.addPlayer(player);
+		return team;
+	}
 
 	@Override
 	public String toString() {
@@ -112,6 +121,9 @@ public class UHCTeam implements ITeam {
 	}
 
 	private void updateUhcPlayer(Player player, EColor color) {
+		if (isCopy)
+			return;
+		
 		if (color == null) {
 			player.setDisplayName(player.getName());
 			UHCPlayer.get(player).setColor(null);
