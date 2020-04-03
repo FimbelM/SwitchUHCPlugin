@@ -11,6 +11,7 @@ public class PauseState extends AbstractSwitchGameScoreboardState {
 
 	@Override
 	protected void updateEntries() {
+		registerTeam();
 		addEntryToTranslate(MessageCode.SCOREBOARD_CURRENT_GAME_TIME, prepareTime(getTask().getTotalTime()));
 		addEntryToTranslate(MessageCode.SCOREBOARD_CURRENT_PAUSE_TIME, prepareTime(getTask().getPauseTime()));
 	}

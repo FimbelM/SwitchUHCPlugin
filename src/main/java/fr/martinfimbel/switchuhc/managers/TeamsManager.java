@@ -1,13 +1,16 @@
 package fr.martinfimbel.switchuhc.managers;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.Team;
 
 import fr.martinfimbel.switchuhc.BukkitManager;
 import fr.martinfimbel.switchuhc.dictionary.dictionaries.MessageCode;
@@ -78,8 +81,10 @@ public class TeamsManager {
 		for (ITeam team : teams) {
 			BukkitManager.dispatchCommand("team add " + team.getName());
 			BukkitManager.dispatchCommand("team modify " + team.getName() + " color " + team.getColor().getColorName());
-			for (Player player : team.getPlayers())
+			for (Player player : team.getPlayers()) {
 				BukkitManager.dispatchCommand("team join " + team.getName() + " " + player.getName());
+				System.out.println("team join " + team.getName() + " " + player.getName());
+			}
 			team.setCreatedOnServer(true);
 		}
 	}
@@ -124,13 +129,24 @@ public class TeamsManager {
 		return isValide(conf, t -> t.getColor().equals(color));
 	}
 
-	
 	public static void join(ITeam team, Player player) {
-		BukkitManager.dispatchCommand("team join " + team.getName() + " " + player.getName() + " ");
+		Set<Team> setTeams = BukkitManager.getScoreboardManager().getMainScoreboard().getTeams();
+		Iterator<Team> iterator = setTeams.iterator();
+		while (iterator.hasNext()) {
+			Team t = iterator.next();
+			if (t.getName().equals(team.getName()))
+				t.addEntry(player.getName());
+		}
 	}
 
 	public static void leave(ITeam team, Player player) {
-		BukkitManager.dispatchCommand("team leave " + team.getName() + " " + player.getName() + " ");
+		Set<Team> setTeams = BukkitManager.getScoreboardManager().getMainScoreboard().getTeams();
+		Iterator<Team> iterator = setTeams.iterator();
+		while (iterator.hasNext()) {
+			Team t = iterator.next();
+			if (t.getName().equals(team.getName()))
+				t.removeEntry(player.getName());
+		}
 	}
 
 	private static boolean isValide(IConfiguration conf, Predicate<ITeam> filter) {

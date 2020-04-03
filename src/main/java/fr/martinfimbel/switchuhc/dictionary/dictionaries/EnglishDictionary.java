@@ -121,6 +121,14 @@ public class EnglishDictionary extends AbstractDictionary {
 			}
 		});
 
+		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_MESSAGE) {
+			@Override
+			public String getMessage(String... args) {
+				return "You have been switched to team " + args[0];
+			}
+		});
+		
+		
 		registerMessage(new AbstractPlayerMessage(MessageCode.CENTER_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {

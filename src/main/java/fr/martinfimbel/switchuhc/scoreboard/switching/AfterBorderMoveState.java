@@ -1,9 +1,6 @@
 package fr.martinfimbel.switchuhc.scoreboard.switching;
 
-import org.bukkit.GameMode;
-
 import fr.martinfimbel.switchuhc.dictionary.dictionaries.MessageCode;
-import fr.martinfimbel.switchuhc.interfaces.ITeam;
 import fr.martinfimbel.switchuhc.managers.WorldManager;
 
 public class AfterBorderMoveState extends AbstractSwitchGameScoreboardState {
@@ -28,11 +25,5 @@ public class AfterBorderMoveState extends AbstractSwitchGameScoreboardState {
 	@Override
 	public void stop() {
 		scoreboard.setCurrentState(scoreboard.getStopState()).stop();
-	}
-
-	public void registerTeam() {
-		for (ITeam team : scoreboard.getConfiguration().getNotEmptyTeams())
-			addEntryToNotTranslate(team.getColoredName() + " : ", "" + team.getPlayersOnMode(GameMode.SURVIVAL).size());
-		addEmptyLine();
 	}
 }

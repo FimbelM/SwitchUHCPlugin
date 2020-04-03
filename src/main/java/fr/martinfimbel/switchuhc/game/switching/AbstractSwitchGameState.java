@@ -87,13 +87,11 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 
 		// Structure used to register random player from team
 		Map<ITeam, List<Player>> randomPlayers = new HashMap<ITeam, List<Player>>();
-		Map<Player, Location> randomPlayerCoordinates = new HashMap<Player, Location>();
-
+		
 		// Object that return random int.
 		Random rand = new Random();
 
-		// Getting a map that contains a list of random players ready to switch and a
-		// map that link coordinates to a player
+		// Getting a map that contains a list of random players ready to switch
 		for (ITeam team : copyOfTeamList) {
 			List<Player> switchedPlayers = new ArrayList<Player>();
 
@@ -101,12 +99,9 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 				// getting a list of random players
 				switchedPlayers.add(team.getPlayers().get(rand.nextInt(team.getPlayers().size())));
 			}
-			
-			randomPlayers.put(team, switchedPlayers);
-			for (int j = 0; j < switchedPlayers.size(); j++)
-				randomPlayerCoordinates.put(switchedPlayers.get(j), switchedPlayers.get(j).getLocation());
+			randomPlayers.put(team, switchedPlayers);				
 		}
-
+		
 		// Actualize teams with new teamates and teleporte players
 		Player randomPlayer1, randomPlayer2;
 		
@@ -121,23 +116,28 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			} else
 				team2 = iterator.next();
 			
+			
 			randomPlayer1 = team1.getPlayers().get(rand.nextInt(team1.getPlayers().size()));
 			randomPlayer2 = team2.getPlayers().get(rand.nextInt(team2.getPlayers().size()));
 			
 			ITeam realTeam1 = game.getConfiguration().getTeamByName(team1.getName());
 			ITeam realTeam2 = game.getConfiguration().getTeamByName(team2.getName());
-
+			
 			// Removing player from their real team
 			synchronizedRemove(realTeam1, randomPlayer1);
 			synchronizedRemove(realTeam2, randomPlayer2);
-			
 			
 			// Adding players to their new team
 			synchronizedAdd(realTeam1, randomPlayer2);
 			synchronizedAdd(realTeam2, randomPlayer1);
 			
-			PlayerManager.teleporte(randomPlayer1, randomPlayerCoordinates.get(randomPlayer2));
-			PlayerManager.teleporte(randomPlayer2, randomPlayerCoordinates.get(randomPlayer1));
+			Location locp2 = randomPlayer2.getLocation().clone();
+			
+			PlayerManager.teleporte(randomPlayer2, randomPlayer1.getLocation());
+			PlayerManager.teleporte(randomPlayer1, locp2);
+			
+			sendMessage(randomPlayer1, MessageCode.SWITCH_MESSAGE, team2.toString());
+			sendMessage(randomPlayer2, MessageCode.SWITCH_MESSAGE, team1.toString());
 			
 			team1 = team2;
 			team2 = null;
@@ -148,10 +148,10 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 	private boolean filterTeam(ITeam team) {
 		List<Player> copyPlayers = team.getPlayersOnMode(GameMode.SURVIVAL);
 
-		if (copyPlayers.size() <= 1) {
+		/*if (copyPlayers.size() <= 1) {
 			System.out.println(team.getName() + " - one player in survival mode");
 			return false;
-		}
+		}*/
 
 		if (copyPlayers.size() < game.getConfiguration().getNumberOfPlayerSwitchable()) {
 			System.out.println(team.getName() + " - Not enough player in survival mode");
@@ -169,4 +169,5 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 		team.removePlayer(player);
 		TeamsManager.leave(team, player);
 	}
+	
 }

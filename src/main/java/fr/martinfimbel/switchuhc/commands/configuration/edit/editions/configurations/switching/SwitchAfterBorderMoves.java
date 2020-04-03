@@ -20,7 +20,6 @@ public class SwitchAfterBorderMoves extends AbstractConfEdition<ISwitchGameConfi
 	public void edit(String[] l) {
 		String letter = l[0];
 		get().setSwitchAfterBorderMoves(letter);
-		System.out.println("l[0] = " + l[0]);
 		if (letter.equals("Y")) {
 			sendMessage(MessageCode.SWITCH_AFTER_BORDER_MOVES_DEFINED, get().getSwitchAfterBorderMoves());
 			return;
