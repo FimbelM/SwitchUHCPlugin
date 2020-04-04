@@ -12,6 +12,7 @@ import org.bukkit.scoreboard.Scoreboard;
 import fr.martinfimbel.switchuhc.BukkitManager;
 import fr.martinfimbel.switchuhc.dictionary.DictionaryManager;
 import fr.martinfimbel.switchuhc.environment.UHCPlayer;
+import fr.martinfimbel.switchuhc.helpers.PlayerHelper;
 import fr.martinfimbel.switchuhc.interfaces.IScoreboardMessage;
 import fr.martinfimbel.switchuhc.scoreboard.IScoreboard;
 
@@ -93,7 +94,9 @@ public class ScoreboardManager {
 	}
 
 	private static String prepareCoordinates(Player player) {
-		Location loc = player.getLocation();
+		Location loc = PlayerHelper.getPlayerLocationRelativeToBorderCenter(player);
 		return loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ();
 	}
+	
+	
 }

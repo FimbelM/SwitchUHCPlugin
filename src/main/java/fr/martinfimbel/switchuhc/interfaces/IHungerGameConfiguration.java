@@ -2,23 +2,11 @@ package fr.martinfimbel.switchuhc.interfaces;
 
 import java.time.LocalTime;
 
-import org.bukkit.block.Block;
-
-public interface IHungerGameConfiguration extends IConfiguration, IUnmodifiableHungerGameConfiguration {
-
-	void setBorderCenter(Block borderCenter);
-
-	void setBorderCenter(String x, String z);
-
-	void setInitialBorderDiameter(double initialBorderDiameter);
-
-	void setFinalBorderDiameter(double finalBorderDiameter);
+public interface IHungerGameConfiguration extends IBorderConfiguration, IUnmodifiableHungerGameConfiguration {
 
 	void setFractionTime(LocalTime fractionTime);
 
 	void setWarningTime(LocalTime warningTime);
 
 	void setPvpTime(LocalTime pvpTime);
-
-	void setBorderSpeed(double blocksPerSeconds);
 }

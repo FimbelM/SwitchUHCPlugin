@@ -3,6 +3,7 @@ package fr.martinfimbel.switchuhc.game.hungergame;
 import java.time.Duration;
 
 import fr.martinfimbel.switchuhc.dictionary.dictionaries.MessageCode;
+import fr.martinfimbel.switchuhc.helpers.PlayerHelper;
 import fr.martinfimbel.switchuhc.scoreboard.launcher.HGScoreboardLauncher;
 import fr.martinfimbel.switchuhc.task.TaskLauncher;
 import fr.martinfimbel.switchuhc.task.TimeLine;
@@ -30,6 +31,8 @@ public class InitialState extends AbstractHungerGameState {
 		timeLine.addPonctualObserver(getAbsoluteWarningTime(), game);
 		timeLine.addPonctualObserver(getConfiguration().getPvpTime(), game);
 		timeLine.addPonctualObserver(getConfiguration().getGameTime(), scoreboardLauncher);
+		
+		PlayerHelper.setCurrentConfiguration(getConfiguration());
 		return true;
 	}
 

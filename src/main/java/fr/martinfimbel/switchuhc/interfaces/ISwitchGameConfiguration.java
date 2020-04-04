@@ -2,17 +2,7 @@ package fr.martinfimbel.switchuhc.interfaces;
 
 import java.time.LocalTime;
 
-import org.bukkit.block.Block;
-
-public interface ISwitchGameConfiguration extends IConfiguration, IUnmodifiableSwitchConfiguration {
-
-	void setBorderCenter(Block borderCenter);
-
-	void setBorderCenter(String x, String z);
-
-	void setInitialBorderDiameter(double initialBorderDiameter);
-
-	void setFinalBorderDiameter(double finalBorderDiameter);
+public interface ISwitchGameConfiguration extends IBorderConfiguration, IUnmodifiableSwitchConfiguration {
 
 	void setFractionTime(LocalTime fractionTime);
 
@@ -20,14 +10,12 @@ public interface ISwitchGameConfiguration extends IConfiguration, IUnmodifiableS
 
 	void setPvpTime(LocalTime pvpTime);
 
-	void setBorderSpeed(double blocksPerSeconds);
-		
 	void setPeriodSwitchTime(LocalTime switchTime);
-	 
+
 	void setStartSwitchTime(LocalTime startSwitch);
-	
+
 	void setNumberOfPlayerSwitchable(Integer numberOfPlayerSwitchable);
-	
+
 	void setSwitchAfterBorderMoves(String letter);
-	
+
 }
