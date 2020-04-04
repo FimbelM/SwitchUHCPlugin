@@ -24,6 +24,11 @@ public class EnglishDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Next Switch in : ";
 			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_TIME_BEFORE_SWITCH_DEACTIVATED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Switch deactivated";
+			}
 		});
 		
 		registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_SWITCH_GAME_BORDER) {
