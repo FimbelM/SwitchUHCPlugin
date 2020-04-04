@@ -15,7 +15,7 @@ import fr.martinfimbel.switchuhc.interfaces.IMessageCode;
 public abstract class CommonGameTime<T extends IConfiguration> extends AbstractConfEdition<T> {
 
 	public CommonGameTime(IMessageCode explanation) {
-		super("gametime", explanation);
+		super("Moving_border_time", explanation);
 	}
 
 	@Override
