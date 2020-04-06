@@ -69,12 +69,12 @@ public class TeamsManager {
 		PlayerManager.teleporteAllPlayers(team.getPlayers().stream(), location);
 	}
 
-	public static void teleporteRandomlyTeam(ITeam team, int bound) {
-		teleporteTeam(team, WorldManager.getRandomlyLocation(bound));
+	public static void teleporteRandomlyTeam(ITeam team, int bound, Location center) {
+		teleporteTeam(team, WorldManager.getRandomlyLocation(bound, center));
 	}
 
-	public static void teleporteRandomlyAllTeams(IUnmodifiableConfiguration configuration, int bound) {
-		configuration.getTeams().forEach(t -> teleporteRandomlyTeam(t, bound));
+	public static void teleporteRandomlyAllTeams(IUnmodifiableConfiguration configuration, int bound, Location center) {
+		configuration.getTeams().forEach(t -> teleporteRandomlyTeam(t, bound, center));
 	}
 
 	public static void createTeams(List<ITeam> teams) {
@@ -83,7 +83,6 @@ public class TeamsManager {
 			BukkitManager.dispatchCommand("team modify " + team.getName() + " color " + team.getColor().getColorName());
 			for (Player player : team.getPlayers()) {
 				BukkitManager.dispatchCommand("team join " + team.getName() + " " + player.getName());
-				System.out.println("team join " + team.getName() + " " + player.getName());
 			}
 			team.setCreatedOnServer(true);
 		}

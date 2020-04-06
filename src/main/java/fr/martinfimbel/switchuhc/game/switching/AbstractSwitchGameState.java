@@ -136,8 +136,8 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			PlayerManager.teleporte(randomPlayer2, randomPlayer1.getLocation());
 			PlayerManager.teleporte(randomPlayer1, locp2);
 			
-			sendMessage(randomPlayer1, MessageCode.SWITCH_MESSAGE, team2.toString());
-			sendMessage(randomPlayer2, MessageCode.SWITCH_MESSAGE, team1.toString());
+			sendMessage(randomPlayer1, MessageCode.SWITCH_MESSAGE, realTeam2.toString());
+			sendMessage(randomPlayer2, MessageCode.SWITCH_MESSAGE, realTeam1.toString());
 			
 			team1 = team2;
 			team2 = null;
@@ -148,13 +148,11 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 	private boolean filterTeam(ITeam team) {
 		List<Player> copyPlayers = team.getPlayersOnMode(GameMode.SURVIVAL);
 
-		/*if (copyPlayers.size() <= 1) {
-			System.out.println(team.getName() + " - one player in survival mode");
+		if (copyPlayers.size() <= 1) {
 			return false;
-		}*/
+		}
 
 		if (copyPlayers.size() < game.getConfiguration().getNumberOfPlayerSwitchable()) {
-			System.out.println(team.getName() + " - Not enough player in survival mode");
 			return false;
 		}
 		return true;

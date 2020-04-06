@@ -2,6 +2,7 @@ package fr.martinfimbel.switchuhc.game.blockedexgame;
 
 import java.util.List;
 
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -51,12 +52,14 @@ public class StartedState extends AbstractBlockedexState {
 
 	@Override
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
+		Location center = WorldManager.createDefaultLocation(0, WorldManager.getHighestBlockYAt(0, 0).getY(), 0);
 		if (bdPlayerManager.isTeamPlayerEliminated(event.getPlayer()))
 			event.setRespawnLocation(WorldManager.getSpawnOnJoin());
 		else if (collegues.size() > 0)
 			event.setRespawnLocation(TeamsManager.getRandom(collegues).getLocation());
 		else
-			event.setRespawnLocation(WorldManager.getRandomlyLocation(getConfiguration().getDiameterAreaOnPlayerRespawn()));
+			
+			event.setRespawnLocation(WorldManager.getRandomlyLocation(getConfiguration().getDiameterAreaOnPlayerRespawn(), center));
 	}
 
 	@Override

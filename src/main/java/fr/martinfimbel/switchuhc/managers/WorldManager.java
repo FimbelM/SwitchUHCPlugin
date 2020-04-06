@@ -218,13 +218,21 @@ public class WorldManager {
 		return border.getSize();
 	}
 
-	public static Location getRandomlyLocation(int bound) {
-		int minX = -bound / 2 - 1;
-		int minZ = minX;
-		int maxX = bound / 2 - 1;
-		int maxZ = maxX;
+	public static Location getRandomlyLocation(int bound, Location center) {	
+		int borderCenterX = center.getBlockX();
+		int borderCenterZ = center.getBlockZ();
+		
+		int minX = -bound / 2 + 1 + borderCenterX;
+		int minZ = minX - borderCenterX + borderCenterZ;
+		int maxX = bound / 2 - 1 + borderCenterX;
+		int maxZ = maxX - borderCenterX + borderCenterZ;
 		int randomX = 0;
 		int randomZ = 0;
+		
+		System.out.println("minX : " + minX);
+		System.out.println("minZ : " + minZ);
+		System.out.println("maxX : " + maxX);
+		System.out.println("maxZ : " + maxZ);
 		do {
 			randomX = rand.nextInt(maxX - minX) + minX;
 			randomZ = rand.nextInt(maxZ - minZ) + minZ;

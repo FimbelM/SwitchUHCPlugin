@@ -18,7 +18,7 @@ public class StartState extends AbstractHungerGameState {
 		WorldManager.setWorldBorderCenter(getConfiguration().getBorderCenter());
 		WorldManager.setWorldBorderDiameter(getConfiguration().getInitialBorderDiameter());
 		WorldManager.createCrossUnderSpawn(Material.BEDROCK);
-		TeamsManager.teleporteRandomlyAllTeams(getConfiguration(), getConfiguration().getInitialBorderDiameter().intValue());
+		TeamsManager.teleporteRandomlyAllTeams(getConfiguration(), getConfiguration().getInitialBorderDiameter().intValue(),getConfiguration().getBorderCenter().getLocation());
 		sendTitle(MessageCode.TEAM_DEATH_MATCH);
 		taskLauncher.run(0, 20L);
 		scoreboardLauncher.run(0, getConfiguration().getScoreboardRefresh());
