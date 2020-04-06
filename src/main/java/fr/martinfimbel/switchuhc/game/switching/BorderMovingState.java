@@ -59,7 +59,7 @@ public class BorderMovingState extends AbstractSwitchGameState {
 	public void time(LocalTime time) {
 		boolean switchAfterBorderMoves = false;
 		String YN = getConfiguration().getSwitchAfterBorderMoves();
-		if (YN == "Y") {
+		if (YN.equals("Y")) {
 			switchAfterBorderMoves = true;
 			if (time.equals(game.getNextSwitchTime()) && switchAfterBorderMoves == true)
 				Switch();
