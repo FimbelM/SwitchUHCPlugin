@@ -1,6 +1,7 @@
 package fr.martinfimbel.switchuhc.game.switching;
 
 import java.time.Duration;
+//import java.time.LocalTime;
 
 import fr.martinfimbel.switchuhc.dictionary.dictionaries.MessageCode;
 import fr.martinfimbel.switchuhc.helpers.PlayerHelper;
@@ -26,13 +27,14 @@ public class InitialState extends AbstractSwitchGameState {
 		scoreboardLauncher = new SWScoreboardLauncher(taskLauncher.getTask(), getConfiguration(), game);
 		alreadyWarned = false;
 
+		game.setNextSwitchTime(getConfiguration().getStartSwitchTime());
 		timeLine.addPonctualObserver(getConfiguration().getFractionTime(), game);
 		timeLine.addPonctualObserver(getConfiguration().getGameTime(), game);
 		timeLine.addPonctualObserver(getAbsoluteWarningTime(), game);
 		timeLine.addPonctualObserver(getConfiguration().getPvpTime(), game);
 		timeLine.addPonctualObserver(getConfiguration().getGameTime(), scoreboardLauncher);
 		timeLine.addRepetitiveObserver(getConfiguration().getStartSwitchTime(), game);
-		
+
 		PlayerHelper.setCurrentConfiguration(getConfiguration());
 		return true;
 	}

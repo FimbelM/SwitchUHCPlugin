@@ -107,6 +107,7 @@ public class SwitchGame extends AbstractGame implements ISwitchGame {
 	public void stop() {
 		super.stop();
 		current.stop();
+		firstSwitch = false;
 	}
 
 	@Override
@@ -178,8 +179,12 @@ public class SwitchGame extends AbstractGame implements ISwitchGame {
 	@Override
 	public void setNextSwitchTime(LocalTime time) {
 		this.nextSwitchTime = time;
-		firstSwitch = true;
-		decreasingSwitchTime = getConfiguration().getPeriodSwitchTime();
+		if (firstSwitch)
+			decreasingSwitchTime = getConfiguration().getPeriodSwitchTime();
+		else {
+			decreasingSwitchTime = getConfiguration().getStartSwitchTime();
+			firstSwitch = true;
+		}
 	}
 
 	@Override
