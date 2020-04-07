@@ -74,7 +74,10 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			if (!filterTeam(team))
 				iterator.remove();
 		}
-
+		
+		if(copyOfTeamList.size() == 1)
+			return;
+		
 		System.out.println("Teams selected with switchable players : ");
 		for (int team = 0; team < copyOfTeamList.size(); team++) {
 			String teamName = copyOfTeamList.get(team).getName();
@@ -116,7 +119,6 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			} else
 				team2 = iterator.next();
 			
-			
 			randomPlayer1 = team1.getPlayers().get(rand.nextInt(team1.getPlayers().size()));
 			randomPlayer2 = team2.getPlayers().get(rand.nextInt(team2.getPlayers().size()));
 			
@@ -149,10 +151,12 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 		List<Player> copyPlayers = team.getPlayersOnMode(GameMode.SURVIVAL);
 
 		if (copyPlayers.size() <= 1) {
+			System.out.println("nombre de joueur inférieur a 1");
 			return false;
 		}
 
 		if (copyPlayers.size() < game.getConfiguration().getNumberOfPlayerSwitchable()) {
+			System.out.println("nombre de joueur inférieur au nombre minimum");
 			return false;
 		}
 		return true;
