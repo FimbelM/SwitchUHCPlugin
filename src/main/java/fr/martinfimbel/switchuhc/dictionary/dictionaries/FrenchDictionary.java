@@ -18,6 +18,25 @@ public class FrenchDictionary extends AbstractDictionary {
 				return "Pause : ";
 			}
 		});
+		
+		registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_TIME_BEFORE_SWITCH) {
+			@Override
+			public String getMessage(String... args) {
+				return "Prochain switch dans : ";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_TIME_BEFORE_SWITCH_DEACTIVATED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Switch désactivaté";
+			}
+		});
+		
+		registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_SWITCH_GAME_BORDER) {
+			@Override
+			public String getMessage(String... args) {
+				return "Bordure : ";
+			}
+		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_HUNGER_GAME_BORDER) {
 			@Override
@@ -104,11 +123,18 @@ public class FrenchDictionary extends AbstractDictionary {
 				return "Mauvais format du temps, il doit respecter le schéma hh:mm:ss";
 			}
 		});
+		
+		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_MESSAGE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Tu as été switché dans l'équipe " + args[0];
+			}
+		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.CENTER_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-				return "pour définir le centre";
+				return "Pour définir le centre";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.CENTER_DEFINED) {
 			@Override
@@ -1736,6 +1762,454 @@ public class FrenchDictionary extends AbstractDictionary {
 			@Override
 			public String getMessage(String... args) {
 				return "Reprise";
+			}
+		});
+		
+		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_GAME_EDITION_CONFIGURATION_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "Pour configurer un style de jeu switch";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.AS_CURRENT_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "Définir le Style de jeu actuel comme celui de la partie";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.AS_CURRENT_SWITCH_GAME_NOT_EXISTING_STYLE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de choisir le style: " + args[0] + ", celui ci n'existe pas";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.BORDER_CENTER_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour régler le centre de la bordure";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.BORDER_CENTER_SWITCH_GAME_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Centre de la bordure défini en: " + args[0];
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.BORDER_CENTER_SWITCH_GAME_MISSING_COORDINATES) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de régler le centre de la bordure, besoin des coordonnées <X> <Z>";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.CURRENT_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour connaitre les caractéristiques du style de jeu switch actuel";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.CURRENT_SWITCH_GAME_MESSAGE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Style de jeu actuel :\n" + args[0];
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.DELETE_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour supprimer un style de jeu switch";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.DELETE_SWITCH_GAME_MESSAGE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Le style switch: " + args[0] + " a été supprimé";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour régler le diamètre final de la bordure";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_SWITCH_GAME_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Le diamètre final a été défini comme étant de " + args[0] + " blocs";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_NEGATIVE_DIAMETER) {
+			@Override
+			public String getMessage(String... args) {
+				return "Le diamètre final de la bordure doit être strictement positif";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_SWITCH_GAME_MISSING_DIAMETER) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de definir le diamètre final, il n'existe pas";
+			}
+		}).registerMessage(
+				new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_SWITCH_GAME_BAD_DIAMETER_FORMAT) {
+					@Override
+					public String getMessage(String... args) {
+						return "Mauvais format d'entrée, le diamètre final doit être un entier";
+					}
+				})
+				.registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_SWITCH_GAME_TAB_COMPLETE) {
+					@Override
+					public String getMessage(String... args) {
+						return "<diamètre final>";
+					}
+				});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour régler le temps après lequel les joueurs ressuscitent en mode spectateur";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_SWITCH_GAME_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Les joueurs ressusciteront en mode spectateur après " + args[0] + "h " + args[1] + "m " + args[2]
+						+ "s de jeu";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_SWITCH_GAME_MISSING_TIME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de définir le temps après lequel les joueurs ne ressuscitent plus, il n'existe pas";
+			}
+		});
+		
+		registerMessage(new AbstractPlayerMessage(MessageCode.NUMBER_OF_SWITCHABLE_PLAYER_PER_TEAM_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour régler le nombre de joueurs switchés à chaque occurence";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.NUMBER_OF_SWITCHABLE_PLAYER_PER_TEAM_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Nombre de joueurs switchés défini";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.NUMBER_OF_SWITCHED_PLAYERS_INFERIOR_AT_ONE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de voir le nombre de joueurs à switcher, il doit être supérieur ou égal à un";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.NUMBER_OF_SWITCHABLE_PLAYER_PER_TEAM_BAD_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "Le format d'entrée doit être un entier";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.NUMBER_OF_SWITCHABLE_PLAYER_PER_TEAM_MISSING_NUMBER) {
+			@Override
+			public String getMessage(String... args) {
+				return "Il manque le paramètre nombre de joueur switché par équipe";
+			}
+		});
+		
+		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_AFTER_BORDER_MOVES_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour définir si le switch est activé après que la bordure bouge";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_AFTER_BORDER_MOVES_WRONG_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "L'entrée est du type: Y ou N";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_AFTER_BORDER_MOVES_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Le switch après que la bordure bouge est défini à: " + args[0];
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_AFTER_BORDER_MOVES_TAB_COMPLETE) {
+			@Override
+			public String getMessage(String... args) {
+				return "<Y/N>";
+			}
+		});
+		
+
+	registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Le temps à partir duquel la bordure rétréci est de " + args[0] + "h " + args[1] + "m " + args[2] + "s";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_MISSING_TIME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de régler le temps à partir duquel la bordure bouge, il n'est pas encore défini";
+			}
+		});
+		
+		registerMessage(new AbstractPlayerMessage(MessageCode.START_SWITCH_TIME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+							return "pour régler le temps du premier échange";
+			}
+		});
+		registerMessage(new AbstractPlayerMessage(MessageCode.START_SWITCH_TIME_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Le premier échange aura lieu au bout de : " + args[0] + "h " + args[1] + "m " + args[2] + "s";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.START_SWITCH_TIME_MISSING_TIME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de régler le temps du premier switch, il n'est pas défini";
+			}
+		});
+		
+		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_TIME_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+							return "pour régler le délai entre les switchs";
+			}
+		});
+		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_TIME_SWITCH_GAME_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Les échanges auront lieu tout les : " + args[0] + "h " + args[1] + "m " + args[2] + "s";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_TIME_SWITCH_GAME_MISSING_TIME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de régler le délai entre les switchs, il n'est pas défini";
+			}
+		});
+		
+		registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour régler le temps a partir duquel la bordure se rétrécit";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour régler le diamètre initial de la bordure";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_SWITCH_GAME_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Le diamètre initial défini comme étant de " + args[0] + " blocs";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_NEGATIVE_DIAMETER) {
+			@Override
+			public String getMessage(String... args) {
+				return "Le diamètre initial doit être strictement positif";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_SWITCH_GAME_MISSING_DIAMETER) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de régler le diamètre initial, il n'est pas défini";
+			}
+		}).registerMessage(
+				new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_SWITCH_GAME_BAD_DIAMETER_FORMAT) {
+					@Override
+					public String getMessage(String... args) {
+						return "Mauvais format de diamètre, ça doit être un entier";
+					}
+				}).registerMessage(
+						new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_SWITCH_GAME_TAB_COMPLETE) {
+							@Override
+							public String getMessage(String... args) {
+								return "<diamètre initial>";
+							}
+						});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.LIST_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour afficher tout les styles de jeu switch existants";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.LIST_SWITCH_GAME_SIZE_EQUALS_0) {
+			@Override
+			public String getMessage(String... args) {
+				return "Pas de style de jeu existant";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.LIST_SWITCH_GAME_SIZE_EQUALS_1) {
+			@Override
+			public String getMessage(String... args) {
+				return "Il existe un style de jeu switch :\n" + args[0];
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.LIST_SWITCH_GAME_SIZE_GREATER_THAN_0) {
+			@Override
+			public String getMessage(String... args) {
+				return "Liste des styles de jeu switchs existants :\n" + args[0];
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour charger un style de jeu switch";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_SWITCH_GAME_STYLE_NO_TEAM_CREATED_LOADED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Style de jeu switch " + args[0] + " chargé\nPas d'équipes créées";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_SWITCH_GAME_STYLE_ONE_TEAM_CREATED_LOADED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Style de jeu switch " + args[0] + " chargé\nEquipe " + args[1] + " créée";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_SWITCH_GAME_STYLE_TEAMS_CREATED_LOADED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Style de jeu switch " + args[0] + " chargé\nEquipes créées : " + args[1];
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.LOAD_SWITCH_GAME_MISSING_NAME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de charger le style de jeu, besoin du nom";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.NEW_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour créer un nouveau style de jeu switch";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.NEW_SWITCH_GAME_CREATED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Nouveau style de jeu switch " + args[0] + " créé";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.NEW_SWITCH_GAME_ALREADY_EXISTING) {
+			@Override
+			public String getMessage(String... args) {
+				return "Le style de jeu switch " + args[0] + " existe déjà";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.NEW_SWITCH_GAME_MISSING_NAME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de créer un nouveau style de jeu switch, besoin du nom";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.PVP_TIME_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour régler le temps a partir duquel le PvP est activé";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PVP_TIME_SWITCH_GAME_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Pvp activé après " + args[0] + "h " + args[1] + "m " + args[2] + "s de jeu";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.PVP_TIME_SWITCH_GAME_MISSING_TIME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de régler le temps du PvP, il n'est pas défini";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour renommer le style de jeu switch actuel";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_SWITCH_GAME_RENAMED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Le style de jeu switch " + args[0] + " a été renommé en " + args[1];
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_SWITCH_GAME_ALREADY_EXISTING) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de renommer le style " + args[0] + " en " + args[1] + ", le style existe déjà";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_SWITCH_GAME_MISSING_NAME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de renommer le style " + args[0] + ", besoin d'un nom";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.RESET_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour reset les caractéristiques du style de jeu switch";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.RESET_SWITCH_GAME_MESSAGE) {
+			@Override
+			public String getMessage(String... args) {
+				return "Les caracteristiques du style de jeu switch " + args[0] + " ont été reset";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.SAVE_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour enregistrer le style de jeu switch actuel";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SAVE_SWITCH_GAME_SAVED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Style de jeu " + args[0] + " enregistré";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "pour régler la vitesse de déplacement de la bordure";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_SWITCH_GAME_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "La vitesse de la bordure est défini à " + args[0] + " blocs/s";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_SWITCH_GAME_LESS_THAN_1) {
+			@Override
+			public String getMessage(String... args) {
+				return "La vitesse de la bordure doit être supérieure ou égale à 1 bloc/s";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_SWITCH_GAME_MISSING_SPEED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de régler la vitesse, elle n'est pas définie";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_SWITCH_GAME_BAD_SPEED_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "La vitesse doit être un nombre a virgule (exemple : 1.5)";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_SWITCH_GAME_TAB_COMPLETE) {
+			@Override
+			public String getMessage(String... args) {
+				return "<blocs par seconde>";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_SWITCH_GAME_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "Pour prévenir les joueurs qui sont dans le Nether/End de retourner dans l'Overworld avant que la bordure bouge";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_SWITCH_GAME_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Les joueurs seront prévenus " + args[0] + "h " + args[1] + "m " + args[2] + "s avant que la bordure bouge";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_SWITCH_GAME_MISSING_TIME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Impossible de régler le temps d'avertissement, il n'est pas défini";
+			}
+		});
+
+		registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_LESS_THAN_GAME_TIME) {
+			@Override
+			public String getMessage(String... args) {
+				return "Le temps a partir duquel les joueurs ne ressuscitent plus doit être inférieur au temps à partir duquel la bordure bouge";
+			}
+		});
+		
+		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH) {
+			@Override
+			public String getMessage(String... args) {
+				return "SWITCH!!!";
 			}
 		});
 	}
