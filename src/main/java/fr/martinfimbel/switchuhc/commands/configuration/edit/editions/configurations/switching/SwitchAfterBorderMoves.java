@@ -19,11 +19,11 @@ public class SwitchAfterBorderMoves extends AbstractConfEdition<ISwitchGameConfi
 	@Override
 	public void edit(String[] args) {
 		String letter = args[0];
-		if (letter.equals("Y")) {
+		if (letter.equalsIgnoreCase("Y")) {
 			get().setSwitchAfterBorderMoves(letter);
 			sendMessage(MessageCode.SWITCH_AFTER_BORDER_MOVES_DEFINED, get().getSwitchAfterBorderMoves());
 			return;
-		} else if (letter.equals("N")) {
+		} else if (letter.equalsIgnoreCase("N")) {
 			get().setSwitchAfterBorderMoves(letter);
 			sendMessage(MessageCode.SWITCH_AFTER_BORDER_MOVES_DEFINED, get().getSwitchAfterBorderMoves());
 			return;
