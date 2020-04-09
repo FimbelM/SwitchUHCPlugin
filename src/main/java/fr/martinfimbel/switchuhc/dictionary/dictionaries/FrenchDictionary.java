@@ -22,26 +22,26 @@ public class FrenchDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_TIME_BEFORE_SWITCH) {
 			@Override
 			public String getMessage(String... args) {
-				return "Prochain switch dans : ";
+				return "Prochain switch: ";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_TIME_BEFORE_SWITCH_DEACTIVATED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Switch désactivaté";
+				return "Switch désactivé";
 			}
 		});
 		
 		registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_SWITCH_GAME_BORDER) {
 			@Override
 			public String getMessage(String... args) {
-				return "Bordure : ";
+				return "Bordure: ";
 			}
 		});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_HUNGER_GAME_BORDER) {
 			@Override
 			public String getMessage(String... args) {
-				return "Bordure : ";
+				return "Bordure: ";
 			}
 		});
 

@@ -22,7 +22,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_TIME_BEFORE_SWITCH) {
 			@Override
 			public String getMessage(String... args) {
-				return "Next Switch in : ";
+				return "Next Switch : ";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_TIME_BEFORE_SWITCH_DEACTIVATED) {
 			@Override
