@@ -116,4 +116,8 @@ public class SwitchGameEditionsFactory extends AbstractConfigurationEditionsFact
 		return new SwitchAfterBorderMoves();
 	}
 	
+	public IMapEdition<ISwitchGameConfiguration> createReviveNearTeamateEdition() {
+		return new ReviveNearTeamate();
+	}
+	
 }

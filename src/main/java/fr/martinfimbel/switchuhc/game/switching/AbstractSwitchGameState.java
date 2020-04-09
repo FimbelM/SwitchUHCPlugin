@@ -74,10 +74,10 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			if (!filterTeam(team))
 				iterator.remove();
 		}
-		
-		if(copyOfTeamList.size() == 1)
+
+		if (copyOfTeamList.size() == 1)
 			return;
-		
+
 		System.out.println("Teams selected with switchable players : ");
 		for (int team = 0; team < copyOfTeamList.size(); team++) {
 			String teamName = copyOfTeamList.get(team).getName();
@@ -90,7 +90,7 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 
 		// Structure used to register random player from team
 		Map<ITeam, List<Player>> randomPlayers = new HashMap<ITeam, List<Player>>();
-		
+
 		// Object that return random int.
 		Random rand = new Random();
 
@@ -102,12 +102,12 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 				// getting a list of random players
 				switchedPlayers.add(team.getPlayers().get(rand.nextInt(team.getPlayers().size())));
 			}
-			randomPlayers.put(team, switchedPlayers);				
+			randomPlayers.put(team, switchedPlayers);
 		}
-		
+
 		// Actualize teams with new teamates and teleporte players
 		Player randomPlayer1, randomPlayer2;
-		
+
 		Iterator<ITeam> iteratorTeam = randomPlayers.keySet().iterator();
 		ITeam team1 = null, team2 = null;
 		while (iteratorTeam.hasNext()) {
@@ -117,30 +117,30 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 					team2 = iteratorTeam.next();
 				}
 			} else
-				team2 = iterator.next();
-			
+				team2 = iteratorTeam.next();
+
 			randomPlayer1 = team1.getPlayers().get(rand.nextInt(team1.getPlayers().size()));
 			randomPlayer2 = team2.getPlayers().get(rand.nextInt(team2.getPlayers().size()));
-			
+
 			ITeam realTeam1 = game.getConfiguration().getTeamByName(team1.getName());
 			ITeam realTeam2 = game.getConfiguration().getTeamByName(team2.getName());
-			
+
 			// Removing player from their real team
 			synchronizedRemove(realTeam1, randomPlayer1);
 			synchronizedRemove(realTeam2, randomPlayer2);
-			
+
 			// Adding players to their new team
 			synchronizedAdd(realTeam1, randomPlayer2);
 			synchronizedAdd(realTeam2, randomPlayer1);
-			
+
 			Location locp2 = randomPlayer2.getLocation().clone();
-			
+
 			PlayerManager.teleporte(randomPlayer2, randomPlayer1.getLocation());
 			PlayerManager.teleporte(randomPlayer1, locp2);
-			
+
 			sendMessage(randomPlayer1, MessageCode.SWITCH_MESSAGE, realTeam2.toString());
 			sendMessage(randomPlayer2, MessageCode.SWITCH_MESSAGE, realTeam1.toString());
-			
+
 			team1 = team2;
 			team2 = null;
 		}
@@ -151,7 +151,7 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 		List<Player> copyPlayers = team.getPlayersOnMode(GameMode.SURVIVAL);
 
 		if (copyPlayers.size() <= 1) {
-			System.out.println("nombre de joueur inférieur a 1");
+			System.out.println("nombre de joueur inférieur ou égal à 1");
 			return false;
 		}
 
@@ -161,15 +161,15 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 		}
 		return true;
 	}
-	
+
 	private static void synchronizedAdd(ITeam team, Player player) {
 		team.addPlayer(player);
 		TeamsManager.join(team, player);
 	}
-	
+
 	private static void synchronizedRemove(ITeam team, Player player) {
 		team.removePlayer(player);
 		TeamsManager.leave(team, player);
 	}
-	
+
 }

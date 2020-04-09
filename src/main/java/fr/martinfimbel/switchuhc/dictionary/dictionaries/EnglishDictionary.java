@@ -129,9 +129,14 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_MESSAGE) {
 			@Override
 			public String getMessage(String... args) {
-				return "You have been switched to team " + args[0];
+				return "You have been switched to team " + args[0] + ", please change discord channel";
 			}
 		});
+		
+		
+
+
+
 		
 		
 		registerMessage(new AbstractPlayerMessage(MessageCode.CENTER_EXPLANATION) {
@@ -1922,6 +1927,29 @@ public class EnglishDictionary extends AbstractDictionary {
 				return "Switch after border moves has been defined to " + args[0];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_AFTER_BORDER_MOVES_TAB_COMPLETE) {
+			@Override
+			public String getMessage(String... args) {
+				return "<Y/N>";
+			}
+		});
+		
+		
+		registerMessage(new AbstractPlayerMessage(MessageCode.REVIVE_NEAR_TEAMATE_EXPLANATION) {
+			@Override
+			public String getMessage(String... args) {
+				return "Do you want players to revive near a teamate?";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.REVIVE_NEAR_TEAMATE_WRONG_FORMAT) {
+			@Override
+			public String getMessage(String... args) {
+				return "Please type Y or N";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.REVIVE_NEAR_TEAMATE_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return "Player revive near teamate has been defined to " + args[0];
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.REVIVE_NEAR_TEAMATE_TAB_COMPLETE) {
 			@Override
 			public String getMessage(String... args) {
 				return "<Y/N>";

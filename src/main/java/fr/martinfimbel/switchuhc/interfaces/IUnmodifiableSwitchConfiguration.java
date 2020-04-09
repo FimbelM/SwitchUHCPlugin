@@ -17,5 +17,7 @@ public interface IUnmodifiableSwitchConfiguration extends IUnmodifiableBorderCon
 	Integer getNumberOfPlayerSwitchable();
 	
 	String getSwitchAfterBorderMoves();
+	
+	String getReviveNearTeamate();
 
 }

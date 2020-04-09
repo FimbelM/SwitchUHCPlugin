@@ -12,10 +12,11 @@ public class SwitchConfiguration extends AbstractBorderConfiguration implements 
 	private static final LocalTime DEFAULT_SWITCH_TIME = LocalTime.of(0, 20, 0);
 	private static final LocalTime DEFAULT_START_SWITCH_TIME = LocalTime.of(0, 30, 0);
 	private static final Integer DEFAULT_NUMBER_OF_PLAYER_SWITCHABLE = 1;
-	private static final String DEFAULT_SWITCH_AFTER_BORDER_MOVES = "Y";
+	private static final String DEFAULT_SWITCH_AFTER_BORDER_MOVES = "N";
+	private static final String DEFAULT_REVIVE_NEAR_TEAMATE = "Y";
 	private Integer numberOfPlayerSwitchable;
 	private LocalTime switchTime, startSwitchTime, fractionTime, warningTime, pvpTime;
-	private String switchAfterBorderMoves;
+	private String switchAfterBorderMoves, reviveNearTeamate;
 
 	public SwitchConfiguration(String name) {
 		super(name);
@@ -90,6 +91,16 @@ public class SwitchConfiguration extends AbstractBorderConfiguration implements 
 	public void setSwitchAfterBorderMoves(String letter) {
 		this.switchAfterBorderMoves = letter;
 	}
+	
+	@Override
+	public String getReviveNearTeamate() {
+		return reviveNearTeamate == null ? DEFAULT_REVIVE_NEAR_TEAMATE : reviveNearTeamate;
+	}
+
+	@Override
+	public void setReviveNearTeamate(String letter) {
+		this.reviveNearTeamate = letter;
+	}
 
 	@Override
 	public String toString() {
@@ -105,6 +116,7 @@ public class SwitchConfiguration extends AbstractBorderConfiguration implements 
 		builder.append("Switch every : " + showTime(getPeriodSwitchTime()) + "\n");
 		builder.append("Number of players switched : " + getNumberOfPlayerSwitchable() + "\n");
 		builder.append("Switch after border moves : " + getSwitchAfterBorderMoves() + "\n");
+		builder.append("Revive near a teamate : " + getReviveNearTeamate() + "\n");
 		return builder.toString();
 	}
 
@@ -118,6 +130,7 @@ public class SwitchConfiguration extends AbstractBorderConfiguration implements 
 		switchTime = null;
 		numberOfPlayerSwitchable = null;
 		switchAfterBorderMoves = null;
+		reviveNearTeamate = null;
 	}
 
 }
