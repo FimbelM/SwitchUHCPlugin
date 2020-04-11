@@ -62,19 +62,22 @@ public class PlayerReviveState extends AbstractSwitchGameState {
 
 	@Override
 	public void onPlayerRespawn(PlayerRespawnEvent event) {
+		Player player = event.getPlayer();
 		String letter = game.getConfiguration().getReviveNearTeamate();
+		List<Player> teamate = TeamsManager.getCollegues(player);
 		if (event.getPlayer().getKiller() instanceof Player)
 			event.setRespawnLocation(WorldManager.getSpawnOnJoin());
 		else if (letter.equalsIgnoreCase("N"))
 			event.setRespawnLocation(WorldManager.getRandomlyLocation(WorldManager.getCurrentDiameter().intValue(),
 					getConfiguration().getBorderCenter().getLocation()));
-		else {
-			Player player = event.getPlayer();
-			List<Player> teamate = TeamsManager.getCollegues(player);
+		else if (teamate.size() == 0) {
+			return;
+		} else {
 			Random rand = new Random();
 			Location teamateLocation = teamate.get(rand.nextInt(teamate.size())).getLocation();
 			event.setRespawnLocation(teamateLocation);
 		}
+
 	}
 
 	private void changeFromReviveToNotRevive() {
