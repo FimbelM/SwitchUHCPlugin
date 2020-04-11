@@ -3,7 +3,6 @@ package fr.martinfimbel.switchuhc.game.switching;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
@@ -68,6 +67,7 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 
 		// Getting teams that contains enough players
 		ListIterator<ITeam> iterator = copyOfTeamList.listIterator();
+
 		while (iterator.hasNext()) {
 			ITeam team = iterator.next();
 
@@ -78,18 +78,23 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 		if (copyOfTeamList.size() == 1)
 			return;
 
-		System.out.println("Teams selected with switchable players : ");
-		for (int team = 0; team < copyOfTeamList.size(); team++) {
-			String teamName = copyOfTeamList.get(team).getName();
-			String playerNames = "";
-			for (int player = 0; player < copyOfTeamList.get(team).getPlayers().size(); player++) {
-				playerNames += copyOfTeamList.get(team).getPlayers().get(player).getName();
-			}
-			System.out.println(teamName + " : " + playerNames);
-		}
+		/*
+		 * // Display selected teams and players they contain
+		 * System.out.println("Teams selected with switchable players : "); for (int
+		 * team = 0; team < copyOfTeamList.size(); team++) { String teamName =
+		 * copyOfTeamList.get(team).getName(); String playerNames = ""; for (int player
+		 * = 0; player < copyOfTeamList.get(team).getPlayers().size(); player++) {
+		 * playerNames += copyOfTeamList.get(team).getPlayers().get(player).getName(); }
+		 * System.out.println(teamName + " : " + playerNames); }
+		 */
 
 		// Structure used to register random player from team
 		Map<ITeam, List<Player>> randomPlayers = new HashMap<ITeam, List<Player>>();
+		Map<ITeam, List<Player>> randomPlayersActualized = new HashMap<ITeam, List<Player>>();
+		List<Player> players = new ArrayList<Player>();
+		List<ITeam> remainingTeamList = new ArrayList<ITeam>(copyOfTeamList);
+		Map<Player, ITeam> initialTeamPerPlayer = new HashMap<Player, ITeam>();
+		Map<Player, Player> playerSwitchedWith = new HashMap<Player, Player>();
 
 		// Object that return random int.
 		Random rand = new Random();
@@ -97,52 +102,89 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 		// Getting a map that contains a list of random players ready to switch
 		for (ITeam team : copyOfTeamList) {
 			List<Player> switchedPlayers = new ArrayList<Player>();
-
 			for (int i = 0; i < game.getConfiguration().getNumberOfPlayerSwitchable(); i++) {
 				// getting a list of random players
 				switchedPlayers.add(team.getPlayers().get(rand.nextInt(team.getPlayers().size())));
 			}
+			players.addAll(switchedPlayers);
 			randomPlayers.put(team, switchedPlayers);
+			randomPlayersActualized.put(team, switchedPlayers);
+		}
+
+		for (Player p : players) {
+			initialTeamPerPlayer.put(p, TeamsManager.getTeam(p));
+		}
+
+		// Début de la boucle qui va déterminer les équipes après switch
+		do {
+			if (remainingTeamList.size() == 0)
+				remainingTeamList = new ArrayList<ITeam>(copyOfTeamList);
+			Player randomP1;
+			ITeam currentTeamP1;
+			do {
+				randomP1 = players.get(rand.nextInt(players.size()));
+				currentTeamP1 = initialTeamPerPlayer.get(randomP1);
+			} while (!remainingTeamList.contains(currentTeamP1));
+
+			players.remove(randomP1);
+			Player randomP2;
+			ITeam currentTeamP2;
+			List<Player> actualTeamateOfP2 = new ArrayList<Player>();
+			Boolean samePreviousTeam = false;
+			do {
+				randomP2 = players.get(rand.nextInt(players.size()));
+				currentTeamP2 = initialTeamPerPlayer.get(randomP2);
+				actualTeamateOfP2 = randomPlayersActualized.get(currentTeamP2);
+				actualTeamateOfP2.remove(randomP2);
+				for (Player p : actualTeamateOfP2) {
+					if (initialTeamPerPlayer.get(p).equals(currentTeamP1)) {
+						samePreviousTeam = true;
+						break;
+					}
+				}
+			} while (currentTeamP1 != currentTeamP2 || samePreviousTeam);
+
+			playerSwitchedWith.put(randomP1, randomP2);
+			players.remove(randomP2);
+
+			randomPlayersActualized.get(currentTeamP1).remove(randomP1);
+			randomPlayersActualized.get(currentTeamP2).remove(randomP2);
+			randomPlayersActualized.get(currentTeamP1).add(randomP2);
+			randomPlayersActualized.get(currentTeamP2).add(randomP1);
+			remainingTeamList.remove(currentTeamP1);
+
+		} while (players.size() <= 1);
+
+		for (ITeam t : copyOfTeamList) {
+			for (Player p : randomPlayersActualized.get(t)) {
+				initialTeamPerPlayer.put(p, t);
+			}
 		}
 
 		// Actualize teams with new teamates and teleporte players
-		Player randomPlayer1, randomPlayer2;
+		for (Map.Entry<Player, Player> entry : playerSwitchedWith.entrySet()) {
+			Player player1 = entry.getKey();
+			Player player2 = entry.getValue();
 
-		Iterator<ITeam> iteratorTeam = randomPlayers.keySet().iterator();
-		ITeam team1 = null, team2 = null;
-		while (iteratorTeam.hasNext()) {
-			if (team1 == null) {
-				team1 = iteratorTeam.next();
-				if (iteratorTeam.hasNext()) {
-					team2 = iteratorTeam.next();
-				}
-			} else
-				team2 = iteratorTeam.next();
-
-			randomPlayer1 = team1.getPlayers().get(rand.nextInt(team1.getPlayers().size()));
-			randomPlayer2 = team2.getPlayers().get(rand.nextInt(team2.getPlayers().size()));
-
-			ITeam realTeam1 = game.getConfiguration().getTeamByName(team1.getName());
-			ITeam realTeam2 = game.getConfiguration().getTeamByName(team2.getName());
+			ITeam realTeam1 = initialTeamPerPlayer.get(player1);
+			ITeam realTeam2 = initialTeamPerPlayer.get(player2);
 
 			// Removing player from their real team
-			synchronizedRemove(realTeam1, randomPlayer1);
-			synchronizedRemove(realTeam2, randomPlayer2);
+			synchronizedRemove(realTeam1, player1);
+			synchronizedRemove(realTeam2, player2);
 
 			// Adding players to their new team
-			synchronizedAdd(realTeam1, randomPlayer2);
-			synchronizedAdd(realTeam2, randomPlayer1);
+			synchronizedAdd(realTeam1, player2);
+			synchronizedAdd(realTeam2, player1);
 
-			Location locp2 = randomPlayer2.getLocation().clone();
+			Location locp2 = player2.getLocation().clone();
 
-			PlayerManager.teleporte(randomPlayer2, randomPlayer1.getLocation());
-			PlayerManager.teleporte(randomPlayer1, locp2);
+			PlayerManager.teleporte(player2, player1.getLocation());
+			PlayerManager.teleporte(player1, locp2);
 
-			sendMessage(randomPlayer1, MessageCode.SWITCH_MESSAGE, realTeam2.toString());
-			sendMessage(randomPlayer2, MessageCode.SWITCH_MESSAGE, realTeam1.toString());
+			sendMessage(player1, MessageCode.SWITCH_MESSAGE, realTeam2.toString());
+			sendMessage(player2, MessageCode.SWITCH_MESSAGE, realTeam1.toString());
 
-			team1 = team2;
-			team2 = null;
 		}
 		sendTitle(EColor.GOLD, MessageCode.SWITCH);
 	}
