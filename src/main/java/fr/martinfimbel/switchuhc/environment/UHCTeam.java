@@ -86,7 +86,7 @@ public class UHCTeam implements ITeam {
 		updateUhcPlayer(player, null);
 		players.remove(player);
 	}
-
+	
 	@Override
 	public void clear() {
 		for (Player player : players)
@@ -126,9 +126,11 @@ public class UHCTeam implements ITeam {
 		
 		if (color == null) {
 			player.setDisplayName(player.getName());
+			player.setPlayerListName(player.getName());
 			UHCPlayer.get(player).setColor(null);
 		} else {
 			player.setDisplayName(color.getInColor(player.getName()));
+			player.setPlayerListName(color.getInColor(player.getName()));
 			UHCPlayer.get(player).setColor(color);
 		}
 	}
