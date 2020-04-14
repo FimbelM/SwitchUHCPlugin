@@ -4,6 +4,8 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Stream;
 
+import org.bukkit.entity.Player;
+
 import fr.martinfimbel.switchuhc.game.IGame;
 
 public interface IUnmodifiableConfiguration extends IUnmodifiableName {
@@ -25,4 +27,6 @@ public interface IUnmodifiableConfiguration extends IUnmodifiableName {
 	Stream<String> getPlayersRegistered();
 
 	void prepareTeam();
+	
+	ITeam getTeam(Player player);
 }
