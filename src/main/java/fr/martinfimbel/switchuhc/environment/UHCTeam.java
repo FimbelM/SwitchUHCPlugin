@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
+import fr.martinfimbel.switchuhc.BukkitManager;
 import fr.martinfimbel.switchuhc.interfaces.ITeam;
 import fr.martinfimbel.switchuhc.managers.EColor;
 
@@ -26,7 +28,10 @@ public class UHCTeam implements ITeam {
 	}
 
 	public static ITeam createTeam(String name, EColor color) {
+		BukkitManager.dispatchCommand("team add " + name);
+		BukkitManager.dispatchCommand("team modify " + name + " color " + color);
 		return new UHCTeam(name, color, false);
+		
 	}
 
 	@Override
@@ -79,14 +84,16 @@ public class UHCTeam implements ITeam {
 	public void addPlayer(Player player) {
 		updateUhcPlayer(player, getColor());
 		players.add(player);
+		BukkitManager.dispatchCommand("team join " + getName() + " " + player.getName());
 	}
 
 	@Override
 	public void removePlayer(Player player) {
 		updateUhcPlayer(player, null);
 		players.remove(player);
+		BukkitManager.dispatchCommand("team leave " + player.getName());
 	}
-	
+
 	@Override
 	public void clear() {
 		for (Player player : players)
@@ -98,7 +105,7 @@ public class UHCTeam implements ITeam {
 	public void setCreatedOnServer(boolean createdOnServer) {
 		this.createdOnServer = createdOnServer;
 	}
-	
+
 	@Override
 	public Object clone() {
 		ITeam team = new UHCTeam(getName(), getColor(), true);
@@ -119,18 +126,30 @@ public class UHCTeam implements ITeam {
 		builder.append("]");
 		return color.getInColor(builder.toString());
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null|| !(obj instanceof UHCTeam))
+			return false;
+		ITeam other = (UHCTeam) obj;
+		return getName().equals(other.getName()) && getColor().equals(other.getColor());
+	}
+	
+	@Override
+	public int hashCode() {
+		return 31 * getName().hashCode() + 31 * getColor().hashCode();
+	}
 
 	private void updateUhcPlayer(Player player, EColor color) {
 		if (isCopy)
 			return;
-		
 		if (color == null) {
 			player.setDisplayName(player.getName());
 			player.setPlayerListName(player.getName());
 			UHCPlayer.get(player).setColor(null);
 		} else {
 			player.setDisplayName(color.getInColor(player.getName()));
-			player.setPlayerListName(color.getInColor(player.getName()));
+			player.setPlayerListName(color.getInColor(ChatColor.BOLD + "[" + getName()+"]") + " " + color.getInColor(player.getName()));
 			UHCPlayer.get(player).setColor(color);
 		}
 	}
