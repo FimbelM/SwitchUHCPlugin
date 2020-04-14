@@ -75,26 +75,25 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 				iterator.remove();
 		}
 
-		if (copyOfTeamList.size() == 1)
+		if (copyOfTeamList.size() <= 1)
 			return;
 
-		/*
-		 * // Display selected teams and players they contain
-		 * System.out.println("Teams selected with switchable players : "); for (int
-		 * team = 0; team < copyOfTeamList.size(); team++) { String teamName =
-		 * copyOfTeamList.get(team).getName(); String playerNames = ""; for (int player
-		 * = 0; player < copyOfTeamList.get(team).getPlayers().size(); player++) {
-		 * playerNames += copyOfTeamList.get(team).getPlayers().get(player).getName(); }
-		 * System.out.println(teamName + " : " + playerNames); }
-		 */
+/*		// Display selected teams and players they contain
+		System.out.println("Teams selected with switchable players : ");
+		for (int team = 0; team < copyOfTeamList.size(); team++) {
+			String teamName = copyOfTeamList.get(team).getName();
+			String playerNames = "";
+			for (int player = 0; player < copyOfTeamList.get(team).getPlayers().size(); player++) {
+				playerNames += copyOfTeamList.get(team).getPlayers().get(player).getName();
+			}
+			System.out.println(teamName + " : " + playerNames);
+		}
+		*/
 
 		// Structure used to register random player from team
 		Map<ITeam, List<Player>> randomPlayers = new HashMap<ITeam, List<Player>>();
 		Map<ITeam, List<Player>> randomPlayersActualized = new HashMap<ITeam, List<Player>>();
 		List<Player> players = new ArrayList<Player>();
-		List<ITeam> remainingTeamList = new ArrayList<ITeam>(copyOfTeamList);
-		Map<Player, ITeam> initialTeamPerPlayer = new HashMap<Player, ITeam>();
-		Map<Player, Player> playerSwitchedWith = new HashMap<Player, Player>();
 
 		// Object that return random int.
 		Random rand = new Random();
@@ -104,6 +103,7 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			List<Player> switchedPlayers = new ArrayList<Player>();
 			for (int i = 0; i < game.getConfiguration().getNumberOfPlayerSwitchable(); i++) {
 				// getting a list of random players
+
 				switchedPlayers.add(team.getPlayers().get(rand.nextInt(team.getPlayers().size())));
 			}
 			players.addAll(switchedPlayers);
@@ -111,16 +111,22 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			randomPlayersActualized.put(team, switchedPlayers);
 		}
 
+		// Sauvegarde des équipes initiales des joueurs
+		Map<Player, ITeam> initialTeamPerPlayer = new HashMap<Player, ITeam>();
 		for (Player p : players) {
 			initialTeamPerPlayer.put(p, TeamsManager.getTeam(p));
 		}
 
 		// Début de la boucle qui va déterminer les équipes après switch
+		List<ITeam> remainingTeamList = new ArrayList<ITeam>();
+		Map<Player, Player> playerSwitchedWith = new HashMap<Player, Player>();
 		do {
+
 			if (remainingTeamList.size() == 0)
 				remainingTeamList = new ArrayList<ITeam>(copyOfTeamList);
 			Player randomP1;
 			ITeam currentTeamP1;
+
 			do {
 				randomP1 = players.get(rand.nextInt(players.size()));
 				currentTeamP1 = initialTeamPerPlayer.get(randomP1);
@@ -130,19 +136,22 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			Player randomP2;
 			ITeam currentTeamP2;
 			List<Player> actualTeamateOfP2 = new ArrayList<Player>();
-			Boolean samePreviousTeam = false;
+			Boolean samePreviousTeamOfTeamates = false;
+
+			// sélection du 2ème joueur switché
 			do {
 				randomP2 = players.get(rand.nextInt(players.size()));
 				currentTeamP2 = initialTeamPerPlayer.get(randomP2);
 				actualTeamateOfP2 = randomPlayersActualized.get(currentTeamP2);
 				actualTeamateOfP2.remove(randomP2);
+
 				for (Player p : actualTeamateOfP2) {
 					if (initialTeamPerPlayer.get(p).equals(currentTeamP1)) {
-						samePreviousTeam = true;
+						samePreviousTeamOfTeamates = true;
 						break;
 					}
 				}
-			} while (currentTeamP1 != currentTeamP2 || samePreviousTeam);
+			} while (currentTeamP1 == currentTeamP2 && samePreviousTeamOfTeamates);
 
 			playerSwitchedWith.put(randomP1, randomP2);
 			players.remove(randomP2);
@@ -153,19 +162,14 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			randomPlayersActualized.get(currentTeamP2).add(randomP1);
 			remainingTeamList.remove(currentTeamP1);
 
-		} while (players.size() <= 1);
-
-		for (ITeam t : copyOfTeamList) {
-			for (Player p : randomPlayersActualized.get(t)) {
-				initialTeamPerPlayer.put(p, t);
-			}
-		}
+		} while (players.size() > 1);
 
 		// Actualize teams with new teamates and teleporte players
 		for (Map.Entry<Player, Player> entry : playerSwitchedWith.entrySet()) {
 			Player player1 = entry.getKey();
 			Player player2 = entry.getValue();
 
+			System.out.println(player1.getName() + " switch avec " + player2.getName());
 			ITeam realTeam1 = initialTeamPerPlayer.get(player1);
 			ITeam realTeam2 = initialTeamPerPlayer.get(player2);
 
@@ -177,6 +181,7 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			synchronizedAdd(realTeam1, player2);
 			synchronizedAdd(realTeam2, player1);
 
+			// Teleporting player switched to their new location
 			Location locp2 = player2.getLocation().clone();
 
 			PlayerManager.teleporte(player2, player1.getLocation());
@@ -186,20 +191,28 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			sendMessage(player2, MessageCode.SWITCH_MESSAGE, realTeam1.toString());
 
 		}
+
+		// Reinitialisation des équipes initiales pour chaque joueur en prévision du prochain switch
+		for (ITeam t : copyOfTeamList) {
+			for (Player p : randomPlayersActualized.get(t)) {
+				initialTeamPerPlayer.put(p, t);
+			}
+		}
 		sendTitle(EColor.GOLD, MessageCode.SWITCH);
 	}
 
 	private boolean filterTeam(ITeam team) {
 		List<Player> copyPlayers = team.getPlayersOnMode(GameMode.SURVIVAL);
+		String letter = game.getConfiguration().getOnePlayerSwitch();
 
-		if (copyPlayers.size() <= 1) {
-			System.out.println("nombre de joueur inférieur ou égal à 1");
-			return false;
-		}
-
-		if (copyPlayers.size() < game.getConfiguration().getNumberOfPlayerSwitchable()) {
-			System.out.println("nombre de joueur inférieur au nombre minimum");
-			return false;
+		if (letter.equalsIgnoreCase("N")) {
+			if (copyPlayers.size() <= 1) {
+				return false;
+			}
+		} else {
+			if (copyPlayers.size() < game.getConfiguration().getNumberOfPlayerSwitchable()) {
+				return false;
+			}
 		}
 		return true;
 	}
