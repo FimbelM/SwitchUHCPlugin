@@ -120,4 +120,8 @@ public class SwitchGameEditionsFactory extends AbstractConfigurationEditionsFact
 		return new ReviveNearTeamate();
 	}
 	
+	public IMapEdition<ISwitchGameConfiguration> createOnePlayerSwitchEdition() {
+		return new OnePlayerSwitch();
+	}
+	
 }

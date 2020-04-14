@@ -14,9 +14,10 @@ public class SwitchConfiguration extends AbstractBorderConfiguration implements 
 	private static final Integer DEFAULT_NUMBER_OF_PLAYER_SWITCHABLE = 1;
 	private static final String DEFAULT_SWITCH_AFTER_BORDER_MOVES = "N";
 	private static final String DEFAULT_REVIVE_NEAR_TEAMATE = "Y";
+	private static final String DEFAULT_ONE_PLAYER_SWITCH = "N";
 	private Integer numberOfPlayerSwitchable;
 	private LocalTime switchTime, startSwitchTime, fractionTime, warningTime, pvpTime;
-	private String switchAfterBorderMoves, reviveNearTeamate;
+	private String switchAfterBorderMoves, reviveNearTeamate, onePlayerSwitch;
 
 	public SwitchConfiguration(String name) {
 		super(name);
@@ -91,7 +92,7 @@ public class SwitchConfiguration extends AbstractBorderConfiguration implements 
 	public void setSwitchAfterBorderMoves(String letter) {
 		this.switchAfterBorderMoves = letter;
 	}
-	
+
 	@Override
 	public String getReviveNearTeamate() {
 		return reviveNearTeamate == null ? DEFAULT_REVIVE_NEAR_TEAMATE : reviveNearTeamate;
@@ -100,6 +101,16 @@ public class SwitchConfiguration extends AbstractBorderConfiguration implements 
 	@Override
 	public void setReviveNearTeamate(String letter) {
 		this.reviveNearTeamate = letter;
+	}
+
+	@Override
+	public String getOnePlayerSwitch() {
+		return onePlayerSwitch == null ? DEFAULT_ONE_PLAYER_SWITCH : onePlayerSwitch;
+	}
+
+	@Override
+	public void setOnePlayerSwitch(String letter) {
+		this.onePlayerSwitch = letter;
 	}
 
 	@Override
@@ -117,6 +128,7 @@ public class SwitchConfiguration extends AbstractBorderConfiguration implements 
 		builder.append("Number of players switched : " + getNumberOfPlayerSwitchable() + "\n");
 		builder.append("Switch after border moves : " + getSwitchAfterBorderMoves() + "\n");
 		builder.append("Revive near a teamate : " + getReviveNearTeamate() + "\n");
+		builder.append("One player switch : " + getOnePlayerSwitch() + "\n");
 		return builder.toString();
 	}
 
@@ -131,6 +143,7 @@ public class SwitchConfiguration extends AbstractBorderConfiguration implements 
 		numberOfPlayerSwitchable = null;
 		switchAfterBorderMoves = null;
 		reviveNearTeamate = null;
+		onePlayerSwitch = null;
 	}
 
 }

@@ -19,5 +19,7 @@ public interface ISwitchGameConfiguration extends IBorderConfiguration, IUnmodif
 	void setSwitchAfterBorderMoves(String letter);
 	
 	void setReviveNearTeamate(String letter);
+	
+	void setOnePlayerSwitch(String letter);
 
 }

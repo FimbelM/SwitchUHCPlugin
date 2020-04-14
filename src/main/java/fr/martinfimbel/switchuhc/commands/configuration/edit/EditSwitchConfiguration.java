@@ -25,6 +25,6 @@ public class EditSwitchConfiguration extends AbstractEditConfiguration<ISwitchGa
 				.addEdition(factory.createWarningTimeEdition()).addEdition(factory.createStartSwitchTimeEdition())
 				.addEdition(factory.createSwitchTimeEdititon())
 				.addEdition(factory.createNumberOfPlayerSwitchableEdition())
-				.addEdition(factory.createSwitchAfterBorderMovesEdition());
+				.addEdition(factory.createSwitchAfterBorderMovesEdition()).addEdition(factory.createOnePlayerSwitchEdition());
 	}
 }
