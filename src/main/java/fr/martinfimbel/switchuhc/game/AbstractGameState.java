@@ -138,7 +138,7 @@ public abstract class AbstractGameState<T extends IUnmodifiableConfiguration> im
 		WorldManager.setWeatherSun();
 		WorldManager.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true);
 		WorldManager.setPVP(false);
-		TeamsManager.createTeams(getConfiguration().getTeams());
+		//TeamsManager.createTeams(getConfiguration().getTeams());
 	}
 
 	protected void onPause() {
