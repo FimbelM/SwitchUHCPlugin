@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 
 import fr.martinfimbel.switchuhc.game.IGame;
 import fr.martinfimbel.switchuhc.interfaces.IConfiguration;
@@ -141,5 +142,13 @@ public abstract class AbstractConfiguration implements IConfiguration {
 
 	protected void setGame(IGame game) {
 		this.game = game;
+	}
+	
+	@Override
+	public ITeam getTeam(Player player) {
+		for (ITeam team : getTeams())
+			if (team.getPlayers().contains(player))
+				return team;
+		return null;
 	}
 }

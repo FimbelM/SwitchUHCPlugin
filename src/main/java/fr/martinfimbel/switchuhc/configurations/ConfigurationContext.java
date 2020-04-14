@@ -4,6 +4,7 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Stream;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -204,4 +205,10 @@ public class ConfigurationContext implements IConfigurationContext {
 	public void prepareTeam() {
 		getCurrentConfiguration().prepareTeam();
 	}
+	
+	@Override
+	public ITeam getTeam(Player player) {
+		return getCurrentConfiguration().getTeam(player);
+	}
+	
 }
