@@ -1,10 +1,8 @@
 package fr.martinfimbel.switchuhc.managers;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -79,10 +77,11 @@ public class TeamsManager {
 
 	public static void createTeams(List<ITeam> teams) {
 		for (ITeam team : teams) {
-			BukkitManager.dispatchCommand("team add " + team.getName());
-			BukkitManager.dispatchCommand("team modify " + team.getName() + " color " + team.getColor().getColorName());
+			Team serverTeam = BukkitManager.getScoreboardManager().getMainScoreboard().registerNewTeam(team.getName());
+			serverTeam.setPrefix(team.getColor().getChatColor().toString());
+			serverTeam.setColor(team.getColor().getChatColor());
 			for (Player player : team.getPlayers()) {
-				BukkitManager.dispatchCommand("team join " + team.getName() + " " + player.getName());
+				serverTeam.addEntry(player.getName());
 			}
 			team.setCreatedOnServer(true);
 		}
@@ -129,23 +128,11 @@ public class TeamsManager {
 	}
 
 	public static void join(ITeam team, Player player) {
-		Set<Team> setTeams = BukkitManager.getScoreboardManager().getMainScoreboard().getTeams();
-		Iterator<Team> iterator = setTeams.iterator();
-		while (iterator.hasNext()) {
-			Team t = iterator.next();
-			if (t.getName().equals(team.getName()))
-				t.addEntry(player.getName());
-		}
+		BukkitManager.dispatchCommand("team join " + team.getName() + " " + player.getName());
 	}
 
-	public static void leave(ITeam team, Player player) {
-		Set<Team> setTeams = BukkitManager.getScoreboardManager().getMainScoreboard().getTeams();
-		Iterator<Team> iterator = setTeams.iterator();
-		while (iterator.hasNext()) {
-			Team t = iterator.next();
-			if (t.getName().equals(team.getName()))
-				t.removeEntry(player.getName());
-		}
+	public static void leave(Player player) {
+		BukkitManager.dispatchCommand("team leave " + player.getName());
 	}
 
 	private static boolean isValide(IConfiguration conf, Predicate<ITeam> filter) {

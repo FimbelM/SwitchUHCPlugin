@@ -32,6 +32,7 @@ public class SwitchUHCPlugin extends JavaPlugin implements IObsListener, IObsGam
 	private IConfigurationContext context;
 	private EventListener listener;
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onEnable() {
 		getLogger().info("Switch UHC plugin Enable");
@@ -52,6 +53,8 @@ public class SwitchUHCPlugin extends JavaPlugin implements IObsListener, IObsGam
 		listener.addObservers(this);
 
 		PlayerManager.getPlayers().forEach(p -> UHCPlayer.register(p));
+		PlayerManager.getPlayers().forEach(p -> p.setPlayerListHeaderFooter(ChatColor.GOLD + "Switch UHC", ChatColor.AQUA + "PE & MARTIN"));
+		
 	}
 
 	@Override
@@ -111,8 +114,7 @@ public class SwitchUHCPlugin extends JavaPlugin implements IObsListener, IObsGam
 
 	@Override
 	public void onPlayerQuit(PlayerQuitEvent event) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override

@@ -78,7 +78,7 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 		if (copyOfTeamList.size() <= 1)
 			return;
 
-/*		// Display selected teams and players they contain
+		// Display selected teams and players they contain
 		System.out.println("Teams selected with switchable players : ");
 		for (int team = 0; team < copyOfTeamList.size(); team++) {
 			String teamName = copyOfTeamList.get(team).getName();
@@ -88,7 +88,6 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			}
 			System.out.println(teamName + " : " + playerNames);
 		}
-		*/
 
 		// Structure used to register random player from team
 		Map<ITeam, List<Player>> randomPlayers = new HashMap<ITeam, List<Player>>();
@@ -192,7 +191,8 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 
 		}
 
-		// Reinitialisation des équipes initiales pour chaque joueur en prévision du prochain switch
+		// Reinitialisation des équipes initiales pour chaque joueur en prévision du
+		// prochain switch
 		for (ITeam t : copyOfTeamList) {
 			for (Player p : randomPlayersActualized.get(t)) {
 				initialTeamPerPlayer.put(p, t);
@@ -224,7 +224,7 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 
 	private static void synchronizedRemove(ITeam team, Player player) {
 		team.removePlayer(player);
-		TeamsManager.leave(team, player);
+		TeamsManager.leave(player);
 	}
 
 }

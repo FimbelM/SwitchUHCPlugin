@@ -6,6 +6,7 @@ import java.util.Map;
 import org.bukkit.entity.Player;
 
 import fr.martinfimbel.switchuhc.interfaces.IPlayer;
+import fr.martinfimbel.switchuhc.interfaces.ITeam;
 import fr.martinfimbel.switchuhc.managers.EColor;
 
 public class UHCPlayer implements IPlayer {
@@ -16,6 +17,12 @@ public class UHCPlayer implements IPlayer {
 		IPlayer uhcPlayer = players.get(player.getName());
 		if (uhcPlayer != null) {
 			player.setDisplayName(uhcPlayer.getColor().getInColor(player.getName()));
+			ITeam playersTeam = UHCTeam.getTeam(player);
+
+			if (playersTeam != null) {
+				playersTeam.removePlayer(player);
+				playersTeam.addPlayer(player);
+			}
 			return;
 		}
 

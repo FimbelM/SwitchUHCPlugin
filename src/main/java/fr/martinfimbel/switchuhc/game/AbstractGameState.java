@@ -25,6 +25,7 @@ import fr.martinfimbel.switchuhc.dictionary.dictionaries.MessageCode;
 import fr.martinfimbel.switchuhc.environment.UHCPlayer;
 import fr.martinfimbel.switchuhc.event.EventFactory;
 import fr.martinfimbel.switchuhc.interfaces.IMessageCode;
+import fr.martinfimbel.switchuhc.interfaces.ITeam;
 import fr.martinfimbel.switchuhc.interfaces.IUnmodifiableConfiguration;
 import fr.martinfimbel.switchuhc.managers.EColor;
 import fr.martinfimbel.switchuhc.managers.PlayerManager;
@@ -127,18 +128,20 @@ public abstract class AbstractGameState<T extends IUnmodifiableConfiguration> im
 	}
 
 	protected void onStart() {
-		PlayerManager.giveEffectToAllPlayers(PotionEffectType.DAMAGE_RESISTANCE, PotionEffectType.REGENERATION, PotionEffectType.SATURATION);
+		PlayerManager.giveEffectToAllPlayers(PotionEffectType.DAMAGE_RESISTANCE, PotionEffectType.REGENERATION,
+				PotionEffectType.SATURATION);
 		PlayerManager.resetLevelOfPlayers();
 		PlayerManager.maxFoodForPlayers();
 		PlayerManager.resetMaxHealthOfPlayers();
 		PlayerManager.maxLifeToPlayers();
 		PlayerManager.removeInventoryOfPlayers();
-		PlayerManager.setGameModeOfAllPlayers(GameMode.SURVIVAL);
+		getConfiguration().getTeams().stream().map(team -> team.getPlayers().stream()).forEach(stream -> PlayerManager.setGameModeOfPlayers(stream, GameMode.SURVIVAL));
+		//PlayerManager.setGameModeOfAllPlayers(GameMode.SURVIVAL);
 		WorldManager.setTimeDay();
 		WorldManager.setWeatherSun();
 		WorldManager.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true);
 		WorldManager.setPVP(false);
-		//TeamsManager.createTeams(getConfiguration().getTeams());
+		TeamsManager.createTeams(getConfiguration().getTeams());
 	}
 
 	protected void onPause() {
@@ -148,8 +151,8 @@ public abstract class AbstractGameState<T extends IUnmodifiableConfiguration> im
 		PlayerManager.getPlayersOnMode(GameMode.SURVIVAL).forEach(p -> {
 			playersState.put(p, new PlayerState(p));
 			PlayerManager.setGameModeOfPlayer(p, GameMode.ADVENTURE);
-			PlayerManager.giveEffects(p,
-					PlayerManager.createEffectMaxDurationMaxModifier(PotionEffectType.DAMAGE_RESISTANCE, PotionEffectType.REGENERATION, PotionEffectType.SATURATION));
+			PlayerManager.giveEffects(p, PlayerManager.createEffectMaxDurationMaxModifier(
+					PotionEffectType.DAMAGE_RESISTANCE, PotionEffectType.REGENERATION, PotionEffectType.SATURATION));
 		});
 	}
 
@@ -165,6 +168,8 @@ public abstract class AbstractGameState<T extends IUnmodifiableConfiguration> im
 	}
 
 	protected void onStop() {
+		for(ITeam team : getConfiguration().getTeams())
+			team.clear();
 		taskLauncher.cancel();
 		scoreboardLauncher.cancel();
 		PlayerManager.teleporteAllPlayers(WorldManager.getSpawnOnJoin());

@@ -8,11 +8,11 @@ import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
-import fr.martinfimbel.switchuhc.BukkitManager;
 import fr.martinfimbel.switchuhc.interfaces.ITeam;
 import fr.martinfimbel.switchuhc.managers.EColor;
 
 public class UHCTeam implements ITeam {
+	private static List<ITeam> createdTeams = new ArrayList<ITeam>();
 	private String name;
 	private EColor color;
 	private List<Player> players;
@@ -25,13 +25,21 @@ public class UHCTeam implements ITeam {
 
 		players = new ArrayList<Player>();
 		createdOnServer = false;
+
+		if (!isCopy)
+			createdTeams.add(this);
 	}
 
 	public static ITeam createTeam(String name, EColor color) {
-		BukkitManager.dispatchCommand("team add " + name);
-		BukkitManager.dispatchCommand("team modify " + name + " color " + color);
 		return new UHCTeam(name, color, false);
-		
+	}
+
+	public static ITeam getTeam(Player player) {
+		for (ITeam team : createdTeams)
+			for (Player p : team.getPlayers())
+				if (p.getName().equals(player.getName()))
+					return team;
+		return null;
 	}
 
 	@Override
@@ -84,14 +92,12 @@ public class UHCTeam implements ITeam {
 	public void addPlayer(Player player) {
 		updateUhcPlayer(player, getColor());
 		players.add(player);
-		BukkitManager.dispatchCommand("team join " + getName() + " " + player.getName());
 	}
 
 	@Override
 	public void removePlayer(Player player) {
 		updateUhcPlayer(player, null);
-		players.remove(player);
-		BukkitManager.dispatchCommand("team leave " + player.getName());
+		players.removeIf(p -> p.getName().equals(player.getName()));
 	}
 
 	@Override
@@ -126,15 +132,15 @@ public class UHCTeam implements ITeam {
 		builder.append("]");
 		return color.getInColor(builder.toString());
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
-		if(obj == null|| !(obj instanceof UHCTeam))
+		if (obj == null || !(obj instanceof UHCTeam))
 			return false;
 		ITeam other = (UHCTeam) obj;
 		return getName().equals(other.getName()) && getColor().equals(other.getColor());
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return 31 * getName().hashCode() + 31 * getColor().hashCode();
@@ -149,8 +155,10 @@ public class UHCTeam implements ITeam {
 			UHCPlayer.get(player).setColor(null);
 		} else {
 			player.setDisplayName(color.getInColor(player.getName()));
-			player.setPlayerListName(color.getInColor(ChatColor.BOLD + "[" + getName()+"]") + " " + color.getInColor(player.getName()));
+			player.setPlayerListName(color.getInColor(ChatColor.BOLD + "[" + getName() + "]") + " "
+					+ color.getInColor(player.getName()));
 			UHCPlayer.get(player).setColor(color);
 		}
 	}
+	
 }
