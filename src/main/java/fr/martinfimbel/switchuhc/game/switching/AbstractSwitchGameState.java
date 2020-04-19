@@ -65,7 +65,7 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 		for (ITeam team : game.getConfiguration().getTeams())
 			copyOfTeamList.add((ITeam) team.clone());
 
-		// Getting teams that contains enough players
+		// Filtering teams that contains enough players
 		ListIterator<ITeam> iterator = copyOfTeamList.listIterator();
 
 		while (iterator.hasNext()) {
@@ -84,7 +84,7 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			String teamName = copyOfTeamList.get(team).getName();
 			String playerNames = "";
 			for (int player = 0; player < copyOfTeamList.get(team).getPlayers().size(); player++) {
-				playerNames += copyOfTeamList.get(team).getPlayers().get(player).getName();
+				playerNames += copyOfTeamList.get(team).getPlayersOnMode(GameMode.SURVIVAL).get(player).getName();
 			}
 			System.out.println(teamName + " : " + playerNames);
 		}
@@ -103,7 +103,7 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			for (int i = 0; i < game.getConfiguration().getNumberOfPlayerSwitchable(); i++) {
 				// getting a list of random players
 
-				switchedPlayers.add(team.getPlayers().get(rand.nextInt(team.getPlayers().size())));
+				switchedPlayers.add(team.getPlayers().get(rand.nextInt(team.getPlayersOnMode(GameMode.SURVIVAL).size())));
 			}
 			players.addAll(switchedPlayers);
 			randomPlayers.put(team, switchedPlayers);
