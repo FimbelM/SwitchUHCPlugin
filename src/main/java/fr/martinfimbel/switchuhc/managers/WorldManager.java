@@ -228,11 +228,7 @@ public class WorldManager {
 		int maxZ = maxX - borderCenterX + borderCenterZ;
 		int randomX = 0;
 		int randomZ = 0;
-		
-		System.out.println("minX : " + minX);
-		System.out.println("minZ : " + minZ);
-		System.out.println("maxX : " + maxX);
-		System.out.println("maxZ : " + maxZ);
+
 		do {
 			randomX = rand.nextInt(maxX - minX) + minX;
 			randomZ = rand.nextInt(maxZ - minZ) + minZ;
