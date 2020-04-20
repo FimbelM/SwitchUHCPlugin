@@ -3,12 +3,14 @@ package fr.martinfimbel.switchuhc.game.switching;
 import java.time.LocalTime;
 
 import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import fr.martinfimbel.switchuhc.dictionary.dictionaries.MessageCode;
 import fr.martinfimbel.switchuhc.managers.EColor;
 import fr.martinfimbel.switchuhc.managers.PlayerManager;
+import fr.martinfimbel.switchuhc.managers.ScoreboardKillManager;
 import fr.martinfimbel.switchuhc.managers.WorldManager;
 
 public class PlayerDontReviveState extends AbstractSwitchGameState {
@@ -39,12 +41,16 @@ public class PlayerDontReviveState extends AbstractSwitchGameState {
 			warnPlayers();
 		if (time.equals(getConfiguration().getGameTime()))
 			changeFromDontReviveToHungerGame();
-		if(time.equals(game.getNextSwitchTime()))
+		if (time.equals(game.getNextSwitchTime()))
 			Switch();
 	}
 
 	@Override
 	public void onPlayerDie(PlayerDeathEvent event) {
+		Player killer = event.getEntity().getKiller();
+		if (killer instanceof Player) {
+			ScoreboardKillManager.increase(killer);
+		}
 		PlayerManager.setGameModeOfPlayer(event.getEntity(), GameMode.SPECTATOR);
 		shouldStopGame();
 	}

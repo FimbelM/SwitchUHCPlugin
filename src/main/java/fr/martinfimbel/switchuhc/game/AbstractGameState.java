@@ -136,7 +136,6 @@ public abstract class AbstractGameState<T extends IUnmodifiableConfiguration> im
 		PlayerManager.maxLifeToPlayers();
 		PlayerManager.removeInventoryOfPlayers();
 		getConfiguration().getTeams().stream().map(team -> team.getPlayers().stream()).forEach(stream -> PlayerManager.setGameModeOfPlayers(stream, GameMode.SURVIVAL));
-		//PlayerManager.setGameModeOfAllPlayers(GameMode.SURVIVAL);
 		WorldManager.setTimeDay();
 		WorldManager.setWeatherSun();
 		WorldManager.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true);

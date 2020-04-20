@@ -42,21 +42,6 @@ public class ScoreboardManager {
 		return registerNewObjective(title, DisplaySlot.SIDEBAR);
 	}
 
-	public static Objective registerKillObjective(String title) {
-		Objective kill = BukkitManager.getScoreboardManager().getNewScoreboard().registerNewObjective("Kills", "playerKillCount", title);
-		return kill;
-	}
-
-	public static Objective registerKillObjective(String title, DisplaySlot displaySlot) {
-		Objective obj = registerKillObjective(title);
-		obj.setDisplaySlot(displaySlot);
-		return obj;
-	}
-
-	public static Objective registerKillObjectiveOnSideBarDisplaySlot(String title) {
-		return registerKillObjective(title, DisplaySlot.SIDEBAR);
-	}
-
 	public static void addEntries(Objective objective, String score) {
 		objective.getScore(score).setScore(objective.getScoreboard().getEntries().size());
 	}
@@ -91,7 +76,6 @@ public class ScoreboardManager {
 		spaces = 0;
 		Objective obj = registerNewObjectiveOnSideBarDisplaySlot(
 				UHCPlayer.get(player).getColor().getInColor(sc.getTitle()));
-		Objective kills = registerKillObjectiveOnSideBarDisplaySlot("");
 		
 		for (IScoreboardMessage message : sc.getEntries())
 			if (message == null)
@@ -103,15 +87,15 @@ public class ScoreboardManager {
 				addEntries(obj, ChatColor.GOLD + message.getKey() + ChatColor.DARK_GREEN + message.getMessage());
 
 		addEmptyLine(obj);
-		addEntries(obj, showCoordinates(player));
+		addEntries(obj, preparekill(player));
 		addEmptyLine(obj);
-		addEntries(obj, showKills(player, kills));
+		addEntries(obj, showCoordinates(player));
 		addEmptyLine(obj);
 		player.setScoreboard(obj.getScoreboard());
 	}
 
-	private static String showKills(Player player, Objective objective) {
-		return ChatColor.GOLD + "Kills: " + ChatColor.DARK_RED + objective.getScore(player.getName()).getScore();
+	private static String preparekill(Player player) {
+		return ChatColor.DARK_RED + "Kills : " + ChatColor.GOLD + ScoreboardKillManager.getkill(player).toString();
 	}
 
 	private static String showCoordinates(Player player) {

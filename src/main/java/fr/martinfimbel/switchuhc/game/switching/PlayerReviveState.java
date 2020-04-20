@@ -15,12 +15,13 @@ import fr.martinfimbel.switchuhc.managers.EColor;
 import fr.martinfimbel.switchuhc.managers.PlayerManager;
 import fr.martinfimbel.switchuhc.managers.TeamsManager;
 import fr.martinfimbel.switchuhc.managers.WorldManager;
+import fr.martinfimbel.switchuhc.managers.ScoreboardKillManager;
 
 public class PlayerReviveState extends AbstractSwitchGameState {
 	public PlayerReviveState(ISwitchGame game) {
 		super(game);
 	}
-
+	
 	@Override
 	public void pause() {
 		onPause();
@@ -50,7 +51,9 @@ public class PlayerReviveState extends AbstractSwitchGameState {
 
 	@Override
 	public void onPlayerDie(PlayerDeathEvent event) {
-		if (event.getEntity().getKiller() instanceof Player) {
+		Player killer = event.getEntity().getKiller();
+		if (killer instanceof Player) {
+			ScoreboardKillManager.increase(killer);
 			event.setKeepInventory(false);
 			PlayerManager.setGameModeOfPlayer(event.getEntity(), GameMode.SPECTATOR);
 		} else {
