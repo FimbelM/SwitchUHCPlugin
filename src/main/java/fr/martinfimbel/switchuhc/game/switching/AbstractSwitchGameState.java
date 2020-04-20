@@ -79,6 +79,7 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			return;
 
 		// Display selected teams and players they contain
+
 		System.out.println("Teams selected with switchable players : ");
 		for (int team = 0; team < copyOfTeamList.size(); team++) {
 			String teamName = copyOfTeamList.get(team).getName();
@@ -102,19 +103,26 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			List<Player> switchedPlayers = new ArrayList<Player>();
 			for (int i = 0; i < game.getConfiguration().getNumberOfPlayerSwitchable(); i++) {
 				// getting a list of random players
-
-				switchedPlayers.add(team.getPlayers().get(rand.nextInt(team.getPlayersOnMode(GameMode.SURVIVAL).size())));
+				switchedPlayers
+						.add(team.getPlayers().get(rand.nextInt(team.getPlayersOnMode(GameMode.SURVIVAL).size())));
 			}
 			players.addAll(switchedPlayers);
 			randomPlayers.put(team, switchedPlayers);
 			randomPlayersActualized.put(team, switchedPlayers);
 		}
+		List<Player> copyOfPlayers = new ArrayList<Player>(players);
+
+		// Display selected players for the switch
+		System.out.println("Players selected : ");
+		for (Player p : players)
+			System.out.println(p.getName());
 
 		// Sauvegarde des équipes initiales des joueurs
 		Map<Player, ITeam> initialTeamPerPlayer = new HashMap<Player, ITeam>();
 		for (Player p : players) {
 			initialTeamPerPlayer.put(p, TeamsManager.getTeam(p));
 		}
+		Map<Player, ITeam> actualTeamPerPlayer = new HashMap<Player, ITeam>(initialTeamPerPlayer);
 
 		// Début de la boucle qui va déterminer les équipes après switch
 		List<ITeam> remainingTeamList = new ArrayList<ITeam>();
@@ -155,20 +163,45 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			playerSwitchedWith.put(randomP1, randomP2);
 			players.remove(randomP2);
 
+			// Actualizing teams for every players
 			randomPlayersActualized.get(currentTeamP1).remove(randomP1);
 			randomPlayersActualized.get(currentTeamP2).remove(randomP2);
 			randomPlayersActualized.get(currentTeamP1).add(randomP2);
 			randomPlayersActualized.get(currentTeamP2).add(randomP1);
+			actualTeamPerPlayer.put(randomP1, currentTeamP2);
+			actualTeamPerPlayer.put(randomP2, currentTeamP1);
+
 			remainingTeamList.remove(currentTeamP1);
 
 		} while (players.size() > 1);
 
-		// Actualize teams with new teamates and teleporte players
+		// adding one switch between players selected if player list size is odd
+		if (players.size() == 1) {
+			Player p1 = players.get(0);
+			ITeam currentTeamP1 = initialTeamPerPlayer.get(p1);
+			Player randomP2;
+			ITeam currentTeamP2;
+
+			// selecting random player to switch
+			do {
+				randomP2 = copyOfPlayers.get(rand.nextInt(copyOfPlayers.size()));
+				currentTeamP2 = actualTeamPerPlayer.get(randomP2);
+			} while (p1 == randomP2);
+
+			playerSwitchedWith.put(p1, randomP2);
+
+			// actualizing teams for every players
+			randomPlayersActualized.get(currentTeamP1).remove(p1);
+			randomPlayersActualized.get(currentTeamP2).remove(randomP2);
+			randomPlayersActualized.get(currentTeamP1).add(randomP2);
+			randomPlayersActualized.get(currentTeamP2).add(p1);
+		}
+
+		// Actualize server teams with new teamates and teleporting players
 		for (Map.Entry<Player, Player> entry : playerSwitchedWith.entrySet()) {
 			Player player1 = entry.getKey();
 			Player player2 = entry.getValue();
 
-			System.out.println(player1.getName() + " switch avec " + player2.getName());
 			ITeam realTeam1 = initialTeamPerPlayer.get(player1);
 			ITeam realTeam2 = initialTeamPerPlayer.get(player2);
 
@@ -189,10 +222,15 @@ public class AbstractSwitchGameState extends AbstractGameState<IUnmodifiableSwit
 			sendMessage(player1, MessageCode.SWITCH_MESSAGE, realTeam2.toString());
 			sendMessage(player2, MessageCode.SWITCH_MESSAGE, realTeam1.toString());
 
+			initialTeamPerPlayer.put(player1, realTeam2);
+			initialTeamPerPlayer.put(player2, realTeam1);
 		}
 
-		// Reinitialisation des équipes initiales pour chaque joueur en prévision du
-		// prochain switch
+		// Sending information message to indicate switched players their new teams
+		for (Player p : copyOfPlayers)
+			sendMessage(p, MessageCode.SWITCH_MESSAGE, initialTeamPerPlayer.get(p).toString());
+
+		// Reinitializing initial team per player
 		for (ITeam t : copyOfTeamList) {
 			for (Player p : randomPlayersActualized.get(t)) {
 				initialTeamPerPlayer.put(p, t);
