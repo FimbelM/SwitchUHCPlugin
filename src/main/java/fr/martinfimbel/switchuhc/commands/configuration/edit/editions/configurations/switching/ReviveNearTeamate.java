@@ -14,7 +14,7 @@ import fr.martinfimbel.switchuhc.interfaces.ISwitchGameConfiguration;
 public class ReviveNearTeamate extends AbstractConfEdition<ISwitchGameConfiguration> {
 
 	public ReviveNearTeamate() {
-		super("reviveNearTeamate", MessageCode.REVIVE_NEAR_TEAMATE_EXPLANATION);
+		super("revivenearteamate", MessageCode.REVIVE_NEAR_TEAMATE_EXPLANATION);
 	}
 	
 	@Override
