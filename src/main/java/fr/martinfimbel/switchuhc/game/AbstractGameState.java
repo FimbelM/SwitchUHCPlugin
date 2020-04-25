@@ -4,6 +4,7 @@ import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.GameRule;
 import org.bukkit.Location;
@@ -29,6 +30,7 @@ import fr.martinfimbel.switchuhc.interfaces.ITeam;
 import fr.martinfimbel.switchuhc.interfaces.IUnmodifiableConfiguration;
 import fr.martinfimbel.switchuhc.managers.EColor;
 import fr.martinfimbel.switchuhc.managers.PlayerManager;
+import fr.martinfimbel.switchuhc.managers.ScoreboardKillManager;
 import fr.martinfimbel.switchuhc.managers.TeamsManager;
 import fr.martinfimbel.switchuhc.managers.WorldManager;
 import fr.martinfimbel.switchuhc.scoreboard.launcher.IScoreboardLauncher;
@@ -135,7 +137,8 @@ public abstract class AbstractGameState<T extends IUnmodifiableConfiguration> im
 		PlayerManager.resetMaxHealthOfPlayers();
 		PlayerManager.maxLifeToPlayers();
 		PlayerManager.removeInventoryOfPlayers();
-		getConfiguration().getTeams().stream().map(team -> team.getPlayers().stream()).forEach(stream -> PlayerManager.setGameModeOfPlayers(stream, GameMode.SURVIVAL));
+		getConfiguration().getTeams().stream().map(team -> team.getPlayers().stream())
+				.forEach(stream -> PlayerManager.setGameModeOfPlayers(stream, GameMode.SURVIVAL));
 		WorldManager.setTimeDay();
 		WorldManager.setWeatherSun();
 		WorldManager.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true);
@@ -167,8 +170,13 @@ public abstract class AbstractGameState<T extends IUnmodifiableConfiguration> im
 	}
 
 	protected void onStop() {
-		for(ITeam team : getConfiguration().getTeams())
-			team.clear();
+		for (ITeam team : getConfiguration().getTeams()) {
+			EColor color = team.getColor();
+			for (Player p : team.getPlayers()) {
+				p.setPlayerListName(color.getInColor(p.getName()) + ChatColor.DARK_RED + " Kills : " + ChatColor.DARK_RED + ScoreboardKillManager.getkill(p).toString());
+			}
+			//team.clear();
+		}
 		taskLauncher.cancel();
 		scoreboardLauncher.cancel();
 		PlayerManager.teleporteAllPlayers(WorldManager.getSpawnOnJoin());

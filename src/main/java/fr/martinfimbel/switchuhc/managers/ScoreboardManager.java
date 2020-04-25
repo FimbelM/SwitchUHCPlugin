@@ -87,15 +87,9 @@ public class ScoreboardManager {
 				addEntries(obj, ChatColor.GOLD + message.getKey() + ChatColor.DARK_GREEN + message.getMessage());
 
 		addEmptyLine(obj);
-		addEntries(obj, preparekill(player));
-		addEmptyLine(obj);
 		addEntries(obj, showCoordinates(player));
 		addEmptyLine(obj);
 		player.setScoreboard(obj.getScoreboard());
-	}
-
-	private static String preparekill(Player player) {
-		return ChatColor.DARK_RED + "Kills : " + ChatColor.GOLD + ScoreboardKillManager.getkill(player).toString();
 	}
 
 	private static String showCoordinates(Player player) {
