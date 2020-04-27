@@ -23,4 +23,12 @@ public class ScoreboardKillManager {
 		Integer kills = killcount.get(player);
 		return kills == null ? 0 : kills;
 	}
+
+	public static void reset() {
+		PlayerManager.getPlayers().forEach(p -> {
+			p.setPlayerListName(p.getName());
+			killcount.remove(p);
+			System.out.println("reset " + p.getName());
+		});
+	}
 }

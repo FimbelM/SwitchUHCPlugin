@@ -22,6 +22,7 @@ import fr.martinfimbel.switchuhc.environment.UHCPlayer;
 import fr.martinfimbel.switchuhc.game.GameStateException;
 import fr.martinfimbel.switchuhc.interfaces.IConfigurationContext;
 import fr.martinfimbel.switchuhc.managers.PlayerManager;
+import fr.martinfimbel.switchuhc.managers.ScoreboardKillManager;
 import fr.martinfimbel.switchuhc.managers.WorldManager;
 import fr.martinfimbel.switchuhc.observers.IObsGame;
 import fr.martinfimbel.switchuhc.observers.IObsListener;
@@ -36,7 +37,6 @@ public class SwitchUHCPlugin extends JavaPlugin implements IObsListener, IObsGam
 	@Override
 	public void onEnable() {
 		getLogger().info("Switch UHC plugin Enable");
-
 		SwitchPluginDeposit.plugin = this;
 		context = new ConfigurationContext();
 		listener = new EventListener();
@@ -60,6 +60,7 @@ public class SwitchUHCPlugin extends JavaPlugin implements IObsListener, IObsGam
 	@Override
 	public void onDisable() {
 		getLogger().info("Switch UHC plugin disable");
+		ScoreboardKillManager.reset();
 		try {
 			WorldManager.removeSpawn();
 			context.stop();
@@ -74,7 +75,6 @@ public class SwitchUHCPlugin extends JavaPlugin implements IObsListener, IObsGam
 		PlayerManager.removeAllEffectsToAllPlayers();
 		listener.removeObservers(this);
 		listener.addObservers(context);
-
 	}
 
 	@Override
