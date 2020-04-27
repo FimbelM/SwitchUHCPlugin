@@ -74,7 +74,8 @@ public class PlayerReviveState extends AbstractSwitchGameState {
 			event.setRespawnLocation(WorldManager.getRandomlyLocation(WorldManager.getCurrentDiameter().intValue(),
 					getConfiguration().getBorderCenter().getLocation()));
 		else if (teamate.size() == 0) {
-			return;
+			event.setRespawnLocation(WorldManager.getRandomlyLocation(WorldManager.getCurrentDiameter().intValue(),
+					getConfiguration().getBorderCenter().getLocation()));
 		} else {
 			Random rand = new Random();
 			Location teamateLocation = teamate.get(rand.nextInt(teamate.size())).getLocation();
