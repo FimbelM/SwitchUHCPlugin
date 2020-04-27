@@ -76,7 +76,7 @@ public class ScoreboardManager {
 		spaces = 0;
 		Objective obj = registerNewObjectiveOnSideBarDisplaySlot(
 				UHCPlayer.get(player).getColor().getInColor(sc.getTitle()));
-		
+
 		for (IScoreboardMessage message : sc.getEntries())
 			if (message == null)
 				addEmptyLine(obj);
@@ -87,6 +87,9 @@ public class ScoreboardManager {
 				addEntries(obj, ChatColor.GOLD + message.getKey() + ChatColor.DARK_GREEN + message.getMessage());
 
 		addEmptyLine(obj);
+		for(Player p : TeamsManager.getCollegues(player))
+		addEntries(obj, showDistance(player, p));
+		addEmptyLine(obj);
 		addEntries(obj, showCoordinates(player));
 		addEmptyLine(obj);
 		player.setScoreboard(obj.getScoreboard());
@@ -94,6 +97,33 @@ public class ScoreboardManager {
 
 	private static String showCoordinates(Player player) {
 		return ChatColor.GOLD + "X/Y/Z:" + ChatColor.DARK_GREEN + " " + prepareCoordinates(player);
+	}
+
+	private static String showDistance(Player player, Player p2) {
+		String retour = "";
+		int distance = (int) PlayerManager.getDistanceBetweenCollegues(player, p2);
+		double orientation = PlayerManager.getOrientationBetweenPlayers(player, p2);
+		String ori = "";
+		if(orientation>=-22.5 && orientation<22.5)
+			ori = "Devant";
+		else if(orientation>=22.5 && orientation<67.5)
+			ori = "Devant gauche";
+		else if(orientation>=67.5 && orientation<112.5)
+			ori = "Gauche";
+		else if(orientation>=112.5 && orientation<157.5)
+			ori = "Derriere gauche";
+		else if(orientation>=157.5 && orientation<=180)
+			ori = "Derriere";
+		else if (orientation>=-180 && orientation<-157.5)
+			ori = "Derriere";
+		else if(orientation>=-157.5 && orientation<-112.5)
+			ori = "Derriere droite";
+		else if(orientation>=-112.5 && orientation<-67.5)
+			ori = "Droite";
+		else if(orientation>=-67.5 && orientation<-22.5)
+			ori = "Devant droite";
+		retour = p2.getName() + " | " + distance + " " + ori;
+		return ChatColor.BOLD + retour;
 	}
 
 	private static String prepareCoordinates(Player player) {

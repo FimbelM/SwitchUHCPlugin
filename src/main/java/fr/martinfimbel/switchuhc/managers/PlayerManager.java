@@ -163,7 +163,8 @@ public class PlayerManager {
 		players.peek(p -> effects.peek(e -> giveEffect(p, e)));
 	}
 
-	public static PotionEffect createEffect(PotionEffectType type, int duration, int amplifier, boolean ambient, boolean particles) {
+	public static PotionEffect createEffect(PotionEffectType type, int duration, int amplifier, boolean ambient,
+			boolean particles) {
 		return new PotionEffect(type, duration, amplifier, ambient, particles);
 	}
 
@@ -235,10 +236,39 @@ public class PlayerManager {
 		return getClosePlayers(src, TeamsManager.getCollegues(src), distance);
 	}
 
+	public static float getDistanceBetweenCollegues(Player p1, Player p2) {
+		Location locp1 = p1.getLocation();
+		Location locp2 = p2.getLocation();
+		int diffx = Math.abs(locp2.getBlockX() - locp1.getBlockX());
+		int diffz = Math.abs(locp2.getBlockZ() - locp1.getBlockZ());
+		return Math.round(Math.sqrt(diffx * diffx + diffz * diffz));
+	}
+
+	public static double getOrientationBetweenPlayers(Player p1, Player p2) {
+		Location locp1 = p1.getLocation();
+		Location locp2 = p2.getLocation();
+		int xrel = locp2.getBlockX() - locp1.getBlockX();
+		int zrel = locp2.getBlockZ() - locp1.getBlockZ();
+		float thetap1p2 = (float) Math.toDegrees(Math.atan2(xrel, zrel));
+		double yaw = locp1.getYaw();
+		if (yaw > 180)
+			yaw = yaw - 360;
+		if (yaw < -180)
+			yaw = yaw + 360;
+		double orientation = thetap1p2 + yaw;
+		if (orientation < -180)
+			orientation = orientation + 360;
+		if (orientation > 180)
+			orientation = orientation - 360;
+		return orientation;
+	}
+
 	public static List<Player> getClosePlayers(Player src, List<Player> players, int distance) {
-		return players.stream().filter(p -> Math.abs(src.getLocation().getBlockX() - p.getLocation().getBlockX()) <= distance)
+		return players.stream()
+				.filter(p -> Math.abs(src.getLocation().getBlockX() - p.getLocation().getBlockX()) <= distance)
 				.filter(p -> Math.abs(src.getLocation().getBlockY() - p.getLocation().getBlockY()) <= distance)
-				.filter(p -> Math.abs(src.getLocation().getBlockZ() - p.getLocation().getBlockZ()) <= distance).collect(Collectors.toList());
+				.filter(p -> Math.abs(src.getLocation().getBlockZ() - p.getLocation().getBlockZ()) <= distance)
+				.collect(Collectors.toList());
 	}
 
 	public static void dropPlayerInventoryItemNaturally(Player player) {
