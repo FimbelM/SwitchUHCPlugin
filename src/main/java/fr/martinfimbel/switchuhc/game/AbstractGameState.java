@@ -4,7 +4,6 @@ import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.GameRule;
 import org.bukkit.Location;
@@ -18,6 +17,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import fr.martinfimbel.switchuhc.BukkitManager;
@@ -30,7 +30,6 @@ import fr.martinfimbel.switchuhc.interfaces.ITeam;
 import fr.martinfimbel.switchuhc.interfaces.IUnmodifiableConfiguration;
 import fr.martinfimbel.switchuhc.managers.EColor;
 import fr.martinfimbel.switchuhc.managers.PlayerManager;
-import fr.martinfimbel.switchuhc.managers.ScoreboardKillManager;
 import fr.martinfimbel.switchuhc.managers.TeamsManager;
 import fr.martinfimbel.switchuhc.managers.WorldManager;
 import fr.martinfimbel.switchuhc.scoreboard.launcher.IScoreboardLauncher;
@@ -130,8 +129,14 @@ public abstract class AbstractGameState<T extends IUnmodifiableConfiguration> im
 	}
 
 	protected void onStart() {
-		PlayerManager.giveEffectToAllPlayers(PotionEffectType.DAMAGE_RESISTANCE, PotionEffectType.REGENERATION,
-				PotionEffectType.SATURATION);
+		PotionEffect d = PlayerManager.createEffect(PotionEffectType.DAMAGE_RESISTANCE, 200, 1);
+		PotionEffect r = PlayerManager.createEffect(PotionEffectType.REGENERATION, 200, 1);
+		PotionEffect s = PlayerManager.createEffect(PotionEffectType.SATURATION, 200, 1);
+		PlayerManager.getPlayers().forEach(p ->{
+			PlayerManager.giveEffect(p, d);
+			PlayerManager.giveEffect(p, r);
+			PlayerManager.giveEffect(p, s);
+			});
 		PlayerManager.resetLevelOfPlayers();
 		PlayerManager.maxFoodForPlayers();
 		PlayerManager.resetMaxHealthOfPlayers();
@@ -170,13 +175,8 @@ public abstract class AbstractGameState<T extends IUnmodifiableConfiguration> im
 	}
 
 	protected void onStop() {
-		for (ITeam team : getConfiguration().getTeams()) {
-			EColor color = team.getColor();
-			for (Player p : team.getPlayers()) {
-				p.setPlayerListName(color.getInColor(p.getName()) + ChatColor.DARK_RED + " Kills : " + ChatColor.DARK_RED + ScoreboardKillManager.getkill(p).toString());
-			}
-			//team.clear();
-		}
+		for (ITeam team : getConfiguration().getTeams())			
+			team.clear();
 		taskLauncher.cancel();
 		scoreboardLauncher.cancel();
 		PlayerManager.teleporteAllPlayers(WorldManager.getSpawnOnJoin());
