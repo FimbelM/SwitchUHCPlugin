@@ -15,6 +15,8 @@ import fr.martinfimbel.switchuhc.environment.UHCPlayer;
 import fr.martinfimbel.switchuhc.helpers.PlayerHelper;
 import fr.martinfimbel.switchuhc.interfaces.IScoreboardMessage;
 import fr.martinfimbel.switchuhc.scoreboard.IScoreboard;
+import fr.pederobien.minecraftmanagers.DisplayOption;
+import fr.pederobien.minecraftmanagers.MessageManager;
 
 public class ScoreboardManager {
 	private static int spaces;
@@ -85,10 +87,11 @@ public class ScoreboardManager {
 						+ ChatColor.DARK_GREEN + message.getMessage());
 			else
 				addEntries(obj, ChatColor.GOLD + message.getKey() + ChatColor.DARK_GREEN + message.getMessage());
-
-		addEmptyLine(obj);
-		for(Player p : TeamsManager.getCollegues(player))
-		addEntries(obj, showDistance(player, p));
+		String playersOrientation = "";
+		for (Player p : TeamsManager.getCollegues(player))
+			playersOrientation += showDistance(player, p) ;
+		MessageManager.sendMessage(DisplayOption.ACTION_BAR, player, playersOrientation, true, false,
+				ChatColor.WHITE.toString());
 		addEmptyLine(obj);
 		addEntries(obj, showCoordinates(player));
 		addEmptyLine(obj);
@@ -100,30 +103,30 @@ public class ScoreboardManager {
 	}
 
 	private static String showDistance(Player player, Player p2) {
-		String retour = "";
+
 		int distance = (int) PlayerManager.getDistanceBetweenCollegues(player, p2);
 		double orientation = PlayerManager.getOrientationBetweenPlayers(player, p2);
 		String ori = "";
-		if(orientation>=-22.5 && orientation<22.5)
-			ori = "Devant";
-		else if(orientation>=22.5 && orientation<67.5)
-			ori = "Devant gauche";
-		else if(orientation>=67.5 && orientation<112.5)
-			ori = "Gauche";
-		else if(orientation>=112.5 && orientation<157.5)
-			ori = "Derriere gauche";
-		else if(orientation>=157.5 && orientation<=180)
-			ori = "Derriere";
-		else if (orientation>=-180 && orientation<-157.5)
-			ori = "Derriere";
-		else if(orientation>=-157.5 && orientation<-112.5)
-			ori = "Derriere droite";
-		else if(orientation>=-112.5 && orientation<-67.5)
-			ori = "Droite";
-		else if(orientation>=-67.5 && orientation<-22.5)
-			ori = "Devant droite";
-		retour = p2.getName() + " | " + distance + " " + ori;
-		return ChatColor.BOLD + retour;
+		if (orientation >= -22.5 && orientation < 22.5)
+			ori = "\u2191"; //devant
+		else if (orientation >= 22.5 && orientation < 67.5)
+			ori = "\u2b09"; //devant gauche
+		else if (orientation >= 67.5 && orientation < 112.5)
+			ori = "\u2190"; //gauche
+		else if (orientation >= 112.5 && orientation < 157.5)
+			ori = "\u2b0b"; //derriere gauche
+		else if (orientation >= 157.5 && orientation <= 180)
+			ori = "\u2193"; //derriere
+		else if (orientation >= -180 && orientation < -157.5)
+			ori = "\u2193"; //derriere
+		else if (orientation >= -157.5 && orientation < -112.5)
+			ori = "\u2b0a"; //derriere droite
+		else if (orientation >= -112.5 && orientation < -67.5)
+			ori = "\u2192"; //droite
+		else if (orientation >= -67.5 && orientation < -22.5)
+			ori = "\u2b08"; //devant droite
+		return p2.getName() + " | " + distance + " " + ori + " ";
+
 	}
 
 	private static String prepareCoordinates(Player player) {
