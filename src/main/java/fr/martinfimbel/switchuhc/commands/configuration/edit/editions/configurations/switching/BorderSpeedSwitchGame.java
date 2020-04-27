@@ -25,7 +25,7 @@ public class BorderSpeedSwitchGame extends AbstractConfEdition<ISwitchGameConfig
 				return;
 			}
 			get().setBorderSpeed(speed);
-			sendMessage(MessageCode.SPEED_BORDER_SWITCH_GAME_DEFINED, get().getBorderSpeed().toString());
+			sendMessage(MessageCode.SPEED_BORDER_SWITCH_GAME_DEFINED,"" + get().getBorderSpeed()/2 , get().getBorderSpeed().toString());
 		} catch (IndexOutOfBoundsException e) {
 			sendMessage(MessageCode.SPEED_BORDER_SWITCH_GAME_MISSING_SPEED);
 		} catch (NumberFormatException e) {

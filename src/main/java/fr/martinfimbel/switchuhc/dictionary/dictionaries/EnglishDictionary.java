@@ -1243,7 +1243,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "The border’s speed defined as " + args[0] + " block/s";
+				return "The border’s speed defined as " + args[0] + " block/s (" + args[1] + "/2)";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_LESS_THAN_1) {
 			@Override
@@ -2221,7 +2221,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_SWITCH_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "The border’s speed defined as " + args[0] + " block/s";
+				return "The border’s speed defined as " + args[0] + " block/s (" + args[1] + "/2)";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_SWITCH_GAME_LESS_THAN_1) {
 			@Override

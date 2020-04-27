@@ -18,7 +18,7 @@ public class FrenchDictionary extends AbstractDictionary {
 				return "Pause : ";
 			}
 		});
-		
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_TIME_BEFORE_SWITCH) {
 			@Override
 			public String getMessage(String... args) {
@@ -30,7 +30,7 @@ public class FrenchDictionary extends AbstractDictionary {
 				return "Switch désactivé";
 			}
 		});
-		
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.SCOREBOARD_SWITCH_GAME_BORDER) {
 			@Override
 			public String getMessage(String... args) {
@@ -123,7 +123,7 @@ public class FrenchDictionary extends AbstractDictionary {
 				return "Mauvais format du temps, il doit respecter le schéma hh:mm:ss";
 			}
 		});
-		
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_MESSAGE) {
 			@Override
 			public String getMessage(String... args) {
@@ -224,7 +224,8 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.EXTRACT_BASE_CHESTS_EXTRACTED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Base " + args[0] + " extraites" + "\nDes coffres détectés pour les couleurs d'équipes : " + args[1];
+				return "Base " + args[0] + " extraites" + "\nDes coffres détectés pour les couleurs d'équipes : "
+						+ args[1];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.EXTRACT_BASE_MAGENTA_WOOL_IS_FORBIDDEN) {
 			@Override
@@ -263,17 +264,20 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_NO_TEAM_SUPPORTED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Base " + args[0] + " chargée en " + args[1] + " " + args[2] + " " + args[3] + "\nAucune couleur d'équipe supportée";
+				return "Base " + args[0] + " chargée en " + args[1] + " " + args[2] + " " + args[3]
+						+ "\nAucune couleur d'équipe supportée";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_ONE_TEAM_SUPPORTED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Base " + args[0] + " chargée en " + args[1] + " " + args[2] + " " + args[3] + "\nUne couleur d'équipe supportée : " + args[4];
+				return "Base " + args[0] + " chargée en " + args[1] + " " + args[2] + " " + args[3]
+						+ "\nUne couleur d'équipe supportée : " + args[4];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_TEAMS_SUPPORTED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Base " + args[0] + " chargée en " + args[1] + " " + args[2] + " " + args[3] + "\nCouleurs d’équipe supportées : " + args[4];
+				return "Base " + args[0] + " chargée en " + args[1] + " " + args[2] + " " + args[3]
+						+ "\nCouleurs d’équipe supportées : " + args[4];
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_NOT_EXISTING) {
 			@Override
@@ -283,12 +287,14 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_MISSING_COORDINATES) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de charger la base " + args[0] + ", il manque les coordonnées du centre <X> ou <Y> ou <Z>";
+				return "Impossible de charger la base " + args[0]
+						+ ", il manque les coordonnées du centre <X> ou <Y> ou <Z>";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_BASE_MISSING_NAME_AND_COORDINATES) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de charger la base " + args[0] + " il manque le nom et les coordonnées <X> ou <Y> ou <Z> du centre";
+				return "Impossible de charger la base " + args[0]
+						+ " il manque le nom et les coordonnées <X> ou <Y> ou <Z> du centre";
 			}
 		});
 
@@ -361,7 +367,8 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_BASE_ALREADY_EXISTING) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de renommer la base " + args[0] + " en " + args[1] + ", une base du même nom existe déjà";
+				return "Impossible de renommer la base " + args[0] + " en " + args[1]
+						+ ", une base du même nom existe déjà";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_BASE_MISSING_NAME) {
 			@Override
@@ -467,12 +474,14 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_SPAWN_MISSING_COORDINATES) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de charger le spawn " + args[0] + ", il manque les coordonnées <X> ou <Y> ou <Z> du centre";
+				return "Impossible de charger le spawn " + args[0]
+						+ ", il manque les coordonnées <X> ou <Y> ou <Z> du centre";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.LAUNCH_SPAWN_MISSING_NAME_AND_COORDINATES) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de charger le spawn " + args[0] + " il manque le nom et les coordonnées <X> ou <Y> ou <Z> du centre";
+				return "Impossible de charger le spawn " + args[0]
+						+ " il manque le nom et les coordonnées <X> ou <Y> ou <Z> du centre";
 			}
 		});
 
@@ -584,7 +593,8 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_SPAWN_ALREADY_EXISTING) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de renommer le spawn " + args[0] + " en " + args[1] + ", un spawn du même nom existe déjà";
+				return "Impossible de renommer le spawn " + args[0] + " en " + args[1]
+						+ ", un spawn du même nom existe déjà";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_SPAWN_MISSING_NAME) {
 			@Override
@@ -948,7 +958,8 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.AS_CURRENT_HUNGER_GAME_NOT_EXISTING_STYLE) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de définir le style hunger game " + args[0] + " comme le style courant, ce style n'existe pas";
+				return "Impossible de définir le style hunger game " + args[0]
+						+ " comme le style courant, ce style n'existe pas";
 			}
 		});
 
@@ -1013,17 +1024,19 @@ public class FrenchDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Impossible de définir le diamètre final de la bordure, il manque le diamètre";
 			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_BAD_DIAMETER_FORMAT) {
-			@Override
-			public String getMessage(String... args) {
-				return "Mauvais format du diamètre final, il doit être un entier";
-			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE) {
-			@Override
-			public String getMessage(String... args) {
-				return "<diamètre final>";
-			}
-		});
+		}).registerMessage(
+				new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_BAD_DIAMETER_FORMAT) {
+					@Override
+					public String getMessage(String... args) {
+						return "Mauvais format du diamètre final, il doit être un entier";
+					}
+				})
+				.registerMessage(new AbstractPlayerMessage(MessageCode.FINAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE) {
+					@Override
+					public String getMessage(String... args) {
+						return "<diamètre final>";
+					}
+				});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_HUNGER_GAME_EXPLANATION) {
 			@Override
@@ -1033,7 +1046,8 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_HUNGER_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Les joueurs réapparaîtront en mode spectateur au bout de " + args[0] + "h " + args[1] + "m " + args[2] + "s de jeu";
+				return "Les joueurs réapparaîtront en mode spectateur au bout de " + args[0] + "h " + args[1] + "m "
+						+ args[2] + "s de jeu";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_HUNGER_GAME_MISSING_TIME) {
 			@Override
@@ -1081,17 +1095,19 @@ public class FrenchDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "Impossible de définir le diamètre initial, il manque le diamètre";
 			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_BAD_DIAMETER_FORMAT) {
-			@Override
-			public String getMessage(String... args) {
-				return "Mauvais format pour le diamètre initial, il doit être un entier";
-			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE) {
-			@Override
-			public String getMessage(String... args) {
-				return "<diamètre initial>";
-			}
-		});
+		}).registerMessage(
+				new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_BAD_DIAMETER_FORMAT) {
+					@Override
+					public String getMessage(String... args) {
+						return "Mauvais format pour le diamètre initial, il doit être un entier";
+					}
+				}).registerMessage(
+						new AbstractPlayerMessage(MessageCode.INITIAL_BORDER_DIAMETER_HUNGER_GAME_TAB_COMPLETE) {
+							@Override
+							public String getMessage(String... args) {
+								return "<diamètre initial>";
+							}
+						});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.LIST_HUNGER_GAME_EXPLANATION) {
 			@Override
@@ -1194,7 +1210,8 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_HUNGER_GAME_ALREADY_EXISTING) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de renommer le style hunger game " + args[0] + " en " + args[1] + ", ce style existe déjà";
+				return "Impossible de renommer le style hunger game " + args[0] + " en " + args[1]
+						+ ", ce style existe déjà";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_HUNGER_GAME_MISSING_NAME) {
 			@Override
@@ -1235,7 +1252,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "la vitesse de la bordure est défini à " + args[0] + " bloc/s";
+				return "La vitesse de la bordure est définie à " + args[0] + " blocs/s (" + args[1] + "/2)";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_HUNGER_GAME_LESS_THAN_1) {
 			@Override
@@ -1267,7 +1284,8 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_HUNGER_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Les joueurs seront prévenu " + args[0] + "h " + args[1] + "m " + args[2] + "s avant le déplacement de la bordure";
+				return "Les joueurs seront prévenu " + args[0] + "h " + args[1] + "m " + args[2]
+						+ "s avant le déplacement de la bordure";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_HUNGER_GAME_MISSING_TIME) {
 			@Override
@@ -1306,7 +1324,8 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_MUST_GO_BACK_TO_THE_OVERWORLD) {
 			@Override
 			public String getMessage(String... args) {
-				return "Retourner à la surface ou vous allez mourrir dans " + args[0] + "h " + args[1] + "m " + args[2] + "s";
+				return "Retourner à la surface ou vous allez mourrir dans " + args[0] + "h " + args[1] + "m " + args[2]
+						+ "s";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_MUST_STAY_IN_THE_OVERWORLD) {
 			@Override
@@ -1570,64 +1589,76 @@ public class FrenchDictionary extends AbstractDictionary {
 			public String getMessage(String... args) {
 				return "pour définir une zone autour du lieu de la mort d'un joueur";
 			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_DIE_BLOCKEDEX_GAME_NEGATIVE_DISTANCE) {
-			@Override
-			public String getMessage(String... args) {
-				return "Le rayon doit être positif";
-			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_DIE_BLOCKEDEX_GAME_RADIUS_DEFINED) {
-			@Override
-			public String getMessage(String... args) {
-				return "La zone autour du lieu de la mort d'un joueur a un rayon de " + args[0] + " blocs";
-			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_DIE_BLOCKEDEX_GAME_BAD_DISTANCE_FORMAT) {
-			@Override
-			public String getMessage(String... args) {
-				return "Impossible de définir le rayon, il doit être un entier";
-			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_DIE_BLOCKEDEX_GAME_MISSING_DISTANCE) {
-			@Override
-			public String getMessage(String... args) {
-				return "Impossible de définir le rayon, il manque le rayon";
-			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_DIE_BLOCKEDEX_GAME_TAB_COMPLETE) {
-			@Override
-			public String getMessage(String... args) {
-				return "<rayon>";
-			}
-		});
+		}).registerMessage(
+				new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_DIE_BLOCKEDEX_GAME_NEGATIVE_DISTANCE) {
+					@Override
+					public String getMessage(String... args) {
+						return "Le rayon doit être positif";
+					}
+				}).registerMessage(
+						new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_DIE_BLOCKEDEX_GAME_RADIUS_DEFINED) {
+							@Override
+							public String getMessage(String... args) {
+								return "La zone autour du lieu de la mort d'un joueur a un rayon de " + args[0]
+										+ " blocs";
+							}
+						})
+				.registerMessage(new AbstractPlayerMessage(
+						MessageCode.RADIUS_AREA_ON_PLAYER_DIE_BLOCKEDEX_GAME_BAD_DISTANCE_FORMAT) {
+					@Override
+					public String getMessage(String... args) {
+						return "Impossible de définir le rayon, il doit être un entier";
+					}
+				}).registerMessage(new AbstractPlayerMessage(
+						MessageCode.RADIUS_AREA_ON_PLAYER_DIE_BLOCKEDEX_GAME_MISSING_DISTANCE) {
+					@Override
+					public String getMessage(String... args) {
+						return "Impossible de définir le rayon, il manque le rayon";
+					}
+				}).registerMessage(
+						new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_DIE_BLOCKEDEX_GAME_TAB_COMPLETE) {
+							@Override
+							public String getMessage(String... args) {
+								return "<rayon>";
+							}
+						});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_KILL_BLOCKEDEX_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
 				return "pour définir une zone autour du joueur qui a tué un autre joueur";
 			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_KILL_BLOCKEDEX_GAME_NEGATIVE_DISTANCE) {
-			@Override
-			public String getMessage(String... args) {
-				return "Le rayon doit être positif";
-			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_KILL_BLOCKEDEX_GAME_RADIUS_DEFINED) {
-			@Override
-			public String getMessage(String... args) {
-				return "La zone autour du joueur qui a tué un autre joueur a un rayon de " + args[0] + " blocs";
-			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_KILL_BLOCKEDEX_GAME_BAD_DISTANCE_FORMAT) {
-			@Override
-			public String getMessage(String... args) {
-				return "Impossible de définir le rayon, il doit être un entier";
-			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_KILL_BLOCKEDEX_GAME_MISSING_DISTANCE) {
-			@Override
-			public String getMessage(String... args) {
-				return "Impossible de définir le rayon, il manque le rayon";
-			}
-		}).registerMessage(new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_KILL_BLOCKEDEX_GAME_TAB_COMPLETE) {
-			@Override
-			public String getMessage(String... args) {
-				return "<rayon>";
-			}
-		});
+		}).registerMessage(
+				new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_KILL_BLOCKEDEX_GAME_NEGATIVE_DISTANCE) {
+					@Override
+					public String getMessage(String... args) {
+						return "Le rayon doit être positif";
+					}
+				}).registerMessage(new AbstractPlayerMessage(
+						MessageCode.RADIUS_AREA_ON_PLAYER_KILL_BLOCKEDEX_GAME_RADIUS_DEFINED) {
+					@Override
+					public String getMessage(String... args) {
+						return "La zone autour du joueur qui a tué un autre joueur a un rayon de " + args[0] + " blocs";
+					}
+				}).registerMessage(new AbstractPlayerMessage(
+						MessageCode.RADIUS_AREA_ON_PLAYER_KILL_BLOCKEDEX_GAME_BAD_DISTANCE_FORMAT) {
+					@Override
+					public String getMessage(String... args) {
+						return "Impossible de définir le rayon, il doit être un entier";
+					}
+				}).registerMessage(new AbstractPlayerMessage(
+						MessageCode.RADIUS_AREA_ON_PLAYER_KILL_BLOCKEDEX_GAME_MISSING_DISTANCE) {
+					@Override
+					public String getMessage(String... args) {
+						return "Impossible de définir le rayon, il manque le rayon";
+					}
+				}).registerMessage(
+						new AbstractPlayerMessage(MessageCode.RADIUS_AREA_ON_PLAYER_KILL_BLOCKEDEX_GAME_TAB_COMPLETE) {
+							@Override
+							public String getMessage(String... args) {
+								return "<rayon>";
+							}
+						});
 
 		registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_BLOCKEDEX_GAME_EXPLANATION) {
 			@Override
@@ -1642,7 +1673,8 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_BLOCKEDEX_GAME_ALREADY_EXISTING) {
 			@Override
 			public String getMessage(String... args) {
-				return "Impossible de renommer le style blockedex " + args[0] + " en " + args[1] + ", ce style existe déjà";
+				return "Impossible de renommer le style blockedex " + args[0] + " en " + args[1]
+						+ ", ce style existe déjà";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.RENAME_BLOCKEDEX_GAME_MISSING_NAME) {
 			@Override
@@ -1764,7 +1796,7 @@ public class FrenchDictionary extends AbstractDictionary {
 				return "Reprise";
 			}
 		});
-		
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_GAME_EDITION_CONFIGURATION_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
@@ -1867,8 +1899,8 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_SWITCH_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Les joueurs ressusciteront en mode spectateur après " + args[0] + "h " + args[1] + "m " + args[2]
-						+ "s de jeu";
+				return "Les joueurs ressusciteront en mode spectateur après " + args[0] + "h " + args[1] + "m "
+						+ args[2] + "s de jeu";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.FRACTION_TIME_SWITCH_GAME_MISSING_TIME) {
 			@Override
@@ -1876,7 +1908,7 @@ public class FrenchDictionary extends AbstractDictionary {
 				return "Impossible de définir le temps après lequel les joueurs ne ressuscitent plus, il n'existe pas";
 			}
 		});
-		
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.NUMBER_OF_SWITCHABLE_PLAYER_PER_TEAM_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
@@ -1903,7 +1935,7 @@ public class FrenchDictionary extends AbstractDictionary {
 				return "Il manque le paramètre nombre de joueur switché par équipe";
 			}
 		});
-		
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_AFTER_BORDER_MOVES_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
@@ -1925,12 +1957,12 @@ public class FrenchDictionary extends AbstractDictionary {
 				return "<Y/N>";
 			}
 		});
-		
 
-	registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_DEFINED) {
+		registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Le temps à partir duquel la bordure rétréci est de " + args[0] + "h " + args[1] + "m " + args[2] + "s";
+				return "Le temps à partir duquel la bordure rétréci est de " + args[0] + "h " + args[1] + "m " + args[2]
+						+ "s";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_MISSING_TIME) {
 			@Override
@@ -1938,11 +1970,11 @@ public class FrenchDictionary extends AbstractDictionary {
 				return "Impossible de régler le temps à partir duquel la bordure bouge, il n'est pas encore défini";
 			}
 		});
-		
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.START_SWITCH_TIME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-							return "pour régler le temps du premier échange";
+				return "pour régler le temps du premier échange";
 			}
 		});
 		registerMessage(new AbstractPlayerMessage(MessageCode.START_SWITCH_TIME_DEFINED) {
@@ -1956,11 +1988,11 @@ public class FrenchDictionary extends AbstractDictionary {
 				return "Impossible de régler le temps du premier switch, il n'est pas défini";
 			}
 		});
-		
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_TIME_SWITCH_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
-							return "pour régler le délai entre les switchs";
+				return "pour régler le délai entre les switchs";
 			}
 		});
 		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_TIME_SWITCH_GAME_DEFINED) {
@@ -1974,7 +2006,7 @@ public class FrenchDictionary extends AbstractDictionary {
 				return "Impossible de régler le délai entre les switchs, il n'est pas défini";
 			}
 		});
-		
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.GAME_TIME_SWITCH_GAME_EXPLANATION) {
 			@Override
 			public String getMessage(String... args) {
@@ -2158,7 +2190,7 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_SWITCH_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "La vitesse de la bordure est défini à " + args[0] + " blocs/s";
+				return "La vitesse de la bordure est définie à " + args[0] + " blocs/s (" + args[1] + "/2)";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.SPEED_BORDER_SWITCH_GAME_LESS_THAN_1) {
 			@Override
@@ -2190,7 +2222,8 @@ public class FrenchDictionary extends AbstractDictionary {
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_SWITCH_GAME_DEFINED) {
 			@Override
 			public String getMessage(String... args) {
-				return "Les joueurs seront prévenus " + args[0] + "h " + args[1] + "m " + args[2] + "s avant que la bordure bouge";
+				return "Les joueurs seront prévenus " + args[0] + "h " + args[1] + "m " + args[2]
+						+ "s avant que la bordure bouge";
 			}
 		}).registerMessage(new AbstractPlayerMessage(MessageCode.WARNING_TIME_SWITCH_GAME_MISSING_TIME) {
 			@Override
@@ -2205,7 +2238,7 @@ public class FrenchDictionary extends AbstractDictionary {
 				return "Le temps a partir duquel les joueurs ne ressuscitent plus doit être inférieur au temps à partir duquel la bordure bouge";
 			}
 		});
-		
+
 		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH) {
 			@Override
 			public String getMessage(String... args) {
