@@ -89,7 +89,7 @@ public class ScoreboardManager {
 				addEntries(obj, ChatColor.GOLD + message.getKey() + ChatColor.DARK_GREEN + message.getMessage());
 		String playersOrientation = "";
 		for (Player p : TeamsManager.getCollegues(player))
-			playersOrientation += showDistance(player, p) ;
+			playersOrientation += showDistance(player, p);
 		MessageManager.sendMessage(DisplayOption.ACTION_BAR, player, playersOrientation, true, false,
 				ChatColor.WHITE.toString());
 		addEmptyLine(obj);
@@ -102,31 +102,40 @@ public class ScoreboardManager {
 		return ChatColor.GOLD + "X/Y/Z:" + ChatColor.DARK_GREEN + " " + prepareCoordinates(player);
 	}
 
-	private static String showDistance(Player player, Player p2) {
-
-		int distance = (int) PlayerManager.getDistanceBetweenCollegues(player, p2);
-		double orientation = PlayerManager.getOrientationBetweenPlayers(player, p2);
-		String ori = "";
-		if (orientation >= -22.5 && orientation < 22.5)
-			ori = "\u2191"; //devant
-		else if (orientation >= 22.5 && orientation < 67.5)
-			ori = "\u2b09"; //devant gauche
-		else if (orientation >= 67.5 && orientation < 112.5)
-			ori = "\u2190"; //gauche
-		else if (orientation >= 112.5 && orientation < 157.5)
-			ori = "\u2b0b"; //derriere gauche
-		else if (orientation >= 157.5 && orientation <= 180)
-			ori = "\u2193"; //derriere
-		else if (orientation >= -180 && orientation < -157.5)
-			ori = "\u2193"; //derriere
-		else if (orientation >= -157.5 && orientation < -112.5)
-			ori = "\u2b0a"; //derriere droite
-		else if (orientation >= -112.5 && orientation < -67.5)
-			ori = "\u2192"; //droite
-		else if (orientation >= -67.5 && orientation < -22.5)
-			ori = "\u2b08"; //devant droite
-		return p2.getName() + " | " + distance + " " + ori + " ";
-
+	private static String showDistance(Player p1, Player p2) {
+		String worldp1 = p1.getWorld().getName();
+		String worldp2 = p2.getWorld().getName();
+		if (worldp1.equals(worldp2)) {
+			int distance = (int) PlayerManager.getDistanceBetweenCollegues(p1, p2);
+			double orientation = PlayerManager.getOrientationBetweenPlayers(p1, p2);
+			String ori = "";
+			if (orientation >= -22.5 && orientation < 22.5)
+				ori = "\u2191"; // devant
+			else if (orientation >= 22.5 && orientation < 67.5)
+				ori = "\u2b09"; // devant gauche
+			else if (orientation >= 67.5 && orientation < 112.5)
+				ori = "\u2190"; // gauche
+			else if (orientation >= 112.5 && orientation < 157.5)
+				ori = "\u2b0b"; // derriere gauche
+			else if (orientation >= 157.5 && orientation <= 180)
+				ori = "\u2193"; // derriere
+			else if (orientation >= -180 && orientation < -157.5)
+				ori = "\u2193"; // derriere
+			else if (orientation >= -157.5 && orientation < -112.5)
+				ori = "\u2b0a"; // derriere droite
+			else if (orientation >= -112.5 && orientation < -67.5)
+				ori = "\u2192"; // droite
+			else if (orientation >= -67.5 && orientation < -22.5)
+				ori = "\u2b08"; // devant droite
+			return p2.getName() + " | " + distance + " " + ori + " ";
+		}
+		else {
+			if(worldp2.equals("world"))
+				worldp2 = "Overworld";
+			if(worldp2.equals("world_nether"))
+				worldp2 = "Nether";
+			return p2.getName() + " | " + worldp2;
+		}
 	}
 
 	private static String prepareCoordinates(Player player) {
