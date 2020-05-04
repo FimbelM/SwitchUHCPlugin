@@ -127,7 +127,7 @@ public class EnglishDictionary extends AbstractDictionary {
 		registerMessage(new AbstractPlayerMessage(MessageCode.SWITCH_MESSAGE) {
 			@Override
 			public String getMessage(String... args) {
-				return "You have been switched to team " + args[0] + ", please change discord channel";
+				return "You have been switched to team " + args[0] + ", please change discord channel " + "\u2764";
 			}
 		});
 
