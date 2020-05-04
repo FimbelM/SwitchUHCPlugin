@@ -61,6 +61,12 @@ public class SwitchPersistence  extends AbstractConfPersistence<ISwitchGameConfi
 		time.setAttribute("scoreboardrefresh", "" + get().getScoreboardRefresh());
 		root.appendChild(time);
 
+		Element revive = doc.createElement("ReviveNearTeamate");
+		revive.setAttribute("Revive", get().getReviveNearTeamate());
+		
+		Element onePlayer = doc.createElement("OnePlayerSwitch");
+		onePlayer.setAttribute("OnePlayer", get().getOnePlayerSwitch());
+		
 		Element number = doc.createElement("NumberofSwitchedPerson");
 		number.setAttribute("Number", get().getNumberOfPlayerSwitchable().toString());
 		

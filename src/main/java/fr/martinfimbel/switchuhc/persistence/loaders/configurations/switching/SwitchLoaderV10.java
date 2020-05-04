@@ -62,7 +62,8 @@ public class SwitchLoaderV10 extends AbstractSwitchGameLoader {
 					if (elt.getChildNodes().item(j).getNodeType() != Node.ELEMENT_NODE)
 						continue;
 					Element t = (Element) elt.getChildNodes().item(j);
-					get().addTeam(TeamsManager.createTeam(t.getAttribute("name"), EColor.getByColorName(t.getAttribute("color"))));
+					get().addTeam(TeamsManager.createTeam(t.getAttribute("name"),
+							EColor.getByColorName(t.getAttribute("color"))));
 				}
 				break;
 			case "number":
@@ -71,7 +72,12 @@ public class SwitchLoaderV10 extends AbstractSwitchGameLoader {
 			case "switchafter":
 				get().setSwitchAfterBorderMoves(elt.getAttribute("SwitchABM"));
 				break;
-				
+			case "onePlayer":
+				get().setOnePlayerSwitch(elt.getAttribute("OnePlayer"));
+				break;
+			case "revive":
+				get().setReviveNearTeamate(elt.getAttribute("Revive"));
+				break;
 			default:
 				break;
 			}
