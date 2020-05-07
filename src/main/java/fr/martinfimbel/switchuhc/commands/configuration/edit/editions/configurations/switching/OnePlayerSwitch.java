@@ -21,11 +21,11 @@ public class OnePlayerSwitch extends AbstractConfEdition<ISwitchGameConfiguratio
 		String letter = args[0];
 		if(letter.equalsIgnoreCase("Y")) {
 			get().setOnePlayerSwitch(letter);
-			sendMessage(MessageCode.ONE_PLAYER_SWITCH_DEFINED, get().getReviveNearTeamate());
+			sendMessage(MessageCode.ONE_PLAYER_SWITCH_DEFINED, get().getOnePlayerSwitch());
 			return;
 		} else if(letter.equalsIgnoreCase("N")) {
 			get().setOnePlayerSwitch(letter);
-			sendMessage(MessageCode.ONE_PLAYER_SWITCH_DEFINED, get().getReviveNearTeamate());
+			sendMessage(MessageCode.ONE_PLAYER_SWITCH_DEFINED, get().getOnePlayerSwitch());
 			return;
 		} else {
 			sendMessage(MessageCode.ONE_PLAYER_SWITCH_WRONG_FORMAT);
