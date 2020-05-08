@@ -2307,5 +2307,12 @@ public class EnglishDictionary extends AbstractDictionary {
 				return "You cannot go into the " + args[0];
 			}
 		});
+		
+		registerMessage(new AbstractPlayerMessage(MessageCode.PLAYERS_NOT_ONLINE) {
+			@Override
+			public String getMessage(String... args) {
+				return args[0] + " is not online";
+			}
+		});
 	}
 }

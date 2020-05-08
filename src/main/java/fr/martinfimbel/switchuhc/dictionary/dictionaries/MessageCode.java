@@ -281,6 +281,8 @@ public enum MessageCode implements IMessageCode {
 	// Start messages
 	PLAYERS_NOT_IN_TEAM, NO_GAME_STYLE_DEFINED_AS_CURRENT,
 
+	// Host message
+	PLAYERS_NOT_ONLINE,
 	// Common on game messages
 	GAME_SUSPENDED, GAME_RESUMED, REVIVE_NEAR_TEAMATE_TAB_COMPLETE;
 
