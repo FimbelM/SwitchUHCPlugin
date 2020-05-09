@@ -70,7 +70,6 @@ public class SwitchUHCPlugin extends JavaPlugin implements IObsListener, IObsGam
 
 	@Override
 	public void onStart() {
-		// TODO Auto-generated method stub
 		PlayerManager.removeAllEffectsToAllPlayers();
 		listener.removeObservers(this);
 		listener.addObservers(context);
@@ -78,7 +77,6 @@ public class SwitchUHCPlugin extends JavaPlugin implements IObsListener, IObsGam
 
 	@Override
 	public void onStop() {
-		// TODO Auto-generated method stub
 		listener.addObservers(this);
 		listener.removeObservers(context);
 		WorldManager.setPVP(false);
@@ -90,7 +88,7 @@ public class SwitchUHCPlugin extends JavaPlugin implements IObsListener, IObsGam
 		String message = "Bienvenue en " + ChatColor.AQUA + ChatColor.BOLD + "UHC Switch";
 		event.getPlayer().sendMessage(message + " " + event.getPlayer().getName());
 		UHCPlayer.register(event.getPlayer());
-		PlayerManager.teleporte(event.getPlayer(), WorldManager.createDefaultLocation(0, 70, 0));
+		PlayerManager.teleporte(event.getPlayer(), WorldManager.getSpawnOnJoin());
 		movePlayer(event.getPlayer());
 	}
 
