@@ -2245,5 +2245,17 @@ public class FrenchDictionary extends AbstractDictionary {
 				return "SWITCH!!!";
 			}
 		});
+		
+		registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_OFFLINE) {
+			@Override
+			public String getMessage(String... args) {
+				return args[0] + " n'est pas en ligne";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.HOST_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return args[0] + " est l'hote de la partie";
+			}
+		});
 	}
 }

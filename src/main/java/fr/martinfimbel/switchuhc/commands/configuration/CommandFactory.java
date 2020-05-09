@@ -6,10 +6,12 @@ import fr.martinfimbel.switchuhc.commands.AbstractCommand;
 import fr.martinfimbel.switchuhc.commands.game.PauseCommand;
 import fr.martinfimbel.switchuhc.commands.game.StartCommand;
 import fr.martinfimbel.switchuhc.commands.game.StopCommand;
+import fr.martinfimbel.switchuhc.commands.host.HostCommand;
 import fr.martinfimbel.switchuhc.interfaces.ICommand;
 import fr.martinfimbel.switchuhc.interfaces.IConfigurationContext;
 
 public class CommandFactory {
+	private static ICommand hostCommand;
 	private static ICommand startCommand;
 	private static ICommand pauseCommand;
 	private static ICommand stopCommand;
@@ -19,6 +21,10 @@ public class CommandFactory {
 	private static ICommand hungerGameConfigurationCommand;
 	private static ICommand switchConfigurationCommand;
 
+	public static ICommand getHostCommand() {
+		return hostCommand;
+	}
+	
 	public static ICommand getStartCommand() {
 		return startCommand;
 	}
@@ -54,6 +60,7 @@ public class CommandFactory {
 	public static void initiate(JavaPlugin plugin, IConfigurationContext context) {
 		AbstractCommand.setConfigurationContext(context);
 
+		hostCommand = new HostCommand(plugin, "host");
 		startCommand = new StartCommand(plugin, "startgame");
 		stopCommand = new StopCommand(plugin, "stopgame");
 		pauseCommand = new PauseCommand(plugin, "pausegame");

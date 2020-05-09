@@ -2308,10 +2308,15 @@ public class EnglishDictionary extends AbstractDictionary {
 			}
 		});
 		
-		registerMessage(new AbstractPlayerMessage(MessageCode.PLAYERS_NOT_ONLINE) {
+		registerMessage(new AbstractPlayerMessage(MessageCode.PLAYER_OFFLINE) {
 			@Override
 			public String getMessage(String... args) {
 				return args[0] + " is not online";
+			}
+		}).registerMessage(new AbstractPlayerMessage(MessageCode.HOST_DEFINED) {
+			@Override
+			public String getMessage(String... args) {
+				return args[0] + " is the host for this game";
 			}
 		});
 	}
